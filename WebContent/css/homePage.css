@@ -1,0 +1,500 @@
+*{
+	outline:none;
+}
+a {
+	text-decoration: none;
+	color: #E4002B;
+}
+
+.article-container {
+	text-align: center;
+	/* border: 5px solid black; */
+	margin-top: 60px;
+}
+
+.article-container h2 {
+	font-size: 36px;
+	letter-spacing: 10px;
+	font-weight: 400;
+}
+
+.article-section-description {
+	/* border: 5px solid black; */
+	max-width: 1024px;
+	margin: 10px auto;
+	/* height: 600px; */
+}
+
+/*-----------------------------廚房專區----------------------------*/
+#article-recipe {
+	height: 530px;
+	margin-top: 210px;
+	background-image: url("../image/ad/recipeBG.png");
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
+}
+.ariticle-section-racipe-h2 {
+	position: relative;
+	top: -90px;
+}
+
+.ariticle-section-racipe-h2+span {
+	position: relative;
+	top: -85px;
+}
+
+#article-container-recipe {
+	height: 500px;
+	overflow: hidden;
+}
+
+#article-section-description-recipe {
+	margin: auto;
+	height: 400px;
+}
+
+.article-section-description-recipe-left {
+	width: 50%;
+	height: 100%;
+	float: left;
+	padding-top: 90px;
+}
+
+.article-section-description-recipe-left-span {
+text-align: center;
+    color: white;
+    font-size: 28px;
+    display: inline-block;
+    padding-top: 10px;
+    max-width: 380px;
+    vertical-align: bottom;
+}
+
+.article-section-description-recipe-left img {
+	float: left;
+	margin-top: 30px 5px;
+}
+
+.article-section-description-recipe-right {
+	float: right;
+	width: 45%;
+	height: 45%;
+	padding: 5px;
+	background-color: white;
+	margin-bottom: 10px;
+	margin-top: 10px;
+}
+
+.article-recipe-right-photo-div {
+	width: 50%;
+	overflow: hidden;
+}
+
+.article-recipe-right-title {
+	float: left;
+	width: 50%;
+}
+
+.article-recipe-right-title h3, p {
+	font-weight: 500;
+	font-size: 18px;
+	text-align: left;
+	width: 200px;
+}
+
+.article-recipe-right-title h3 {
+	margin-top: 15px;
+	margin-left: 30px;
+}
+
+.article-recipe-right-title p {
+	display: inline-block;
+	color: black;
+	border-top: 1px solid #E4002B;
+	padding-top: 5px;
+}
+
+.article-recipe-right-title p:hover {
+	text-decoration: underline;
+	color: #E4002B;
+}
+
+.article-recipe-right-photo-div img {
+	width: 100%;
+	height: 170px;
+	transition: all ease-in-out 300ms;
+	transform: scale(1, 1);
+	overflow: hidden;
+}
+
+.article-recipe-right-photo-div img:hover {
+	transform: scale(1.1, 1.1);
+}
+
+#article-section-seemore-recipe {
+	margin-top: 40px;
+	clear: both;
+}
+
+@media screen and (max-width: 575px) {
+	#article-recipe {
+		height: 1040px;
+	}
+	
+	#article-section-description-recipe-right-1{
+	margin-top: 200px;
+	}
+	.article-section-description-recipe-left {
+		box-sizing: border-box;
+		width: 350px;
+		padding-top: 0;
+		padding-left: 10px;
+		margin: 0 auto;
+		height: 300px;
+		float: none;
+	}
+	.article-section-description-recipe-right {
+		box-sizing: border-box;
+		width: 350px;
+		height: 190px;
+		float: none;
+		margin: 40px auto;
+	}
+	#article-section-seemore-recipe {
+		margin: 40px auto;
+	}
+	.article-recipe-right-photo-div {
+		width: 50%;
+		overflow: hidden;
+		margin-left: 5px;
+	}
+	.article-recipe-right-title {
+		float: left;
+	}
+	.article-recipe-right-title h3, p {
+		text-align: left;
+		width: 90%;
+	}
+}
+
+/*---------------------------直播專區------------------------------------*/
+#livestream-left-1-video{
+	width:100%;
+}
+#livestream {
+	border-top: 1px solid rgb(207, 207, 207);
+	border-bottom: 1px solid rgb(207, 207, 207);
+	padding: 60px 0;
+}
+
+#article-container-livestream {
+	margin: 0 auto;
+	max-width: 1024px;
+}
+
+.article-section-description-livestream {
+	padding-top: 30px;
+	height: 650px;
+}
+
+.article-section-description-livestream-left {
+	box-sizing: border-box;
+	height: 600px;
+	width: 50%;
+	float: left;
+	padding-top: 75px;
+}
+
+.article-section-description-livestream-right {
+	box-sizing: border-box;
+	padding: 20px 10px 0 10px;
+	width: 24%;
+	display: inline-block;
+	text-align: left;
+}
+
+.livestream-left-1-video-container iframe {
+	width: 95%;
+	height: 270px;
+	margin-bottom: 5px;
+}
+
+.livestream-left-1-video-title {
+	padding-left: 10px;
+	text-align: left;
+	height: 30%;
+}
+
+.livestream-left-1-video-title h3 {
+	border-bottom: 2px solid #E4002B;
+	display: inline-block;
+	font-size: 20px;
+}
+
+.livestream-left-1-video-title p {
+	width: 100%;
+	color: black;
+	text-align: left;
+	font-size: 18px;
+	margin-top: 10px;
+}
+
+.livestream-right-photo-div {
+	overflow: hidden;
+	height: 150px;
+}
+
+.article-section-description-livestream-right img {
+	width: 100%;
+	height: auto;
+	transition: all ease-in-out 400ms;
+	transform: scale(1, 1);
+	overflow: hidden;
+}
+
+.article-section-description-livestream-right img:hover {
+	transform: scale(1.1, 1.1);
+}
+
+.livestream-right-title h3 {
+	font-weight: 400;
+	font-size: 18px;
+	border-bottom: 1px solid #E4002B;
+	display: inline-block;
+	margin-top: 5px;
+	clear: both;
+}
+
+.livestream-right-title p {
+	color: black;
+	text-align: left;
+	font-size: 18px;
+	margin-top: 5px;
+	max-width: 100%;
+}
+
+@media screen and (max-width: 575px) {
+	#article-container-livestream {
+		height: 1850px;
+	}
+	.article-section-description-livestream-left {
+		width: 100%;
+		padding: 0;
+		float: none;
+		height: 500px;
+		margin: 0 auto;
+	}
+	.article-section-description-livestream-right {
+		width: 350px;
+		height: 320px;
+		float: none;
+	}
+	.livestream-right-photo-div {
+		height: 200px;
+	}
+}
+
+@media ( max-width : 576px) and (max-width: 768px) {
+}
+
+/*---------------------------食材商城------------------------------------*/
+#mallproduct {
+	margin: 100px auto;
+	margin-bottom: 50px;
+	max-width: 1100px;
+	min-height: 1000px;
+}
+
+ul.imglist a {
+	list-style-type: none;
+	margin: 0px auto;
+	color: black;
+	text-decoration: underline;
+}
+
+.imglist-li {
+	width: 200px;
+	margin: 50px 35px;
+	padding: 0;
+	float: left;
+	overflow: hidden;
+}
+
+ul.imglist li img {
+	width: 200px;
+	height: 190px;
+}
+
+.imglist-li-span {
+	display: inline-block;
+	margin: 0 auto;
+	width: 200px;
+	height: 30px;
+	padding: 0 auto;
+	line-height: 40px;
+}
+
+/*變換大小*/
+@media screen and (max-width: 320px) {
+	ul.imglist li {
+		margin: 5px;
+		width: 130px;
+		display: inline-block;
+		float: none;
+		text-align: center;
+	}
+	ul.imglist li img {
+		width: 100%;
+		height: 140px;
+	}
+}
+
+@media ( min-width : 321px) and (max-width: 575px) {
+	ul.imglist li {
+		margin: 9px;
+		width: 160px;
+		display: inline-block;
+		float: none;
+		text-align: center;
+	}
+	#mallproduct {
+		height: 1190px;
+	}
+	ul.imglist li img {
+		width: 100%;
+		height: 140px;
+	}
+	ul.imglist li span {
+		width: 100%;
+	}
+}
+
+@media ( min-width : 575px) and (max-width: 767px) {
+	.shop-slide_viewer {
+		height: 450px;
+		padding-left: 2px;
+	}
+	#mallproduct {
+		width: 500px;
+		height: 1300px;
+		padding: 0;
+	}
+	ul.imglist li {
+		margin: 20px 0;
+		box-sizing: border-box;
+	}
+	.lookmore button {
+		margin: 10px auto;
+	}
+	ul.imglist li img {
+		width: 190px;
+		height: 140px;
+	}
+}
+
+@media ( min-width : 768px) and (max-width: 991px) {
+	#mallproduct {
+		height: 850px;
+		width: 800px;
+	}
+	ul.imglist li {
+		margin: 20px 30px;
+	}
+}
+
+hr {
+	margin-top: 100px;
+	background-color: rgba(246, 245, 246, 0.24);
+}
+
+.middle-ad-contain {
+	max-width: 100%;
+	max-height: 350px;
+	padding-top: 50px;
+	/* overflow: hidden; */
+}
+
+.middle-ad-contain img {
+	max-width: 100%;
+	margin: 0 auto;
+	display: block;
+}
+
+/*---------------------------課程專區------------------------------------*/
+#course-list-div {
+	margin: 90px auto;
+}
+
+.course-list-li {
+	display: inline-block;
+	list-style: none;
+	width: 40%;
+	/* overflow: hidden; */
+	/* max-height: 250px; */
+	margin: 10px;
+	text-align: left;
+}
+
+.course-li-img-div {
+	margin: 0 auto;
+	width: 90%;
+	height: 200px;
+	overflow: hidden;
+}
+
+.course-li-img {
+	width: 100%;
+	height: 200px;
+	transition: all 350ms;
+}
+
+.course-li-img:hover {
+	transform: scale(1.04, 1.04);
+}
+
+.course-li-title {
+	display: block;
+	margin-left: 5%;
+	color: rgb(26, 23, 44);
+	font-size: 16px;
+	margin-top: 10px;
+	font-weight: 600;
+}
+
+.course-list-date-span {
+	display: inline-block;
+	margin-left: 5%;
+	margin-top: 0px;
+	color: #FF5757;
+	font-size: 14px;
+	margin-right: 10px;
+	font-weight: 600;
+}
+
+.course-date-li {
+	margin-top: 6px;
+	display: inline-block;
+	color: rgb(187, 187, 187);
+	font-size: 13px;
+}
+
+.course-sider-list {
+	margin: 60px 0;
+}
+
+.course-sider-list-viewer a :active {
+	border: none;
+}
+
+.article-section-seemore-course {
+	margin-top: 80px;
+}
+
+@media screen and (max-width: 575px) {
+	.course-list-li {
+		display: block;
+		width: 340px;
+		margin: 20px auto;
+	}
+}

@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--套件-->
+    <script src="../../plugin/jquery-3.4.1.min.js"></script>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>後端頁面模板</title>
+
+    <script src="js/MainProductPage.js"> </script>
+    <script src="../../plugin/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
+    <script src="../../plugin/Semantic-UI/semantic.min.js"></script>
+
+    <link rel="stylesheet" href="../../plugin/bootstrap-4.4.1-dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../plugin/Semantic-UI/semantic.min.css">
+
+    <link rel="stylesheet" href="../css/mainback_endcss.css">
+    <link rel="stylesheet" href="../css/BEproductCss.css">
+
+<body>
+
+
+
+
+    <div class="container">
+                        <div class="box">
+                            <!--這裡是左邊選單-->
+
+                            <div class="left-bar"><span class="fa fa-cloud-download"><img src="../image/FoodPron_Logo.png" alt="LOGO"
+                                                                                          width="200" height="200"></span>
+
+                                <div class="back-endlefecotext">
+                                    <ul id="leftMenu">
+                                        <li class="lialist">
+                                            <div class="iconstatus" style="display: none">OPEN</div>
+                                            <a style="color: #E4002B" class=" productlist" title="open or close this section " href="#">商品管理
+                                                <i class="angle up icon" style="color: #E4002B"></i>
+                                            </a>
+                                            <ul class="BList" >
+                                                <li><a href="#">查看商城商品</a></li>
+                                                <li><a href="#">新增商品</a></li>
+                                                <li><a href="#">查看食譜料理包</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="lialist">
+                                            <div class="iconstatus" style="display: none">CLOSE</div>
+
+                                            <a class=" orderlist" title="open or close this section " href="#">管理訂單
+                                                <i class="angle down icon"></i>
+                                            </a>
+                                            <ul class="BList" >
+
+                                                <li><a href="#">查看全部訂單</a></li>
+                                                <li><a href="#">查詢訂單</a></li>
+                                                <li><a href="#">???????</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+
+
+
+                                </div>
+
+
+
+                                <span class="fa fa-sign-out">登出</span>
+                            </div>
+                            <div class="wrapper">
+
+                                <div class="content">
+                                    <div class="menu">
+                                        <!-- 卡片內容上方留白的起始標籤 -->
+                                    </div><!-- 卡片內容上方留白的結束標籤 -->
+                                </div>
+
+                <div class="grid">
+                    <!-- 卡片內容起始標籤 -->
+                    <table class="ui selectable celled table">
+                        <thead >
+                        <tr id="Producttitle">
+                            <th>商品圖</th>
+                            <th>類別</th>
+                            <th  class="product_idth" >商品編號</th>
+                            <th class="recipe_th">食譜編號</th>
+                            <th>商品名稱</th>
+                            <th>商品單價</th>
+                            <th>商品狀態</th>
+                            <th>商品詳細成分</th>
+                            <th>修改</th>
+                            <th>刪除</th>
+                        </tr>
+                        </thead>
+                        <tbody id="ProductContext">
+                        <tr >
+                            <td>暫無</td>
+                            <td>水果類</td>
+                            <td  class="product_idtd">320001</td>
+                            <td class="recipe_td" ></td>
+                            <td>文旦</td>
+                            <td>131</td>
+                            <td>
+                                    <button class="ui left attached button onproduct" style="background-color: #e4002b;color: white">上架</button>
+                                <button class="right attached ui button offproduct">下架</button>
+
+
+                            </td>
+                            <td><button>查看更多</button></td>
+                            <td><button>修改</button></td>
+                            <td><button>刪除</button></td>
+                        </tr>
+
+
+                        <tr >
+                            <td>暫無</td>
+                            <td>水果類</td>
+                            <td  class="product_idtd">320001</td>
+                            <td class="recipe_td" ></td>
+                            <td>文旦</td>
+                            <td>131</td>
+                            <td>
+                                <button class="ui left attached button onproduct" style="background-color: #e4002b;color: white">上架</button>
+                                <button class="right attached ui button offproduct">下架</button>
+
+
+                            </td>
+                            <td><button>查看更多</button></td>
+                            <td><button>修改</button></td>
+                            <td><button>刪除</button></td>
+                        </tr>
+
+
+                        <tr >
+                            <td>暫無</td>
+                            <td>水果類</td>
+                            <td  class="product_idtd">320001</td>
+                            <td class="recipe_td" ></td>
+                            <td>文旦</td>
+                            <td>131</td>
+                            <td>
+                                <a href=""></a>  <button class="ui left attached button onproduct" style="background-color: #e4002b;color: white">上架</button>
+                                <button class="right attached ui button offproduct">下架</button>
+
+
+                            </td>
+                            <td><button>查看更多</button></td>
+                            <td><button>修改</button></td>
+                            <td><button>刪除</button></td>
+                        </tr>
+
+
+
+                        </tbody>
+                    </table>
+
+
+
+
+
+                </div><!-- end of grid -->
+                <!-- 卡片內容結束標籤 -->
+            </div>
+        </div>
+    </div>
+
+<button id="tee">你好</button>
+</body>
+<script>
+
+    $(".onproduct").click(function () {
+        $(this).removeAttr("style");
+        $(this).css({"color":"white","background-color":'blue'});
+        $(this).siblings(".offproduct").removeAttr("style");
+
+    });
+$(".offproduct").click(function () {
+    $(this).removeAttr("style");
+    $(this).css({"color":"white","background-color":'red'});
+    $(this).siblings(".onproduct").removeAttr("style");
+
+});
+</script>
+<script>
+
+    var r=$('.recipe_td').html()
+    if($('.recipe_td').html()==""){
+
+        $('.recipe_td').css('display','none');
+        $('.recipe_th').css('display','none');
+        $('.recipe_th').html("");
+// 	$('.product_idth').attr("colspan", 2);
+// 	$('.product_idtd').attr("colspan", 2);
+    }
+    else if($('.recipe_td').html()=="" && $('.recipe_th').html()!="")
+    {
+
+
+    }
+
+
+</script>
+<script>
+        $("#leftMenu > li ").children('a').not(".productlist").find("+ul").slideUp(1);
+
+        $("#leftMenu > li ").children('a').click(function() {
+            $(this).find("+ ul").slideToggle("fast");
+
+        });
+</script>
+<script>
+    $(".lialist i").hover(function(){
+        $(this).css("color","#E4002B");
+    },function(){
+        $(this).css("color","#707070");
+
+
+    });
+
+    $('.lialist').click(function () {
+        if($(this).children(".iconstatus").html()=="OPEN"){
+            $(this).find('i').removeClass("up");
+            $(this).find('i').addClass("down");
+            $(this).children('a').css("color","#707070");
+            $(this).find('i').css("color","#707070");
+
+            $(this).children(".iconstatus").html("CLOSE") ;
+
+        }
+        else if($(this).children(".iconstatus").html()=="CLOSE"){
+            $(this).find('i').removeClass("down");
+            $(this).find('i').addClass("up");
+            $(this).children('a').css("color","#E4002B");
+            $(this).find('i').css("color","#E4002B");
+
+            $(this).children(".iconstatus").html("OPEN") ;
+
+        }
+
+
+    })
+
+
+</script>
+
+</html>

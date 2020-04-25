@@ -1,0 +1,97 @@
+/*字體顏色*/
+#producttitle p ,#productdescript p, .prodictmessage>.title{
+    font-family: '微軟正黑體 Light', monospace;
+    color: #e4002b;
+    font-weight: bolder;
+
+}
+
+#shopProduct{
+width: 1100px;
+    height: 1250px;
+    margin: 10px auto;
+}
+#producttitle{
+    height: 110px;
+    text-align:center;
+
+}
+#producttitle p{
+    line-height: 110px;
+    font-size: 55px;
+
+}
+
+
+#Productcontext{
+    width: 100%;
+    height: 350px;
+}
+#productpicture {
+    border-style:solid;
+    align-items:center;
+    height: 350px;
+    width: 35%;
+    float: left;
+    display:flex;
+    justify-content:center;
+    border-color: #f9f9f9;
+
+}
+#productpicture img{
+    width: 320px;
+    height: 270px;
+
+}
+#productdescript{
+    padding: 100px;
+    overflow: hidden;
+    height: 100%;
+    width: 65%;
+}
+#descript1{
+    margin-top: -60px;
+}
+#productdescript div{
+    margin-bottom: 55px;
+    margin-left: -70px;
+    height: 30%;
+    font-size: 24px;
+}
+#descript3{
+    margin-top: 63px;
+}
+
+.prodictmessage{
+    margin-top: 60px;
+    height: 300px;
+    width: 100%;
+    background-color: #f9f9f9;
+
+}
+.prodictmessage{
+    font-size: 25px;
+
+}
+.prodictmessage .title{
+     width: 100%;
+  height: 60px;
+    padding-top: 25px;
+     padding-left: 70px;
+
+}
+.hrdiv{
+    height: 40px;
+
+}
+.hrdiv hr{
+    margin-left: 50px;
+    width: 1000px;
+height: 5px;
+    background : #e4002b;
+}
+prodictmessage>.context {
+    height: 150px;
+    width: 100%;
+    background-color: #7d64ff;
+}

@@ -1,0 +1,152 @@
+body{
+    font-family: '微軟正黑體';
+
+}
+
+#shopTitle{
+    width: 1100px;
+    height: 150px;
+    margin: 0 auto;
+}
+hr{
+    width: 1100px;
+    height:4px;
+    border: 0;
+    background : #e4002b;
+    margin: 0 auto;
+
+}
+.foodpronpicture{
+    width: 200px;
+    height: 100%;
+}
+.foodpronpicture img{
+    width: 75%;
+
+}
+#progress-rate{
+    padding-top: 40px;
+    width: 1100px;
+    height: 100px;
+    margin: 1px auto;
+}
+.progesssize{
+    height: 60px;
+}
+
+#showmember{
+    height: 30px;
+    width: 1100px;
+    margin: 0px auto;
+}
+.active{
+}
+ font{
+    color: #e4002b;
+    font-weight: bolder;
+}
+#checkboxwithpeoduct{
+    background-color: #c9c9c9;
+    margin-top: 10px;
+    width: 1100px;
+    height: 40px;
+    border-radius: 6px;
+    margin-top: 10px;
+}
+
+#checkboxwithpeoduct table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 0px solid #999;
+
+}
+#productcartList table{
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #999;
+
+}
+#productcartList td{
+border-bottom: 1px  solid  #d6d6d6;
+}
+#productcartList tr:last-child td{
+    border-bottom:0px
+}
+
+
+#checkboxwithpeoduct  table td {
+    border-top: 0;
+    border-right: 1px solid #999;
+    border-bottom: 1px solid #999;
+    border-left: 0;
+}
+#checkboxwithpeoduct tr:last-child td{border-bottom: 0;}
+#checkboxwithpeoduct tr td:last-child{border-right:none;}
+
+
+
+#checkboxwithpeoduct{
+    margin: 0 auto;
+}
+.checkalltd{
+    width: 50px;
+}
+ table :nth-child(2){
+    width: 60%;
+}
+#productcartList tr{
+    height: 150px;
+
+}
+tr td:first-child{
+    width: 50px;
+    height: 40px;
+}
+#productcartList{
+    margin: 15px auto 0px;
+    width: 1100px;
+    background-color: #f9f9f9;
+
+}
+
+#Cardetail{
+    border-radius: 0px 0px  20px 5px;
+    background-color: #aeaeae;
+    margin: 0 auto;
+    height: 200px;
+    width: 1100px;
+
+}
+.calcheck{
+    margin-top: 0px;
+    width: 392px;
+    height: 100%;
+    float: right;
+}
+.calcheck button{
+
+}
+
+.calcheck {
+    text-align: left ;
+    font-size: large;
+
+}
+.calcheck div{
+    margin-top: 125px;
+    float: right;
+}
+#carbottom{
+    margin-top: 15px;
+    width: 100%;
+    height: 400px;
+    background-color: #aaaaaa;
+
+}
+#tablecontext input{
+    margin-top: 6px;
+ margin-left: 14px;
+width: 20px;
+    height: 20px;
+
+}

@@ -1,0 +1,369 @@
+#insert-recipe-container {
+	padding-right: 15px;
+	padding-left: 15px;
+	margin-right: auto;
+	margin-left: auto;
+	background: #ebebeb;
+}
+
+
+h3 {
+	margin-bottom: 10px;
+	font-size: 18px;
+	font-weight: 500;
+	line-height: 1.4;
+	width: 100%;
+	color: #706864;
+}
+
+button:hover {
+	cursor: pointer;
+}
+
+textarea {
+	resize: none;
+}
+
+.insert-recipe-main {
+	width: 900px;
+	padding: 16px;
+	margin: 10px auto;
+}
+
+.navi {
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 30px;
+	width: 70px;
+	position: fixed;
+}
+
+.navi button {
+	display: inline-block;
+	width: 100%;
+	height: 50px;
+	background-color: #E4002B;
+	color: #FFF;
+	box-shadow: none;
+	text-shadow: none;
+	margin-bottom: 20px;
+	font-size: 16px;
+	border-radius: 10px;
+	position: sticky;
+}
+
+.insert-recipe-main-form {
+	display: inline-block;
+	width: 75%;
+	margin: 20px;
+	padding: 20px;
+	background-color: #fffefe;
+}
+
+.recipe-title {
+	width: 100%;
+	height: 38;
+	padding: 12px;
+	margin-bottom: 20px;
+	border-bottom: 1px solid rgb(219, 219, 219);
+}
+
+.recipe-title textarea {
+	width: 100%;
+	height: 100%;
+	padding: 8px 4px;
+	font-size: 20px;
+	border: 1px solid rgb(219, 219, 219);
+	border-radius: 2px;
+}
+
+.recipe-aside {
+	width: 49%;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.recipe-aside-image {
+	margin-top: 10px;
+	width: 100%;
+	height: 216px;
+	overflow: hidden;
+}
+
+.recipe-aside-image:hover {
+	cursor: pointer;
+}
+
+.recipe-aside-image img {
+	width: 95%;
+	height: 219px;
+}
+
+.recipe-aside-image input {
+	width: 100%;
+	height: 24;
+	display: block;
+}
+
+.recipe-description {
+	width: 95%;
+	height: 205px;
+	margin-top: 30px;
+}
+
+.recipe-description textarea {
+	width: 100%;
+	height: 130px;
+	resize: none;
+	border: 1px solid rgb(219, 219, 219);
+	border-radius: 2px;
+}
+
+.edit-recipe-aside {
+	width: 49%;
+	display: inline-block;
+	margin-left: 5px;
+	vertical-align: top;
+}
+
+.cook-time, .recipe-type, .recipe-style {
+	margin-bottom: 15px;
+	width: 100%;
+}
+
+.recipe-stye+h3 {
+	display: inline-block;
+	width: 25%;
+	height: 32px;
+	font-size: 20px;
+	color: #706864;
+}
+
+.recipe-stye input {
+	width: 70%;
+	padding: 5px 10p;
+	border: 1px solid rgb(219, 219, 219);
+	border-radius: 2px;
+}
+
+.cook-time-option, .recipe-type select, .recipe-style select {
+	width: 100%;
+	height: 32px;
+	padding: 5px 10p;
+	border: 1px solid rgb(219, 219, 219);
+	border-radius: 2px;
+}
+
+.ingredient-group {
+	width: 100%;
+	margin-bottom: 15px;
+}
+
+.ingredient-group-row {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	height: 55px;
+	margin-bottom: 10px;
+	border-bottom: 1px solid rgb(219, 219, 219);
+}
+
+.recipe-ingredient-row-name {
+	text-indent: 0px;
+	text-shadow: none;
+	display: inline-block;
+	text-align: start;
+	padding: 4px 8px;
+	width: 80%;
+	height: 90%;
+	border: 1px solid rgb(219, 219, 219);
+	border-radius: 2px;
+}
+
+.recipe-ingredient-row-quantity {
+	display: inline-block;
+	width: 55%;
+	padding-left: 15px;
+}
+
+.recipe-ingredient-row-quantity input {
+	text-indent: 0px;
+	text-shadow: none;
+	display: inline-block;
+	text-align: start;
+	padding: 4px 13px;
+	width: 32%;
+	height: 36px;
+	border: 1px solid rgb(219, 219, 219);
+	border-radius: 2px;
+}
+
+.recipe-ingredient-row-quantity select {
+	width: 64%;
+	height: 36px;
+	padding: 5px 10p;
+	border: 1px solid rgb(219, 219, 219);
+	border-radius: 2px;
+}
+
+.recipe-ingredient-delete {
+	display: inline-block;
+	width: 15%;
+	height: 30px;
+	margin-left: 5px;
+	border: 1px solid rgba(255, 255, 255, 0);
+	background-image: url("../../../image/icon/delete.png");
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+	background-color: rgba(255, 255, 255, 0);
+}
+
+.recipe-ingredient-delete:hover {
+	cursor: pointer;
+}
+
+.recipe-point-add,.course-recipe-add {
+	display: block;
+	width: 80%;
+	padding: 6px 12px;
+	font-size: 15px;
+	border: 1px dashed #41aaf0;
+	color: #41aaf0;
+	background-color: #fff;
+	margin-top: 10px;
+	text-align: center;
+}
+
+.recipe-point-add:hover,.course-recipe-add:hover {
+	cursor: pointer;
+}
+
+.reccipe-step {
+	width: 100%;
+	margin-top: 30px;
+}
+
+.reccipe-step h3 {
+	margin: 0 auto;
+	width: 100%;
+	border-bottom: 1px solid black;
+	color: #706864;
+}
+
+.reccipe-step-item {
+	margin: 0 auto;
+	width: 80%;
+	border-bottom: 1px solid rgb(219, 219, 219);
+	height: 120px;
+	padding: 10px 50px;
+}
+
+.reccipe-step-item-header {
+	align-items: center;
+	width: 100%;
+	height: 48px;
+}
+
+.reccipe-step-item-header button {
+	display: inline-block;
+	vertical-align: middle;
+	height: 100%;
+	width: 20px;
+	margin-left: 5px;
+	border: 1px solid rgba(255, 255, 255, 0);
+	background-repeat: no-repeat;
+	background-size: contain;
+	background-position: center;
+	background-color: rgba(255, 255, 255, 0);
+}
+
+.reccipe-step-item-add {
+	background-image: url("../../image/icon/add.png");
+}
+
+.reccipe-step-item-remove {
+	background-image: url("../../image/icon/delete.png");
+}
+
+.reccipe-step h4 {
+	display: inline-block;
+	color: #706864;
+	font-size: 30px;
+	font-weight: 600;
+	line-height: 1.6;
+	vertical-align: middle;
+	width: 80%;
+	padding-left: 10px;
+}
+
+.reccipe-step-item-content-textarea {
+	display: block;
+	width: 100%;
+	height: 50%;
+	padding: 4px 8px;
+	border: 1px solid rgb(219, 219, 219);
+	border-radius: 2px;
+	overflow-y: hidden;
+	margin-bottom: 10px;
+	font-size: 16px;
+}
+
+.course-container {
+	width: 45%;
+	display: inline-block;
+	vertical-align: top;
+	margin-left: 15px;
+	padding: 8px;
+}
+
+.course-container h4 {
+	margin: 20px 0 5px;
+	font-size: 18px;
+}
+
+.errorMess {
+	width: 20%;
+	display: inline-block;
+	vertical-align: top;
+	margin-top: 180px;
+	position: fixed;
+}
+
+textarea {
+	height: 90%;
+}
+
+.member_id-container {
+	height: 80px;
+}
+
+.member_id-container, .member_id-container h3, .member_id-container textarea
+	{
+	width: 100%;
+}
+
+.member_id-container textarea {
+	height: 24px;
+}
+
+.recipe-title {
+	height: 70px;
+}
+
+.member_id-container, .recipe-style {
+	width: 95%;
+}
+
+.recipe-style {
+	margin-top:21.5px;
+}
+.errorMess{
+    width: 23%;
+    padding-left:10px;
+    display: inline-block;
+    vertical-align: top;
+    margin-top: 240px;
+    position: fixed;
+}

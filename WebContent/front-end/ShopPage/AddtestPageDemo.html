@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="../../js/jquery-3.4.1.min.js"></script>
+    <script src="../../js/jquery-migrate-1.4.1.min.js"> </script>
+
+    <link rel="stylesheet" type="text/css" href="../../css/slick-1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/slick-1.8.1/slick/slick-theme.css"/>
+    <script type="text/javascript" src="../../css/slick-1.8.1/slick/slick.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/semantic.min.css">
+    <script src="../../js/semantic.min.js"></script>
+
+
+    <link rel="stylesheet" href="css/productPage.css">
+
+</head>
+<body>
+<div id="ShopPathLocation">
+
+    <div class="ui breadcrumb">
+        <a class="section">Foodporn</a>
+        <i class="right angle icon divider"></i>
+        <a class="section" href="ShopHomePage.jsp">商城首頁</a>
+        <i class="right angle icon divider"></i>
+        <div class="active section"><font ><%=(product_type!=null)?product_type:"所有商品"%><%if (pageNumber>0){%>
+            <b>第<font color=red><%=whichPage%></font>頁</b>
+            <%}%> </font>
+
+
+        </div>
+    </div>
+</div>
+<br>
+<a href="ShopCarPage.jsp">購物車</a>
+
+
+<div id="productPagecontext">
+<div id="leftside">
+    <div id="typetitle" class="ui medium header">商品分類</div>
+    <ul id="typelist">
+
+
+        <li>
+            <a	href="ProductPage?product_type=<%=producttype.get(t)%>&action=goProductPage">
+                <div><img  src="../image/TYPE%20ICON/1.png" alt=""></div>
+
+
+                <div class="typename">名稱 </div>
+                <i class="clone setting large red outline icon"></i>
+            </a>
+            <hr>
+
+        </li>
+        <li>
+            <a	href="ProductPage?product_type=<%=producttype.get(t)%>&action=goProductPage">
+                <div><img  src="../image/TYPE%20ICON/1.png" alt=""></div>
+
+
+                <div class="typename">名稱 </div>
+                <i class="clone setting large red outline icon"></i>
+            </a>
+            <hr>
+
+        </li>   <li>
+        <a	href="ProductPage?product_type=<%=producttype.get(t)%>&action=goProductPage">
+            <div><img  src="../image/TYPE%20ICON/1.png" alt=""></div>
+
+
+            <div class="typename">名稱 </div>
+            <i class="clone setting large red outline icon"></i>
+        </a>
+        <hr>
+
+    </li>   <li>
+        <a	href="ProductPage?product_type=<%=producttype.get(t)%>&action=goProductPage">
+            <div><img  src="../image/TYPE%20ICON/1.png" alt=""></div>
+
+
+            <div class="typename">名稱 </div>
+            <i class="clone setting large red outline icon"></i>
+        </a>
+        <hr>
+
+    </li>   <li>
+        <a	href="ProductPage?product_type=<%=producttype.get(t)%>&action=goProductPage">
+            <div><img  src="../image/TYPE%20ICON/1.png" alt=""></div>
+
+
+            <div class="typename">調味料及辛香料類 </div>
+            <i class="clone setting large red outline icon"></i>
+        </a>
+        <hr>
+
+    </li>
+
+
+    </ul>
+</div>
+
+    <div id="mainproduct">
+        <font>共<%=rowNumber%>筆</font>
+
+        <ul>
+                <li ><a
+                        href="ProductPage?product_id=${productlist.product_id}&action=goDetailPage">
+                    <div class="productlist">
+
+
+                        <img class="ui medium circular image" src="../../back-end/shop_product/Product_photoReader?product_id=${productlist.product_id}">
+                    </div>
+                    <div  >
+                        品名
+                    </div>
+
+                </a></li>
+            <li ><a
+                    href="ProductPage?product_id=${productlist.product_id}&action=goDetailPage">
+                <div class="productlist">
+
+
+                    <img class="ui medium circular image" src="../../back-end/shop_product/Product_photoReader?product_id=${productlist.product_id}">
+                </div>
+                <div  >
+                    品名
+                </div>
+
+            </a></li>                <li ><a
+                href="ProductPage?product_id=${productlist.product_id}&action=goDetailPage">
+            <div class="productlist">
+
+
+                <img class="ui medium circular image" src="../../back-end/shop_product/Product_photoReader?product_id=${productlist.product_id}">
+            </div>
+            <div  >
+                品名
+            </div>
+
+        </a></li>                <li ><a
+                href="ProductPage?product_id=${productlist.product_id}&action=goDetailPage">
+            <div class="productlist">
+
+
+                <img class="ui medium circular image" src="../../back-end/shop_product/Product_photoReader?product_id=${productlist.product_id}">
+            </div>
+            <div  >
+                品名
+            </div>
+
+        </a></li>                <li ><a
+                href="ProductPage?product_id=${productlist.product_id}&action=goDetailPage">
+            <div class="productlist">
+
+
+                <img class="ui medium circular image" src="../../back-end/shop_product/Product_photoReader?product_id=${productlist.product_id}">
+            </div>
+            <div  >
+                品名
+            </div>
+
+        </a></li>
+        </ul>
+
+    </div>
+</div>
+</div>
+</body>
+</html>

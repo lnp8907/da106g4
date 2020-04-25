@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+	id="WebApp_ID" version="4.0">
+	<display-name>DA106_G4_Foodporn</display-name>
+	<welcome-file-list>
+		<welcome-file>index.html</welcome-file>
+		<welcome-file>index.htm</welcome-file>
+		<welcome-file>index.jsp</welcome-file>
+		<welcome-file>default.html</welcome-file>
+		<welcome-file>default.htm</welcome-file>
+		<welcome-file>default.jsp</welcome-file>
+	</welcome-file-list>
+
+	<resource-ref>
+		<description>DB Connection</description>
+		<res-ref-name>jdbc/DA106G4</res-ref-name>
+		<res-type>javax.sql.DataSource</res-type>
+		<res-auth>Container</res-auth>
+	</resource-ref>
+
+
+
+	<servlet>
+		<servlet-name>RecipeServlet</servlet-name>
+		<servlet-class>com.recipe.controller.RecipeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RecipeServlet</servlet-name>
+		<url-pattern>/front-end/recipe/RecipeServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>RecipeServlet.do</servlet-name>
+		<servlet-class>com.recipe.controller.RecipeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>RecipeServlet.do</servlet-name>
+		<url-pattern>/back-end/recipe/RecipeServlet.do</url-pattern>
+	</servlet-mapping>
+
+
+	<servlet>
+		<servlet-name>CourseServlet</servlet-name>
+		<servlet-class>com.course.controller.CourseServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CourseServlet</servlet-name>
+		<url-pattern>/front-end/course/CourseServlet</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>CourseServlet2</servlet-name>
+		<servlet-class>com.course.controller.CourseServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CourseServlet2</servlet-name>
+		<url-pattern>/back-end/course/CourseServlet</url-pattern>
+	</servlet-mapping>
+	
+	
+		<servlet>
+		<servlet-name>CourseServletHomepage</servlet-name>
+		<servlet-class>com.course.controller.CourseServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CourseServletHomepage</servlet-name>
+		<url-pattern>/CourseServlet</url-pattern>
+	</servlet-mapping>
+<!-- 會員 -->
+	<servlet>
+		<servlet-name>Member_photoReader</servlet-name>
+		<servlet-class>com.member.controller.Member_photoReader</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Member_photoReader</servlet-name>
+		<url-pattern>/front-end/member/Member_photoReader</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>MyCourseServlet_front</servlet-name>
+		<servlet-class>com.mycourse.controller.MyCourseServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MyCourseServlet_front</servlet-name>
+		<url-pattern>/front-end/course/MyCourseServlet</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>MyCourseServlet_back</servlet-name>
+		<servlet-class>com.mycourse.controller.MyCourseServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MyCourseServlet_back</servlet-name>
+		<url-pattern>/back-end/course/MyCourseServlet</url-pattern>
+	</servlet-mapping>
+	
+	
+	<!-- 以下為商城XML -->
+	<servlet>
+		<servlet-name>MemberServlet</servlet-name>
+		<servlet-class>com.member.controller.MemberServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemberServlet</servlet-name>
+		<url-pattern>/back-end/member/member.do</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>FrontMemberServlet</servlet-name>
+		<servlet-class>com.member.controller.MemberServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>FrontMemberServlet</servlet-name>
+		<url-pattern>/front-end/member/member.do</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>DBGifReader4</servlet-name>
+		<servlet-class>com.member.model.DBGifReader4</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DBGifReader4</servlet-name>
+		<url-pattern>/back-end/member/DBGifReader4.do</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Member_photoReader2</servlet-name>
+		<servlet-class>com.member.controller.Member_photoReader</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Member_photoReader2</servlet-name>
+		<url-pattern>/back-end/member/Member_photoReader</url-pattern>
+	</servlet-mapping>
+	
+  	<servlet>
+		<servlet-name>MoneyflowServlet</servlet-name>
+		<servlet-class>com.member.controller.MoneyflowServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MoneyflowServlet</servlet-name>
+		<url-pattern>/back-end/moneyflow/MoneyflowServlet.do</url-pattern>
+	</servlet-mapping>
+	
+	
+	
+	
+	
+	
+<!-- 	///////////////////////商城用////////////////////////// -->
+
+	<servlet>
+		<servlet-name>ProductServlet</servlet-name>
+		<servlet-class> com.shop.controller.ProductServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProductServlet</servlet-name>
+		<url-pattern>/back-end/product.do</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>ProductServlet2</servlet-name>
+		<servlet-class> com.shop.controller.ProductServlet
+		</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProductServlet2</servlet-name>
+		<url-pattern>/back-end/ProductServlet</url-pattern>
+	</servlet-mapping>
+	
+  	<servlet>
+		<servlet-name>OrderServlet</servlet-name>
+		<servlet-class>com.shop.controller.OrderServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>OrderServlet</servlet-name>
+		<url-pattern>/back-end/shop_order/OrderServlet.do</url-pattern>
+	</servlet-mapping>
+	
+  	<servlet>
+		<servlet-name>detailServlet</servlet-name>
+		<servlet-class>com.shop.controller.detailServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>detailServlet</servlet-name>
+		<url-pattern>/back-end/shop_order/detailServlet.do</url-pattern>
+	</servlet-mapping>
+	
+	
+		<servlet>
+		<servlet-name>ProductChange</servlet-name>
+		<servlet-class>com.shop.controller.ProductChange</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProductChange</servlet-name>
+		<url-pattern>/back-end/shop_product/ProductChange</url-pattern>
+	</servlet-mapping>
+	
+	
+	<servlet>
+		<servlet-name>Product_photoReader</servlet-name>
+		<servlet-class>com.shop.controller.Product_photoReader</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Product_photoReader</servlet-name>
+		<url-pattern>/back-end/shop_product/Product_photoReader</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>Product_photoReader2</servlet-name>
+		<servlet-class>com.shop.controller.Product_photoReader</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Product_photoReader2</servlet-name>
+		<url-pattern>/front-end/shop_product/Product_photoReader</url-pattern>
+	</servlet-mapping>
+	
+
+	
+			<servlet>
+		<servlet-name>ProductPage</servlet-name>
+		<servlet-class>com.shop.controller.ShopPageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProductPage</servlet-name>
+		<url-pattern>/front-end/ShopPage/ProductPage</url-pattern>
+	</servlet-mapping>
+	
+	
+				<servlet>
+		<servlet-name>ProductPage2</servlet-name>
+		<servlet-class>com.shop.controller.ShopPageServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ProductPage2</servlet-name>
+		<url-pattern>/back-end/ShopPage</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>MoneyflowServlet2</servlet-name>
+		<servlet-class>com.member.controller.MoneyflowServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MoneyflowServlet2</servlet-name>
+		<url-pattern>/front-end/ShopPage/MoneyflowServlet.do</url-pattern>
+	</servlet-mapping>
+		<servlet>
+	
+	<servlet-name>ShopCartServletR</servlet-name>
+		<servlet-class>com.shop.controller.ShopCartServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ShopCartServletR</servlet-name>
+		<url-pattern>/front-end/recipe/ShopCartServltR</url-pattern>
+	</servlet-mapping>
+
+	<!-- 	///////////////////////商城用////////////////////////// -->
+</web-app>

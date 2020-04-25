@@ -1,0 +1,303 @@
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+	font-family: 'Noto Sans TC', sans-serif;
+}
+
+html, body {
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+	color: #FF5757;
+	font-weight: 500;
+	background-color: rgba(246, 246, 246, 0);
+	margin-top: 30px;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+h1 {
+	width: 100px;
+	margin: 10px auto;
+	margin-top: 30px;
+	background-color: rgba(246, 246, 246, 0.561);
+}
+
+h1, h2, h3, h4 {
+	font-weight: 500;
+}
+
+.racipe-main {
+	margin: 20px auto;
+	padding: 10px;
+	width: 1080px;
+	background-color: rgba(246, 246, 246, 0.561);
+}
+
+.racipe-header {
+	width: 100%;
+	height: 80px;
+	padding: 5px 20px;
+	margin-bottom: 20px;
+}
+
+.racipe-header h2 {
+display: inline-block;
+    height: 100%;
+    width: 75%;
+    font-size: 49px;
+    font-weight: 600;
+    padding-top: 15px;
+    letter-spacing: 1px;
+}
+
+.racipe-header-aside {
+	vertical-align: middle;
+	display: inline-block;
+	height: 50px;
+	width: 20%;
+}
+
+.racipe-header-aside span {
+	display: block;
+	margin-top: 7px;
+	font-size: 14px;
+	color: rgb(129, 137, 144);
+}
+
+.racipe-detal {
+	width: 100%;
+	padding: 20px 20px;
+	margin-bottom: 40px;
+}
+
+.racipe-detal-main-data li {
+list-style: none;
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight:300;
+}
+
+.racipe-detal-description {
+	width: 100%;
+	padding: 10px 0;
+	margin: 30px 0;
+	font-size: 14px;
+}
+
+.racipe-detal-description h2 {
+	border-bottom: #FF5757 2px solid;
+	width: 200px;
+	font-size: 20px;
+	font-weight: 500;
+	padding-bottom: 8px;
+}
+
+.racipe-detal-info-list {
+	width: 100%;
+	padding: 20px 20px;
+	background-color: white;
+	margin-bottom: 40px;
+}
+
+.r-detal-info-list-container {
+	width: 48%;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.r-detal-info-list-hd {
+	width: 85%;
+	height: 30px;
+	border-bottom: #FF5757 1.5px solid;
+	font-size: 14px;
+}
+
+.r-detal-info-list-descript {
+    text-align: left;
+    font-size: 17.5px;
+    width: 100%;
+    padding: 10px 0;
+    color: #999;
+}
+
+.ingredient-th {
+	font-weight: 400;
+	width: 70%;
+}
+
+.ingredient-td {
+	width: 40px;
+	text-align: right;
+}
+
+.intake-th {
+	font-weight: 400;
+	width: 68%;
+}
+
+.intake-td {
+	width: 40px;
+	text-align: right;
+}
+
+.r-detal-info-list-descript h4 {
+	width: 25px;
+	font-size: 20px;
+}
+
+.r-detal-info-list-descript th, .r-detal-info-list-descript td {
+	padding-bottom: 12px;
+}
+
+#myChart-container {
+	width: 390px;
+	height: 320px;
+	overflow: hidden;
+	position: absolute;
+}
+
+#myChart {
+	width: 550px;
+	height: 340px;
+	position: absolute;
+	left: -90px;
+	top: -30px;
+}
+
+#racipe-detal-info-bottom {
+	height: 320px;
+}
+
+.racipe-detal-left {
+	width: 750px;
+	display: inline-block;
+}
+
+.recipe-photo {
+	width: 100%;
+	height: 530px;
+	border-radius: 5px;
+}
+
+.racipe-detal-right {
+	margin-left: 20px;
+	display: inline-block;
+	vertical-align: top;
+	width: 240px;
+	padding: 10px 0;
+}
+
+.chef-info, .racipe-detal-button, .racipe-detal-main-data {
+	display: inline-block;
+	width: 100%;
+	padding: 4px;
+	margin-bottom: 10px;
+	color: #778;
+}
+
+.chef-info-pic {
+	width: 50px;
+	height: 50px;
+	overflow: hidden;
+	border-radius: 25px;
+	display: inline-block;
+}
+
+.chef-info-pic img {
+	width: 100%;
+	height: 100%;
+}
+
+.chef-info-detal {
+	display: inline-block;
+	width: 155px;
+	vertical-align: top;
+}
+
+.chef-info-detal span {
+	width: 45%;
+    margin-right: 15px;
+    font-size: 14px;
+    color: #AAA;
+}
+.chef-info-detal a{
+	font-size: 24px;
+}
+
+.chef-info {
+	border-bottom: 3px solid #EEE;
+}
+
+.chef-info form {
+	display: block;
+	margin: 2px 0;
+	text-align: right;
+	margin-bottom: 5px;
+}
+
+.chef-info button {
+	width: 37%;
+    height: 38px;
+    border-radius: 5px;
+    margin-right: 7px;
+    margin-top: 10px;
+    color: #AAA;
+    border: solid 2px #ACF;
+    color: #ACF;
+    font-size:16px;
+}
+
+.chef-info button:hover {
+	cursor: pointer;
+	background-color: #EDFDFF;
+}
+
+.racipe-detal-button {
+	text-align: center;
+}
+
+.racipe-detal-button form, .racipe-detal-button-div{
+	display: inline-block;
+	width: 45%;
+	margin-right: 4px;
+}
+
+.racipe-detal-button button {
+	width: 100%;
+	height: 40px;
+	border-radius: 8px;
+	color: #AAA;
+	border: solid 1px #AAA;
+}
+
+.racipe-detal-button button:hover {
+	cursor: pointer;
+	background-color: #EFEFEF;
+}
+
+.racipe-detal-main-data ul {
+	margin-left: 5px;
+}
+#getRecipe_content{
+    color: #AAA;
+    font-weight: 400;
+    font-size: 18px;
+    text-align: left;
+    width: 768px;
+    
+}
+.r-detal-info-list-descript {
+    text-align: left;
+    font-size: 16px;
+    width: 100%;
+    padding: 10px 0;
+}
+.menu-span {
+	color:#E4002B;
+}

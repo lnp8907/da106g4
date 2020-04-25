@@ -1,0 +1,363 @@
+
+
+
+#mainproduct div{
+word-wrap: break-word; word-break: normal;
+	  background-color: white;
+	    width: 90px;
+}
+#mainproduct div:first-child{
+    margin: 10px auto 0px;
+
+}
+#mainproduct div:last-child{
+    margin-left: 20px;
+}
+
+
+
+#mainproduct li{
+border-radius:999em;
+	width: 190px;
+    height: 190px;
+    float: left;
+    margin: 15px 15px 15px 10px;
+    list-style-type:none;
+     	  background-color: white;
+     
+     
+}
+
+
+#mainproduct img{
+
+    width: 100px;
+    height: 100px;
+
+}
+#mainproduct{
+	    background-color: #f9f9f9;
+	
+    width: 900px;
+    height: 900px;
+    margin-left: 200px;
+}
+#typelist{
+    margin-top: 20px;
+    padding:0px;
+    float:left;
+
+    
+
+   }
+#typelist>li{
+    width: 185px;
+    list-style-type:none;
+    	    background-color: #f9f9f9;
+    margin-bottom:20px ;
+    height: 45px;
+
+
+}
+/*清單內div控制*/
+#typelist div:first-child{
+float: left;
+}
+
+#typelist .typename{
+    line-height:50px;
+    height: 40px;
+    width: 65%;
+    float: left;
+}
+/*圖標控制*/
+#typelist li i{
+    margin-top: 12px;
+
+
+}
+#typelist img{
+
+    width: 35px;
+height: 35px;
+    border-radius:999em;
+
+
+}
+#productPagecontext{
+    width: 1100px;
+    height:900px;
+    margin: 60px auto;
+    
+}
+#leftside{
+
+    width: 190px;
+    height: 900px;
+    float: left;
+
+    
+
+}
+.imglist-l a{
+	    font-family: '微軟正黑體 ', monospace;
+    font-weight: bold;
+
+
+
+
+
+}
+#typetitle{
+    font-family: '微軟正黑體 Light', monospace;
+       font-weight: bold;
+    margin: 0px auto;
+    color: #e4002b;
+    float: left;
+}
+a div{
+	    font-family: '微軟正黑體 Light', monospace;
+	
+    color: #e4002b;
+}
+
+#typelist hr{
+    width: 150px;
+    height:2px;
+    border: 0;
+     background : #e4002b;
+    margin: 6px 0 0 25px;
+
+
+}
+#ShopPathLocation,#ShopLsearch {
+width: 1100px;
+    margin: 0px auto;
+    padding: 0px;
+}
+#ShopPathLocation div{
+		background-color: white;
+    padding: 0px;
+	
+		margin-left: 0px;
+}
+#ShopPathLocation a {
+	    font-family: '微軟正黑體 Light', monospace;
+	
+    color:#e4002b;
+}
+/*搜尋列設定*/
+#ShopLsearch{
+	width: 1100px;
+	height:50px;
+
+	margin-top:20px;
+}
+#ShopLsearch i{
+    width: 35px;
+    height: 35px;
+margin-top: 7.7px;
+    margin-right: 8px;
+    background-color: #e4002b;
+    border-radius: 100%;
+
+}
+#ShopLsearch select{
+		border-radius:60px 0 0 60px;
+	
+	width:130px;
+	height: 50px;
+}
+#ShopLsearch input{
+	border-radius:0 60px 60px 0;
+	width:970px;
+	height:50px;
+
+	}
+
+	font{
+    color:#e4002b;
+	
+	   font-family: '微軟正黑體 Light', monospace;
+       font-weight: bold;
+}
+	
+	
+	
+	/*測試*/
+a{
+       font-weight: bold;
+}
+	/*前台廣告*/
+	.repiceslider img{
+    margin-top: 80px;
+    width: 200px;
+    height: 150px;
+}
+.repiceslider{
+    width: 1100px;
+    margin: 0px auto;
+}
+
+	/*廣告*/
+.productad{
+    margin: 20px auto;
+    background-color: #E4002B;
+}
+.productad div{
+    margin: 0px auto;
+    width: 1100px;
+    height: 300px;
+    background-color: #ffc107;
+}
+.productad img{
+    height: 100%;
+    width: 100%;
+
+}
+/*首頁商品位置*/
+#ShopListLocation {
+    margin: 40px auto;
+    margin-bottom: 50px;
+    max-width: 1100px;
+    height: 1000px;
+    background-color:  #f9f9f9;
+
+}
+ul.imglist a {
+    list-style-type: none;
+    margin: 0px auto;
+    color: black;
+    text-decoration: underline;
+}
+
+.imglist-li {
+    width: 200px;
+    margin: 50px 35px;
+    padding: 0;
+    float: left;
+    overflow: hidden;
+}
+
+ul.imglist li img {
+    width: 200px;
+    height: 190px;
+    border-radius: 100%;
+    background-color: white;
+}
+.imglist-li-span {
+    display: inline-block;
+    margin: 0 auto;
+    width: 200px;
+    height: 30px;
+    padding: 0 ;
+    line-height: 40px;
+}
+/*........................RWD....................*/
+@media (max-width: 574px){
+
+   #ShopListLocation {
+   margin:20px auto;
+    width:480px;
+        height: 1450px;
+        padding: 0;
+    }
+     ul.imglist{
+     margin:0px;
+    width:100%;
+
+     
+     }  
+     ul.imglist li {
+          margin:0px 17px 16px;
+     
+        width: 200px;
+        display: inline-block;
+        float: none;
+        text-align: center;
+    }
+    	
+	
+}
+@media (min-width: 575px) and (max-width: 767px) {
+
+    .ShopLsearch{
+        width: 600px;
+        height: 50px;
+    }
+    .productad div{
+        width: 600px;
+        height: 240px;
+    }
+    .shop-slide_viewer {
+        height: 450px;
+        padding-left: 2px;
+    }
+
+    #ShopListLocation {
+    width:600px;
+        height: 830px;
+        padding: 0;
+        
+    }
+        ul.imglist{
+     margin:0px;
+    width:100%;
+
+     
+     }  
+ ul.imglist li {
+          margin:0px 23px 23px;
+     
+        width: 150px;
+        display: inline-block;
+        float: none;
+        text-align: center;
+    }
+
+
+ 
+
+    ul.imglist li img {
+        width: 100%;
+        height: 140px;
+    }
+
+    ul.imglist li span {
+        width: 100%;
+    }
+
+
+}
+
+@media(min-width:768px) and (max-width: 1100px) {
+
+
+
+      ul.imglist{
+     margin:0px;
+    width:100%;
+	
+     
+     }  
+ ul.imglist li {
+          margin:0px 40px 25px;
+     
+        display: inline-block;
+        float: none;
+        text-align: center;
+    }
+
+
+    #ShopListLocation {
+        height: 1000px;
+        width: 850px;
+    }
+
+
+}
+
+
+
+
+

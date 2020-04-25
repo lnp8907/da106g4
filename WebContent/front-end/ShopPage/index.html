@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=3.0">
+    <title>Foodporn</title>
+    <link rel="stylesheet" href="../../css/frontEnd.css">
+    <link rel="stylesheet" href="../../css/header-sider.css">
+    <link rel="icon" href="../../image/head-FoodPron_Logo.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../../image/head-FoodPron_Logo.ico" type="image/x-icon" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <style>
+        /*---------------------------------article-container-------------------------------------------*/
+        a {
+            text-decoration: none;
+            color: #E4002B;
+        }
+
+        .article-container {
+            text-align: center;
+            /* border: 5px solid black; */
+            margin-top: 60px;
+        }
+
+        .article-container h2 {
+            font-size: 36px;
+            letter-spacing: 10px;
+            font-weight: 400;
+        }
+
+        .article-section-description {
+            /* border: 5px solid black; */
+            max-width: 1024px;
+            margin: 10px auto;
+            /* height: 600px; */
+
+        }
+
+        /*-----------------------------廚房專區----------------------------*/
+        #article-recipe {
+            height: 530px;
+            margin-top: 210px;
+            background-image: url("../../image/ad/recipeBG.png");
+            background-repeat: no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .ariticle-section-racipe-h2 {
+            position: relative;
+            top: -90px;
+
+        }
+
+        .ariticle-section-racipe-h2+span {
+            position: relative;
+            top: -85px;
+        }
+
+        #article-container-recipe {
+            height: 500px;
+            overflow: hidden;
+
+        }
+
+        #article-section-description-recipe {
+            margin: auto;
+            height: 400px;
+        }
+
+        .article-section-description-recipe-left {
+            width: 50%;
+            height: 100%;
+            float: left;
+            padding-top: 90px;
+
+        }
+
+        .article-section-description-recipe-left-span {
+            color: white;
+            font-size: 28px;
+            display: block;
+            padding-top: 10px;
+        }
+
+        .article-section-description-recipe-left img {
+            float: left;
+            margin-top: 30px 5px;
+        }
+
+        .article-section-description-recipe-right {
+            float: right;
+            width: 45%;
+            height: 45%;
+            padding: 5px;
+            background-color: white;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+
+        .article-recipe-right-photo-div {
+            width: 50%;
+            overflow: hidden;
+        }
+
+        .article-recipe-right-title {
+            float: left;
+            width: 50%;
+        }
+
+        .article-recipe-right-title h3,
+        p {
+            font-weight: 500;
+            font-size: 18px;
+            text-align: left;
+            width: 200px;
+
+        }
+
+        .article-recipe-right-title h3 {
+            margin-top: 15px;
+            margin-left: 30px;
+        }
+
+        .article-recipe-right-title p {
+            display: inline-block;
+            color: black;
+            border-top: 1px solid #E4002B;
+            padding-top: 5px;
+        }
+
+        .article-recipe-right-title p:hover {
+            text-decoration: underline;
+            color: #E4002B;
+        }
+
+        .article-recipe-right-photo-div img {
+            width: 100%;
+            height: 170px;
+            transition: all ease-in-out 300ms;
+            transform: scale(1, 1);
+            overflow: hidden;
+        }
+
+        .article-recipe-right-photo-div img:hover {
+            transform: scale(1.1, 1.1);
+
+        }
+
+        #article-section-seemore-recipe {
+            margin-top: 90px;
+            clear: both;
+
+        }
+
+
+
+        @media screen and (max-width: 575px) {
+
+            #article-recipe {
+                height: 880px;
+            }
+
+            .article-section-description-recipe-left {
+                box-sizing: border-box;
+                width: 350px;
+                padding-top: 0;
+                padding-left: 10px;
+                margin: 0 auto;
+                height: 300px;
+                float: none;
+            }
+
+            .article-section-description-recipe-right {
+                box-sizing: border-box;
+                width: 350px;
+                height: 190px;
+                float: none;
+                margin: 40px auto;
+            }
+
+            #article-section-seemore-recipe {
+                margin: 70px auto;
+            }
+
+            .article-recipe-right-photo-div {
+                width: 50%;
+                overflow: hidden;
+                margin-left: 5px;
+            }
+
+            .article-recipe-right-title {
+                float: left;
+            }
+
+            .article-recipe-right-title h3,
+            p {
+                text-align: left;
+                width: 90%;
+            }
+
+        }
+
+        /*---------------------------直播專區------------------------------------*/
+        #livestream {
+            border-top: 1px solid rgb(207, 207, 207);
+            border-bottom: 1px solid rgb(207, 207, 207);
+            padding: 60px 0;
+        }
+
+        #article-container-livestream {
+            margin: 0 auto;
+            max-width: 1024px;
+        }
+
+        .article-section-description-livestream {
+            padding-top: 30px;
+            height: 650px;
+        }
+
+        .article-section-description-livestream-left {
+            box-sizing: border-box;
+            height: 600px;
+            width: 50%;
+            float: left;
+            padding-top: 75px;
+        }
+
+        .article-section-description-livestream-right {
+            box-sizing: border-box;
+            padding: 20px 10px 0 10px;
+            width: 24%;
+            display: inline-block;
+            text-align: left;
+        }
+
+        .livestream-left-1-video-container iframe {
+            width: 95%;
+            height: 270px;
+            margin-bottom: 5px;
+        }
+
+        .livestream-left-1-video-title {
+            padding-left: 10px;
+            text-align: left;
+            height: 30%;
+        }
+
+        .livestream-left-1-video-title h3 {
+            border-bottom: 2px solid #E4002B;
+            display: inline-block;
+            font-size: 20px;
+        }
+
+        .livestream-left-1-video-title p {
+            width: 100%;
+            color: black;
+            text-align: left;
+            font-size: 18px;
+            margin-top: 10px;
+
+        }
+
+        .livestream-right-photo-div {
+            overflow: hidden;
+            height: 150px;
+        }
+
+        .article-section-description-livestream-right img {
+            width: 100%;
+            height: auto;
+            transition: all ease-in-out 400ms;
+            transform: scale(1, 1);
+            overflow: hidden;
+        }
+
+        .article-section-description-livestream-right img:hover {
+            transform: scale(1.1, 1.1);
+        }
+
+
+        .livestream-right-title h3 {
+            font-weight: 400;
+            font-size: 18px;
+            border-bottom: 1px solid #E4002B;
+            display: inline-block;
+            margin-top: 5px;
+            clear: both;
+        }
+
+        .livestream-right-title p {
+            color: black;
+            text-align: left;
+            font-size: 18px;
+            margin-top: 5px;
+            max-width: 100%;
+        }
+
+        @media screen and (max-width: 575px) {
+            #article-container-livestream {
+                height: 1850px;
+            }
+
+            .article-section-description-livestream-left {
+                width: 100%;
+                padding: 0;
+                float: none;
+                height: 500px;
+                margin: 0 auto;
+            }
+
+            .article-section-description-livestream-right {
+                width: 350px;
+                height: 320px;
+                float: none;
+            }
+
+            .livestream-right-photo-div {
+                height: 200px;
+            }
+
+        }
+
+        @media (max-width: 576px) and (max-width: 768px) {}
+
+        /*---------------------------食材商城------------------------------------*/
+
+
+        #mallproduct {
+            margin: 100px auto;
+            margin-bottom: 50px;
+            max-width: 1100px;
+            min-height: 1000px;
+
+        }
+
+        ul.imglist a {
+            list-style-type: none;
+            margin: 0px auto;
+            color: black;
+            text-decoration: underline;
+        }
+
+        .imglist-li {
+            width: 200px;
+            margin: 50px 35px;
+            padding: 0;
+            float: left;
+            overflow: hidden;
+        }
+
+        ul.imglist li img {
+            width: 200px;
+            height: 190px;
+        }
+
+        .imglist-li-span {
+            display: inline-block;
+            margin: 0 auto;
+            width: 200px;
+            height: 30px;
+            padding: 0 auto;
+            line-height: 40px;
+        }
+
+
+        /*變換大小*/
+        @media screen and (max-width: 320px) {
+            ul.imglist li {
+                margin: 5px;
+                width: 130px;
+                display: inline-block;
+                float: none;
+                text-align: center;
+            }
+
+            ul.imglist li img {
+                width: 100%;
+                height: 140px;
+            }
+        }
+
+        @media (min-width: 321px) and (max-width: 575px) {
+            ul.imglist li {
+                margin: 9px;
+                width: 160px;
+                display: inline-block;
+                float: none;
+                text-align: center;
+            }
+
+            #mallproduct {
+                height: 1190px;
+
+            }
+
+            ul.imglist li img {
+                width: 100%;
+                height: 140px;
+            }
+
+            ul.imglist li span {
+                width: 100%;
+            }
+
+        }
+
+
+
+
+        @media (min-width: 575px) and (max-width: 767px) {
+            .shop-slide_viewer {
+                height: 450px;
+                padding-left: 2px;
+            }
+
+            #mallproduct {
+                width: 500px;
+                height: 1300px;
+                padding: 0;
+            }
+
+            ul.imglist li {
+                margin: 20px 0;
+                box-sizing: border-box;
+            }
+
+            .lookmore button {
+                margin: 10px auto;
+            }
+
+            ul.imglist li img {
+                width: 190px;
+                height: 140px;
+            }
+
+        }
+
+        @media(min-width: 768px) and (max-width: 991px) {
+            #mallproduct {
+                height: 850px;
+                width: 800px;
+            }
+
+            ul.imglist li {
+                margin: 20px 30px;
+            }
+
+        }
+
+        hr {
+            margin-top: 100px;
+            background-color: rgba(246, 245, 246, 0.24);
+        }
+
+        .middle-ad-contain {
+            max-width: 100%;
+            max-height: 350px;
+            padding-top: 50px;
+            /* overflow: hidden; */
+        }
+
+        .middle-ad-contain img {
+            max-width: 100%;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .middle-ad-contain img {
+            transition: all ease-in-out 250ms;
+        }
+
+        .middle-ad-contain img:hover {
+            transform: scale(1.1, 1.1);
+            cursor: pointer;
+        }
+
+        /*---------------------------課程專區------------------------------------*/
+
+        #course-list-div {
+            margin: 90px auto;
+        }
+
+        .course-list-li {
+            display: inline-block;
+            list-style: none;
+            width: 40%;
+            /* overflow: hidden; */
+            /* max-height: 250px; */
+            margin: 10px;
+            text-align: left;
+        }
+
+        .course-li-img-div {
+            margin: 0 auto;
+            width: 90%;
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .course-li-img {
+            width: 100%;
+            height: 200px;
+            transition: all 350ms;
+        }
+
+        .course-li-img:hover {
+            transform: scale(1.04, 1.04);
+
+        }
+
+        .course-li-title {
+            display: block;
+            margin-left: 5%;
+            color: rgb(26, 23, 44);
+            font-size: 16px;
+            margin-top: 10px;
+            font-weight: 600;
+        }
+
+        .course-list-date-span {
+            display: inline-block;
+            margin-left: 5%;
+            margin-top: 0px;
+            color: #FF5757;
+            font-size: 14px;
+            margin-right: 10px;
+            font-weight: 600;
+        }
+
+        .course-date-li {
+            margin-top: 6px;
+            display: inline-block;
+            color: rgb(187, 187, 187);
+            font-size: 13px;
+        }
+
+        @media screen and (max-width: 575px) {
+            .course-list-li {
+                display: block;
+                width: 340px;
+                margin: 20px auto;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div id="top-logo" class="logo"><a href="index.html" title="回首頁"><img class="logo-photo"
+                                                                              src="../../image/FoodPron_Logo.png" alt="logo"></a></div>
+        <div class="function">
+            <div class="function-list">
+                <a href="#"></a>
+                <div class="member-center">
+                    <span class="member-center-spann">會員中心</span>
+                </div></a>
+            </div>
+            <div class="function-list">
+                <div id="menu-icon">
+                    <img class="header-icon" src="../../image/menu.png" alt="login-icon">
+                </div>
+                <div class="login">
+                    <a href="#"><img class="header-icon" src="../../image/user-icon.png" alt="login-icon">
+                        <div class="herder-icon-span"><span class="login-span">登入</span></div>
+                    </a>
+                </div>
+                <div class="shop-car">
+                    <a href="#"><img class="header-icon" src="../../image/shopping-cart-icon.png" alt="shopping-cart">
+                        <div class="herder-icon-span"><span class="shop-car-span">購物車</span></div>
+                    </a>
+                </div>
+
+            </div>
+
+        </div><!-- end of function-->
+        <nav id="navigation">
+            <ul>
+                <li class="dropdown">
+                    <a><img class="access-menu-icon" src="../../image/recipe-icon.png"><span class="menu-span">食譜專區</span></a>
+                    <ul>
+                        <li><a class="dropdown-first-a" href="#"><img class="dropdown-first-img"
+                                    src="../../image/ico_gnav_recipes_book.svg"><span
+                                    class="dropdown-first-a-span">食譜主頁</span></a>
+                        </li>
+                        <li><a href="#">特輯食譜</a></li>
+                        <li><a href="#">推薦食譜</a></li>
+                        <li><a href="#">建立食譜</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a><img class="access-menu-icon" src="../../image/livestream-icon.png"><span
+                            class="menu-span">直播專區</span></a>
+                    <ul>
+                        <li><a class="dropdown-first-a" href="#"><img class="dropdown-first-img"
+                                    src="../../image/ico_gnav_recipes_movie.svg"><span
+                                    class="dropdown-first-a-span">直播主頁</span></a>
+                        </li>
+                        <li><a href="#">直播預告</a></li>
+                        <li><a href="#">熱門直播</a></li>
+                        <li><a href="#">建立直播預告</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown dropdown-shop">
+                    <a><img class="access-menu-icon" src="../../image/shop-icon.png"><span class="menu-span">食材商城</span></a>
+                    <ul id="dropdown-shop-ul">
+                        <li><a class="dropdown-first-a" href="#"><img class="dropdown-first-img"
+                                    src="../../image/ico_gnav_recipes_salad.svg"><span
+                                    class="dropdown-first-a-span">食材商城主頁</span></a>
+                        </li>
+                        <li><a href="#">調味料</a></li>
+                        <li><a href="#">果醬</a></li>
+                        <li><a href="#">麵粉</a></li>
+                        <li><a href="#">酒類</a></li>
+                        <li><a href="#">蔬菜</a></li>
+                        <li><a href="#">水果</a></li>
+                        <li><a href="#">海鮮</a></li>
+                        <li><a href="#">肉類</a></li>
+                        <li><a href="#">乳製品</a></li>
+                        <li><a href="#">香料</a></li>
+                        <li><a href="#">罐頭</a></li>
+                        <li><a href="#">乾貨</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a><img class="access-menu-icon" src="../../image/course-icon.png"><span class="menu-span">料理課程</span></a>
+                    <ul>
+                        <li><a class="dropdown-first-a" href="#"><img class="dropdown-first-img"
+                                    src="../../image/ico_gnav_recipes_pot.svg"><span
+                                    class="dropdown-first-a-span">課程主頁</span></a></li>
+                        <li><a href="#">熱門課程</a></li>
+                        <li><a href="#">建立料理課程</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </header><!-- end of header-->
+    <!-- 登箱開始 -->
+    <div class="login-wrap">
+        <div class="login-html">
+            <img class="login-close" src="../../image/close.png" alt="close">
+            <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label for="tab-1" class="tab">Sign
+                In</label>
+            <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2" class="tab">Sign Up</label>
+            <div class="login-form">
+                <div class="sign-in-htm">
+                    <div class="group">
+                        <label for="user" class="label">Username</label>
+                        <input id="user" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Password</label>
+                        <input id="pass" type="password" class="input" data-type="password">
+                    </div>
+                    <div class="group">
+                        <input id="check" type="checkbox" class="check" checked>
+                        <label for="check"><span class="icon"></span> Keep me Signed in</label>
+                    </div>
+                    <div class="group SignIn">
+                        <input type="submit" class="button" value="Sign In">
+                    </div>
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <a href="#forgot" class="foot-lnk-a">Forgot Password?</a>
+                    </div>
+                </div>
+                <div class="sign-up-htm">
+                    <div class="group">
+                        <label for="user" class="label">User</label>
+                        <input id="user" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Password</label>
+                        <input id="pass" type="password" class="input" data-type="password">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Repeat Password</label>
+                        <input id="pass" type="password" class="input" data-type="password">
+                    </div>
+                    <div class="group">
+                        <label for="pass" class="label">Email Address</label>
+                        <input id="pass" type="text" class="input">
+                    </div>
+                    <div class="group">
+                        <input type="submit" class="button" value="Sign Up">
+                    </div>
+                    <div class="hr"></div>
+                    <div class="foot-lnk">
+                        <label for="tab-1">Already Member?
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- end of login-->
+    <div class="pagetop">
+        <img src="../../image/go-top-page.png" alt="BackTop" id="BackTop">
+        <!--一鍵置頂-->
+    </div><!-- end of pagetop-->
+    <main>
+        <article>
+            <!--廣告橫幅區-->
+            <section id="ad">
+                <div class="slider">
+                    <div class="slide_viewer">
+                        <div class="slide_group">
+                            <div class="slide" style="cursor :pointer;" onclick="window.location.href='#';">
+                            </div>
+                            <div class="slide" style="cursor :pointer;" onclick="window.location.href='#';">
+                            </div>
+                            <div class="slide" style="cursor :pointer;" onclick="window.location.href='#';">
+                            </div>
+                            <div class="slide" style="cursor :pointer;" onclick="window.location.href='#';">
+                            </div>
+                            <div class="slide" style="cursor :pointer;" onclick="window.location.href='#';">
+                            </div>
+                        </div>
+                    </div>
+                    <!-- </div>End // .slider -->
+                    <div class="slide_buttons">
+                    </div>
+            </section><!-- end of ad -->
+
+            <section id="recipe">
+                <!--食譜專區-->
+                <div class="article-container" id="article-recipe">
+                    <h2 class="ariticle-section-racipe-h2">食譜專區</h2><span class="ariticle-section-cption">Recipe</span>
+                    <div class="article-section-description" id="article-section-description-recipe">
+                        <div class="article-section-description-recipe-left">
+                            <img src="../../image/recipe_hdg-m3_pc.png" alt="三月份">
+                            <span class="article-section-description-recipe-left-span">Lorem, ipsum dolor sit amet
+                                consectetur adipisicing elit.</span>
+                            <span class="article-section-seemore" id="article-section-seemore-recipe">更多食譜...</span>
+                        </div>
+                        <div class="article-section-description-recipe-right">
+                            <div class="article-recipe-right-title">
+                                <h3 id="recipe-right-title-h3-1">本周推薦</h3>
+                                <a href="" id="recipe-right-title-a-1">
+                                    <p id="recipe-right-title-p-1">Lorem ipsum dolor si
+                                        blanditiis!</p>
+                            </div>
+                            <div class="article-recipe-right-photo-div"><img id="article-recipe-right-photo-1"
+                                                                             src="../../image/bibimbap-4887417_960_720.jpg" alt=""></div></a>
+                        </div>
+                        <div class="article-section-description-recipe-right">
+                            <div class="article-recipe-right-title">
+                                <h3 id="recipe-right-title-h3-2">熱門食譜</h3>
+                                <a href="" id="recipe-right-title-a-1">
+                                    <p id="recipe-right-title-p-1">Lorem ipsum dolor si
+                                        blanditiis!</p>
+
+                            </div>
+                            <div class="article-recipe-right-photo-div"><img id="article-recipe-right-photo-2"
+                                                                             src="../../image/salmon-1485014_960_720.jpg" alt=""></div></a>
+                        </div>
+                    </div>
+
+                </div>
+            </section><!-- end of recipe-->
+
+            <section>
+                <!--直播專區-->
+                <div class="article-container" id="livestream">
+                    <h2 class="article-section-tiltle">直播專區</h2><span class="ariticle-section-cption">Livestream</span>
+                    <div id="article-container-livestream">
+                        <div class="article-section-description-livestream">
+                            <div class="article-section-description-livestream-left" id="livestream-left-1">
+                                <div class="livestream-left-1-video-container">
+                                    <!-- <video id="livestream-left-1-video"
+                                        src="video/【快速料理】15分鐘義大利麵上桌 味噌蝴蝶麵 Miso Farfalle│HowLiving美味生活.mp4" autoplay
+                                        muted controls></video> -->
+                                    <iframe id="livestream-hot-video" src="https://www.youtube.com/embed/nLNVu3ddAoc"
+                                        frameborder="0"
+                                        allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen></iframe>
+                                </div>
+                                <div id="livestream-left-1-video-title" class="livestream-left-1-video-title">
+                                    <a href="">
+                                        <h3 id="livestream-left-1-video-h3">熱門影片</h3>
+                                    </a>
+                                    <p id="livestream-left-1-video-p">Lorem ipsum dolor sit amet consectetur adipisicing
+                                        elit. Error excepturi veniam numquam assumenda porro quas fugit dolor sit amet
+                                        consectetur adipisicing
+                                        elit. Error excepturi venda porro laborum fuga
+                                        ?</p>
+                                </div>
+                            </div>
+                            <div class="article-section-description-livestream-rightgroup">
+                                <div class="article-section-description-livestream-right" id="livestream-right-1">
+                                    <div class="livestream-right-photo-div"><a href="" id="livestream-right-link-1"><img
+                                            id="livestream-right-photo-1" src="../../image/chef/chef1.jpg" alt=""
+                                            class="livestream-right-img"></div>
+                                    <div class="livestream-right-title">
+                                        <h3 id="livestream-right-title-chef-1">料理生死鬥</h3>
+                                        </a>
+                                        <p id="livestream-right-livestream-name-1">Lorem ipsum dolor si blanditiis!</p>
+                                    </div>
+                                </div>
+                                <div class="article-section-description-livestream-right" id="livestream-right-2">
+                                    <div class="livestream-right-photo-div"><a href="" id="livestream-right-link-2"><img
+                                            id="livestream-right-photo-2" src="../../image/chef/chef2.jpg" alt=""></div>
+                                    <div class="livestream-right-title">
+                                        <h3 id="livestream-right-title-chef-2">中華一番</h3>
+                                        </a>
+                                        <p id="livestream-right-livestream-name-2">Lorem ipsum dolor si blanditiis!</p>
+                                    </div>
+                                </div>
+
+                                <div class="article-section-description-livestream-right" id="livestream-right-3">
+                                    <div class="livestream-right-photo-div"><a href="" id="livestream-right-link-3"><img
+                                            id="livestream-right-photo-3" src="../../image/chef/chef3.jpg" alt=""></div>
+                                    <div class="livestream-right-title">
+                                        <h3 id="livestream-right-title-chef-3">美食獵人</h3>
+                                        </a>
+                                        <p id="livestream-right-livestream-name-3">Lorem ipsum dolor si blanditiis!</p>
+                                    </div>
+                                </div>
+
+                                <div class="article-section-description-livestream-right" id="livestream-right-4">
+                                    <div class="livestream-right-photo-div"><a href="" id="livestream-right-link-4"><img
+                                            id="livestream-right-photo-4" src="../../image/chef/chef4.jpg" alt=""></div>
+                                    <div class="livestream-right-title">
+                                        <h3 id="livestream-right-title-chef-4">型男大主廚</h3>
+                                        </a>
+                                        <p id="livestream-right-livestream-name-4">Lorem ipsum dolor si blanditiis!</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- end of livestream-->
+                    <span class="article-section-seemore">更多線上直播...</span>
+                </div>
+            </section><!-- end of livestream-->
+
+            <section id="shop">
+                <!--食材商城-->
+                <div class="article-container">
+                    <div class="shop-slider-contain">
+                        <h2>食材商城</h2><span class="ariticle-section-cption">Ingredient store</span>
+                        <div class="shop-slider">
+                            <div class="shop-slide_viewer">
+                                <div class="shop-slide_group">
+                                    <div class="shop-slide" style="cursor :pointer;"
+                                        onclick="window.location.href='#';">
+                                        <div class="shop-slide-article-and-photo">
+                                            <div class="shop-slide-article">
+                                                <p class="shop-slide-article-and-photo-recommend">食材推薦</p>
+                                                <p class="shop-slide-article-and-photo-title">大蔥</p>
+                                                <p class="shop-slide-article-and-photo-p">大蔥植株地上部的外形很像洋蔥。
+                                                    葉圓筒形而中空，它的葉鞘莖部包含成假莖，
+                                                    若行培土軟化，便造成棍狀的“蔥白”。蔥白是主要食用部分</p>
+                                            </div>
+                                            <div class="shop-slide-photo">
+                                                <img class="shop-slide-article-and-photo-img"
+                                                    src="../../image/ingredient/大蔥.jpg">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="shop-slide" style="cursor :pointer;"
+                                        onclick="window.location.href='#';">
+                                        <div class="shop-slide-article-and-photo">
+                                            <div class="shop-slide-article">
+                                                <p class="shop-slide-article-and-photo-recommend">食材推薦</p>
+                                                <p class="shop-slide-article-and-photo-title">南瓜</p>
+                                                <p class="shop-slide-article-and-photo-p">
+                                                    原產墨西哥到中美洲一帶，世界各地普遍栽培。明代傳入中國，現南北各地廣泛種植<br>
+                                                    南瓜的果實作餚饌，亦可代糧食。全株各部又供藥用，種子含南瓜子氨基酸，有清熱除濕、驅蟲的功效，對血吸蟲有控制和殺滅的作用。
+                                                </p>
+                                            </div>
+                                            <div class="shop-slide-photo">
+                                                <img class="shop-slide-article-and-photo-img"
+                                                    src="../../image/ingredient/南瓜.jpg">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="shop-slide" style="cursor :pointer;"
+                                        onclick="window.location.href='#';">
+                                        <div class="shop-slide-article-and-photo">
+                                            <div class="shop-slide-article">
+                                                <p class="shop-slide-article-and-photo-recommend">食材推薦</p>
+                                                <p class="shop-slide-article-and-photo-title">番茄</p>
+                                                <p class="shop-slide-article-and-photo-p">
+                                                    即西紅柿，是管狀花目、茄科、番茄屬的一種一年生或多年生草本植物。<br>
+                                                    原產南美洲，中國南北方廣泛栽培。番茄的果實營養豐富，具特殊風味。可以生食、煮食、加工番茄醬、汁或整果罐藏。
+                                                </p>
+                                            </div>
+                                            <div class="shop-slide-photo">
+                                                <img class="shop-slide-article-and-photo-img"
+                                                    src="../../image/ingredient/番茄.jpg">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="shop-slide" style="cursor :pointer;"
+                                        onclick="window.location.href='#';">
+                                        <div class="shop-slide-article-and-photo">
+                                            <div class="shop-slide-article">
+                                                <p class="shop-slide-article-and-photo-recommend">食材推薦</p>
+                                                <p class="shop-slide-article-and-photo-title">竹筍</p>
+                                                <p class="shop-slide-article-and-photo-p">
+                                                    在中國自古被當作“菜中珍品”。竹筍是中國傳統佳餚，味香質脆，食用和栽培歷史極為悠久。《詩經》中就有“加豆之實，筍菹魚醢”，表明了人民食用竹筍有2500年以至3000年的歷史。
+                                                </p>
+                                            </div>
+                                            <div class="shop-slide-photo">
+                                                <img class="shop-slide-article-and-photo-img"
+                                                    src="../../image/ingredient/竹筍.jpg">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="shop-slide" style="cursor :pointer;"
+                                        onclick="window.location.href='#';">
+                                        <div class="shop-slide-article-and-photo">
+                                            <div class="shop-slide-article">
+                                                <p class="shop-slide-article-and-photo-recommend">食材推薦</p>
+                                                <p class="shop-slide-article-and-photo-title">馬鈴薯</p>
+                                                <p class="shop-slide-article-and-photo-p">
+                                                    全球第四大重要的糧食作物，馬鈴薯塊莖含有大量的澱粉，能為人體提供豐富的熱量，且富含蛋白質、氨基酸及多種維生素、礦物質，尤其是其維生素含量是所有糧食作物中最全的。
+                                                </p>
+                                            </div>
+                                            <div class="shop-slide-photo">
+                                                <img class="shop-slide-article-and-photo-img"
+                                                    src="../../image/ingredient/馬鈴薯.jpg">
+                                            </div>
+                                        </div>
+                                    </div><!-- End // .shop-slide -->
+                                    <div class="shop-slide" style="cursor :pointer;"
+                                        onclick="window.location.href='#';">
+                                        <div class="shop-slide-article-and-photo">
+                                            <div class="shop-slide-article">
+                                                <p class="shop-slide-article-and-photo-recommend">食材推薦</p>
+                                                <p class="shop-slide-article-and-photo-title">高麗菜</p>
+                                                <p class="shop-slide-article-and-photo-p">
+                                                    高麗菜我國各地都有栽培。高麗菜來自歐洲地中海地區是西方人最為重要的蔬菜之一。高麗菜大約有400個品種，包括有開花的捲心菜、莖捲心菜、光葉和捲葉捲心菜。
+                                                </p>
+                                            </div>
+                                            <div class="shop-slide-photo">
+                                                <img class="shop-slide-article-and-photo-img"
+                                                    src="../../image/ingredient/高麗菜.jpg">
+                                            </div>
+                                        </div>
+                                    </div><!-- End // .shop-slide -->
+                                    <div class="shop-slide" style="cursor :pointer;"
+                                        onclick="window.location.href='#';">
+                                        <div class="shop-slide-article-and-photo">
+                                            <div class="shop-slide-article">
+                                                <p class="shop-slide-article-and-photo-recommend">食材推薦</p>
+                                                <p class="shop-slide-article-and-photo-title">碗豆</p>
+                                                <p class="shop-slide-article-and-photo-p">
+                                                    原產地中海和中亞細亞地區，是世界重要的栽培作物之一。種子及嫩莢、嫩苗均可食用；種子含澱粉、油脂，可作藥用，有強壯、利尿、止瀉之效；莖葉能清涼解暑，並作綠肥、飼料或燃料。
+                                                </p>
+                                            </div>
+                                            <div class="shop-slide-photo">
+                                                <img class="shop-slide-article-and-photo-img"
+                                                    src="../../image/ingredient/豌豆.jpg">
+                                            </div>
+                                        </div>
+                                    </div><!-- End // .shop-slide -->
+                                </div><!-- End // .shop-slide_group -->
+                            </div><!-- End // .shop-slide-viewer -->
+                        </div><!-- End // .shop-slider -->
+                        <div class="shop-slide_buttons">
+                        </div>
+                    </div><!-- End // .shop-slider-contain -->
+                    <!--商品成列-->
+                    <div id="mallproduct">
+                        <ul class="imglist">
+                            <li class="imglist-li">
+                                <a href=>
+                                    <img class="imglist-li-img" src="image/shop/調味料.png" alt="">
+                                    <span class="imglist-li-span">調味料</span>
+                                </a>
+                            </li>
+
+                            <li class="imglist-li">
+                                <a href=>
+                                    <img class="imglist-li-img" src="image/shop/果醬.png" alt="">
+                                    <span class="imglist-li-span">果醬</span>
+                                </a>
+                            </li>
+                            <li class="imglist-li">
+                                <a href=>
+                                    <img class="imglist-li-img" src="image/shop/麵粉.jfif" alt="">
+                                    <span class="imglist-li-span">麵粉</span>
+                                </a>
+                            </li>
+                            <li class="imglist-li">
+                                <a href=>
+                                    <img class="imglist-li-img" src="image/shop/酒類.jfif" alt="">
+                                    <span class="imglist-li-span">酒類</span>
+                                </a>
+                            </li>
+                            <li class="imglist-li">
+                                <a href=>
+                                    <img class="imglist-li-img" src="image/shop/蔬菜.jpg" alt="">
+                                    <span class="imglist-li-span">蔬菜</span>
+                                </a>
+                            </li>
+                            <li class="imglist-li">
+                                <a href=>
+                                    <img class="imglist-li-img" src="../../image/shop/水果.jpg" alt="">
+                                    <span class="imglist-li-span">水果</span>
+                                </a>
+                            </li>
+                            <li class="imglist-li">
+                                <a href=>
+                                    <img class="imglist-li-img" src="image/shop/魚類.jpg" alt="">
+                                    <span class="imglist-li-span">海鮮</span>
+                                </a>
+                            </li>
+                            <li class="imglist-li">
+                                <a href=>
+                                    <img class="imglist-li-img" src="../../image/shop/肉類.png" alt="">
+
+                                    <span class="imglist-li-span">肉類</span>
+                                </a>
+                            </li>
+                            <li class="imglist-li">
+                                <a href=>
+                                    <img class="imglist-li-img" src="../../image/shop/乳製品.png" alt="">
+
+                                    <span class="imglist-li-span">乳製品</span>
+                                </a>
+                            </li>
+                            <li class="imglist-li">
+                                <a href=>
+                                    <img class="imglist-li-img" src="image/shop/香料.png" alt="">
+
+                                    <span class="imglist-li-span">香料</span>
+                                </a>
+                            </li>
+                            <li class="imglist-li">
+                                <a href=>
+                                    <img class="imglist-li-img" src="image/shop/罐頭.png" alt="">
+
+                                    <span class="imglist-li-span">罐頭</span>
+                                </a>
+                            </li>
+                            <li class="imglist-li">
+                                <a href=>
+                                    <img class="imglist-li-img" src="../../image/shop/乾貨.png" alt="">
+
+                                    <span class="imglist-li-span">乾貨</span>
+                                </a>
+                            </li>
+                        </ul>
+
+                        <!--商品陳列-->
+                    </div><!-- end of Mallproduct -->
+                    <span class="article-section-seemore">更多食材...</span>
+
+                </div>
+                <!--end of article-container  -->
+                <div class="article-section-description" id="article-section-description-shop">
+                </div><!-- end of article-section-description-->
+                </div>
+            </section><!-- end of shop-->
+            <hr>
+            <section class="middle-ad">
+                <div class="middle-ad-contain">
+                    <img src="../../image/ad/禮券.jpg" alt="禮券">
+                </div>
+            </section>
+            <hr>
+            <section id="course">
+                <!--課程專區-->
+                <div class="article-container">
+                    <h2>課程專區</h2><span class="ariticle-section-cption">Cooking Course</span>
+                    <div class="article-section-description">
+                        <!--課程成列-->
+                        <div id="course-list-div">
+                            <ul class="course-list-ul">
+                                <li class="course-list-li">
+                                    <a href=>
+                                        <div class="course-li-img-div">
+                                            <img class="course-li-img" id="course-li-title-1"
+                                                 src="../../image/course/料理課程.jpg" alt=""></div>
+                                        <span class="course-li-title" id="course-li-title-1">西餐教室:煨依紅酒燉牛肉</span>
+                                        <span class="course-list-date-span">開課時間</span><span class="course-date-li"
+                                            id="course-date-li-1">2020-05-12-19:00</span>
+                                    </a>
+                                </li>
+                                <li class="course-list-li">
+                                    <a href=>
+                                        <div class="course-li-img-div">
+                                            <img class="course-li-img" id="course-li-title-2"
+                                                 src="../../image/course/麵包課程.jpg" alt=""></div>
+                                        <span class="course-li-title" id="course-li-title-2">手作麵包:德式香腸重乳酪</span>
+                                        <span class="course-list-date-span">開課時間</span><span class="course-date-li"
+                                            id="course-date-li-2">2020-04-18-14:00</span>
+                                    </a>
+                                </li>
+                                <li class="course-list-li">
+                                    <a href=>
+                                        <div class="course-li-img-div">
+                                            <img class="course-li-img" id="course-li-title-3"
+                                                 src="../../image/course/點心課程.jpg" alt=""></div>
+                                        <span class="course-li-title" id="course-li-title-3">經典甜點:法式草莓千層派</span>
+                                        <span class="course-list-date-span">開課時間</span><span class="course-date-li"
+                                            id="course-date-li-3">2020-04-22-18:00</span>
+                                    </a>
+                                </li>
+                                <li class="course-list-li">
+                                    <a href=>
+                                        <div class="course-li-img-div">
+                                            <img class="course-li-img" id="course-li-title-4"
+                                                 src="../../image/course/壽司課程.jpg" alt=""></div>
+                                        <span class="course-li-title" id="course-li-title-4">匠人壽司:辛醬鮪魚握壽司</span>
+                                        <span class="course-list-date-span">開課時間</span><span class="course-date-li"
+                                            id="course-date-li-4">2020-03-31-10:00</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!--end of 課程規劃-->
+                        </div><!-- end of Mallproduct -->
+                    </div>
+                    <span class="article-section-seemore">更多料理課程...</span>
+                </div>
+            </section><!-- end of course-->
+
+        </article><!-- end of article-->
+    </main><!-- end of main -->
+    <footer>
+        <div class="footer-bg">
+            <div class="footer-murmur">
+                <img src="../../image/FoodPron_Logo_white.png" alt="logo">
+                <ul>
+                    <li class="footer-li-fist">逛其他</li>
+                    <li>直播專區</li>
+                    <li>食材商城</li>
+                    <li>料理課程</li>
+                </ul>
+                <ul>
+                    <li class="footer-li-fist">逛食譜</li>
+                    <li>熱門食譜</li>
+                    <li>新到食譜</li>
+                    <li>全部分類</li>
+                </ul>
+                <ul>
+                    <li class="footer-li-fist">會員服務</li>
+                    <li>我的收藏</li>
+                    <li>帳號設定</li>
+                    <li>忘記密碼</li>
+                    <li>我的訂單</li>
+                </ul>
+                <ul>
+                    <li class="footer-li-fist">關於我們</li>
+                    <li>公司資訊</li>
+                    <li>品牌資產</li>
+                    <li>服務條款</li>
+                    <li>隱私權政策</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-copyright">
+            Copyright &copy; DA106-G4 Foodporn All rights reserved.
+        </div>
+
+    </footer>
+    <!-- JavasScript-->
+    <!-- JavasScript-->
+    <!-- JavasScript for Sider -->
+    <script src="../../javascript/header_sider.js" type="text/javascript" charset="utf-8"></script>
+    <!-- JavasScript for LogForm -->
+    <script src="../../javascript/loginForm.js" type="text/javascript" charset="utf-8"></script>
+
+    <!-- JavasScript for BackTop -->
+    <script>
+        $('#BackTop').click(function () {
+            $('html,body').animate({ scrollTop: 0 }, 333);
+        });
+        $(window).scroll(function () {
+            if ($(this).scrollTop() > 450) {
+                $('#BackTop').fadeIn(222);
+            } else {
+                $('#BackTop').stop().fadeOut(222);
+            }
+        });
+
+        //畫面捲動時隱藏
+        window.onresize = function () {
+            if ($(window).width() > 767) {
+                $("nav").show();
+            } else $("nav").hide();
+        }
+
+    </script>
+
+    <!-- JavasScript for shop-slide -->
+    <script>
+        $(".shop-slide-article-and-photo").hover(function () {
+            $(".shop-slide-article-and-photo-img").removeClass('imgSmall');
+            $(".shop-slide-article-and-photo-img").addClass('imgScale');
+        });
+        $(".shop-slide-article-and-photo").mouseleave(function () {
+            $(".shop-slide-article-and-photo-img").addClass('imgSmall');
+        });
+
+        /* 直播專區 right scale 效果 */
+        $(".article-section-description-livestream-right").hover(function () {
+            $(".livestream-right-img", this).addClass('imgScale');
+        });
+        $(".imglist-li a").hover(function () {
+            $(".imglist-li-span", this).removeClass('textRecoverColor');
+            $(".imglist-li-img", this).removeClass('imgSmall');
+            $(".imglist-li-img", this).addClass('imgScale');
+            $(".imglist-li-span", this).addClass('textChangeColor');
+        });
+        $(".imglist-li a").mouseleave(function () {
+            $(".imglist-li-span", this).addClass('textRecoverColor');
+            $(".imglist-li-img", this).addClass('imgSmall');
+        });
+    </script>
+    <script>
+        $("#menu-icon").on("click", function () {
+            $("nav").slideToggle();
+            $(this).toggleClass("active");
+        });
+    </script>
+</body>
+
+</html>

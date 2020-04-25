@@ -1,0 +1,71 @@
+
+#mallproduct{
+    margin: 100px auto;
+    margin-bottom: 50px;
+    max-width: 1100px;
+    min-height: 700px;
+
+}
+ul.imglist{
+    list-style-type:none;
+    margin: 0px auto;
+}
+.imglist-li{
+    width:200px;
+    margin: 50px 35px;
+    padding: 0;
+    float: left;
+    
+    
+}
+
+ul.imglist li img{  
+    width:200px; 
+    height: 190px;
+
+}
+.imglist-li-span{
+    display: inline-block; 
+    margin: 0 auto; 
+    width:200px; 
+    height:30px; 
+    line-height:30px; 
+    color: black;
+    z-index: 20;
+}
+
+
+/*變換大小*/
+@media screen and (max-width: 767px){
+    #mallproduct {
+        width: 500px;
+        height: 950px;
+    }
+    ul.imglist li {
+    margin: 20px 15px;
+    }
+    .lookmore button{
+        margin: 10px auto;
+    }
+
+    ul.imglist li img{  
+        width:190px; 
+        height: 160px;
+    }
+
+    }
+@media(min-width: 768px) and (max-width: 991px){
+    #mallproduct {
+        height: 800px;
+        width: 800px;
+    }
+    ul.imglist li {
+        margin: 20px 30px;
+    }
+
+}
+
+hr{
+    margin-top: 100px;
+    background-color: rgba(246, 245, 246, 0.24);
+}
