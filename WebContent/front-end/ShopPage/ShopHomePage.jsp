@@ -284,7 +284,7 @@
 		<!-- 搜尋列請填入首頁 -->
 		<div id="ShopPathLocation">
 		<div class="ui breadcrumb ShopPathLocation">
-    <a class="section">foodporn</a>
+    <a class="section" href="<%=request.getContextPath() %>/index.html">foodporn</a>
     <i class="right angle icon divider"></i>
 
     <div class="active section">商城首頁</div>

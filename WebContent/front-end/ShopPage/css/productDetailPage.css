@@ -12,14 +12,9 @@ width: 1100px;
     margin: 10px auto;
 }
 #producttitle{
-    height: 110px;
+	margin-top:75px;
+    height: 65px;
     text-align:center;
-
-}
-#producttitle p{
-    line-height: 110px;
-    font-size: 55px;
-
 }
 
 
@@ -81,6 +76,7 @@ width: 1100px;
 
 }
 .hrdiv{
+	margin-top:-90px;
     height: 40px;
 
 }
