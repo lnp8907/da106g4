@@ -83,7 +83,7 @@ public class MemberServlet extends HttpServlet{
 			String to = email;
 			String subject = "會員驗證信通知";
 			String messageText = "Hello! " + email + " 這是你的驗證碼: " + code + "\n" + "請點擊下方連結激活帳號"+
-			"http://"+ ip + ":8081/Foodporn_Member-0425/front-end/member/checkCode.jsp?email=" + email;
+			"http://"+ ip + ":8081/DA106_G4_Foodporn_Git/front-end/member/checkCode.jsp?email=" + email;
 			sendMail(to, subject, messageText);
 			RequestDispatcher successView = req.getRequestDispatcher("/front-end/member/checkCode.jsp");
 			successView.forward(req, res);
@@ -413,7 +413,7 @@ public class MemberServlet extends HttpServlet{
 				String to = email;
 				String subject = "會員驗證信通知";
 				String messageText = "Hello! " + email + " 這是你的驗證碼: " + code + "\n" + "請點擊下方連結激活帳號"+
-				"http://"+ ip + ":8081/Foodporn_Member-0425/front-end/member/checkCode.jsp?email=" + email;
+				"http://"+ ip + ":8081/DA106_G4_Foodporn_Git/front-end/member/checkCode.jsp?email=" + email;
 				sendMail(to, subject, messageText);
 										
 				/***************************2.開始新增資料***************************************/

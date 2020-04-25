@@ -164,6 +164,12 @@ private MemberDAO_interface dao;
 		public MemberVO getOneMember(String member_id) {
 			return dao.findByPrimaryKey(member_id);
 		}
+
+
+		public MemberVO updateSuccess(String email, int i) {
+			// TODO Auto-generated method stub
+			return null;
+		}
 	}
 	
 	

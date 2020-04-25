@@ -298,4 +298,22 @@ public class MemberDAO implements MemberDAO_interface {
 		}
 		return list;
 	}
+
+	@Override
+	public void update_To_Chef(MemberVO empVO) {
+
+		
+	}
+
+	@Override
+	public void updateStoredValue(MemberVO empVO) {
+
+		
+	}
+
+	@Override
+	public void update_by_self(MemberVO empVO) {
+		
+		
+	}
 }
