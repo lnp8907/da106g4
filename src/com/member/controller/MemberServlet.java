@@ -10,7 +10,17 @@ import java.nio.file.Paths;
 import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Properties;
+import java.util.Random;
 
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -20,9 +30,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import com.member.model.MemberJDBCDAO;
 import com.member.model.MemberService;
 import com.member.model.MemberVO;
+import com.redis.connectpool.JedisUtil;
+
+import redis.clients.jedis.Jedis;
+import redis.clients.jedis.JedisPool;
 
 
 
@@ -37,6 +50,7 @@ public class MemberServlet extends HttpServlet{
 
 	private static final long serialVersionUID = 1L;
 
+	
     public MemberServlet() {
         super();
         // TODO Auto-generated constructor stub
@@ -51,6 +65,91 @@ public class MemberServlet extends HttpServlet{
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
+		System.out.println(action);
+		if ("resetCode".equals(action)) {
+			String email = req.getParameter("email");
+			System.out.println(email);
+			String code = getRandomPassword(6);//產生密碼
+			//將見證碼存入Redis
+			JedisPool pool = com.redis.connectpool.JedisUtil.getJedisPool();
+			Jedis jedis = pool.getResource();
+			jedis.auth("123456");
+			jedis.set(email, code);
+			jedis.expire(email, 300);
+			jedis.close();
+	
+			// 傳送密碼
+			String ip = "localhost";
+			String to = email;
+			String subject = "會員驗證信通知";
+			String messageText = "Hello! " + email + " 這是你的驗證碼: " + code + "\n" + "請點擊下方連結激活帳號"+
+			"http://"+ ip + ":8081/Foodporn_Member-0425/front-end/member/checkCode.jsp?email=" + email;
+			sendMail(to, subject, messageText);
+			RequestDispatcher successView = req.getRequestDispatcher("/front-end/member/checkCode.jsp");
+			successView.forward(req, res);
+		}
+		
+		if ("checkCode".equals(action)) { // 來自select_page.jsp的請求
+			List<String> errorMsgs = new LinkedList<String>();
+			/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+			String email = req.getParameter("email");
+			String code = req.getParameter("code");
+			String redisCode = "";
+			if(email==null || email.trim().equals("")) {
+				errorMsgs.add("帳號請勿空白");
+			}
+			
+//			MemberService memberSvc = new MemberService();
+//			MemberVO memberVO = memberSvc.getOneMember(email);
+			  
+		
+			
+			//取得redis裡面的密碼
+			JedisPool pool = com.redis.connectpool.JedisUtil.getJedisPool();
+			Jedis jedis = pool.getResource();
+			jedis.auth("123456");
+			redisCode = jedis.get(email);
+			jedis.close();
+			
+			
+			/*************************** 2.開始比對資料 *****************************************/
+			if(redisCode==null) {
+				errorMsgs.add("驗證碼已失效");
+				req.setAttribute("errorMsgs", errorMsgs);				
+				RequestDispatcher failView = req.getRequestDispatcher("/front-end/member/checkCode.jsp?email=" + email);
+				failView.forward(req, res);
+				return;
+			}
+			if(code.equals(redisCode)) {
+				
+				errorMsgs.add("驗證碼成功");
+				req.setAttribute("errorMsgs", errorMsgs);
+				
+				Integer validation = 1;
+		
+				
+				MemberVO memberVO=new MemberVO();
+				memberVO.setAccount(email);
+				memberVO.setValidation(validation);
+				
+				MemberService memberSvc = new MemberService();
+
+				memberVO = memberSvc.updateSuccess(email, 1);
+				
+				
+				
+				
+				RequestDispatcher successView = req.getRequestDispatcher("/front-end/member/checkCode.jsp?email=" + email);
+				successView.forward(req, res);
+				
+				
+			}else {
+				errorMsgs.add("驗證碼或帳號錯誤");
+				req.setAttribute("errorMsgs", errorMsgs);				
+				RequestDispatcher failView = req.getRequestDispatcher("/front-end/member/checkCode.jsp?email=" + email);
+				failView.forward(req, res);
+			}
+		}
 		
 		if("getOneMemberDisplay".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
@@ -247,6 +346,8 @@ public class MemberServlet extends HttpServlet{
 				System.out.println(account);
 				
 		
+				
+		
 			
 			
 				String password =new String(req.getParameter("password").trim());
@@ -278,6 +379,12 @@ public class MemberServlet extends HttpServlet{
 
 				MemberVO membervo= new MemberVO();
 				
+				
+				
+				
+				
+				
+				
 				membervo.setAccount(account);
 				membervo.setPassword(password);
 				membervo.setEmail(email);
@@ -291,8 +398,32 @@ public class MemberServlet extends HttpServlet{
 					failureView.forward(req, res);
 					return;
 				}
+				
+				String code = getRandomPassword(6);//產生密碼
+				//將見證碼存入Redis
+				JedisPool pool = com.redis.connectpool.JedisUtil.getJedisPool();
+				Jedis jedis = pool.getResource();
+				jedis.auth("123456");
+				jedis.set(email, code);
+				jedis.expire(email, 300);
+				jedis.close();
+		
+				// 傳送密碼
+				String ip = "localhost";
+				String to = email;
+				String subject = "會員驗證信通知";
+				String messageText = "Hello! " + email + " 這是你的驗證碼: " + code + "\n" + "請點擊下方連結激活帳號"+
+				"http://"+ ip + ":8081/Foodporn_Member-0425/front-end/member/checkCode.jsp?email=" + email;
+				sendMail(to, subject, messageText);
+										
 				/***************************2.開始新增資料***************************************/
 				MemberService memberSvc = new MemberService();
+				
+				
+				
+				
+				
+				
 				memberSvc.insertmem(account, password, email);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
@@ -1019,13 +1150,10 @@ public class MemberServlet extends HttpServlet{
 				
 				/***************************2.開始修改資料*****************************************/
 				MemberService memberSvc = new MemberService();
-//				memberVO = memberSvc.update(account, password, member_name,
-//						gender, birthday, cellphone, email,
-//						nickname, member_photo, validation, license, member_status,member_address, member_creditcard, balance, chiefapply_status);
+
 				memberVO = memberSvc.update(member_id,account, password, member_name,
 						gender, birthday, cellphone, email,
 						nickname, validation, member_status,member_address, member_creditcard, balance, chiefapply_status, member_photo, license);
-//				memberVO = memberSvc.update(password, member_name,member_address);
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("memberVO", memberVO); // 資料庫update成功後,正確的的empVO物件,存入req
 				String url = "/back-end/member/listAllMember.jsp";
@@ -1041,9 +1169,16 @@ public class MemberServlet extends HttpServlet{
 			}
 			
 		}
-//處理新增
+//處理新增		
 
 	}
+	
+	 @Override
+	 public void destroy() {
+	  JedisUtil.shutdownJedisPool();
+	  super.destroy();
+	 }
+	 
 		public String getFileNameFromPart(Part part) {
 			String header = part.getHeader("content-disposition");
 			System.out.println("header=" + header); // 測試用
@@ -1067,6 +1202,63 @@ public class MemberServlet extends HttpServlet{
 	        return bos.toByteArray();
 	    }
 
+		
+		
+		
+		
+		
+		
+		
+		
+		public static void sendMail(String to, String subject, String messageText) {
+			
+			   try {
+				   // 設定使用SSL連線至 Gmail smtp Server
+				   Properties props = new Properties();
+				   props.put("mail.smtp.host", "smtp.gmail.com");
+				   props.put("mail.smtp.socketFactory.port", "465");
+				   props.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
+				   props.put("mail.smtp.auth", "true");
+				   props.put("mail.smtp.port", "465");
+
+		       // ●設定 gmail 的帳號 & 密碼 (將藉由你的Gmail來傳送Email)
+		       // ●須將myGmail的【安全性較低的應用程式存取權】打開
+			     final String myGmail = "ixlogic.wu@gmail.com";  //可以改成組內的email
+			     final String myGmail_password = "AAA45678AAA";
+				   Session session = Session.getInstance(props, new Authenticator() {
+					   protected PasswordAuthentication getPasswordAuthentication() {
+						   return new PasswordAuthentication(myGmail, myGmail_password);
+					   }
+				   });
+
+				   Message message = new MimeMessage(session);
+				   message.setFrom(new InternetAddress(myGmail));
+				   message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(to));
+				  
+				   //設定信中的主旨  
+				   message.setSubject(subject);
+				   //設定信中的內容 
+				   message.setText(messageText);
+
+				   Transport.send(message);
+				   System.out.println("傳送成功!");
+		     }catch (MessagingException e){
+			     System.out.println("傳送失敗!");
+			     e.printStackTrace();
+		     }
+		   }
+		
+		public String getRandomPassword(int length) {
+			String str = "abcdefghigklmnopkrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ0123456789";
+			Random random = new Random();
+			StringBuffer sf = new StringBuffer();
+			for (int i = 0; i < length; i++) {
+				int number = random.nextInt(62);// 0~61
+				sf.append(str.charAt(number));
+
+			}
+			return sf.toString();
+		}
 		
 		
 		
