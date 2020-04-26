@@ -4,6 +4,18 @@
     pageEncoding="UTF-8"%>
     <%@ page import="java.util.* ,com.order_detail.model.Order_detailVO" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+       <script src="../../plugin/jquery-3.4.1.min.js"></script>
+    <script src="../../js/jquery-migrate-1.4.1.min.js"> </script>
+
+    <link rel="stylesheet" type="text/css" href="../../css/slick-1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="../../css/slick-1.8.1/slick/slick-theme.css"/>
+    <script type="text/javascript" src="../../css/slick-1.8.1/slick/slick.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../css/semantic.min.css">
+    <script src="../../js/semantic.min.js"></script>
+    <meta charset="UTF-8">
+    <title>FoodPornChec</title>
+    <link rel="stylesheet" href="/ShopCartPage.css">
+    
     
 <!DOCTYPE html>
 
@@ -92,16 +104,138 @@
 	</tr>
 	<%}%>
 </table>
+ <div id="progress-rate">
+    <div class="progesssize ui steps">
+        <a class=" step">
+            <i class="shopping cart icon" style="color: #e4002b"></i>
+            <div class="content">
+                <div class="title" style=" color: #e4002b;" >請確認購物車
+                </div>
+                <div class="description">選擇您的購買清單</div>
+            </div>
+        </a>
+        <a class="active step">
+            <div class="content">
+                <div class="title">結帳</div>
+                <div class="description">輸入付款資訊</div>
+            </div>
+        </a>
+        <a class="step">
+            <div class="content">
+                <div class="title">完成</div>
+                <div class="description">恭喜完成訂單</div>
+            </div>
+        </a>
+    </div>
+
+
+</div>
+<div id="showmember">
+    敬愛的會員<font class="membername">宏哥</font>你好:</div>
+ 
+ 
+<div id="orderform">
+<form class="ui form">
+    <h4 class="ui dividing header">請填入您的購物資訊</h4>
+    <div class="field">
+        <label>Name</label>
+        <div class=" field">
+            <div class="field">
+            
+       
+                <input type="text" disabled="disabled" value="宏哥">
+          
+
+            </div>
+
+        </div>
+    </div>
+    
+               <label>地址:</label>
+    
+      <div class="fields "id="zipcode3">
+     
+  <div class="three wide field">
+           <div class="address1 field" data-role="county" >
+  </div>
+   </div>
+  <div class="three wide field">
+  <div class="address2 field" data-role="district" >
+  
+  
+  
+  </div></div>
+  
+  
+  
+  <div class="seven wide field">
+       <input name="dv_address" type="text" class="f13 address form-control" value="${dv_address}" >
+  
+  
+  </div> 
+  
+  
+   
+   
+   
+
+
+    </div>
+
+    <div class="fields">
+        <div class="seven wide field">
+            <label>信用卡卡號</label>
+            <input type="text" name="card[number]" maxlength="16" placeholder="Card #">
+        </div>
+        <div class="three wide field">
+            <label>CVC</label>
+            <input type="text" name="card[cvc]" maxlength="3" placeholder="CVC">
+        </div>
+        <div class="six wide field">
+            <label>到期</label>
+            <div class="two fields">
+                <div class="field">
+                    <select class="ui fluid search dropdown" name="card[expire-month]">
+                        <option value="">月份</option>
+                        <option value="1">一月</option>
+                        <option value="2">二月</option>
+                        <option value="3">三月</option>
+                        <option value="4">四月</option>
+                        <option value="5">五月</option>
+                        <option value="6">六月</option>
+                        <option value="7">七月</option>
+                        <option value="8">八月</option>
+                        <option value="9">九月</option>
+                        <option value="10">十月</option>
+                        <option value="11">十一月</option>
+                        <option value="12">十二月</option>
+                    </select>
+                </div>
+                <div class="field">
+                    <input type="text" name="card[expire-year]" maxlength="4" placeholder="Year">
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div  id="sendOrder"class="ui button " tabindex="0"> 送出訂單</div>
+</form></div>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
  
 
  <form METHOD="post" ACTION="OrderServlet">
 
-請填寫資訊購買資訊:<div id="zipcode3">
-<div class="address1" data-role="county" >
-</div>
-<div class="address2" data-role="district"  >
-</div>
-</div>
+
 <input name="dv_address" type="text" class="f13 address form-control" value="${dv_address}" >
 
 

@@ -5,11 +5,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.recipe.model.RecipeVO;
+
 
 public interface ProductDAO_interface {
 	
-	
-	
+
+
 	
 	/*新增商品*/
 	public void addRecipe(ProductVO productvo);

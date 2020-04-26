@@ -5,6 +5,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
+import com.recipe.model.RecipeVO;
+
 
 
 
@@ -15,6 +17,7 @@ public class ProductService {
 	
 		dao=new ProductDAO();
 	}
+
 	public ProductVO getbyreceipe(String recipe_id) {
 		return dao.byRecipe(recipe_id);
 	}

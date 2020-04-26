@@ -30,11 +30,12 @@
 
 <html>
 <head>
+
     <script src="<%=request.getContextPath() %>/plugin/jquery-3.4.1.min.js"></script>
     
 <title>購買頁面</title>
  <!-- 廣告連播套件 -->
- <link rel="stylesheet" type="text/css"href="css/productDetailPage.css"/>
+ <link rel="stylesheet" type="text/css"href="productDetailPage.css"/>
  
  <link rel="stylesheet" href="<%=request.getContextPath() %>/css/frontEnd.css">
  <link rel="stylesheet" href="<%=request.getContextPath() %>/css/homePage.css">
@@ -265,21 +266,21 @@
 	</script>
 	<script>
 		function del() {
-			var num = parseInt($('#quantity').text()) - 1;
+			var num = parseInt($('#countmun').text()) - 1;
 			if (num < 1) {
-				$('#quantity').text(1);
-				$('#inquantity').val($('#quantity').text());
+				$('#countmun').text(1);
+				$('#inquantity').val($('#countmun').text());
 
 			} else {
-				$('#quantity').text(num);
-				$('#inquantity').val($('#quantity').text());
+				$('#countmun').text(num);
+				$('#inquantity').val($('#countmun').text());
 
 			}
 		}
 		function add() {
-			var num = parseInt($('#quantity').text()) + 1;
-			$('#quantity').text(num);
-			$('#inquantity').val($('#quantity').text());
+			var num = parseInt($('#countmun').text()) + 1;
+			$('#countmun').text(num);
+			$('#inquantity').val($('#countmun').text());
 
 		}
 	</script>
@@ -330,20 +331,18 @@
             		
 			
             <div id="descript3">
-            
-            數量：<input type="button" value="-" id="del" onclick="del()" />
-					 <span name="quantity"
-						id="quantity">1</span> 
-						<input type="button" value="+" id="add"
-						onclick="add()" />
-            
-            
-            
-            
-            
-            
-            
-            <FORM METHOD="post" ACTION="ShopCart"
+     
+                     <div id="carbtnp">
+    <div class="ui focus  input">
+        <button id="decmun"class="ui  button red"><i class="minus icon "></i>  </button>
+
+    <input  type="text" class="ui input"
+            id="countmun" value="1">
+        <button id="plusmun"class="ui  button red"><i class="plus icon"></i>  </button>
+
+       </div>
+</div>
+                  <FORM METHOD="post" ACTION="ShopCart"
  	style="margin-bottom: 0px;">
 						<input type="hidden" id="inquantity" name="quantity" size="3"					
 						value=1>  <input
@@ -353,7 +352,27 @@
 						value="<%=productvo.getProduct_price()%>"> <input
 						type="hidden" name="action" value="ADD">
 						<input type="submit" value="加入購物車">
-				</FORM></div>
+				</FORM>
+
+
+
+<!--             數量：<input type="button" value="-" id="del" onclick="del()" /> -->
+<!-- 					 <span name="quantity" -->
+<!-- 						id="quantity">1</span>  -->
+<!-- 						<input type="button" value="+" id="add" -->
+<!-- 						onclick="add()" /> -->
+            
+            
+
+
+            
+            
+            
+            
+            
+ 
+
+</div>
         </div>
 
      
@@ -504,6 +523,32 @@
 		});
 	</script>
 
+<script>
+
+
+    $('#decmun').click(function () {
+        let count =$('#countmun').val();
+        if(count<2) {
+            $('#countmun').val(1);
+            $('#inquantity').val(1);
+        }
+else{
+        $('#countmun').val(parseInt(count)-1);
+        $('#inquantity').val(parseInt(count)-1);
+}
+    });
+$('#plusmun').click(function () {
+    let count =$('#countmun').val();
+    $('#inquantity').val(parseInt(count)+1);
+
+        $('#countmun').val(parseInt(count)+1);
+
+});
+
+</script>
+   
 </body>
+
+
 
 </html>

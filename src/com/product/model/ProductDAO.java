@@ -6,6 +6,7 @@ import javax.naming.NamingException;
 import javax.servlet.http.HttpServletResponse;
 import javax.sql.*;
 
+import com.recipe.model.RecipeVO;
 import com.shop.meth.CompositeQuery;
 
 import java.io.ByteArrayOutputStream;
@@ -30,7 +31,6 @@ public class ProductDAO implements ProductDAO_interface {
 			e.printStackTrace();
 		}
 	}
-	
 	private static final String ADD_PECIPE = "INSERT INTO PRODUCT (PRODUCT_ID, RECIPE_ID,PRODUCT_TYPE, PRODUCT_PRICE, PRODUCT_STATUS) VALUES ( SQ_PRODUCT_ID.NEXTVAL, ?, '料理組合包', 0, 2)";
 	private static final String INSERT_STMT = "INSERT INTO PRODUCT (PRODUCT_ID, RECIPE_ID,PRODUCT_TYPE, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_PHOTO, PRODUCT_STATUS, CARBOHYDRATE, PROTEIN, FAT, CALORIE, VITAMIN_B, VITAMIN_C,SALT,VAGETABLE ,CONTENT) VALUES ( SQ_PRODUCT_ID.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?,?,?,?,?)";
     private static final String GET_ALL_STMT = "SELECT PRODUCT_ID, RECIPE_ID, PRODUCT_TYPE, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_PHOTO, PRODUCT_STATUS, CARBOHYDRATE, PROTEIN, FAT, CALORIE, VITAMIN_B, VITAMIN_C,SALT,VAGETABLE,CONTENT FROM PRODUCT order by PRODUCT_id";
@@ -1086,5 +1086,4 @@ System.out.println("且未上架");
 			return baos.toByteArray();
 		}
 
-	
 }

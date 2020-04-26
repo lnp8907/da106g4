@@ -208,6 +208,9 @@
 		<url-pattern>/back-end/shop_product/Product_photoReader</url-pattern>
 	</servlet-mapping>
 	
+	
+	
+	
 		<servlet>
 		<servlet-name>Product_photoReader2</servlet-name>
 		<servlet-class>com.shop.controller.Product_photoReader</servlet-class>
@@ -217,7 +220,14 @@
 		<url-pattern>/front-end/shop_product/Product_photoReader</url-pattern>
 	</servlet-mapping>
 	
-
+<servlet>
+		<servlet-name>Product_photoReader3</servlet-name>
+		<servlet-class>com.shop.controller.Product_photoReader</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Product_photoReader3</servlet-name>
+		<url-pattern>/front-end/ShopPage/Product_photoReader</url-pattern>
+	</servlet-mapping>
 	
 			<servlet>
 		<servlet-name>ProductPage</servlet-name>

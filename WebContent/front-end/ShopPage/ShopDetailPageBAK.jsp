@@ -33,6 +33,7 @@
 
 <html>
 <head>
+
 <title>購買頁面</title>
  <!-- 廣告連播套件 -->
     <script src="../../js/jquery-3.4.1.min.js"></script>
@@ -180,6 +181,24 @@ th, td {
             <div id="descript2"><p>價格</p>${productvo.product_price}</div>
             <!-- 購物車 -->
             		
+			
+			
+<div id="carbtn">
+    <div class="ui focus  input">
+        <button id="decmun"class="ui  button red"><i class="minus icon "></i>  </button>
+
+
+    <input type="text" class="ui input"
+            id="countmun" value="1">
+        <button id="plusmun"class="ui  button red"><i class="plus icon"></i>  </button>
+
+       </div>
+</div>
+
+
+			
+			
+			
 			
             <div id="descript3">
             
