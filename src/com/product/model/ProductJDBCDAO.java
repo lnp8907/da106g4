@@ -34,25 +34,15 @@ public class ProductJDBCDAO implements ProductDAO_interface {
 	
 	
 	private static final String ADD_PECIPE = "INSERT INTO PRODUCT (PRODUCT_ID, RECIPE_ID,PRODUCT_TYPE, PRODUCT_PRICE, PRODUCT_STATUS) VALUES ( SQ_PRODUCT_ID.NEXTVAL, ?, '料理組合包', 0, 2)";
-
 	private static final String INSERT_STMT = "INSERT INTO PRODUCT (PRODUCT_ID, RECIPE_ID,PRODUCT_TYPE, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_PHOTO, PRODUCT_STATUS, CARBOHYDRATE, PROTEIN, FAT, CALORIE, VITAMIN_B, VITAMIN_C,SALT,VAGETABLE ,CONTENT) VALUES ( SQ_PRODUCT_ID.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? ,?,?,?,?,?)";
-	
-	
-	private static final String GET_ALL_STMT = "SELECT PRODUCT_ID, RECIPE_ID, PRODUCT_TYPE, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_PHOTO, PRODUCT_STATUS, CARBOHYDRATE, PROTEIN, FAT, CALORIE, VITAMIN_B, VITAMIN_C,SALT,VAGETABLE,CONTENT FROM PRODUCT order by PRODUCT_id";
-	
+    private static final String GET_ALL_STMT = "SELECT PRODUCT_ID, RECIPE_ID, PRODUCT_TYPE, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_PHOTO, PRODUCT_STATUS, CARBOHYDRATE, PROTEIN, FAT, CALORIE, VITAMIN_B, VITAMIN_C,SALT,VAGETABLE,CONTENT FROM PRODUCT order by PRODUCT_id";
 	private static final String GET_ONE_STMT = "SELECT product_id, recipe_id, product_type, product_name, product_price, product_photo, product_status, carbohydrate, protein, fat, calorie, vitamin_B, vitamin_C,salt,vagetable,content FROM PRODUCT WHERE PRODUCT_ID = ?";
 	private static final String GET_ONE_STMT_BYR = "SELECT product_id, recipe_id, product_type, product_name, product_price, product_photo, product_status, carbohydrate, protein, fat, calorie, vitamin_B, vitamin_C,salt,vagetable,content FROM PRODUCT WHERE recipe_id = ?";
-
-	
 	private static final String DELETE = "DELETE FROM PRODUCT WHERE product_id = ?";
-	
 	private static final String UPDATE = "UPDATE PRODUCT SET  PRODUCT_TYPE=?, PRODUCT_NAME=?, PRODUCT_PRICE=?, PRODUCT_STATUS=?, carbohydrate=?, protein=?, fat=?, calorie=?, vitamin_B=?, vitamin_C=?,CONTENT=?,product_photo=?,SALT=?,VAGETABLE=? WHERE PRODUCT_ID = ?";
-	
 	private static final String UPDATEPICTURE = "UPDATE PRODUCT SET  product_photo=?  WHERE product_id = ?";
 	private static final String CHANGESTATUS="UPDATE PRODUCT SET PRODUCT_STATUS=? WHERE product_id = ?";
-	
 	private static final String IS_Product_id_fk =	"select product_id from order_detail order by product_id";
-
 	private static final String GET_ONE_TYPE =	"SELECT PRODUCT_ID, RECIPE_ID, PRODUCT_TYPE, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_PHOTO, PRODUCT_STATUS, CARBOHYDRATE, PROTEIN, FAT, CALORIE, VITAMIN_B, VITAMIN_C,SALT,VAGETABLE,CONTENT FROM PRODUCT WHERE product_type=? order by PRODUCT_ID";
 	
 

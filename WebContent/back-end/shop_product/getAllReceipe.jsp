@@ -108,9 +108,14 @@
 			
 				<td>
 					<!-- 刪除 -->
-					<FORM METHOD="post" ACTION="ProductServlet" style="margin-bottom: 0px;">
+					<c:set var="id" value="${productvo.product_id}"/>
+									<%String id =(String)pageContext.getAttribute("id"); %>
+					
+					<FORM METHOD="post" ACTION="Productmanage" style="margin-bottom: 0px;">
 						<input type="hidden" name="action" value="delete"> 
-						<input type="submit" value="刪除"> <input type="hidden"
+						<input  class='ui  icon button'  <%=Psvc.isProduct_idFK(id)?"":"disabled='disabled'"   %>
+						
+					 type="submit" value="刪除"> <input type="hidden"
 							name="product_id" value="${productvo.product_id}"> 
 							<input	type="hidden" name="requestURL"	value="<%=request.getServletPath()%>">
 
@@ -128,7 +133,7 @@
     $(".onproduct").click(function () {
     	let product_id= $(this).siblings("input").val();
     
-    	let urladdress="shop_product/ProductChange?product_status=0&product_id="+product_id;
+    	let urladdress="ProductChange?product_status=0&product_id="+product_id;
         $(this).removeAttr("style");
         $(this).css({"color":"white","background-color":'green'});
          $(this).siblings(".offproduct").removeAttr("style");
@@ -143,7 +148,7 @@
     });
 $(".offproduct").click(function () {
 	let product_id= $(this).siblings("input").val();
-	let urladdress="shop_product/ProductChange?product_status=1&product_id="+product_id;
+	let urladdress="ProductChange?product_status=1&product_id="+product_id;
     $(this).removeAttr("style");
     $(this).css({"color":"white","background-color":'blue'});
     $(this).siblings(".onproduct").removeAttr("style");
@@ -159,7 +164,7 @@ $(".offproduct").click(function () {
 
 $(".Checkproduct").click(function () {
     let product_id= $(this).siblings("input").val();
-    let urladdress="shop_product/ProductChange?product_status=2&product_id="+product_id;
+    let urladdress="ProductChange?product_status=2&product_id="+product_id;
     $(this).removeAttr("style");
     $(this).css({"color":"white","background-color":'#fd2436'});
     $(this).siblings(".onproduct").removeAttr("style");

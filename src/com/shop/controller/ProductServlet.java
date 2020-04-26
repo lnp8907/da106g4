@@ -654,7 +654,8 @@ System.out.println("第幾頁"+whichPage);
 				productSvc.delete(product_id);
 
 				/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
-				String url="/back-end/shop_backendPage.jsp?whichPage="+whichPage;
+//				String url="/back-end/shop_backendPage.jsp?whichPage="+whichPage;
+				String url=req.getParameter("requestURL");
 				System.out.println("路徑為"+url);
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);

@@ -13,7 +13,7 @@ public class ProductService {
 
 	public ProductService() {
 	
-		dao=new ProductJDBCDAO();
+		dao=new ProductDAO();
 	}
 	public ProductVO getbyreceipe(String recipe_id) {
 		return dao.byRecipe(recipe_id);

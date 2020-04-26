@@ -22,7 +22,7 @@ import com.product.model.ProductVO;
 /**
  * Servlet implementation class ShopPageServlet
  */
-@WebServlet("/back-end/ShopPageServlet")
+@WebServlet("/back-end/shop_product/ShopPageServlet")
 public class ShopPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -40,7 +40,7 @@ public class ShopPageServlet extends HttpServlet {
 		if ("listallEX".equals(action)) {
 			System.out.println("接到換頁全部商品除食譜請求");
 			session.setAttribute("backendpage","listallEX" );
-			String url = "/back-end/shop_backendPage.jsp";  
+			String url = "/back-end/shop_product/shop_backendPage.jsp";  
 			RequestDispatcher successView = req.getRequestDispatcher(url);
 			successView.forward(req, res);
 			
@@ -49,7 +49,7 @@ public class ShopPageServlet extends HttpServlet {
 		if ("listAllReceipe".equals(action)) {
 			System.out.println("接到換頁全部食譜請求");
 			session.setAttribute("backendpage","listAllReceipe" );
-			String url = "/back-end/shop_backendPage.jsp";  
+			String url = "/back-end/shop_product/shop_backendPage.jsp";  
 			RequestDispatcher successView = req.getRequestDispatcher(url);
 			successView.forward(req, res);
 			

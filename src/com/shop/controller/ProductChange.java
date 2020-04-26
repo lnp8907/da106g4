@@ -12,7 +12,7 @@ import com.product.model.ProductService;
 /**
  * Servlet implementation class Productchange
  */
-@WebServlet("/back-end/shop_product/Productchange")
+@WebServlet("/shop_product/Productchange")
 public class ProductChange extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        

@@ -14,17 +14,16 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/plugin/bootstrap-4.4.1-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/plugin/Semantic-UI/semantic.min.css">
 
-    <link rel="stylesheet" href="css/mainback_endcss.css">
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/back-end/css/mainback_endcss.css">
         <link rel="stylesheet" href="css/BEproductCss.css">
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>後端頁面模板</title>
 
-    <script src="js/MainProductPage.js"> </script>
 
 <body>
-
+<%="現在地址:"+request.getContextPath() %>
 <div class="container">
 	<div class="box">
 		<!--這裡是左邊選單-->
@@ -74,19 +73,18 @@
 	
 	
 	<%
-	if(session.getAttribute("backendpage")==null){
-		
-		
-	}
+	if(session.getAttribute("backendpage")==null){%>
+		 <jsp:include page="listAllProduct.jsp" />		
+	  <%}
 	else{
-	String includecontext=(String)session.getAttribute("backendpage");
-	if(includecontext.equals("listallEX")){%>
-		 <jsp:include page="shop_product/listAllProduct.jsp" />
+	String includecontext=(String)session.getAttribute("backendpage");%>
+	<%if(includecontext.equals("listallEX")){%>
+		 <jsp:include page="listAllProduct.jsp" />
 		
 		
 		 <% }
 	else if(includecontext.equals("listAllReceipe")){%>
-		 <jsp:include page="shop_product/getAllReceipe.jsp" />
+		 <jsp:include page="getAllReceipe.jsp" />
 
 		
 	<%}}

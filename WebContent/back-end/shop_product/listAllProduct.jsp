@@ -5,8 +5,9 @@
 <%@ page import="com.product.model.*"%>
 <%
 	ProductService Psvc = new ProductService();
-	Collection<ProductVO> list = Psvc.getAllProduct();
+	Set<ProductVO> list = Psvc.getAllProduct();
 	pageContext.setAttribute("list", list);
+
 %>
 
 <!DOCTYPE html>
@@ -59,7 +60,7 @@
 
 			<tr>
                            <td><img width=80px height=70px
-					src="shop_product/Product_photoReader?product_id=${productvo.product_id}
+					src="Product_photoReader?product_id=${productvo.product_id}
 			"></td>
                        <td>${productvo.product_type}</td>
 				<td  class="product_idtd">${productvo.product_id}</td>
@@ -98,7 +99,7 @@
 
 				<td>
 					<!-- 詳細頁面 -->
-					<FORM METHOD="post" ACTION="ProductServlet" style="margin-bottom: 0px;">
+					<FORM METHOD="post" ACTION="Productmanage" style="margin-bottom: 0px;">
 						<input type="submit" value="查看更多"> <input type="hidden"
 							name="product_id" value="${productvo.product_id}"> <input
 							type="hidden" name="action" value="listOneProduct">
@@ -107,18 +108,23 @@
 
 				<td>
 					<!-- 修改 -->
-					<FORM METHOD="post" ACTION="ProductServlet" style="margin-bottom: 0px;">
+					<FORM METHOD="post" ACTION="Productmanage" style="margin-bottom: 0px;">
 						<input type="submit" value="修改"> <input type="hidden"
 							name="product_id" value="${productvo.product_id}">
-						<!-- 前往新增 -->
 						<input type="hidden" name="action" value="ProductUpdatePage">
 					</FORM>
 				</td>
+				<c:set var="id" value="${productvo.product_id}"/>
 				<td>
+				<%String id =(String)pageContext.getAttribute("id"); %>
 					<!-- 刪除 -->
-					<FORM METHOD="post" ACTION="ProductServlet" style="margin-bottom: 0px;">
+					
+					
+					<FORM METHOD="post" ACTION="Productmanage" style="margin-bottom: 0px;">
 						<input type="hidden" name="action" value="delete"> 
-						<input type="submit" value="刪除"> <input type="hidden"
+						<input  class='ui  icon button'  <%=Psvc.isProduct_idFK(id)?"":"disabled='disabled'"   %>
+						
+					 type="submit" value="刪除"> <input type="hidden"
 							name="product_id" value="${productvo.product_id}"> 
 							<input	type="hidden" name="whichPage" value="<%=whichPage%>"> 
 							<input	type="hidden" name="requestURL"	value="<%=request.getServletPath()%>">
@@ -135,7 +141,7 @@
     $(".onproduct").click(function () {
     	let product_id= $(this).siblings("input").val();
     
-    	let urladdress="shop_product/ProductChange?product_status=0&product_id="+product_id;
+    	let urladdress="ProductChange?product_status=0&product_id="+product_id;
         $(this).removeAttr("style");
         $(this).css({"color":"white","background-color":'green'});
         $(this).siblings(".offproduct").removeAttr("style");
@@ -149,7 +155,7 @@
     });
 $(".offproduct").click(function () {
 	let product_id= $(this).siblings("input").val();
-	let urladdress="shop_product/ProductChange?product_status=1&product_id="+product_id;
+	let urladdress="ProductChange?product_status=1&product_id="+product_id;
     $(this).removeAttr("style");
     $(this).css({"color":"white","background-color":'blue'});
     $(this).siblings(".onproduct").removeAttr("style");
