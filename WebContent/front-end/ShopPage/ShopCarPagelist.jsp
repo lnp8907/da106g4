@@ -16,10 +16,15 @@
 
 <body>
  <%
+ Vector<Order_detailVO> buyProductlist=null;
  	@SuppressWarnings("unchecked")
   int alltot=0;
- Vector<Order_detailVO> buyProductlist =(Vector<Order_detailVO>)session.getAttribute("productCar");
- session.setAttribute("buyProductlist", buyProductlist);
+ if((Vector<Order_detailVO>)session.getAttribute("productCar")!=null){
+	  buyProductlist =(Vector<Order_detailVO>)session.getAttribute("productCar");
+	 session.setAttribute("buyProductlist", buyProductlist);	 
+	 
+ }
+ 
 ProductService Psvc=new ProductService();
  %>
 <div id="progress-rate">
@@ -67,14 +72,18 @@ ProductService Psvc=new ProductService();
             				<c:set var="id" value="${buyProductlist.product_id}"/>
             				
 
-           <% String id =(String)pageContext.getAttribute("id");  %>
+           
             
             <tr><td ><input type="checkbox" ></td>
             
             
             <td><img width=170px height=150px
 					src="Product_photoReader?product_id=${buyProductlist.product_id}">
-			            <%ProductVO vo=Psvc.getOneProduct(id); 
+			            <%
+			            if((String)pageContext.getAttribute("id")!=null){
+			            String id =(String)pageContext.getAttribute("id");
+			            
+			            ProductVO vo=Psvc.getOneProduct(id); 
 			
             if(vo.getRecipe_id()==null){%>
             	
@@ -88,7 +97,7 @@ ProductService Psvc=new ProductService();
             	<%=Rvo.getRecipe_name()%>
             	
             	
-            <% }%>
+            <% }}%>
             
             
             
@@ -122,11 +131,11 @@ ProductService Psvc=new ProductService();
 
     <div id="Cardetail">
         <div class="calcheck">
-            共 <font><%=buyProductlist.size() %></font> 項商品，數量共 <font class="howmany"></font> 個，總金額NT$ <font class="tcal">XXX</font> 元
+            共 <font><%=(buyProductlist==null)?"":buyProductlist.size() %></font> 項商品，數量共 <font class="howmany"></font> 個，總金額NT$ <font class="tcal">XXX</font> 元
 
             <div>
-
-                <a href="ProductCheckoutPage.jsp"><button  style="border-radius: 0px 0px 15px 0px" class="ui right labeled icon button huge red">
+<!-- 轉移至SERVLT -->
+                <a href="ProductPage?action=checktpage2"><button  style="border-radius: 0px 0px 15px 0px" class="ui right labeled icon button huge red">
                 <i class="right arrow icon"></i> 結帳 </button></a>
             </div>
 

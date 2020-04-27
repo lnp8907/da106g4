@@ -35,7 +35,7 @@
     
 <title>購買頁面</title>
  <!-- 廣告連播套件 -->
- <link rel="stylesheet" type="text/css"href="productDetailPage.css"/>
+ <link rel="stylesheet" type="text/css"href="css/productDetailPage.css"/>
  
  <link rel="stylesheet" href="<%=request.getContextPath() %>/css/frontEnd.css">
  <link rel="stylesheet" href="<%=request.getContextPath() %>/css/homePage.css">
@@ -79,7 +79,7 @@
 						</div> </a>
 				</div>
 				<div class="shop-car">
-					<a href="ShopCarPage.jsp"><img class="header-icon"
+					<a href="<%=request.getContextPath() %>/front-end/ShopPage/ProductPage?action=checktpage1"><img class="header-icon"
 						src="<%=request.getContextPath() %>/image/shopping-cart-icon.png" alt="shopping-cart">
 						<div class="herder-icon-span">
 							<span class="shop-car-span">購物車</span>

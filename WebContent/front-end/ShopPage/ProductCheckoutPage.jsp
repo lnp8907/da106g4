@@ -14,7 +14,7 @@
     <script src="../../js/semantic.min.js"></script>
     <meta charset="UTF-8">
     <title>FoodPornChec</title>
-    <link rel="stylesheet" href="/ShopCartPage.css">
+    <link rel="stylesheet" href="css/ShopCartPage.css">
     
     
 <!DOCTYPE html>
@@ -50,7 +50,6 @@
 <button> <a href="ShopProductPage.jsp">回商品頁面</a></button>
  <%
  	@SuppressWarnings("unchecked")
-  int alltot=0;
     Vector<Order_detailVO> buyProductlist =(Vector<Order_detailVO>)session.getAttribute("productCar");
 
     session.setAttribute("location", request.getRequestURI());
@@ -89,7 +88,6 @@
 		
 		<%
 		int tot=order.getPrice()*order.getQuantity();
-		alltot+=tot;
 		%>
 		
 		
@@ -106,7 +104,7 @@
 </table>
  <div id="progress-rate">
     <div class="progesssize ui steps">
-        <a class=" step">
+        <a class=" step" href="<%=request.getContextPath() %>/front-end/ShopPage/ProductPage?action=checktpage1">
             <i class="shopping cart icon" style="color: #e4002b"></i>
             <div class="content">
                 <div class="title" style=" color: #e4002b;" >請確認購物車
@@ -135,7 +133,7 @@
  
  
 <div id="orderform">
-<form class="ui form">
+<form METHOD="post" ACTION="OrderServlet" class="ui form">
     <h4 class="ui dividing header">請填入您的購物資訊</h4>
     <div class="field">
         <label>Name</label>
@@ -151,7 +149,7 @@
         </div>
     </div>
     
-               <label>地址:</label>
+               <label>地址:</label>  
     
       <div class="fields "id="zipcode3">
      
@@ -162,85 +160,80 @@
   <div class="three wide field">
   <div class="address2 field" data-role="district" >
   
-  
-  
   </div></div>
   
-  
-  
   <div class="seven wide field">
-       <input name="dv_address" type="text" class="f13 address form-control" value="${dv_address}" >
-  
-  
+  <input name="dv_address" type="text" class="f13 address form-control" value="${dv_address}" >
   </div> 
-  
-  
-   
-   
-   
-
-
     </div>
 
-    <div class="fields">
-        <div class="seven wide field">
-            <label>信用卡卡號</label>
-            <input type="text" name="card[number]" maxlength="16" placeholder="Card #">
-        </div>
-        <div class="three wide field">
-            <label>CVC</label>
-            <input type="text" name="card[cvc]" maxlength="3" placeholder="CVC">
-        </div>
-        <div class="six wide field">
-            <label>到期</label>
-            <div class="two fields">
-                <div class="field">
-                    <select class="ui fluid search dropdown" name="card[expire-month]">
-                        <option value="">月份</option>
-                        <option value="1">一月</option>
-                        <option value="2">二月</option>
-                        <option value="3">三月</option>
-                        <option value="4">四月</option>
-                        <option value="5">五月</option>
-                        <option value="6">六月</option>
-                        <option value="7">七月</option>
-                        <option value="8">八月</option>
-                        <option value="9">九月</option>
-                        <option value="10">十月</option>
-                        <option value="11">十一月</option>
-                        <option value="12">十二月</option>
-                    </select>
-                </div>
-                <div class="field">
-                    <input type="text" name="card[expire-year]" maxlength="4" placeholder="Year">
+ <select id="pay-type" name="pay_type" class="ui dropdown">
+        <option value="">請選擇付款方式</option>
+        <option value="1">信用卡</option>
+                <option value="0">點數</option>
+        
+    </select> 
+
+<div  id="paymeth"  style="display:none " class="fields">
+
+            <div  class="seven wide field" >
+                <label>信用卡卡號</label>
+
+                <input type="text" name="card[number]" maxlength="16" placeholder="Card #">
+            </div>
+            <div class="three wide field">
+                <label>CVC</label>
+                <input type="text" name="card[cvc]" maxlength="3" placeholder="CVC">
+            </div>
+            <div class="six wide field">
+                <label>到期</label>
+                <div class="two fields">
+                    <div class="field">
+                        <select class="ui fluid search dropdown" name="card[expire-month]">
+                            <option value="">月份</option>
+                            <option value="1">一月</option>
+                            <option value="2">二月</option>
+                            <option value="3">三月</option>
+                            <option value="4">四月</option>
+                            <option value="5">五月</option>
+                            <option value="6">六月</option>
+                            <option value="7">七月</option>
+                            <option value="8">八月</option>
+                            <option value="9">九月</option>
+                            <option value="10">十月</option>
+                            <option value="11">十一月</option>
+                            <option value="12">十二月</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <input type="text" name="card[expire-year]" maxlength="4" placeholder="Year">
+                    </div>
                 </div>
             </div>
+
         </div>
-    </div>
-
-
-
-
-    <div  id="sendOrder"class="ui button " tabindex="0"> 送出訂單</div>
-</form></div>
- 
- 
- 
- 
- 
- 
- 
- 
- 
-
- <form METHOD="post" ACTION="OrderServlet">
-
-
-<input name="dv_address" type="text" class="f13 address form-control" value="${dv_address}" >
-
-
+         <div  id="sendOrder"> 
+ <input type="submit" id="send" id="sendOrder"class="ui button " tabindex="0" value="送出訂單">
+</div>
+<%
+		Integer total=buyProductlist.stream()
+		.mapToInt(p->p.getPrice()*p.getQuantity())
+		.sum();
+		
+		%>
+<h2 style="color:red">總計:<%=total %></h2>
 
 <br>
+ <!-- 總價計算 -->
+ <input type="hidden" name="order_status" value="0">
+<input type="hidden" name="address1" id="address1" value="${address1}">
+<input type="hidden" name="address2" id="address2" value="${address2}">
+ 		 <input type="hidden" name="action" value="addorder">
+ 		  		 <input type="hidden" name="action" value="addorder">
+ 		 
+ 
+ 
+<%}%>
    選擇會員:           <select name="menber_id">
   <option value ="810001">會員一</option>
   <option value ="810002">會員二</option>
@@ -254,36 +247,33 @@
 </select>
 
 <br>
-   支付方式:           <select name="pay_type">
-  <option value ="0">點數</option>
-  <option value ="1">信用卡</option>
-
-</select>
-<h2 style="color:red">總計:<%=alltot %></h2>
-<%
-		Integer total=buyProductlist.stream()
-		.mapToInt(p->p.getPrice()*p.getQuantity())
-		.sum();
-		
-		%>
-<h2 style="color:red">總計:<%=total %></h2>
-
-<br>
- <input type="submit" id="send" value="送出訂單">
- <!-- 總價計算 -->
- <input type="hidden" name="order_status" value="0">
-<input type="hidden" name="address1" id="address1" value="${address1}">
-<input type="hidden" name="address2" id="address2" value="${address2}">
- 		 <input type="hidden" name="action" value="addorder">
- 
- 
-<%}%>
-          
-          
-          
-          
-          
            </form>    
+
+   </div>
+ <script>
+
+    $("#pay-type").change(function(){
+        if($(this).val()==1){
+            $("#paymeth").show();
+
+        }
+        else if($(this).val()==0){
+
+            $("#paymeth").hide();
+
+        }
+
+    });
+
+
+
+</script>
+ 
+
+
+
+
+
 
 </body>
 <script>

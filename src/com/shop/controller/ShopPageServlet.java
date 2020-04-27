@@ -32,10 +32,43 @@ public class ShopPageServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {		
 		System.out.println("得到換頁請求");
-		
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		HttpSession session = req.getSession();
+		
+		//換頁至第一結帳
+				if ("checktpage1".equals(action)) {
+					System.out.println("結帳步驟一");
+					req.setAttribute("checktpage", "checktpage1");
+					String url = "/front-end/ShopPage/ShopCarPage.jsp";  
+					RequestDispatcher successView = req.getRequestDispatcher(url);
+					successView.forward(req, res);
+					
+				}
+	
+				
+		//換頁至第二結帳
+				if ("checktpage2".equals(action)) {
+					System.out.println("結帳步驟二");
+					req.setAttribute("checktpage", "checktpage2");
+					String url = "/front-end/ShopPage/ShopCarPage.jsp";  
+					RequestDispatcher successView = req.getRequestDispatcher(url);
+					successView.forward(req, res);
+					
+				}
+
+		//換頁至第三結帳
+				if ("checktpage3".equals(action)) {
+					System.out.println("結帳步驟二");
+					req.setAttribute("checktpage", "checktpage3");
+					String url = "/front-end/ShopPage/ShopCarPage.jsp";  
+					RequestDispatcher successView = req.getRequestDispatcher(url);
+					successView.forward(req, res);
+					
+				}
+		
+		
+		
 		
 		if ("listallEX".equals(action)) {
 			System.out.println("接到換頁全部商品除食譜請求");

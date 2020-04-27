@@ -94,7 +94,7 @@
 			</div>
 			<div class="function-list">
 				<div class="shop-car">
-					<a href="#"><img class="header-icon"
+					<a href="<%=request.getContextPath() %>/front-end/ShopPage/ProductPage?action=checktpage1"><img class="header-icon"
 						src="../../image/shopping-cart-icon.png" alt="shopping-cart">
 						<div class="herder-icon-span">
 							<span class="shop-car-span">購物車</span>

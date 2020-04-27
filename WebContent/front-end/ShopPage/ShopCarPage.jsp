@@ -30,8 +30,24 @@
 </div>
 <hr>
 
-
+<!-- 預設 -->
+<%if(request.getAttribute("checktpage").equals("checktpage1")){ %>
  <jsp:include page="ShopCarPagelist.jsp" />
+ <% }else if(request.getAttribute("checktpage").equals("checktpage2")){%>
+	 
+	 <jsp:include page="ProductCheckoutPage.jsp" />
+	 
+	 
+ <% }else{%>
+	 <jsp:include page="ShopCarPagelist.jsp" />
+
+	 
+	 
+ <%}%>
+<!-- 轉移結帳2 -->
+<%--  <jsp:include page="ProductCheckoutPage.jsp" /> --%>
+<!-- 轉移結帳3 -->
+ 
 
 
 

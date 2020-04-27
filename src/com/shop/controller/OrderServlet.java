@@ -46,7 +46,8 @@ HttpSession session=req.getSession();
 if("addorder".equals(action)){
 	System.out.println(action);
 	Vector<Order_detailVO> productlist = (Vector<Order_detailVO>) session.getAttribute("productCar");
-	    Integer pay_type = Integer.valueOf(req.getParameter("pay_type"));
+	Integer pay_type = Integer.valueOf(req.getParameter("pay_type"));
+    System.out.println(pay_type);
 	    
 	    
 	    String member_id = 	new String(req.getParameter("menber_id"));
