@@ -13,5 +13,7 @@ public interface MemberDAO_interface {
           public void updateStoredValue(MemberVO empVO);
         
           public void update_by_self(MemberVO empVO);
-          
+          public void update_Success(MemberVO empVO);
+          public MemberVO findPK(String member_id);
+//          public List<MemberVO> Duplicate_Account(String account);
 }

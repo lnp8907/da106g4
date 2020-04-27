@@ -143,7 +143,14 @@
 		<url-pattern>/back-end/moneyflow/MoneyflowServlet.do</url-pattern>
 	</servlet-mapping>
 	
-	
+			<servlet>
+		<servlet-name>MemberServlet2</servlet-name>
+		<servlet-class>com.member.controller.MemberServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MemberServlet2</servlet-name>
+		<url-pattern>/member.do</url-pattern>
+	</servlet-mapping>
 	
 	
 	
@@ -266,4 +273,27 @@
 	</servlet-mapping>
 
 	<!-- 	///////////////////////商城用////////////////////////// -->
+			<!-- 過濾器Filter開始 -->
+ <filter>
+  <filter-name>LoginFilter</filter-name>
+  <filter-class>com.member.model.LoginFilter</filter-class>
+ </filter>
+ <filter-mapping>
+  <filter-name>LoginFilter</filter-name>
+  <!-- 測試 -->
+  <url-pattern>/front-end/member/member.jsp</url-pattern>
+   <url-pattern>/front-end/ShopPage/ShopCarPage.jsp</url-pattern>
+ 
+  <!-- 測試 -->
+<!--   <url-pattern>/front_end/index.jsp</url-pattern> -->
+<!--   <url-pattern>/front_end/group_index.jsp</url-pattern> -->
+  
+  <dispatcher>REQUEST</dispatcher>
+     <dispatcher>FORWARD</dispatcher>
+     <dispatcher>INCLUDE</dispatcher>
+     <dispatcher>ERROR</dispatcher>
+     <dispatcher>ASYNC</dispatcher>
+ </filter-mapping>
+<!-- 過濾器Filter結束 -->
+	
 </web-app>

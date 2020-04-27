@@ -1,5 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    
+    
+<%
+    String member_id =(String) session.getAttribute("member_id");
+out.println(member_id);
+%>
+    
+    
+    
+    
+    
+    
+    
+    
+    
 <!DOCTYPE html>
 
   <head>
