@@ -31,6 +31,9 @@ public interface ProductDAO_interface {
     public void updatepicture(ProductVO productVO);
     //改變狀態
     public void changestatus(String product_id, Integer product_status);
+    //改變狀態並上架
+    public void changestatus(String product_id, Integer product_status,Integer price);
+
     //判斷是否參照
 	public boolean isproductid(String productid) ;
 	//獲得TYPE陣列

@@ -140,5 +140,9 @@ public class ProductService {
 	public void changestatus(String product_id,Integer product_status) {
 		dao.changestatus(product_id, product_status);
 	}
+	/*上架食譜*/
+	public void onproductBYRecipe(String product_id,Integer product_status,Integer price) {
+		dao.changestatus(product_id, product_status,price);
+	}
 
 }

@@ -41,6 +41,27 @@ public class ProductServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 
+		
+		/*食譜上架*/
+		if ("onproduct".equals(action)) {
+			System.out.println("處理食譜上架");
+			String product_id=req.getParameter("product_id");
+			Integer price=Integer.valueOf( req.getParameter("price"));
+			Integer product_status=Integer.valueOf( req.getParameter("status"));
+			ProductService svc=new ProductService();
+			svc.onproductBYRecipe(product_id, product_status, price);
+			
+			
+			String url=req.getParameter("requestURL");
+
+			
+			RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+			successView.forward(req, res);
+			
+			
+		}
+		
+		
 		if ("getOneProductDisplay".equals(action)) {
 			System.out.println("進入單選");
 			List<String> errorMsgs = new LinkedList<String>();

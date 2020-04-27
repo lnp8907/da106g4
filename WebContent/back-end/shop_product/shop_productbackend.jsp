@@ -1,4 +1,3 @@
-<%@page import="javax.websocket.Session"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 	<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -16,7 +15,6 @@
 
     <link rel="stylesheet" href="../css/mainback_endcss.css">
         <link rel="stylesheet" href="../css/BEproductCss.css">
-    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>後端頁面模板</title>

@@ -91,10 +91,10 @@
 				
 				
 				 <td>
-				 <input type="hidden" value="${productvo.product_id}">
+				 <input id="recipeProductid" type="hidden" value="${productvo.product_id}">
 				 
 			
-                      <button id="onRproduct" class="right attached ui button Checkproduct"  ${ productstatus [status]=='審核中'? "
+                      <button class="right attached ui button Checkproduct onRproduct"  ${ productstatus [status]=='審核中'? "
 
 
                         style='background-color: #fd2436;color: white'":""} >審核中</button>
@@ -103,37 +103,6 @@
                      
                      <!-- 上架按鍵-->
                      
-
-<div id="receipeform" class="border">
-    <form action="">
-        <div>
-       <font> 請設定價格:</font>
-        </div>
-        <div class="ui input focus">
-            <input id="recipePrice" type="text" value="1" placeholder="請輸入數字...">
-        </div>
-        <br>
-
-
-
-        <div id="checkRbtn">
-
-        <div class="ui icon input">
-            <input class="ui  button cancel-On-Receipe" type="button" value="取消"><i class="undo alternate icon"></i>
-
-        </div>
-
-        <div class="ui icon input">
-        <input class="ui  button"  type="submit" value="送出"><i class=" arrow circle right icon"></i>
-
-        </div>
-
-        </div>
-
-
-    </form>
-
-</div>
                                 
                                 
                                 
@@ -181,12 +150,15 @@
 
             });
 
-    $("#onRproduct").click(function () {
+    $(".onRproduct").click(function () {
+    	
+    	$('#getproductid').val($(this).prev("#recipeProductid").val());
         $("#receipeform").dialog("open");
 
         return false;
     });
     $('.cancel-On-Receipe').click(function () {
+    	$("#recipePrice").val(1);
         $("#receipeform").dialog("close");
 
     })
@@ -194,6 +166,44 @@
     });
 
 </script>
+<script>
 
+
+
+
+</script>
+
+<div id="receipeform" class="border">
+    <form METHOD="post" ACTION="Productmanage">
+        <div>
+       <font> 請設定價格:</font>
+        </div>
+        <div class="ui input focus">
+            <input id="recipePrice" name="price" type="text" value="1" placeholder="請輸入數字...">
+        </div>
+        <br>
+        <div id="checkRbtn">
+
+        <div class="ui icon input">
+            <input class="ui  button cancel-On-Receipe" type="button" value="取消"><i class="undo alternate icon"></i>
+
+        </div>
+
+        <div class="ui icon input">
+        <input class="ui  button"  type="submit" value="送出"><i class=" arrow circle right icon"></i>
+	<input	type="hidden"  name="status" value="0">
+
+	<input	type="hidden"  name="action" value="onproduct">
+	<input	type="hidden" name="onbtn" value="onbtn">	
+        <input	type="hidden" name="requestURL"	value="<%=request.getServletPath()%>">
+	<input	type="hidden" id="getproductid" name="product_id" />
+        </div>
+
+        </div>
+
+
+    </form>
+
+</div>
 </body>
 </html>

@@ -40,6 +40,8 @@ public class ProductDAO implements ProductDAO_interface {
 	private static final String UPDATE = "UPDATE PRODUCT SET  PRODUCT_TYPE=?, PRODUCT_NAME=?, PRODUCT_PRICE=?, PRODUCT_STATUS=?, carbohydrate=?, protein=?, fat=?, calorie=?, vitamin_B=?, vitamin_C=?,CONTENT=?,product_photo=?,SALT=?,VAGETABLE=? WHERE PRODUCT_ID = ?";
 	private static final String UPDATEPICTURE = "UPDATE PRODUCT SET  product_photo=?  WHERE product_id = ?";
 	private static final String CHANGESTATUS="UPDATE PRODUCT SET PRODUCT_STATUS=? WHERE product_id = ?";
+	private static final String CHANGESTATUSANDPRICE="UPDATE PRODUCT SET PRODUCT_STATUS=?,PRODUCT_PRICE=? WHERE product_id = ?";
+
 	private static final String IS_Product_id_fk =	"select product_id from order_detail order by product_id";
 	private static final String GET_ONE_TYPE =	"SELECT PRODUCT_ID, RECIPE_ID, PRODUCT_TYPE, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_PHOTO, PRODUCT_STATUS, CARBOHYDRATE, PROTEIN, FAT, CALORIE, VITAMIN_B, VITAMIN_C,SALT,VAGETABLE,CONTENT FROM PRODUCT WHERE product_type=? order by PRODUCT_ID";
 	
@@ -1085,5 +1087,44 @@ System.out.println("且未上架");
 			fis.close();
 			return baos.toByteArray();
 		}
+	@Override
+	public void changestatus(String product_id, Integer product_status, Integer price) {
+		// TODO Auto-generated method stub
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(CHANGESTATUSANDPRICE);
+			pstmt.setInt(1, product_status);
+			pstmt.setInt(2, price);
+
+			pstmt.setString(3, product_id);
+			
+
+			pstmt.executeUpdate();
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		
+	}
 
 }
