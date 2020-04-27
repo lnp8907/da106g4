@@ -25,6 +25,11 @@
 <title>結帳畫面</title>
 </head>
 <body>
+
+<div id="shopTitle">
+    <div class="foodpronpicture"><a href="ShopProductPage.jsp"><img src="../../image/FoodPron_Logo.png" alt=""></a></div>
+</div>
+<hr>
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>
@@ -47,7 +52,6 @@
 
 
 
-<button> <a href="ShopProductPage.jsp">回商品頁面</a></button>
  <%
  	@SuppressWarnings("unchecked")
     Vector<Order_detailVO> buyProductlist =(Vector<Order_detailVO>)session.getAttribute("productCar");
@@ -56,9 +60,7 @@
     
     %>
  
-<%
-	if (buyProductlist != null && (buyProductlist.size() > 0)) {
-%>
+
  <font size="+3">目前購物車的內容如下：</font>
 
 <table id="table-1" >
@@ -229,24 +231,11 @@
 <input type="hidden" name="address1" id="address1" value="${address1}">
 <input type="hidden" name="address2" id="address2" value="${address2}">
  		 <input type="hidden" name="action" value="addorder">
- 		  		 <input type="hidden" name="action" value="addorder">
+ 		  <input type="hidden" name="member_id" value='<%=session.getAttribute("member_id") %>'>
+<%=session.getAttribute("member_id") %> 		  		 
  		 
  
- 
-<%}%>
-   選擇會員:           <select name="menber_id">
-  <option value ="810001">會員一</option>
-  <option value ="810002">會員二</option>
-  <option value ="810003">會員三</option>
-  <option value ="810004">會員四</option>
-  <option value ="810005">會員五</option>
-  <option value ="810006">會員六</option>
-  <option value ="810007">會員七</option>
-  <option value ="810008">會員八</option>
-  <option value ="810009">會員九</option>
-</select>
 
-<br>
            </form>    
 
    </div>

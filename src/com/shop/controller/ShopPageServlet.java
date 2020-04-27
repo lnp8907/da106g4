@@ -70,6 +70,15 @@ public class ShopPageServlet extends HttpServlet {
 			
 			
 		}
+		if ("listAllReceipeEXcheck".equals(action)) {
+			System.out.println("接到換頁審核中食譜請求");
+			session.setAttribute("backendpage","listAllReceipeEXcheck" );
+			String url = "/back-end/shop_product/shop_backendPage.jsp";  
+			RequestDispatcher successView = req.getRequestDispatcher(url);
+			successView.forward(req, res);
+			
+			
+		}
 		if ("listAllReceipe".equals(action)) {
 			System.out.println("接到換頁全部食譜請求");
 			session.setAttribute("backendpage","listAllReceipe" );

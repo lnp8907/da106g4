@@ -46,23 +46,24 @@ HttpSession session=req.getSession();
 if("addorder".equals(action)){
 	System.out.println(action);
 	Vector<Order_detailVO> productlist = (Vector<Order_detailVO>) session.getAttribute("productCar");
-	Integer pay_type = Integer.valueOf(req.getParameter("pay_type"));
-    System.out.println(pay_type);
-	    
-	    
-	    String member_id = 	new String(req.getParameter("menber_id"));
-	    
+	Integer pay_type = Integer.valueOf(req.getParameter("pay_type"));	    
+	  
+	
+	    String member_id = req.getParameter("member_id");
+		System.out.println("網頁獲取"+req.getParameter("member_id"));	    
 	    System.out.println("member_id:"+member_id);
+	    System.out.println("SESSION獲取member_id:"+session.getAttribute("member_id"));
+
 	    MemberService svc1 = new MemberService();
-		MemberVO memberVO=new MemberVO();
-		memberVO= svc1.getOneMember(member_id);
 		Integer total=productlist.stream()
 				.mapToInt(p->p.getPrice()*p.getQuantity())
 				.sum();
-	System.out.println("程式算的金額為:"+total);
-		System.out.println("現有"+memberVO.getBalance());
-		
+		System.out.println("程式算的金額為:"+total);
+
 	  if(pay_type == 0) {
+			MemberVO memberVO=new MemberVO();
+
+			System.out.println("現有"+memberVO.getBalance());
 		if(memberVO.getBalance() >= total) {
 			
 			memberVO.setBalance(memberVO.getBalance()- total);
