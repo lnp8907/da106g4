@@ -28,6 +28,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.member.model.MemberService;
@@ -59,13 +60,116 @@ public class MemberServlet extends HttpServlet{
 		// TODO Auto-generated method stub
 		doPost(request, response);
 	}
-	
-	
-	
+	////////////////////////////////
+protected int allowUser(String account,String password) {
+    	
+    	MemberVO memberVO=null;
+    	MemberService memberSvc=new MemberService();
+System.out.println(account);
+System.out.println(password);
+    	if(memberSvc.getfindOnePK(account)==null) {
+    		System.out.println("沒有此帳號");
+    		return 1;
+    	}else {
+    		memberVO=memberSvc.getfindOnePK(account);
+    		System.out.println("2");
+    	}  
+System.out.println("111111111111111111"+memberVO.getAccount());
+System.out.println(memberVO.getPassword());   
+
+        if (memberVO.getAccount().equals(account) && memberVO.getPassword().equals(password)) {
+        	
+        
+        	
+        	
+        	System.out.println("成功登入");
+        	return 3;
+          
+        }else {
+        	System.out.println("密碼錯誤");
+        	return 4; 
+        }
+    }
+	////////////////////////////////////////
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		System.out.println(action);
+		
+		
+		
+		
+		
+		
+		
+		
+		/////////////////////////////////////////////////////////////
+		
+		if("login".equals(action)) {
+
+			
+			System.out.println(action);
+			
+			String mem_id=req.getParameter("mem_id").trim();
+			String psw=req.getParameter("psw").trim();
+			
+			System.out.println(mem_id);
+			System.out.println(psw);
+			
+			
+//			if(mem_id==null || mem_id.trim().length()==0) {
+//			
+//			}
+//			if(mem_id==null || mem_id.trim().length()==0) {
+//		
+//			}
+			
+			
+			if(allowUser(mem_id,psw)==1) {
+				//登入不成功
+				System.out.println("沒有此帳號");
+				String URL=req.getContextPath()+"/index.html";
+				res.sendRedirect(URL);
+				return;
+			}else if(allowUser(mem_id,psw)==4) {
+				//登入不成功
+				System.out.println("密碼錯誤");
+				String URL=req.getContextPath()+"/index.html";
+				res.sendRedirect(URL);
+				return;	
+			}else {
+				MemberService memberSvc=new MemberService();
+				MemberVO memberVO=null;
+				memberVO=memberSvc.getfindOnePK(mem_id);
+				HttpSession session=req.getSession();
+		session.setAttribute("member_id", memberVO.getMember_id());
+				
+				String sessionmember_id= (String) req.getSession().getAttribute("member_id");
+				
+System.out.println("session中member_id"+sessionmember_id);
+				try {
+					String location=(String)session.getAttribute("location");
+					if (location != null) {
+System.out.println("location="+location);
+						session.removeAttribute("location");  
+				        res.sendRedirect(location);            
+				        return;
+				    }
+					
+				}catch(Exception ignored) { }
+				res.sendRedirect(req.getContextPath()+"/front-end/homepage.jsp"); 
+			}
+			
+			
+			
+		}
+		/////////////////////////////////////////////////////////////
+		
+		
+		
+		
+		
+		
 		if ("resetCode".equals(action)) {
 			String email = req.getParameter("email");
 			System.out.println(email);
@@ -83,7 +187,7 @@ public class MemberServlet extends HttpServlet{
 			String to = email;
 			String subject = "會員驗證信通知";
 			String messageText = "Hello! " + email + " 這是你的驗證碼: " + code + "\n" + "請點擊下方連結激活帳號"+
-			"http://"+ ip + ":8081/DA106_G4_Foodporn_Git/front-end/member/checkCode.jsp?email=" + email;
+			"http://"+ ip + ":8081/Foodporn_Member-0425/front-end/member/checkCode.jsp?email=" + email;
 			sendMail(to, subject, messageText);
 			RequestDispatcher successView = req.getRequestDispatcher("/front-end/member/checkCode.jsp");
 			successView.forward(req, res);
@@ -413,7 +517,7 @@ public class MemberServlet extends HttpServlet{
 				String to = email;
 				String subject = "會員驗證信通知";
 				String messageText = "Hello! " + email + " 這是你的驗證碼: " + code + "\n" + "請點擊下方連結激活帳號"+
-				"http://"+ ip + ":8081/DA106_G4_Foodporn_Git/front-end/member/checkCode.jsp?email=" + email;
+				"http://"+ ip + ":8081/Foodporn_Member-0425/front-end/member/checkCode.jsp?email=" + email;
 				sendMail(to, subject, messageText);
 										
 				/***************************2.開始新增資料***************************************/

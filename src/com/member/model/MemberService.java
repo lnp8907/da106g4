@@ -13,6 +13,35 @@ private MemberDAO_interface dao;
 			dao = new MemberJDBCDAO();
 		}
 		
+		
+//		public List<MemberVO> Duplicate_Account() {
+//			return dao.Duplicate_Account();
+//		}
+		
+		
+		
+		
+		public MemberVO updateSuccess(String account,
+				Integer validation) {
+			MemberVO memberVO=new MemberVO();
+			//memberVO.setMember_id(member_id);
+			memberVO.setAccount(account);
+			memberVO.setValidation(validation);
+			
+			
+			
+			dao.update_Success(memberVO);
+			return memberVO;
+			
+			
+			
+			
+		}
+		
+		
+		
+		
+		
 	
 		public MemberVO insertmem(String account,
 				String password, String email) {
@@ -164,11 +193,8 @@ private MemberDAO_interface dao;
 		public MemberVO getOneMember(String member_id) {
 			return dao.findByPrimaryKey(member_id);
 		}
-
-
-		public MemberVO updateSuccess(String email, int i) {
-			// TODO Auto-generated method stub
-			return null;
+		public MemberVO getfindOnePK(String account) {
+			return dao.findPK(account);
 		}
 	}
 	

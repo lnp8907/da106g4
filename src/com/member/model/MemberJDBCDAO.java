@@ -19,6 +19,8 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 	//private static final String INSERT_STMT = "INSERT INTO MEMBER (MEMBER_ID,ACCOUNT,PASSWORD,MEMBER_NAME,GENDER,BIRTHDAY,CELLPHONE,EMAIL,NICKNAME,MEMBER_PHOTO,VALIDATION,LICENSE,MEMBER_STATUS,MEMBER_ADDRESS,MEMBER_CREDITCARD,BALANCE) VALUES (SQ_MEMBER_ID.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT MEMBER_ID,ACCOUNT,PASSWORD,MEMBER_NAME,GENDER,to_char(BIRTHDAY,'yyyy-mm-dd') BIRTHDAY,CELLPHONE,EMAIL,NICKNAME,MEMBER_PHOTO,VALIDATION,LICENSE,MEMBER_STATUS,MEMBER_ADDRESS,MEMBER_CREDITCARD,BALANCE,CHIEFAPPLY_STATUS FROM MEMBER order by MEMBER_ID";
 	private static final String GET_ONE_STMT = "SELECT MEMBER_ID,ACCOUNT,PASSWORD,MEMBER_NAME,GENDER,to_char(BIRTHDAY,'yyyy-mm-dd') BIRTHDAY,CELLPHONE,EMAIL,NICKNAME,MEMBER_PHOTO,VALIDATION,LICENSE,MEMBER_STATUS,MEMBER_ADDRESS,MEMBER_CREDITCARD,BALANCE,CHIEFAPPLY_STATUS FROM MEMBER where MEMBER_ID = ?";
+	private static final String GET_ONE_STMT2 = "SELECT MEMBER_ID,ACCOUNT,PASSWORD,MEMBER_NAME,GENDER,to_char(BIRTHDAY,'yyyy-mm-dd') BIRTHDAY,CELLPHONE,EMAIL,NICKNAME,MEMBER_PHOTO,VALIDATION,LICENSE,MEMBER_STATUS,MEMBER_ADDRESS,MEMBER_CREDITCARD,BALANCE,CHIEFAPPLY_STATUS FROM MEMBER where ACCOUNT = ?";
+	
 	private static final String DELETE = "DELETE FROM MEMBER where MEMBER_ID = ?";
 	//private static final String UPDATE = "UPDATE MEMBER set ACCOUNT=?, PASSWORD=?, MEMBER_NAME=?, GENDER=?, BIRTHDAY=?, CELLPHONE=?, EMAIL=?, NICKNAME=?, MEMBER_PHOTO=?, VALIDATION=?, LICENSE=?, MEMBER_STATUS=?, MEMBER_ADDRESS=?, MEMBER_CREDITCARD=?, BALANCE=?, CHIEFAPPLY_STATUS=? where MEMBER_ID = ?";
 //	private static final String UPDATE = "UPDATE MEMBER set CHIEFAPPLY_STATUS=? where MEMBER_ID = ?";
@@ -27,6 +29,146 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 	private static final String UPDATE_TO_CHEF = "UPDATE MEMBER set MEMBER_ID = ?, ACCOUNT=?, MEMBER_NAME=?, license=?, chiefapply_status=? where MEMBER_ID = ?";
 	private static final String UPDATE_STOREDVALUE = "UPDATE MEMBER set MEMBER_ID=?, BALANCE=? where MEMBER_ID = ?";
 	private static final String UPDATE_BY_SELF = "UPDATE MEMBER set MEMBER_ID = ?, MEMBER_NAME=?, ACCOUNT=?, PASSWORD=?, EMAIL=?, BIRTHDAY=?, CELLPHONE=?, GENDER=?, MEMBER_ADDRESS=?, member_photo=? where MEMBER_ID = ?";
+	
+	private static final String UPDATE_SUCCESS = "UPDATE MEMBER set ACCOUNT = ?, VALIDATION = ? where ACCOUNT = ?";
+	private static final String DUPLICATE_ACCOUNT = "SELECT ACCOUNT? FROM MEMBER where ACCOUNT = ?";
+	
+	
+	
+//	@Override
+//	public List<MemberVO> Duplicate_Account(String account) {
+//		List<MemberVO> list = new ArrayList<MemberVO>();
+//		MemberVO empVO = null;
+//
+//		Connection con = null;
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//
+//		try {
+//
+//			Class.forName(driver);
+//			con = DriverManager.getConnection(url, userid, passwd);
+//			pstmt = con.prepareStatement(DUPLICATE_ACCOUNT);
+//			rs = pstmt.executeQuery();
+//
+//			while (rs.next()) {
+//				// empVO �]�٬� Domain objects
+//				empVO = new MemberVO();
+//				empVO.setAccount(rs.getString("ACCOUNT"));
+//				empVO.setAccount(rs.getString("ACCOUNT"));
+//			
+//			}
+//
+//			// Handle any driver errors
+//		} catch (ClassNotFoundException e) {
+//			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+//			// Handle any SQL errors
+//		} catch (SQLException se) {
+//			throw new RuntimeException("A database error occured. " + se.getMessage());
+//			// Clean up JDBC resources
+//		} finally {
+//			if (rs != null) {
+//				try {
+//					rs.close();
+//				} catch (SQLException se) {
+//					se.printStackTrace(System.err);
+//				}
+//			}
+//			if (pstmt != null) {
+//				try {
+//					pstmt.close();
+//				} catch (SQLException se) {
+//					se.printStackTrace(System.err);
+//				}
+//			}
+//			if (con != null) {
+//				try {
+//					con.close();
+//				} catch (Exception e) {
+//					e.printStackTrace(System.err);
+//				}
+//		}
+//		return list;
+//	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	@Override
+	public void update_Success(MemberVO empVO) {
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(UPDATE_SUCCESS);
+
+			pstmt.setInt(2, empVO.getValidation());
+			pstmt.setString(1, empVO.getAccount());	
+			pstmt.setString(3, empVO.getAccount());	
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured123. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -484,6 +626,145 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 		return empVO;
 	}
 
+	
+	
+	
+	
+	
+	public MemberVO findPK(String account) {
+
+		MemberVO empVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(GET_ONE_STMT2);
+
+			pstmt.setString(1,account);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				// empVo �]�٬� Domain objects
+				empVO = new MemberVO();		
+				empVO.setPassword(rs.getString("PASSWORD"));
+				empVO.setAccount(rs.getString("ACCOUNT"));	
+			empVO.setMember_id(rs.getString("MEMBER_ID"));
+			}
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return empVO;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+//	public MemberVO findPK(String member_id) {
+//
+//		MemberVO memberVO = null;
+//		Connection con = null;
+//		PreparedStatement pstmt = null;
+//		ResultSet rs = null;
+//
+//		try {
+//
+//			
+//			con = ds.getConnection();
+//			pstmt = con.prepareStatement(GET_ONE_STMT);
+//
+//			pstmt.setString(1,member_id);
+//
+//			rs = pstmt.executeQuery();
+//
+//			while (rs.next()) {
+//
+//				memberVO =new MemberVO();				
+//				memberVO.setAccount(rs.getString("ACCOUNT"));
+//			}
+//
+//			// Handle any driver errors
+//		}catch (SQLException se) {
+//			throw new RuntimeException("A database error occured. "
+//					+ se.getMessage());
+//			// Clean up JDBC resources
+//		} finally {
+//			if (rs != null) {
+//				try {
+//					rs.close();
+//				} catch (SQLException se) {
+//					se.printStackTrace(System.err);
+//				}
+//			}
+//			if (pstmt != null) {
+//				try {
+//					pstmt.close();
+//				} catch (SQLException se) {
+//					se.printStackTrace(System.err);
+//				}
+//			}
+//			if (con != null) {
+//				try {
+//					con.close();
+//				} catch (Exception e) {
+//					e.printStackTrace(System.err);
+//				}
+//			}
+//		}
+//		return memberVO;
+//	}
+//	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	@Override
 	public List<MemberVO> getAll() {
 		List<MemberVO> list = new ArrayList<MemberVO>();

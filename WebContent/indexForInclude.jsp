@@ -36,7 +36,7 @@
 <body>
 	<header>
 		<div id="top-logo" class="logo">
-			<a href="whoAmI.htm" title="我是誰?"><img class="logo-photo"
+			<a href="<%=request.getContextPath()%>/" title="回首頁"><img class="logo-photo"
 				src="image/FoodPron_Logo.png" alt="logo"></a>
 		</div>
 		<div class="function">
