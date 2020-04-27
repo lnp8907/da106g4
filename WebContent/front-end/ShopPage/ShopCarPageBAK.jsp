@@ -29,7 +29,6 @@
     <div class="foodpronpicture"><a href="ShopProductPage.jsp"><img src="../../image/FoodPron_Logo.png" alt=""></a></div>
 </div>
 <hr>
-
 <!-- 預設 -->
 <%if(request.getAttribute("checktpage").equals("checktpage1")){ %>
  <jsp:include page="ShopCarPagelist.jsp" />
@@ -38,16 +37,10 @@
 	 <jsp:include page="ProductCheckoutPage.jsp" />
 	 
 	 
- <% }else{%>
-	 <jsp:include page="ShopCarPagelist.jsp" />
+ <% }%>
 
 	 
-	 
- <%}%>
-<!-- 轉移結帳2 -->
-<%--  <jsp:include page="ProductCheckoutPage.jsp" /> --%>
-<!-- 轉移結帳3 -->
- 
+
 
 
 

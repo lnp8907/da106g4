@@ -40,32 +40,23 @@ public class ShopPageServlet extends HttpServlet {
 				if ("checktpage1".equals(action)) {
 					System.out.println("結帳步驟一");
 					req.setAttribute("checktpage", "checktpage1");
-					String url = "/front-end/ShopPage/ShopCarPage.jsp";  
+					String url = "/front-end/ShopPage/ShopCarPageBAK.jsp";
+					System.out.println("開始轉送");
 					RequestDispatcher successView = req.getRequestDispatcher(url);
 					successView.forward(req, res);
 					
 				}
 	
-				
 		//換頁至第二結帳
 				if ("checktpage2".equals(action)) {
 					System.out.println("結帳步驟二");
 					req.setAttribute("checktpage", "checktpage2");
-					String url = "/front-end/ShopPage/ShopCarPage.jsp";  
+					String url = "/front-end/ShopPage/ShopCarPageBAK.jsp";  
 					RequestDispatcher successView = req.getRequestDispatcher(url);
 					successView.forward(req, res);
 					
 				}
 
-		//換頁至第三結帳
-				if ("checktpage3".equals(action)) {
-					System.out.println("結帳步驟二");
-					req.setAttribute("checktpage", "checktpage3");
-					String url = "/front-end/ShopPage/ShopCarPage.jsp";  
-					RequestDispatcher successView = req.getRequestDispatcher(url);
-					successView.forward(req, res);
-					
-				}
 		
 		
 		
@@ -96,6 +87,7 @@ public class ShopPageServlet extends HttpServlet {
 		
 		
 		if ("nextPage".equals(action)) {
+			System.out.println("前往下一頁");
 			String product_type = new String(req.getParameter("product_type").trim());
 			String whichPage = new String(req.getParameter("whichPage").trim());
 			System.out.println(product_type);
@@ -108,9 +100,11 @@ public class ShopPageServlet extends HttpServlet {
 		}
 
 		if ("goProductPage".equals(action)) {
+			System.out.println("前往商品頁面");
+
+
 			Collection productlist = null;
 			ProductService svc = new ProductService();
-			System.out.println("前往商品頁面");
 			String product_type = null;
 			try {
 				product_type = new String(req.getParameter("product_type").trim());
@@ -147,6 +141,7 @@ public class ShopPageServlet extends HttpServlet {
 			RequestDispatcher successView = req.getRequestDispatcher(url);
 			successView.forward(req, res);
 		}
+		System.out.println("還有跑");
 
 	}
 
