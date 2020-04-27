@@ -1,0 +1,36 @@
+
+#receipeform{
+    width: 205px;
+    height: 135px;
+
+
+
+
+
+
+
+
+}
+#receipeform font{
+    color: #f90031;
+    font-size: 20px;
+}
+#receipeform form>div:nth-child(1){
+    margin-top: 10px;
+}
+#recipePrice{
+    width: 200px;
+
+
+}
+#checkRbtn{
+    width: 200px;
+    margin: 15px auto;
+}
+#checkRbtn div:nth-child(2) {
+    float: right;
+}
+#checkRbtn input:nth-child(2){
+    float: right;
+
+}

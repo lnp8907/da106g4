@@ -16,9 +16,14 @@
 
     <link rel="stylesheet" href="<%=request.getContextPath() %>/back-end/css/mainback_endcss.css">
         <link rel="stylesheet" href="css/BEproductCss.css">
+    <!--套件-->
+      <link rel="stylesheet" type="text/css" href="../../plugin/jquery-ui-1.12.1/jquery-ui.min.css"/>
+
+    <script src="../../plugin/jquery-ui-1.12.1/jquery-ui.min.js"></script>
     
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
     <title>後端頁面模板</title>
 
 
@@ -90,7 +95,7 @@
 	<%}
 	
 	else if(includecontext.equals("listAllReceipeEXcheck")){%>
-	 <jsp:include page="CheckReceipe.jsp" />
+	 <jsp:include page="CheckingReceipe.jsp" />
 	
 	
 	
