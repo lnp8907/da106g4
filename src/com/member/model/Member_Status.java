@@ -26,20 +26,32 @@ public class Member_Status implements Filter{
  @Override
  public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
    throws IOException, ServletException {
+
+	 
 	 System.out.println(1);
   HttpServletRequest req = (HttpServletRequest)request;
   HttpServletResponse res = (HttpServletResponse)response;
   HttpSession session = req.getSession();
   String member_id = (String)session.getAttribute("member_id");
-  if(member_id == null) {
-	  System.out.println(2);
-   session.setAttribute("location", req.getRequestURI());
-   res.sendRedirect(req.getContextPath() + "/index.html");  // 登入換地址，此處也要換
-   return;
-  }else {
-	  System.out.println(3);
-   chain.doFilter(request, response);
-  }
+  
+  
+  
+  
+  
+  
+  
+  String member_status= (Integer)req.getSession().getAttribute("member_status")+"";
+  
+           if(member_status == "0") {
+        		  System.out.println("非廚師");
+        	   res.sendRedirect("/front-end/member/Permissions.jsp");  // 登入換地址，此處也要換
+        	   return;
+        	  }else {
+        		  System.out.println("是廚師");
+        	   chain.doFilter(request, response);
+        	  }
+  
+
   
  }
  

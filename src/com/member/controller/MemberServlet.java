@@ -139,10 +139,22 @@ System.out.println(memberVO.getPassword());
 				MemberVO memberVO=null;
 				memberVO=memberSvc.getfindOnePK(mem_id);
 				HttpSession session=req.getSession();
-		session.setAttribute("member_id", memberVO.getMember_id());
-		session.setAttribute("member_status", memberVO.getMember_status());
-		        String sessionmember_status= (String) req.getSession().getAttribute("member_status");
-System.out.println("session中member_id"+sessionmember_status);		
+session.setAttribute("member_id", memberVO.getMember_id());
+
+
+
+    
+session.setAttribute("member_status", memberVO.getMember_status());
+		        String sessionmember_status= (Integer)req.getSession().getAttribute("member_status")+"";
+System.out.println("session中member_status"+sessionmember_status);		
+
+
+
+
+
+
+
+
 				String sessionmember_id= (String) req.getSession().getAttribute("member_id");
 				
 System.out.println("session中member_id"+sessionmember_id);
@@ -153,10 +165,19 @@ System.out.println("location="+location);
 						session.removeAttribute("location");  
 				        res.sendRedirect(location);            
 				        return;
+				    }else {
+				    	res.sendRedirect(req.getContextPath()+"/index.html");
+//				    	String location2 = (String) req.getSession().getAttribute("location");
+//						
+//				    	System.out.println("新"+location2);
+//				    				
+//				    				res.sendRedirect(location2);
+				    	
 				    }
+				
 					
-				}catch(Exception ignored) { }
-				res.sendRedirect(req.getContextPath()+"/front-end/homepage.jsp"); 
+				}catch(Exception ignored) { 
+				res.sendRedirect(req.getContextPath()+"/front-end/homepage.jsp"); }
 			}
 			
 			

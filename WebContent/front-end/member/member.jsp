@@ -52,6 +52,15 @@ out.println(member_id);
 
   <body>
   <header>
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <!--這個是上方選單,你用不到-->
   <div id="top-logo" class="logo"><a href="frontEnd.html" title="回首頁"><img class="logo-photo"
   src="../../test/image/Handdrawn%20Circle%20Logo.png" alt="logo"></a></div>
