@@ -40,7 +40,7 @@ public class ShopPageServlet extends HttpServlet {
 				if ("checktpage1".equals(action)) {
 					System.out.println("結帳步驟一");
 					req.setAttribute("checktpage", "checktpage1");
-					String url = "/front-end/ShopPage/ShopCarPageBAK.jsp";
+					String url = "/front-end/ShopPage/ShopCarPage.jsp";
 					System.out.println("開始轉送");
 					RequestDispatcher successView = req.getRequestDispatcher(url);
 					successView.forward(req, res);
@@ -51,7 +51,7 @@ public class ShopPageServlet extends HttpServlet {
 				if ("checktpage2".equals(action)) {
 					System.out.println("結帳步驟二");
 					req.setAttribute("checktpage", "checktpage2");
-					String url = "/front-end/ShopPage/ShopCarPageBAK.jsp";  
+					String url = "/front-end/ShopPage/ShopCarPage.jsp";  
 					RequestDispatcher successView = req.getRequestDispatcher(url);
 					successView.forward(req, res);
 					

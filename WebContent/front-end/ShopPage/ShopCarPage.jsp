@@ -37,6 +37,13 @@
 	 <jsp:include page="ProductCheckoutPage.jsp" />
 	 
 	 
+ <% }else if(request.getAttribute("checktpage")==null){  %>
+	 
+	 
+	 <jsp:include page="ShopCarPagelist.jsp" />
+
+	 
+	 
  <% }%>
 
 	 

@@ -135,7 +135,7 @@ ProductService Psvc=new ProductService();
 
             <div>
 <!-- 轉移至SERVLT -->
-                <a href="ProductPage?action=checktpage2"><button  style="border-radius: 0px 0px 15px 0px" class="ui right labeled icon button huge red">
+                <a href="ProductCheckoutPage.jsp"><button  style="border-radius: 0px 0px 15px 0px" class="ui right labeled icon button huge red">
                 <i class="right arrow icon"></i> 結帳 </button></a>
             </div>
 

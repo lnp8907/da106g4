@@ -78,10 +78,7 @@ System.out.println("111111111111111111"+memberVO.getAccount());
 System.out.println(memberVO.getPassword());   
 
         if (memberVO.getAccount().equals(account) && memberVO.getPassword().equals(password)) {
-        	
-        
-        	
-        	
+	
         	System.out.println("成功登入");
         	return 3;
           
@@ -108,7 +105,7 @@ System.out.println(memberVO.getPassword());
 		if("login".equals(action)) {
 
 			
-			System.out.println(action);
+		
 			
 			String mem_id=req.getParameter("mem_id").trim();
 			String psw=req.getParameter("psw").trim();
@@ -143,7 +140,9 @@ System.out.println(memberVO.getPassword());
 				memberVO=memberSvc.getfindOnePK(mem_id);
 				HttpSession session=req.getSession();
 		session.setAttribute("member_id", memberVO.getMember_id());
-				
+		session.setAttribute("member_status", memberVO.getMember_status());
+		        String sessionmember_status= (String) req.getSession().getAttribute("member_status");
+System.out.println("session中member_id"+sessionmember_status);		
 				String sessionmember_id= (String) req.getSession().getAttribute("member_id");
 				
 System.out.println("session中member_id"+sessionmember_id);
