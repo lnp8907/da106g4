@@ -113,7 +113,7 @@
 						<input type="hidden" value="<%=recipeVO.getRecipe_id()%>"
 							name="recipe_id">
 							<%ProductService Pscv=new ProductService();
-							ProductVO pvo=Pscv.getbyreceipe("510018");
+							ProductVO pvo=Pscv.getbyreceipe(recipeVO.getRecipe_id());
 							int status=3;
 							if(pvo!=null){
 								 status=pvo.getProduct_status();

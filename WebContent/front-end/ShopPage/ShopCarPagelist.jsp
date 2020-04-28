@@ -75,23 +75,63 @@ ProductService Psvc=new ProductService();
            
             
             <tr><td ><input type="checkbox" ></td>
-            
-            
-            <td><img width=170px height=150px
-					src="Product_photoReader?product_id=${buyProductlist.product_id}">
-			            <%
+                 <%
 			            if((String)pageContext.getAttribute("id")!=null){
 			            String id =(String)pageContext.getAttribute("id");
 			            
 			            ProductVO vo=Psvc.getOneProduct(id); 
+			            RecipeService Rsvc=new RecipeService();
+		            	RecipeVO Rvo;
+		            	String recipe="";
+		            	if(vo.getRecipe_id()!=null){
+		            		recipe=vo.getRecipe_id();
+		            	}
+			            %>
 			
-            if(vo.getRecipe_id()==null){%>
+          
+            
+			 <%String src;
+            String srcend="'";
+            %>
+			<%=pageContext.getAttribute("id") %>
+            <td><img width=170px height=150px
+            <%
+            
+            if(vo.getRecipe_id()==null){
+            	src="src='Product_photoReader?product_id=";
+            	String imgsrc=src+pageContext.getAttribute("id")+srcend;
+            %>
+            <%=imgsrc %>
+            <%}else{
+            	
+                src="src='";
+            	String imgsrc=src+Rsvc.getOneRecipe(recipe).getRecipe_photo()+srcend;
+            %>
+            	<%=imgsrc
+            	%>
+            	
+            	
+            <%} %>
+          >
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+           
+            
+           
+
+			<% if(vo.getRecipe_id()==null){%>       
             	
             	   <%=vo.getProduct_name() %>   	
             <% }
-            else{
-            	RecipeService Rsvc=new RecipeService();
-            	RecipeVO Rvo=Rsvc.getOneRecipe(Psvc.getOneProduct(id).getProduct_id());
+            else{Rvo=Rsvc.getOneRecipe(vo.getRecipe_id());
             %>
 
             	<%=Rvo.getRecipe_name()%>
@@ -132,6 +172,7 @@ ProductService Psvc=new ProductService();
     <div id="Cardetail">
         <div class="calcheck">
             共 <font><%=(buyProductlist==null)?"":buyProductlist.size() %></font> 項商品，數量共 <font class="howmany"></font> 個，總金額NT$ <font class="tcal">XXX</font> 元
+
 
             <div>
 <!-- 轉移至SERVLT -->

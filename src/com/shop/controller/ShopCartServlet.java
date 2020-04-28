@@ -43,6 +43,7 @@ public class ShopCartServlet extends HttpServlet {
 		if(req.getParameter("recipe_id")!=null) {
 			recipe_id=req.getParameter("recipe_id");
 					ProductService psvc=new ProductService();
+					System.out.println("獲取食譜ID為:"+req.getParameter("recipe_id"));
 					product_id=psvc.getbyreceipe(req.getParameter("recipe_id")).getProduct_id();
 					
 					
@@ -53,7 +54,6 @@ public class ShopCartServlet extends HttpServlet {
 		}else {
 			product_id=req.getParameter("product_id");
 
-			
 		}
 		System.out.println("商品ID"+product_id);
 		@SuppressWarnings("unchecked")
@@ -95,7 +95,7 @@ public class ShopCartServlet extends HttpServlet {
 			
 			else if(action.equals("ADDR")) {
 				System.out.println("新增食譜");
-				System.out.println("新增購物車"+"ID:"+req.getParameter("product_id"));
+				System.out.println("新增購物車"+"ID:"+product_id);
 				
 				Order_detailVO oneproduct=getProduct(req);
 					if(productlist==null) {
@@ -165,10 +165,10 @@ public class ShopCartServlet extends HttpServlet {
 }
 		System.out.println("ID為:"+product_id);
 		System.out.println("價格為:"+product_price);
-		System.out.println("數量:"+product_id);
 
 		Integer quantity=Integer.valueOf(req.getParameter("quantity"));
 		Order_detailVO a=new Order_detailVO();
+
 		a.setProduct_id(product_id);
 		a.setPrice(product_price);
 		a.setQuantity(quantity);
