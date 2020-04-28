@@ -976,14 +976,13 @@ System.out.println("且未上架");
 	return list;
 	}
 	@Override
-	public void addRecipe(ProductVO productvo) {
-		Connection con = null;
+	public void addReceipe(ProductVO productvo, Connection con) {	/*獲取由編號*/
+
 		PreparedStatement pstmt = null;
 
 		try {
 		
-			
-			con = ds.getConnection();
+			System.out.println("開始新增料理包");
 			pstmt = con.prepareStatement(ADD_PECIPE);
 			pstmt.setString(1, productvo.getRecipe_id());	
 			
@@ -991,7 +990,19 @@ System.out.println("且未上架");
 			pstmt.executeUpdate();
 
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
+			if (con != null) {
+				try {
+					// 3●設定於當有exception發生時之catch區塊內
+					System.err.print("Transaction is being ");
+					System.err.println("rolled back-由-emp");
+					con.rollback();
+				} catch (SQLException excep) {
+					throw new RuntimeException("rollback error occured. "
+							+ excep.getMessage());
+				}
+			}
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
 			// Clean up JDBC resources
 		} finally {
 			if (pstmt != null) {
@@ -1001,15 +1012,10 @@ System.out.println("且未上架");
 					se.printStackTrace(System.err);
 				}
 			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
 		}
 		
+	System.out.println("料理包新增完畢");
+	
 	}
 	@Override
 	public ProductVO byRecipe(String recipe_id) {
@@ -1126,5 +1132,6 @@ System.out.println("且未上架");
 		}
 		
 	}
+
 
 }

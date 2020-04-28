@@ -1,5 +1,6 @@
 package com.product.model;
 
+import java.sql.Connection;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
@@ -14,8 +15,7 @@ public interface ProductDAO_interface {
 
 	
 	/*新增商品*/
-	public void addRecipe(ProductVO productvo);
-	/*獲取由編號*/
+	public void addReceipe(ProductVO productvo, Connection con);	/*獲取由編號*/
 	public ProductVO byRecipe(String recipe_id);
 	
     public void insert(ProductVO productvo);

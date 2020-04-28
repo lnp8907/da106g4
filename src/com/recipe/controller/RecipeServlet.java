@@ -23,6 +23,8 @@ import javax.servlet.http.Part;
 
 import com.ingredient.model.IngredientDAO;
 import com.ingredient.model.IngredientVO;
+import com.product.model.ProductService;
+import com.product.model.ProductVO;
 import com.recipe.model.RecipeService;
 import com.recipe.model.RecipeVO;
 import com.recipe.model.RecipeVO_saved;
@@ -762,11 +764,13 @@ public class RecipeServlet extends HttpServlet {
 				}
 
 				/*************************** 2.開始新增資料 ***************************************/
-
+				ProductVO productVO=new ProductVO();
 				RecipeService RecSvc = new RecipeService();
-				recipeVO = RecSvc.addRecipe(rcstyle_no, member_id, recipe_name, recipe_type, recipe_photo,
-						recipe_content, recipe_step.toString(), recipe_ingredient.toString(), cook_time, calo_intake,
-						salt_intake, protein_intake, fat_intake, carbo_intake, vitamin_b, vitamin_c, vage_intake);
+				RecSvc.addRecipe(recipeVO, productVO);
+//				recipeVO = RecSvc.addRecipe(rcstyle_no, member_id, recipe_name, recipe_type, recipe_photo,
+//						recipe_content, recipe_step.toString(), recipe_ingredient.toString(), cook_time, calo_intake,
+//						salt_intake, protein_intake, fat_intake, carbo_intake, vitamin_b, vitamin_c, vage_intake);
+//				
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 				String url = "/front-end/recipe/listAllRecipe.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); //

@@ -3,6 +3,9 @@ package com.recipe.model;
 import java.util.List;
 import java.util.Map;
 
+import com.order_detail.model.Order_detailVO;
+import com.product.model.ProductVO;
+
 public class RecipeService {
 
 	private RecipeDAO_interface dao;
@@ -65,6 +68,11 @@ public class RecipeService {
 		dao.insert(recipeVO);
 
 		return recipeVO;
+	}
+	
+	
+	public void addRecipe(RecipeVO recipeVO,ProductVO productVO) {
+		dao.insert(recipeVO, productVO);
 	}
 
 	public RecipeVO updateRecipe(String recipe_id, String rcstyle_no, String member_id, String recipe_name,

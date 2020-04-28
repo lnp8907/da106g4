@@ -9,17 +9,18 @@
     <script src="../../plugin/jquery-3.4.1.min.js"></script>
     <script src="../../plugin/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
     <script src="../../plugin/Semantic-UI/semantic.js"></script>
+    <script src="js/MainProductPage.js"> </script>
 
     <link rel="stylesheet" href="../../plugin/bootstrap-4.4.1-dist/css/bootstrap.min.css">
+   
     <link rel="stylesheet" href="../../plugin/Semantic-UI/semantic.min.css">
 
     <link rel="stylesheet" href="../css/mainback_endcss.css">
-        <link rel="stylesheet" href="../css/BEproductCss.css">
+        <link rel="stylesheet" href="../css/BEproduct.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>後端頁面模板</title>
 
-    <script src="js/MainProductPage.js"> </script>
 
 <body>
 

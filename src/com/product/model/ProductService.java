@@ -31,18 +31,12 @@ public class ProductService {
 	public void updatepicture(ProductVO productVO) {
 		dao.updatepicture(productVO);
 	}
-	public void addReceipe(String recipe_id) {
-		ProductVO productVO=new ProductVO();
 
-		productVO.setRecipe_id(recipe_id);
-		
-		dao.addRecipe(productVO);
 		
 		
 		
 		
-		
-	}
+	
 	public ProductVO insert(String product_type, String product_name,
 			Integer product_price, byte[] product_photo, Integer product_status, Double carbohydrate, Double protein,
 			Double fat, Double calorie, Double vitamin_B, Double vitamin_C, Double salt, Double vagetbale,

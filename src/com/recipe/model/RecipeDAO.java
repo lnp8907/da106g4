@@ -8,6 +8,11 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.order_detail.model.Order_detailVO;
+import com.product.model.ProductDAO;
+import com.product.model.ProductVO;
+import com.shop_order.model.Shop_orderVO;
+
 public class RecipeDAO implements RecipeDAO_interface {
 
 	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
@@ -487,6 +492,89 @@ public class RecipeDAO implements RecipeDAO_interface {
 		}
 		return count;
 	}
+	
+
+	
+	@Override
+    public void insert(RecipeVO recipeVO,ProductVO productVO){
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			con = ds.getConnection();
+			//自增主鍵生成
+			con.setAutoCommit(false);
+			String cols[] = {"recipe_id"};
+			pstmt = con.prepareStatement(INSERT_STMT,cols);
+
+		
+			
+			pstmt.setString(1, recipeVO.getRcstyle_no());
+			pstmt.setString(2, recipeVO.getMember_id());
+			pstmt.setString(3, recipeVO.getRecipe_name());
+			pstmt.setString(4, recipeVO.getRecipe_type());
+			pstmt.setString(5, recipeVO.getRecipe_ingredient());
+			pstmt.setString(6, recipeVO.getRecipe_step());
+			pstmt.setString(7, recipeVO.getRecipe_photo());
+			pstmt.setInt(8, recipeVO.getCook_time());
+			pstmt.setDouble(9, recipeVO.getCalo_intake());
+			pstmt.setDouble(10, recipeVO.getSalt_intake());
+			pstmt.setDouble(11, recipeVO.getProtein_intake());
+			pstmt.setDouble(12, recipeVO.getFat_intake());
+			pstmt.setDouble(13, recipeVO.getCarbo_intake());
+			pstmt.setDouble(14, recipeVO.getVitamin_b());
+			pstmt.setDouble(15, recipeVO.getVitamin_c());
+			pstmt.setDouble(16, recipeVO.getVage_intake());
+			pstmt.setString(17, recipeVO.getRecipe_content());
+
+			pstmt.executeUpdate();
+            String next_recipe_id=null;
+			ResultSet rs = pstmt.getGeneratedKeys();
+			if (rs.next()) {
+				next_recipe_id = rs.getString(1);
+				System.out.println("自增主鍵值: " + next_recipe_id );
+			} else {
+				System.out.println("未取得自增主鍵值");
+			}
+			rs.close();
+			
+			ProductDAO dao=new ProductDAO();
+				
+			productVO.setRecipe_id(next_recipe_id);
+			dao.addReceipe(productVO,con);
+				
+			
+			con.commit();
+			con.setAutoCommit(true);
+			System.out.println("新增食譜" + next_recipe_id +"編號"+ productVO.getRecipe_id()
+					+ "商品同時被新增");
+            
+
+			// Handle any driver errors
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+	}
 
 	@Override
 	public void insert(RecipeVO recipeVO) {
@@ -942,5 +1030,6 @@ public class RecipeDAO implements RecipeDAO_interface {
 		}
 		return list;
 	}
+
 
 }

@@ -104,7 +104,7 @@ Collection<ProductVO> productlist=null;
 		<div id="ShopPathLocation">
 
 <div class="ui breadcrumb">
-  <a class="section">Foodporn</a>
+  <a href="<%=request.getContextPath() %>/index.html" class="section">Foodporn</a>
   <i class="right angle icon divider"></i>
   <a class="section" href="ShopHomePage.jsp">商城首頁</a>
   <i class="right angle icon divider"></i>
