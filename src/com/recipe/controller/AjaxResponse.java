@@ -24,7 +24,7 @@ import com.recipe.model.RecipeService;
 import com.recipe.model.RecipeVO;
 import com.recipe_favorite.model.RecipeFavoriteServiec;
 
-@WebServlet({ "/AjaxResponse", "/front-end/recipe/ajaxResponse.do", "/front-end/member/ajaxResponse.do" })
+@WebServlet({ "/AjaxResponse", "/front-end/recipe/ajaxResponse.do", "/front-end/recipe/AjaxResponse", "/front-end/member/ajaxResponse.do" })
 public class AjaxResponse extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

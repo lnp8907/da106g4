@@ -18,7 +18,7 @@
 				end="<%=pageIndex+rowsPerPage-1%>">
 				<div class="main-page-card">
 					<div class="main-page-card-pic">
-						<img src="/DA106_G4_Foodporn/front-end/course/photo?course_id=${courseVO.course_id}">		
+						<img src="<%=request.getContextPath()%>/front-end/course/photo?course_id=${courseVO.course_id}">		
 					</div>
 					<div class="main-page-card-info">
 						<div>

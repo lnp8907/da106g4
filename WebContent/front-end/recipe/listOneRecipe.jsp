@@ -62,7 +62,7 @@
 				<div class="chef-info">
 					<div class="chef-info-pic">
 						<img
-							src="/DA106_G4_Foodporn/front-end/member/photo?member_id=<%=memberVO.getMember_id()%>"
+							src="<%=request.getContextPath()%>/front-end/member/photo?member_id=<%=memberVO.getMember_id()%>"
 							alt="廚師頭貼">
 					</div>
 					<div class="chef-info-detal">

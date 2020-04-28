@@ -9,7 +9,7 @@
 			success : function(data) {
 				$("#recipe-right-title-p-1").text(data.recipe_name);
 				$("#article-recipe-right-photo-1").attr("src",data.recipe_photo);
-				$("#recipe-right-title-a-1").attr("href",'front-end/recipe/RecipeServlet?action=getOne_For_Display&recipe_id=' + data.recipe_id)
+				$("#recipe-right-title-a-1").attr("href",'/DA106_G4_Foodporn_Git/front-end/recipe/RecipeServlet?action=getOne_For_Display&recipe_id=' + data.recipe_id)
 			},
 			error : function() {
 				alert('Ajax連線異常');
@@ -28,7 +28,7 @@
 			success : function(data) {
 				$("#recipe-right-title-p-2").text(data.recipe_name);
 				$("#article-recipe-right-photo-2").attr("src",data.recipe_photo);
-				$("#recipe-right-title-a-2").attr("href",'front-end/recipe/RecipeServlet?action=getOne_For_Display&recipe_id=' + data.recipe_id)
+				$("#recipe-right-title-a-2").attr("href",'/DA106_G4_Foodporn_Git/front-end/recipe/RecipeServlet?action=getOne_For_Display&recipe_id=' + data.recipe_id)
 			},
 			error : function() {
 				alert('Ajax連線異常');
@@ -48,18 +48,18 @@
 				$.each(data, function(i, courseVO){	
 				$('#course-list-ul').append(
 							"<li class='course-list-li' data-aos='fade-up' data-aos-duration='2000'>" +
-							"<a href='front-end/course/course.do?action=getOne_For_Display&course_id="+ courseVO.course_id +"'> " +
+							"<a href='/DA106_G4_Foodporn_Git/front-end/course/course.do?action=getOne_For_Display&course_id="+ courseVO.course_id +"'> " +
 							"<div class='course-li-img-div'> " +
 							"<img class='course-li-img' " +
-							"src='front-end/course/photo?course_id="+ courseVO.course_id +"'>"+
+							"src='/DA106_G4_Foodporn_Git/front-end/course/photo?course_id="+ courseVO.course_id +"'>"+
 							"</div> <span class='course-li-title'>"+courseVO.course_name +"</span>" +
 							"<span class='course-list-date-span'>開課時間</span><span " +
 							"class='course-date-li' >"+ courseVO.course_start+"</span> </a></li>");
 				$('#course-sider-list').append(						
 						"<div class='course-sider-list-viewer'>"+
-						"<a href='front-end/course/course.do?action=getOne_For_Display&course_id="+courseVO.course_id+"'>" +
+						"<a href='/DA106_G4_Foodporn_Git/front-end/course/course.do?action=getOne_For_Display&course_id="+courseVO.course_id+"'>" +
 						"<div class='course-li-img-div' >"+	
-							"<img class='course-li-img'  src='front-end/course/photo?course_id="+ courseVO.course_id +"' alt='"+courseVO.course_name +"的圖片'>"+
+							"<img class='course-li-img'  src='/DA106_G4_Foodporn_Git/front-end/course/photo?course_id="+ courseVO.course_id +"' alt='"+courseVO.course_name +"的圖片'>"+
 						"</div>"+
 						"<span class='course-li-title' >"+courseVO.course_name +"</span>"+
 						"<span class='course-list-date-span'>開課時間</span><span class='course-date-li' >"+ courseVO.course_start+"</span>"+
@@ -110,7 +110,7 @@
 			success : function(data) {
 				var i = 1;
 				$.each(data, function(i, livestreamVO){	
-					$("#livestream-right-link-"+i).attr("href","front-end/livestream/LivestreamServlet?action=getOne_For_Display&livestream_id="+livestreamVO.livestream_id)
+					$("#livestream-right-link-"+i).attr("href","/DA106_G4_Foodporn_Git/front-end/livestream/LivestreamServlet?action=getOne_For_Display&livestream_id="+livestreamVO.livestream_id)
 					$("#livestream-right-photo-"+i).attr("src","LivestreamPhotoReader?livestream_id="+ livestreamVO.livestream_id);
 					$("#livestream-right-title-chef-"+i).text(livestreamVO.title);
 					$("#livestream-right-livestream-name-"+i).text(livestreamVO.introduction);

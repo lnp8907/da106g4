@@ -26,7 +26,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>課程資訊</title>
-<link rel="stylesheet" href="front-end/course/courseCSS/listOneCourseCSS.css">
+<link rel="stylesheet" href="/DA106_G4_Foodporn_Git/front-end/course/courseCSS/listOneCourseCSS.css">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <style>
@@ -159,13 +159,13 @@ cursor:pointer;
 				<div class="chef-info">
 					<div class="chef-info-pic">
 						<img
-							src="/DA106_G4_Foodporn/front-end/member/photo?member_id=<%=courseVO.getMember_id()%>"
+							src="<%=request.getContextPath()%>/front-end/member/photo?member_id=<%=courseVO.getMember_id()%>"
 							alt="廚師頭貼">
 					</div>
 					<div class="chef-info-detal">
 						<h4>
 							<a
-								href="/DA106_G4_Foodporn/front-end/recipe/RecipeServlet?action=getChef_For_Display&member_id=<%=courseVO.getMember_id()%>"><%=memberVO.getMember_name()%></a>
+								href="<%=request.getContextPath()%>/front-end/recipe/RecipeServlet?action=getChef_For_Display&member_id=<%=courseVO.getMember_id()%>"><%=memberVO.getMember_name()%></a>
 						</h4>
 						<span><%=recipeService.getChefCookedNum(courseVO.getMember_id())%>&nbsp;&nbsp;食譜</span>
 						<span>999&nbsp;&nbsp;粉絲</span>

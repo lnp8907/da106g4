@@ -16,7 +16,7 @@ import org.json.JSONObject;
 import com.mycourse.model.MyCourseService;
 import com.recipe_favorite.model.RecipeFavoriteServiec;
 
-@WebServlet({ "/front-end/course/ajaxResponse.do","/courseAjaxResponse.do" })
+@WebServlet({ "/front-end/course/ajaxResponse.do","/ajaxResponse.do" })
 public class AjaxResponse extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -37,7 +37,9 @@ public class AjaxResponse extends HttpServlet {
 			String course_id = req.getParameter("course_id");
 			String member_id = req.getParameter("member_id");
 			String course_status = "2";
-			
+			System.out.println(action);
+			System.out.println(member_id);
+			System.out.println(course_id);
 			MyCourseService mycourseService = new MyCourseService();
 			mycourseService.changeOneStatus(course_id, member_id, course_status);
 				/*********************** 1.接收請求參數 - 查詢是否重複報名 *************************/

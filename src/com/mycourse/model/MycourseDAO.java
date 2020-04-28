@@ -288,10 +288,12 @@ public class MycourseDAO implements MycourseDAO_interface {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(CHANGE_ONE_STATUS);
-			pstmt.setInt(1, Integer.parseInt(("course_status")));
+			pstmt.setInt(1, Integer.parseInt((course_status)));
+			System.out.println(course_status);
 			pstmt.setString(2, ("course_id"));
 			pstmt.setString(3, ("member_id"));
 			pstmt.executeUpdate();
+			System.out.println("MyCourseDAO");
 			// Handle any driver errors
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. " + se.getMessage());

@@ -47,7 +47,7 @@
 	<header>
 		<div id="top-logo" class="logo">
 <a href="<%=request.getContextPath()%>/" title="回首頁"><img class="logo-photo"
-				src="image/FoodPron_Logo.png" alt="logo"></a>
+				src="<%=request.getContextPath()%>/image/FoodPron_Logo.png" alt="logo"></a>
 		</div>
 		<div class="function">
 			<div class="function-list">
@@ -246,9 +246,6 @@
 				</div>
 			</section>
 			<section>
-
-
-
 				<jsp:include page="<%=pageType%>" />
 
 

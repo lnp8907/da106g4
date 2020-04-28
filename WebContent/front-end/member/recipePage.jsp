@@ -27,7 +27,7 @@
 				<div>
 					<h4>
 						<a class="show-one-link"
-							href="<%=request.getContextPath()%>/front-end/recipe/recipeHomepage.jsp?pageType=listOneRecipe.jsp&recipe_id=${RecipeVO.recipe_id}">${RecipeVO.recipe_name}</a>
+							href="<%=request.getContextPath()%>/front-end/recipe/RecipeServlet?action=getOne_For_Display&recipe_id=${RecipeVO.recipe_id}">${RecipeVO.recipe_name}</a>
 					</h4>
 					<span class="followNum">${recipeFavoriteServiec.getFollowedNum(RecipeVO.recipe_id)}</span><span>人收藏</span>
 				</div>
