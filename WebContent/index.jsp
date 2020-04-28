@@ -1,3 +1,18 @@
+
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@page import="com.member.model.*"%>
+    
+    <%
+    String member_id =(String) session.getAttribute("member_id");
+out.println(member_id);
+%>
+<%@ page import="java.util.*"%>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -59,6 +74,17 @@
 						class="lines line-3"></span>
 					</label>
 				</div>
+				
+				
+				
+				
+				
+				
+				
+		
+				
+			<c:if test='${empty member_id}'>
+			
 				<div class="login">
 					<a href="#"><img class="header-icon" src="image/user-icon.png"
 						alt="login-icon">
@@ -66,6 +92,39 @@
 							<span class="login-span">登入</span>
 						</div> </a>
 				</div>
+			</c:if>	
+			
+			<c:if test='${not empty member_id}'>
+	
+					<div class="login">
+				
+					<a> <img class="header-icon" src="image/user-icon.png"
+						alt="login-icon">
+					
+							<span class="login-span">登出</span>
+							<form method="POST" action="member.do">	
+								<input type="hidden" name="action" value="login">
+								<input class="login-out" type="submit" name="action" style= "display:none;">
+						</form>	 </a>
+				</div>
+
+				</c:if>	
+				<script>
+				$('.login-span').click(function(){
+					$('.login-out').click();
+				})
+				
+				
+				
+				
+				</script>
+		
+				
+				
+				
+				
+				
+				
 				<div class="shop-car">
 					<a href="front-end/ShopPage/ProductPage?action=checktpage1"><img class="header-icon"
 						src="image/shopping-cart-icon.png" alt="shopping-cart">
@@ -161,6 +220,7 @@
 	
 <!-- 登箱開始 -->
 
+<c:if test='${empty member_id}'>
 	<div class="login-wrap">
 		<div class="login-html">
 			<img class="login-close" src="image/close.png" alt="close"> <input
@@ -222,7 +282,7 @@
 			</div>
 		</div>
 	</div>
-
+</c:if>
 	<!-- end of login-->
 	
 	

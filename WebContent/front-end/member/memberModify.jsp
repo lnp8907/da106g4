@@ -1,56 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-	<%@ page import="com.member.model.MemberVO"%>
-	<%@ page import="java.util.*"%>
-<%@ page import="com.member.model.*"%>
+    pageEncoding="UTF-8"%>
+    
+    
 <%
-// 	String pageType = request.getParameter("pageType");
-// 	if (pageType == null) {
-// 		pageType = (String) request.getAttribute("pageType");
-// 	}
-// 	request.setAttribute("pageType", pageType);
-	
+    String member_id =(String) session.getAttribute("member_id");
+out.println(member_id);
 %>
- <%
-	String member_id = (String) request.getAttribute("member_id");
-    MemberVO membervo = (MemberVO) request.getAttribute("membervo");
-	
-    MemberService pSvc=new MemberService();
-	List<MemberVO> productlist =pSvc.getAll();
-	%>
-
+    
+    
+    
+    
+    
+    
+    
+    
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<link rel="stylesheet" href="../../front-end/css/member.css">
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=3.0">
-    <title>Foodporn</title>
-<link rel="stylesheet" href="../../css/frontEnd.css">
-<link rel="stylesheet" href="../../css/header-sider.css">
-<link rel="stylesheet" href="../../slick/slick.css">
-<link rel="stylesheet" href="../../slick/slick-theme.css">
-<link rel="stylesheet" href="../../css/homePage.css">
-<link rel="stylesheet" href="../../css/searchRecipeCSS.css">
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-<link rel="icon" href="../../image/head-FoodPron_Logo.ico"
-	type="../../image/x-icon">
-<link rel="shortcut icon" href="../../image/head-FoodPron_Logo.ico"
-	type="../../image/x-icon" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="../../slick/slick.js" type="text/javascript"
-	charset="utf-8"></script>
-	
-	
-	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-	
-	
-	
-	
-	<script type="text/javascript">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
     
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
     
+    <script type="text/javascript">
+
       $().ready(function(){
       
       $( "#date" ).datepicker({
@@ -577,15 +554,42 @@
           $(".twaddress").twaddress();
       });
       </script>
-	
-	 <script>  
+
+
+
+
+
+
+    
+    <script>  
       $("#leftside-navigation .sub-menu > a").click(function(e) {
         $("#leftside-navigation ul ul").slideUp(), $(this).next().is(":visible") || $(this).next().slideDown(),
         e.stopPropagation()
       })
     </script>
-	  <link rel="stylesheet" href="../../css/frontEnd.css">
-	<style>
+    
+
+  <link rel="stylesheet" href="../../css/frontEnd.css">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ <style>
 
 /* cyrillic-ext */
 @font-face {
@@ -978,675 +982,107 @@ margin-right: 40px;
 
 
     </style>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 
-    <style>
-        /*---------------------------------article-container-------------------------------------------*/
-        a {
-            text-decoration: none;
-            color: #E4002B;
-        }
-
-        .article-container {
-            text-align: center;
-            /* border: 5px solid black; */
-            margin-top: 60px;
-        }
-
-        .article-container h2 {
-            font-size: 36px;
-            letter-spacing: 10px;
-            font-weight: 400;
-        }
-
-        .article-section-description {
-            /* border: 5px solid black; */
-            max-width: 1024px;
-            margin: 10px auto;
-            /* height: 600px; */
-
-        }
-
-        /*-----------------------------廚房專區----------------------------*/
-        #article-recipe {
-            height: 530px;
-            margin-top: 210px;
-            background-image: url("image/ad/recipeBG.png");
-            background-repeat: no-repeat;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .ariticle-section-racipe-h2 {
-            position: relative;
-            top: -90px;
-
-        }
-
-        .ariticle-section-racipe-h2+span {
-            position: relative;
-            top: -85px;
-        }
-
-        #article-container-recipe {
-            height: 500px;
-            overflow: hidden;
-
-        }
-
-        #article-section-description-recipe {
-            margin: auto;
-            height: 400px;
-        }
-
-        .article-section-description-recipe-left {
-            width: 50%;
-            height: 100%;
-            float: left;
-            padding-top: 90px;
-
-        }
-
-        .article-section-description-recipe-left-span {
-            color: white;
-            font-size: 28px;
-            display: block;
-            padding-top: 10px;
-        }
-
-        .article-section-description-recipe-left img {
-            float: left;
-            margin-top: 30px 5px;
-        }
-
-        .article-section-description-recipe-right {
-            float: right;
-            width: 45%;
-            height: 45%;
-            padding: 5px;
-            background-color: white;
-            margin-bottom: 10px;
-            margin-top: 10px;
-        }
-
-        .article-recipe-right-photo-div {
-            width: 50%;
-            overflow: hidden;
-        }
-
-        .article-recipe-right-title {
-            float: left;
-            width: 50%;
-        }
-
-        .article-recipe-right-title h3,
-        p {
-            font-weight: 500;
-            font-size: 18px;
-            text-align: left;
-            width: 200px;
-
-        }
-
-        .article-recipe-right-title h3 {
-            margin-top: 15px;
-            margin-left: 30px;
-        }
-
-        .article-recipe-right-title p {
-            display: inline-block;
-            color: black;
-            border-top: 1px solid #E4002B;
-            padding-top: 5px;
-        }
-
-        .article-recipe-right-title p:hover {
-            text-decoration: underline;
-            color: #E4002B;
-        }
-
-        .article-recipe-right-photo-div img {
-            width: 100%;
-            height: 170px;
-            transition: all ease-in-out 300ms;
-            transform: scale(1, 1);
-            overflow: hidden;
-        }
-
-        .article-recipe-right-photo-div img:hover {
-            transform: scale(1.1, 1.1);
-
-        }
-
-        #article-section-seemore-recipe {
-            margin-top: 90px;
-            clear: both;
-
-        }
-
-
-
-        @media screen and (max-width: 575px) {
-
-            #article-recipe {
-                height: 880px;
-            }
-
-            .article-section-description-recipe-left {
-                box-sizing: border-box;
-                width: 350px;
-                padding-top: 0;
-                padding-left: 10px;
-                margin: 0 auto;
-                height: 300px;
-                float: none;
-            }
-
-            .article-section-description-recipe-right {
-                box-sizing: border-box;
-                width: 350px;
-                height: 190px;
-                float: none;
-                margin: 40px auto;
-            }
-
-            #article-section-seemore-recipe {
-                margin: 70px auto;
-            }
-
-            .article-recipe-right-photo-div {
-                width: 50%;
-                overflow: hidden;
-                margin-left: 5px;
-            }
-
-            .article-recipe-right-title {
-                float: left;
-            }
-
-            .article-recipe-right-title h3,
-            p {
-                text-align: left;
-                width: 90%;
-            }
-
-        }
-
-        /*---------------------------直播專區------------------------------------*/
-        #livestream {
-            border-top: 1px solid rgb(207, 207, 207);
-            border-bottom: 1px solid rgb(207, 207, 207);
-            padding: 60px 0;
-        }
-
-        #article-container-livestream {
-            margin: 0 auto;
-            max-width: 1024px;
-        }
-
-        .article-section-description-livestream {
-            padding-top: 30px;
-            height: 650px;
-        }
-
-        .article-section-description-livestream-left {
-            box-sizing: border-box;
-            height: 600px;
-            width: 50%;
-            float: left;
-            padding-top: 75px;
-        }
-
-        .article-section-description-livestream-right {
-            box-sizing: border-box;
-            padding: 20px 10px 0 10px;
-            width: 24%;
-            display: inline-block;
-            text-align: left;
-        }
-
-        .livestream-left-1-video-container iframe {
-            width: 95%;
-            height: 270px;
-            margin-bottom: 5px;
-        }
-
-        .livestream-left-1-video-title {
-            padding-left: 10px;
-            text-align: left;
-            height: 30%;
-        }
-
-        .livestream-left-1-video-title h3 {
-            border-bottom: 2px solid #E4002B;
-            display: inline-block;
-            font-size: 20px;
-        }
-
-        .livestream-left-1-video-title p {
-            width: 100%;
-            color: black;
-            text-align: left;
-            font-size: 18px;
-            margin-top: 10px;
-
-        }
-
-        .livestream-right-photo-div {
-            overflow: hidden;
-            height: 150px;
-        }
-
-        .article-section-description-livestream-right img {
-            width: 100%;
-            height: auto;
-            transition: all ease-in-out 400ms;
-            transform: scale(1, 1);
-            overflow: hidden;
-        }
-
-        .article-section-description-livestream-right img:hover {
-            transform: scale(1.1, 1.1);
-        }
-
-
-        .livestream-right-title h3 {
-            font-weight: 400;
-            font-size: 18px;
-            border-bottom: 1px solid #E4002B;
-            display: inline-block;
-            margin-top: 5px;
-            clear: both;
-        }
-
-        .livestream-right-title p {
-            color: black;
-            text-align: left;
-            font-size: 18px;
-            margin-top: 5px;
-            max-width: 100%;
-        }
-
-        @media screen and (max-width: 575px) {
-            #article-container-livestream {
-                height: 1850px;
-            }
-
-            .article-section-description-livestream-left {
-                width: 100%;
-                padding: 0;
-                float: none;
-                height: 500px;
-                margin: 0 auto;
-            }
-
-            .article-section-description-livestream-right {
-                width: 350px;
-                height: 320px;
-                float: none;
-            }
-
-            .livestream-right-photo-div {
-                height: 200px;
-            }
-
-        }
-
-        @media (max-width: 576px) and (max-width: 768px) {}
-
-        /*---------------------------食材商城------------------------------------*/
-
-
-        #mallproduct {
-            margin: 100px auto;
-            margin-bottom: 50px;
-            max-width: 1100px;
-            min-height: 1000px;
-
-        }
-
-        ul.imglist a {
-            list-style-type: none;
-            margin: 0px auto;
-            color: black;
-            text-decoration: underline;
-        }
-
-        .imglist-li {
-            width: 200px;
-            margin: 50px 35px;
-            padding: 0;
-            float: left;
-            overflow: hidden;
-        }
-
-        ul.imglist li img {
-            width: 200px;
-            height: 190px;
-        }
-
-        .imglist-li-span {
-            display: inline-block;
-            margin: 0 auto;
-            width: 200px;
-            height: 30px;
-            padding: 0 auto;
-            line-height: 40px;
-        }
-
-
-        /*變換大小*/
-        @media screen and (max-width: 320px) {
-            ul.imglist li {
-                margin: 5px;
-                width: 130px;
-                display: inline-block;
-                float: none;
-                text-align: center;
-            }
-
-            ul.imglist li img {
-                width: 100%;
-                height: 140px;
-            }
-        }
-
-        @media (min-width: 321px) and (max-width: 575px) {
-            ul.imglist li {
-                margin: 9px;
-                width: 160px;
-                display: inline-block;
-                float: none;
-                text-align: center;
-            }
-
-            #mallproduct {
-                height: 1190px;
-
-            }
-
-            ul.imglist li img {
-                width: 100%;
-                height: 140px;
-            }
-
-            ul.imglist li span {
-                width: 100%;
-            }
-
-        }
-
-
-
-
-        @media (min-width: 575px) and (max-width: 767px) {
-            .shop-slide_viewer {
-                height: 450px;
-                padding-left: 2px;
-            }
-
-            #mallproduct {
-                width: 500px;
-                height: 1300px;
-                padding: 0;
-            }
-
-            ul.imglist li {
-                margin: 20px 0;
-                box-sizing: border-box;
-            }
-
-            .lookmore button {
-                margin: 10px auto;
-            }
-
-            ul.imglist li img {
-                width: 190px;
-                height: 140px;
-            }
-
-        }
-
-        @media(min-width: 768px) and (max-width: 991px) {
-            #mallproduct {
-                height: 850px;
-                width: 800px;
-            }
-
-            ul.imglist li {
-                margin: 20px 30px;
-            }
-
-        }
-
-        hr {
-            margin-top: 100px;
-            background-color: rgba(246, 245, 246, 0.24);
-        }
-
-        .middle-ad-contain {
-            max-width: 100%;
-            max-height: 350px;
-            padding-top: 50px;
-            /* overflow: hidden; */
-        }
-
-        .middle-ad-contain img {
-            max-width: 100%;
-            margin: 0 auto;
-            display: block;
-        }
-
-
-        /*---------------------------課程專區------------------------------------*/
-
-        #course-list-div {
-            margin: 90px auto;
-        }
-
-        .course-list-li {
-            display: inline-block;
-            list-style: none;
-            width: 40%;
-            /* overflow: hidden; */
-            /* max-height: 250px; */
-            margin: 10px;
-            text-align: left;
-        }
-
-        .course-li-img-div {
-            margin: 0 auto;
-            width: 90%;
-            height: 200px;
-            overflow: hidden;
-        }
-
-        .course-li-img {
-            width: 100%;
-            height: 200px;
-            transition: all 350ms;
-        }
-
-        .course-li-img:hover {
-            transform: scale(1.04, 1.04);
-
-        }
-
-        .course-li-title {
-            display: block;
-            margin-left: 5%;
-            color: rgb(26, 23, 44);
-            font-size: 16px;
-            margin-top: 10px;
-            font-weight: 600;
-        }
-
-        .course-list-date-span {
-            display: inline-block;
-            margin-left: 5%;
-            margin-top: 0px;
-            color: #FF5757;
-            font-size: 14px;
-            margin-right: 10px;
-            font-weight: 600;
-        }
-
-        .course-date-li {
-            margin-top: 6px;
-            display: inline-block;
-            color: rgb(187, 187, 187);
-            font-size: 13px;
-        }
-
-        .course-sider-list {
-            margin: 60px 0;
-        }
-
-        .course-sider-list-viewer a :active {
-            border: none;
-        }
-
-        .article-section-seemore-course {
-            margin-top: 80px;
-        }
-
-        @media screen and (max-width: 575px) {
-            .course-list-li {
-                display: block;
-                width: 340px;
-                margin: 20px auto;
-            }
-        }
-    </style>
 </head>
 
 <body>
+
     <header>
-        <div id="top-logo" class="logo"><a href="index.html" title="回首頁"><img class="logo-photo"
-                    src="../../image/FoodPron_Logo.png" alt="logo"></a></div>
+        <!--這個是上方選單,你用不到-->
+        <div id="top-logo" class="logo"><a href="frontEnd.html" title="回首頁"><img class="logo-photo"
+                    src="../image/FoodPron_Logo.png" alt="logo"></a></div>
         <div class="function">
             <div class="function-list">
-                <a href="#"></a>
                 <div class="member-center">
-                    <span class="member-center-spann">會員中心</span>
-                </div></a>
+                    <a href="#"><span class="member-center-spann">會員中心</span></a>
+                </div>
             </div>
             <div class="function-list">
-                <div class="menu">
-                    <input type="checkbox" href="#" class="menu-open menu-icon" name="menu-open" id="menu-open" />
-                    <label class="menu-open-button" for="menu-open">
-                        <span class="lines line-1"></span>
-                        <span class="lines line-2"></span>
-                        <span class="lines line-3"></span>
-                    </label>
-                </div>
-                <div class="login">
-                    <a href="#"><img class="header-icon" src="../../image/user-icon.png" alt="login-icon">
-                        <div class="herder-icon-span"><span class="login-span">登入</span></div>
-                    </a>
-                </div>
                 <div class="shop-car">
                     <a href="#"><img class="header-icon" src="../../image/shopping-cart-icon.png" alt="shopping-cart">
                         <div class="herder-icon-span"><span class="shop-car-span">購物車</span></div>
                     </a>
                 </div>
-                <div class="notice">
-                    <a href="#"><img class="header-icon" src="../../image/ico_notice.png" alt="notice-icon">
-                        <div class="herder-icon-span"><span class="notice-span">通知總覽</span></div>
+            </div>
+            <div class="login">
+                <div class="function-list">
+                    <a href="#"><img class="header-icon" src="../../image/user-icon.png" alt="login-icon">
+                        <div class="herder-icon-span"><span class="login-span">登入</span></div>
                     </a>
                 </div>
-
             </div>
-
         </div><!-- end of function-->
-        <nav id="navigation">
-            <ul>
-                <li class="dropdown">
-                    <a><img class="access-menu-icon" src="../../image/recipe-icon.png"><span class="menu-span">食譜專區</span></a>
-                    <ul>
-                        <li><a class="dropdown-first-a" href="#"><img class="dropdown-first-img"
-                                    src="../../image/ico_gnav_recipes_book.svg"><span
-                                    class="dropdown-first-a-span">食譜主頁</span></a>
-                        </li>
-                        <li><a href="#">特輯食譜</a></li>
-                        <li><a href="#">推薦食譜</a></li>
-                        <li><a href="#">建立食譜</a></li>
-                    </ul>
+        <nav role="navigation">
+            <ul class="access-menu">
+                <li>
+                    <a href="#" class="access-menu-a"><img class="access-menu-icon" src="../../image/recipe-icon.png"><span
+                            class="access-menu-span">食譜專區</span></a>
+                    <!-- <div class="access-menu-subinner"> -->
+                    <span class="access-submenu-1">
+                        <ul class="access-submenu">
+                            <li><a href="#">sub link 1</a></li>
+                            <li><a href="#">sub link 1</a></li>
+                            <li><a href="#">sub link 1</a></li>
+                            <li><a href="#">sub link 1</a></li>
+                        </ul>
+                    </span>
+                    </div>
                 </li>
-                <li class="dropdown">
-                    <a><img class="access-menu-icon" src="../../image/livestream-icon.png"><span
-                            class="menu-span">直播專區</span></a>
-                    <ul>
-                        <li><a class="dropdown-first-a" href="#"><img class="dropdown-first-img"
-                                    src="../../image/ico_gnav_recipes_movie.svg"><span
-                                    class="dropdown-first-a-span">直播主頁</span></a>
-                        </li>
-                        <li><a href="#">直播預告</a></li>
-                        <li><a href="#">熱門直播</a></li>
-                        <li><a href="#">建立直播預告</a></li>
+                </div>
+                <li>
+                    <a href="#" class="access-menu-a"><img class="access-menu-icon"
+                            src="../../image/livestream-icon.png"><span class="access-menu-span">直播專區</span></a>
+                    <!-- <div class="access-menu-subinner"> -->
+                    <ul class="access-submenu">
+                        <li><a href="#">sub link 2</a></li>
+                        <li><a href="#">sub link 2</a></li>
+                        <li><a href="#">sub link 2</a></li>
+                        <li><a href="#">sub link 2</a></li>
                     </ul>
+                    </div>
                 </li>
-                <li class="dropdown dropdown-shop">
-                    <a><img class="access-menu-icon" src="../../image/shop-icon.png"><span class="menu-span">食材商城</span></a>
-                    <ul id="dropdown-shop-ul">
-                        <li><a class="dropdown-first-a" href="#"><img class="dropdown-first-img"
-                                    src="../../image/ico_gnav_recipes_salad.svg"><span
-                                    class="dropdown-first-a-span">食材商城主頁</span></a>
-                        </li>
-                        <li><a href="#">調味料</a></li>
-                        <li><a href="#">果醬</a></li>
-                        <li><a href="#">麵粉</a></li>
-                        <li><a href="#">酒類</a></li>
-                        <li><a href="#">蔬菜</a></li>
-                        <li><a href="#">水果</a></li>
-                        <li><a href="#">海鮮</a></li>
-                        <li><a href="#">肉類</a></li>
-                        <li><a href="#">乳製品</a></li>
-                        <li><a href="#">香料</a></li>
-                        <li><a href="#">罐頭</a></li>
-                        <li><a href="#">乾貨</a></li>
+                </div>
+                <li>
+                    <a href="#" class="access-menu-a"><img class="access-menu-icon" src="../../image/shop-icon.png"><span
+                            class="access-menu-span">食材商城</span></a>
+                    <!-- <div class="access-menu-subinner"> -->
+                    <ul class="access-submenu">
+                        <li><a href="#">sub link 3</a></li>
+                        <li><a href="#">sub link 3</a></li>
+                        <li><a href="#">sub link 3</a></li>
+                        <li><a href="#">sub link 3</a></li>
                     </ul>
+                    </div>
                 </li>
-                <li class="dropdown">
-                    <a><img class="access-menu-icon" src="../../image/course-icon.png"><span class="menu-span">料理課程</span></a>
-                    <ul>
-                        <li><a class="dropdown-first-a" href="#"><img class="dropdown-first-img"
-                                    src="../../image/ico_gnav_recipes_pot.svg"><span
-                                    class="dropdown-first-a-span">課程主頁</span></a></li>
-                        <li><a href="#">熱門課程</a></li>
-                        <li><a href="#">建立料理課程</a></li>
+                </div>
+                <li>
+                    <a href="#" class="access-menu-a"><img class="access-menu-icon" src="../../image/course-icon.png"><span
+                            class="access-menu-span">料理課程</span></a>
+                    <!-- <div class="access-menu-subinner"> -->
+                    <ul class="access-submenu">
+                        <li><a href="#">sub link 4</a></li>
+                        <li><a href="#">sub link 4</a></li>
+                        <li><a href="#">sub link 4</a></li>
+                        <li><a href="#">sub link 4</a></li>
                     </ul>
+                    </div>
                 </li>
+                </div>
+                <!-- Link5 暫時保留 -->
+                <!-- <li>
+                    <a href="#" style="display:none">link 5</a>
+                    <ul class="access-submenu">
+                        <li><a href="#">sub link 5</a></li>
+                        <li><a href="#">sub link 5</a></li>
+                        <li><a href="#">sub link 5</a></li>
+                        <li><a href="#">sub link 5</a></li>
+                    </ul>
+                </li> -->
             </ul>
         </nav>
     </header><!-- end of header-->
-    <!-- 登箱開始 -->
+    <!--上方選單尾巴-->
+    <!-- 這個是登箱製作,你不要動! -->
     <div class="login-wrap">
         <div class="login-html">
             <img class="login-close" src="../../image/close.png" alt="close">
@@ -1677,20 +1113,20 @@ margin-right: 40px;
                 </div>
                 <div class="sign-up-htm">
                     <div class="group">
-                        <label for="newuser" class="label">User</label>
-                        <input id="newuser" type="text" class="input">
+                        <label for="user" class="label">Username</label>
+                        <input id="user" type="text" class="input">
                     </div>
                     <div class="group">
-                        <label for="newpass" class="label">Password</label>
-                        <input id="newpass" type="password" class="input" data-type="password">
+                        <label for="pass" class="label">Password</label>
+                        <input id="pass" type="password" class="input" data-type="password">
                     </div>
                     <div class="group">
-                        <label for="renewpass" class="label">Repeat Password</label>
-                        <input id="renewpass" type="password" class="input" data-type="password">
+                        <label for="pass" class="label">Repeat Password</label>
+                        <input id="pass" type="password" class="input" data-type="password">
                     </div>
                     <div class="group">
-                        <label for="email" class="label">Email Address</label>
-                        <input id="email" type="email" class="input">
+                        <label for="pass" class="label">Email Address</label>
+                        <input id="pass" type="text" class="input">
                     </div>
                     <div class="group">
                         <input type="submit" class="button" value="Sign Up">
@@ -1703,11 +1139,21 @@ margin-right: 40px;
             </div>
         </div>
     </div><!-- end of login-->
+    <!--登箱結束-->
+    <!--一鍵置頂-->
     <div class="pagetop">
-        <img src="../../image/go-top-page.png" alt="BackTop" id="BackTop">
-        <!--一鍵置頂-->
+        <a href="#top-logo"><img src="../../image/go-top-page.png" alt="go-top-page"></a>
+
+
     </div><!-- end of pagetop-->
-     <main>
+    <!--*************************************以下開放編輯▼**************************************-->
+    <!-- 主要內容從這裡開始!!!請自行編輯調整,請勿更動載入的CSS檔案自行生成 -->
+    <!-- 主要內容從這裡開始!!!請自行編輯調整,請勿更動載入的CSS檔案自行生成 -->
+    <!-- 主要內容從這裡開始!!!請自行編輯調整,請勿更動載入的CSS檔案自行生成 -->
+    <!-- 不要動外部的frontEndcss檔案!-->
+    <!-- 不要動外部的frontEndcss檔案!-->
+    <!-- 不要動外部的frontEndcss檔案!-->
+    <main>
         <article>
             <!-- 以下開始你的各種標籤 -->
         
@@ -1734,10 +1180,6 @@ margin-right: 40px;
 
 <h1>管理你的檔案以保護你的帳戶</h1>
 
-
-
-
-<FORM METHOD="post" ACTION="memberServlet.do" name="form1">
  
 <table align="center" cellpadding = "10">
  
@@ -1745,21 +1187,7 @@ margin-right: 40px;
 <tr>
 <td>姓名:</td>
 
-<td>
-
-
-<!-- 				<td><input type="TEXT" name="quantity" size="45" -->
-<%-- 					value="<%=(order_detailvo == null) ? "" : order_detailvo.getQuantity()%>" --%>
-<%-- 					placeholder="<%=(order_detailvo == null) ? "購買數量" : order_detailvo.getQuantity()%>" /></td> --%>
-
-
-
-
-
-<input type="text" placeholder="<%=(membervo == null) ? "姓名" : membervo.getMember_name()%>" class="textwidth" name="First_Name" maxlength="30" 
-      value="<%=(membervo == null) ? "" : membervo.getMember_name()%>"
-
-/>
+<td><input type="text" placeholder="S許嘉宏" class="textwidth" name="First_Name" maxlength="30" />
   
 <!-- (max 30 characters a-z and A-Z) -->
 </td>
@@ -1923,7 +1351,7 @@ margin-right: 40px;
   </div>
 </td>
 </tr>
-
+ 
 
  
 <!----- State ---------------------------------------------------------->
@@ -2053,7 +1481,7 @@ B.A
 </td>
 </tr>
 </table>
-  </FORM>
+ 
 </form>
  
 </body>
@@ -2090,10 +1518,10 @@ B.A
                 <div id="leftside-navigation" class="nano">
                   <ul class="nano-content">
                     <li>
-                      <a href="index.html"><i class="fa fa-dashboard"></i><img class="access-menu-icon1" src="../../image/member/S__12066824.jpg" ><span>我的帳戶</span></a>
+                      <a href="index.html"><i class="fa fa-dashboard"></i><img class="access-menu-icon1" src="image/S__12066824.jpg" ><span>我的帳戶</span></a>
                     </li>
                     <li class="sub-menu">
-                      <a href="javascript:void(0);"><i class="fa fa-cogs"></i><img class="access-menu-icon1" src="../../image/member/S__12066823.jpg"><span>購買清單&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                      <a href="javascript:void(0);"><i class="fa fa-cogs"></i><img class="access-menu-icon1" src="image/S__12066823.jpg"><span>購買清單&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i class="arrow fa fa-angle-right pull-right"></i></a>
                       <ul>
               
                         <li><a href="ui-alerts-notifications.html">已成立</a>
@@ -2114,7 +1542,7 @@ B.A
                       </ul>
                     </li>
                     <li class="sub-menu">
-                      <a href="javascript:void(0);"><i class="fa fa-table"></i><img class="access-menu-icon1" src="../../image/member/S__12066821.jpg"><span>我的錢包/點數&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;> </span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                      <a href="javascript:void(0);"><i class="fa fa-table"></i><img class="access-menu-icon1" src="image/S__12066821.jpg"><span>我的錢包/點數&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;> </span><i class="arrow fa fa-angle-right pull-right"></i></a>
                       <ul>
                         <li><a href="tables-basic.html">交易紀錄</a>
                         </li>
@@ -2124,7 +1552,7 @@ B.A
                       </ul>
                     </li>
                     <li class="sub-menu">
-                      <a href="javascript:void(0);"><i class="fa fa fa-tasks"></i><img class="access-menu-icon1" src="../../image/member/S__12066822.jpg"><span>瀏覽紀錄&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                      <a href="javascript:void(0);"><i class="fa fa fa-tasks"></i><img class="access-menu-icon1" src="image/S__12066822.jpg"><span>瀏覽紀錄&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i class="arrow fa fa-angle-right pull-right"></i></a>
                       <ul>
                         <li><a href="forms-components.html">課程瀏覽</a>
                         </li>
@@ -2141,7 +1569,7 @@ B.A
                       </ul>
                     </li>
                     <li class="sub-menu">
-                      <a href="javascript:void(0);"><i class="fa fa-envelope"></i><img class="access-menu-icon1" src="../../image/member/S__12066820.jpg"><span>精選收藏&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                      <a href="javascript:void(0);"><i class="fa fa-envelope"></i><img class="access-menu-icon1" src="image/S__12066820.jpg"><span>精選收藏&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i class="arrow fa fa-angle-right pull-right"></i></a>
                       <ul>
                         <li><a href="mail-inbox.html">課程收藏</a>
                         </li>
@@ -2152,7 +1580,7 @@ B.A
                       </ul>
                     </li>
                     <li class="sub-menu">
-                      <a href="javascript:void(0);"><i class="fa fa-bar-chart-o"></i><img class="access-menu-icon1" src="../../image/member/S__12066818.jpg"><span>我的課程&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                      <a href="javascript:void(0);"><i class="fa fa-bar-chart-o"></i><img class="access-menu-icon1" src="image/S__12066818.jpg"><span>我的課程&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i class="arrow fa fa-angle-right pull-right"></i></a>
                       <ul>
                         <li><a href="charts-chartjs.html">課程紀錄</a>
                         </li>
@@ -2162,7 +1590,7 @@ B.A
                       </ul>
                     </li>
                     <li class="sub-menu">
-                      <a href="javascript:void(0);"><i class="fa fa-map-marker"></i><img class="access-menu-icon1" src="../../image/member/S__12066827.jpg"><span>直播/課程管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                      <a href="javascript:void(0);"><i class="fa fa-map-marker"></i><img class="access-menu-icon1" src="image/S__12066827.jpg"><span>直播/課程管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i class="arrow fa fa-angle-right pull-right"></i></a>
                       <ul>
                         <li><a href="map-google.html">1</a>
                         </li>
@@ -2172,7 +1600,7 @@ B.A
                     </li>
                    
                     <li class="sub-menu">
-                      <a href="javascript:void(0);"><i class="fa fa-file"></i><img class="access-menu-icon1" src="../../image/member/S__12066826.jpg"><span>食譜管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i class="arrow fa fa-angle-right pull-right"></i></a>
+                      <a href="javascript:void(0);"><i class="fa fa-file"></i><img class="access-menu-icon1" src="image/S__12066826.jpg"><span>食譜管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i class="arrow fa fa-angle-right pull-right"></i></a>
                       <ul>
                         <li><a href="pages-blank.html">1</a>
                         </li>
@@ -2191,7 +1619,7 @@ B.A
                       </ul>
                     </li>
                     <li class="sub-menu">
-                      <a href="typography.html"><i class="fa fa-text-height"></i><img class="access-menu-icon1" src="../../image/member/S__12066825.jpg"><span>帳號設定</span></a>
+                      <a href="typography.html"><i class="fa fa-text-height"></i><img class="access-menu-icon1" src="image/S__12066825.jpg"><span>帳號設定</span></a>
                     </li>
 
 
@@ -2201,220 +1629,88 @@ B.A
            
         </article>
     </main>
-    
-    
-    
-    
-    
-    
-     <div class="footer-copyright24">
-  
-   
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+    <!--主要內容到此結束-->
+    <!--*************************************以上開放編輯▲**************************************-->
+    <div class="footer-copyright24">
     <footer>
-    
-    
-         <!--這個是底部,你用不到-->
-
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-        <div class="footer-bg">
-            <div class="footer-murmur">
-                <img src="../../image/FoodPron_Logo_white.png" alt="logo" data-aos="zoom-in">
-                <ul>
-                    <li class="footer-li-fist">逛其他</li>
-                    <li>直播專區</li>
-                    <li>食材商城</li>
-                    <li>料理課程</li>
-                </ul>
-                <ul>
-                    <li class="footer-li-fist">逛食譜</li>
-                    <li>熱門食譜</li>
-                    <li>新到食譜</li>
-                    <li>全部分類</li>
-                </ul>
-                <ul>
-                    <li class="footer-li-fist">會員服務</li>
-                    <li>我的收藏</li>
-                    <li>帳號設定</li>
-                    <li>忘記密碼</li>
-                    <li>我的訂單</li>
-                </ul>
-                <ul>
-                    <li class="footer-li-fist">關於我們</li>
-                    <li>公司資訊</li>
-                    <li>品牌資產</li>
-                    <li>服務條款</li>
-                    <li>隱私權政策</li>
-                </ul>
-            </div>
-        </div>
+        <!--這個是底部,你用不到-->
         <div class="footer-copyright">
             Copyright &copy; DA106-G4 Foodporn All rights reserved.
         </div>
 
     </footer>
-    <!-- JavasScript-->
-    <!-- JavasScript-->
-    <!-- JavasScript for Sider -->
-    <script src="javascript/header_sider.js" type="text/javascript" charset="utf-8"></script>
-    <!-- JavasScript for LogForm -->
-    <script src="javascript/loginForm.js" type="text/javascript" charset="utf-8"></script>
 
-    <!-- JavasScript for BackTop -->
-    <script>
-        $('#BackTop').click(function () {
-            $('html,body').animate({ scrollTop: 0 }, 333);
-        });
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 450) {
-                $('#BackTop').fadeIn(222);
-            } else {
-                $('#BackTop').stop().fadeOut(222);
-            }
-        });
+</div>
+<!-- JavasScript-->
+	<!-- JavasScript-->
+	<!-- JavasScript for Sider -->
+	<script src="javascript/header_sider.js" type="text/javascript"
+		charset="utf-8"></script>
+	<!-- JavasScript for LogForm -->
+	<script src="javascript/loginForm.js" type="text/javascript"
+		charset="utf-8"></script>
 
-        //畫面捲動時隱藏
-        window.onresize = function () {
-            if ($(window).width() > 767) {
-                $("nav").show();
-            } else $("nav").hide();
-        }
+	<!-- JavasScript for BackTop -->
+	<script>
+		$('#BackTop').click(function() {
+			$('html,body').animate({
+				scrollTop : 0
+			}, 333);
+		});
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 450) {
+				$('#BackTop').fadeIn(222);
+			} else {
+				$('#BackTop').stop().fadeOut(222);
+			}
+		});
 
-    </script>
+		//畫面捲動時隱藏
+		window.onresize = function() {
+			if ($(window).width() > 767) {
+				$("nav").show();
+			} else
+				$("nav").hide();
+		}
+	</script>
 
-    <!-- JavasScript for shop-slide -->
-    <script>
-        $(".shop-slide-article-and-photo").hover(function () {
-            $(".shop-slide-article-and-photo-img").removeClass('imgSmall');
-            $(".shop-slide-article-and-photo-img").addClass('imgScale');
-        });
-        $(".shop-slide-article-and-photo").mouseleave(function () {
-            $(".shop-slide-article-and-photo-img").addClass('imgSmall');
-        });
+	<!-- JavasScript for shop-slide -->
+	<script>
+		$(".shop-slide-article-and-photo").hover(function() {
+			$(".shop-slide-article-and-photo-img").removeClass('imgSmall');
+			$(".shop-slide-article-and-photo-img").addClass('imgScale');
+		});
+		$(".shop-slide-article-and-photo").mouseleave(function() {
+			$(".shop-slide-article-and-photo-img").addClass('imgSmall');
+		});
 
-        /* 直播專區 right scale 效果 */
-        $(".article-section-description-livestream-right").hover(function () {
-            $(".livestream-right-img", this).addClass('imgScale');
-        });
-        $(".imglist-li a").hover(function () {
-            $(".imglist-li-span", this).removeClass('textRecoverColor');
-            $(".imglist-li-img", this).removeClass('imgSmall');
-            $(".imglist-li-img", this).addClass('imgScale');
-            $(".imglist-li-span", this).addClass('textChangeColor');
-        });
-        $(".imglist-li a").mouseleave(function () {
-            $(".imglist-li-span", this).addClass('textRecoverColor');
-            $(".imglist-li-img", this).addClass('imgSmall');
-        });
-    </script>
-    <script>
-        $(".menu-open").on("click", function () {
-            $("nav").slideToggle();
-            $(this).toggleClass("active");
-            $('body,html').toggleClass('add')
-        });
-
-    </script>
-    <script>
-        AOS.init();
-    </script>
-
-    <script>
-        $(document).ready(function () {
-            $('.course-sider-list').slick({
-                dots: true,
-                centerMode: true,
-                centerPadding: '60px',
-                slidesToShow: 3,
-                responsive: [
-                    {
-                        breakpoint: 768,
-                        settings: {
-                            arrows: false,
-                            centerMode: true,
-                            centerPadding: '40px',
-                            slidesToShow: 3
-                        }
-                    },
-                    {
-                        breakpoint: 480,
-                        settings: {
-                            arrows: false,
-                            centerMode: true,
-                            centerPadding: '40px',
-                            slidesToShow: 1
-                        }
-                    }
-                ]
-            });
-        });
-
-    </script>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    <script>  
+		/* 直播專區 right scale 效果 */
+		$(".article-section-description-livestream-right").hover(function() {
+			$(".livestream-right-img", this).addClass('imgScale');
+		});
+		$(".imglist-li a").hover(function() {
+			$(".imglist-li-span", this).removeClass('textRecoverColor');
+			$(".imglist-li-img", this).removeClass('imgSmall');
+			$(".imglist-li-img", this).addClass('imgScale');
+			$(".imglist-li-span", this).addClass('textChangeColor');
+		});
+		$(".imglist-li a").mouseleave(function() {
+			$(".imglist-li-span", this).addClass('textRecoverColor');
+			$(".imglist-li-img", this).addClass('imgSmall');
+		});
+	</script>
+	<script>
+		$(".menu-open").on("click", function() {
+			$("nav").slideToggle();
+			$(this).toggleClass("active");
+			$('body,html').toggleClass('add')
+		});
+	</script>
+	<script>
+		AOS.init();
+	</script>
+	
+<script>  
     $("#leftside-navigation .sub-menu > a").click(function(e) {
       $("#leftside-navigation ul ul").slideUp(), $(this).next().is(":visible") || $(this).next().slideDown(),
       e.stopPropagation()
@@ -2426,20 +1722,24 @@ B.A
 });
 
   </script>
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 
 </html>

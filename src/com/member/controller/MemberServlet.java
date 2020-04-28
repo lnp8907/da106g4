@@ -107,11 +107,7 @@ System.out.println(memberVO.getPassword());
 			
 		
 			
-			String mem_id=req.getParameter("mem_id").trim();
-			String psw=req.getParameter("psw").trim();
-			
-			System.out.println(mem_id);
-			System.out.println(psw);
+	
 			
 			
 //			if(mem_id==null || mem_id.trim().length()==0) {
@@ -120,8 +116,14 @@ System.out.println(memberVO.getPassword());
 //			if(mem_id==null || mem_id.trim().length()==0) {
 //		
 //			}
-			
-			
+			String login= (Integer)req.getSession().getAttribute("login")+"";
+		
+			if(!login.equals("1")) {
+				String mem_id=req.getParameter("mem_id").trim();
+				String psw=req.getParameter("psw").trim();
+				
+				System.out.println(mem_id);
+				System.out.println(psw);
 			if(allowUser(mem_id,psw)==1) {
 				//登入不成功
 				System.out.println("沒有此帳號");
@@ -134,6 +136,7 @@ System.out.println(memberVO.getPassword());
 				String URL=req.getContextPath()+"/index.html";
 				res.sendRedirect(URL);
 				return;	
+				
 			}else {
 				MemberService memberSvc=new MemberService();
 				MemberVO memberVO=null;
@@ -142,9 +145,12 @@ System.out.println(memberVO.getPassword());
 session.setAttribute("member_id", memberVO.getMember_id());
 
 
+session.setAttribute("login", 1);
+String login1= (Integer)req.getSession().getAttribute("login")+"";
+System.out.println("login1"+login1);		
 
     
-session.setAttribute("member_status", memberVO.getMember_status());
+session.setAttribute("member_status", 1);
 		        String sessionmember_status= (Integer)req.getSession().getAttribute("member_status")+"";
 System.out.println("session中member_status"+sessionmember_status);		
 
@@ -166,7 +172,7 @@ System.out.println("location="+location);
 				        res.sendRedirect(location);            
 				        return;
 				    }else {
-				    	res.sendRedirect(req.getContextPath()+"/index.html");
+				    	res.sendRedirect(req.getContextPath()+"/index.jsp");
 //				    	String location2 = (String) req.getSession().getAttribute("location");
 //						
 //				    	System.out.println("新"+location2);
@@ -180,9 +186,39 @@ System.out.println("location="+location);
 				res.sendRedirect(req.getContextPath()+"/front-end/homepage.jsp"); }
 			}
 			
+			}else {
+				System.out.println("e04");
+				
+				HttpSession session = req.getSession();
+				
+				try {
+					String location=(String)session.getAttribute("location");
+					if (location != null) {
+System.out.println("location="+location);
+						session.removeAttribute("location");  
+				        session.invalidate();
+				        res.sendRedirect(location);      
+				
+				        return;
+				    }else {
+				    	 session.invalidate();
+				    	res.sendRedirect(req.getContextPath()+"/index.jsp");
+//				    	String location2 = (String) req.getSession().getAttribute("location");
+//						
+//				    	System.out.println("新"+location2);
+//				    				
+//				    				res.sendRedirect(location2);
+				    	
+				    }
+				
+					
+				}catch(Exception ignored) { 
+				res.sendRedirect(req.getContextPath()+"/front-end/homepage.jsp"); }
+			}
+				
+			}
 			
-			
-		}
+		
 		/////////////////////////////////////////////////////////////
 		
 		

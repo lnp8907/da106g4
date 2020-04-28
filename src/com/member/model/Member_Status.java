@@ -42,9 +42,9 @@ public class Member_Status implements Filter{
   
   String member_status= (Integer)req.getSession().getAttribute("member_status")+"";
   
-           if(member_status == "0") {
+           if(member_status.equals("0") ) {
         		  System.out.println("非廚師");
-        	   res.sendRedirect("/front-end/member/Permissions.jsp");  // 登入換地址，此處也要換
+        	   res.sendRedirect(req.getContextPath()+"/front-end/member/Permissions.jsp");  // 登入換地址，此處也要換
         	   return;
         	  }else {
         		  System.out.println("是廚師");

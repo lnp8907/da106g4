@@ -281,9 +281,15 @@
  <filter-mapping>
   <filter-name>LoginFilter</filter-name>
   <!-- 測試 -->
+   <url-pattern>/front-end/member/TestMemberHomepage.jsp</url-pattern>
   <url-pattern>/front-end/member/member.jsp</url-pattern>
    <url-pattern>/front-end/ShopPage/ProductCheckoutPage.jsp</url-pattern>
- 
+    <url-pattern>/front-end/recipe/addRecipe.jsp</url-pattern>
+    <url-pattern>/front-end/recipe/listAllRecipeManagement.jsp</url-pattern>
+     <url-pattern>/front-end/recipe/update_recipe_input.jsp</url-pattern>
+      <url-pattern>/front-end/course/addCourse.jsp</url-pattern>
+      <url-pattern>/front-end/course/listAllCourseManagement.jsp</url-pattern>
+       <url-pattern>/front-end/course/update_course_input.jsp</url-pattern>
   <!-- 測試 -->
 <!--   <url-pattern>/front_end/index.jsp</url-pattern> -->
 <!--   <url-pattern>/front_end/group_index.jsp</url-pattern> -->
@@ -293,6 +299,7 @@
      <dispatcher>INCLUDE</dispatcher>
      <dispatcher>ERROR</dispatcher>
      <dispatcher>ASYNC</dispatcher>
+     
  </filter-mapping>
  
  
@@ -306,7 +313,12 @@
   <filter-name>Member_Status</filter-name>
   <!-- 測試 -->
    <url-pattern>/front-end/member/Test2.jsp</url-pattern>
- 
+   <url-pattern>/front-end/recipe/addRecipe.jsp</url-pattern>
+    <url-pattern>/front-end/recipe/listAllRecipeManagement.jsp</url-pattern>
+     <url-pattern>/front-end/recipe/update_recipe_input.jsp</url-pattern>
+      <url-pattern>/front-end/course/addCourse.jsp</url-pattern>
+      <url-pattern>/front-end/course/listAllCourseManagement.jsp</url-pattern>
+       <url-pattern>/front-end/course/update_course_input.jsp</url-pattern>
   <!-- 測試 -->
 <!--   <url-pattern>/front_end/index.jsp</url-pattern> -->
 <!--   <url-pattern>/front_end/group_index.jsp</url-pattern> -->

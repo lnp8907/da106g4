@@ -1548,7 +1548,7 @@ margin-right: 40px;
 
 <body>
     <header>
-        <div id="top-logo" class="logo"><a href="index.html" title="回首頁"><img class="logo-photo"
+        <div id="top-logo" class="logo"><a href="/DA106_G4_Foodporn_Git/" title="回首頁"><img class="logo-photo"
                     src="../../image/FoodPron_Logo.png" alt="logo"></a></div>
         <div class="function">
             <div class="function-list">
@@ -2090,7 +2090,7 @@ B.A
                 <div id="leftside-navigation" class="nano">
                   <ul class="nano-content">
                     <li>
-                      <a href="index.html"><i class="fa fa-dashboard"></i><img class="access-menu-icon1" src="../../image/member/S__12066824.jpg" ><span>我的帳戶</span></a>
+                      <a href="/DA106_G4_Foodporn_Git/front-end/member/TestMemberHomepage.jsp"><i class="fa fa-dashboard"></i><img class="access-menu-icon1" src="../../image/member/S__12066824.jpg" ><span>我的帳戶</span></a>
                     </li>
                     <li class="sub-menu">
                       <a href="javascript:void(0);"><i class="fa fa-cogs"></i><img class="access-menu-icon1" src="../../image/member/S__12066823.jpg"><span>購買清單&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i class="arrow fa fa-angle-right pull-right"></i></a>
