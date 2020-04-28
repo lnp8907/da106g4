@@ -691,14 +691,7 @@ System.out.println("第幾頁"+whichPage);
 			
 		}
 		// 前往新增頁面
-		if ("addProduct".equals(action)) {
-			String whichPage = req.getParameter("whichPage");
-			req.setAttribute("whichPage", whichPage);
-			String url = "/back-end/shop_product/addProduct.jsp";
-			RequestDispatcher successView = req.getRequestDispatcher(url);
-			successView.forward(req, res);
-
-		}
+		
 
 	}
 

@@ -56,6 +56,15 @@ public class ShopPageServlet extends HttpServlet {
 					successView.forward(req, res);
 					
 				}
+				//前往新增頁面
+				if ("addProduct".equals(action)) {
+					String whichPage = req.getParameter("whichPage");
+					req.setAttribute("whichPage", whichPage);
+					String url = "/back-end/shop_product/addProduct.jsp";
+					RequestDispatcher successView = req.getRequestDispatcher(url);
+					successView.forward(req, res);
+
+				}
 
 		
 		
@@ -88,7 +97,15 @@ public class ShopPageServlet extends HttpServlet {
 			
 			
 		}
-		
+		if ("IrregularPage".equals(action)) {
+			System.out.println("接到異常頁面請求");
+			session.setAttribute("backendpage","IrregularPage" );
+			String url = "/back-end/shop_product/shop_backendPage.jsp";  
+			RequestDispatcher successView = req.getRequestDispatcher(url);
+			successView.forward(req, res);
+			
+			
+		}	
 		
 		
 		

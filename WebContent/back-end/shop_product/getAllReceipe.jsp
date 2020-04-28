@@ -3,6 +3,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.product.model.*"%>
+<%@ page import="java.util.stream.Collectors" %>
+
 <%
 	ProductService Psvc = new ProductService();
 	Collection<ProductVO> list = Psvc.gettypelist("料理組合包");
@@ -92,11 +94,7 @@
                      
                      style='background-color: blue;color: white'":""} >下架</button> 
                      
-                      <button class="right attached ui button Checkproduct"  ${ productstatus [status]=='審核中'? "
-
-
-                        style='background-color: #fd2436;color: white'":""} >審核中</button>
-                     
+                  
                      </td>
                                 
                                 

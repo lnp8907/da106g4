@@ -1,3 +1,5 @@
+<%@page import="com.product.model.ProductVO"%>
+<%@page import="com.product.model.ProductService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -5,6 +7,13 @@
 <%@ page import="com.recipe.model.*"%>
 <%@ page import="com.recipe_style.model.*"%>
 <%@page import="com.recipe_favorite.model.RecipeFavoriteServiec"%>
+<%@ page import="java.util.*"%>
+<%@ page import="java.util.stream.Collectors" %>
+
+
+
+
+
 
 
 <%
@@ -96,21 +105,40 @@
 						<input type="hidden" value="810009" name="member_id">
 					</div>
 					<!-- 					</form> -->
-					<form method="post" action="RecipeServlet">
-						<button class="recipe-purchase" name="recipe_purchase"
-							title="一鍵購入料理組合包">一鍵購買bak</button>
-						<input type="hidden" value="<%=recipeVO.getRecipe_id()%>"
-							name="recipe_id"> <input type="hidden" value="member_id"
-							name="member_id">
-					</form>
-					
-					<form method="post" action="ShopCartServltR">
+			<form method="post" action="ShopCartServltR">
 					<input type="hidden"  name="quantity" size="3"					
 						value=1> 
 						<button class="recipe-purchase" name="recipe_purchase"
 							title="一鍵購入料理組合包">一鍵購買</button>
 						<input type="hidden" value="<%=recipeVO.getRecipe_id()%>"
 							name="recipe_id">
+							<%ProductService Pscv=new ProductService();
+							ProductVO pvo=Pscv.getbyreceipe("510018");
+							int status=3;
+							if(pvo!=null){
+								 status=pvo.getProduct_status();
+								pageContext.setAttribute("Pstatus", status);
+							}
+							
+							%>
+							<c:set var="Pstatus" value="<%=status%>"/>
+					
+							<input id="istatus" type="hidden" value="${Pstatus}">
+							
+							<script>
+							if($("#istatus").val()==0){
+								$(".recipe-purchase").attr("disabled", false);
+								$(".recipe-purchase").html("一鍵購買");	
+							}else {
+								$(".recipe-purchase").attr("disabled", true);
+								$(".recipe-purchase").html("料理包準備中");
+								
+								
+															
+																
+							}
+							
+							</script>		
 							
 							
 							 <input type="hidden" value="member_id"
@@ -118,6 +146,12 @@
 							 <input
 						type="hidden" name="action" value="ADDR">
 					</form>
+					<script>
+					recipe-purchase
+					
+					
+					</script>
+					
 				</div>
 			</div>
 			<div class="racipe-detal-description">

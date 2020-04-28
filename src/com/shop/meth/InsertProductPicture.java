@@ -1,8 +1,11 @@
-package com.product.model;
+package com.shop.meth;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import com.product.model.ProductJDBCDAO;
+import com.product.model.ProductVO;
 
 public class InsertProductPicture {
 public static void main(String[] args) throws IOException, InterruptedException {
