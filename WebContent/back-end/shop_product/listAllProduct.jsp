@@ -109,8 +109,8 @@
 				<td>
 					<!-- 修改 -->
 					<FORM METHOD="post" ACTION="Productmanage" style="margin-bottom: 0px;">
-						<input type="submit" value="修改"> <input type="hidden"
-							name="product_id" value="${productvo.product_id}">
+						<input class="updateproduct" type="submit" value="修改"> <input type="hidden"
+							class="inputid" name="product_id" value="${productvo.product_id}">
 						<input type="hidden" name="action" value="ProductUpdatePage">
 					</FORM>
 				</td>

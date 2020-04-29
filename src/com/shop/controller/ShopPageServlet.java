@@ -36,6 +36,7 @@ public class ShopPageServlet extends HttpServlet {
 		String action = req.getParameter("action");
 		HttpSession session = req.getSession();
 		
+		
 		//換頁至第一結帳
 				if ("checktpage1".equals(action)) {
 					System.out.println("結帳步驟一");
@@ -63,7 +64,6 @@ public class ShopPageServlet extends HttpServlet {
 					String url = "/back-end/shop_product/addProduct.jsp";
 					RequestDispatcher successView = req.getRequestDispatcher(url);
 					successView.forward(req, res);
-
 				}
 
 		

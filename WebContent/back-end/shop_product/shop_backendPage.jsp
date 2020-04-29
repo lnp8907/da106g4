@@ -100,9 +100,7 @@
 	
 	
 	
-	<% }else if(includecontext.equals("IrregularPage")){%>
-	 <jsp:include page="IrregularPage.jsp" />
-	
+	<% }else if(includecontext.equals("productAddPage")){%>
 	
 	
 	<% }}
@@ -126,6 +124,7 @@
 
 	</div>
 </div>
+
 <script>
         $("#leftMenu > li ").children('a').not(".productlist").find("+ul").slideUp(1);
 
@@ -168,5 +167,6 @@
 
 
 </script>
+
 </body>
 </html>

@@ -166,12 +166,7 @@
     });
 
 </script>
-<script>
 
-
-
-
-</script>
 
 <div id="receipeform" class="border">
     <form METHOD="post" ACTION="Productmanage">
