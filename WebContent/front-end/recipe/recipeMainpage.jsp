@@ -1,7 +1,14 @@
+<%@page import="java.util.List"%>
+<%@page import="com.recipe.model.RecipeVO"%>
+<%@page import="com.recipe.model.RecipeService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<% 
+	RecipeService recipeService = new RecipeService();
+	List<RecipeVO> list = recipeService.getChefCooked("810003");
+	pageContext.setAttribute("list", list);
+	%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,10 +42,97 @@
 	 		getMonth();
 	 	})
 </script>
+
+<style>
+.main-page-card {
+	display: inline-block;
+	width: 29%;
+	height: 280px;
+	margin: 5px 10px 50px;
+}
+
+.main-page-card-pic {
+	overflow: hidden;
+	width: 100%;
+	height: 75%;
+	border-radius: 10px;
+}
+
+.main-page-card-pic img {
+	max-width: 100%;
+	height: 100%;
+}
+
+.main-page-card-info>div {
+	display: inline-block;
+	width: 68%;
+	text-align: left;
+}
+
+.main-page-card-info>form {
+	display: inline-block;
+	width: 30%;
+	text-align: right;
+}
+
+.main-page-card-info button {
+	width: 58px;
+	height: 48px;
+	border: 0;
+	border-radius: 10px;
+	background-color: #E4002B;
+	color: white;
+	font-size: 15px;
+	font-weight: 600;
+	box-shadow: 1px 1px 1px rgba(54, 27, 27, 0.7);
+}
+
+.main-page-card-info button:hover {
+	cursor: pointer;
+	box-shadow: 2px 2px 2px rgba(110, 110, 110, 0.7);
+}
+
+.main-page-card-container {
+	width: 100%;
+	margin: 0 auto;
+	margin-left: 20px;
+}
+
+.main-page-card-info h4 {
+	margin-top: 10px;
+}
+
+.main-page-card-info span {
+	margin-left: 5px;
+	margin-top: -10px;
+	font-size: 13px;
+	color: rgb(151, 151, 151);
+}
+
+.include-page {
+	display: block;
+	margin: 5px 0 10px 45px;
+}
+
+#recipe-btn {
+	background-color: rgb(240, 240, 240);
+}
+
+.main-page-card-pic:hover {
+	box-shadow: 8px 8px 5px rgba(110, 110, 110, 0.2);
+}
+
+.recipeFollow {
+	padding-left: 20px;
+}
+</style>
 <style>
 #article-recipe {
     margin-top: 0px;
         padding-top: 60px;
+}
+# article-section-seemore-recipe{
+margin:10px auto;
 }
 </style>
 </head>
@@ -218,6 +312,7 @@
 	</div>
 	<!-- end of pagetop-->
 	<main>
+	<h1></h1>
 		<article>
 			<section>
 				<div class="search">
@@ -253,9 +348,7 @@
 						<div class="article-section-description-recipe-left">
 						<span style="/* position: absolute; *//* left: 12%; *//* top: 30%; */vertical-align: top;display: inline-block;background-color: white;width: 120px;height: 120px;line-height: 120px;border-radius: 130px;font-size: 40px;" id="month">4月</span>
 											<span class="article-section-description-recipe-left-span" id="blessing">Lorem,
-								ipsum dolor sit amet consectetur adipisicing elit.</span> <span
-								class="article-section-seemore"
-								id="article-section-seemore-recipe">更多食譜...</span>
+								ipsum dolor sit amet consectetur adipisicing elit.</span> 
 						</div>
 						<div id="article-section-description-recipe-right-1" class="article-section-description-recipe-right"
 							data-aos="fade-up">
@@ -292,6 +385,36 @@
 			<!-- end of recipe-->
 			<section>
 			
+<div class="main-page-card-container">
+	<c:forEach var="RecipeVO" items="${list}" >
+
+		<div class="main-page-card">
+			<div class="main-page-card-pic">
+				<img src="${RecipeVO.recipe_photo}">
+			</div>
+			<div class="main-page-card-info">
+				<div>
+					<h4>
+						<a class="show-one-link"
+							href="<%=request.getContextPath()%>/front-end/recipe/RecipeServlet?action=getOne_For_Display&recipe_id=${RecipeVO.recipe_id}">${RecipeVO.recipe_name}</a>
+					</h4>
+					<span class="followNum">${recipeFavoriteServiec.getFollowedNum(RecipeVO.recipe_id)}</span><span>人收藏</span>
+				</div>
+				<span class="recipeFollow">
+					<button class="recipeFollow_btn">收藏</button> <input type="hidden"
+					name="action" value="recipe_follow" class="action"> <!-- 							先假裝有會員810009按讚 -->
+					<!-- 							先假裝有會員810009按讚 --> <!-- 							先假裝有會員810009按讚 --> <input
+					type="hidden" name="member_id" value="810009" class="member_id">
+					<input type="hidden" name="recipe_id" value="${RecipeVO.recipe_id}"
+					class="recipe_id">
+				</span>
+			</div>
+		</div>
+	</c:forEach>
+	<span
+								class="article-section-seemore"
+								id="article-section-seemore-recipe">更多食譜...</span>
+</div>
 
 
 

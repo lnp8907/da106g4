@@ -55,7 +55,6 @@ public class MyCourseServlet extends HttpServlet {
 				changeStatus.put("course_id", course_id);
 				changeStatus.put("member_id", member_id);
 				changeStatus.put("course_status", course_status);
-				
 			
 				/*************************** 2.開始刪除資料 ***************************************/
 				MyCourseService myCourseService = new MyCourseService();

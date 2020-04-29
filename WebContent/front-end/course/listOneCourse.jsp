@@ -276,9 +276,9 @@ cursor:pointer;
 				},
 				dataType : "json",
 				success : function(data) {
-					alert(data.message);
 					$(".appliedNum").text(data.appliedNum);
-					if(data.message='申請取消報名成功'){
+					if(data.message==='取消報名申請成功!'){
+					alert(data.message);
 					}
 				},
 				error : function(data) {

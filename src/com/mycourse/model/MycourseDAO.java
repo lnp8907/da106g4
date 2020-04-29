@@ -281,24 +281,23 @@ public class MycourseDAO implements MycourseDAO_interface {
 	}
 	@Override
 	public void changeOneStatus(String course_id,String member_id, String course_status) {
-
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
-
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(CHANGE_ONE_STATUS);
-			pstmt.setInt(1, Integer.parseInt((course_status)));
-			System.out.println(course_status);
-			pstmt.setString(2, ("course_id"));
-			pstmt.setString(3, ("member_id"));
+			pstmt.setInt(1, Integer.parseInt(course_status));
+			pstmt.setString(2, course_id);
+			pstmt.setString(3, member_id);
 			pstmt.executeUpdate();
-			System.out.println("MyCourseDAO");
+
 			// Handle any driver errors
 		} catch (SQLException se) {
+			System.out.println(se.getMessage());
 			throw new RuntimeException("A database error occured. " + se.getMessage());
 			// Clean up JDBC resources
 		} finally {
+			
 			if (pstmt != null) {
 				try {
 					pstmt.close();
@@ -320,7 +319,6 @@ public class MycourseDAO implements MycourseDAO_interface {
 
 	@Override
 	public void changeOneStatus(Map<String,String[]> changeStatus) {
-
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		int count =0;
@@ -328,7 +326,7 @@ public class MycourseDAO implements MycourseDAO_interface {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(CHANGE_ONE_STATUS);
-			while(count<changeStatus.size()) {
+			while(count<changeStatus.get("course_status").length) {
 			pstmt.setInt(1, Integer.parseInt(changeStatus.get("course_status")[count]));
 			pstmt.setString(2, changeStatus.get("course_id")[count]);
 			pstmt.setString(3, changeStatus.get("member_id")[count]);
