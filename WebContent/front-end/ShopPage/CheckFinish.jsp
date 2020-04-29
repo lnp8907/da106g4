@@ -3,11 +3,33 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="css/carFinshPage.css">
+
 <meta charset="UTF-8">
 <title>訂單完成囉</title>
 </head>
 <body>
+
+
+<div id="finshField">
+<div class="Ftop">
+
+</div>
+    <div id="">
+    
 訂單完成
 <button><a href="../../front-end/ShopPage/ShopProductPage.jsp">返回首頁</a></button>
+    
+    
+    </div>
+</div>
+
+
+
+
+
+訂單完成
+<button><a href="../../front-end/ShopPage/ShopProductPage.jsp">返回首頁</a></button>
+
 </body>
 </html>

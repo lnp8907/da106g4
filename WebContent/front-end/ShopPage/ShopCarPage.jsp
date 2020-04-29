@@ -12,8 +12,8 @@
     <link rel="stylesheet" type="text/css" href="../../css/slick-1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/slick-1.8.1/slick/slick-theme.css"/>
     <script type="text/javascript" src="../../css/slick-1.8.1/slick/slick.js"></script>
-    <link rel="stylesheet" type="text/css" href="../../css/semantic.min.css">
-    <script src="../../js/semantic.min.js"></script>
+       <link rel="stylesheet" type="text/css" href="../../plugin/Semantic-UI/semantic.min.css">
+    <script src="../../plugin/Semantic-UI/semantic.min.css"></script>
     <meta charset="UTF-8">
     <title>FoodPornChec</title>
     <link rel="stylesheet" href="css/ShopCartPage.css">
