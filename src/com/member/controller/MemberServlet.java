@@ -143,7 +143,7 @@ System.out.println(memberVO.getPassword());
 				memberVO=memberSvc.getfindOnePK(mem_id);
 				HttpSession session=req.getSession();
 session.setAttribute("member_id", memberVO.getMember_id());
-
+session.setAttribute("member_name", memberVO.getMember_name());
 
 session.setAttribute("login", 1);
 String login1= (Integer)req.getSession().getAttribute("login")+"";
@@ -831,7 +831,8 @@ System.out.println("location="+location);
 			req.setAttribute("membervo", membervo); // 資料庫取出的empVO物件,存入req
 //			String url = "/front-end/member/update_by_self.jsp";
 			
-			String url = "/front-end/member/member4include.jsp";
+//			String url = "/front-end/member/member4include.jsp";
+			String url = "/front-end/member/TestMemberHomepage.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 			successView.forward(req, res);
 

@@ -651,6 +651,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 			while (rs.next()) {
 				// empVo �]�٬� Domain objects
 				empVO = new MemberVO();		
+				empVO.setMember_name(rs.getString("MEMBER_NAME"));
 				empVO.setMember_status(rs.getInt("MEMBER_STATUS"));
 				empVO.setPassword(rs.getString("PASSWORD"));
 				empVO.setAccount(rs.getString("ACCOUNT"));	

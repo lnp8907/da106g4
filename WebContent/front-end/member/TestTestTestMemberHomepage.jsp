@@ -8,21 +8,8 @@
 
 <%
 String member_id =(String) session.getAttribute("member_id");
-
-MemberService memberSvc = new MemberService();
-MemberVO membervo = memberSvc.getOneMember(member_id);
-
-
-
-
-
-
-
-
-
-
 String member_name =(String) session.getAttribute("member_name");
-	
+	MemberVO membervo = (MemberVO) request.getAttribute("membervo");
 
 	MemberService pSvc = new MemberService();
 	List<MemberVO> list = pSvc.getAll();
@@ -59,20 +46,6 @@ String member_name =(String) session.getAttribute("member_name");
 
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
-
-
-
-
-<link rel="stylesheet" type="text/css"
-	href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
-<script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
-<script
-	src="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.full.js"></script>
-
-
-
-
 
 
 
@@ -867,7 +840,7 @@ body {
 }
 
 .sidebar {
-	margin-top: -1000px;
+	margin-top: -800px;
 	margin-left: 13%;
 	width: 240px;
 	height: 100%;
@@ -1895,27 +1868,6 @@ hr {
 					<table align="center" cellpadding="10">
 
 						<!----- First Name ---------------------------------------------------------->
-					
-					
-					
-						<tr>
-				<td>會員圖片:</td>
-				<!-- 按鈕 -->
-				<td><input type="file" id="imgView" name="member_photo"
-					size="45" accept="image/gif, image/jpeg, image/png"> <img src=DBGifReader4.do?photo_type=mempic&member_id=<%=session.getAttribute("member_id")%> id="preview_progressbarTW_img" width=100px height=100px;/></td>
-
-			</tr>
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
 						<tr>
 							<td>會員姓名:</td>
 
@@ -1937,13 +1889,13 @@ hr {
 						<tr>
 							<td>會員帳號:</td>
 							<td><input type="TEXT" name="account" size="45" id=account
-					value="<%=membervo.getAccount()%>" /></td>
+					value="" /></td>
 						</tr>
 
 						<tr>
 							<td>會員密碼:</td>
 							<td><input type="password" name="password" size="45" id=password
-					value="<%=membervo.getPassword()%>" /></td>
+					value="" /></td>
 					<td><label><input type="checkbox" id="show_password" size="45" />顯示密碼</label></td>
 						</tr>
 
@@ -1963,21 +1915,21 @@ hr {
 						<tr>
 							<td>信箱:</td>
 							<td><input type="TEXT" name="email" size="45" id=email
-					value="<%=membervo.getEmail()%>" /></td>
+					value="" /></td>
 						</tr>
 
 						<!----- Mobile Number ---------------------------------------------------------->
 						<tr>
 							<td>電話號碼:</td>
 							<td><input type="TEXT" name="cellphone" size="45" id=cellphone
-					value="<%=membervo.getCellphone()%>" /></td>
+					value="" /></td>
 						</tr>
 
 						<!----- Gender ----------------------------------------------------------->
 						<tr>
 							<td>性別:</td>
-							<td><input type="radio" name="gender" value=0 checked="<%=(membervo.getGender()==0)? "true": "false"%>"> 男<br>
-					<input type="radio" name="gender" value=1 checked="<%=(membervo.getGender()==1)? "true": "false"%>"> 女<br></td>
+							<td><input type="radio" name="gender" value=0 checked=""> 男<br>
+					<input type="radio" name="gender" value=1 checked=""> 女<br></td>
 						</tr>
 
 						<!----- Address ---------------------------------------------------------->
@@ -1987,7 +1939,7 @@ hr {
 							<br /></td>
 							<!-- <td><textarea name="Address" rows="4" cols="30"></textarea></td> -->
 							<td><input type="TEXT" name="member_address" size="45"
-					id="address" value="<%=membervo.getMember_address()%>" /></td>
+					id="address" value="" /></td>
 						</tr>
 
 
@@ -2102,38 +2054,21 @@ B.A
 
 						<!----- Submit and Reset ------------------------------------------------->
 
-			<tr>
+						<tr>
 							<td colspan="2" align="center">
-								
-								
-								 <!-- <div class="submit">
+								<!-- <input type="submit" class="submit_btn" value="儲存"> --> <!-- <div class="submit">
   <input type="submit"  value="儲存" id="button-blue"/>
-  <div class="ease"></div> -->
-  <div class="submit_btn">
-  
-   <span class="submitAndSave" id="article-section-seemore-recipe">儲存</span>
-    <input type="submit" class="submit_btn" value="儲存" >  
-								
-		</div>						
-								
-								
-								
-								
-								<!-- <input type="reset" value="Reset"> -->
+  <div class="ease"></div> --> <span class="submitAndSave"
+								id="article-section-seemore-recipe">儲存</span>
+								</div> <!-- <input type="reset" value="Reset"> -->
 							</td>
 						</tr>
 					</table>
 					
-			<br> <input type="hidden" name="action" value="updateBySelf">	
+			<br> <input type="hidden" name="action" value="updateBySelf">		
 					
-					 <input type="hidden"
-							name="member_id" value="<%=session.getAttribute("member_id")%>">
-							
-							
-						
 					
-					<input type="hidden"
-							name="account" value="${membervo.member_photo}">
+					
 					
 					
 					
@@ -2162,7 +2097,7 @@ B.A
 		timepicker : false, //timepicker:true,
 		step : 60, //step: 60 (這是timepicker的預設間隔60分鐘)
 		format : 'Y-m-d', //format:'Y-m-d H:i:s',
-		value : '<%=birthday%>',
+		value : '',
 	//disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
 	startDate:	            '2000/01/01',  // 起始日
 	//minDate:'-1970-01-07', // 去除今日(不含)之前

@@ -50,7 +50,7 @@ out.println(member_id);
 <body>
 	<header>
 		<div id="top-logo" class="logo">
-			<a href="/DA106_G4_Foodporn_Git/" title="回首頁"><img class="logo-photo"
+			<a href="/DA106_G4_Foodporn_Git/index.jsp" title="回首頁"><img class="logo-photo"
 				src="image/FoodPron_Logo.png" alt="logo"></a>
 		</div>
 		<div class="function">
@@ -98,7 +98,7 @@ out.println(member_id);
 	
 					<div class="login">
 				
-					<a> <img class="header-icon" src="image/user-icon.png"
+					<a> <img class="header-icon" src="image/logout.png"
 						alt="login-icon">
 					
 							<span class="login-span">登出</span>
@@ -287,25 +287,10 @@ out.println(member_id);
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	<div class="pagetop">
-		<img src="image/go-top-page.png" alt="BackTop" id="BackTop">
+		<img src="../../image/go-top-page.png" alt="BackTop" id="BackTop">
 		<!--一鍵置頂-->
 	</div>
 	<!-- end of pagetop-->
