@@ -1,11 +1,9 @@
 package com.recipe.controller;
 
-import java.io.ByteArrayOutputStream;
+
 import java.io.IOException;
-import java.io.InputStream;
 import java.sql.Date;
 import java.text.DecimalFormat;
-import java.util.Base64;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -23,7 +21,6 @@ import javax.servlet.http.Part;
 
 import com.ingredient.model.IngredientDAO;
 import com.ingredient.model.IngredientVO;
-import com.product.model.ProductService;
 import com.product.model.ProductVO;
 import com.recipe.model.RecipeService;
 import com.recipe.model.RecipeVO;
@@ -537,8 +534,6 @@ public class RecipeServlet extends HttpServlet {
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
-			String pageType = req.getParameter("pageType");
-			req.setAttribute("pageType", pageType); //怎麼來怎麼回去
 			try {
 				/*********************** 1.接收請求參數 - 輸入格式的錯誤處理 *************************/
 				String recipe_name = req.getParameter("recipe_name");
@@ -772,7 +767,11 @@ public class RecipeServlet extends HttpServlet {
 //						salt_intake, protein_intake, fat_intake, carbo_intake, vitamin_b, vitamin_c, vage_intake);
 //				
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/front-end/recipe/recipeHomepage.jsp";
+				String pageType= "searchRecipe.jsp";
+				String url = "/front-end/recipe/recipeHomepage.jsp?pageType=" + pageType;
+				req.setAttribute("pageType", pageType); //導回searchReicpe
+				HttpSession session = req.getSession();
+				session.removeAttribute("list");//該list為search的結果,因要導回search畫面,所以不管使用者有沒有搜尋過一律先清空
 				RequestDispatcher successView = req.getRequestDispatcher(url); //
 				// 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);

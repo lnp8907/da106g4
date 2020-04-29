@@ -7,7 +7,10 @@
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 <%
 	@SuppressWarnings("unchecked")
-	List<RecipeVO_saved> list = (List<RecipeVO_saved>) session.getAttribute("list");	
+	List<RecipeVO_saved> list = (List<RecipeVO_saved>) session.getAttribute("list");
+	if(list==null){
+		list = new RecipeService().getAllForFrontEnd();
+	}
 	pageContext.setAttribute("list", list);
 	String keyword = (String) request.getAttribute("keyword");
 	String selectedType = (String) request.getAttribute("selectedType");
