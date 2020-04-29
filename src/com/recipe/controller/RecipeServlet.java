@@ -772,7 +772,7 @@ public class RecipeServlet extends HttpServlet {
 //						salt_intake, protein_intake, fat_intake, carbo_intake, vitamin_b, vitamin_c, vage_intake);
 //				
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String url = "/front-end/recipe/listAllRecipe.jsp";
+				String url = "/front-end/recipe/recipeHomepage.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); //
 				// 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
