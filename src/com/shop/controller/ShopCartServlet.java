@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import com.order_detail.model.Order_detailVO;
 import com.product.model.ProductService;
 import com.product.model.ProductVO;
+import com.sun.org.apache.bcel.internal.generic.RETURN;
 
 
 
@@ -121,10 +122,12 @@ public class ShopCartServlet extends HttpServlet {
 		//--------------
 		session.setAttribute("productCar", productlist);
 		if(action.equals("REMOVE")) {
-			System.out.println("轉移");
+			System.out.println("刪除後轉移");
+			req.setAttribute("checktpage","checktpage1");
 			String url="/front-end/ShopPage/ShopCarPage.jsp";
 			RequestDispatcher rd = req.getRequestDispatcher(url);
-			rd.forward(req, res);		
+			rd.forward(req, res);	
+			return;
 			
 			
 		}
@@ -137,7 +140,16 @@ public class ShopCartServlet extends HttpServlet {
 		
 		
 		else {
+			
 		req.setAttribute("product_id", product_id);
+		
+		if(action.equals("clearmessage")) {
+			System.out.println("清空訊息");
+			req.setAttribute("buy", "nomessage");
+
+		}else {
+		req.setAttribute("buy", "buy");}
+		System.out.println("開始轉移");
 		String url="/front-end/ShopPage/ShopDetailPage.jsp";
 		RequestDispatcher rd = req.getRequestDispatcher(url);
 		rd.forward(req, res);

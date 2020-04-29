@@ -4,6 +4,9 @@
 <%@ page import="java.util.*"%>
 
 <%
+
+
+
 	Vector<Order_detailVO> productlist;
 	if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 		productlist = new Vector<Order_detailVO>();
@@ -41,7 +44,10 @@
  <link rel="stylesheet" href="<%=request.getContextPath() %>/css/homePage.css">
  
     <script src="../../js/jquery-migrate-1.4.1.min.js"> </script>
-    <script src="../../js/jquery-migrate-1.4.1.min.js"> </script>
+
+<link rel="stylesheet" type="text/css" href="../../plugin/jquery-ui/jquery-ui.min.css"/>
+
+<script src="../../plugin/jquery-ui/jquery-ui.min.js"></script>
 
     <link rel="stylesheet" type="text/css" href="../../css/slick-1.8.1/slick/slick.css"/>
     <link rel="stylesheet" type="text/css" href="../../css/slick-1.8.1/slick/slick-theme.css"/>
@@ -353,8 +359,8 @@
 						type="hidden" name="action" value="ADD">
 						<input type="submit" value="加入購物車">
 				</FORM>
-
-
+				 <button  class="addcar">購買</button>
+				
 
 <!--             數量：<input type="button" value="-" id="del" onclick="del()" /> -->
 <!-- 					 <span name="quantity" -->
@@ -457,6 +463,19 @@
 			All rights reserved.</div>
 
 	</footer>
+	
+	<div id="buymessage" style="border-color:  #e4002b"  title="購買確認">
+    <div>購買成功</div>
+<div>是否前往購物車查看:</div>
+    <div><button class="ui cancelshopcart button"><i class="shopping red arrow alternate circle left
+ icon"></i> 繼續購物 </button><button class="ui  button"> 前往購物車 <i class="shopping cart red
+ icon"></i></button></div>
+
+ 
+
+
+
+	
 	<!-- JavasScript-->
 	<!-- JavasScript-->
 	<!-- JavasScript for Sider -->
@@ -546,9 +565,94 @@ $('#plusmun').click(function () {
 });
 
 </script>
-   
+<style>
+    #buymessage{
+        margin-top: 20px;
+        height: 150px;
+    }
+    #buymessage div:nth-child(3){
+        padding-top: 20px;
+        width: 100%;
+        margin-top: 10px;
+        height: 70px;
+        background-color: #34ce57;
+    }
+    #buymessage div:nth-child(3) button{
+width: 140px;
+
+    }
+    #buymessage div:nth-child(3) button:nth-child(2){
+        margin: 0px;
+        float: right;
+    }
+
+
+</style>
+<script>
+    $( function() {
+        $( "#buymessage" ).dialog({
+
+            autoOpen: false,
+            minWidth: 205,
+            width: 340,
+            show: "Fold",
+
+            hide: "blind",
+
+
+        });
+	
+
+
+    $(".addcar").click(function () {
+
+        $("#buymessage").dialog("open");
+
+        return false;
+    });
+
+    <%if(request.getAttribute("buy")!=null&&request.getAttribute("buy").equals("buy")){
+         %>
+    
+        $(".addcar").click();    
+    <% }%>
+    
+    $('.cancelshopcart').click(function () {
+        $("#buymessage").dialog("close");
+
+    })
+
+});
+ 
+    $(".cancelshopcart").click(function(){
+    	 $.ajax({
+         	url:'ShopCart?action=clearmessage&product_id=<%=product_id%>',
+         	type:"POST",
+         	data:{
+         		action:"clearmessage",
+         		product_id:'<%=product_id%>'
+         	},
+         	sucess:function(){
+         			
+         		
+         		
+         	}
+         });
+    	
+    	
+    	
+    	
+    	
+    	
+    })
+    
+    
+</script>
 </body>
 
 
 
 </html>
+       
+
+       <%=request.getAttribute("buy")+"1" %>
