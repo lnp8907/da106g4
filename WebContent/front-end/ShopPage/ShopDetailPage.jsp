@@ -348,18 +348,26 @@
 
        </div>
 </div>
-                  <FORM METHOD="post" ACTION="ShopCart"
- 	style="margin-bottom: 0px;">
+<!--                   <FORM METHOD="post" ACTION="ShopCart" -->
+<!--  	style="margin-bottom: 0px;"> -->
 						<input type="hidden" id="inquantity" name="quantity" size="3"					
-						value=1>  <input
+						value=1>
+ <input 
 						type="hidden" name="product_id"
-						value="<%=productvo.getProduct_id()%>"> <input
+						value="<%=productvo.getProduct_id()%>">
+						 
+						 <input
 						type="hidden" name="product_price"
-						value="<%=productvo.getProduct_price()%>"> <input
+						value="<%=productvo.getProduct_price()%>"> 
+						
+						<input
 						type="hidden" name="action" value="ADD">
-						<input type="submit" value="加入購物車">
-				</FORM>
+<!-- 						<input type="submit" value="加入購物車"> -->
+<!-- 				</FORM> -->
 				 <button  class="addcar">購買@GIT檢查在不再</button>
+
+		
+				
 				
 
 <!--             數量：<input type="button" value="-" id="del" onclick="del()" /> -->
@@ -589,15 +597,14 @@ width: 140px;
 
 </style>
 <script>
-    $( function() {
         $( "#buymessage" ).dialog({
-
+        	
             autoOpen: false,
             minWidth: 205,
             width: 340,
-            show: "Fold",
-
-            hide: "blind",
+            show: 'fade',
+            hide: "blind"
+            
 
 
         });
@@ -608,24 +615,20 @@ width: 140px;
 
         $("#buymessage").dialog("open");
 
-        return false;
     });
 
-    <%if(request.getAttribute("buy")!=null&&request.getAttribute("buy").equals("buy")){
-         %>
-    
-        $(".addcar").click();    
-    <% }%>
+ 
     
     $('.cancelshopcart').click(function () {
         $("#buymessage").dialog("close");
 
-    })
+    });
 
-});
+
  
     $(".cancelshopcart").click(function(){
-    	 $.ajax({
+    	
+    	$.ajax({
          	url:'ShopCart?action=clearmessage&product_id=<%=product_id%>',
          	type:"POST",
          	data:{
@@ -654,5 +657,32 @@ width: 140px;
 
 </html>
        
-
-       <%=request.getAttribute("buy")+"1" %>
+		<script>
+				$(".addcar").click(function(){
+					$.ajax({
+			         	url:'ShopCart',
+			         	type:"POST",
+			         	data:{
+			         		product_price:"<%=productvo.getProduct_price()%>",
+			         		action:"ADD",
+			         		product_id:'<%=productvo.getProduct_id()%>',
+			         		quantity:$("#inquantity").val()
+			 
+			         	},
+			         	sucess:function(data){
+			         			
+			         		
+			         		
+			         	}
+				
+				
+				
+			
+			});
+					
+					
+					
+				});
+					 
+			
+				</script>
