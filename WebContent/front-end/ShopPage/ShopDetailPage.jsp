@@ -2,7 +2,8 @@
 <%@page import="com.product.model.*"%>
 <%@page import="com.order_detail.model.*"%>
 <%@ page import="java.util.*"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%
 
 
@@ -30,7 +31,7 @@
 	map.put(1, "已上架");
 	request.setAttribute("productstatus", map);
 %>
-
+<c:set var="productlist" value="<%=productlist %>"/>
 <html>
 <head>
 
@@ -39,7 +40,7 @@
 <title>購買頁面</title>
  <!-- 廣告連播套件 -->
  <link rel="stylesheet" type="text/css"href="css/productDetailPage.css"/>
- 
+ <link rel="stylesheet" type="text/css"href="../../css/CarMessageCss.css"/> 
  <link rel="stylesheet" href="<%=request.getContextPath() %>/css/frontEnd.css">
  <link rel="stylesheet" href="<%=request.getContextPath() %>/css/homePage.css">
  
@@ -84,15 +85,29 @@
 							<span class="login-span">登入</span>
 						</div> </a>
 				</div>
+				
 				<div class="shop-car">
-					<a href="<%=request.getContextPath() %>/front-end/ShopPage/ProductPage?action=checktpage1"><img class="header-icon"
+					<a href="<%=request.getContextPath() %>/front-end/ShopPage/ProductPage?action=checktpage1">
+					
+						<div class="carmessage1">
+					<img class="header-icon"
 						src="<%=request.getContextPath() %>/image/shopping-cart-icon.png" alt="shopping-cart">
+						
+						
+						</div>
+							<div class="carmessage2" style="display: none">${fn:length(productlist)}</div>
+						<div class="carmessagecircle" style="display: none">more</div>
+					
+					
+						
 						<div class="herder-icon-span">
 							<span class="shop-car-span">購物車</span>
+							
 						</div> </a>
 				</div>
 				<div class="notice">
 					<a href="#"><img class="header-icon" src="<%=request.getContextPath() %>/image/ico_notice.png"
+
 						alt="notice-icon">
 						<div class="herder-icon-span">
 							<span class="notice-span">通知總覽</span>
@@ -107,6 +122,7 @@
 			<ul>
 				<li class="dropdown"><a><img class="access-menu-icon"
 						src="<%=request.getContextPath() %>/image/recipe-icon.png"><span class="menu-span">食譜專區</span></a>
+
 					<ul>
 						<li><a class="dropdown-first-a" href="#"><img
 								class="dropdown-first-img" src="<%=request.getContextPath() %>/image/ico_gnav_recipes_book.svg"><span
@@ -152,6 +168,7 @@
 					<ul>
 						<li><a class="dropdown-first-a" href="#"><img
 								class="dropdown-first-img" src="<%=request.getContextPath() %>/image/ico_gnav_recipes_pot.svg"><span
+
 								class="dropdown-first-a-span">課程主頁</span></a></li>
 						<li><a href="#">熱門課程</a></li>
 						<li><a href="#">建立料理課程</a></li>
@@ -483,6 +500,23 @@
 
 
 
+	<script>
+
+						if($(".carmessage2").html()>0 && $(".carmessage2").html()<10){
+							$(".carmessagecircle").hide();
+							$(".carmessage2").show();
+						}
+						else if($(".carmessage2").html()>9){
+							$(".carmessage2").hide();
+							$(".carmessagecircle").show();
+						}
+						else{
+							$(".carmessagecircle").hide();
+							$(".carmessage2").hide();
+
+						}
+						
+						</script>
 	
 	<!-- JavasScript-->
 	<!-- JavasScript-->
@@ -624,32 +658,7 @@ width: 140px;
 
     });
 
-
- 
-    $(".cancelshopcart").click(function(){
-    	
-    	$.ajax({
-         	url:'ShopCart?action=clearmessage&product_id=<%=product_id%>',
-         	type:"POST",
-         	data:{
-         		action:"clearmessage",
-         		product_id:'<%=product_id%>'
-         	},
-         	sucess:function(){
-         			
-         		
-         		
-         	}
-         });
-    	
-    	
-    	
-    	
-    	
-    	
-    })
-    
-    
+  
 </script>
 </body>
 
@@ -658,6 +667,33 @@ width: 140px;
 </html>
        
 		<script>
+
+		function changecarmun(data) {
+			if(data==null){
+					$(".carmessage2").hide();
+					$(".carmessagecircle").hide();
+					
+				}
+				else if(data>9){
+					$(".carmessage2").hide();
+					$(".carmessagecircle").show();
+		         				
+				}
+				else if(data<9&&data>1){
+					$(".carmessage2").html(data);
+					$(".carmessage2").show();
+					$(".carmessagecircle").hide();
+					
+					
+				}
+				else{
+					$(".carmessage2").hide();
+					$(".carmessagecircle").hide();
+				}
+        }
+		
+		
+		
 				$(".addcar").click(function(){
 					$.ajax({
 			         	url:'ShopCart',
@@ -669,20 +705,16 @@ width: 140px;
 			         		quantity:$("#inquantity").val()
 			 
 			         	},
-			         	sucess:function(data){
-			         			
-			         		
-			         		
+			         	success:function(data){
+			         		changecarmun(data);
+			        
 			         	}
-				
-				
-				
-			
+
 			});
-					
-					
-					
+
 				});
 					 
 			
 				</script>
+				
+					
