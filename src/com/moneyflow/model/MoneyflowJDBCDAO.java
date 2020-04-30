@@ -23,7 +23,7 @@ public class MoneyflowJDBCDAO implements MoneyflowDAO_interface{
 	String passwd = "DA106_G4";
     private static final String INSERT_STMT = "INSERT INTO MONEYFLOW (MONEYFLOW_NO,MEMBER_ID,MONEYFLOW_STATUS,MONEY) VALUES ('MN-'||to_CHAR(current_timestamp,'YYYY-MM-DD')||'-'||LPAD(to_char(SQ_MONEYFLOW_NO.NEXTVAL),6,'0'), ?, ?, ?)";
     private static final String GET_ALL_STMT = "SELECT MONEYFLOW_NO,MEMBER_ID,MONEYFLOW_STATUS,MONEY,CHARGE_TIME FROM MONEYFLOW order by MONEYFLOW_NO";
-    private static final String GET_ONE_STMT = "SELECT MONEYFLOW_NO,MEMBER_ID,MONEYFLOW_STATUS,MONEY,CHARGE_TIME FROM MONEYFLOW WHERE ORDER_NO = ?";
+    private static final String GET_ONE_STMT = "SELECT MONEYFLOW_NO,MEMBER_ID,MONEYFLOW_STATUS,MONEY,CHARGE_TIME FROM MONEYFLOW WHERE MONEYFLOW_NO = ?";
     private static final String DELETE = "DELETE FROM MONEYFLOW WHERE MONEYFLOW_NO = ? ";
     private static final String UPDATE = "UPDATE MONEYFLOW SET  MEMBER_ID=?, MONEYFLOW_STATUS=?, MONEY=? WHERE  MONEYFLOW_NO= ? ";
     private static final String CHAGESTATUS = "UPDATE MONEYFLOW SET   MONEYFLOW_STATUS=? WHERE  MONEYFLOW_NO= ? ";
@@ -377,7 +377,7 @@ public class MoneyflowJDBCDAO implements MoneyflowDAO_interface{
 			vo.setMoney(i1);
 			dao1.insert(vo);
 		}
-		
+
 		
 		
 
