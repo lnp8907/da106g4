@@ -359,7 +359,7 @@
 						type="hidden" name="action" value="ADD">
 						<input type="submit" value="加入購物車">
 				</FORM>
-				 <button  class="addcar">購買</button>
+				 <button  class="addcar">購買@GIT檢查在不再</button>
 				
 
 <!--             數量：<input type="button" value="-" id="del" onclick="del()" /> -->
