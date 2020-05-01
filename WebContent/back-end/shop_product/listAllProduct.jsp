@@ -51,7 +51,7 @@
                             <th>商品狀態</th>
                             <th>商品詳細成分</th>
                             <th>修改</th>
-                            <th>刪除</th>
+                           
                         </tr>
                         		<%@ include file="../file/page1.file"%>
                         </thead>
@@ -116,21 +116,9 @@
 					</FORM>
 				</td>
 				<c:set var="id" value="${productvo.product_id}"/>
-				<td>
-				<%String id =(String)pageContext.getAttribute("id"); %>
-					<!-- 刪除 -->
-					
-					
-					<FORM METHOD="post" ACTION="Productmanage" style="margin-bottom: 0px;">
-						<input type="hidden" name="action" value="delete"> 
-						<input  class='ui  icon button'  <%=Psvc.isProduct_idFK(id)?"":"disabled='disabled'"   %>
-						
-					 type="submit" value="刪除"> <input type="hidden"
-							name="product_id" value="${productvo.product_id}"> 
-							<input	type="hidden" name="whichPage" value="<%=whichPage%>"> 
-							<input	type="hidden" name="requestURL"	value="<%=request.getServletPath()%>">
-					</FORM>
-				</td>
+								<%String id =(String)pageContext.getAttribute("id"); %>
+				
+				
                         </tr>
 		</c:forEach>
                     
