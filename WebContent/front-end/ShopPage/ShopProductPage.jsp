@@ -1,3 +1,4 @@
+<%@page import="com.order_detail.model.*"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -8,6 +9,9 @@
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=3.0">
 <title>FoodpornShop</title>
+ <link rel="stylesheet" type="text/css"href="../../css/CarMessageCss.css"/> 
+
+
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/frontEnd.css">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/header-sider.css">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/slick/slick.css">
@@ -26,8 +30,8 @@
 	pageEncoding="UTF-8"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.product.model.*"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <!-- UI套件 -->
   <link rel="stylesheet" type="text/css" href=".<%=request.getContextPath() %>/css/semantic.min.css">
     <script src="<%=request.getContextPath() %>/plugin/Semantic-UI/semantic.min.js"></script>
@@ -36,6 +40,23 @@
 
 <meta charset="UTF-8">
 <title>商城頁面</title>
+<%
+	ProductService Psvc = new ProductService();
+	Set<ProductVO> list = Psvc.getAllProduct();
+	pageContext.setAttribute("list", list);
+
+%>
+<%
+Vector<Order_detailVO> productlist;
+if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
+	productlist = new Vector<Order_detailVO>();
+
+} else {
+	productlist = (Vector<Order_detailVO>) session.getAttribute("productCar");
+}
+
+%>
+<c:set var="productlist" value="<%=productlist %>"/>
 
 </head>
 
@@ -69,15 +90,29 @@
 							<span class="login-span">登入</span>
 						</div> </a>
 				</div>
-				<div class="shop-car">
-<!-- 					<a href="ShopCarPage.jsp"><img class="header-icon" -->
 				
-					<a href="<%=request.getContextPath() %>/front-end/ShopPage/ProductPage?action=checktpage1"><img class="header-icon"
+					
+				<div class="shop-car">
+					<a href="<%=request.getContextPath() %>/front-end/ShopPage/ProductPage?action=checktpage1">
+					
+						<div class="carmessage1">
+					<img class="header-icon"
 						src="<%=request.getContextPath() %>/image/shopping-cart-icon.png" alt="shopping-cart">
+						
+						
+						</div>
+							<div class="carmessage2" style="display: none" >${fn:length(productlist)}</div>
+						<div class="carmessagecircle" style="display: none">more</div>
+					
+					
+						
 						<div class="herder-icon-span">
 							<span class="shop-car-span">購物車</span>
+							
 						</div> </a>
 				</div>
+				
+				
 				<div class="notice">
 					<a href="#"><img class="header-icon" src="<%=request.getContextPath() %>/image/ico_notice.png"
 						alt="notice-icon">
@@ -345,6 +380,25 @@
 		});
 	</script>
 
+
+
+	<script>
+
+						if($(".carmessage2").html()>0 && $(".carmessage2").html()<10){
+							$(".carmessagecircle").hide();
+							$(".carmessage2").show();
+						}
+						else if($(".carmessage2").html()>9){
+							$(".carmessage2").hide();
+							$(".carmessagecircle").show();
+						}
+						else{
+							$(".carmessagecircle").hide();
+							$(".carmessage2").hide();
+
+						}
+						
+						</script>
 </body>
 
 </html>

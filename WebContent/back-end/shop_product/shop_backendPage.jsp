@@ -13,8 +13,11 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/plugin/bootstrap-4.4.1-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/plugin/Semantic-UI/semantic.min.css">
 
+
+    <link rel="stylesheet" href="<%=request.getContextPath() %>/back-end/shop_product/css/shopmaonback_end.css">
+
     <link rel="stylesheet" href="<%=request.getContextPath() %>/back-end/css/mainback_endcss.css">
-        <link rel="stylesheet" href="css/BEproductCss.css">
+        <link rel="stylesheet" href="BEproductCss.css">
     <!--套件-->
             <link rel="stylesheet" type="text/css" href="../../plugin/jquery-ui/jquery-ui.min.css"/>
 
@@ -31,8 +34,15 @@
 	<div class="box">
 		<!--這裡是左邊選單-->
 		<div class="left-bar">
+		
+                        <span class="fa fa-cloud-download"><img src="<%=request.getContextPath() %>/image/logo_nohead.png" alt="LOGO"
+                        width="200" height="200"></span>
+		
 		  <div class="back-endlefecotext">
+		  <!-- LOGO -->
+		  
                                     <ul id="leftMenu">
+                                    
                                         <li class="lialist">
                                             <div class="iconstatus" style="display: none">OPEN</div>
                                             <a style="color: #E4002B" class=" productlist" title="open or close this section " href="#">商品管理

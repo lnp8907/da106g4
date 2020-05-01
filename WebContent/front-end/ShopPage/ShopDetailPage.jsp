@@ -2,7 +2,8 @@
 <%@page import="com.product.model.*"%>
 <%@page import="com.order_detail.model.*"%>
 <%@ page import="java.util.*"%>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%
 
 
@@ -30,7 +31,7 @@
 	map.put(1, "已上架");
 	request.setAttribute("productstatus", map);
 %>
-
+<c:set var="productlist" value="<%=productlist %>"/>
 <html>
 <head>
 
@@ -39,6 +40,9 @@
 <title>購買頁面</title>
  <!-- 廣告連播套件 -->
  <link rel="stylesheet" type="text/css"href="css/productDetailPage.css"/>
+ <link rel="stylesheet" type="text/css"href="../../css/CarMessageCss.css"/> 
+ 
+ 
  
  <link rel="stylesheet" href="<%=request.getContextPath() %>/css/frontEnd.css">
  <link rel="stylesheet" href="<%=request.getContextPath() %>/css/homePage.css">
@@ -84,15 +88,29 @@
 							<span class="login-span">登入</span>
 						</div> </a>
 				</div>
+				
 				<div class="shop-car">
-					<a href="<%=request.getContextPath() %>/front-end/ShopPage/ProductPage?action=checktpage1"><img class="header-icon"
+					<a href="<%=request.getContextPath() %>/front-end/ShopPage/ProductPage?action=checktpage1">
+					
+						<div class="carmessage1">
+					<img class="header-icon"
 						src="<%=request.getContextPath() %>/image/shopping-cart-icon.png" alt="shopping-cart">
+						
+						
+						</div>
+							<div class="carmessage2" style="display: none">${fn:length(productlist)}</div>
+						<div class="carmessagecircle" style="display: none">more</div>
+					
+					
+						
 						<div class="herder-icon-span">
 							<span class="shop-car-span">購物車</span>
+							
 						</div> </a>
 				</div>
 				<div class="notice">
 					<a href="#"><img class="header-icon" src="<%=request.getContextPath() %>/image/ico_notice.png"
+
 						alt="notice-icon">
 						<div class="herder-icon-span">
 							<span class="notice-span">通知總覽</span>
@@ -107,6 +125,7 @@
 			<ul>
 				<li class="dropdown"><a><img class="access-menu-icon"
 						src="<%=request.getContextPath() %>/image/recipe-icon.png"><span class="menu-span">食譜專區</span></a>
+
 					<ul>
 						<li><a class="dropdown-first-a" href="#"><img
 								class="dropdown-first-img" src="<%=request.getContextPath() %>/image/ico_gnav_recipes_book.svg"><span
@@ -152,6 +171,7 @@
 					<ul>
 						<li><a class="dropdown-first-a" href="#"><img
 								class="dropdown-first-img" src="<%=request.getContextPath() %>/image/ico_gnav_recipes_pot.svg"><span
+
 								class="dropdown-first-a-span">課程主頁</span></a></li>
 						<li><a href="#">熱門課程</a></li>
 						<li><a href="#">建立料理課程</a></li>
@@ -348,18 +368,26 @@
 
        </div>
 </div>
-                  <FORM METHOD="post" ACTION="ShopCart"
- 	style="margin-bottom: 0px;">
+<!--                   <FORM METHOD="post" ACTION="ShopCart" -->
+<!--  	style="margin-bottom: 0px;"> -->
 						<input type="hidden" id="inquantity" name="quantity" size="3"					
-						value=1>  <input
+						value=1>
+ <input 
 						type="hidden" name="product_id"
-						value="<%=productvo.getProduct_id()%>"> <input
+						value="<%=productvo.getProduct_id()%>">
+						 
+						 <input
 						type="hidden" name="product_price"
-						value="<%=productvo.getProduct_price()%>"> <input
+						value="<%=productvo.getProduct_price()%>"> 
+						
+						<input
 						type="hidden" name="action" value="ADD">
-						<input type="submit" value="加入購物車">
-				</FORM>
+<!-- 						<input type="submit" value="加入購物車"> -->
+<!-- 				</FORM> -->
 				 <button  class="addcar">購買@GIT檢查在不再</button>
+
+		
+				
 				
 
 <!--             數量：<input type="button" value="-" id="del" onclick="del()" /> -->
@@ -468,13 +496,33 @@
     <div>購買成功</div>
 <div>是否前往購物車查看:</div>
     <div><button class="ui cancelshopcart button"><i class="shopping red arrow alternate circle left
- icon"></i> 繼續購物 </button><button class="ui  button"> 前往購物車 <i class="shopping cart red
+ icon"></i> 繼續購物 </button>
+ 
+ 
+ <button class="ui  button"><a href="<%=request.getContextPath() %>/front-end/ShopPage/ProductPage?action=checktpage1">前往購物車 </a> <i class="shopping cart red
  icon"></i></button></div>
 
  
 
 
 
+	<script>
+
+						if($(".carmessage2").html()>0 && $(".carmessage2").html()<10){
+							$(".carmessagecircle").hide();
+							$(".carmessage2").show();
+						}
+						else if($(".carmessage2").html()>9){
+							$(".carmessage2").hide();
+							$(".carmessagecircle").show();
+						}
+						else{
+							$(".carmessagecircle").hide();
+							$(".carmessage2").hide();
+
+						}
+						
+						</script>
 	
 	<!-- JavasScript-->
 	<!-- JavasScript-->
@@ -589,15 +637,14 @@ width: 140px;
 
 </style>
 <script>
-    $( function() {
         $( "#buymessage" ).dialog({
-
+        	
             autoOpen: false,
             minWidth: 205,
             width: 340,
-            show: "Fold",
-
-            hide: "blind",
+            show: 'fade',
+            hide: "blind"
+            
 
 
         });
@@ -608,45 +655,16 @@ width: 140px;
 
         $("#buymessage").dialog("open");
 
-        return false;
     });
 
-    <%if(request.getAttribute("buy")!=null&&request.getAttribute("buy").equals("buy")){
-         %>
-    
-        $(".addcar").click();    
-    <% }%>
+ 
     
     $('.cancelshopcart').click(function () {
         $("#buymessage").dialog("close");
 
-    })
+    });
 
-});
- 
-    $(".cancelshopcart").click(function(){
-    	 $.ajax({
-         	url:'ShopCart?action=clearmessage&product_id=<%=product_id%>',
-         	type:"POST",
-         	data:{
-         		action:"clearmessage",
-         		product_id:'<%=product_id%>'
-         	},
-         	sucess:function(){
-         			
-         		
-         		
-         	}
-         });
-    	
-    	
-    	
-    	
-    	
-    	
-    })
-    
-    
+  
 </script>
 </body>
 
@@ -654,5 +672,59 @@ width: 140px;
 
 </html>
        
+		<script>
 
-       <%=request.getAttribute("buy")+"1" %>
+		function changecarmun(data) {
+			if(data==null){
+					$(".carmessage2").hide();
+					$(".carmessagecircle").hide();
+					
+				}
+				else if(data>9){
+
+					$(".carmessage2").hide();
+					$(".carmessagecircle").show();
+		         				
+				}
+				else if(data<9&&data>0){
+
+					$(".carmessage2").html(data);
+					$(".carmessage2").show();
+					$(".carmessagecircle").hide();
+					
+					
+				}
+				else{
+					alert("else"+data);
+
+					$(".carmessage2").hide();
+					$(".carmessagecircle").hide();
+				}
+        }
+		
+		
+		
+				$(".addcar").click(function(){
+					$.ajax({
+			         	url:'ShopCart',
+			         	type:"POST",
+			         	data:{
+			         		product_price:"<%=productvo.getProduct_price()%>",
+			         		action:"ADD",
+			         		product_id:'<%=productvo.getProduct_id()%>',
+			         		quantity:$("#inquantity").val()
+			 
+			         	},
+			         	success:function(data){
+			         		changecarmun(data);
+			        
+			         	}
+
+			});
+
+				});
+					 
+			
+				</script>
+				
+					

@@ -1,6 +1,7 @@
 package com.shop.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.List;
 import java.util.Vector;
 
@@ -41,6 +42,7 @@ public class ShopCartServlet extends HttpServlet {
 		String product_id="";
 		String recipe_id="";
 
+		
 		if(req.getParameter("recipe_id")!=null) {
 			recipe_id=req.getParameter("recipe_id");
 					ProductService psvc=new ProductService();
@@ -71,8 +73,9 @@ public class ShopCartServlet extends HttpServlet {
 				System.out.println("進入移除");
 				int remove=Integer.valueOf(req.getParameter("del"));
 				System.out.println(remove);
-		
 				productlist.remove(remove);
+
+				
 			}
 			//新增
 			else if(action.equals("ADD")) {
@@ -92,6 +95,7 @@ public class ShopCartServlet extends HttpServlet {
 					productlist.add(oneproduct);
 				}
 				}
+
 			}
 			
 			else if(action.equals("ADDR")) {
@@ -114,11 +118,17 @@ public class ShopCartServlet extends HttpServlet {
 					}
 			
 			
-			
+
 			
 			
 			}
-		
+			System.out.println("購物車長度:"+productlist.size());
+			if(action.equals("ADDR")||action.equals("ADD")) {
+				 PrintWriter out = res.getWriter();
+				out.println(productlist.size());
+				return;
+				
+			}
 		//--------------
 		session.setAttribute("productCar", productlist);
 		if(action.equals("REMOVE")) {
@@ -126,7 +136,7 @@ public class ShopCartServlet extends HttpServlet {
 			req.setAttribute("checktpage","checktpage1");
 			String url="/front-end/ShopPage/ShopCarPage.jsp";
 			RequestDispatcher rd = req.getRequestDispatcher(url);
-			rd.forward(req, res);	
+			rd.forward(req, res);
 			return;
 			
 			
@@ -136,6 +146,7 @@ public class ShopCartServlet extends HttpServlet {
 			String url="/front-end/recipe/RecipeServlet?action=getOne_For_Display&recipe_id="+recipe_id;
 			RequestDispatcher rd = req.getRequestDispatcher(url);
 			rd.forward(req, res);
+			
 		}
 		
 		
@@ -143,12 +154,7 @@ public class ShopCartServlet extends HttpServlet {
 			
 		req.setAttribute("product_id", product_id);
 		
-		if(action.equals("clearmessage")) {
-			System.out.println("清空訊息");
-			req.setAttribute("buy", "nomessage");
-
-		}else {
-		req.setAttribute("buy", "buy");}
+	
 		System.out.println("開始轉移");
 		String url="/front-end/ShopPage/ShopDetailPage.jsp";
 		RequestDispatcher rd = req.getRequestDispatcher(url);
