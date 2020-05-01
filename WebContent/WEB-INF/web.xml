@@ -153,6 +153,7 @@
 	</servlet-mapping>
 	
 	
+
 	
 	
 <!-- 	///////////////////////商城用////////////////////////// -->
@@ -330,5 +331,29 @@
      <dispatcher>ASYNC</dispatcher>
  </filter-mapping>
 <!-- 過濾器Filter結束 -->
+
+
+
+	<servlet>
+		<servlet-name>DBGifReader</servlet-name>
+		<servlet-class>com.member.model.DBGifReader4</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>DBGifReader</servlet-name>
+		<url-pattern>/front-end/member/DBGifReader4.do</url-pattern>
+	</servlet-mapping>
+
+
+<servlet>
+		<servlet-name>MoneyflowServlet3</servlet-name>
+		<servlet-class>com.member.controller.MoneyflowServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>MoneyflowServlet3</servlet-name>
+		<url-pattern>/front-end/member/MoneyflowServlet.do</url-pattern>
+	</servlet-mapping>
+
+
+
 	
 </web-app>

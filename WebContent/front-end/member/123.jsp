@@ -1,33 +1,23 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.member.model.*"%>
 
 <%
-String member_id =(String) session.getAttribute("member_id");
+	String member_id = (String) session.getAttribute("member_id");
 
-MemberService memberSvc = new MemberService();
-MemberVO membervo = memberSvc.getOneMember(member_id);
+	MemberService memberSvc = new MemberService();
+	MemberVO membervo = memberSvc.getOneMember(member_id);
 
-
-
-
-
-
-
-
-
-
-String member_name =(String) session.getAttribute("member_name");
-	
+	String member_name = (String) session.getAttribute("member_name");
 
 	MemberService pSvc = new MemberService();
 	List<MemberVO> list = pSvc.getAll();
 	pageContext.setAttribute("list", list);
-	
+
 	out.println(member_name);
 	out.println(member_id);
 %>
@@ -614,6 +604,723 @@ String member_name =(String) session.getAttribute("member_name");
       })
     </script>
 <link rel="stylesheet" href="../../css/frontEnd.css">
+
+/*---------------------------e04------------------------------------*/
+<style>
+
+@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600,700|Source+Sans+Pro:400,600,700&display=swap");
+body {
+  background: #ddeefc;
+  font-family: "Source Sans Pro", sans-serif;
+  font-size: 16px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+*:focus {
+  outline: none;
+}
+
+.wrapper {
+  min-height: 100vh;
+  display: flex;
+  padding: 50px 15px;
+}
+
+@media screen and (max-width: 700px), (max-height: 500px) {
+  .wrapper {
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+}
+
+.card-form {
+  max-width: 570px;
+  margin: auto;
+  width: 100%;
+}
+
+@media screen and (max-width: 576px) {
+  .card-form {
+    margin: 0 auto;
+  }
+}
+
+.card-form__inner {
+  background: #fff;
+  box-shadow: 0 30px 60px 0 rgba(90, 116, 148, 0.4);
+  border-radius: 10px;
+  padding: 35px;
+  padding-top: 180px;
+}
+
+@media screen and (max-width: 480px) {
+  .card-form__inner {
+    padding: 25px;
+    padding-top: 165px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .card-form__inner {
+    padding: 15px;
+    padding-top: 165px;
+  }
+}
+
+.card-form__row {
+  display: flex;
+  align-items: flex-start;
+}
+
+@media screen and (max-width: 480px) {
+  .card-form__row {
+    flex-wrap: wrap;
+  }
+}
+
+.card-form__col {
+  flex: auto;
+  margin-right: 35px;
+}
+
+.card-form__col:last-child {
+  margin-right: 0;
+}
+
+@media screen and (max-width: 480px) {
+  .card-form__col {
+    margin-right: 0;
+    flex: unset;
+    width: 100%;
+    margin-bottom: 20px;
+  }
+  .card-form__col:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.card-form__col.-cvv {
+  max-width: 150px;
+}
+
+@media screen and (max-width: 480px) {
+  .card-form__col.-cvv {
+    max-width: initial;
+  }
+}
+
+.card-form__group {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.card-form__group .card-input__input {
+  flex: 1;
+  margin-right: 15px;
+}
+
+.card-form__group .card-input__input:last-child {
+  margin-right: 0;
+}
+
+.card-form__button {
+  width: 100%;
+  height: 55px;
+  background: #2364d2;
+  border: none;
+  border-radius: 5px;
+  font-size: 22px;
+  font-weight: 500;
+  font-family: "Source Sans Pro", sans-serif;
+  box-shadow: 3px 10px 20px 0px rgba(35, 100, 210, 0.3);
+  color: #fff;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 480px) {
+  .card-form__button {
+    margin-top: 10px;
+  }
+}
+
+.card-item {
+  max-width: 430px;
+  height: 270px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+@media screen and (max-width: 480px) {
+  .card-item {
+    max-width: 310px;
+    height: 220px;
+    width: 90%;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .card-item {
+    height: 180px;
+  }
+}
+
+.card-item.-active .card-item__side.-front {
+  transform: perspective(1000px) rotateY(180deg) rotateX(0deg) rotateZ(0deg);
+}
+
+.card-item.-active .card-item__side.-back {
+  transform: perspective(1000px) rotateY(0) rotateX(0deg) rotateZ(0deg);
+}
+
+.card-item__focus {
+  position: absolute;
+  z-index: 3;
+  border-radius: 5px;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  transition: all 0.35s cubic-bezier(0.71, 0.03, 0.56, 0.85);
+  opacity: 0;
+  pointer-events: none;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.65);
+}
+
+.card-item__focus:after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: #08142f;
+  height: 100%;
+  border-radius: 5px;
+  filter: blur(25px);
+  opacity: 0.5;
+}
+
+.card-item__focus.-active {
+  opacity: 1;
+}
+
+.card-item__side {
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px 0 rgba(14, 42, 90, 0.55);
+  transform: perspective(2000px) rotateY(0deg) rotateX(0deg) rotate(0deg);
+  transform-style: preserve-3d;
+  transition: all 0.8s cubic-bezier(0.71, 0.03, 0.56, 0.85);
+  backface-visibility: hidden;
+  height: 100%;
+}
+
+.card-item__side.-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transform: perspective(2000px) rotateY(-180deg) rotateX(0deg) rotate(0deg);
+  z-index: 2;
+  padding: 0;
+  height: 100%;
+}
+
+.card-item__side.-back .card-item__cover {
+  transform: rotateY(-180deg);
+}
+
+.card-item__bg {
+  max-width: 100%;
+  display: block;
+  max-height: 100%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.card-item__cover {
+  height: 100%;
+  background-color: #1c1d27;
+  position: absolute;
+  height: 100%;
+  background-color: #1c1d27;
+  left: 0;
+  top: 0;
+  width: 100%;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.card-item__cover:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(6, 2, 29, 0.45);
+}
+
+.card-item__top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  padding: 0 10px;
+}
+
+@media screen and (max-width: 480px) {
+  .card-item__top {
+    margin-bottom: 25px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .card-item__top {
+    margin-bottom: 15px;
+  }
+}
+
+.card-item__chip {
+  width: 60px;
+}
+
+@media screen and (max-width: 480px) {
+  .card-item__chip {
+    width: 50px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .card-item__chip {
+    width: 40px;
+  }
+}
+
+.card-item__type {
+  height: 45px;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  max-width: 100px;
+  margin-left: auto;
+  width: 100%;
+}
+
+@media screen and (max-width: 480px) {
+  .card-item__type {
+    height: 40px;
+    max-width: 90px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .card-item__type {
+    height: 30px;
+  }
+}
+
+.card-item__typeImg {
+  max-width: 100%;
+  object-fit: contain;
+  max-height: 100%;
+  object-position: top right;
+}
+
+.card-item__info {
+  color: #fff;
+  width: 100%;
+  max-width: calc(100% - 85px);
+  padding: 10px 15px;
+  font-weight: 500;
+  display: block;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 480px) {
+  .card-item__info {
+    padding: 10px;
+  }
+}
+
+.card-item__holder {
+  opacity: 0.7;
+  font-size: 13px;
+  margin-bottom: 6px;
+}
+
+@media screen and (max-width: 480px) {
+  .card-item__holder {
+    font-size: 12px;
+    margin-bottom: 5px;
+  }
+}
+
+.card-item__wrapper {
+  font-family: "Source Code Pro", monospace;
+  padding: 25px 15px;
+  position: relative;
+  z-index: 4;
+  height: 100%;
+  text-shadow: 7px 6px 10px rgba(14, 42, 90, 0.8);
+  user-select: none;
+}
+
+@media screen and (max-width: 480px) {
+  .card-item__wrapper {
+    padding: 20px 10px;
+  }
+}
+
+.card-item__name {
+  font-size: 18px;
+  line-height: 1;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+}
+
+@media screen and (max-width: 480px) {
+  .card-item__name {
+    font-size: 16px;
+  }
+}
+
+.card-item__nameItem {
+  display: inline-block;
+  min-width: 8px;
+  position: relative;
+}
+
+.card-item__number {
+  font-weight: 500;
+  line-height: 1;
+  color: #fff;
+  font-size: 27px;
+  margin-bottom: 35px;
+  display: inline-block;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 480px) {
+  .card-item__number {
+    font-size: 21px;
+    margin-bottom: 15px;
+    padding: 10px 10px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .card-item__number {
+    font-size: 19px;
+    margin-bottom: 10px;
+    padding: 10px 10px;
+  }
+}
+
+.card-item__numberItem {
+  width: 16px;
+  display: inline-block;
+}
+
+.card-item__numberItem.-active {
+  width: 30px;
+}
+
+@media screen and (max-width: 480px) {
+  .card-item__numberItem {
+    width: 13px;
+  }
+  .card-item__numberItem.-active {
+    width: 16px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .card-item__numberItem {
+    width: 12px;
+  }
+  .card-item__numberItem.-active {
+    width: 8px;
+  }
+}
+
+.card-item__content {
+  color: #fff;
+  display: flex;
+  align-items: flex-start;
+}
+
+.card-item__date {
+  flex-wrap: wrap;
+  font-size: 18px;
+  margin-left: auto;
+  padding: 10px;
+  display: inline-flex;
+  width: 80px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 480px) {
+  .card-item__date {
+    font-size: 16px;
+  }
+}
+
+.card-item__dateItem {
+  position: relative;
+}
+
+.card-item__dateItem span {
+  width: 22px;
+  display: inline-block;
+}
+
+.card-item__dateTitle {
+  opacity: 0.7;
+  font-size: 13px;
+  padding-bottom: 6px;
+  width: 100%;
+}
+
+@media screen and (max-width: 480px) {
+  .card-item__dateTitle {
+    font-size: 12px;
+    padding-bottom: 5px;
+  }
+}
+
+.card-item__band {
+  background: rgba(0, 0, 19, 0.8);
+  width: 100%;
+  height: 50px;
+  margin-top: 30px;
+  position: relative;
+  z-index: 2;
+}
+
+@media screen and (max-width: 480px) {
+  .card-item__band {
+    margin-top: 20px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .card-item__band {
+    height: 40px;
+    margin-top: 10px;
+  }
+}
+
+.card-item__cvv {
+  text-align: right;
+  position: relative;
+  z-index: 2;
+  padding: 15px;
+}
+
+.card-item__cvv .card-item__type {
+  opacity: 0.7;
+}
+
+@media screen and (max-width: 360px) {
+  .card-item__cvv {
+    padding: 10px 15px;
+  }
+}
+
+.card-item__cvvTitle {
+  padding-right: 10px;
+  font-size: 15px;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 5px;
+}
+
+.card-item__cvvBand {
+  height: 45px;
+  background: #fff;
+  margin-bottom: 30px;
+  text-align: right;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 10px;
+  color: #1a3b5d;
+  font-size: 18px;
+  border-radius: 4px;
+  box-shadow: 0px 10px 20px -7px rgba(32, 56, 117, 0.35);
+}
+
+@media screen and (max-width: 480px) {
+  .card-item__cvvBand {
+    height: 40px;
+    margin-bottom: 20px;
+  }
+}
+
+@media screen and (max-width: 360px) {
+  .card-item__cvvBand {
+    margin-bottom: 15px;
+  }
+}
+
+.card-list {
+  margin-bottom: -130px;
+}
+
+@media screen and (max-width: 480px) {
+  .card-list {
+    margin-bottom: -120px;
+  }
+}
+
+.card-input {
+  margin-bottom: 20px;
+}
+
+.card-input__label {
+  font-size: 14px;
+  margin-bottom: 5px;
+  font-weight: 500;
+  color: #1a3b5d;
+  width: 100%;
+  display: block;
+  user-select: none;
+}
+
+.card-input__input {
+  width: 100%;
+  height: 50px;
+  border-radius: 5px;
+  box-shadow: none;
+  border: 1px solid #ced6e0;
+  transition: all 0.3s ease-in-out;
+  font-size: 18px;
+  padding: 5px 15px;
+  background: none;
+  color: #1a3b5d;
+  font-family: "Source Sans Pro", sans-serif;
+}
+
+.card-input__input:hover, .card-input__input:focus {
+  border-color: #3d9cff;
+}
+
+.card-input__input:focus {
+  box-shadow: 0px 10px 20px -13px rgba(32, 56, 117, 0.35);
+}
+
+.card-input__input.-select {
+  -webkit-appearance: none;
+  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAeCAYAAABuUU38AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUxJREFUeNrM1sEJwkAQBdCsngXPHsQO9O5FS7AAMVYgdqAd2IGCDWgFnryLFQiCZ8EGnJUNimiyM/tnk4HNEAg/8y6ZmMRVqz9eUJvRaSbvutCZ347bXVJy/ZnvTmdJ862Me+hAbZCTs6GHpyUi1tTSvPnqTpoWZPUa7W7ncT3vK4h4zVejy8QzM3WhVUO8ykI6jOxoGA4ig3BLHcNFSCGqGAkig2yqgpEiMsjSfY9LxYQg7L6r0X6wS29YJiYQYecemY+wHrXD1+bklGhpAhBDeu/JfIVGxaAQ9sb8CI+CQSJ+QmJg0Ii/EE2MBiIXooHRQhRCkBhNhBcEhLkwf05ZCG8ICCOpk0MULmvDSY2M8UawIRExLIQIEgHDRoghihgRIgiigBEjgiFATBACAgFgghEwSAAGgoBCBBgYAg5hYKAIFYgHBo6w9RRgAFfy160QuV8NAAAAAElFTkSuQmCC");
+  background-size: 12px;
+  background-position: 90% center;
+  background-repeat: no-repeat;
+  padding-right: 30px;
+}
+
+.slide-fade-up-enter-active {
+  transition: all 0.25s ease-in-out;
+  transition-delay: 0.1s;
+  position: relative;
+}
+
+.slide-fade-up-leave-active {
+  transition: all 0.25s ease-in-out;
+  position: absolute;
+}
+
+.slide-fade-up-enter {
+  opacity: 0;
+  transform: translateY(15px);
+  pointer-events: none;
+}
+
+.slide-fade-up-leave-to {
+  opacity: 0;
+  transform: translateY(-15px);
+  pointer-events: none;
+}
+
+.slide-fade-right-enter-active {
+  transition: all 0.25s ease-in-out;
+  transition-delay: 0.1s;
+  position: relative;
+}
+
+.slide-fade-right-leave-active {
+  transition: all 0.25s ease-in-out;
+  position: absolute;
+}
+
+.slide-fade-right-enter {
+  opacity: 0;
+  transform: translateX(10px) rotate(45deg);
+  pointer-events: none;
+}
+
+.slide-fade-right-leave-to {
+  opacity: 0;
+  transform: translateX(-10px) rotate(45deg);
+  pointer-events: none;
+}
+
+.github-btn {
+  position: absolute;
+  right: 40px;
+  bottom: 50px;
+  text-decoration: none;
+  padding: 15px 25px;
+  border-radius: 4px;
+  box-shadow: 0px 4px 30px -6px rgba(36, 52, 70, 0.65);
+  background: #24292e;
+  color: #fff;
+  font-weight: bold;
+  letter-spacing: 1px;
+  font-size: 16px;
+  text-align: center;
+  transition: all .3s ease-in-out;
+}
+
+@media screen and (min-width: 500px) {
+  .github-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0px 17px 20px -6px rgba(36, 52, 70, 0.36);
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .github-btn {
+    position: relative;
+    bottom: auto;
+    right: auto;
+    margin-top: 20px;
+  }
+  .github-btn:active {
+    transform: scale(1.1);
+    box-shadow: 0px 17px 20px -6px rgba(36, 52, 70, 0.36);
+  }
+}
+
+</style>
+/*---------------------------e04------------------------------------*/
+
+
 <style>
 
 /* cyrillic-ext */
@@ -867,7 +1574,7 @@ body {
 }
 
 .sidebar {
-	margin-top: -1000px;
+	margin-top: -350px;
 	margin-left: 13%;
 	width: 240px;
 	height: 100%;
@@ -881,57 +1588,18 @@ body {
 	z-index: 100;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .member-center-spann {
-    margin-top: 10px;
-    float: right;
-    font-size: 16px;
-    font-weight: 600;
-    font-family: "微軟正黑體";
-    color: skyblue;
-    height: 40px;
-    width: 135px;
-    padding-left: 5px;
-    padding-top: 10px;
-    
+	margin-top: 10px;
+	float: right;
+	font-size: 16px;
+	font-weight: 600;
+	font-family: "微軟正黑體";
+	color: skyblue;
+	height: 40px;
+	width: 135px;
+	padding-left: 5px;
+	padding-top: 10px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .sidebar #leftside-navigation ul, .sidebar #leftside-navigation ul ul {
 	margin: -2px 0 0;
@@ -1606,30 +2274,17 @@ hr {
 	}
 }
 
-
-
 .function {
-    float: left;
-    border-bottom: 4px solid rgb(199, 199, 199);
-    height: 51px;
-    width: 85%;
-    margin-top: 15px;
+	float: left;
+	border-bottom: 4px solid rgb(199, 199, 199);
+	height: 51px;
+	width: 85%;
+	margin-top: 15px;
 }
 
 .function-list {
-    display: inline;
+	display: inline;
 }
-
-
-
-
-
-
-
-
-
-
-
 </style>
 </head>
 
@@ -1640,7 +2295,7 @@ hr {
 				class="logo-photo" src="../../image/FoodPron_Logo.png" alt="logo"></a>
 		</div>
 		<div class="function">
-			
+
 			<div class="function-list">
 				<div class="menu">
 					<input type="checkbox" href="#" class="menu-open menu-icon"
@@ -1688,36 +2343,38 @@ hr {
 							<span class="notice-span">通知總覽</span>
 						</div> </a>
 				</div>
-				
 
-				
-				
-			
-				</div>
-				
-			
-				
-				
-				
-				
-				
-				
-				
-							
-			<!-- 			<div class="function-list"> -->
-				<a href="#"></a>
-<!-- 				<div class="member-center"> -->
-					<div class="herder-icon-span"><span class="member-center-spann">HI，<%=session.getAttribute("member_name") %></span></div>
-<%--                         <span class="member-center-spann">HI，<%=session.getAttribute("member_name") %></span> --%>
-<!-- 				</div> -->
-				</a>
-<!-- 			</div> -->
-				
+
+
 
 
 			</div>
 
-	
+
+
+
+
+
+
+
+
+
+			<!-- 			<div class="function-list"> -->
+			<a href="#"></a>
+			<!-- 				<div class="member-center"> -->
+			<div class="herder-icon-span">
+				<span class="member-center-spann">HI，<%=session.getAttribute("member_name")%></span>
+			</div>
+			<%--                         <span class="member-center-spann">HI，<%=session.getAttribute("member_name") %></span> --%>
+			<!-- 				</div> -->
+			</a>
+			<!-- 			</div> -->
+
+
+
+		</div>
+
+
 		<!-- end of function-->
 		<nav id="navigation">
 			<ul>
@@ -1843,8 +2500,8 @@ hr {
 					</div>
 				</div>
 			</div>
-	
-	</div>
+
+		</div>
 	</c:if>
 	<!-- end of login-->
 	<div class="pagetop">
@@ -1862,415 +2519,284 @@ hr {
 
 
 
-<%-- 錯誤表列 --%>
-	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">請修正以下錯誤:</font>
-		<ul>
-			<c:forEach var="message" items="${errorMsgs}">
-				<li style="color: red">${message}</li>
-			</c:forEach>
-		</ul>
-	</c:if>
+			<%-- 錯誤表列 --%>
+			<c:if test="${not empty errorMsgs}">
+				<font style="color: red">請修正以下錯誤:</font>
+				<ul>
+					<c:forEach var="message" items="${errorMsgs}">
+						<li style="color: red">${message}</li>
+					</c:forEach>
+				</ul>
+			</c:if>
 
-<FORM METHOD="post" ACTION="member.do" name="upateform" id="upateform"
-		enctype="multipart/form-data">
-
-
+			<FORM METHOD="post" ACTION="MoneyflowServlet.do" name="upateform"
+				id="upateform" enctype="multipart/form-data">
 
 
 
 
 
-			<div class="container">
-
-				<h3>我的檔案</h3>
-
-				<h1>管理你的檔案以保護你的帳戶</h1>
 
 
+				<div class="container">
+
+					<!-- 				<h3>我的檔案</h3> -->
+
+					<!-- 				<h1>管理你的檔案以保護你的帳戶</h1> -->
 
 
-				
+
+
+
 
 					<table align="center" cellpadding="10">
 
 						<!----- First Name ---------------------------------------------------------->
-					
-					
-					
-						<tr>
-				<td>會員圖片:</td>
-				<!-- 按鈕 -->
-				<td><input type="file" id="imgView" name="member_photo"
-					size="45" accept="image/gif, image/jpeg, image/png"> <img src=DBGifReader4.do?photo_type=mempic&member_id=<%=session.getAttribute("member_id")%> id="preview_progressbarTW_img" width=100px height=100px;/></td>
+						<!---------------------------- 廚師提款開頭 ---------------------------------------------------------->
 
-			</tr>
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-						<tr>
-							<td>會員姓名:</td>
+  <div class="wrapper" id="app">
+    <div class="card-form">
+      <div class="card-list">
+        <div class="card-item" v-bind:class="{ '-active' : isCardFlipped }">
+          <div class="card-item__side -front">
+            <div class="card-item__focus" v-bind:class="{'-active' : focusElementStyle }" v-bind:style="focusElementStyle" ref="focusElement"></div>
+            <div class="card-item__cover">
+              <img
+              v-bind:src="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + currentCardBackground + '.jpeg'" class="card-item__bg">
+            </div>
+            
+            <div class="card-item__wrapper">
+              <div class="card-item__top">
+                <img src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/chip.png" class="card-item__chip">
+                <div class="card-item__type">
+                  <transition name="slide-fade-up">
+                    <img v-bind:src="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + getCardType + '.png'" v-if="getCardType" v-bind:key="getCardType" alt="" class="card-item__typeImg">
+                  </transition>
+                </div>
+              </div>
+              <label for="cardNumber" class="card-item__number" ref="cardNumber">
+                <template v-if="getCardType === 'amex'">
+                 <span v-for="(n, $index) in amexCardMask" :key="$index">
+                  <transition name="slide-fade-up">
+                    <div
+                      class="card-item__numberItem"
+                      v-if="$index > 4 && $index < 14 && cardNumber.length > $index && n.trim() !== ''"
+                    >*</div>
+                    <div class="card-item__numberItem"
+                      :class="{ '-active' : n.trim() === '' }"
+                      :key="$index" v-else-if="cardNumber.length > $index">
+                      {{cardNumber[$index]}}
+                    </div>
+                    <div
+                      class="card-item__numberItem"
+                      :class="{ '-active' : n.trim() === '' }"
+                      v-else
+                      :key="$index + 1"
+                    >{{n}}</div>
+                  </transition>
+                </span>
+                </template>
 
-							<td>
-								
+                <template v-else>
+                  <span v-for="(n, $index) in otherCardMask" :key="$index">
+                    <transition name="slide-fade-up">
+                      <div
+                        class="card-item__numberItem"
+                        v-if="$index > 4 && $index < 15 && cardNumber.length > $index && n.trim() !== ''"
+                      >*</div>
+                      <div class="card-item__numberItem"
+                        :class="{ '-active' : n.trim() === '' }"
+                        :key="$index" v-else-if="cardNumber.length > $index">
+                        {{cardNumber[$index]}}
+                      </div>
+                      <div
+                        class="card-item__numberItem"
+                        :class="{ '-active' : n.trim() === '' }"
+                        v-else
+                        :key="$index + 1"
+                      >{{n}}</div>
+                    </transition>
+                  </span>
+                </template>
+              </label>
+              <div class="card-item__content">
+                <label for="cardName" class="card-item__info" ref="cardName">
+                  <div class="card-item__holder">Card Holder</div>
+                  <transition name="slide-fade-up">
+                    <div class="card-item__name" v-if="cardName.length" key="1">
+                      <transition-group name="slide-fade-right">
+                        <span class="card-item__nameItem" v-for="(n, $index) in cardName.replace(/\s\s+/g, ' ')" v-if="$index === $index" v-bind:key="$index + 1">{{n}}</span>
+                      </transition-group>
+                    </div>
+                    <div class="card-item__name" v-else key="2">Full Name</div>
+                  </transition>
+                </label>
+                <div class="card-item__date" ref="cardDate">
+                  <label for="cardMonth" class="card-item__dateTitle">Expires</label>
+                  <label for="cardMonth" class="card-item__dateItem">
+                    <transition name="slide-fade-up">
+                      <span v-if="cardMonth" v-bind:key="cardMonth">{{cardMonth}}</span>
+                      <span v-else key="2">MM</span>
+                    </transition>
+                  </label>
+                  /
+                  <label for="cardYear" class="card-item__dateItem">
+                    <transition name="slide-fade-up">
+                      <span v-if="cardYear" v-bind:key="cardYear">{{String(cardYear).slice(2,4)}}</span>
+                      <span v-else key="2">YY</span>
+                    </transition>
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card-item__side -back">
+            <div class="card-item__cover">
+              <img
+              v-bind:src="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + currentCardBackground + '.jpeg'" class="card-item__bg">
+            </div>
+            <div class="card-item__band"></div>
+            <div class="card-item__cvv">
+                <div class="card-item__cvvTitle">CVV</div>
+                <div class="card-item__cvvBand">
+                  <span v-for="(n, $index) in cardCvv" :key="$index">
+                    *
+                  </span>
+
+              </div>
+                <div class="card-item__type">
+                    <img v-bind:src="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + getCardType + '.png'" v-if="getCardType" class="card-item__typeImg">
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-form__inner">
+        <div class="card-input">
+          <label for="cardNumber" class="card-input__label">Card Number</label>
+          <input type="text" id="cardNumber" class="card-input__input" v-mask="generateCardNumberMask" v-model="cardNumber" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardNumber" autocomplete="off">
+        </div>
+        <div class="card-input">
+          <label for="cardName" class="card-input__label">Card Holders</label>
+          <input type="text" id="cardName" class="card-input__input" v-model="cardName" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardName" autocomplete="off">
+        </div>
+        <div class="card-form__row">
+          <div class="card-form__col">
+            <div class="card-form__group">
+              <label for="cardMonth" class="card-input__label">Expiration Date</label>
+              <select class="card-input__input -select" id="cardMonth" v-model="cardMonth" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardDate">
+                <option value="" disabled selected>Month</option>
+                <option v-bind:value="n < 10 ? '0' + n : n" v-for="n in 12" v-bind:disabled="n < minCardMonth" v-bind:key="n">
+                    {{n < 10 ? '0' + n : n}}
+                </option>
+              </select>
+              <select class="card-input__input -select" id="cardYear" v-model="cardYear" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardDate">
+                <option value="" disabled selected>Year</option>
+                <option v-bind:value="$index + minCardYear" v-for="(n, $index) in 12" v-bind:key="n">
+                    {{$index + minCardYear}}
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="card-form__col -cvv">
+            <div class="card-input">
+              <label for="cardCvv" class="card-input__label">CVV</label>
+              <input type="text" class="card-input__input" id="cardCvv" v-mask="'####'" maxlength="4" v-model="cardCvv" v-on:focus="flipCard(true)" v-on:blur="flipCard(false)" autocomplete="off">
+            </div>
+          </div>
+        </div>
+
+        <button class="card-form__button">
+          Submit
+        </button>
+      </div>
+    </div>
+    
+    <a href="https://github.com/muhammederdem/credit-card-form" target="_blank" class="github-btn">
+      See on GitHub
+    </a>
+  </div>
 
 
 
-
-
-								<input type="TEXT" name="member_name" size="45"
-					id=member_name value="<%=membervo.getMember_name()%>" />
-
-								<!-- (max 30 characters a-z and A-Z) -->
-							</td>
-						</tr>
-
-						<!----- Last Name ---------------------------------------------------------->
-						<tr>
-							<td>會員帳號:</td>
-							<td><input type="TEXT" name="account" size="45" id=account
-					value="<%=membervo.getAccount()%>" /></td>
-						</tr>
-
-						<tr>
-							<td>會員密碼:</td>
-							<td><input type="password" name="password" size="45" id=password
-					value="<%=membervo.getPassword()%>" /></td>
-					<td><label><input type="checkbox" id="show_password" size="45" />顯示密碼</label></td>
-						</tr>
-
-
-
-
-						<!----- Date Of Birth -------------------------------------------------------->
-						<tr>
-							<td>會員生日:</td>
-
-							<td><input type="TEXT" name="birthday" size="45" id="birthday"
-					 /></td>
-
-						</tr>
-
-						<!----- Email Id ---------------------------------------------------------->
-						<tr>
-							<td>信箱:</td>
-							<td><input type="TEXT" name="email" size="45" id=email
-					value="<%=membervo.getEmail()%>" /></td>
-						</tr>
-
-						<!----- Mobile Number ---------------------------------------------------------->
-						<tr>
-							<td>電話號碼:</td>
-							<td><input type="TEXT" name="cellphone" size="45" id=cellphone
-					value="<%=membervo.getCellphone()%>" /></td>
-						</tr>
-
-						<!----- Gender ----------------------------------------------------------->
-						<tr>
-							<td>性別:</td>
-							<td><input type="radio" name="gender" value=0 checked="<%=(membervo.getGender()==0)? "true": "false"%>"> 男<br>
-					<input type="radio" name="gender" value=1 checked="<%=(membervo.getGender()==1)? "true": "false"%>"> 女<br></td>
-						</tr>
-
-						<!----- Address ---------------------------------------------------------->
-						<tr>
-							<td>地址: <br />
-							<br />
-							<br /></td>
-							<!-- <td><textarea name="Address" rows="4" cols="30"></textarea></td> -->
-							<td><input type="TEXT" name="member_address" size="45"
-					id="address" value="<%=membervo.getMember_address()%>" /></td>
-						</tr>
-
-
-
-						<!----- State ---------------------------------------------------------->
-						<!-- <tr>
-<td>STATE</td>
-<td><input type="text" name="State" maxlength="30" />
-(max 30 characters a-z and A-Z)
-</td>
-</tr> -->
-
-						<!----- Country ---------------------------------------------------------->
-						<!-- <tr>
-<td>COUNTRY</td>
-<td><input type="text" name="Country" value="India" readonly="readonly" /></td>
-</tr> -->
-
-						<!----- Hobbies ---------------------------------------------------------->
-
-						<!-- <tr>
-<td>HOBBIES <br /><br /><br /></td>
- 
-<td>
-Drawing
-<input type="checkbox" name="Hobby_Drawing" value="Drawing" />
-Singing
-<input type="checkbox" name="Hobby_Singing" value="Singing" />
-Dancing
-<input type="checkbox" name="Hobby_Dancing" value="Dancing" />
-Sketching
-<input type="checkbox" name="Hobby_Cooking" value="Cooking" />
-<br />
-Others
-<input type="checkbox" name="Hobby_Other" value="Other">
-<input type="text" name="Other_Hobby" maxlength="30" />
-</td>
-</tr> -->
-
-						<!----- Qualification---------------------------------------------------------->
-						<!-- <tr>
-<td>QUALIFICATION <br /><br /><br /><br /><br /><br /><br /></td>
- 
-<td>
-<table>
- 
-<tr>
-<td align="center"><b>Sl.No.</b></td>
-<td align="center"><b>Examination</b></td>
-<td align="center"><b>Board</b></td>
-<td align="center"><b>Percentage</b></td>
-<td align="center"><b>Year of Passing</b></td>
-</tr> -->
-
-						<!-- <tr>
-<td>1</td>
-<td>Class X</td>
-<td><input type="text" name="ClassX_Board" maxlength="30" /></td>
-<td><input type="text" name="ClassX_Percentage" maxlength="30" /></td>
-<td><input type="text" name="ClassX_YrOfPassing" maxlength="30" /></td>
-</tr>
- 
-<tr>
-<td>2</td>
-<td>Class XII</td>
-<td><input type="text" name="ClassXII_Board" maxlength="30" /></td>
-<td><input type="text" name="ClassXII_Percentage" maxlength="30" /></td>
-<td><input type="text" name="ClassXII_YrOfPassing" maxlength="30" /></td>
-</tr>
- 
-<tr>
-<td>3</td>
-<td>Graduation</td>
-<td><input type="text" name="Graduation_Board" maxlength="30" /></td>
-<td><input type="text" name="Graduation_Percentage" maxlength="30" /></td>
-<td><input type="text" name="Graduation_YrOfPassing" maxlength="30" /></td>
-</tr>
- 
-<tr>
-<td>4</td>
-<td>Masters</td>
-<td><input type="text" name="Masters_Board" maxlength="30" /></td>
-<td><input type="text" name="Masters_Percentage" maxlength="30" /></td>
-<td><input type="text" name="Masters_YrOfPassing" maxlength="30" /></td>
-</tr>
- 
-<tr>
-<td></td>
-<td></td>
-<td align="center">(10 char max)</td>
-<td align="center">(upto 2 decimal)</td>
-</tr>
-</table>
- 
-</td>
-</tr>
-  -->
-						<!----- Course ---------------------------------------------------------->
-						<!-- <tr>
-<td>COURSES<br />APPLIED FOR</td>
-<td>
-BCA
-<input type="radio" name="Course_BCA" value="BCA">
-B.Com
-<input type="radio" name="Course_BCom" value="B.Com">
-B.Sc
-<input type="radio" name="Course_BSc" value="B.Sc">
-B.A
-<input type="radio" name="Course_BA" value="B.A">
-</td>
-</tr> -->
-
-						<!----- Submit and Reset ------------------------------------------------->
-
-			<tr>
-							<td colspan="2" align="center">
-								
-								
-								 <!-- <div class="submit">
-  <input type="submit"  value="儲存" id="button-blue"/>
-  <div class="ease"></div> -->
-  <div class="submit_btn">
-  
-   <span class="submitAndSave" id="article-section-seemore-recipe">儲存</span>
-    <input type="submit" class="submit_btn" value="儲存" >  
-								
-		</div>						
-								
-								
-								
-								
-								<!-- <input type="reset" value="Reset"> -->
-							</td>
-						</tr>
 					</table>
-					
-			<br> <input type="hidden" name="action" value="updateBySelf">	
-					
-					 <input type="hidden"
-							name="member_id" value="<%=session.getAttribute("member_id")%>">
-							
-							
-						
-					
-					<input type="hidden"
-							name="account" value="${membervo.member_photo}">
-					
-					
-					
-					
-				 
-					
-					
-					
-					
-					
-					
-				
-				</form>
-				</div>
-				
-				<script>
-<%java.sql.Date birthday = null;
-                birthday = (membervo == null || membervo.getBirthday() == null)
-					? new java.sql.Date(System.currentTimeMillis())
-					:membervo.getBirthday();
-%>
+					</div>
 
- 	$.datetimepicker.setLocale('zh');
-	$('#birthday').datetimepicker({
-		theme : '', //theme: 'dark',
-		timepicker : false, //timepicker:true,
-		step : 60, //step: 60 (這是timepicker的預設間隔60分鐘)
-		format : 'Y-m-d', //format:'Y-m-d H:i:s',
-		value : '<%=birthday%>',
-	//disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
-	startDate:	            '2000/01/01',  // 起始日
-	//minDate:'-1970-01-07', // 去除今日(不含)之前
-	maxDate:               '+1970-01-01'  // 去除今日(不含)之後
-	});
+					<br> 
+<input type="hidden" name="action" value="consume"> 
+					<input type="hidden" name="member_id" value="<%=session.getAttribute("member_id")%>"> 
+			</form>
+			</div>
 
-
-	// ----------------------------------------------------------以下用來排定無法選擇的日期-----------------------------------------------------------
-
-	//      1.以下為某一天之前的日期無法選擇
-	//      var somedate1 = new Date('2017-06-15');
-	//      $('#f_date1').datetimepicker({
-	//          beforeShowDay: function(date) {
-	//        	  if (  date.getYear() <  somedate1.getYear() || 
-	//		           (date.getYear() == somedate1.getYear() && date.getMonth() <  somedate1.getMonth()) || 
-	//		           (date.getYear() == somedate1.getYear() && date.getMonth() == somedate1.getMonth() && date.getDate() < somedate1.getDate())
-	//              ) {
-	//                   return [false, ""]
-	//              }
-	//              return [true, ""];
-	//      }});
-
-	//      2.以下為某一天之後的日期無法選擇
-	//      var somedate2 = new Date('2017-06-15');
-	//      $('#f_date1').datetimepicker({
-	//          beforeShowDay: function(date) {
-	//        	  if (  date.getYear() >  somedate2.getYear() || 
-	//		           (date.getYear() == somedate2.getYear() && date.getMonth() >  somedate2.getMonth()) || 
-	//		           (date.getYear() == somedate2.getYear() && date.getMonth() == somedate2.getMonth() && date.getDate() > somedate2.getDate())
-	//              ) {
-	//                   return [false, ""]
-	//              }
-	//              return [true, ""];
-	//      }});
-
-	//      3.以下為兩個日期之外的日期無法選擇 (也可按需要換成其他日期)
-	//      var somedate1 = new Date('2017-06-15');
-	//      var somedate2 = new Date('2017-06-25');
-	//      $('#f_date1').datetimepicker({
-	//          beforeShowDay: function(date) {
-	//        	  if (  date.getYear() <  somedate1.getYear() || 
-	//		           (date.getYear() == somedate1.getYear() && date.getMonth() <  somedate1.getMonth()) || 
-	//		           (date.getYear() == somedate1.getYear() && date.getMonth() == somedate1.getMonth() && date.getDate() < somedate1.getDate())
-	//		             ||
-	//		            date.getYear() >  somedate2.getYear() || 
-	//		           (date.getYear() == somedate2.getYear() && date.getMonth() >  somedate2.getMonth()) || 
-	//		           (date.getYear() == somedate2.getYear() && date.getMonth() == somedate2.getMonth() && date.getDate() > somedate2.getDate())
-	//              ) {
-	//                   return [false, ""]
-	//              }
-	//              return [true, ""];
-	//      }});
-</script>
-	
-	
-	
-
-	<script>
-		$("#imgView").change(function() {
-
-			readURL(this);
-		});
-
-		function readURL(input) {
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
-				reader.onload = function(e) {
-					$("#preview_progressbarTW_img")
-							.attr('src', e.target.result);
-				}
-				reader.readAsDataURL(input.files[0]);
 			
-			}
-			return;
-     	}
-		
 
-		
-		
-		$(function(){
-			// 先取得 #password1 及產生一個文字輸入框
-			var $password = $('#password'), 
-				$passwordInput = $('<input type="text" name="' + $password.attr('name') + '" class="' + $password.attr('className') + '" />');
-		 
-			// 當勾選顯示密碼框時
-			$('#show_password').click(function(){
-				// 如果是勾選則...
-				if(this.checked){
-					// 用 $passwordInput 來取代 $password
-					// 並把 $passwordInput 的值設為 $password 的值
-					$password.replaceWith($passwordInput.val($password.val()));
-				}else{
-					// 用 $password 來取代 $passwordInput
-					// 並把 $password 的值設為 $passwordInput 的值
-					$passwordInput.replaceWith($password.val($passwordInput.val()));
+
+
+
+			<script>
+				$("#imgView").change(function() {
+
+					readURL(this);
+				});
+
+				function readURL(input) {
+					if (input.files && input.files[0]) {
+						var reader = new FileReader();
+						reader.onload = function(e) {
+							$("#preview_progressbarTW_img").attr('src',
+									e.target.result);
+						}
+						reader.readAsDataURL(input.files[0]);
+
+					}
+					return;
 				}
-			});
-		});
-		
-		
-		
-		
-		
-		
-		</script>
-				
-				
-				
+
+				$(function() {
+					// 先取得 #password1 及產生一個文字輸入框
+					var $password = $('#password'), $passwordInput = $('<input type="text" name="'
+							+ $password.attr('name')
+							+ '" class="'
+							+ $password.attr('className') + '" />');
+
+					// 當勾選顯示密碼框時
+					$('#show_password').click(
+							function() {
+								// 如果是勾選則...
+								if (this.checked) {
+									// 用 $passwordInput 來取代 $password
+									// 並把 $passwordInput 的值設為 $password 的值
+									$password.replaceWith($passwordInput
+											.val($password.val()));
+								} else {
+									// 用 $password 來取代 $passwordInput
+									// 並把 $password 的值設為 $passwordInput 的值
+									$passwordInput.replaceWith($password
+											.val($passwordInput.val()));
+								}
+							});
+				});
+			</script>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 </body>
 
 
@@ -2330,8 +2856,7 @@ B.A
 				<ul>
 					<li><a href="tables-basic.html">交易紀錄</a></li>
 
-					<li><a href="/DA106_G4_Foodporn_Git/front-end/member/ChefWithdraw.jsp">提款</a></li>
-					<li><a href="/DA106_G4_Foodporn_Git/front-end/member/MemberStoredValue.jsp">儲值</a></li>
+					<li><a href="tables-data.html">提款</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:void(0);"><i
 					class="fa fa fa-tasks"></i><img class="access-menu-icon1"
@@ -2385,7 +2910,7 @@ B.A
 					<li><a href="pages-404.html">6</a></li>
 					<li><a href="pages-500.html">7</a></li>
 				</ul></li>
-			<li class="sub-menu"><a href="/DA106_G4_Foodporn_Git/front-end/member/ChefHomepage.jsp"><i
+			<li class="sub-menu"><a href="typography.html"><i
 					class="fa fa-text-height"></i><img class="access-menu-icon1"
 					src="../../image/member/S__12066825.jpg"><span>升級廚師</span></a></li>
 
@@ -2514,94 +3039,91 @@ B.A
 
 	<!-- JavasScript for BackTop -->
 	<script>
-        $('#BackTop').click(function () {
-            $('html,body').animate({ scrollTop: 0 }, 333);
-        });
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 450) {
-                $('#BackTop').fadeIn(222);
-            } else {
-                $('#BackTop').stop().fadeOut(222);
-            }
-        });
+		$('#BackTop').click(function() {
+			$('html,body').animate({
+				scrollTop : 0
+			}, 333);
+		});
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 450) {
+				$('#BackTop').fadeIn(222);
+			} else {
+				$('#BackTop').stop().fadeOut(222);
+			}
+		});
 
-        //畫面捲動時隱藏
-        window.onresize = function () {
-            if ($(window).width() > 767) {
-                $("nav").show();
-            } else $("nav").hide();
-        }
-
-    </script>
+		//畫面捲動時隱藏
+		window.onresize = function() {
+			if ($(window).width() > 767) {
+				$("nav").show();
+			} else
+				$("nav").hide();
+		}
+	</script>
 
 	<!-- JavasScript for shop-slide -->
 	<script>
-        $(".shop-slide-article-and-photo").hover(function () {
-            $(".shop-slide-article-and-photo-img").removeClass('imgSmall');
-            $(".shop-slide-article-and-photo-img").addClass('imgScale');
-        });
-        $(".shop-slide-article-and-photo").mouseleave(function () {
-            $(".shop-slide-article-and-photo-img").addClass('imgSmall');
-        });
+		$(".shop-slide-article-and-photo").hover(function() {
+			$(".shop-slide-article-and-photo-img").removeClass('imgSmall');
+			$(".shop-slide-article-and-photo-img").addClass('imgScale');
+		});
+		$(".shop-slide-article-and-photo").mouseleave(function() {
+			$(".shop-slide-article-and-photo-img").addClass('imgSmall');
+		});
 
-        /* 直播專區 right scale 效果 */
-        $(".article-section-description-livestream-right").hover(function () {
-            $(".livestream-right-img", this).addClass('imgScale');
-        });
-        $(".imglist-li a").hover(function () {
-            $(".imglist-li-span", this).removeClass('textRecoverColor');
-            $(".imglist-li-img", this).removeClass('imgSmall');
-            $(".imglist-li-img", this).addClass('imgScale');
-            $(".imglist-li-span", this).addClass('textChangeColor');
-        });
-        $(".imglist-li a").mouseleave(function () {
-            $(".imglist-li-span", this).addClass('textRecoverColor');
-            $(".imglist-li-img", this).addClass('imgSmall');
-        });
-    </script>
+		/* 直播專區 right scale 效果 */
+		$(".article-section-description-livestream-right").hover(function() {
+			$(".livestream-right-img", this).addClass('imgScale');
+		});
+		$(".imglist-li a").hover(function() {
+			$(".imglist-li-span", this).removeClass('textRecoverColor');
+			$(".imglist-li-img", this).removeClass('imgSmall');
+			$(".imglist-li-img", this).addClass('imgScale');
+			$(".imglist-li-span", this).addClass('textChangeColor');
+		});
+		$(".imglist-li a").mouseleave(function() {
+			$(".imglist-li-span", this).addClass('textRecoverColor');
+			$(".imglist-li-img", this).addClass('imgSmall');
+		});
+	</script>
 	<script>
-        $(".menu-open").on("click", function () {
-            $("nav").slideToggle();
-            $(this).toggleClass("active");
-            $('body,html').toggleClass('add')
-        });
-
-    </script>
+		$(".menu-open").on("click", function() {
+			$("nav").slideToggle();
+			$(this).toggleClass("active");
+			$('body,html').toggleClass('add')
+		});
+	</script>
 	<script>
-        AOS.init();
-    </script>
+		AOS.init();
+	</script>
 
 	<script>
-        $(document).ready(function () {
-            $('.course-sider-list').slick({
-                dots: true,
-                centerMode: true,
-                centerPadding: '60px',
-                slidesToShow: 3,
-                responsive: [
-                    {
-                        breakpoint: 768,
-                        settings: {
-                            arrows: false,
-                            centerMode: true,
-                            centerPadding: '40px',
-                            slidesToShow: 3
-                        }
-                    },
-                    {
-                        breakpoint: 480,
-                        settings: {
-                            arrows: false,
-                            centerMode: true,
-                            centerPadding: '40px',
-                            slidesToShow: 1
-                        }
-                    }
-                ]
-            });
-        });
-
-    </script>
+		$(document).ready(function() {
+			$('.course-sider-list').slick({
+				dots : true,
+				centerMode : true,
+				centerPadding : '60px',
+				slidesToShow : 3,
+				responsive : [ {
+					breakpoint : 768,
+					settings : {
+						arrows : false,
+						centerMode : true,
+						centerPadding : '40px',
+						slidesToShow : 3
+					}
+				}, {
+					breakpoint : 480,
+					settings : {
+						arrows : false,
+						centerMode : true,
+						centerPadding : '40px',
+						slidesToShow : 1
+					}
+				} ]
+			});
+		});
+	</script>
 
 
 
@@ -2611,21 +3133,19 @@ B.A
 
 
 
-	<script>  
-    $("#leftside-navigation .sub-menu > a").click(function(e) {
-      $("#leftside-navigation ul ul").slideUp(), $(this).next().is(":visible") || $(this).next().slideDown(),
-      e.stopPropagation()
-    })
+	<script>
+		$("#leftside-navigation .sub-menu > a").click(
+				function(e) {
+					$("#leftside-navigation ul ul").slideUp(), $(this).next()
+							.is(":visible")
+							|| $(this).next().slideDown(), e.stopPropagation()
+				})
 
-    $(document).ready(function() {  
-  $('.multiselect').multiselect();
-  $('.datepicker').datepicker();  
-});
-
-  </script>
-
-
-
+		$(document).ready(function() {
+			$('.multiselect').multiselect();
+			$('.datepicker').datepicker();
+		});
+	</script>
 
 
 

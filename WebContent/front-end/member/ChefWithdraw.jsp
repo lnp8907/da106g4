@@ -1,33 +1,23 @@
 
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.member.model.*"%>
 
 <%
-String member_id =(String) session.getAttribute("member_id");
+	String member_id = (String) session.getAttribute("member_id");
 
-MemberService memberSvc = new MemberService();
-MemberVO membervo = memberSvc.getOneMember(member_id);
+	MemberService memberSvc = new MemberService();
+	MemberVO membervo = memberSvc.getOneMember(member_id);
 
-
-
-
-
-
-
-
-
-
-String member_name =(String) session.getAttribute("member_name");
-	
+	String member_name = (String) session.getAttribute("member_name");
 
 	MemberService pSvc = new MemberService();
 	List<MemberVO> list = pSvc.getAll();
 	pageContext.setAttribute("list", list);
-	
+
 	out.println(member_name);
 	out.println(member_id);
 %>
@@ -867,7 +857,7 @@ body {
 }
 
 .sidebar {
-	margin-top: -1000px;
+	margin-top: -350px;
 	margin-left: 13%;
 	width: 240px;
 	height: 100%;
@@ -881,57 +871,18 @@ body {
 	z-index: 100;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 .member-center-spann {
-    margin-top: 10px;
-    float: right;
-    font-size: 16px;
-    font-weight: 600;
-    font-family: "微軟正黑體";
-    color: skyblue;
-    height: 40px;
-    width: 135px;
-    padding-left: 5px;
-    padding-top: 10px;
-    
+	margin-top: 10px;
+	float: right;
+	font-size: 16px;
+	font-weight: 600;
+	font-family: "微軟正黑體";
+	color: skyblue;
+	height: 40px;
+	width: 135px;
+	padding-left: 5px;
+	padding-top: 10px;
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 .sidebar #leftside-navigation ul, .sidebar #leftside-navigation ul ul {
 	margin: -2px 0 0;
@@ -1606,30 +1557,17 @@ hr {
 	}
 }
 
-
-
 .function {
-    float: left;
-    border-bottom: 4px solid rgb(199, 199, 199);
-    height: 51px;
-    width: 85%;
-    margin-top: 15px;
+	float: left;
+	border-bottom: 4px solid rgb(199, 199, 199);
+	height: 51px;
+	width: 85%;
+	margin-top: 15px;
 }
 
 .function-list {
-    display: inline;
+	display: inline;
 }
-
-
-
-
-
-
-
-
-
-
-
 </style>
 </head>
 
@@ -1640,7 +1578,7 @@ hr {
 				class="logo-photo" src="../../image/FoodPron_Logo.png" alt="logo"></a>
 		</div>
 		<div class="function">
-			
+
 			<div class="function-list">
 				<div class="menu">
 					<input type="checkbox" href="#" class="menu-open menu-icon"
@@ -1688,36 +1626,38 @@ hr {
 							<span class="notice-span">通知總覽</span>
 						</div> </a>
 				</div>
-				
 
-				
-				
-			
-				</div>
-				
-			
-				
-				
-				
-				
-				
-				
-				
-							
-			<!-- 			<div class="function-list"> -->
-				<a href="#"></a>
-<!-- 				<div class="member-center"> -->
-					<div class="herder-icon-span"><span class="member-center-spann">HI，<%=session.getAttribute("member_name") %></span></div>
-<%--                         <span class="member-center-spann">HI，<%=session.getAttribute("member_name") %></span> --%>
-<!-- 				</div> -->
-				</a>
-<!-- 			</div> -->
-				
+
+
 
 
 			</div>
 
-	
+
+
+
+
+
+
+
+
+
+			<!-- 			<div class="function-list"> -->
+			<a href="#"></a>
+			<!-- 				<div class="member-center"> -->
+			<div class="herder-icon-span">
+				<span class="member-center-spann">HI，<%=session.getAttribute("member_name")%></span>
+			</div>
+			<%--                         <span class="member-center-spann">HI，<%=session.getAttribute("member_name") %></span> --%>
+			<!-- 				</div> -->
+			</a>
+			<!-- 			</div> -->
+
+
+
+		</div>
+
+
 		<!-- end of function-->
 		<nav id="navigation">
 			<ul>
@@ -1843,8 +1783,8 @@ hr {
 					</div>
 				</div>
 			</div>
-	
-	</div>
+
+		</div>
 	</c:if>
 	<!-- end of login-->
 	<div class="pagetop">
@@ -1862,415 +1802,137 @@ hr {
 
 
 
-<%-- 錯誤表列 --%>
-	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">請修正以下錯誤:</font>
-		<ul>
-			<c:forEach var="message" items="${errorMsgs}">
-				<li style="color: red">${message}</li>
-			</c:forEach>
-		</ul>
-	</c:if>
+			<%-- 錯誤表列 --%>
+			<c:if test="${not empty errorMsgs}">
+				<font style="color: red">請修正以下錯誤:</font>
+				<ul>
+					<c:forEach var="message" items="${errorMsgs}">
+						<li style="color: red">${message}</li>
+					</c:forEach>
+				</ul>
+			</c:if>
 
-<FORM METHOD="post" ACTION="member.do" name="upateform" id="upateform"
-		enctype="multipart/form-data">
-
-
+			<FORM METHOD="post" ACTION="MoneyflowServlet.do" name="upateform"
+				id="upateform" enctype="multipart/form-data">
 
 
 
 
 
-			<div class="container">
-
-				<h3>我的檔案</h3>
-
-				<h1>管理你的檔案以保護你的帳戶</h1>
 
 
+				<div class="container">
+
+					<!-- 				<h3>我的檔案</h3> -->
+
+					<!-- 				<h1>管理你的檔案以保護你的帳戶</h1> -->
 
 
-				
+
+
+
 
 					<table align="center" cellpadding="10">
 
 						<!----- First Name ---------------------------------------------------------->
-					
-					
-					
+						<!---------------------------- 廚師提款開頭 ---------------------------------------------------------->
+
+
+
+
+<!-- 						<tr> -->
+<!-- 							<td>會員編號:<font color=red><b>*</b></font></td> -->
+
+<%-- 							<td><%=membervo.getMember_id()%></td> --%>
+
+<!-- 						</tr> -->
+
+
+
+
+
 						<tr>
-				<td>會員圖片:</td>
-				<!-- 按鈕 -->
-				<td><input type="file" id="imgView" name="member_photo"
-					size="45" accept="image/gif, image/jpeg, image/png"> <img src=DBGifReader4.do?photo_type=mempic&member_id=<%=session.getAttribute("member_id")%> id="preview_progressbarTW_img" width=100px height=100px;/></td>
+							<td>提款金額:</td>
 
-			</tr>
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-						<tr>
-							<td>會員姓名:</td>
-
-							<td>
-								
-
-
-
-
-
-								<input type="TEXT" name="member_name" size="45"
-					id=member_name value="<%=membervo.getMember_name()%>" />
-
-								<!-- (max 30 characters a-z and A-Z) -->
+							<td><input type="TEXT" name="money" size="45"
+								id=account value="" /> 
 							</td>
 						</tr>
 
-						<!----- Last Name ---------------------------------------------------------->
-						<tr>
-							<td>會員帳號:</td>
-							<td><input type="TEXT" name="account" size="45" id=account
-					value="<%=membervo.getAccount()%>" /></td>
-						</tr>
-
-						<tr>
-							<td>會員密碼:</td>
-							<td><input type="password" name="password" size="45" id=password
-					value="<%=membervo.getPassword()%>" /></td>
-					<td><label><input type="checkbox" id="show_password" size="45" />顯示密碼</label></td>
-						</tr>
-
-
-
-
-						<!----- Date Of Birth -------------------------------------------------------->
-						<tr>
-							<td>會員生日:</td>
-
-							<td><input type="TEXT" name="birthday" size="45" id="birthday"
-					 /></td>
-
-						</tr>
-
-						<!----- Email Id ---------------------------------------------------------->
-						<tr>
-							<td>信箱:</td>
-							<td><input type="TEXT" name="email" size="45" id=email
-					value="<%=membervo.getEmail()%>" /></td>
-						</tr>
-
-						<!----- Mobile Number ---------------------------------------------------------->
-						<tr>
-							<td>電話號碼:</td>
-							<td><input type="TEXT" name="cellphone" size="45" id=cellphone
-					value="<%=membervo.getCellphone()%>" /></td>
-						</tr>
-
-						<!----- Gender ----------------------------------------------------------->
-						<tr>
-							<td>性別:</td>
-							<td><input type="radio" name="gender" value=0 checked="<%=(membervo.getGender()==0)? "true": "false"%>"> 男<br>
-					<input type="radio" name="gender" value=1 checked="<%=(membervo.getGender()==1)? "true": "false"%>"> 女<br></td>
-						</tr>
-
-						<!----- Address ---------------------------------------------------------->
-						<tr>
-							<td>地址: <br />
-							<br />
-							<br /></td>
-							<!-- <td><textarea name="Address" rows="4" cols="30"></textarea></td> -->
-							<td><input type="TEXT" name="member_address" size="45"
-					id="address" value="<%=membervo.getMember_address()%>" /></td>
-						</tr>
-
-
-
-						<!----- State ---------------------------------------------------------->
-						<!-- <tr>
-<td>STATE</td>
-<td><input type="text" name="State" maxlength="30" />
-(max 30 characters a-z and A-Z)
-</td>
-</tr> -->
-
-						<!----- Country ---------------------------------------------------------->
-						<!-- <tr>
-<td>COUNTRY</td>
-<td><input type="text" name="Country" value="India" readonly="readonly" /></td>
-</tr> -->
-
-						<!----- Hobbies ---------------------------------------------------------->
-
-						<!-- <tr>
-<td>HOBBIES <br /><br /><br /></td>
- 
-<td>
-Drawing
-<input type="checkbox" name="Hobby_Drawing" value="Drawing" />
-Singing
-<input type="checkbox" name="Hobby_Singing" value="Singing" />
-Dancing
-<input type="checkbox" name="Hobby_Dancing" value="Dancing" />
-Sketching
-<input type="checkbox" name="Hobby_Cooking" value="Cooking" />
-<br />
-Others
-<input type="checkbox" name="Hobby_Other" value="Other">
-<input type="text" name="Other_Hobby" maxlength="30" />
-</td>
-</tr> -->
-
-						<!----- Qualification---------------------------------------------------------->
-						<!-- <tr>
-<td>QUALIFICATION <br /><br /><br /><br /><br /><br /><br /></td>
- 
-<td>
-<table>
- 
-<tr>
-<td align="center"><b>Sl.No.</b></td>
-<td align="center"><b>Examination</b></td>
-<td align="center"><b>Board</b></td>
-<td align="center"><b>Percentage</b></td>
-<td align="center"><b>Year of Passing</b></td>
-</tr> -->
-
-						<!-- <tr>
-<td>1</td>
-<td>Class X</td>
-<td><input type="text" name="ClassX_Board" maxlength="30" /></td>
-<td><input type="text" name="ClassX_Percentage" maxlength="30" /></td>
-<td><input type="text" name="ClassX_YrOfPassing" maxlength="30" /></td>
-</tr>
- 
-<tr>
-<td>2</td>
-<td>Class XII</td>
-<td><input type="text" name="ClassXII_Board" maxlength="30" /></td>
-<td><input type="text" name="ClassXII_Percentage" maxlength="30" /></td>
-<td><input type="text" name="ClassXII_YrOfPassing" maxlength="30" /></td>
-</tr>
- 
-<tr>
-<td>3</td>
-<td>Graduation</td>
-<td><input type="text" name="Graduation_Board" maxlength="30" /></td>
-<td><input type="text" name="Graduation_Percentage" maxlength="30" /></td>
-<td><input type="text" name="Graduation_YrOfPassing" maxlength="30" /></td>
-</tr>
- 
-<tr>
-<td>4</td>
-<td>Masters</td>
-<td><input type="text" name="Masters_Board" maxlength="30" /></td>
-<td><input type="text" name="Masters_Percentage" maxlength="30" /></td>
-<td><input type="text" name="Masters_YrOfPassing" maxlength="30" /></td>
-</tr>
- 
-<tr>
-<td></td>
-<td></td>
-<td align="center">(10 char max)</td>
-<td align="center">(upto 2 decimal)</td>
-</tr>
-</table>
- 
-</td>
-</tr>
-  -->
-						<!----- Course ---------------------------------------------------------->
-						<!-- <tr>
-<td>COURSES<br />APPLIED FOR</td>
-<td>
-BCA
-<input type="radio" name="Course_BCA" value="BCA">
-B.Com
-<input type="radio" name="Course_BCom" value="B.Com">
-B.Sc
-<input type="radio" name="Course_BSc" value="B.Sc">
-B.A
-<input type="radio" name="Course_BA" value="B.A">
-</td>
-</tr> -->
+						
 
 						<!----- Submit and Reset ------------------------------------------------->
 
-			<tr>
+						<tr>
 							<td colspan="2" align="center">
-								
-								
-								 <!-- <div class="submit">
+								<!-- <div class="submit">
   <input type="submit"  value="儲存" id="button-blue"/>
   <div class="ease"></div> -->
-  <div class="submit_btn">
-  
-   <span class="submitAndSave" id="article-section-seemore-recipe">儲存</span>
-    <input type="submit" class="submit_btn" value="儲存" >  
-								
-		</div>						
-								
-								
-								
-								
-								<!-- <input type="reset" value="Reset"> -->
+								<div class="submit_btn">
+
+									<span class="submitAndSave" id="article-section-seemore-recipe">提款</span>
+									<input type="submit" class="submit_btn" value="提款">
+
+								</div> <!-- <input type="reset" value="Reset"> -->
 							</td>
 						</tr>
 					</table>
-					
-			<br> <input type="hidden" name="action" value="updateBySelf">	
-					
-					 <input type="hidden"
-							name="member_id" value="<%=session.getAttribute("member_id")%>">
-							
-							
-						
-					
-					<input type="hidden"
-							name="account" value="${membervo.member_photo}">
-					
-					
-					
-					
-				 
-					
-					
-					
-					
-					
-					
-				
-				</form>
-				</div>
-				
-				<script>
-<%java.sql.Date birthday = null;
-                birthday = (membervo == null || membervo.getBirthday() == null)
-					? new java.sql.Date(System.currentTimeMillis())
-					:membervo.getBirthday();
-%>
 
- 	$.datetimepicker.setLocale('zh');
-	$('#birthday').datetimepicker({
-		theme : '', //theme: 'dark',
-		timepicker : false, //timepicker:true,
-		step : 60, //step: 60 (這是timepicker的預設間隔60分鐘)
-		format : 'Y-m-d', //format:'Y-m-d H:i:s',
-		value : '<%=birthday%>',
-	//disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
-	startDate:	            '2000/01/01',  // 起始日
-	//minDate:'-1970-01-07', // 去除今日(不含)之前
-	maxDate:               '+1970-01-01'  // 去除今日(不含)之後
-	});
+					<br> 
+<input type="hidden" name="action" value="consume"> 
+					<input type="hidden" name="member_id" value="<%=session.getAttribute("member_id")%>"> 
+			</form>
+			</div>
 
-
-	// ----------------------------------------------------------以下用來排定無法選擇的日期-----------------------------------------------------------
-
-	//      1.以下為某一天之前的日期無法選擇
-	//      var somedate1 = new Date('2017-06-15');
-	//      $('#f_date1').datetimepicker({
-	//          beforeShowDay: function(date) {
-	//        	  if (  date.getYear() <  somedate1.getYear() || 
-	//		           (date.getYear() == somedate1.getYear() && date.getMonth() <  somedate1.getMonth()) || 
-	//		           (date.getYear() == somedate1.getYear() && date.getMonth() == somedate1.getMonth() && date.getDate() < somedate1.getDate())
-	//              ) {
-	//                   return [false, ""]
-	//              }
-	//              return [true, ""];
-	//      }});
-
-	//      2.以下為某一天之後的日期無法選擇
-	//      var somedate2 = new Date('2017-06-15');
-	//      $('#f_date1').datetimepicker({
-	//          beforeShowDay: function(date) {
-	//        	  if (  date.getYear() >  somedate2.getYear() || 
-	//		           (date.getYear() == somedate2.getYear() && date.getMonth() >  somedate2.getMonth()) || 
-	//		           (date.getYear() == somedate2.getYear() && date.getMonth() == somedate2.getMonth() && date.getDate() > somedate2.getDate())
-	//              ) {
-	//                   return [false, ""]
-	//              }
-	//              return [true, ""];
-	//      }});
-
-	//      3.以下為兩個日期之外的日期無法選擇 (也可按需要換成其他日期)
-	//      var somedate1 = new Date('2017-06-15');
-	//      var somedate2 = new Date('2017-06-25');
-	//      $('#f_date1').datetimepicker({
-	//          beforeShowDay: function(date) {
-	//        	  if (  date.getYear() <  somedate1.getYear() || 
-	//		           (date.getYear() == somedate1.getYear() && date.getMonth() <  somedate1.getMonth()) || 
-	//		           (date.getYear() == somedate1.getYear() && date.getMonth() == somedate1.getMonth() && date.getDate() < somedate1.getDate())
-	//		             ||
-	//		            date.getYear() >  somedate2.getYear() || 
-	//		           (date.getYear() == somedate2.getYear() && date.getMonth() >  somedate2.getMonth()) || 
-	//		           (date.getYear() == somedate2.getYear() && date.getMonth() == somedate2.getMonth() && date.getDate() > somedate2.getDate())
-	//              ) {
-	//                   return [false, ""]
-	//              }
-	//              return [true, ""];
-	//      }});
-</script>
-	
-	
-	
-
-	<script>
-		$("#imgView").change(function() {
-
-			readURL(this);
-		});
-
-		function readURL(input) {
-			if (input.files && input.files[0]) {
-				var reader = new FileReader();
-				reader.onload = function(e) {
-					$("#preview_progressbarTW_img")
-							.attr('src', e.target.result);
-				}
-				reader.readAsDataURL(input.files[0]);
 			
-			}
-			return;
-     	}
-		
 
-		
-		
-		$(function(){
-			// 先取得 #password1 及產生一個文字輸入框
-			var $password = $('#password'), 
-				$passwordInput = $('<input type="text" name="' + $password.attr('name') + '" class="' + $password.attr('className') + '" />');
-		 
-			// 當勾選顯示密碼框時
-			$('#show_password').click(function(){
-				// 如果是勾選則...
-				if(this.checked){
-					// 用 $passwordInput 來取代 $password
-					// 並把 $passwordInput 的值設為 $password 的值
-					$password.replaceWith($passwordInput.val($password.val()));
-				}else{
-					// 用 $password 來取代 $passwordInput
-					// 並把 $password 的值設為 $passwordInput 的值
-					$passwordInput.replaceWith($password.val($passwordInput.val()));
+
+
+
+			<script>
+				$("#imgView").change(function() {
+
+					readURL(this);
+				});
+
+				function readURL(input) {
+					if (input.files && input.files[0]) {
+						var reader = new FileReader();
+						reader.onload = function(e) {
+							$("#preview_progressbarTW_img").attr('src',
+									e.target.result);
+						}
+						reader.readAsDataURL(input.files[0]);
+
+					}
+					return;
 				}
-			});
-		});
-		
-		
-		
-		
-		
-		
-		</script>
-				
-				
-				
+
+				$(function() {
+					// 先取得 #password1 及產生一個文字輸入框
+					var $password = $('#password'), $passwordInput = $('<input type="text" name="'
+							+ $password.attr('name')
+							+ '" class="'
+							+ $password.attr('className') + '" />');
+
+					// 當勾選顯示密碼框時
+					$('#show_password').click(
+							function() {
+								// 如果是勾選則...
+								if (this.checked) {
+									// 用 $passwordInput 來取代 $password
+									// 並把 $passwordInput 的值設為 $password 的值
+									$password.replaceWith($passwordInput
+											.val($password.val()));
+								} else {
+									// 用 $password 來取代 $passwordInput
+									// 並把 $password 的值設為 $passwordInput 的值
+									$passwordInput.replaceWith($password
+											.val($passwordInput.val()));
+								}
+							});
+				});
+			</script>
 </body>
 
 
@@ -2330,8 +1992,7 @@ B.A
 				<ul>
 					<li><a href="tables-basic.html">交易紀錄</a></li>
 
-					<li><a href="/DA106_G4_Foodporn_Git/front-end/member/ChefWithdraw.jsp">提款</a></li>
-					<li><a href="/DA106_G4_Foodporn_Git/front-end/member/MemberStoredValue.jsp">儲值</a></li>
+					<li><a href="tables-data.html">提款</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:void(0);"><i
 					class="fa fa fa-tasks"></i><img class="access-menu-icon1"
@@ -2385,7 +2046,7 @@ B.A
 					<li><a href="pages-404.html">6</a></li>
 					<li><a href="pages-500.html">7</a></li>
 				</ul></li>
-			<li class="sub-menu"><a href="/DA106_G4_Foodporn_Git/front-end/member/ChefHomepage.jsp"><i
+			<li class="sub-menu"><a href="typography.html"><i
 					class="fa fa-text-height"></i><img class="access-menu-icon1"
 					src="../../image/member/S__12066825.jpg"><span>升級廚師</span></a></li>
 
@@ -2514,94 +2175,91 @@ B.A
 
 	<!-- JavasScript for BackTop -->
 	<script>
-        $('#BackTop').click(function () {
-            $('html,body').animate({ scrollTop: 0 }, 333);
-        });
-        $(window).scroll(function () {
-            if ($(this).scrollTop() > 450) {
-                $('#BackTop').fadeIn(222);
-            } else {
-                $('#BackTop').stop().fadeOut(222);
-            }
-        });
+		$('#BackTop').click(function() {
+			$('html,body').animate({
+				scrollTop : 0
+			}, 333);
+		});
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 450) {
+				$('#BackTop').fadeIn(222);
+			} else {
+				$('#BackTop').stop().fadeOut(222);
+			}
+		});
 
-        //畫面捲動時隱藏
-        window.onresize = function () {
-            if ($(window).width() > 767) {
-                $("nav").show();
-            } else $("nav").hide();
-        }
-
-    </script>
+		//畫面捲動時隱藏
+		window.onresize = function() {
+			if ($(window).width() > 767) {
+				$("nav").show();
+			} else
+				$("nav").hide();
+		}
+	</script>
 
 	<!-- JavasScript for shop-slide -->
 	<script>
-        $(".shop-slide-article-and-photo").hover(function () {
-            $(".shop-slide-article-and-photo-img").removeClass('imgSmall');
-            $(".shop-slide-article-and-photo-img").addClass('imgScale');
-        });
-        $(".shop-slide-article-and-photo").mouseleave(function () {
-            $(".shop-slide-article-and-photo-img").addClass('imgSmall');
-        });
+		$(".shop-slide-article-and-photo").hover(function() {
+			$(".shop-slide-article-and-photo-img").removeClass('imgSmall');
+			$(".shop-slide-article-and-photo-img").addClass('imgScale');
+		});
+		$(".shop-slide-article-and-photo").mouseleave(function() {
+			$(".shop-slide-article-and-photo-img").addClass('imgSmall');
+		});
 
-        /* 直播專區 right scale 效果 */
-        $(".article-section-description-livestream-right").hover(function () {
-            $(".livestream-right-img", this).addClass('imgScale');
-        });
-        $(".imglist-li a").hover(function () {
-            $(".imglist-li-span", this).removeClass('textRecoverColor');
-            $(".imglist-li-img", this).removeClass('imgSmall');
-            $(".imglist-li-img", this).addClass('imgScale');
-            $(".imglist-li-span", this).addClass('textChangeColor');
-        });
-        $(".imglist-li a").mouseleave(function () {
-            $(".imglist-li-span", this).addClass('textRecoverColor');
-            $(".imglist-li-img", this).addClass('imgSmall');
-        });
-    </script>
+		/* 直播專區 right scale 效果 */
+		$(".article-section-description-livestream-right").hover(function() {
+			$(".livestream-right-img", this).addClass('imgScale');
+		});
+		$(".imglist-li a").hover(function() {
+			$(".imglist-li-span", this).removeClass('textRecoverColor');
+			$(".imglist-li-img", this).removeClass('imgSmall');
+			$(".imglist-li-img", this).addClass('imgScale');
+			$(".imglist-li-span", this).addClass('textChangeColor');
+		});
+		$(".imglist-li a").mouseleave(function() {
+			$(".imglist-li-span", this).addClass('textRecoverColor');
+			$(".imglist-li-img", this).addClass('imgSmall');
+		});
+	</script>
 	<script>
-        $(".menu-open").on("click", function () {
-            $("nav").slideToggle();
-            $(this).toggleClass("active");
-            $('body,html').toggleClass('add')
-        });
-
-    </script>
+		$(".menu-open").on("click", function() {
+			$("nav").slideToggle();
+			$(this).toggleClass("active");
+			$('body,html').toggleClass('add')
+		});
+	</script>
 	<script>
-        AOS.init();
-    </script>
+		AOS.init();
+	</script>
 
 	<script>
-        $(document).ready(function () {
-            $('.course-sider-list').slick({
-                dots: true,
-                centerMode: true,
-                centerPadding: '60px',
-                slidesToShow: 3,
-                responsive: [
-                    {
-                        breakpoint: 768,
-                        settings: {
-                            arrows: false,
-                            centerMode: true,
-                            centerPadding: '40px',
-                            slidesToShow: 3
-                        }
-                    },
-                    {
-                        breakpoint: 480,
-                        settings: {
-                            arrows: false,
-                            centerMode: true,
-                            centerPadding: '40px',
-                            slidesToShow: 1
-                        }
-                    }
-                ]
-            });
-        });
-
-    </script>
+		$(document).ready(function() {
+			$('.course-sider-list').slick({
+				dots : true,
+				centerMode : true,
+				centerPadding : '60px',
+				slidesToShow : 3,
+				responsive : [ {
+					breakpoint : 768,
+					settings : {
+						arrows : false,
+						centerMode : true,
+						centerPadding : '40px',
+						slidesToShow : 3
+					}
+				}, {
+					breakpoint : 480,
+					settings : {
+						arrows : false,
+						centerMode : true,
+						centerPadding : '40px',
+						slidesToShow : 1
+					}
+				} ]
+			});
+		});
+	</script>
 
 
 
@@ -2611,18 +2269,19 @@ B.A
 
 
 
-	<script>  
-    $("#leftside-navigation .sub-menu > a").click(function(e) {
-      $("#leftside-navigation ul ul").slideUp(), $(this).next().is(":visible") || $(this).next().slideDown(),
-      e.stopPropagation()
-    })
+	<script>
+		$("#leftside-navigation .sub-menu > a").click(
+				function(e) {
+					$("#leftside-navigation ul ul").slideUp(), $(this).next()
+							.is(":visible")
+							|| $(this).next().slideDown(), e.stopPropagation()
+				})
 
-    $(document).ready(function() {  
-  $('.multiselect').multiselect();
-  $('.datepicker').datepicker();  
-});
-
-  </script>
+		$(document).ready(function() {
+			$('.multiselect').multiselect();
+			$('.datepicker').datepicker();
+		});
+	</script>
 
 
 
