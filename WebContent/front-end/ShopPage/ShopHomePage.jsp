@@ -49,6 +49,7 @@
 
 	
 	<!-- 商城CSS -->
+	<link rel="stylesheet" href="css/productPage.css">	
 	<link rel="stylesheet" href="css/productPage.css">
 <!-- JQ -->
 

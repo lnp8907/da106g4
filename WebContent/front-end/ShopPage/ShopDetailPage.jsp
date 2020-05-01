@@ -41,6 +41,9 @@
  <!-- 廣告連播套件 -->
  <link rel="stylesheet" type="text/css"href="css/productDetailPage.css"/>
  <link rel="stylesheet" type="text/css"href="../../css/CarMessageCss.css"/> 
+ 
+ 
+ 
  <link rel="stylesheet" href="<%=request.getContextPath() %>/css/frontEnd.css">
  <link rel="stylesheet" href="<%=request.getContextPath() %>/css/homePage.css">
  
@@ -493,7 +496,10 @@
     <div>購買成功</div>
 <div>是否前往購物車查看:</div>
     <div><button class="ui cancelshopcart button"><i class="shopping red arrow alternate circle left
- icon"></i> 繼續購物 </button><button class="ui  button"> 前往購物車 <i class="shopping cart red
+ icon"></i> 繼續購物 </button>
+ 
+ 
+ <button class="ui  button"><a href="<%=request.getContextPath() %>/front-end/ShopPage/ProductPage?action=checktpage1">前往購物車 </a> <i class="shopping cart red
  icon"></i></button></div>
 
  
@@ -675,11 +681,13 @@ width: 140px;
 					
 				}
 				else if(data>9){
+
 					$(".carmessage2").hide();
 					$(".carmessagecircle").show();
 		         				
 				}
-				else if(data<9&&data>1){
+				else if(data<9&&data>0){
+
 					$(".carmessage2").html(data);
 					$(".carmessage2").show();
 					$(".carmessagecircle").hide();
@@ -687,6 +695,8 @@ width: 140px;
 					
 				}
 				else{
+					alert("else"+data);
+
 					$(".carmessage2").hide();
 					$(".carmessagecircle").hide();
 				}

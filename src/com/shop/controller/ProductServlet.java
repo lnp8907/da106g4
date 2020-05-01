@@ -51,7 +51,6 @@ public class ProductServlet extends HttpServlet {
 			ProductService svc=new ProductService();
 			svc.onproductBYRecipe(product_id, product_status, price);
 			
-			
 			String url=req.getParameter("requestURL");
 
 			

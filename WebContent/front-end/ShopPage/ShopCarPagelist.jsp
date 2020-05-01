@@ -11,7 +11,7 @@
 	pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>購物車畫面</title>
 </head>
 
 <body>
@@ -171,15 +171,25 @@ ProductService Psvc=new ProductService();
     </div>
 
     <div id="Cardetail">
+    
         <div class="calcheck">
-            共 <font><%=(buyProductlist==null)?"":buyProductlist.size() %></font> 項商品，數量共 <font class="howmany"></font> 個，總金額NT$ <font class="tcal">XXX</font> 元
+       <div class="calcheckmessage"> 共 <font><%=(buyProductlist==null)?"":buyProductlist.size() %></font> 項商品，數量共 <font class="howmany"></font> 個，總金額NT$ <font class="tcal">XXX</font> 元
+
+       </div>
 
 
-            <div>
+<div class="checkbtncontext">
+ <div id="backProductpage">
+                <a href="ShopProductPage.jsp"><button  style="border-radius: 0px 0px 0px 15px" class="ui left labeled icon button huge green">
+                <i class="left arrow icon"></i> 返回繼續購物 </button></a>
+            </div>
+            <div id="checkbtn">
 <!-- 轉移至SERVLT -->
                 <a href="ProductCheckoutPage.jsp"><button  style="border-radius: 0px 0px 15px 0px" class="ui right labeled icon button huge red">
                 <i class="right arrow icon"></i> 結帳 </button></a>
             </div>
+
+</div>
 
 
         </div>

@@ -118,20 +118,38 @@ tr td:first-child{
 }
 
 #Cardetail{
-    border-radius: 0px 0px  20px 5px;
+    border-radius: 0px 0px  20px 25px;
     background-color: #aeaeae;
     margin: 0 auto;
-    height: 200px;
+    height: 160px;
     width: 1100px;
 
 }
 .calcheck{
     margin-top: 0px;
-    width: 392px;
+    width: 450px;
     height: 100%;
     float: right;
 }
-
+.calcheckmessage{
+	margin: 0px
+	
+}
+.checkbtncontext{
+	margin-top: 80px;
+width: 1094px;
+height:55px;
+	
+}
+#backProductpage{
+	
+	float:left;
+}
+#checkbtn{
+	margin:0;
+	float:right;
+	
+}
 
 .calcheck {
     text-align: left ;
@@ -139,9 +157,11 @@ tr td:first-child{
 
 }
 .calcheck div{
-    margin-top: 125px;
-    float: right;
+	float: right;
 }
+
+
+
 #carbottom{
     margin-top: 15px;
     width: 100%;
@@ -170,7 +190,6 @@ width: 20px;
         #orderform{
         width: 1100px;
         height: 350px;
-        background-color: #20c997;
         margin: 10px auto;
         background-image: linear-gradient(to top,#fd4137, #e4bcc2);
 

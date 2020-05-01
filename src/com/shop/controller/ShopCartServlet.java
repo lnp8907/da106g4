@@ -41,12 +41,8 @@ public class ShopCartServlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		String product_id="";
 		String recipe_id="";
-		 PrintWriter out = res.getWriter();
-		 res.setContentType("text/html;charset=UTF-8");
-		 
-	        //對Post中文參數進行解碼
-	 
-	        req.setCharacterEncoding("UTF-8");
+
+		
 		if(req.getParameter("recipe_id")!=null) {
 			recipe_id=req.getParameter("recipe_id");
 					ProductService psvc=new ProductService();
@@ -126,8 +122,9 @@ public class ShopCartServlet extends HttpServlet {
 			
 			
 			}
-			System.out.println(productlist.size());
+			System.out.println("購物車長度:"+productlist.size());
 			if(action.equals("ADDR")||action.equals("ADD")) {
+				 PrintWriter out = res.getWriter();
 				out.println(productlist.size());
 				return;
 				
