@@ -102,7 +102,7 @@
 						<!-- 							先假裝有會員810009按讚 -->
 						<!-- 							先假裝有會員810009按讚 -->
 						<!-- 							先假裝有會員810009按讚 -->
-						<input type="hidden" value="${member_id}" name="member_id">
+						<input type="hidden" value="${member_id}" name="member_id" id="member_id">
 					</div>
 					<!-- 					</form> -->
 			<form method="post" action="ShopCartServltR">
@@ -146,11 +146,6 @@
 							 <input
 						type="hidden" name="action" value="ADDR">
 					</form>
-					<script>
-					recipe-purchase
-					
-					
-					</script>
 					
 				</div>
 			</div>
@@ -459,6 +454,11 @@ function Buildkey(num) {
 	//練習使用AJAX實現按讚功能
 	$(document).ready(function() {
 		$(".recipeFollow_btn").click(function() {
+			var member_id = $("#member_id").val();
+			if(member_id === ''){
+				alert('請先登入會員');
+				return;
+			}
 			// 		 debugger; debug用
 			$.ajax({
 				type : "GET",
@@ -466,7 +466,7 @@ function Buildkey(num) {
 				data : {
 					"action" : "recipe_follow",
 					"recipe_id" :
-						<%=recipeVO.getRecipe_id()%>,"member_id" : "810009"},
+						<%=recipeVO.getRecipe_id()%>,"member_id" : member_id},
 				dataType : "json",
 				success : function(data) {
 					$("#followNum").text(data);
@@ -475,6 +475,7 @@ function Buildkey(num) {
 					
 				}
 			})
+			
 		})
 	})
 </script>
