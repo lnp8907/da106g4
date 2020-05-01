@@ -59,7 +59,7 @@ ProductService Psvc=new ProductService();
 <div id="tablecontext">
     <div id="checkboxwithpeoduct">
         <table  >
-            <tr><td ><input type="checkbox" id="checkall"></td><td >商品名</td><td>價格</td> <td >數量</td><td>小計</td><td>移除</td></tr>
+            <tr><td ><input checked id="checkproductall" type="checkbox" id="checkall"></td><td >商品名</td><td>價格</td> <td >數量</td><td>小計</td><td>移除</td></tr>
         </table>
     </div>
 
@@ -74,7 +74,12 @@ ProductService Psvc=new ProductService();
 
            
             
-            <tr><td ><input type="checkbox" ></td>
+            <tr><td ><input checked class="listindex listmun<%=index %>" type="checkbox" >
+            <input class="listmun<%=index %>" type="hidden" >
+            
+            
+            </td>
+                
                  <%
 			            if((String)pageContext.getAttribute("id")!=null){
 			            String id =(String)pageContext.getAttribute("id");
@@ -243,6 +248,15 @@ $('#quantity').text(num);
 function add(){
 var num=parseInt($('#quantity').text())+1;
 $('#quantity').text(num);
+}
+</script>
+
+<!-- 全選語法 -->
+<script type="text/javascript">
+function check_all(obj,cName)
+{
+    var checkboxs = document.getElementsByName(cName);
+    for(var i=0;i<checkboxs.length;i++){checkboxs[i].checked = obj.checked;}
 }
 </script>
 

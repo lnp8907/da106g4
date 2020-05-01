@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="<%=request.getContextPath() %>/back-end/shop_product/css/shopmaonback_end.css">
 
     <link rel="stylesheet" href="<%=request.getContextPath() %>/back-end/css/mainback_endcss.css">
-        <link rel="stylesheet" href="BEproductCss.css">
+        <link rel="stylesheet" href="css/BEproductCss.css">
     <!--套件-->
             <link rel="stylesheet" type="text/css" href="../../plugin/jquery-ui/jquery-ui.min.css"/>
 
