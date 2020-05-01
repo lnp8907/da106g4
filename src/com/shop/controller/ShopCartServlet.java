@@ -36,6 +36,7 @@ public class ShopCartServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
+	
 		System.out.println("處理購物車");
 		req.setCharacterEncoding("UTF-8");
 		HttpSession session = req.getSession();
@@ -129,6 +130,13 @@ public class ShopCartServlet extends HttpServlet {
 				return;
 				
 			}
+			if(action.equals("finallcarlist")) {
+			System.out.println("判斷購買清單");	
+			}
+			
+			
+			
+			
 		//--------------
 		session.setAttribute("productCar", productlist);
 		if(action.equals("REMOVE")) {
@@ -148,7 +156,7 @@ public class ShopCartServlet extends HttpServlet {
 			rd.forward(req, res);
 			
 		}
-		
+	
 		
 		else {
 			

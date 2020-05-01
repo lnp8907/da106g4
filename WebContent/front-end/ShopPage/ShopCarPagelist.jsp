@@ -74,7 +74,7 @@ ProductService Psvc=new ProductService();
 
            
             
-            <tr><td ><input checked class="listindex listmun<%=index %>" type="checkbox" >
+            <tr><td ><input checked class="listindex " name="Checkbox[]" type="checkbox" >
             <input class="listmun<%=index %>" type="hidden" >
             
             
@@ -190,6 +190,7 @@ ProductService Psvc=new ProductService();
             </div>
             <div id="checkbtn">
 <!-- 轉移至SERVLT -->
+
                 <a href="ProductCheckoutPage.jsp"><button  style="border-radius: 0px 0px 15px 0px" class="ui right labeled icon button huge red">
                 <i class="right arrow icon"></i> 結帳 </button></a>
             </div>
@@ -231,7 +232,27 @@ $('.pcal').each(function() {
 
 
 
+<script>
 
+$("#checkproductall").click(function(){
+	$.ajax({
+     	url:'ShopCart',
+     	type:"POST",
+     	data:{
+     		action:"finallcarlist"
+     	
+     	},
+     	success:function(data){
+     		changecarmun(data);
+    
+     	}
+
+});
+
+});
+
+
+</script>
 
 
 
@@ -250,15 +271,26 @@ var num=parseInt($('#quantity').text())+1;
 $('#quantity').text(num);
 }
 </script>
+<script>
 
-<!-- 全選語法 -->
-<script type="text/javascript">
-function check_all(obj,cName)
-{
-    var checkboxs = document.getElementsByName(cName);
-    for(var i=0;i<checkboxs.length;i++){checkboxs[i].checked = obj.checked;}
-}
+
 </script>
+<!-- 全選語法 -->
+<script>
+ $(document).ready(function(){
+  $("#checkproductall").click(function(){
+   if($("#checkproductall").prop("checked")){//如果全選按鈕有被選擇的話（被選擇是true）
+    $("input[name='Checkbox[]']").each(function(){
+     $(this).prop("checked",true);//把所有的核取方框的property都變成勾選
+    })
+   }else{
+    $("input[name='Checkbox[]']").each(function(){
+     $(this).prop("checked",false);//把所有的核方框的property都取消勾選
+    })
+   }
+  })
+ })
+</script>  
 
 </body>
 </html>
