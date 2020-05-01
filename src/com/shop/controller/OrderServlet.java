@@ -172,6 +172,7 @@ if("addorder".equals(action)){
 		session.removeAttribute("checkoutlist");
 		session.removeAttribute("selecttlist");		
 		session.removeAttribute("productCar");
+		session.removeAttribute("buyProductlist");
 		String url = "/front-end/ShopPage/CheckFinish.jsp";
 		RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 		successView.forward(req, res);

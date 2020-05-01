@@ -214,7 +214,7 @@ ProductService Psvc=new ProductService();
             <div id="checkbtn">
 <!-- 轉移至SERVLT -->
 
-                <a href="ProductCheckoutPage.jsp"><button   style="border-radius: 0px 0px 15px 0px" class="checking ui right labeled icon button huge red">
+               <a  href="ProductCheckoutPage.jsp"> <button   style="border-radius: 0px 0px 15px 0px" class="checking ui right labeled icon button huge red">
                 <i class="right arrow icon"></i> 結帳 </button></a>
             </div>
 
@@ -392,15 +392,17 @@ $('#quantity').text(num);
  $(document).ready(function(){
   $("#checkproductall").click(function(){
 
-	  checkbox();
+	  
 
    if($("#checkproductall").prop("checked")){//如果全選按鈕有被選擇的話（被選擇是true）
     $("input[name='Checkbox[]']").each(function(){
      $(this).prop("checked",true);//把所有的核取方框的property都變成勾選
+     checkbox();
     })
    }else{
     $("input[name='Checkbox[]']").each(function(){
      $(this).prop("checked",false);//把所有的核方框的property都取消勾選
+     checkbox();
     })
    }
   })

@@ -111,7 +111,7 @@ public class ShopCartServlet extends HttpServlet {
 
 			}
 			System.out.println("購物車長度:" + productlist.size());
-			if (action.equals("ADDR") || action.equals("ADD")) {
+			if (action.equals("ADD")) {
 				PrintWriter out = res.getWriter();
 				out.println(productlist.size());
 				return;
