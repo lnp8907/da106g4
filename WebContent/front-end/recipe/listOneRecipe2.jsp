@@ -99,7 +99,7 @@
 						<!-- 							先假裝有會員810009按讚 -->
 						<!-- 							先假裝有會員810009按讚 -->
 						<!-- 							先假裝有會員810009按讚 -->
-						<input type="hidden" value="810009" name="member_id">
+						<input type="hidden" value="${member_id}" name="member_id">
 					</div>
 					<!-- 					</form> -->
 					<form method="post" action="RecipeServlet">
