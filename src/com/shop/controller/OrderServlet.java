@@ -45,7 +45,7 @@ HttpSession session=req.getSession();
 //結帳
 if("addorder".equals(action)){
 	System.out.println(action);
-	Vector<Order_detailVO> productlist = (Vector<Order_detailVO>) session.getAttribute("productCar");
+	Vector<Order_detailVO> productlist = (Vector<Order_detailVO>) session.getAttribute("checkoutlist");
 	Integer pay_type = Integer.valueOf(req.getParameter("pay_type"));	    
 	  
 	
@@ -169,6 +169,8 @@ if("addorder".equals(action)){
 		shop_ordervo.setPay_type(pay_type);
 		shop_ordervo.setDv_address(dv_address);
 		svc.addOrder(shop_ordervo, productlist);
+		session.removeAttribute("checkoutlist");
+		session.removeAttribute("selecttlist");		
 		session.removeAttribute("productCar");
 		String url = "/front-end/ShopPage/CheckFinish.jsp";
 		RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp

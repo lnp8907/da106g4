@@ -59,11 +59,21 @@ ProductService Psvc=new ProductService();
 <div id="tablecontext">
     <div id="checkboxwithpeoduct">
         <table  >
-            <tr><td ><input checked id="checkproductall" type="checkbox" id="checkall"></td><td >商品名</td><td>價格</td> <td >數量</td><td>小計</td><td>移除</td></tr>
+            <tr><td ><input  id="checkproductall" type="checkbox"></td><td >商品名</td><td>價格</td> <td >數量</td><td>小計</td><td>移除</td></tr>
         </table>
     </div>
-
-
+待結帳列表:<%if(session.getAttribute("selecttlist")!=null){
+	Vector<Order_detailVO> selectlist=(Vector<Order_detailVO>)session.getAttribute("selecttlist");
+	%>
+	<%=selectlist %>
+	
+<% } %>
+<br>
+購物車清單列表:<%if(session.getAttribute("productCar")!=null){
+	%>
+	<%=buyProductlist %>
+	
+<% } %>
     <div id="productcartList">
         <table id="producttable" >
         <%int index=0; %>
@@ -74,8 +84,31 @@ ProductService Psvc=new ProductService();
 
            
             
-            <tr><td ><input checked class="listindex " name="Checkbox[]" type="checkbox" >
-            <input class="listmun<%=index %>" type="hidden" >
+            <tr><td ><input 
+            
+            <%if(session.getAttribute("selecttlist")!=null){ 
+            	Vector<Order_detailVO> selist=(Vector<Order_detailVO>)session.getAttribute("selecttlist");
+            	
+            	for(Order_detailVO an:selist){
+            	if(an.getProduct_id().equals((String)pageContext.getAttribute("id"))){%>
+            		<%="checked" %>
+            	<% }
+            }
+      
+            %>
+  
+            <%}%>
+            
+            
+            
+            class="listindex" name="Checkbox[]" type="checkbox" >
+            
+            
+            
+            
+            
+            
+            <input  class="listmun" type="hidden" value="${buyProductlist.product_id}">
             
             
             </td>
@@ -122,17 +155,7 @@ ProductService Psvc=new ProductService();
            
            
            
-           
-           
-           
-           
-           
-           
-           
-           
-            
-           
-
+   
 			<% if(vo.getRecipe_id()==null){%>       
             	
             	   <%=vo.getProduct_name() %>   	
@@ -191,7 +214,7 @@ ProductService Psvc=new ProductService();
             <div id="checkbtn">
 <!-- 轉移至SERVLT -->
 
-                <a href="ProductCheckoutPage.jsp"><button  style="border-radius: 0px 0px 15px 0px" class="ui right labeled icon button huge red">
+                <a href="ProductCheckoutPage.jsp"><button   style="border-radius: 0px 0px 15px 0px" class="checking ui right labeled icon button huge red">
                 <i class="right arrow icon"></i> 結帳 </button></a>
             </div>
 
@@ -229,12 +252,34 @@ $('.pcal').each(function() {
 
 
 </script>
+<!-- 預設狀態 -->
+<script type="text/javascript">
+    function check() {
+        var c=0;
+        $('.listindex').each(function () {
+            if($(this).prop('checked')){
+                c++;
+            }
+            if ($(".listindex").length==c){
+                $('#checkproductall').prop('checked',true);
+
+            }
+            else{
+                $('#checkproductall').prop('checked',false);
+
+            }
+        })
+    }
+    check();
 
 
+
+   </script>
 
 <script>
-
+//全選按鈕
 $("#checkproductall").click(function(){
+if($("#checkproductall").is(":checked")){
 	$.ajax({
      	url:'ShopCart',
      	type:"POST",
@@ -247,9 +292,71 @@ $("#checkproductall").click(function(){
     
      	}
 
-});
+});}
+else{
+	$.ajax({
+     	url:'ShopCart',
+     	type:"POST",
+     	data:{
+     		action:"clearlist"
+     	
+     	},
+     	success:function(data){
+     		changecarmun(data);
+    
+     	}
 
 });
+	
+}
+
+});
+//單選按鈕
+$(".listindex").click(function(){
+    check();
+
+	checkbox();
+
+	let index=$(this).siblings(".listmun").val();
+	if($(this).is(":checked")==false){
+	$.ajax({
+     	url:'ShopCart',
+     	type:"POST",
+     	data:{
+     		remmoveid:index ,
+     		action:"removelist",
+
+     	},
+     	success:function(data){
+     		
+     	}
+
+});
+	}
+	//點選加入
+	else{
+		$.ajax({
+	     	url:'ShopCart',
+	     	type:"POST",
+	     	data:{
+	     		addid:index ,
+	     		action:"addlist",
+
+	     	},
+	     	success:function(data){
+	     		
+	     	}
+
+	});	
+		
+		
+		
+	}
+	
+	
+})
+
+
 
 
 </script>
@@ -258,6 +365,11 @@ $("#checkproductall").click(function(){
 
 
 <script>
+
+
+
+
+
 function del(){
 var num=parseInt($('#quantity').text())-1;
 if(num<1){
@@ -279,6 +391,9 @@ $('#quantity').text(num);
 <script>
  $(document).ready(function(){
   $("#checkproductall").click(function(){
+
+	  checkbox();
+
    if($("#checkproductall").prop("checked")){//如果全選按鈕有被選擇的話（被選擇是true）
     $("input[name='Checkbox[]']").each(function(){
      $(this).prop("checked",true);//把所有的核取方框的property都變成勾選
@@ -289,7 +404,22 @@ $('#quantity').text(num);
     })
    }
   })
- })
+ });
+ 
+ function checkbox(){
+		if($("input[name='Checkbox[]']:checked").length==0){
+			$(".checking").attr('disabled', true);
+			
+		}//判斷有多少個方框被勾選
+		else{
+			$(".checking").attr("disabled", false);
+			
+			
+		}
+ }
+ checkbox();
+
+ 
 </script>  
 
 </body>
