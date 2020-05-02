@@ -45,9 +45,9 @@
                                     
                                         <li class="lialist">
                                             <div class="iconstatus" style="display: none">OPEN</div>
-                                            <a style="color: #E4002B" class=" productlist" title="open or close this section " href="#">商品管理
+                                            <span style="color: #E4002B" class=" productlist" title="open or close this section " href="#">商品管理
                                                 <i class="angle up icon" style="color: #E4002B"></i>
-                                            </a>
+                                            </span>
                                             <ul class="BList" >
                                                 <li><a href="ShopPageServlet?action=listallEX">查看商品</a></li>
                                         <li><a href="ShopPageServlet?action=addProduct&whichPage=${whichPage}">新增商品</a></li>
@@ -63,12 +63,12 @@
                                         <li class="lialist">
                                             <div class="iconstatus" style="display: none">CLOSE</div>
 
-                                            <a class=" orderlist" title="open or close this section " href="#">管理訂單
+                                            <span class=" orderlist" title="open or close this section " href="#">管理訂單
                                                 <i class="angle down icon"></i>
-                                            </a>
+                                            </span>
                                             <ul class="BList" >
 
-                                                <li><a href="#">查看全部訂單</a></li>
+                                                <li><a href="<%=request.getContextPath() %>/back-end/shop_order/Order_backendPage.jsp">查看全部訂單</a></li>
                                                 <li><a href="#">查詢訂單</a></li>
                                                 <li><a href="#">???????</a></li>
                                             </ul>
@@ -135,10 +135,11 @@
 	</div>
 </div>
 
+<!-- 左邊選單 -->
 <script>
-        $("#leftMenu > li ").children('a').not(".productlist").find("+ul").slideUp(1);
+        $("#leftMenu > li ").children('span').not(".productlist").find("+ul").slideUp(1);
 
-        $("#leftMenu > li ").children('a').click(function() {
+        $("#leftMenu > li ").children('span').click(function() {
             $(this).find("+ ul").slideToggle("fast");
 
         });
@@ -152,23 +153,25 @@
 
     });
 
-    $('.lialist').click(function () {
-        if($(this).children(".iconstatus").html()=="OPEN"){
-            $(this).find('i').removeClass("up");
-            $(this).find('i').addClass("down");
-            $(this).children('a').css("color","#707070");
-            $(this).find('i').css("color","#707070");
+    $('.lialist span').click(function () {
+        if($(this).siblings(".iconstatus").html()=="OPEN"){
+            $(this).children('i').removeClass("up");
+            $(this).children('i').addClass("down");
+            $(this).css("color","#707070");
 
-            $(this).children(".iconstatus").html("CLOSE") ;
+            $(this).siblings('i').css("color","#707070");
+
+            $(this).siblings(".iconstatus").html("CLOSE") ;
 
         }
-        else if($(this).children(".iconstatus").html()=="CLOSE"){
-            $(this).find('i').removeClass("down");
-            $(this).find('i').addClass("up");
-            $(this).children('a').css("color","#E4002B");
-            $(this).find('i').css("color","#E4002B");
+        else if($(this).siblings(".iconstatus").html()=="CLOSE"){
+            $(this).children('i').removeClass("down");
+            $(this).children('i').addClass("up");
+            $(this).css("color","#E4002B");
 
-            $(this).children(".iconstatus").html("OPEN") ;
+            $(this).children('i').css("color","#E4002B");
+
+            $(this).siblings(".iconstatus").html("OPEN") ;
 
         }
 
@@ -177,6 +180,5 @@
 
 
 </script>
-
 </body>
 </html>

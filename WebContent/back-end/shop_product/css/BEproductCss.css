@@ -11,6 +11,12 @@
     margin-left: 15px;
 }
 #leftMenu, #leftMenu ul { list-style:none; width:15em; }
+#leftMenu span{
+	   font-size: 20px;
+    color: #707070;
+    display:block; font-weight:bold; padding:0.5em 1em; text-decoration:none;
+    cursor: pointer;
+}
 #leftMenu a {
     font-size: 20px;
     color: #707070;

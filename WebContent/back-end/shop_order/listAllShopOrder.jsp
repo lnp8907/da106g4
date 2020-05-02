@@ -5,78 +5,36 @@
 <%@ page import="com.shop_order.model.*" %>
 <%@ page import="com.order_detail.model.*" %>
 <%@ page import="com.ordermanager.shop.*" %>
-<%
-OrderService orderSvc=new OrderService();
-String member_id = (String) request.getAttribute("member_id");
-List<Shop_orderVO>list;
-if(member_id==null){
-	 list = orderSvc.getAll();
-}
+<%@ page import="java.sql.Timestamp" %>
+<%@ page import="java.text.*" %>
 
-else{
-	list=orderSvc.getOrderBYMEMBER(member_id);
-}
+<%
+
+OrderService orderSvc=new OrderService();
+List<Shop_orderVO>list=null;
+	if(orderSvc.getAll()!=null){  
+		list= orderSvc.getAll();
+	}
 pageContext.setAttribute("list",list);
 
 %>
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="css/OrderList.css">
+
 <meta charset="UTF-8">
 <title>所有訂單</title>
-<style>
-  table#table-1 {
-	background-color: #ffa0a5;
-    border: 2px solid black;
-    text-align: center;
-  }
-  table#table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
-</style>
-<style>
-  table {
-	width: 800px;
-	background-color: white;
-	margin-top: 5px;
-	margin-bottom: 5px;
-  }
-  table, th, td {
-    border: 1px solid #CCCCFF;
-  }
-  th, td {
-    padding: 5px;
-    text-align: center;
-  }
-</style>
-
-</head>
-<body>
-<table id="table-1">
-	<tr><td>
-		 <h3>以下是所有訂單:
-		 <%= list.get(0).getOrder_no() %>→<%= list.get(list.size() - 1).getOrder_no() %>
+<div id="ordertitle">
+		 <h3>以下是所有訂單:</h3>
+		 <%= list.get(0).getOrder_no() %>
 		 
+		 <%if(!list.get(0).getOrder_no().equals(list.get(list.size() - 1).getOrder_no())){ %>
+		 →<%= list.get(list.size() - 1).getOrder_no() %>
+		 <% }%>
+	</div>	 
 		 
-		 
-		 </h3>
-		 <h4>
-		<a href="order_manager_page.jsp"><img  src="<%=request.getContextPath()%>/image/FoodPron_Logo.png"
-		  width="100" height="100" border="0">回訂單管理</a></h4>
-	</td></tr>
-	<td>
-	<a href="../ShopBackendHomePage.jsp">返回管理頁面</a>
-	
-	
-	
-	</td>
-</table>
+		
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
@@ -91,7 +49,8 @@ pageContext.setAttribute("list",list);
 
 
 <!-- 以下內容 -->
-<table>
+    <table id="ordertable" class="ui red celled table">
+
 	<tr>
 		<th>訂單編號</th>
 		<th>會員編號</th>
@@ -100,10 +59,8 @@ pageContext.setAttribute("list",list);
 		<th>訂單日期</th>
 		<th>總價</th>
 		<th>付款方式</th>
-		<th>地址</th>
 		<th>查看訂單詳情</th>	
 		<th>修改</th>
-		<th>刪除</th>
 		<th>發送訊息</th>
 	</tr>
 	<%@ include file="../file/page1.file" %> 
@@ -125,8 +82,26 @@ pageContext.setAttribute("list",list);
 <c:set var="status" value="${ordervo.order_status}" />
 
 			<td>${orderstatus[status]}</td>
-			<td>${ordervo.order_time}</td>
+			
+			<c:set var="time" value="${ordervo.order_time}"/>
+			<%
+			String tsStr = "";  
+
+			if(pageContext.getAttribute("time")!=null) {
+				Timestamp ts = (Timestamp)pageContext.getAttribute("time");
+				DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");  
+				tsStr = sdf.format(ts);  %>
+				
+			<%}%>
+			
+			<td><%=tsStr %>				
+			</td>
+			
+			
+			
+			
 			<td>${ordervo.total}</td>
+			
 						<%
     Map<Integer, String> pay_typemap = new HashMap<>();
 						pay_typemap.put(0, "點數");
@@ -139,13 +114,14 @@ pageContext.setAttribute("list",list);
 
 <c:set var="paytype" value="${ordervo.pay_type}" />
 			<td>${pay_type[paytype]} </td> 
-			<td>${ordervo.dv_address}</td>
 			<td>
 			<!-- 茶愾訂單明細 -->
 			     <FORM METHOD="post" ACTION="OrderServlet.do" >
+			    <button class="ui right labeled  icon button"><i class="zoom in icon"></i> 查看更多 </button>
+			     
 			  <input type="hidden" name="order_no"  value="${ordervo.order_no}">
 			  <input type="hidden" name="action" value="getorderdetail">
-       <input type="submit" value="查看訂單明細">
+                        <input style="display: none" type="submit" value="查看訂單明細">
 			     </FORM>
 			
 			</td>
@@ -156,19 +132,19 @@ pageContext.setAttribute("list",list);
 			     <input type="hidden" name="action"	value="OrderUpdatepage"></FORM>
 			</td>
 			<!-- 刪除 -->
-			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/shop_order/OrderServlet.do" style="margin-bottom: 0px;"  onSubmit="return CheckForm();" >
-			     <input type="submit" value="刪除" >
-			     <input type="hidden" name="order_no"  value="${ordervo.order_no}">
-			     <input type="hidden" name="action" value="delete">
-			     <input	type="hidden" name="whichPage" value="<%=whichPage%>"> 
-			     			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller-->
+<!-- 			<td> -->
+<%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/shop_order/OrderServlet.do" style="margin-bottom: 0px;"  onSubmit="return CheckForm();" > --%>
+<!-- 			     <input type="submit" value="刪除" > -->
+<%-- 			     <input type="hidden" name="order_no"  value="${ordervo.order_no}"> --%>
+<!-- 			     <input type="hidden" name="action" value="delete"> -->
+<%-- 			     <input	type="hidden" name="whichPage" value="<%=whichPage%>">  --%>
+<%-- 			     			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller--> --%>
 			     
 			     
 			 
-			    </FORM>
+<!-- 			    </FORM> -->
 			     
-			</td>
+<!-- 			</td> -->
 			<!-- 還沒做 -->
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do" style="margin-bottom: 0px;"   >
@@ -181,7 +157,9 @@ pageContext.setAttribute("list",list);
 			     
 			     </FORM>
 			</td>
-		</tr>
+		  </tr>
+        <tr class="orseraddress"><td>地址</td><td colspan="9">${ordervo.dv_address}</td>
+ </tr>
 	</c:forEach>
 </table>
 

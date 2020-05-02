@@ -1,0 +1,22 @@
+#ordertitle{
+    width:1000px ;
+    background-color: #7d64ff;
+    height: 150px;
+
+}
+#ordertable{
+    width: 1000px;
+    height: 100px;
+}
+#ordertable td:nth-child(3),td:nth-child(4),td:nth-child(7){
+    width: 85px;
+}
+#ordertable td:nth-child(8){
+    width: 165px;
+}
+.ordertitle{
+    height: 40px;
+}
+.ordertitle1 {
+background-color: #f0f0f0;
+}
