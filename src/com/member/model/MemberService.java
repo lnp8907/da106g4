@@ -4,6 +4,8 @@ import java.sql.Date;
 import java.util.List;
 import java.util.Set;
 
+import com.course.model.CourseVO;
+
 public class MemberService {
 	
 private MemberDAO_interface dao;
@@ -17,6 +19,76 @@ private MemberDAO_interface dao;
 //		public List<MemberVO> Duplicate_Account() {
 //			return dao.Duplicate_Account();
 //		}
+		 public List<MemberVO> getValidation(){
+			 return dao.getValidation();
+		 }
+		 public List<MemberVO> getChiefapplyStatus(){
+			 return dao.getChiefapplyStatus();
+		 }
+	
+		public MemberVO updateback_end(String member_id,String account,String member_name, String email,
+				Integer validation ) {
+			MemberVO memberVO=new MemberVO();
+			memberVO.setMember_id(member_id);
+			memberVO.setAccount(account);
+	
+			memberVO.setMember_name(member_name);
+		
+			memberVO.setEmail(email);
+
+			
+			memberVO.setValidation(validation);
+			
+		
+			
+			
+			
+			dao.updateback_end(memberVO);
+			return memberVO;
+			
+			
+			
+		}
+		
+		public MemberVO UpdateValidation(String member_id, 
+				Integer validation) {
+			MemberVO memberVO=new MemberVO();
+			memberVO.setMember_id(member_id);
+			memberVO.setValidation(validation);
+			
+			
+			dao.UpdateValidation(memberVO);
+			return memberVO;
+			
+			
+			
+			
+		}
+		
+		
+		
+		
+		public MemberVO UpdateChiefapplyStatus(String member_id, 
+				Integer chiefapply_status,Integer member_status) {
+			MemberVO memberVO=new MemberVO();
+			memberVO.setMember_id(member_id);
+
+			memberVO.setChiefapply_status(chiefapply_status);
+			memberVO.setMember_status(member_status);
+			
+			
+			dao.UpdateChiefapplyStatus(memberVO);
+			return memberVO;
+			
+			
+			
+			
+		}
+		
+		
+		
+		
+		
 		
 		
 		
@@ -59,6 +131,33 @@ private MemberDAO_interface dao;
 			
 			
 		}
+		
+		
+		public MemberVO updateCardNumber(String member_id,String member_creditcard
+				) {
+			MemberVO memberVO=new MemberVO();
+			//memberVO.setMember_id(member_id);
+			memberVO.setMember_id(member_id);
+			memberVO.setMember_creditcard(member_creditcard);
+			
+	
+			
+			dao.updateCardNumber(memberVO);
+			return memberVO;
+			
+			
+			
+			
+		}
+		
+
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		public MemberVO update_by_self(String member_id,String member_name, String account,

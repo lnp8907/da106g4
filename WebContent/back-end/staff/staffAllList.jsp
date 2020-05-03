@@ -41,7 +41,7 @@
 	<div class="menu">
 		<!-- 卡片內容上方留白的起始標籤 -->
 		<h1>
-			課程總覽<span class="include-page"><%@ include file="page1.file"%>筆</span>
+			員工總覽<span class="include-page"><%@ include file="page1.file"%></span>
 		</h1>
 	</div>
 	<!-- 卡片內容上方留白的結束標籤 -->

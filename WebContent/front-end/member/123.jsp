@@ -67,21 +67,7 @@
 
 
 
-<script type="text/javascript">
-    
-    
-      $().ready(function(){
-      
-      $( "#date" ).datepicker({
-      changeMonth: true,     //可以限定是否需要月份的下拉是選單，預設是沒有
-      changeYear: true, //可以限定是否需要年份的下拉是選單，預設是沒有
-      dateFormat: 'yy/mm/dd',//所顯示的default
-      showOn: "button",            
-      buttonImage: "./resources/images/icon/calendar.gif",
-      buttonImageOnly: true
-      });
-      });
-       </script>
+
 
 
 <script type="text/javascript">
@@ -605,720 +591,410 @@
     </script>
 <link rel="stylesheet" href="../../css/frontEnd.css">
 
-/*---------------------------e04------------------------------------*/
+
 <style>
+.input-cart-number{
+ display: block;
 
-@import url("https://fonts.googleapis.com/css?family=Source+Code+Pro:400,500,600,700|Source+Sans+Pro:400,600,700&display=swap");
-body {
-  background: #ddeefc;
-  font-family: "Source Sans Pro", sans-serif;
-  font-size: 16px;
+
 }
 
-* {
-  box-sizing: border-box;
+fieldset {
+    display: block;
+    margin-inline-start: 2px;
+    margin-inline-end: 2px;
+    padding-block-start: 0.35em;
+    padding-inline-start: 0.75em;
+    padding-inline-end: 0.75em;
+    padding-block-end: 0.625em;
+    min-inline-size: min-content;
+    border-width: 2px;
+    border-style: groove;
+    border-color: threedface;
+    border-image: initial;
 }
 
-*:focus {
-  outline: none;
+.card-number100 input, .card-number100 select {
+    height: 38px;
+    color: #333333;
+    padding: 10px;
+    border-radius: 5px;
+    font-size: 15px;
+    outline: none !important;
+    border: 1px solid rgba(0, 0, 0, 0.3);
+    box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2);
+    
+}
+.select {
+
+display: inline-block;
+
 }
 
-.wrapper {
-  min-height: 100vh;
-  display: flex;
-  padding: 50px 15px;
+
+
+input #card-holder{
+width: 50%;
+
 }
 
-@media screen and (max-width: 700px), (max-height: 500px) {
-  .wrapper {
-    flex-wrap: wrap;
-    flex-direction: column;
-  }
+
+.btn {
+    display: block;
+    background: #bded7d;
+    color: white;
+    text-decoration: none;
+    margin: 20px 0;
+    padding: 15px 15px;
+    border-radius: 5px;
+    position: relative;
 }
 
-.card-form {
-  max-width: 570px;
-  margin: auto;
-  width: 100%;
-}
-
-@media screen and (max-width: 576px) {
-  .card-form {
-    margin: 0 auto;
-  }
-}
-
-.card-form__inner {
-  background: #fff;
-  box-shadow: 0 30px 60px 0 rgba(90, 116, 148, 0.4);
-  border-radius: 10px;
-  padding: 35px;
-  padding-top: 180px;
-}
-
-@media screen and (max-width: 480px) {
-  .card-form__inner {
-    padding: 25px;
-    padding-top: 165px;
-  }
-}
-
-@media screen and (max-width: 360px) {
-  .card-form__inner {
-    padding: 15px;
-    padding-top: 165px;
-  }
-}
-
-.card-form__row {
-  display: flex;
-  align-items: flex-start;
-}
-
-@media screen and (max-width: 480px) {
-  .card-form__row {
-    flex-wrap: wrap;
-  }
-}
-
-.card-form__col {
-  flex: auto;
-  margin-right: 35px;
-}
-
-.card-form__col:last-child {
-  margin-right: 0;
-}
-
-@media screen and (max-width: 480px) {
-  .card-form__col {
-    margin-right: 0;
-    flex: unset;
+button.btn {
     width: 100%;
-    margin-bottom: 20px;
-  }
-  .card-form__col:last-child {
-    margin-bottom: 0;
-  }
+    outline: none !important;
+    background: linear-gradient(180deg, #49a09b, #3d8291);
+    text-transform: uppercase;
+    font-weight: bold;
+    border: none;
+    box-shadow: none;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+    margin-top: 90px;
 }
 
-.card-form__col.-cvv {
-  max-width: 150px;
+.form fieldset .select select {
+    appearance: none;
+    position: absolute;
+    padding: 0;
+    border: none;
+    width: 100%;
+    outline: none !important;
+    top: 6px;
+    left: 6px;
+    background: none;
 }
 
-@media screen and (max-width: 480px) {
-  .card-form__col.-cvv {
-    max-width: initial;
-  }
+*, *::before, *::after {
+    box-sizing: border-box;
 }
 
-.card-form__group {
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
+
+/*--------------------
+Form
+--------------------*/
+.form fieldset {
+  border: none;
+  padding: 0;
+  padding: 10px 0;
+  position: relative;
+  clear: both;
 }
 
-.card-form__group .card-input__input {
-  flex: 1;
-  margin-right: 15px;
+.form fieldset.fieldset-expiration {
+  float: left;
+  width: 60%;
 }
 
-.card-form__group .card-input__input:last-child {
+.form fieldset.fieldset-expiration .select {
+  width: 84px;
+  margin-right: 12px;
+  float: left;
+}
+
+.form fieldset.fieldset-ccv {
+  clear: none;
+  float: right;
+  width: 86px;
+}
+
+.form fieldset label {
+  display: block;
+  text-transform: uppercase;
+  font-size: 11px;
+  color: rgba(0, 0, 0, 0.6);
+  margin-bottom: 5px;
+  font-weight: bold;
+  font-family: Inconsolata;
+}
+
+.form fieldset input,
+.form fieldset .select {
+  width: 100%;
+  height: 38px;
+  color: #333333;
+  padding: 10px;
+  border-radius: 5px;
+  font-size: 15px;
+  outline: none !important;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  box-shadow: inset 0 1px 4px rgba(0, 0, 0, 0.2);
+}
+
+.form fieldset input.input-cart-number,
+.form fieldset .select.input-cart-number {
+  width: 82px;
+  display: inline-block;
+  margin-right: 8px;
+}
+
+.form fieldset input.input-cart-number:last-child,
+.form fieldset .select.input-cart-number:last-child {
   margin-right: 0;
 }
 
-.card-form__button {
-  width: 100%;
-  height: 55px;
-  background: #2364d2;
-  border: none;
-  border-radius: 5px;
-  font-size: 22px;
-  font-weight: 500;
-  font-family: "Source Sans Pro", sans-serif;
-  box-shadow: 3px 10px 20px 0px rgba(35, 100, 210, 0.3);
-  color: #fff;
-  margin-top: 20px;
-  cursor: pointer;
-}
-
-@media screen and (max-width: 480px) {
-  .card-form__button {
-    margin-top: 10px;
-  }
-}
-
-.card-item {
-  max-width: 430px;
-  height: 270px;
-  margin-left: auto;
-  margin-right: auto;
+.form fieldset .select {
   position: relative;
-  z-index: 2;
-  width: 100%;
 }
 
-@media screen and (max-width: 480px) {
-  .card-item {
-    max-width: 310px;
-    height: 220px;
-    width: 90%;
-  }
-}
-
-@media screen and (max-width: 360px) {
-  .card-item {
-    height: 180px;
-  }
-}
-
-.card-item.-active .card-item__side.-front {
-  transform: perspective(1000px) rotateY(180deg) rotateX(0deg) rotateZ(0deg);
-}
-
-.card-item.-active .card-item__side.-back {
-  transform: perspective(1000px) rotateY(0) rotateX(0deg) rotateZ(0deg);
-}
-
-.card-item__focus {
+.form fieldset .select::after {
+  content: '';
+  border-top: 8px solid #222;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
   position: absolute;
-  z-index: 3;
-  border-radius: 5px;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  transition: all 0.35s cubic-bezier(0.71, 0.03, 0.56, 0.85);
-  opacity: 0;
+  z-index: 2;
+  top: 14px;
+  right: 10px;
   pointer-events: none;
-  overflow: hidden;
-  border: 2px solid rgba(255, 255, 255, 0.65);
 }
 
-.card-item__focus:after {
-  content: "";
+.form fieldset .select select {
+  appearance: none;
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  background: #08142f;
-  height: 100%;
-  border-radius: 5px;
-  filter: blur(25px);
-  opacity: 0.5;
-}
-
-.card-item__focus.-active {
-  opacity: 1;
-}
-
-.card-item__side {
-  border-radius: 15px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px 0 rgba(14, 42, 90, 0.55);
-  transform: perspective(2000px) rotateY(0deg) rotateX(0deg) rotate(0deg);
-  transform-style: preserve-3d;
-  transition: all 0.8s cubic-bezier(0.71, 0.03, 0.56, 0.85);
-  backface-visibility: hidden;
-  height: 100%;
-}
-
-.card-item__side.-back {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  transform: perspective(2000px) rotateY(-180deg) rotateX(0deg) rotate(0deg);
-  z-index: 2;
   padding: 0;
-  height: 100%;
-}
-
-.card-item__side.-back .card-item__cover {
-  transform: rotateY(-180deg);
-}
-
-.card-item__bg {
-  max-width: 100%;
-  display: block;
-  max-height: 100%;
-  height: 100%;
+  border: none;6
   width: 100%;
-  object-fit: cover;
+  outline: none !important;
+  top: 6px;
+  left: 6px;
+  background: none;
 }
 
-.card-item__cover {
-  height: 100%;
-  background-color: #1c1d27;
-  position: absolute;
-  height: 100%;
-  background-color: #1c1d27;
-  left: 0;
-  top: 0;
+.form fieldset .select select :-moz-focusring {
+  color: transparent;
+  text-shadow: 0 0 0 #000;
+}
+
+.form button {
   width: 100%;
+  outline: none !important;
+  background: linear-gradient(180deg, #49a09b, #3d8291);
+  text-transform: uppercase;
+  font-weight: bold;
+  border: none;
+  box-shadow: none;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  margin-top: 90px;
+}
+
+.form button .fa {
+  margin-right: 6px;
+}
+
+/*--------------------
+Checkout
+--------------------*/
+.checkout {
+  margin: 150px 120px 30px;
+  position: relative;
+  width: 460px;
+  background: white;
   border-radius: 15px;
-  overflow: hidden;
+  padding: 160px 45px 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
 }
 
-.card-item__cover:after {
-  content: "";
+/*--------------------
+Credit Card
+--------------------*/
+.credit-card-box {
+  perspective: 1000;
+  width: 400px;
+  height: 280px;
   position: absolute;
-  left: 0;
+  top: -112px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.credit-card-box:hover .flip, .credit-card-box.hover .flip {
+  transform: rotateY(180deg);
+}
+
+.credit-card-box .front,
+.credit-card-box .back {
+  width: 400px;
+  height: 250px;
+  border-radius: 15px;
+  backface-visibility: hidden;
+  background: linear-gradient(135deg, #bd6772, #53223f);
+  position: absolute;
+  color: #fff;
+  font-family: Inconsolata;
   top: 0;
+  left: 0;
+  text-shadow: 0 1px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+}
+
+.credit-card-box .front::before,
+.credit-card-box .back::before {
+  content: '';
+  position: absolute;
   width: 100%;
   height: 100%;
-  background: rgba(6, 2, 29, 0.45);
+  top: 0;
+  left: 0;
+  background: url("http://cdn.flaticon.com/svg/44/44386.svg") no-repeat center;
+  background-size: cover;
+  opacity: .05;
 }
 
-.card-item__top {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  margin-bottom: 40px;
-  padding: 0 10px;
+.credit-card-box .flip {
+  transition: 0.6s;
+  transform-style: preserve-3d;
+  position: relative;
 }
 
-@media screen and (max-width: 480px) {
-  .card-item__top {
-    margin-bottom: 25px;
-  }
-}
-
-@media screen and (max-width: 360px) {
-  .card-item__top {
-    margin-bottom: 15px;
-  }
-}
-
-.card-item__chip {
+.credit-card-box .logo {
+  position: absolute;
+  top: 9px;
+  right: 20px;
   width: 60px;
 }
 
-@media screen and (max-width: 480px) {
-  .card-item__chip {
-    width: 50px;
-  }
-}
-
-@media screen and (max-width: 360px) {
-  .card-item__chip {
-    width: 40px;
-  }
-}
-
-.card-item__type {
-  height: 45px;
-  position: relative;
-  display: flex;
-  justify-content: flex-end;
-  max-width: 100px;
-  margin-left: auto;
+.credit-card-box .logo svg {
   width: 100%;
+  height: auto;
+  fill: #fff;
 }
 
-@media screen and (max-width: 480px) {
-  .card-item__type {
-    height: 40px;
-    max-width: 90px;
-  }
-}
-
-@media screen and (max-width: 360px) {
-  .card-item__type {
-    height: 30px;
-  }
-}
-
-.card-item__typeImg {
-  max-width: 100%;
-  object-fit: contain;
-  max-height: 100%;
-  object-position: top right;
-}
-
-.card-item__info {
-  color: #fff;
-  width: 100%;
-  max-width: calc(100% - 85px);
-  padding: 10px 15px;
-  font-weight: 500;
-  display: block;
-  cursor: pointer;
-}
-
-@media screen and (max-width: 480px) {
-  .card-item__info {
-    padding: 10px;
-  }
-}
-
-.card-item__holder {
-  opacity: 0.7;
-  font-size: 13px;
-  margin-bottom: 6px;
-}
-
-@media screen and (max-width: 480px) {
-  .card-item__holder {
-    font-size: 12px;
-    margin-bottom: 5px;
-  }
-}
-
-.card-item__wrapper {
-  font-family: "Source Code Pro", monospace;
-  padding: 25px 15px;
-  position: relative;
-  z-index: 4;
-  height: 100%;
-  text-shadow: 7px 6px 10px rgba(14, 42, 90, 0.8);
-  user-select: none;
-}
-
-@media screen and (max-width: 480px) {
-  .card-item__wrapper {
-    padding: 20px 10px;
-  }
-}
-
-.card-item__name {
-  font-size: 18px;
-  line-height: 1;
-  white-space: nowrap;
-  max-width: 100%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  text-transform: uppercase;
-}
-
-@media screen and (max-width: 480px) {
-  .card-item__name {
-    font-size: 16px;
-  }
-}
-
-.card-item__nameItem {
-  display: inline-block;
-  min-width: 8px;
-  position: relative;
-}
-
-.card-item__number {
-  font-weight: 500;
-  line-height: 1;
-  color: #fff;
-  font-size: 27px;
-  margin-bottom: 35px;
-  display: inline-block;
-  padding: 10px 15px;
-  cursor: pointer;
-}
-
-@media screen and (max-width: 480px) {
-  .card-item__number {
-    font-size: 21px;
-    margin-bottom: 15px;
-    padding: 10px 10px;
-  }
-}
-
-@media screen and (max-width: 360px) {
-  .card-item__number {
-    font-size: 19px;
-    margin-bottom: 10px;
-    padding: 10px 10px;
-  }
-}
-
-.card-item__numberItem {
-  width: 16px;
-  display: inline-block;
-}
-
-.card-item__numberItem.-active {
-  width: 30px;
-}
-
-@media screen and (max-width: 480px) {
-  .card-item__numberItem {
-    width: 13px;
-  }
-  .card-item__numberItem.-active {
-    width: 16px;
-  }
-}
-
-@media screen and (max-width: 360px) {
-  .card-item__numberItem {
-    width: 12px;
-  }
-  .card-item__numberItem.-active {
-    width: 8px;
-  }
-}
-
-.card-item__content {
-  color: #fff;
-  display: flex;
-  align-items: flex-start;
-}
-
-.card-item__date {
-  flex-wrap: wrap;
-  font-size: 18px;
-  margin-left: auto;
-  padding: 10px;
-  display: inline-flex;
-  width: 80px;
-  white-space: nowrap;
-  flex-shrink: 0;
-  cursor: pointer;
-}
-
-@media screen and (max-width: 480px) {
-  .card-item__date {
-    font-size: 16px;
-  }
-}
-
-.card-item__dateItem {
-  position: relative;
-}
-
-.card-item__dateItem span {
-  width: 22px;
-  display: inline-block;
-}
-
-.card-item__dateTitle {
-  opacity: 0.7;
-  font-size: 13px;
-  padding-bottom: 6px;
-  width: 100%;
-}
-
-@media screen and (max-width: 480px) {
-  .card-item__dateTitle {
-    font-size: 12px;
-    padding-bottom: 5px;
-  }
-}
-
-.card-item__band {
-  background: rgba(0, 0, 19, 0.8);
-  width: 100%;
-  height: 50px;
-  margin-top: 30px;
-  position: relative;
+.credit-card-box .front {
   z-index: 2;
+  transform: rotateY(0deg);
 }
 
-@media screen and (max-width: 480px) {
-  .card-item__band {
-    margin-top: 20px;
-  }
+.credit-card-box .back {
+  transform: rotateY(180deg);
 }
 
-@media screen and (max-width: 360px) {
-  .card-item__band {
-    height: 40px;
-    margin-top: 10px;
-  }
+.credit-card-box .back .logo {
+  top: 185px;
 }
 
-.card-item__cvv {
-  text-align: right;
-  position: relative;
-  z-index: 2;
-  padding: 15px;
-}
-
-.card-item__cvv .card-item__type {
-  opacity: 0.7;
-}
-
-@media screen and (max-width: 360px) {
-  .card-item__cvv {
-    padding: 10px 15px;
-  }
-}
-
-.card-item__cvvTitle {
-  padding-right: 10px;
-  font-size: 15px;
-  font-weight: 500;
-  color: #fff;
-  margin-bottom: 5px;
-}
-
-.card-item__cvvBand {
+.credit-card-box .chip {
+  position: absolute;
+  width: 60px;
   height: 45px;
-  background: #fff;
-  margin-bottom: 30px;
-  text-align: right;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-  padding-right: 10px;
-  color: #1a3b5d;
-  font-size: 18px;
-  border-radius: 4px;
-  box-shadow: 0px 10px 20px -7px rgba(32, 56, 117, 0.35);
+  top: 20px;
+  left: 20px;
+  background: linear-gradient(135deg, #ddccf0 0%, #d1e9f5 44%, #f8ece7 100%);
+  border-radius: 8px;
 }
 
-@media screen and (max-width: 480px) {
-  .card-item__cvvBand {
-    height: 40px;
-    margin-bottom: 20px;
-  }
-}
-
-@media screen and (max-width: 360px) {
-  .card-item__cvvBand {
-    margin-bottom: 15px;
-  }
-}
-
-.card-list {
-  margin-bottom: -130px;
-}
-
-@media screen and (max-width: 480px) {
-  .card-list {
-    margin-bottom: -120px;
-  }
-}
-
-.card-input {
-  margin-bottom: 20px;
-}
-
-.card-input__label {
-  font-size: 14px;
-  margin-bottom: 5px;
-  font-weight: 500;
-  color: #1a3b5d;
-  width: 100%;
-  display: block;
-  user-select: none;
-}
-
-.card-input__input {
-  width: 100%;
-  height: 50px;
+.credit-card-box .chip::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  border: 4px solid rgba(128, 128, 128, 0.1);
+  width: 80%;
+  height: 70%;
   border-radius: 5px;
-  box-shadow: none;
-  border: 1px solid #ced6e0;
-  transition: all 0.3s ease-in-out;
-  font-size: 18px;
-  padding: 5px 15px;
-  background: none;
-  color: #1a3b5d;
-  font-family: "Source Sans Pro", sans-serif;
 }
 
-.card-input__input:hover, .card-input__input:focus {
-  border-color: #3d9cff;
-}
-
-.card-input__input:focus {
-  box-shadow: 0px 10px 20px -13px rgba(32, 56, 117, 0.35);
-}
-
-.card-input__input.-select {
-  -webkit-appearance: none;
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADIAAAAeCAYAAABuUU38AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAUxJREFUeNrM1sEJwkAQBdCsngXPHsQO9O5FS7AAMVYgdqAd2IGCDWgFnryLFQiCZ8EGnJUNimiyM/tnk4HNEAg/8y6ZmMRVqz9eUJvRaSbvutCZ347bXVJy/ZnvTmdJ862Me+hAbZCTs6GHpyUi1tTSvPnqTpoWZPUa7W7ncT3vK4h4zVejy8QzM3WhVUO8ykI6jOxoGA4ig3BLHcNFSCGqGAkig2yqgpEiMsjSfY9LxYQg7L6r0X6wS29YJiYQYecemY+wHrXD1+bklGhpAhBDeu/JfIVGxaAQ9sb8CI+CQSJ+QmJg0Ii/EE2MBiIXooHRQhRCkBhNhBcEhLkwf05ZCG8ICCOpk0MULmvDSY2M8UawIRExLIQIEgHDRoghihgRIgiigBEjgiFATBACAgFgghEwSAAGgoBCBBgYAg5hYKAIFYgHBo6w9RRgAFfy160QuV8NAAAAAElFTkSuQmCC");
-  background-size: 12px;
-  background-position: 90% center;
-  background-repeat: no-repeat;
-  padding-right: 30px;
-}
-
-.slide-fade-up-enter-active {
-  transition: all 0.25s ease-in-out;
-  transition-delay: 0.1s;
-  position: relative;
-}
-
-.slide-fade-up-leave-active {
-  transition: all 0.25s ease-in-out;
+.credit-card-box .strip {
+  background: linear-gradient(135deg, #404040, #1a1a1a);
   position: absolute;
+  width: 100%;
+  height: 50px;
+  top: 30px;
+  left: 0;
 }
 
-.slide-fade-up-enter {
-  opacity: 0;
-  transform: translateY(15px);
-  pointer-events: none;
-}
-
-.slide-fade-up-leave-to {
-  opacity: 0;
-  transform: translateY(-15px);
-  pointer-events: none;
-}
-
-.slide-fade-right-enter-active {
-  transition: all 0.25s ease-in-out;
-  transition-delay: 0.1s;
-  position: relative;
-}
-
-.slide-fade-right-leave-active {
-  transition: all 0.25s ease-in-out;
+.credit-card-box .number {
   position: absolute;
+  margin: 0 auto;
+  top: 103px;
+  left: 19px;
+  font-size: 38px;
 }
 
-.slide-fade-right-enter {
-  opacity: 0;
-  transform: translateX(10px) rotate(45deg);
-  pointer-events: none;
-}
-
-.slide-fade-right-leave-to {
-  opacity: 0;
-  transform: translateX(-10px) rotate(45deg);
-  pointer-events: none;
-}
-
-.github-btn {
-  position: absolute;
-  right: 40px;
-  bottom: 50px;
-  text-decoration: none;
-  padding: 15px 25px;
-  border-radius: 4px;
-  box-shadow: 0px 4px 30px -6px rgba(36, 52, 70, 0.65);
-  background: #24292e;
-  color: #fff;
-  font-weight: bold;
+.credit-card-box label {
+  font-size: 10px;
   letter-spacing: 1px;
-  font-size: 16px;
-  text-align: center;
-  transition: all .3s ease-in-out;
+  text-shadow: none;
+  text-transform: uppercase;
+  font-weight: normal;
+  opacity: 0.5;
+  display: block;
+  margin-bottom: 3px;
 }
 
-@media screen and (min-width: 500px) {
-  .github-btn:hover {
-    transform: scale(1.1);
-    box-shadow: 0px 17px 20px -6px rgba(36, 52, 70, 0.36);
-  }
+.credit-card-box .card-holder,
+.credit-card-box .card-expiration-date {
+  position: absolute;
+  margin: 0 auto;
+  top: 180px;
+  left: 19px;
+  font-size: 22px;
+  text-transform: capitalize;
 }
 
-@media screen and (max-width: 700px) {
-  .github-btn {
-    position: relative;
-    bottom: auto;
-    right: auto;
-    margin-top: 20px;
-  }
-  .github-btn:active {
-    transform: scale(1.1);
-    box-shadow: 0px 17px 20px -6px rgba(36, 52, 70, 0.36);
-  }
+.credit-card-box .card-expiration-date {
+  text-align: right;
+  left: auto;
+  right: 20px;
 }
 
+.credit-card-box .ccv {
+  height: 36px;
+  background: #fff;
+  width: 91%;
+  border-radius: 5px;
+  top: 110px;
+  left: 0;
+  right: 0;
+  position: absolute;
+  margin: 0 auto;
+  color: #000;
+  text-align: right;
+  padding: 10px;
+}
+
+.credit-card-box .ccv label {
+  margin: -25px 0 14px;
+  color: #fff;
+}
+
+.the-most {
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  width: 50vw;
+  max-width: 200px;
+  padding: 10px;
+}
+
+.the-most img {
+  max-width: 100%;
+}
+
+
+.input-cart-number{
+display:inline-block;
+width:24%;
+}
+
+#card-holder{
+width:50%;
+}
 </style>
-/*---------------------------e04------------------------------------*/
+
 
 
 <style>
@@ -1574,7 +1250,7 @@ body {
 }
 
 .sidebar {
-	margin-top: -350px;
+	margin-top: -750px;
 	margin-left: 13%;
 	width: 240px;
 	height: 100%;
@@ -2529,8 +2205,7 @@ hr {
 				</ul>
 			</c:if>
 
-			<FORM METHOD="post" ACTION="MoneyflowServlet.do" name="upateform"
-				id="upateform" enctype="multipart/form-data">
+	
 
 
 
@@ -2554,168 +2229,160 @@ hr {
 						<!----- First Name ---------------------------------------------------------->
 						<!---------------------------- 廚師提款開頭 ---------------------------------------------------------->
 
-  <div class="wrapper" id="app">
-    <div class="card-form">
-      <div class="card-list">
-        <div class="card-item" v-bind:class="{ '-active' : isCardFlipped }">
-          <div class="card-item__side -front">
-            <div class="card-item__focus" v-bind:class="{'-active' : focusElementStyle }" v-bind:style="focusElementStyle" ref="focusElement"></div>
-            <div class="card-item__cover">
-              <img
-              v-bind:src="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + currentCardBackground + '.jpeg'" class="card-item__bg">
-            </div>
-            
-            <div class="card-item__wrapper">
-              <div class="card-item__top">
-                <img src="https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/chip.png" class="card-item__chip">
-                <div class="card-item__type">
-                  <transition name="slide-fade-up">
-                    <img v-bind:src="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + getCardType + '.png'" v-if="getCardType" v-bind:key="getCardType" alt="" class="card-item__typeImg">
-                  </transition>
-                </div>
-              </div>
-              <label for="cardNumber" class="card-item__number" ref="cardNumber">
-                <template v-if="getCardType === 'amex'">
-                 <span v-for="(n, $index) in amexCardMask" :key="$index">
-                  <transition name="slide-fade-up">
-                    <div
-                      class="card-item__numberItem"
-                      v-if="$index > 4 && $index < 14 && cardNumber.length > $index && n.trim() !== ''"
-                    >*</div>
-                    <div class="card-item__numberItem"
-                      :class="{ '-active' : n.trim() === '' }"
-                      :key="$index" v-else-if="cardNumber.length > $index">
-                      {{cardNumber[$index]}}
-                    </div>
-                    <div
-                      class="card-item__numberItem"
-                      :class="{ '-active' : n.trim() === '' }"
-                      v-else
-                      :key="$index + 1"
-                    >{{n}}</div>
-                  </transition>
-                </span>
-                </template>
+<!--
 
-                <template v-else>
-                  <span v-for="(n, $index) in otherCardMask" :key="$index">
-                    <transition name="slide-fade-up">
-                      <div
-                        class="card-item__numberItem"
-                        v-if="$index > 4 && $index < 15 && cardNumber.length > $index && n.trim() !== ''"
-                      >*</div>
-                      <div class="card-item__numberItem"
-                        :class="{ '-active' : n.trim() === '' }"
-                        :key="$index" v-else-if="cardNumber.length > $index">
-                        {{cardNumber[$index]}}
-                      </div>
-                      <div
-                        class="card-item__numberItem"
-                        :class="{ '-active' : n.trim() === '' }"
-                        v-else
-                        :key="$index + 1"
-                      >{{n}}</div>
-                    </transition>
-                  </span>
-                </template>
-              </label>
-              <div class="card-item__content">
-                <label for="cardName" class="card-item__info" ref="cardName">
-                  <div class="card-item__holder">Card Holder</div>
-                  <transition name="slide-fade-up">
-                    <div class="card-item__name" v-if="cardName.length" key="1">
-                      <transition-group name="slide-fade-right">
-                        <span class="card-item__nameItem" v-for="(n, $index) in cardName.replace(/\s\s+/g, ' ')" v-if="$index === $index" v-bind:key="$index + 1">{{n}}</span>
-                      </transition-group>
-                    </div>
-                    <div class="card-item__name" v-else key="2">Full Name</div>
-                  </transition>
-                </label>
-                <div class="card-item__date" ref="cardDate">
-                  <label for="cardMonth" class="card-item__dateTitle">Expires</label>
-                  <label for="cardMonth" class="card-item__dateItem">
-                    <transition name="slide-fade-up">
-                      <span v-if="cardMonth" v-bind:key="cardMonth">{{cardMonth}}</span>
-                      <span v-else key="2">MM</span>
-                    </transition>
-                  </label>
-                  /
-                  <label for="cardYear" class="card-item__dateItem">
-                    <transition name="slide-fade-up">
-                      <span v-if="cardYear" v-bind:key="cardYear">{{String(cardYear).slice(2,4)}}</span>
-                      <span v-else key="2">YY</span>
-                    </transition>
-                  </label>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="card-item__side -back">
-            <div class="card-item__cover">
-              <img
-              v-bind:src="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + currentCardBackground + '.jpeg'" class="card-item__bg">
-            </div>
-            <div class="card-item__band"></div>
-            <div class="card-item__cvv">
-                <div class="card-item__cvvTitle">CVV</div>
-                <div class="card-item__cvvBand">
-                  <span v-for="(n, $index) in cardCvv" :key="$index">
-                    *
-                  </span>
+Follow me on
+Dribbble: https://dribbble.com/supahfunk
+Twitter: https://twitter.com/supahfunk
+Codepen: https://codepen.io/supah/
 
-              </div>
-                <div class="card-item__type">
-                    <img v-bind:src="'https://raw.githubusercontent.com/muhammederdem/credit-card-form/master/src/assets/images/' + getCardType + '.png'" v-if="getCardType" class="card-item__typeImg">
-                </div>
-            </div>
-          </div>
+This example is just for fun.
+I realized it for the dailyui challenge
+https://dailyui.co/
+
+Fork it if you want, it's free, but I apreciate credits or a retweet
+
+Enjoy :)
+
+-->
+<FORM METHOD="post" ACTION="member.do" name="upateform" id="upateform"
+		enctype="multipart/form-data">
+<div class="checkout">
+  <div class="credit-card-box">
+    <div class="flip">
+      <div class="front">
+        <div class="chip"></div>
+        <div class="logo">
+          <svg version="1.1" id="visa" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+               width="47.834px" height="47.834px" viewBox="0 0 47.834 47.834" style="enable-background:new 0 0 47.834 47.834;">
+            <g>
+              <g>
+                <path d="M44.688,16.814h-3.004c-0.933,0-1.627,0.254-2.037,1.184l-5.773,13.074h4.083c0,0,0.666-1.758,0.817-2.143
+                         c0.447,0,4.414,0.006,4.979,0.006c0.116,0.498,0.474,2.137,0.474,2.137h3.607L44.688,16.814z M39.893,26.01
+                         c0.32-0.819,1.549-3.987,1.549-3.987c-0.021,0.039,0.317-0.825,0.518-1.362l0.262,1.23c0,0,0.745,3.406,0.901,4.119H39.893z
+                         M34.146,26.404c-0.028,2.963-2.684,4.875-6.771,4.875c-1.743-0.018-3.422-0.361-4.332-0.76l0.547-3.193l0.501,0.228
+                         c1.277,0.532,2.104,0.747,3.661,0.747c1.117,0,2.313-0.438,2.325-1.393c0.007-0.625-0.501-1.07-2.016-1.77
+                         c-1.476-0.683-3.43-1.827-3.405-3.876c0.021-2.773,2.729-4.708,6.571-4.708c1.506,0,2.713,0.31,3.483,0.599l-0.526,3.092
+                         l-0.351-0.165c-0.716-0.288-1.638-0.566-2.91-0.546c-1.522,0-2.228,0.634-2.228,1.227c-0.008,0.668,0.824,1.108,2.184,1.77
+                         C33.126,23.546,34.163,24.783,34.146,26.404z M0,16.962l0.05-0.286h6.028c0.813,0.031,1.468,0.29,1.694,1.159l1.311,6.304
+                         C7.795,20.842,4.691,18.099,0,16.962z M17.581,16.812l-6.123,14.239l-4.114,0.007L3.862,19.161
+                         c2.503,1.602,4.635,4.144,5.386,5.914l0.406,1.469l3.808-9.729L17.581,16.812L17.581,16.812z M19.153,16.8h3.89L20.61,31.066
+                         h-3.888L19.153,16.8z"/>
+              </g>
+            </g>
+          </svg>
+        </div>
+        <div class="number"></div>
+        <div class="card-holder">
+          <label>Card holder</label>
+          <div></div>
+        </div>
+        <div class="card-expiration-date">
+          <label>Expires</label>
+          <div></div>
         </div>
       </div>
-      <div class="card-form__inner">
-        <div class="card-input">
-          <label for="cardNumber" class="card-input__label">Card Number</label>
-          <input type="text" id="cardNumber" class="card-input__input" v-mask="generateCardNumberMask" v-model="cardNumber" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardNumber" autocomplete="off">
-        </div>
-        <div class="card-input">
-          <label for="cardName" class="card-input__label">Card Holders</label>
-          <input type="text" id="cardName" class="card-input__input" v-model="cardName" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardName" autocomplete="off">
-        </div>
-        <div class="card-form__row">
-          <div class="card-form__col">
-            <div class="card-form__group">
-              <label for="cardMonth" class="card-input__label">Expiration Date</label>
-              <select class="card-input__input -select" id="cardMonth" v-model="cardMonth" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardDate">
-                <option value="" disabled selected>Month</option>
-                <option v-bind:value="n < 10 ? '0' + n : n" v-for="n in 12" v-bind:disabled="n < minCardMonth" v-bind:key="n">
-                    {{n < 10 ? '0' + n : n}}
-                </option>
-              </select>
-              <select class="card-input__input -select" id="cardYear" v-model="cardYear" v-on:focus="focusInput" v-on:blur="blurInput" data-ref="cardDate">
-                <option value="" disabled selected>Year</option>
-                <option v-bind:value="$index + minCardYear" v-for="(n, $index) in 12" v-bind:key="n">
-                    {{$index + minCardYear}}
-                </option>
-              </select>
-            </div>
-          </div>
-          <div class="card-form__col -cvv">
-            <div class="card-input">
-              <label for="cardCvv" class="card-input__label">CVV</label>
-              <input type="text" class="card-input__input" id="cardCvv" v-mask="'####'" maxlength="4" v-model="cardCvv" v-on:focus="flipCard(true)" v-on:blur="flipCard(false)" autocomplete="off">
-            </div>
-          </div>
-        </div>
+      <div class="back">
+        <div class="strip"></div>
+        <div class="logo">
+          <svg version="1.1" id="visa" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+               width="47.834px" height="47.834px" viewBox="0 0 47.834 47.834" style="enable-background:new 0 0 47.834 47.834;">
+            <g>
+              <g>
+                <path d="M44.688,16.814h-3.004c-0.933,0-1.627,0.254-2.037,1.184l-5.773,13.074h4.083c0,0,0.666-1.758,0.817-2.143
+                         c0.447,0,4.414,0.006,4.979,0.006c0.116,0.498,0.474,2.137,0.474,2.137h3.607L44.688,16.814z M39.893,26.01
+                         c0.32-0.819,1.549-3.987,1.549-3.987c-0.021,0.039,0.317-0.825,0.518-1.362l0.262,1.23c0,0,0.745,3.406,0.901,4.119H39.893z
+                         M34.146,26.404c-0.028,2.963-2.684,4.875-6.771,4.875c-1.743-0.018-3.422-0.361-4.332-0.76l0.547-3.193l0.501,0.228
+                         c1.277,0.532,2.104,0.747,3.661,0.747c1.117,0,2.313-0.438,2.325-1.393c0.007-0.625-0.501-1.07-2.016-1.77
+                         c-1.476-0.683-3.43-1.827-3.405-3.876c0.021-2.773,2.729-4.708,6.571-4.708c1.506,0,2.713,0.31,3.483,0.599l-0.526,3.092
+                         l-0.351-0.165c-0.716-0.288-1.638-0.566-2.91-0.546c-1.522,0-2.228,0.634-2.228,1.227c-0.008,0.668,0.824,1.108,2.184,1.77
+                         C33.126,23.546,34.163,24.783,34.146,26.404z M0,16.962l0.05-0.286h6.028c0.813,0.031,1.468,0.29,1.694,1.159l1.311,6.304
+                         C7.795,20.842,4.691,18.099,0,16.962z M17.581,16.812l-6.123,14.239l-4.114,0.007L3.862,19.161
+                         c2.503,1.602,4.635,4.144,5.386,5.914l0.406,1.469l3.808-9.729L17.581,16.812L17.581,16.812z M19.153,16.8h3.89L20.61,31.066
+                         h-3.888L19.153,16.8z"/>
+              </g>
+            </g>
+          </svg>
 
-        <button class="card-form__button">
-          Submit
-        </button>
+        </div>
+        <div class="ccv">
+          <label>CCV</label>
+          <div></div>
+        </div>
       </div>
     </div>
-    
-    <a href="https://github.com/muhammederdem/credit-card-form" target="_blank" class="github-btn">
-      See on GitHub
-    </a>
   </div>
+  <form class="form" autocomplete="off" novalidate>
+ <div class="card-number100">
+    <fieldset>
+      <label for="card-number" style="display:block">Card Number</label>
+      <input type="TEXT" name="card-number" id="card-number" class="input-cart-number" maxlength="4" />
+      <input type="TEXT" name="card-number" id="card-number-1" class="input-cart-number" maxlength="4" />
+      <input type="TEXT" name="card-number" id="card-number-2" class="input-cart-number" maxlength="4" />
+      <input type="TEXT" name="card-number" id="card-number-3" class="input-cart-number" maxlength="4" />
+    </fieldset>
+  </div>
+   <div class="card-number100">
+    <fieldset>
+      <label for="card-holder">Card holder</label>
+      <input type="text" id="card-holder" />
+    </fieldset>
+      </div>
+    <fieldset class="fieldset-expiration">
+      <label for="card-expiration-month">Expiration date</label>
+<!--     <div class="card-number100">-->
+<span class="card-number100"> 
+  <div class="select"> 
+        <select id="card-expiration-month">
+          <option></option>
+          <option>01</option>
+          <option>02</option>
+          <option>03</option>
+          <option>04</option>
+          <option>05</option>
+          <option>06</option>
+          <option>07</option>
+          <option>08</option>
+          <option>09</option>
+          <option>10</option>
+          <option>11</option>
+          <option>12</option>
+        </select>
+      </div>
+</span>
+<!--         </div> -->
+<!--          <div class="card-number100"> -->
+  <span class="card-number100">
+      <div class="select">
+        <select id="card-expiration-year">
+          <option></option>
+          <option>2016</option>
+          <option>2017</option>
+          <option>2018</option>
+          <option>2019</option>
+          <option>2020</option>
+          <option>2021</option>
+          <option>2022</option>
+          <option>2023</option>
+          <option>2024</option>
+          <option>2025</option>
+        </select>
+      </div>
+        </span>
+<!--        </div> -->
+    </fieldset>
+     <div class="card-number100">
+    <fieldset class="fieldset-ccv">
+      <label for="card-ccv">CCV</label>
+      <input type="text" id="card-ccv" maxlength="3" />
+    </fieldset>
+     </div>
+    <button class="btn"><i class="fa fa-lock"></i> submit</button>
+ 
+</div>
+
+
+
 
 
 
@@ -2723,11 +2390,23 @@ hr {
 					</div>
 
 					<br> 
-<input type="hidden" name="action" value="consume"> 
+<input type="hidden" name="action" value="updateByCD"> 
 					<input type="hidden" name="member_id" value="<%=session.getAttribute("member_id")%>"> 
-			</form>
-			</div>
-
+			
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+</form>
 			
 
 
@@ -3097,34 +2776,7 @@ hr {
 		AOS.init();
 	</script>
 
-	<script>
-		$(document).ready(function() {
-			$('.course-sider-list').slick({
-				dots : true,
-				centerMode : true,
-				centerPadding : '60px',
-				slidesToShow : 3,
-				responsive : [ {
-					breakpoint : 768,
-					settings : {
-						arrows : false,
-						centerMode : true,
-						centerPadding : '40px',
-						slidesToShow : 3
-					}
-				}, {
-					breakpoint : 480,
-					settings : {
-						arrows : false,
-						centerMode : true,
-						centerPadding : '40px',
-						slidesToShow : 1
-					}
-				} ]
-			});
-		});
-	</script>
-
+	
 
 
 
@@ -3142,9 +2794,85 @@ hr {
 				})
 
 		$(document).ready(function() {
-			$('.multiselect').multiselect();
-			$('.datepicker').datepicker();
+			
+		
+			
+			
+			
 		});
+		
+		
+		
+		
+		$('.input-cart-number').on('keyup change', function(){
+			  $t = $(this);
+			  
+			  if ($t.val().length > 3) {
+			    $t.next().focus();
+			  }
+			  
+			  var card_number = '';
+			  $('.input-cart-number').each(function(){
+			    card_number += $(this).val() + ' ';
+			    if ($(this).val().length == 4) {
+			      $(this).next().focus();
+			    }
+			  })
+			  
+			  $('.credit-card-box .number').html(card_number);
+			});
+
+			$('#card-holder').on('keyup change', function(){
+			  $t = $(this);
+			  $('.credit-card-box .card-holder div').html($t.val());
+			});
+
+			$('#card-holder').on('keyup change', function(){
+			  $t = $(this);
+			  $('.credit-card-box .card-holder div').html($t.val());
+			});
+
+			$('#card-expiration-month, #card-expiration-year').change(function(){
+			  m = $('#card-expiration-month option').index($('#card-expiration-month option:selected'));
+			  m = (m < 10) ? '0' + m : m;
+			  y = $('#card-expiration-year').val().substr(2,2);
+			  $('.card-expiration-date div').html(m + '/' + y);
+			})
+
+			$('#card-ccv').on('focus', function(){
+			  $('.credit-card-box').addClass('hover');
+			}).on('blur', function(){
+			  $('.credit-card-box').removeClass('hover');
+			}).on('keyup change', function(){
+			  $('.ccv div').html($(this).val());
+			});
+
+
+			/*--------------------
+			CodePen Tile Preview
+			--------------------*/
+			setTimeout(function(){
+			  $('#card-ccv').focus().delay(1000).queue(function(){
+			    $(this).blur().dequeue();
+			  });
+			}, 500);
+
+			/*function getCreditCardType(accountNumber) {
+			  if (/^5[1-5]/.test(accountNumber)) {
+			    result = 'mastercard';
+			  } else if (/^4/.test(accountNumber)) {
+			    result = 'visa';
+			  } else if ( /^(5018|5020|5038|6304|6759|676[1-3])/.test(accountNumber)) {
+			    result = 'maestro';
+			  } else {
+			    result = 'unknown'
+			  }
+			  return result;
+			}
+
+			$('#card-number').change(function(){
+			  console.log(getCreditCardType($(this).val()));
+			})*/
 	</script>
 
 

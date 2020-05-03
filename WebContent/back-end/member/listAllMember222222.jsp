@@ -9,11 +9,12 @@
 	pageContext.setAttribute("list", list);
 	
 %>
-<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>所有會員</title>
 <style>
 .cell100 {
@@ -31,22 +32,12 @@
 </style>
 
 
-
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
 
 
 </head>
-<body bgcolor='white'>
-	<table id="table-1">
-		<tr>
-			<td>
-				<h3>所有會員</h3>
-				<h4>
-					<a href="MemberPage.jsp"><img src="images/back1.gif"
-						width="100" height="32" border="0">回首頁</a>
-				</h4>
-			</td>
-		</tr>
-	</table>
+<body>
+
 
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
@@ -57,15 +48,6 @@
 			</c:forEach>
 		</ul>
 	</c:if>
-
-
-<br>
-	<form METHOD="POST"  ACTION="member.do">
-    <input type="submit" value="✚會員註冊">
-    <input type="hidden" name="action" value="addMember">
-    
-	</form>
-	<br>
 
 	<table>
 		<tr>
@@ -248,9 +230,91 @@
 <!-- 				</td> -->
 			</tr>
 		</c:forEach>
+		<tr id="page2-tr">
+						<td id="page2"><%@ include file="page2.file"%></td>
+					</tr>
 	</table>
+<c:if test="${openModal!=null}">
 
-	<%@ include file="page2.file"%>
+				<div class="modal fade" id="basicModal" tabindex="-1" role="dialog"
+					aria-labelledby="basicModal" aria-hidden="true">
+					<div class="modal-dialog modal-lg">
+						<div class="modal-content">
+
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+								<h2 class="modal-title" id="myModalLabel">課程修改</h2>
+							</div>
+
+							<div class="modal-body">
+								<!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
+								<jsp:include page="listOneMember.jsp" />
+								<!-- =========================================以上為原listOneEmp.jsp的內容========================================== -->
+							</div>
+
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">Close</button>
+								<button type="button" class="btn btn-primary">Save
+									changes</button>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<script>
+					$("#basicModal").modal({
+						show : true
+					});
+					$(document).ready(function() {
+						$('.btn-primary').on('click', function() {
+							$('#changeStatus').submit();
+						});
+					});
+				</script>
+			</c:if>
+		</div>
+	</div>
 
 </body>
+
+
+
+
+
+
+
+<script>
+	$(document).ready(
+			function() {
+				$('.course_status').on(
+						'change',
+						function() {
+							if (confirm('確定更改為['
+									+ $(this).find('option:selected').text()
+									+ ']嗎?')) {
+								$("#changeStatus").submit();
+							}
+							return false;
+						});
+			});
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </html>
