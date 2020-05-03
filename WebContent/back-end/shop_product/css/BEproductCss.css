@@ -32,4 +32,10 @@
 }
 #leftMenu ul a:hover {   color: #E4002B;
 }
+/*表格顏色*/
+.showlist:nth-child(odd){
+background-color: #F5E3E2;
+
+}
+
 

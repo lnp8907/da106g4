@@ -83,8 +83,8 @@
                                             <ul class="BList" >
 
                                                 <li><a href="<%=request.getContextPath() %>/back-end/Instant_order/Instant_order_backendPage.jsp">查看全部訂單</a></li>
-                                                 <li><a href="#">未出貨訂單</a></li>
-                                                <li><a href="#">已完成訂單</a></li>
+                                                 <li><a href="<%=request.getContextPath() %>/back-end/Instant_order/Instant_delivery_orderServlet?action=traveling">運送中訂單</a></li>
+                                    
                                             </ul>
                                         </li>
                                         

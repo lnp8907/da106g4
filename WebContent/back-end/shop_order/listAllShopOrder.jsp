@@ -21,7 +21,6 @@ pageContext.setAttribute("list",list);
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="css/OrderList.css">
 
 <meta charset="UTF-8">
 <title>所有訂單</title>
