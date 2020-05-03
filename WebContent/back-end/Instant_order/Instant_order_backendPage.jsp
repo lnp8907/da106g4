@@ -66,36 +66,7 @@ pmethod.put(2,"線上支付");
 		  
                                     <ul id="leftMenu">
                                     
-                                        <li class="lialist">
-                                            <div class="iconstatus" style="display: none">CLOSE</div>
-                                            <span  title="open or close this section " href="#">商品管理
-                                                <i class="angle down icon" ></i>
-                                            </span>
-                                            <ul class="BList" >
-                                                <li><a href="<%=request.getContextPath() %>/back-end/shop_product/ShopPageServlet?action=listallEX">查看商品</a></li>
-                                        <li><a href="ShopPageServlet?action=addProduct&whichPage=${whichPage}">新增商品</a></li>
-                                                <li><a href="ShopPageServlet?action=listAllReceipe">查看食譜料理包</a></li>
-                                                <li><a href="ShopPageServlet?action=listAllReceipeEXcheck">查看審核中料理包</a></li>
-                                                <li><a href="ShopPageServlet?action=IrregularPage">???????????</a></li>
-                                              
-                                                
-                                                
-                                            </ul>
-                                        </li>
-
-                                        <li class="lialist">
-                                            <div class="iconstatus" style="display: none">CLOSE</div>
-
-                                            <span class=" orderlist" title="open or close this section " >商城訂單管理
-                                                <i class="angle down icon"></i>
-                                            </span>
-                                            <ul class="BList" >
-
-                                                <li><a href="<%=request.getContextPath() %>/back-end/shop_order/Order_backendPage.jsp">查看全部訂單</a></li>
-                                                <li><a href="#">未出貨訂單</a></li>
-                                                <li><a href="#">已完成訂單</a></li>
-                                            </ul>
-                                        </li>
+                                       
                                         
                                           <li class="lialist">
                                             <div class="iconstatus" style="display: none">OPEN</div>
