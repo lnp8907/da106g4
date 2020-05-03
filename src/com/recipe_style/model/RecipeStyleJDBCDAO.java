@@ -28,6 +28,7 @@ public class RecipeStyleJDBCDAO implements RecipeStyleDAO_interface {
 		try {
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
+			
 			pstmt = con.prepareStatement(INSERT_STMT);
 
 			pstmt.setString(1, recipeStyleVO.getRcstyle());

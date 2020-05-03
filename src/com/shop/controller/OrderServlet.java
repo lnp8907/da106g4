@@ -17,7 +17,6 @@ import com.member.model.MemberService;
 import com.member.model.MemberVO;
 import com.order_detail.model.Order_detailVO;
 import com.ordermanager.shop.OrderService;
-import com.product.model.BuyProductN;
 import com.shop_order.model.Shop_orderJDBCDAO;
 import com.shop_order.model.Shop_orderVO;
 

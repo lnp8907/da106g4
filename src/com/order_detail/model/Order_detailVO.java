@@ -1,6 +1,5 @@
 package com.order_detail.model;
 
-import com.product.model.BuyProductN;
 
 public class Order_detailVO implements java.io.Serializable {
 	private String order_no;
