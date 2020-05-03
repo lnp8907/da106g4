@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.authority.model.AuthorityService;
 import com.staff.model.StaffService;
 import com.staff.model.StaffVO;
 
@@ -44,7 +45,7 @@ public class StaffServlet extends HttpServlet {
 				String whichPage = req.getParameter("whichPage");
 				String pageType = req.getParameter("pageType");
 				boolean openModal = true;
-				req.setAttribute("openModal", openModal);
+				req.setAttribute("openModalUpdate", openModal);
 				
 				/*************************** 2.開始查詢資料 *****************************************/
 				StaffService staffService = new StaffService();
@@ -279,6 +280,12 @@ public class StaffServlet extends HttpServlet {
 				}
 				//開始修改資料////////////////////////////////////////////////////////
 				StaffService staffService = new StaffService();
+				if(staff_status.equals(3)) {
+					//狀態碼為3的話表示已離職,請此必須清楚所有權限
+					AuthorityService authorizationsSvc = new AuthorityService();
+					authorizationsSvc.delete(staff_id);
+				}
+				
 				staffVO = staffService.update(staff_id, staff_status, staff_name, gender, phone, email);	
 				req.setAttribute("oldSff_id", staff_id);
 				RequestDispatcher succeseView = req

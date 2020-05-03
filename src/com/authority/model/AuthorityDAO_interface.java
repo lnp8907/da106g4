@@ -1,14 +1,13 @@
 package com.authority.model;
 
-import java.util.List;
+import java.sql.Connection;
+import java.util.Set;
 
 
 
 public interface AuthorityDAO_interface {
-    public void insert(AuthorityVO authorityVO);
-    public void update(AuthorityVO authorityVO);
-    public void delete(String empno);
-    public AuthorityVO findByPrimaryKey(String power_no);
-    public AuthorityVO findByPrimaryKey_1(String power_name);
-    public List<AuthorityVO> getall();
+    public void insert(String staff_id,String[] power_no);
+    public void delete(String staff_id, Connection con);
+    public void delete(String staff_id);
+    public Set<String> findPowerByEmpno(String staff_id);
 }

@@ -97,6 +97,18 @@
 	</servlet-mapping>
 	
 	
+	
+		<servlet>
+		<servlet-name>AuthorityServlet</servlet-name>
+		<servlet-class>com.authority.controller.AuthorityServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AuthorityServlet</servlet-name>
+		<url-pattern>/back-end/staff/AuthorityServlet</url-pattern>
+	</servlet-mapping>
+	
+	
+	
 	<!-- 以下為商城XML -->
 	<servlet>
 		<servlet-name>MemberServlet</servlet-name>
