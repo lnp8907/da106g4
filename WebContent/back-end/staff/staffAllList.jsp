@@ -80,7 +80,7 @@
 								href="StaffServlet?staff_id=${StaffVO.staff_id}&action=getOne_ForStaff&whichPage=<%=whichPage%>"><button
 										id="update-info">查詢</button></a></td>
 						<td class="cell100 column4"><a
-								href="StaffServlet?staff_id=${StaffVO.staff_id}&action=getOne_ForStaff&whichPage=<%=whichPage%>"><button
+								href="AuthorityServlet?staff_id=${StaffVO.staff_id}&action=getOne_For_Display&whichPage=<%=whichPage%>"><button
 										id="update-info">確認</button></a></td>
 						</tr>
 
@@ -90,7 +90,7 @@
 					</tr>
 				</tbody>
 			</table>
-			<c:if test="${openModal!=null}">
+			<c:if test="${openModalUpdate!=null}">
 
 				<div class="modal fade" id="basicModal" tabindex="-1" role="dialog"
 					aria-labelledby="basicModal" aria-hidden="true">
@@ -112,7 +112,7 @@
 							<div class="modal-footer">
 								<button type="button" class="btn btn-default"
 									data-dismiss="modal">取消修改</button>
-								<button type="button" class="btn btn-primary">送出確認</button>
+								<button type="button" class="btn btn-primary" id="info_update">送出確認</button>
 							</div>
 
 						</div>
@@ -124,9 +124,53 @@
 						show : true
 					});
 					$(document).ready(function() {
-						$('.btn-primary').on('click', function() {
+						$('#info_update').on('click', function() {
 							$('#update_form').submit();
 						});	
+					});
+				</script>
+			</c:if>
+			<c:if test="${openModalPower!=null}">
+
+				<div class="modal fade" id="basicModal" tabindex="-1" role="dialog"
+					aria-labelledby="basicModal" aria-hidden="true">
+					<div class="modal-dialog modal-lg" style="width: 65%;">
+						<div class="modal-content" >
+
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+								<h2 class="modal-title" id="myModalLabel">員工權限修改</h2>
+							</div>
+
+							<div class="modal-body">
+								<!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
+								<jsp:include page="listOneStaffAuthority.jsp" />
+								<!-- =========================================以上為原listOneEmp.jsp的內容========================================== -->
+							</div>
+
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default"
+									data-dismiss="modal">取消修改</button>
+								<button type="button" class="btn btn-primary" id="power_update">送出確認</button>
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<script>
+					$("#basicModal").modal({
+						show : true
+					});
+					$(document).ready(function() {
+						$('#power_update').on('click', function() {
+							$('#power_form').submit();
+						});
+						
+						power_update
+						
+						
 					});
 				</script>
 			</c:if>

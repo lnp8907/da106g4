@@ -20,7 +20,7 @@ public class PowerDAO implements PowerDAO_interface{
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G4");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -29,7 +29,7 @@ public class PowerDAO implements PowerDAO_interface{
 
 	private static final String INSERT_STMT = "INSERT INTO POWER (POWER_NO,POWER_NAME) VALUES (SQ_POWER.NEXTVAL, ?)";
 	private static final String GET_ALL_STMT = "SELECT POWER_NO,POWER_NAME FROM POWER order by POWER_NO";
-	private static final String GET_ONE_STMT = "SELECT POWER_NO,POWER_NAME FROM POWER order by POWER_NO = ?";
+	private static final String GET_ONE_STMT = "SELECT POWER_NO,POWER_NAME FROM POWER where POWER_NO = ?";
 	private static final String DELETE = "DELETE FROM POWER where POWER_NO = ?";
 	private static final String UPDATE = "UPDATE POWER set POWER_NO=?, POWER_NAME=? where POWER_NO = ?";
 
@@ -226,8 +226,8 @@ public List<PowerVO> getall() {
 		while (rs.next()) {
 			// empVO �]�٬� Domain objects
 			powerVO = new PowerVO();
-			powerVO.setPower_no(rs.getString("STAFF_ID"));
-			powerVO.setPower_name(rs.getString("POWER_NO"));
+			powerVO.setPower_no(rs.getString("POWER_NO"));
+			powerVO.setPower_name(rs.getString("POWER_NAME"));
 			list.add(powerVO); // Store the row in the list
 		}
 
