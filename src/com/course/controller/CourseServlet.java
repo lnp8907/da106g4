@@ -531,10 +531,10 @@ public class CourseServlet extends HttpServlet {
 			try {
 				/*************************** 1.接收請求參數 ***************************************/
 				String course_id = req.getParameter("course_id");
-
+				Integer course_status = 2; //申請取消開課
 				/*************************** 2.開始刪除資料 ***************************************/
 				CourseService courseService = new CourseService();
-				courseService.deleteCourse(course_id);
+				courseService.updateStatus(course_id, course_status);
 
 				/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
 				String url = "/front-end/course/listAllCourseManagement.jsp";

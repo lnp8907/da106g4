@@ -801,13 +801,13 @@ public class RecipeServlet extends HttpServlet {
 			try {
 				/*************************** 1.接請求參數 ***************************************/
 				String recipe_id = req.getParameter("recipe_id");
-
+				Integer recipe_status = 3;
 				/*************************** 2.開始刪除資料 ***************************************/
 				RecipeService recipeSvc = new RecipeService();
-				recipeSvc.deleteRecipe(recipe_id);
+				recipeSvc.changeStatus(recipe_id, recipe_status);
 
 				/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
-				String url = "/front-end/recipe/listAllRecipe.jsp";
+				String url = "/front-end/recipe/listAllRecipeManagement.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 

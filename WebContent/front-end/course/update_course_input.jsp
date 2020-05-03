@@ -41,12 +41,9 @@
 					<textarea name="course_name" rows="1" placeholder="請填寫課程名稱"><%=(courseVO == null) ? "" : courseVO.getCourse_name()%></textarea>
 				</h2>
 				<div class="recipe-aside">
-					<div class="member_id-container">
-						<h3>廚師編號</h3>
-						<input type="text" name="member_id" placeholder="請輸入廚師編號"
-							class="cook-time-option"
-							value="<%=(courseVO == null) ? "" : courseVO.getMember_id()%>">
-					</div>
+
+						<h3>課程圖片</h3>
+
 					<figure class="recipe-aside-image">
 						<img src="<%=request.getContextPath()+"/front-end/course/photo?course_id="+courseVO.getCourse_id()%>" id="uploadFile">
 						<input id="imageFile" type="file" name="course_photo" value="">

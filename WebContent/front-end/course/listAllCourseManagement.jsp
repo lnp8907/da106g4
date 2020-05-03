@@ -6,8 +6,9 @@
 <%@ page import="com.course.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 <%
+String member_id =(String) session.getAttribute("member_id");
 	CourseService courseService = new CourseService();
-	List<CourseVO> list = courseService.getAll();
+	List<CourseVO> list = courseService.getChefCourse(member_id);
 	pageContext.setAttribute("list", list);
 
 %>

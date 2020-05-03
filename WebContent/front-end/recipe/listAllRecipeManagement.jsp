@@ -5,8 +5,9 @@
 <%@ page import="com.recipe.model.*"%>
 <%-- 此頁練習採用 EL 的寫法取值 --%>
 <%
+String member_id =(String) session.getAttribute("member_id");
 	RecipeService recipeService = new RecipeService();
-	List<RecipeVO> list = recipeService.getAll();
+	List<RecipeVO> list = recipeService.getChefCooked(member_id);
 	pageContext.setAttribute("list", list);
 %>
 
