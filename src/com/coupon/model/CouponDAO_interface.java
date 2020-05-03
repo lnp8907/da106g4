@@ -3,7 +3,7 @@ package com.coupon.model;
 import java.util.*;
 
 public interface CouponDAO_interface {
-          public void insert(CouponVO couponVO);
+          public String insert(CouponVO couponVO);
           public void update(CouponVO couponVO);
           public void delete(String c_no);
           public CouponVO findByPrimaryKey(String c_no);

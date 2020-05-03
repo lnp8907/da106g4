@@ -108,6 +108,26 @@
 	</servlet-mapping>
 	
 	
+	<!-- 優卷相關 XML -->
+	<servlet>
+		<servlet-name>CouponServlet</servlet-name>
+		<servlet-class>com.coupon.controller.CouponServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CouponServlet</servlet-name>
+		<url-pattern>/back-end/coupon/coupon.do</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>CouponReader</servlet-name>
+		<servlet-class>com.coupon.controller.DBGifReader4</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CouponReader</servlet-name>
+		<url-pattern>/back-end/coupon/DBGifReader4.do</url-pattern>
+	</servlet-mapping>
+	
+	
 	
 	<!-- 以下為商城XML -->
 	<servlet>

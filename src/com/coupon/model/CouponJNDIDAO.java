@@ -21,16 +21,11 @@ public class CouponJNDIDAO implements CouponDAO_interface {
 		}
 	}
 
-	private static final String INSERT_STMT = 
-			"INSERT INTO COUPON (C_NO, C_NAME, C_PICTURE, DISCOUNT, START_DATE, END_DATE) VALUES (SQ_C_NO.NEXTVAL, ?, ?, ?, ?, ?)";
-	private static final String GET_ALL_STMT = 
-			"SELECT C_NO,C_NAME,C_PICTURE,DISCOUNT,to_char(START_DATE,'yyyy-mm-dd') START_DATE,to_char(END_DATE,'yyyy-mm-dd') END_DATE FROM COUPON order by C_NO";
-	private static final String GET_ONE_STMT = 
-			"SELECT C_NO,C_NAME,C_PICTURE,DISCOUNT,to_char(START_DATE,'yyyy-mm-dd') START_DATE,to_char(END_DATE,'yyyy-mm-dd') END_DATE FROM COUPON where C_NO = ?";
-	private static final String DELETE = 
-			"DELETE FROM COUPON where C_NO = ?";
-	private static final String UPDATE = 
-			"UPDATE COUPON set C_NAME=?, C_PICTURE=?, DISCOUNT=?, START_DATE=?, END_DATE=? where C_NO = ?";
+	private static final String INSERT_STMT = "INSERT INTO COUPON (C_NO, C_NAME, C_PICTURE, DISCOUNT, START_DATE, END_DATE, COUPON_CODE) VALUES (SQ_C_NO.NEXTVAL, ?, ?, ?, ?, ?, ?)";
+	private static final String GET_ALL_STMT = "SELECT C_NO,C_NAME,C_PICTURE,DISCOUNT,to_char(START_DATE,'yyyy-mm-dd') START_DATE,to_char(END_DATE,'yyyy-mm-dd') END_DATE, COUPON_CODE FROM COUPON order by C_NO";
+	private static final String GET_ONE_STMT = "SELECT C_NO,C_NAME,C_PICTURE,DISCOUNT,to_char(START_DATE,'yyyy-mm-dd') START_DATE,to_char(END_DATE,'yyyy-mm-dd') END_DATE, COUPON_CODE FROM COUPON where C_NO = ?";
+	private static final String DELETE = "DELETE FROM COUPON where C_NO = ?";
+	private static final String UPDATE = "UPDATE COUPON set C_NAME=?, C_PICTURE=?, DISCOUNT=?, START_DATE=?, END_DATE=?, COUPON_CODE=? where C_NO = ?";
 	@Override
 	public void insert(CouponVO couponVO) {
 
@@ -47,7 +42,7 @@ public class CouponJNDIDAO implements CouponDAO_interface {
 			pstmt.setInt(3, couponVO.getDiscount());
 			pstmt.setDate(4, couponVO.getStart_date());
 			pstmt.setDate(5, couponVO.getEnd_date());
-
+			pstmt.setString(6, couponVO.getCoupon_code());
 			pstmt.executeUpdate();
 
 			// Handle any SQL errors
@@ -90,7 +85,8 @@ public class CouponJNDIDAO implements CouponDAO_interface {
 			pstmt.setInt(3, couponVO.getDiscount());
 			pstmt.setDate(4, couponVO.getStart_date());
 			pstmt.setDate(5, couponVO.getEnd_date());
-			pstmt.setString(6, couponVO.getC_no());
+			pstmt.setString(6, couponVO.getCoupon_code());
+			pstmt.setString(7, couponVO.getC_no());
 
 			pstmt.executeUpdate();
 
@@ -183,6 +179,7 @@ public class CouponJNDIDAO implements CouponDAO_interface {
 				couponVO.setDiscount(rs.getInt("DISCOUNT"));
 				couponVO.setStart_date(rs.getDate("START_DATE"));
 				couponVO.setEnd_date(rs.getDate("END_DATE"));
+				couponVO.setCoupon_code(rs.getString("COUPON_CODE"));
 			}
 
 			// Handle any driver errors
@@ -240,6 +237,7 @@ public class CouponJNDIDAO implements CouponDAO_interface {
 				couponVO.setDiscount(rs.getInt("DISCOUNT"));
 				couponVO.setStart_date(rs.getDate("START_DATE"));
 				couponVO.setEnd_date(rs.getDate("END_DATE"));
+				couponVO.setCoupon_code(rs.getString("COUPON_CODE"));
 				list.add(couponVO);
 				// Store the row in the list
 			}

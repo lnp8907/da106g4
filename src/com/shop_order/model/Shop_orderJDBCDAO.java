@@ -137,9 +137,10 @@ public class Shop_orderJDBCDAO implements Shop_orderDAO_interface{
 		
 	}
 	
+
+	
 	@Override
 	public void insert(Shop_orderVO shop_ordervo,List<Order_detailVO>list) {
-		// TODO Auto-generated method stub
 		 Connection con = null;
 	        PreparedStatement pstmt = null;
 
