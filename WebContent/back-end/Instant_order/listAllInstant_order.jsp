@@ -36,11 +36,12 @@ pageContext.setAttribute("list",list);
 <title>所有訂單</title>
 <div id="ordertitle">
 		 <h3>以下是所有訂單:</h3>
+	 <%if(list.size()>1){ %>
 		 <%= list.get(0).getIdo_no() %>
 		 
 		 <%if(!list.get(0).getIdo_no().equals(list.get(list.size() - 1).getIdo_no())){ %>
 		 →<%= list.get(list.size() - 1).getIdo_no() %>
-		 <% }%>
+		 <% }}%>
 	</div>	 
 		 
 		

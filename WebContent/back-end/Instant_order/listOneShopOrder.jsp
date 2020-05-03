@@ -137,9 +137,7 @@ th, td {
 				
 				<td>${detailvo.quantity}</td>
 				<td>${detailvo.price}</td>
-				<td><%
-				a++;
-				%>${detailvo.quantity*detailvo.price}
+				<td>${detailvo.quantity*detailvo.price}
 				</td>
 				
 			
@@ -173,7 +171,7 @@ th, td {
 
 			
 			<hr width="610px" color="red" align="left">
-		    <p  style="color: red; margin-left:535px" >總計:<%=total %></p>
+		    <p  style="color: red; margin-left:535px" >總計:</p>
 	<%@ include file="../file/page2.file"%>
 </body>
 </html>
