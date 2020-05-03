@@ -35,8 +35,8 @@
 		<!--這裡是左邊選單-->
 		<div class="left-bar">
 		
-                        <span class="fa fa-cloud-download"><img src="<%=request.getContextPath() %>/image/logo_nohead.png" alt="LOGO"
-                        width="200" height="200"></span>
+                        <a href="<%=request.getContextPath() %>/backEnd.html"> <span class="fa fa-cloud-download"><img src="<%=request.getContextPath() %>/image/logo_nohead.png" alt="LOGO"
+                        width="200" height="200"></span></a>
 		
 		  <div class="back-endlefecotext">
 		  <!-- LOGO -->
@@ -63,16 +63,31 @@
                                         <li class="lialist">
                                             <div class="iconstatus" style="display: none">CLOSE</div>
 
-                                            <span class=" orderlist" title="open or close this section " href="#">管理訂單
+                                            <span class=" orderlist" title="open or close this section " >商城訂單管理
                                                 <i class="angle down icon"></i>
                                             </span>
                                             <ul class="BList" >
 
                                                 <li><a href="<%=request.getContextPath() %>/back-end/shop_order/Order_backendPage.jsp">查看全部訂單</a></li>
-                                                <li><a href="#">查詢訂單</a></li>
-                                                <li><a href="#">???????</a></li>
+                                                <li><a href="#">未出貨訂單</a></li>
+                                                <li><a href="#">已完成訂單</a></li>
                                             </ul>
                                         </li>
+                                        
+                                        <li class="lialist">
+                                            <div class="iconstatus" style="display: none">CLOSE</div>
+
+                                            <span  class=" Instantorderlist" title="open or close this section " >配送訂單管理
+                                                <i class="angle down icon"></i>
+                                            </span>
+                                            <ul class="BList" >
+
+                                                <li><a href="<%=request.getContextPath() %>/back-end/Instant_order/Instant_order_backendPage.jsp">查看全部訂單</a></li>
+                                                 <li><a href="<%=request.getContextPath() %>/back-end/Instant_order/Instant_delivery_orderServlet?action=traveling">運送中訂單</a></li>
+                                    
+                                            </ul>
+                                        </li>
+                                        
                                     </ul>
 
 

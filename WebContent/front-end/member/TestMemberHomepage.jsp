@@ -2329,7 +2329,8 @@ B.A
 				</span><i class="arrow fa fa-angle-right pull-right"></i></a>
 				<ul>
 					<li><a href="tables-basic.html">交易紀錄</a></li>
-
+					
+	<li><a href="/DA106_G4_Foodporn_Git/front-end/member/123.jsp">信用卡</a></li>
 					<li><a href="/DA106_G4_Foodporn_Git/front-end/member/ChefWithdraw.jsp">提款</a></li>
 					<li><a href="/DA106_G4_Foodporn_Git/front-end/member/MemberStoredValue.jsp">儲值</a></li>
 				</ul></li>

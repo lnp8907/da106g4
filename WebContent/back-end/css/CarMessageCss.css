@@ -1,0 +1,56 @@
+.carmessage1{
+    float: left;
+
+    width: 40px;
+    height: 40px;
+    z-index: 10;
+}
+.carmessage2{
+
+margin-left: -15px;
+    margin-top: 25px;
+
+    font-size: 10px;
+    background-color: #f90031;
+    width: 14px;
+    height: 14px;
+    line-height: 14px;
+}
+.carmessagecircle{
+
+    background-image: linear-gradient(to bottom right,#E4002B , orangered);
+    font-weight: bolder;
+    font-size: 3px;
+    border-style:solid;						border-color: #E4002B;
+    margin-left: -37px;
+    margin-top: 25px;
+    top: 52px;
+    width: 36px;
+    height: 15px;
+    line-height: 7px;
+
+}
+.carmessage2,.carmessagecircle {
+
+
+    font-family: '微軟正黑體', monospace;
+    color: #f1f1f1;
+    z-index: 50;
+    text-align: center;
+    border-radius: 10px;
+
+
+}
+.shop-car div{
+    float: left;
+display: inline-block;
+}
+
+.herder-icon-span{
+    z-index: 20;
+
+    position: relative;
+    margin: 0px;
+line-height: 40px;
+    height: 40px;
+}

@@ -4,6 +4,7 @@
 
 <%
      MemberVO membervo = (MemberVO) request.getAttribute("membervo"); //EmpServlet.java(Concroller), 存入req的empVO物件
+     
 %>
 
 <html>
