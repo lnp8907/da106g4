@@ -28,6 +28,7 @@ public class RecipeDAO implements RecipeDAO_interface {
 
 	private static final String INSERT_STMT = "INSERT INTO RECIPE (recipe_id, rcstyle_no, member_id, recipe_name, recipe_type, recipe_ingredient, recipe_step, recipe_photo, cook_time, calo_intake, salt_intake, protein_intake, fat_intake, carbo_intake, vitamin_b, vitamin_c, vage_intake, recipe_content) VALUES ( sq_recipe_id.NEXTVAL,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ? )";
 	private static final String GET_ALL_STMT = "SELECT recipe_id, rcstyle_no, member_id, recipe_name, recipe_type, recipe_status, refollow_num, recipe_uldate, recipe_ingredient, recipe_step, recipe_photo, cook_time, calo_intake, salt_intake, protein_intake, fat_intake, carbo_intake, vitamin_b, vitamin_c, vage_intake, recipe_content FROM RECIPE order by recipe_id";
+	private static final String GET_CHECK_STMT = "SELECT recipe_id, rcstyle_no, member_id, recipe_name, recipe_type, recipe_status, refollow_num, recipe_uldate, recipe_ingredient, recipe_step, recipe_photo, cook_time, calo_intake, salt_intake, protein_intake, fat_intake, carbo_intake, vitamin_b, vitamin_c, vage_intake, recipe_content FROM RECIPE where recipe_status = 2 order by recipe_id";
 	private static final String GET_ONE_STMT = "SELECT recipe_id, rcstyle_no, member_id, recipe_name, recipe_type, recipe_status, refollow_num, recipe_uldate, recipe_ingredient, recipe_step, recipe_photo, cook_time, calo_intake, salt_intake, protein_intake, fat_intake, carbo_intake, vitamin_b, vitamin_c, vage_intake, recipe_content FROM RECIPE WHERE recipe_id = ?";
 	private static final String DELETE = "DELETE FROM RECIPE WHERE recipe_id = ?";
 	private static final String UPDATE = "UPDATE RECIPE SET rcstyle_no=?, member_id=?, recipe_name=?, recipe_type=?,recipe_ingredient=?, recipe_step=?, recipe_photo=?, cook_time=?, calo_intake=?, salt_intake=?, protein_intake=?, fat_intake=?, carbo_intake=?, vitamin_b=?, vitamin_c=?, vage_intake=?, recipe_content=? WHERE recipe_id = ?";
@@ -38,9 +39,45 @@ public class RecipeDAO implements RecipeDAO_interface {
 	private static final String GET_LATEST = "SELECT * FROM (SELECT * FROM RECIPE WHERE RECIPE_STATUS = 4 ORDER BY RECIPE_ULDATE DESC) WHERE ROWNUM = 1"; 
 	private static final String GET_MOST_POPULAR = "SELECT * FROM (SELECT * FROM RECIPE WHERE RECIPE_STATUS = 4 ORDER BY REFOLLOW_NUM DESC) WHERE ROWNUM = 1";	
 	private static final String UPDATE_FOLLOW_NUM = "UPDATE RECIPE SET REFOLLOW_NUM = ? WHERE RECIPE_ID = ? ";
+	private static final String GET_MANAGE_NUM = "SELECT count(1) FROM RECIPE COURSE  WHERE recipe_status = 2 ";
+
 	
 	@Override
+	public Integer getManageNum() {
 
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		Integer count = null;
+		try {
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_MANAGE_NUM);
+			rs = pstmt.executeQuery();
+			rs.next();
+			count = rs.getInt(1);
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return count;
+	}
+
+	
+	@Override
 	public RecipeVO_saved getLatest() {
 		RecipeVO_saved recipeVO = null;
 		Connection con = null;
@@ -945,6 +982,80 @@ public class RecipeDAO implements RecipeDAO_interface {
 		return list;
 	}
 
+	@Override
+	public List<RecipeVO> getCheck() {
+		List<RecipeVO> list = new ArrayList<RecipeVO>();
+		RecipeVO recipeVO = null;
+
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_CHECK_STMT);
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				// recipeVO 也稱為 Domain objects
+				recipeVO = new RecipeVO();
+				recipeVO.setRecipe_id(rs.getString("recipe_id"));
+				recipeVO.setRcstyle_no(rs.getString("rcstyle_no"));
+				recipeVO.setMember_id(rs.getString("member_id"));
+				recipeVO.setRecipe_name(rs.getString("recipe_name"));
+				recipeVO.setRecipe_type(rs.getString("recipe_type"));
+				recipeVO.setRecipe_status(rs.getInt("recipe_status"));
+				recipeVO.setRefollow_num(rs.getInt("refollow_num"));
+				recipeVO.setRecipe_uldate(rs.getDate("recipe_uldate"));
+				recipeVO.setRecipe_ingredient(rs.getString("recipe_ingredient"));
+				recipeVO.setRecipe_step(rs.getString("recipe_step"));
+				recipeVO.setRecipe_photo(rs.getString("recipe_photo"));
+				recipeVO.setCook_time(rs.getInt("cook_time"));
+				recipeVO.setCalo_intake(rs.getDouble("calo_intake"));
+				recipeVO.setSalt_intake(rs.getDouble("salt_intake"));
+				recipeVO.setProtein_intake(rs.getDouble("protein_intake"));
+				recipeVO.setFat_intake(rs.getDouble("fat_intake"));
+				recipeVO.setCarbo_intake(rs.getDouble("carbo_intake"));
+				recipeVO.setVitamin_b(rs.getDouble("vitamin_b"));
+				recipeVO.setVitamin_c(rs.getDouble("vitamin_c"));
+				recipeVO.setVage_intake(rs.getDouble("vage_intake"));
+				recipeVO.setRecipe_content(rs.getString("recipe_content"));
+
+				list.add(recipeVO); // Store the row in the list
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+
+	
 	@Override
 	public List<RecipeVO_saved> getAllForFrontEnd() {
 

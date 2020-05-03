@@ -7,7 +7,7 @@
 
 
 <%
-	List<RecipeVO> list = recipeService.getAll();
+	List<RecipeVO> list = recipeService.getCheck();
 	pageContext.setAttribute("list", list);
 	String oldRecipe_id = (String) request.getAttribute("oldRecipe_id");
 %>
@@ -60,9 +60,9 @@
 								<td class="cell100 column4">
 									<form method="post" action="RecipeServlet.do"
 										name="changeStatus">
-										<select name="recipe_status" class="recipe_status">
-																					<option value="2"
-												${(RecipeVO.recipe_status==2)?'selected':''}>申請中</option>
+										<select name="recipe_status" class="recipe_status"">
+																					<option value="4"
+												${(RecipeVO.recipe_status==2)?'selected':''}>下架食譜申請</option>
 											<option value="4"
 												${(RecipeVO.recipe_status==4)?'selected':''}>上架</option>
 											<option value="3"

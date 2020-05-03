@@ -801,7 +801,7 @@ public class RecipeServlet extends HttpServlet {
 			try {
 				/*************************** 1.接請求參數 ***************************************/
 				String recipe_id = req.getParameter("recipe_id");
-				Integer recipe_status = 3;
+				Integer recipe_status = 2;
 				/*************************** 2.開始刪除資料 ***************************************/
 				RecipeService recipeSvc = new RecipeService();
 				recipeSvc.changeStatus(recipe_id, recipe_status);

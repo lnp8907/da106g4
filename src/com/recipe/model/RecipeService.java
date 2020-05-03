@@ -10,6 +10,8 @@ public class RecipeService {
 
 	private RecipeDAO_interface dao;
 
+	
+	
 	public RecipeService() {
 		dao = new RecipeDAO();
 	}
@@ -24,8 +26,12 @@ public class RecipeService {
     public Integer updateFollowNum(String recipe_id,Integer followNum) {
     	return dao.updateFollowNum(recipe_id, followNum);
     }
-	
-	
+    public List<RecipeVO> getCheck(){
+    	return dao.getCheck();
+    }
+    public Integer getManageNum() {
+    	return dao.getManageNum();
+    }
 	
 	public List<RecipeVO_saved> getAllWithTerm(Map<String, String[]> map, String orderBy) {
 

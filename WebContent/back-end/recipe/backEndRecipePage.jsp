@@ -1,3 +1,4 @@
+<%@page import="com.recipe.model.RecipeService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@page import="java.util.List"%>
@@ -8,6 +9,8 @@ if (pageType == null) {
 	pageType = "recipeAllList.jsp";
 }
 request.setAttribute("pageType",pageType);
+RecipeService recipeService = new RecipeService();
+Integer recipeManageNum = recipeService.getManageNum();
 %>
 <jsp:useBean id="memberService" scope="request" class="com.member.model.MemberService"/>
 <jsp:useBean id="recipeFavoriteServiec" scope="request" class="com.recipe_favorite.model.RecipeFavoriteServiec"/>
@@ -249,6 +252,13 @@ h1 {
 .row100 {
 	box-shadow: 2px 1px rgba(54, 27, 27, 0.2);
 }
+
+.count {
+    position: absolute;
+    color: white;
+    font-size: 18px;
+    top: -10px;
+}
 </style>
 <body>
 	<div class="container">
@@ -260,7 +270,8 @@ h1 {
 				<div class="menu-group">
 				<a class="menu-group-a"
 						href="<%=request.getContextPath() + "/backEnd.html"%>"><span style="font-size:30px;">回首頁</span></a>
-				<a class="menu-group-a"href="<%=request.getContextPath() + "/back-end/recipe/backEndRecipePage.jsp?pageType=recipeAllList.jsp"%>"><span>食譜管理</span></a>
+				<a class="menu-group-a"href="<%=request.getContextPath() + "/back-end/recipe/backEndRecipePage.jsp?pageType=recipeAllList.jsp"%>"><span>食譜管理
+				</span></a><a class="menu-group-a"href="<%=request.getContextPath() + "/back-end/recipe/backEndRecipePage.jsp?pageType=recipeCheckList.jsp"%>"><span>食譜審核管理<span id="courseManageNum" style="display:<%=(recipeManageNum==0)?"none":""%>" class="count"><%=(recipeManageNum<10)?recipeManageNum:"9+"%></span></span></a>	
 				<a class="menu-group-a"href="<%=request.getContextPath() + "/back-end/recipe/backEndRecipePage.jsp?pageType=recipeStyleList.jsp"%>"><span>食譜風格管理</span></a>		
 					<div class="building"></div>
 				</div>
