@@ -398,33 +398,17 @@ out.println(member_id);
   src="../../test/image/S__12066827.jpg"><span>直播/課程管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
   class="arrow fa fa-angle-right pull-right"></i></a>
   <ul>
-  <li><a href="map-google.html">1</a>
+  <li><a href="<%=request.getContextPath()+"/front-end/course/listAllCourseManagement.jsp"%>">課程管理</a>
   </li>
-  <li><a href="map-vector.html">2</a>
+  <li><a href="map-vector.html">直播管理</a>
   </li>
   </ul>
   </li>
 
   <li class="sub-menu">
-  <a href="javascript:void(0);"><i class="fa fa-file"></i><img class="access-menu-icon1"
+  <a href="<%=request.getContextPath()+"/front-end/recipe/listAllRecipeManagement.jsp"%>"><i class="fa fa-file"></i><img class="access-menu-icon1"
   src="../../test/image/S__12066826.jpg"><span>食譜管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
   class="arrow fa fa-angle-right pull-right"></i></a>
-  <ul>
-  <li><a href="pages-blank.html">1</a>
-  </li>
-  <li><a href="pages-login.html">2</a>
-  </li>
-  <li><a href="pages-sign-up.html">3</a>
-  </li>
-  <li><a href="pages-calendar.html">4</a>
-  </li>
-  <li><a href="pages-timeline.html">5</a>
-  </li>
-  <li><a href="pages-404.html">6</a>
-  </li>
-  <li><a href="pages-500.html">7</a>
-  </li>
-  </ul>
   </li>
   <li class="sub-menu">
   <a href="typography.html"><i class="fa fa-text-height"></i><img class="access-menu-icon1"
