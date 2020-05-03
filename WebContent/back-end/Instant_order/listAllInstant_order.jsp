@@ -138,7 +138,15 @@ pageContext.setAttribute("list",list);
 			
 		  </tr>
         <tr class="orseraddress"><td>地址:</td><td colspan="7">${ordervo.d_address}</td>
-                <td><a href="<%=request.getContextPath() %>/back-end/Instant_order/Instant_delivery_orderServlet?action=cencelorder&ido_no=${ordervo.ido_no}"><button class="cancelloreder">取消訂單</button></a></td>
+                <td>
+                <a href="<%=request.getContextPath() %>/back-end/Instant_order/Instant_delivery_orderServlet?action=cencelorder&ido_no=${ordervo.ido_no}">
+                <input class="ostatus"	type="hidden" name="" value="${ordervo.o_status}"/>
+                
+                <button class="cancelloreder">取消訂單</button>
+                
+                </a>
+                
+                </td>
  </tr>
 	</c:forEach>
 </table>
@@ -148,8 +156,16 @@ pageContext.setAttribute("list",list);
 
 
 
-</style>
 <script language="Javascript">
+
+$(".ostatus").each(function () {
+    if($(this).val()==3){
+        $(this).siblings(".cancelloreder").hide();
+
+    }
+})
+
+
 $(".cancelloreder").click(function(){
 	CheckForm();
 	

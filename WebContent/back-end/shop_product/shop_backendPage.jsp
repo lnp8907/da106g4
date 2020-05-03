@@ -174,7 +174,7 @@
             $(this).children('i').addClass("down");
             $(this).css("color","#707070");
 
-            $(this).siblings('i').css("color","#707070");
+            $(this).children('i').css("color","#707070");
 
             $(this).siblings(".iconstatus").html("CLOSE") ;
 

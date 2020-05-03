@@ -44,7 +44,7 @@ if(action.equals("cencelorder")) {
 		
 		if(action.equals("all")) {
 			
-			System.out.println("運送中清單請求");
+			System.out.println("全部清單請求");
 			req.setAttribute("pagemessage", "all");
 			String url = "/back-end/Instant_order/Instant_order_backendPage.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);

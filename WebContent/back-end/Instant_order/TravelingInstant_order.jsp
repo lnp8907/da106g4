@@ -4,9 +4,6 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*" %>
-<%@ page import="com.shop_order.model.*" %>
-<%@ page import="com.order_detail.model.*" %>
-<%@ page import="com.ordermanager.shop.*" %>
 <%@ page import="java.sql.Timestamp" %>
 
 <%@ page import="java.util.stream.Collectors" %>
@@ -23,9 +20,9 @@ if(IDSvc.getAll()!=null){
 			.filter(p->p.getO_status()==1)
 			.collect(Collectors.toList());
 }
-
+if(list!=null){
 pageContext.setAttribute("list",list);
-
+}
 
 
 
@@ -36,14 +33,15 @@ pageContext.setAttribute("list",list);
     <link rel="stylesheet" href="css/OrderList.css">
 
 <meta charset="UTF-8">
-<title>運送中訂單</title>
+<title>所有訂單</title>
 <div id="ordertitle">
 		 <h3>以下是所有訂單:</h3>
+		 <%if(list.size()>1){ %>
 		 <%= list.get(0).getIdo_no() %>
 		 
 		 <%if(!list.get(0).getIdo_no().equals(list.get(list.size() - 1).getIdo_no())){ %>
 		 →<%= list.get(list.size() - 1).getIdo_no() %>
-		 <% }%>
+		 <% }}%>
 	</div>	 
 		 
 		
@@ -73,17 +71,17 @@ pageContext.setAttribute("list",list);
 		<th>付款方式</th>
 		<th>查看訂單詳情</th>	
 		<th>修改</th>
-		<th>發送訊息</th>
 	</tr>
 	<%@ include file="../file/page1.file" %> 
 	
 	<c:forEach var="ordervo" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
+		<tr>
 			<td>${ordervo.ido_no}</td>
 			<td>${ordervo.member_id}</td>
 			<td>會員名稱</td>
 
-
+<!-- 狀態 -->
 			<td>${ostatus[ordervo.o_status]}</td>
 			
 			<c:set var="time" value="${ordervo.o_time}"/>
@@ -138,18 +136,18 @@ pageContext.setAttribute("list",list);
 <!-- 			    </FORM> -->
 			     
 <!-- 			</td> -->
-			<!-- 還沒做 -->
-			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do" style="margin-bottom: 0px;"   >
-			     <input type="submit" value="發送訊息" >
-			     <input	type="hidden" name="requestURL"	value="<%=request.getServletPath()%>">
-			     <input	type="hidden" name="whichPage" value="<%=whichPage%>"> 
-			     
-			     
-			     </FORM>
-			</td>
+			
 		  </tr>
-        <tr class="orseraddress"><td>地址</td><td colspan="9">${ordervo.d_address}</td>
+        <tr class="orseraddress"><td>地址:</td><td colspan="7">${ordervo.d_address}</td>
+                <td>
+                <a href="<%=request.getContextPath() %>/back-end/Instant_order/Instant_delivery_orderServlet?action=cencelorder&ido_no=${ordervo.ido_no}">
+                <input class="ostatus"	type="hidden" name="" value="${ordervo.o_status}"/>
+                
+                <button class="cancelloreder">取消訂單</button>
+                
+                </a>
+                
+                </td>
  </tr>
 	</c:forEach>
 </table>
@@ -157,11 +155,28 @@ pageContext.setAttribute("list",list);
 <%@ include file="../file/page2.file" %>
 
 
-<script language="Javascript">   
+
+
+<script language="Javascript">
+
+$(".ostatus").each(function () {
+    if($(this).val()==3){
+        $(this).siblings(".cancelloreder").hide();
+
+    }
+})
+
+
+$(".cancelloreder").click(function(){
+	CheckForm();
+	
+	
+})
+
 function CheckForm()
 {
 
-  if(confirm("確認要刪除!? \n整個訂單會不見耶")==true)   {
+  if(confirm("取消訂單將無法再修改")==true)   {
     return true;
   }
   else  

@@ -8,6 +8,8 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+import com.order_detail.model.Order_detailVO;
+
 public class RecipeOrderDetailsDAO implements RecipeOrderDetailsDAO_interface {
 
 	// 一個應用程式中,針對一個資料庫 ,共用一個DataSource即可
@@ -15,7 +17,7 @@ public class RecipeOrderDetailsDAO implements RecipeOrderDetailsDAO_interface {
 	static {
 		try {
 			Context ctx = new InitialContext();
-			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/TestDB");
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G4");
 		} catch (NamingException e) {
 			e.printStackTrace();
 		}
@@ -33,7 +35,10 @@ public class RecipeOrderDetailsDAO implements RecipeOrderDetailsDAO_interface {
 //		"DELETE FROM RECIPE_ORDER_DETAILS where IDO_NO = ? and PRODUCT_ID = ?";
 //	private static final String UPDATE = 
 //		"UPDATE RECIPE_ORDER_DETAILS set IDO_NO=?, PRODUCT_ID=?, QUANTITY=?, PRICE=? where IDO_NO = ? and PRODUCT_ID = ?";
-
+	
+	
+	
+	
 	@Override
 	public void insertWithOrder(RecipeOrderDetailsVO recipeOrderDetailsVO, Connection con) {
 
@@ -215,6 +220,15 @@ public class RecipeOrderDetailsDAO implements RecipeOrderDetailsDAO_interface {
 		}
 		return list;
 	}
+
+		
+		
+		
+		
+		
+
+
+	
 
 //	@Override
 //	public List<RecipeOrderDetailsVO> findByPrimaryKey_Product_id(String product_id) {

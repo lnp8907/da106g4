@@ -65,8 +65,8 @@ pageContext.setAttribute("list",list);
 	<%@ include file="../file/page1.file" %> 
 	
 	<c:forEach var="ordervo" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
-		
-		<tr>
+		<div>
+		<tr class="ordertr1">
 			<td>${ordervo.order_no}</td>
 			<td>${ordervo.member_id}</td>
 			<td>會員名稱</td>
@@ -157,14 +157,22 @@ pageContext.setAttribute("list",list);
 			     </FORM>
 			</td>
 		  </tr>
-        <tr class="orseraddress"><td>地址</td><td colspan="9">${ordervo.dv_address}</td>
+        <tr class="orseraddress ordertr2"><td>地址</td><td colspan="9">${ordervo.dv_address}</td>
  </tr>
 	</c:forEach>
 </table>
 
 <%@ include file="../file/page2.file" %>
 
+<style>
+{
+background-color: teal;
 
+}
+
+
+
+</style>
 <script language="Javascript">   
 function CheckForm()
 {

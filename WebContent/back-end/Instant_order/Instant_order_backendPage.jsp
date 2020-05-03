@@ -69,7 +69,7 @@ pmethod.put(2,"線上支付");
                                         <li class="lialist">
                                             <div class="iconstatus" style="display: none">CLOSE</div>
                                             <span  title="open or close this section " href="#">商品管理
-                                                <i class="angle up icon" style="color: #E4002B"></i>
+                                                <i class="angle down icon" ></i>
                                             </span>
                                             <ul class="BList" >
                                                 <li><a href="<%=request.getContextPath() %>/back-end/shop_product/ShopPageServlet?action=listallEX">查看商品</a></li>
@@ -101,7 +101,7 @@ pmethod.put(2,"線上支付");
                                             <div class="iconstatus" style="display: none">OPEN</div>
 
                                             <span style="color: #E4002B" class="Instantorderlist" class=" Instantorderlist" title="open or close this section " >配送訂單管理
-                                                <i class="angle down icon"></i>
+                                                <i class="angle up icon" style="color: #E4002B"></i>
                                             </span>
                                             <ul class="BList" >
 
@@ -177,7 +177,7 @@ pmethod.put(2,"線上支付");
             $(this).children('i').addClass("down");
             $(this).css("color","#707070");
 
-            $(this).siblings('i').css("color","#707070");
+            $(this).children('i').css("color","#707070");
 
             $(this).siblings(".iconstatus").html("CLOSE") ;
 

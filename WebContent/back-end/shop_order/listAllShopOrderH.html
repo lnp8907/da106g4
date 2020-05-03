@@ -144,13 +144,18 @@
                 return false;
 
         }
+        $(".ostatus").each(function () {
+            if($(this).val()==3){
+                alert("符合");
+                $(this).siblings(".cancelloreder").hide();
+
+            }
+        })
+
+
     </script>
     <style>
 
-        .ss{
-
-            background-color: ;
-        }
 
     </style>
 

@@ -46,7 +46,7 @@
                                         <li class="lialist">
                                             <div class="iconstatus" style="display: none">CLOSE</div>
                                             <span  class=" productlist" title="open or close this section " >商品管理
-                                                <i class="angle up icon" style="color: #E4002B"></i>
+                                                <i class="angle down icon"></i>
                                             </span>
                                             <ul class="BList" >
                                                 <li><a href="<%=request.getContextPath() %>/back-end/shop_product/ShopPageServlet?action=listallEX">查看商品</a></li>
@@ -64,7 +64,7 @@
                                             <div class="iconstatus" style="display: none">OPEN</div>
 
                                             <span style="color: #E4002B" class=" orderlist " title="open or close this section " href="#">商城訂單管理
-                                                <i class="angle down icon"></i>
+                                                <i class="angle up icon"></i>
                                             </span>
                                             <ul class="BList " >
 
@@ -156,7 +156,7 @@
             $(this).children('i').addClass("down");
             $(this).css("color","#707070");
 
-            $(this).siblings('i').css("color","#707070");
+            $(this).children('i').css("color","#707070");
 
             $(this).siblings(".iconstatus").html("CLOSE") ;
 

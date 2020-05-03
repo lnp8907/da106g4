@@ -220,19 +220,21 @@ $(".offproduct").click(function () {
 
     $('.lialist').click(function () {
         if($(this).children(".iconstatus").html()=="OPEN"){
+            $(this).find('i').css("color","#707070");
+
             $(this).find('i').removeClass("up");
             $(this).find('i').addClass("down");
             $(this).children('a').css("color","#707070");
-            $(this).find('i').css("color","#707070");
 
             $(this).children(".iconstatus").html("CLOSE") ;
 
         }
         else if($(this).children(".iconstatus").html()=="CLOSE"){
-            $(this).find('i').removeClass("down");
+            $(this).find('i').css("color","#E4002B");
+
+        	$(this).find('i').removeClass("down");
             $(this).find('i').addClass("up");
             $(this).children('a').css("color","#E4002B");
-            $(this).find('i').css("color","#E4002B");
 
             $(this).children(".iconstatus").html("OPEN") ;
 
