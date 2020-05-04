@@ -162,10 +162,7 @@ th, td {
 			    </FORM>
 			     
 			</td>
-			</tr>
-			
-			
-		
+			</tr>	
 		</c:forEach>
 	</table>
 

@@ -51,24 +51,33 @@ if(action.equals("cencelorder")) {
 			successView.forward(req, res);			
 		}
 		if(action.equals("traveling")) {
-			
+
 			System.out.println("運送中清單請求");
 			req.setAttribute("pagemessage", "traveling");
 			String url = "/back-end/Instant_order/Instant_order_backendPage.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);
 			successView.forward(req, res);
+			}
 			
-			
-		}
 		
+	if(action.equals("getPositon")) {
 		
-		
-
+	String 	ido_no = req.getParameter("ido_no");
+	System.out.println("配送位置請求");
+	req.setAttribute("ido_no", ido_no); // 資料庫取出的empVO物件,存入req
+	boolean openModal = true;
+	req.setAttribute("openModal", openModal);
+	String url = "/back-end/Instant_order/googleMap.jsp";
+	RequestDispatcher successView = req.getRequestDispatcher(url);
+	successView.forward(req, res);
 	}
+	
+}
+			
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
+	
+
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);

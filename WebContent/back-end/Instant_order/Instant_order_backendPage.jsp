@@ -21,6 +21,7 @@ pmethod.put(0,"點數支付");
 pmethod.put(1,"貨到付款");
 pmethod.put(2,"線上支付");
 %>
+
 <c:set var="ostatus" value="<%=ostatus %>" scope="request"/>
 <c:set var="pstatus" value="<%=pstatus %>" scope="request"/>
 <c:set var="pmethod" value="<%=pmethod %>" scope="request"/>
@@ -63,11 +64,7 @@ pmethod.put(2,"線上支付");
 		
 		  <div class="back-endlefecotext">
 		  <!-- LOGO -->
-		  
-                                    <ul id="leftMenu">
-                                    
-                                       
-                                        
+                                    <ul id="leftMenu">         
                                           <li class="lialist">
                                             <div class="iconstatus" style="display: none">OPEN</div>
 
@@ -78,31 +75,23 @@ pmethod.put(2,"線上支付");
 
                                                 <li><a href="<%=request.getContextPath() %>/back-end/Instant_order/Instant_order_backendPage.jsp">查看全部訂單</a></li>
                                                  <li><a href="<%=request.getContextPath() %>/back-end/Instant_order/Instant_delivery_orderServlet?action=traveling">運送中訂單</a></li>
-                                    
-                                        </li>
-                                        
-                                        
-                                        
+                                        </li>                                    
                                     </ul>
-
-
-
                                 </div>
-
-
-
                                 <span class="fa fa-sign-out">登出</span>
                             </div>
                             <div class="wrapper">
 			<!--  -->
 	
 	
-	<%if(request.getAttribute("pagemessage")==null){ %>
+<%if(request.getAttribute("pagemessage")==null){ %>
 		 <jsp:include page="listAllInstant_order.jsp" />
-	<%}else if(((String)request.getAttribute("pagemessage")).equals("all")){%>
+<%}else if(((String)request.getAttribute("pagemessage")).equals("all")){%>
 		 <jsp:include page="listAllInstant_order.jsp" />	
-<%	}else if(((String)request.getAttribute("pagemessage")).equals("traveling")){%>
+<%}else if(((String)request.getAttribute("pagemessage")).equals("traveling")){%>
 		 <jsp:include page="TravelingInstant_order.jsp" />	
+<%}else if(((String)request.getAttribute("pagemessage")).equals("getPositon")){%>
+<jsp:include page="getPosition.jsp" />	
 <%} %>
 	
 	
