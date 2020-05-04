@@ -84,7 +84,10 @@
 				
 				
 				 <td>
-				 <input type="hidden" value="${productvo.product_id}">
+				  <input
+									class="isrevise" type="hidden"
+									value="${productvo.product_status}">
+				 <input type="hidden" class="product_id" value="${productvo.product_id}">
 				 
 			 <button class="ui left attached button onproduct" ${ productstatus [status]=='已上架'? " style='background-color: green;color: white'":""} 
 				 >上架</button>  
@@ -97,7 +100,7 @@
                      
                   
                      </td>
-                      <td>
+				<td class="upate">
                       	<!-- 修改 -->
 					<FORM METHOD="post" ACTION="Productmanage" style="margin-bottom: 0px;">
 						<input class="updateproduct" type="submit" value="修改"> <input type="hidden"
@@ -125,37 +128,7 @@
 <%@ include file="../file/page2.file"%>
                 </div><!-- end of grid -->
                 <script>
-    $(".onproduct").click(function () {
-    	let product_id= $(this).siblings("input").val();
-    
-    	let urladdress="ProductChange?product_status=0&product_id="+product_id;
-        $(this).removeAttr("style");
-        $(this).css({"color":"white","background-color":'green'});
-         $(this).siblings(".offproduct").removeAttr("style");
-         $(this).siblings(".Checkproduct").removeAttr("style");
-      
-        $.ajax({
-        	url:urladdress,
-        	type:"GET",
-        	sucess:function(){}
-        });
 
-    });
-$(".offproduct").click(function () {
-	let product_id= $(this).siblings("input").val();
-	let urladdress="ProductChange?product_status=1&product_id="+product_id;
-    $(this).removeAttr("style");
-    $(this).css({"color":"white","background-color":'blue'});
-    $(this).siblings(".onproduct").removeAttr("style");
-    $(this).siblings(".Checkproduct").removeAttr("style");
-
-    $.ajax({
-    	url:urladdress,
-    	type:"GET",
-    	sucess:function(){}
-    });
-
-});
 
 $(".Checkproduct").click(function () {
     let product_id= $(this).siblings("input").val();
@@ -173,16 +146,7 @@ $(".Checkproduct").click(function () {
 
 });
 </script>
-                <script>
-    $(".onproduct").click(function () {
 
-    });
-$(".offproduct").click(function () {
-
-});
-
-
-</script>
                 
                 
            <script>

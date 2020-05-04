@@ -149,7 +149,61 @@
 
 	</div>
 </div>
+                <script>
+                $(".onproduct").click(function () {
+                    $(this).siblings(".isrevise").val(0);
+                    isrevise();
+                    let product_id= $(this).siblings(".product_id").val();
+                    $(".checking").parent().siblings("a").addClass(".disa")
+                    $(".checking").siblings("a").removeClass(".disa");
 
+
+                    let urladdress="ProductChange?product_status=0&product_id="+product_id;
+                    $(this).removeAttr("style");
+                    $(this).css({"color":"white","background-color":'green'});
+                    $(this).siblings(".offproduct").removeAttr("style");
+
+                    $.ajax({
+                        url:urladdress,
+                        type:"GET",
+                        sucess:function(){}
+                    });
+
+                });
+                $(".offproduct").click(function () {
+                    $(this).siblings(".isrevise").val(1);
+                    isrevise();
+                    let product_id= $(this).siblings(".product_id").val();
+                    let urladdress="ProductChange?product_status=1&product_id="+product_id;
+                    $(this).removeAttr("style");
+                    $(this).css({"color":"white","background-color":'blue'});
+                    $(this).siblings(".onproduct").removeAttr("style");
+                    $.ajax({
+                        url:urladdress,
+                        type:"GET",
+                        sucess:function(){}
+                    });
+
+                });
+</script>
+
+<script>
+
+<!--判斷是否關閉修改功能-->
+function isrevise(){
+    $(".isrevise").each(function () {
+        if($(this).val()==1){
+            $(this).parent().siblings(".upate").find(".updateproduct").attr('disabled', true);
+        }
+        else if($(this).val()==0){
+            $(this).parent().siblings(".upate").find(".updateproduct").attr('disabled', false);
+        }
+    })
+}
+
+
+
+</script>
 <!-- 左邊選單 -->
 <script>
         $("#leftMenu > li ").children('span').not(".productlist").find("+ul").slideUp(1);
@@ -192,6 +246,7 @@
 
 
     })
+	    $(document).ready(isrevise());
 
 
 </script>
