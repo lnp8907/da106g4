@@ -86,7 +86,7 @@ CouponVO couponVO = (CouponVO) request.getAttribute("couponVO");
 								}
 							%>
 						</div>
-						<span class="course-recipe-add">加入食譜</span>
+						<span class="course-recipe-add">加入適用商品編號</span>
 					</div> 
 				</div>
 			</div>
