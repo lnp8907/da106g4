@@ -12,9 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import com.instant_delivery_order.model.InstantDeliveryOrderService;
 import com.product_browsing_history.model.Product_browing_historyService;
 
-/**
- * Servlet implementation class Instant_delivery_orderServlet
- */
 @WebServlet("/back-end/Instant_order/Instant_delivery_orderServlet")
 public class Instant_delivery_orderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -67,32 +64,9 @@ public class Instant_delivery_orderServlet extends HttpServlet {
 			String url = "/back-end/Instant_order/Instant_order_backendPage.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);
 			successView.forward(req, res);
-<<<<<<< HEAD
-		}
 
-=======
 			}
-			
-		
-	if(action.equals("getPositon")) {
-		System.out.println("獲得跳窗請求");
-		
-	String 	ido_no = req.getParameter("ido_no");
-	System.out.println("配送位置請求");
-	req.setAttribute("ido_no", ido_no); // 資料庫取出的empVO物件,存入req	
-	boolean openModal = true;
-	req.setAttribute("openModal", openModal);
-//	String url = "/back-end/Instant_order/googleMap.jsp";	
-	String url = "/back-end/Instant_order/Instant_delivery_orderServlet?action=traveling";
-	RequestDispatcher successView = req.getRequestDispatcher(url);
-	successView.forward(req, res);
->>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
-	}
-<<<<<<< HEAD
-=======
-	
 }
->>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
