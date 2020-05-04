@@ -128,7 +128,7 @@ pageContext.setAttribute("list",list);
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/shop_order/OrderServlet.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改">
 			     <input type="hidden" name="order_no"  value="${ordervo.order_no}">
-			     <input type="hidden" name="action"	value="OrderUpdatepage"></FORM>
+			     <input type="hidden" name="action"	value="updateAddress"></FORM>
 			</td>
 			<!-- 刪除 -->
 <!-- 			<td> -->

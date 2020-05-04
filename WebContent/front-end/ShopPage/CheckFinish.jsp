@@ -25,11 +25,5 @@
 </div>
 
 
-
-
-
-訂單完成
-<button><a href="../../front-end/ShopPage/ShopProductPage.jsp">返回首頁</a></button>
-
 </body>
 </html>

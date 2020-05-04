@@ -20,7 +20,7 @@ import com.product.model.ProductService;
 import com.product.model.ProductVO;
 
 @MultipartConfig
-@WebServlet("/ProductServlet")
+@WebServlet("/back-end/shop_product/ProductServlet")
 public class ProductServlet extends HttpServlet {
 	String saveDirectory = "/images_uploaded"; // 上傳檔案的目的地目錄;
 
@@ -40,7 +40,103 @@ public class ProductServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
+		//打開詳細欄位
+		if ("detailopen".equals(action)) {
+			System.out.println("有進來喔 處理打開理詳細頁面");
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
 
+			try {
+				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+				String str = req.getParameter("product_id");
+				if (str == null || (str.trim()).length() == 0) {
+					errorMsgs.add("不得為空值");
+				}
+
+				String product_id = null;
+				try {
+					product_id = new String(str);
+				} catch (Exception e) {
+					errorMsgs.add("格式異常不正確");
+				}
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/back-end/shop_product/listAllProduct.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+				System.out.println(product_id);
+				
+
+				/*************************** 2.開始查詢資料 *****************************************/
+				ProductService productSvc = new ProductService();
+				ProductVO productvo = productSvc.getOneProduct(product_id);
+				System.out.println(productvo);
+				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
+				req.setAttribute("openMod", "openMod");
+				req.setAttribute("detailProductvo", productvo); // 資料庫取出的empVO物件,存入req
+				String url = "/back-end/shop_product/shop_backendPage.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+				successView.forward(req, res);
+
+				/*************************** 其他可能的錯誤處理 *************************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/shop_product/listAllProduct.jsp");
+				failureView.forward(req, res);
+			}
+
+		}
+		//打開修改視窗
+		if ("upateopen".equals(action)) {
+			System.out.println("有進來喔 處理更新頁面");
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+				String str = req.getParameter("product_id");
+				if (str == null || (str.trim()).length() == 0) {
+					errorMsgs.add("不得為空值");
+				}
+
+				String product_id = null;
+				try {
+					product_id = new String(str);
+				} catch (Exception e) {
+					errorMsgs.add("格式異常不正確");
+				}
+				if (!errorMsgs.isEmpty()) {
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/back-end/shop_product/listAllProduct.jsp");
+					failureView.forward(req, res);
+					return;// 程式中斷
+				}
+				System.out.println(product_id);
+				
+
+				/*************************** 2.開始查詢資料 *****************************************/
+				ProductService productSvc = new ProductService();
+				ProductVO productvo = productSvc.getOneProduct(product_id);
+				System.out.println(productvo);
+				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
+				req.setAttribute("openMod", "upate");
+				req.setAttribute("detailProductvo", productvo); // 資料庫取出的empVO物件,存入req
+				String url = "/back-end/shop_product/shop_backendPage.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+				successView.forward(req, res);
+
+				/*************************** 其他可能的錯誤處理 *************************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/shop_product/listAllProduct.jsp");
+				failureView.forward(req, res);
+			}
+
+		}
+		
+		
+		
 		
 		/*食譜上架*/
 		if ("onproduct".equals(action)) {
