@@ -61,19 +61,20 @@ if(action.equals("cencelorder")) {
 			
 		
 	if(action.equals("getPositon")) {
+		System.out.println("獲得跳窗請求");
 		
 	String 	ido_no = req.getParameter("ido_no");
 	System.out.println("配送位置請求");
-	req.setAttribute("ido_no", ido_no); // 資料庫取出的empVO物件,存入req
+	req.setAttribute("ido_no", ido_no); // 資料庫取出的empVO物件,存入req	
 	boolean openModal = true;
 	req.setAttribute("openModal", openModal);
-	String url = "/back-end/Instant_order/googleMap.jsp";
+//	String url = "/back-end/Instant_order/googleMap.jsp";	
+	String url = "/back-end/Instant_order/Instant_delivery_orderServlet?action=traveling";
 	RequestDispatcher successView = req.getRequestDispatcher(url);
 	successView.forward(req, res);
 	}
 	
 }
-			
 
 	
 
