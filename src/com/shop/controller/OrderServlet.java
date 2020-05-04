@@ -29,9 +29,45 @@ public class OrderServlet extends HttpServlet {
 
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+	protected void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
-		doPost(request, response);
+		List<String> errorMsgs = new LinkedList<String>();
+		req.setCharacterEncoding("UTF-8");
+		String str;
+		String action = req.getParameter("action");
+HttpSession session=req.getSession();
+if("IPS".equals(action)){
+	System.out.println("切換未出貨訂單");
+	req.setAttribute("pagemessage", "IPS");
+	String url = req.getParameter("url");
+	System.out.println("地址"+url);
+	RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+	successView.forward(req, res);
+
+}
+
+if("complete".equals(action)){
+	System.out.println("切換已完成訂單");
+	req.setAttribute("pagemessage", "complete");
+	String url = req.getParameter("url");
+	System.out.println("地址"+url);
+	RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+	successView.forward(req, res);
+
+}		
+		
+if("cancel".equals(action)){
+	System.out.println("切換取消訂單");
+	req.setAttribute("pagemessage", "cancel");
+	String url = req.getParameter("url");
+	System.out.println("地址"+url);
+	RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+	successView.forward(req, res);
+
+}			
+		
+		
+		doPost(req, res);
 
 	}
 

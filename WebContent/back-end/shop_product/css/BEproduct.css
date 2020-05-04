@@ -1,0 +1,29 @@
+.back-endlefecotext{
+    margin-top: 70px;
+    width: 200px;
+    height: 500px;
+    background-image: linear-gradient(to top,#fd4137, #e4bcc2);
+
+    border-radius: 29px;
+}
+
+#leftMenu{
+    margin-left: 15px;
+}
+#leftMenu, #leftMenu ul { list-style:none; width:15em; }
+#leftMenu a {
+    font-size: 20px;
+    color: #707070;
+    display:block; font-weight:bold; padding:0.5em 1em; text-decoration:none;
+}
+#leftMenu ul a {
+    font-family: 微软雅黑;
+    font-weight: bolder;
+    margin-left: 20px;
+    font-size: 17px;
+    color: #3e3e3e;
+    font-weight:normal; text-decoration:none;
+}
+#leftMenu ul a:hover {   color: #E4002B;
+}
+

@@ -1,3 +1,4 @@
+<%@page import="java.util.stream.Collector"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -7,6 +8,8 @@
 <%@ page import="com.ordermanager.shop.*" %>
 <%@ page import="java.sql.Timestamp" %>
 <%@ page import="java.text.*" %>
+<%@ page import="java.util.stream.Collectors"%>
+
 
 <%
 
@@ -14,6 +17,7 @@ OrderService orderSvc=new OrderService();
 List<Shop_orderVO>list=null;
 	if(orderSvc.getAll()!=null){  
 		list= orderSvc.getAll();
+	
 	}
 pageContext.setAttribute("list",list);
 
@@ -26,11 +30,13 @@ pageContext.setAttribute("list",list);
 <title>所有訂單</title>
 <div id="ordertitle">
 		 <h3>以下是所有訂單:</h3>
+		 
+		 <%if(list.size()>0){ %>
 		 <%= list.get(0).getOrder_no() %>
 		 
 		 <%if(!list.get(0).getOrder_no().equals(list.get(list.size() - 1).getOrder_no())){ %>
 		 →<%= list.get(list.size() - 1).getOrder_no() %>
-		 <% }%>
+		 <% }}%>
 	</div>	 
 		 
 		

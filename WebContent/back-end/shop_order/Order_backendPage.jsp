@@ -69,8 +69,10 @@
                                             <ul class="BList " >
 
                                                 <li><a href="<%=request.getContextPath() %>/back-end/shop_order/Order_backendPage.jsp">查看全部訂單</a></li>
-                                                <li><a href="#">未出貨訂單</a></li>
-                                                <li><a href="#">已完成訂單</a></li>
+                                                <li><a href="<%=request.getContextPath() %>/back-end/shop_order/OrderServlet.do?action=complete&url=<%=request.getServletPath()%>">未出貨訂單</a></li>
+                                                <li><a href="<%=request.getContextPath() %>/back-end/shop_order/OrderServlet.do?action=cancel&url=<%=request.getServletPath()%>">已完成訂單</a></li>
+                                                <li><a href="#">未完成訂單</a></li>
+
                                             </ul>
                                         </li>
                                  
@@ -114,12 +116,20 @@
 			<!--  -->
 	
 	
-	
+	<%if(request.getAttribute("pagemessage")==null){ %>
 	 <jsp:include page="listAllShopOrder.jsp" />
+<%}else if(((String)request.getAttribute("pagemessage")).equals("IPS")){%>
+	 <jsp:include page="listAllShopOrderByPSi.jsp" />
 
 	
+<% }else if(((String)request.getAttribute("pagemessage")).equals("cancel")){%>
+<!-- 待完成 -->
+<jsp:include page="listAllShopOrderByPSi.jsp" /> %>
+	<%}else if(((String)request.getAttribute("pagemessage")).equals("complete")){%>
+	<!-- 待完成 -->
+	 <jsp:include page="listAllShopOrderByPSi.jsp" /> %>
 	
-	
+	<%} %>
 	
 	
 		

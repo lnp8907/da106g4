@@ -2,6 +2,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+<style>
+.disa{
+cursor:pointer;
+pointer-events: none;
+
+}
+
+</style>
 <%@ page
 	import="java.util.* ,com.order_detail.model.Order_detailVO,com.recipe.model.RecipeVO"%>
 
@@ -232,7 +240,7 @@
 					<div id="checkbtn">
 						<!-- 轉移至SERVLT -->
 
-						<a href="ProductCheckoutPage.jsp">
+						<a  href="ProductCheckoutPage.jsp">
 							<button style="border-radius: 0px 0px 15px 0px"
 								class="checking ui right labeled icon button huge red">
 								<i class="right arrow icon"></i> 結帳
@@ -397,10 +405,15 @@
 		function checkbox() {
 			if ($("input[name='Checkbox[]']:checked").length == 0) {
 				$(".checking").attr('disabled', true);
+		        $(".checking").parent().addClass("disa");
+
 
 			}//判斷有多少個方框被勾選
 			else {
 				$(".checking").attr("disabled", false);
+		        $(".checking").parent().removeClass("disa");
+
+
 
 			}
 		}
@@ -462,7 +475,6 @@
 							}
 
 						});
-						// 只能获取当前点击元素的兄弟元素的文本框的值
 						var curVal = $(this).siblings('.inputquenity').val();
 						curVal = parseInt(curVal);
 						curVal += 1;

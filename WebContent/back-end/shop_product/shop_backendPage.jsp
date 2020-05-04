@@ -152,6 +152,23 @@
 
 <!-- 左邊選單 -->
 <script>
+
+<!--判斷是否關閉修改功能-->
+function isrevise(){
+    $(".isrevise").each(function () {
+        if($(this).val()==1){
+            $(this).parent().siblings(".upate").find(".updateproduct").attr('disabled', true);
+        }
+        else if($(this).val()==0){
+            $(this).parent().siblings(".upate").find(".updateproduct").attr('disabled', false);
+        }
+    })
+}
+
+
+
+</script>
+<script>
         $("#leftMenu > li ").children('span').not(".productlist").find("+ul").slideUp(1);
 
         $("#leftMenu > li ").children('span').click(function() {
@@ -192,6 +209,8 @@
 
 
     })
+    //網頁啟動就執行
+	    $(document).ready(isrevise());
 
 
 </script>
