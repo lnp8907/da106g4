@@ -154,7 +154,7 @@ out.println(member_id);
 								class="dropdown-first-a-span">食譜主頁</span></a></li>
 						<li><a href="#">特輯食譜</a></li>
 						<li><a href="#">推薦食譜</a></li>
-						<li><a href="front-end/recipe/recipeHomepage.jsp?pageType=addRecipe.jsp">建立食譜</a></li>
+						<li><a href="front-end/recipe/addRecipe.jsp">建立食譜</a></li>
 					</ul></li>
 				<li class="dropdown"><a><img class="access-menu-icon"
 						src="image/livestream-icon.png"><span class="menu-span">直播專區</span></a>
