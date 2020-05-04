@@ -32,7 +32,6 @@ pmethod.put(2,"線上支付");
     <!--套件-->
     <script src="<%=request.getContextPath() %>/plugin/jquery-3.4.1.min.js"></script>
     <script src="<%=request.getContextPath() %>/plugin/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
-    <script src="<%=request.getContextPath() %>/plugin/Semantic-UI/semantic.js"></script>
 
     <link rel="stylesheet" href="<%=request.getContextPath() %>/plugin/bootstrap-4.4.1-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/plugin/Semantic-UI/semantic.min.css">
@@ -43,7 +42,9 @@ pmethod.put(2,"線上支付");
     <link rel="stylesheet" href="<%=request.getContextPath() %>/back-end/css/mainback_endcss.css">
         <link rel="stylesheet" href="<%=request.getContextPath() %>/back-end/shop_product/css/BEproductCss.css">
     <!--套件-->
-            <link rel="stylesheet" type="text/css" href="../../plugin/jquery-ui/jquery-ui.min.css"/>
+<link rel="stylesheet" type="text/css" href="../../plugin/jquery-ui/jquery-ui.min.css"/>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
     <script src="../../plugin/jquery-ui/jquery-ui.min.js"></script>
     <meta charset="UTF-8">
