@@ -103,19 +103,21 @@
 
 				<td>
 					<!-- 詳細頁面 -->
-					<FORM METHOD="post" ACTION="Productmanage" style="margin-bottom: 0px;">
+					<FORM METHOD="post" ACTION="ProductServlet" style="margin-bottom: 0px;">
 						<input type="submit" value="查看更多"> <input type="hidden"
 							name="product_id" value="${productvo.product_id}"> <input
-							type="hidden" name="action" value="listOneProduct">
+							type="hidden" name="action" value="detailopen">
+						
+							
 					</FORM>
 				</td>
 
 				<td class="upate">
 					<!-- 修改 -->
-					<FORM METHOD="post" ACTION="Productmanage" style="margin-bottom: 0px;">
+					<FORM METHOD="post" ACTION="ProductServlet" style="margin-bottom: 0px;">
 						<input class="updateproduct" type="submit" value="修改"> <input type="hidden"
 							class="inputid" name="product_id" value="${productvo.product_id}">
-						<input type="hidden" name="action" value="ProductUpdatePage">
+						<input type="hidden" name="action" value="upateopen">
 					</FORM>
 				</td>
 				<c:set var="id" value="${productvo.product_id}"/>
@@ -130,11 +132,10 @@
 <%@ include file="../file/page2.file"%>
                 </div><!-- end of grid -->
 
-                <script>
 
                 
                 
-           <script>
+ <script>
 var r=$('.recipe_td').html()
 if($('.recipe_td').html()==""){
 	

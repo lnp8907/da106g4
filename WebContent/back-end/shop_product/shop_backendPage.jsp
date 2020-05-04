@@ -8,7 +8,7 @@
     <!--套件-->
     <script src="<%=request.getContextPath() %>/plugin/jquery-3.4.1.min.js"></script>
     <script src="<%=request.getContextPath() %>/plugin/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
-    <script src="<%=request.getContextPath() %>/plugin/Semantic-UI/semantic.js"></script>
+<%--     <script src="<%=request.getContextPath() %>/plugin/Semantic-UI/semantic.js"></script> --%>
 
     <link rel="stylesheet" href="<%=request.getContextPath() %>/plugin/bootstrap-4.4.1-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/plugin/Semantic-UI/semantic.min.css">
@@ -131,10 +131,79 @@
 	<% }}
 	
 	%>
-	
+<!-- 跳窗 -->
+<c:if test="${openMod=='openMod'}">
+				<div class="modal fade" id="basicModal" tabindex="-1" role="dialog"
+					aria-labelledby="basicModal" aria-hidden="true">
+					<div class="modal-dialog modal-lg" style="width: 65%;">
+						<div class="modal-content" >
 
+							<div class="modal-header">
+								<h2 class="modal-title" id="myModalLabel">商品訂單管理</h2>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+							</div>
+
+							<div class="modal-body">
+								<!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
+
+ 								<jsp:include page="listOneProduct.jsp" /> 
+
+								<!-- =========================================以上為原listOneEmp.jsp的內容========================================== -->
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<script>
+					$("#basicModal").modal({
+						show : true
+					});
+					$(document).ready(function() {
+						$('.btn-primary').on('click', function() {
+							$('#update_form').submit();
+						});	
+					});
+				</script>
+			</c:if>
 	
-	
+	<!-- ---------------- -->
+	<c:if test="${openMod=='upate'}">
+				<div class="modal fade" id="basicModal2" tabindex="-1" role="dialog"
+					aria-labelledby="basicModal" aria-hidden="true">
+					<div class="modal-dialog modal-lg" style="width: 65%;">
+						<div class="modal-content" >
+
+							<div class="modal-header">
+								<h2 class="modal-title" id="myModalLabel">品名:${productvo.product_name}</h2>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+							</div>
+
+							<div class="modal-body">
+								<!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
+
+ 								<jsp:include page="updata_product.jsp" /> 
+
+								<!-- =========================================以上為原listOneEmp.jsp的內容========================================== -->
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<script>
+					$("#basicModal2").modal({
+						show : true
+					});
+					$(document).ready(function() {
+						$('.btn-primary').on('click', function() {
+							$('#update_form').submit();
+						});	
+					});
+				</script>
+			</c:if>
 	
 	
 	
