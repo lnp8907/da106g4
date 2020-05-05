@@ -661,6 +661,7 @@ if ("update2".equals(action)) {
 				MemberVO memberVO=null;
 				memberVO=memberSvc.getfindOnePK(mem_id);
 				HttpSession session=req.getSession();
+				session.setAttribute("memberVO", memberVO);
 session.setAttribute("member_id", memberVO.getMember_id());
 session.setAttribute("member_name", memberVO.getMember_name());
 

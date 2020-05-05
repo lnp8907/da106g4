@@ -9,6 +9,7 @@
 <%@ page import="com.order_detail.model.*" %>
 <%@ page import="com.ordermanager.shop.*" %>
 <%@ page import="java.sql.Timestamp" %>
+<%@ page import="java.text.*" %>
 <%
 	String member_id = (String) session.getAttribute("member_id");
 
@@ -877,7 +878,7 @@ body {
 }
 
 .sidebar {
-	margin-top: -530px;
+	margin-top: -430px;
 	margin-left: 18%;
 	width: 230px;
 	height: 100%;
@@ -990,7 +991,8 @@ h3 {
 }
 
 table {
-	width: 800px;
+margin-top:-68px;
+	width: 824px;
 	font-family: Calibri;
 	color: #e4002b;
 	font-size: 12pt;
@@ -1971,11 +1973,99 @@ margin-right:293px;
       <li><a href="#section2">運送中</a></li>
       <li><a href="#section3">已完成</a></li>
       <li><a href="#section4">取消訂單</a></li>
-
+  
     </ul>
     <section id="section1">
-      <h2>Section 1</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, ullam natus tenetur molestiae commodi nesciunt, neque adipisci alias nostrum saepe inventore magnam. Molestias laboriosam, tempora quidem assumenda harum. Numquam, delectus.</p>
+
+      <p>    <table id="ordertable" class="ui red celled table">
+
+	<tr>
+		<th>訂單編號</th>
+
+		<th>訂單日期</th>
+		<th>訂單金額</th>
+		<th>付款方式</th>
+	 <td class="orseraddress ordertr2">地址</td>
+	</tr>
+	
+	
+	<c:forEach var="ordervo" items="${list}" >
+		<div>
+		<tr class="ordertr1">
+			<td>${ordervo.order_no}</td>
+	
+		
+			
+
+
+	
+			
+			<c:set var="time" value="${ordervo.order_time}"/>
+			<%
+			String tsStr = "";  
+
+			if(pageContext.getAttribute("time")!=null) {
+				Timestamp ts = (Timestamp)pageContext.getAttribute("time");
+				DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");  
+				tsStr = sdf.format(ts);  %>
+				
+			<%}%>
+			
+			<td><%=tsStr %>				
+			</td>
+			
+			
+			
+			
+			<td>${ordervo.total}</td>
+			
+						<%
+    Map<Integer, String> pay_typemap = new HashMap<>();
+						pay_typemap.put(0, "點數");
+						pay_typemap.put(1, "信用卡");
+
+    session.setAttribute("pay_type", pay_typemap);
+%>
+
+
+
+<c:set var="paytype" value="${ordervo.pay_type}" />
+			<td>${pay_type[paytype]} </td> 
+<!-- 			<td> 
+<!-- 			<!-- 茶愾訂單明細 --> 
+<!-- 			     <FORM METHOD="post" ACTION="/DA106_G4_Foodporn_Git/back-end/shop_order/OrderServlet.do" > -->
+<!-- 			    <button class="ui right labeled  icon button"><i class="zoom in icon"></i> 查看更多 </button> -->
+			     
+<%-- 			  <input type="hidden" name="order_no"  value="${ordervo.order_no}"> --%>
+<!-- 			  <input type="hidden" name="action" value="getorderdetail"> -->
+<!--                         <input style="display: none" type="submit" value="查看訂單明細"> -->
+<!-- 			     </FORM> -->
+			
+<!-- 			</td> -->
+	
+			<!-- 刪除 -->
+<!-- 			<td> -->
+<%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/shop_order/OrderServlet.do" style="margin-bottom: 0px;"  onSubmit="return CheckForm();" > --%>
+<!-- 			     <input type="submit" value="刪除" > -->
+<%-- 			     <input type="hidden" name="order_no"  value="${ordervo.order_no}"> --%>
+<!-- 			     <input type="hidden" name="action" value="delete"> -->
+<%-- 			     <input	type="hidden" name="whichPage" value="<%=whichPage%>">  --%>
+<%-- 			     			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller--> --%>
+			     
+			     
+			 
+<!-- 			    </FORM> -->
+			     
+<!-- 			</td> -->
+			<!-- 還沒做 -->
+			     <td colspan="9">${ordervo.dv_address}</td>
+		  </tr>
+  
+
+	</c:forEach>
+</table>
+
+
     </section>
     <section id="section2">
       <h2>Section 2</h2>

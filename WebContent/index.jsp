@@ -7,6 +7,9 @@
     <%
     String member_id =(String) session.getAttribute("member_id");
 out.println(member_id);
+MemberVO membervo = (MemberVO) session.getAttribute("memberVO");
+
+out.println(membervo);
 %>
 <%@ page import="java.util.*"%>
 
