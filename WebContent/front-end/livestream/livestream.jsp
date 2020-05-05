@@ -29,8 +29,8 @@
 	//      String hostID = (String)session.getAttribute("hostID");
 	//透過控制器得到的直播主ID
 	String hostID = null;
-
-	if (memberVO.getMember_status() == 1) {
+	
+	if (memberVO != null && memberVO.getMember_status() == 1) {
 		hostID = memberVO.getNickname();
 		session.setAttribute("hostID", hostID);
 	}
@@ -41,16 +41,17 @@
 <%-- 模擬登入的clientID(觀眾ID)為Anonymous  --%>
 <%!int count = 0;%>
 <%
-	if (memberVO.getMember_status() != 1) {
-		String clientID = memberVO.getNickname();
-		if (clientID == null)
-			clientID = "Anonymous" + (++count);
+	String clientID=null;
+	if(memberVO == null)
+		clientID = "死不註冊" + (++count) + "號";
+	else if(memberVO.getMember_status() != 1) {
+		clientID = memberVO.getNickname();
+	}
 		session.setAttribute("clientID", clientID);
-
 		System.out.println("--------------------------------------------");
 		System.out.println(clientID);
 		System.out.println("--------------------------------------------");
-	}
+	
 %>
 
 
@@ -607,7 +608,7 @@
 										placeholder="留點訊息給廚師吧..."
 										onkeydown="if (event.keyCode == 13) sendMessage();" /><br>
 									<!-- 動態抓會員ID -->
-									<input type="submit" id="sendMessage" class="btn btn-danger" value="送出訊息" onclick="sendMessage();" />
+									<input type="hidden" id="sendMessage" class="btn btn-danger" value="送出訊息" onclick="sendMessage();" />
 				
 									<input id="userName" class="panel input-default" type="hidden"
 										placeholder="暱稱" value="${(hostID!=null)? hostID :clientID}"
