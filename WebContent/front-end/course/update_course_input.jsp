@@ -10,8 +10,8 @@
 	String[] course_detail1;
 	String[] course_detail2;
 	String[] token = courseVO.getCourse_detail().split("-");
-	course_detail1 = token[0].split("/");
-	course_detail2 = token[1].split("/");
+	course_detail1 = token[0].split("%");
+	course_detail2 = token[1].split("%");
 %>
 
 <head>
@@ -52,11 +52,10 @@
 					<div class="recipe-style">
 						<h3>食譜風格</h3>
 						<select name="course_type">
-							<option value="">請選擇</option>
 							<%
 								String[] type = {"請選擇", "中式", "台式", "日式","義式", "法式", "韓式", "泰式", "美式", "其他"};
 								for (int i = 0; i < type.length; i++) {
-									if (((courseVO == null) ? "請選擇" : courseVO.getCourse_type()).equals(type[i])) {
+									if ((courseVO.getCourse_type()).equals(type[i])) {
 							%>
 							<option value=<%=type[i]%> selected><%=type[i]%></option>
 							<%
@@ -167,6 +166,7 @@
 			</div>
 			<!-- end of insert-recipe-main-form-->
 			<div class="navi">
+				<input type="hidden" name="member_id" value="${courseVO.member_id}">
 				<input type="hidden" name="course_id" value="${courseVO.course_id}">
 				<input type="hidden" name="app_num" value="${courseVO.app_num}">
 				<button class="navi-button" id="update" type="submit" name="action"
