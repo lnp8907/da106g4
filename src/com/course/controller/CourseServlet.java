@@ -21,7 +21,8 @@ import javax.servlet.http.Part;
 import com.course.model.CourseService;
 import com.course.model.CourseVO;
 import com.mycourse.model.MyCourseService;
-import com.recipe.model.RecipeService;
+import com.course.model.CourseService;
+import com.course_browsing_history.model.Course_browing_historyService;
 
 @MultipartConfig
 @WebServlet({ "/course.do", "/front-end/course/course.do" })
@@ -164,6 +165,19 @@ public class CourseServlet extends HttpServlet {
 				}
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
+//瀏覽紀錄新增0504
+				HttpSession session = req.getSession();
+				if (session.getAttribute("member_id") != null && course_id != null) {
+					System.out.println("新增食譜瀏覽紀錄");
+					String member_id = (String) session.getAttribute("member_id");
+					System.out.println(member_id);
+
+					Course_browing_historyService pvhSvc = new Course_browing_historyService();
+					pvhSvc.insert(member_id, course_id);
+				}
+				
+				
+				
 				req.setAttribute("courseVO", courseVO); // 資料庫取出的courseVO物件,存入req
 				String url = "/front-end/course/listOneCourse.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneCourse.jsp
@@ -227,9 +241,9 @@ public class CourseServlet extends HttpServlet {
 				String member_id = req.getParameter("member_id");
 				String member_idReg = "^[0-9]{6}$";
 				if (member_id == null || member_id.trim().length() == 0) {
-					errorMsgs.add("課程編號: 請勿空白");
+					errorMsgs.add("會員編號: 請勿空白");
 				} else if (!member_id.trim().matches(member_idReg)) { // 以下練習正則(規)表示式(regular-expression)
-					errorMsgs.add("課程編號: 只能是數字, 且長度必需為6");
+					errorMsgs.add("會員編號: 只能是數字, 且長度必需為6");
 				}
 
 				Part photo = req.getPart("course_photo");
@@ -301,7 +315,7 @@ public class CourseServlet extends HttpServlet {
 						if (i == course_detail1.length - 1)
 							course_detailSb.append(course_detail1[i] + "-");
 						else
-							course_detailSb.append(course_detail1[i] + "/");
+							course_detailSb.append(course_detail1[i] + "%");
 
 					}
 
@@ -315,7 +329,7 @@ public class CourseServlet extends HttpServlet {
 							errorMsgs.add("學習重點欄位不得為空或刪除多餘的食材欄位");
 							break;
 						}
-						course_detailSb.append(course_detail2[i] + "/");
+						course_detailSb.append(course_detail2[i] + "%");
 					}
 
 				}
@@ -458,7 +472,7 @@ public class CourseServlet extends HttpServlet {
 						if (i == course_detail1.length - 1)
 							course_detailSb.append(course_detail1[i] + "-");
 						else
-							course_detailSb.append(course_detail1[i] + "/");
+							course_detailSb.append(course_detail1[i] + "%");
 
 					}
 
@@ -472,7 +486,7 @@ public class CourseServlet extends HttpServlet {
 							errorMsgs.add("學習重點不得為空或刪除多餘的食材欄位");
 							break;
 						}
-						course_detailSb.append(course_detail2[i] + "/");
+						course_detailSb.append(course_detail2[i] + "%");
 					}
 
 				}
