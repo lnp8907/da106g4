@@ -127,6 +127,18 @@
 		<url-pattern>/back-end/coupon/DBGifReader4.do</url-pattern>
 	</servlet-mapping>
 	
+	<!-- 以下為直播XML開始 -->
+	
+<servlet>
+    <servlet-name>LivestreamServlet</servlet-name>
+    <servlet-class>com.livestream.controller.LivestreamServlet</servlet-class>
+</servlet>
+  <servlet-mapping>
+    <servlet-name>LivestreamServlet</servlet-name>
+    <url-pattern>/back-end/livestream/livestream.do</url-pattern>
+  </servlet-mapping> 
+  
+	<!-- 以上為直播XML結束 -->
 	
 	
 	<!-- 以下為商城XML -->

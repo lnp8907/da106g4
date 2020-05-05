@@ -39,7 +39,7 @@ public class LivestreamServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/livestream/select_page.jsp");
+							.getRequestDispatcher("/back-end/livestream/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -53,7 +53,7 @@ public class LivestreamServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/livestream/select_page.jsp");
+							.getRequestDispatcher("/back-end/livestream/select_page.jsp");
 					failureView.forward(req, res);
 					return;//程式中斷
 				}
@@ -82,13 +82,13 @@ public class LivestreamServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("無法取得資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/livestream/select_page.jsp");
+						.getRequestDispatcher("/back-end/livestream/select_page.jsp");
 				failureView.forward(req, res);
 			}
 		}
 		
 		
-		if ("getOne_For_Update".equals(action)) { // 來自listAllEmp.jsp的修改請求
+		if ("getOne_For_Update".equals(action)) { // 來自listAllLivestream.jsp的修改請求
 
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
@@ -105,7 +105,7 @@ public class LivestreamServlet extends HttpServlet {
 								
 				/***************************3.查詢完成,準備轉交(Send the Success view)************/
 				req.setAttribute("livestreamVO", livestreamVO);         // 資料庫取出的empVO物件,存入req
-				String url = "/livestream/updateLsStatus.jsp";
+				String url = "/back-end/livestream/updateLsStatus.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
 				successView.forward(req, res);
 
@@ -113,7 +113,7 @@ public class LivestreamServlet extends HttpServlet {
 			} catch (Exception e) {
 				errorMsgs.add("無法取得要修改的資料:" + e.getMessage());
 				RequestDispatcher failureView = req
-						.getRequestDispatcher("/livestream/listAllLivestream.jsp");
+						.getRequestDispatcher("/back-end/livestream/listAllLivestream.jsp");
 				failureView.forward(req, res);
 			}
 		}
@@ -125,7 +125,7 @@ public class LivestreamServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 		
-//			try {
+			try {
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				String livestream_id = new String(req.getParameter("livestream_id").trim());
 				Integer status = Integer.parseInt((req.getParameter("status").trim()));
@@ -140,7 +140,7 @@ public class LivestreamServlet extends HttpServlet {
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("livestreamVO", livestreamVO); // 含有輸入格式錯誤的empVO物件,也存入req
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/livestream/updateLsStatus.jsp");
+							.getRequestDispatcher("/back-end/livestream/updateLsStatus.jsp");
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
@@ -153,17 +153,17 @@ public class LivestreamServlet extends HttpServlet {
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("livestreamVO", livestreamVO); // 資料庫update成功後,正確的的empVO物件,存入req
-				String url = "/livestream/listOneLivestream.jsp";
+				String url = "/back-end/livestream/listAllLivestream.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 
 				/***************************其他可能的錯誤處理*************************************/
-//			} catch (Exception e) {
-//				errorMsgs.add("修改資料失敗:"+e.getMessage());
-//				RequestDispatcher failureView = req
-//						.getRequestDispatcher("/livestream/updateLsStatus.jsp");
-//				failureView.forward(req, res);
-//			}
+			} catch (Exception e) {
+				errorMsgs.add("修改資料失敗:"+e.getMessage());
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/back-end/livestream/updateLsStatus.jsp");
+				failureView.forward(req, res);
+			}
 		}
 
 //        if ("insert".equals(action)) { // 來自addEmp.jsp的請求  
