@@ -97,6 +97,16 @@ input{
 	<tr>
 		<td>訂單狀態:</td>
 	<td>	
+	
+		<%
+    Map<Integer, String> Order_statusmap = new HashMap<>();
+		Order_statusmap.put(0, "已成立");
+		Order_statusmap.put(1, "運送中");
+		Order_statusmap.put(0, "已完成");
+		Order_statusmap.put(1, "取消訂單");
+%>
+	
+	
 	<%int i=ordvo.getOrder_status(); %>
 		<input type="radio" name="order_status" value=0 <%=(i==0)?"checked":""%>> 已成立<br>
         <input type="radio" name="order_status" value=1 <%=(i==1)?"checked":""%>> 運送中<br>

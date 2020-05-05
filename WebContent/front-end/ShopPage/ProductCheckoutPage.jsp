@@ -141,19 +141,19 @@ session.setAttribute("checkoutlist", buyProductlist);
 
 </div>
 <div id="showmember">
-    敬愛的會員<font class="membername">宏哥</font>你好:</div>
+		敬愛的會員<font class="membername">${member_name}</font>你好:
  
  
 <div id="orderform">
 <form METHOD="post" ACTION="OrderServlet" class="ui form">
     <h4 class="ui dividing header">請填入您的購物資訊</h4>
     <div class="field">
-        <label>Name</label>
+        <label>購買人資訊：</label>
         <div class=" field">
             <div class="field">
             
        
-                <input type="text" disabled="disabled" value="宏哥">
+                <input type="text" disabled="disabled" value="${member_name}">
           
 
             </div>
@@ -161,7 +161,7 @@ session.setAttribute("checkoutlist", buyProductlist);
         </div>
     </div>
     
-               <label>地址:</label>  
+               <label>地址：</label>  
     
       <div class="fields "id="zipcode3">
      

@@ -134,6 +134,7 @@ pageContext.setAttribute("list",list);
 <%@ include file="../file/page2.file" %>
 
 	<c:if test="${openModal!=null}">
+	
 				<div class="modal fade" id="basicModal" tabindex="-1" role="dialog"
 					aria-labelledby="basicModal" aria-hidden="true">
 					<div class="modal-dialog modal-lg">
@@ -147,7 +148,7 @@ pageContext.setAttribute("list",list);
 
 							<div class="modal-body">
 								<!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
-								<jsp:include page="googleMap.jsp" />
+		 <jsp:include page="googleMap.jsp" />	
 								<!-- =========================================以上為原listOneEmp.jsp的內容========================================== -->
 							</div>
 
@@ -166,7 +167,6 @@ pageContext.setAttribute("list",list);
 					});
 					</script>
 			</c:if>
-
 
 <script language="Javascript">
 
