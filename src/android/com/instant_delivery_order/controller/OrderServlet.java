@@ -49,7 +49,7 @@ public class OrderServlet extends HttpServlet {
 
 
 		if ("add".equals(action)) {
-			String orderJson = jsonObject.get("order").getAsString();
+			String orderJson = jsonObject.get("order").getAsString();  
 			String member_id = jsonObject.get("member_id").getAsString();
 			// 從Android Studio傳來的訂單主打VO
 			InstantDeliveryOrderVO instantDeliveryOrder = gson.fromJson(orderJson, InstantDeliveryOrderVO.class);
