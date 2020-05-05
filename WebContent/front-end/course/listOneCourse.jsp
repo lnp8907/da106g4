@@ -18,8 +18,8 @@
 	String[] course_detail1; 
 	String[] course_detail2;
 	String[] token = courseVO.getCourse_detail().split("-");
-	course_detail1 = token[0].split("/");
-	course_detail2 = token[1].split("/");
+	course_detail1 = token[0].split("%");
+	course_detail2 = token[1].split("%");
 %>
 <html>
 <head>

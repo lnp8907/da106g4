@@ -227,9 +227,9 @@ public class CourseServlet extends HttpServlet {
 				String member_id = req.getParameter("member_id");
 				String member_idReg = "^[0-9]{6}$";
 				if (member_id == null || member_id.trim().length() == 0) {
-					errorMsgs.add("課程編號: 請勿空白");
+					errorMsgs.add("會員編號: 請勿空白");
 				} else if (!member_id.trim().matches(member_idReg)) { // 以下練習正則(規)表示式(regular-expression)
-					errorMsgs.add("課程編號: 只能是數字, 且長度必需為6");
+					errorMsgs.add("會員編號: 只能是數字, 且長度必需為6");
 				}
 
 				Part photo = req.getPart("course_photo");
@@ -301,7 +301,7 @@ public class CourseServlet extends HttpServlet {
 						if (i == course_detail1.length - 1)
 							course_detailSb.append(course_detail1[i] + "-");
 						else
-							course_detailSb.append(course_detail1[i] + "/");
+							course_detailSb.append(course_detail1[i] + "%");
 
 					}
 
@@ -315,7 +315,7 @@ public class CourseServlet extends HttpServlet {
 							errorMsgs.add("學習重點欄位不得為空或刪除多餘的食材欄位");
 							break;
 						}
-						course_detailSb.append(course_detail2[i] + "/");
+						course_detailSb.append(course_detail2[i] + "%");
 					}
 
 				}
@@ -458,7 +458,7 @@ public class CourseServlet extends HttpServlet {
 						if (i == course_detail1.length - 1)
 							course_detailSb.append(course_detail1[i] + "-");
 						else
-							course_detailSb.append(course_detail1[i] + "/");
+							course_detailSb.append(course_detail1[i] + "%");
 
 					}
 
@@ -472,7 +472,7 @@ public class CourseServlet extends HttpServlet {
 							errorMsgs.add("學習重點不得為空或刪除多餘的食材欄位");
 							break;
 						}
-						course_detailSb.append(course_detail2[i] + "/");
+						course_detailSb.append(course_detail2[i] + "%");
 					}
 
 				}
