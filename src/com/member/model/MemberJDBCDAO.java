@@ -1011,12 +1011,24 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 
 			while (rs.next()) {
 				// empVo �]�٬� Domain objects
-				empVO = new MemberVO();		
-				empVO.setMember_name(rs.getString("MEMBER_NAME"));
-				empVO.setMember_status(rs.getInt("MEMBER_STATUS"));
+				empVO = new MemberVO();
+				empVO.setMember_id(rs.getString("MEMBER_ID"));
+				empVO.setAccount(rs.getString("ACCOUNT"));
 				empVO.setPassword(rs.getString("PASSWORD"));
-				empVO.setAccount(rs.getString("ACCOUNT"));	
-			empVO.setMember_id(rs.getString("MEMBER_ID"));
+				empVO.setMember_name(rs.getString("MEMBER_NAME"));
+				empVO.setGender(rs.getInt("GENDER"));
+				empVO.setBirthday(rs.getDate("BIRTHDAY"));
+				empVO.setCellphone(rs.getString("CELLPHONE"));
+				empVO.setEmail(rs.getString("EMAIL"));
+				empVO.setNickname(rs.getString("NICKNAME"));
+				empVO.setMember_photo(rs.getBytes("MEMBER_PHOTO"));
+				empVO.setValidation(rs.getInt("VALIDATION"));
+				empVO.setLicense(rs.getBytes("LICENSE"));
+				empVO.setMember_status(rs.getInt("MEMBER_STATUS"));
+				empVO.setMember_address(rs.getString("MEMBER_ADDRESS"));
+				empVO.setMember_creditcard(rs.getString("MEMBER_CREDITCARD"));
+				empVO.setBalance(rs.getInt("BALANCE"));
+				empVO.setChiefapply_status(rs.getInt("CHIEFAPPLY_STATUS"));
 			}
 
 			// Handle any driver errors

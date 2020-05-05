@@ -150,7 +150,6 @@
 			</div>
 
 		</div>
-		<%= memberVO!=null && memberVO.getMember_status()==1%>
 		<!-- end of function-->
 		<nav id="navigation">
 			<ul>
@@ -174,9 +173,11 @@
 								class="dropdown-first-img"
 								src="image/ico_gnav_recipes_movie.svg"><span
 								class="dropdown-first-a-span">直播主頁</span></a></li>
-						<li><a href="#">直播預告</a></li>
-						<li><a href="#">熱門直播</a></li>
+						<li><a href="livestream.jsp">直播預告</a></li>
+						<c:if test="<%= memberVO!=null && memberVO.getMember_status()==1%>">
+						<li><a href="front-end/livestream/livestream.jsp">開啟直播</a></li>
 						<li><a href="#">建立直播預告</a></li>
+						</c:if>
 					</ul></li>
 				<li class="dropdown dropdown-shop"><a><img
 						class="access-menu-icon" src="image/shop-icon.png"><span
@@ -206,7 +207,9 @@
 								class="dropdown-first-img" src="image/ico_gnav_recipes_pot.svg"><span
 								class="dropdown-first-a-span">課程主頁</span></a></li>
 						<li><a href="#">熱門課程</a></li>
+						<c:if test="<%= memberVO!=null && memberVO.getMember_status()==1%>">
 						<li><a href="#">建立料理課程</a></li>
+						</c:if>
 					</ul></li>
 			</ul>
 		</nav>
