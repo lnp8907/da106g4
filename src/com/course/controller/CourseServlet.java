@@ -21,7 +21,8 @@ import javax.servlet.http.Part;
 import com.course.model.CourseService;
 import com.course.model.CourseVO;
 import com.mycourse.model.MyCourseService;
-import com.recipe.model.RecipeService;
+import com.course.model.CourseService;
+import com.course_browsing_history.model.Course_browing_historyService;
 
 @MultipartConfig
 @WebServlet({ "/course.do", "/front-end/course/course.do" })
@@ -164,6 +165,19 @@ public class CourseServlet extends HttpServlet {
 				}
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
+//瀏覽紀錄新增0504
+				HttpSession session = req.getSession();
+				if (session.getAttribute("member_id") != null && course_id != null) {
+					System.out.println("新增食譜瀏覽紀錄");
+					String member_id = (String) session.getAttribute("member_id");
+					System.out.println(member_id);
+
+					Course_browing_historyService pvhSvc = new Course_browing_historyService();
+					pvhSvc.insert(member_id, course_id);
+				}
+				
+				
+				
 				req.setAttribute("courseVO", courseVO); // 資料庫取出的courseVO物件,存入req
 				String url = "/front-end/course/listOneCourse.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneCourse.jsp

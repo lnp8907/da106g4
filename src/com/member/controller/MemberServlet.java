@@ -31,8 +31,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
+import com.course_browsing_history.model.Course_browing_historyService;
 import com.member.model.MemberService;
 import com.member.model.MemberVO;
+import com.notice.model.NoticeService;
 import com.redis.connectpool.JedisUtil;
 
 
@@ -345,15 +347,10 @@ if ("update2".equals(action)) {
 //			Integer gender = new Integer(req.getParameter("gender"));
 			Integer chiefapply_status = new Integer(req.getParameter("ChiefapplyStatus"));
 //			Integer chiefapply_status = new Integer(req.getParameter("chiefapply_status"));
-			System.out.println("chiefapply_status1111111111111111111"+chiefapply_status);
-
 			MemberVO memberVO = new MemberVO();
 			memberVO.setMember_id(member_id);
-		
 			memberVO.setChiefapply_status(chiefapply_status);
-			
-System.out.print("151515555555551");
-			// Send the use back to the form, if there were errors
+		// Send the use back to the form, if there were errors
 			if (!errorMsgs.isEmpty()) {
 				req.setAttribute("memberVO", memberVO); // 含有輸入格式錯誤的物件,也存入req
 				req.setAttribute("errorMsgs", errorMsgs);	
@@ -366,11 +363,7 @@ System.out.print("151515555555551");
 			//開始修改資料////////////////////////////////////////////////////////
 			MemberService memberService = new MemberService();
 			
-			
-			
-			
-			
-			
+	
 			if(chiefapply_status==2) 
 			memberVO = memberService.UpdateChiefapplyStatus(member_id, chiefapply_status, 1);	
 			else 
@@ -384,25 +377,7 @@ System.out.print("151515555555551");
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		
 		if ("update1".equals(action)) {
 			
@@ -449,7 +424,6 @@ System.out.print("151515555555551");
 			memberVO.setEmail(email);
 			memberVO.setValidation(validation);
 			
-System.out.print("151515555555551");
 			// Send the use back to the form, if there were errors
 			if (!errorMsgs.isEmpty()) {
 				req.setAttribute("memberVO", memberVO); // 含有輸入格式錯誤的物件,也存入req
@@ -472,18 +446,7 @@ System.out.print("151515555555551");
 		
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		
 		 if("getOneMemberDisplay".equals(action)) {
 			   List<String> errorMsgs = new LinkedList<String>();
@@ -1123,7 +1086,7 @@ System.out.println("location="+location);
 				}
 				
 				String code = getRandomPassword(6);//產生密碼
-				//將見證碼存入Redis
+				//將驗證碼存入Redis
 				JedisPool pool = com.redis.connectpool.JedisUtil.getJedisPool();
 				Jedis jedis = pool.getResource();
 				jedis.auth("123456");
@@ -1140,13 +1103,7 @@ System.out.println("location="+location);
 				sendMail(to, subject, messageText);
 										
 				/***************************2.開始新增資料***************************************/
-				MemberService memberSvc = new MemberService();
-				
-				
-				
-				
-				
-				
+				MemberService memberSvc = new MemberService();				
 				memberSvc.insertmem(account, password, email);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
@@ -1288,19 +1245,11 @@ System.out.println("location="+location);
 						// TODO Auto-generated catch block
 						e1.printStackTrace();
 					}
-					
-				
-				MemberVO memberVO=new MemberVO();
-
-				memberVO.setMember_id(member_id);
-				
-				memberVO.setMember_name(member_name);
-				
-				memberVO.setChiefapply_status(chiefapply_status);
-				
+             	MemberVO memberVO=new MemberVO();
+				memberVO.setMember_id(member_id);		
+				memberVO.setMember_name(member_name);		
+				memberVO.setChiefapply_status(chiefapply_status);		
 				memberVO.setAccount(account);
-				
-				
 				memberVO.setLicense(license);
 
 				System.out.println(memberVO);
@@ -1320,6 +1269,22 @@ System.out.println("location="+location);
 //				memberVO = memberSvc.update(account, password, member_name,
 //						gender, birthday, cellphone, email,
 //						nickname, member_photo, validation, license, member_status,member_address, member_creditcard, balance, chiefapply_status);
+				
+				
+				
+//				HttpSession session = req.getSession();
+				
+					System.out.println("新增通知");
+					
+					System.out.println(member_id);
+
+					NoticeService pvhSvc = new NoticeService();
+					String content=""; //填超連結
+					pvhSvc.insert(member_id, 0, content, 0);//第2個參數，(0.系統,1.即時配送,2.食材商城,3.課程,4.直播)
+					                                        //member_id 從 SESSION 取
+				                                            //第4個參數，填0 !!!!!!
+	
+				
 				memberVO = memberSvc.update_To_Chef(member_id, account, member_name, license, chiefapply_status);
 //				memberVO = memberSvc.update(password, member_name,member_address);
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
