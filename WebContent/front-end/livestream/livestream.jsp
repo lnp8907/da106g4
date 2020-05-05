@@ -500,9 +500,18 @@ cursor:pointer;
 						</div>
 						<!-- 直播播放區結束 -->
 						<!-- 觀看人數 -->
+					<div id="CustomCardheader" class="CustomCardheader text-white btn-warning">
+						<input type="hidden" id="hostID" value="${hostID}" />
+						<input type="hidden" id="lsViewNum" value="0" />
+				<% if(hostID!=null){ %>
+						<h5 id="subTitle" class="col pt-2"> <strong>這是 ${hostID} 直播間</strong></h5>
+				<%} else { %>		
+						<h5 id="subTitle" class="col pt-2"> <strong>您已經進入直播間</strong></h5>
+				 <%} %>		
+						
 						<i id="WebSocket-count" class="far pt-2 pr-3 float-right" style="position: absolute; right: 0; top: 0px">目前在線人數 - </i>
 						<i id="WebRTC-count"    class="far pt-2 pr-3 float-right" style="position: absolute; right: 0; top: 20px">WebRTC 累計觀看人數 0 </i>
-				
+					</div>
 						<!-- 觀看人數結束 -->
 						<div class="livestream_card" id="hot">
 							<h2>熱門推薦</h2>
