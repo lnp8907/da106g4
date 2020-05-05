@@ -28,8 +28,8 @@
 
 <%-- 模擬登入的hostID(直播主ID)為peter  --%>
 <%  
-//      String hostID = (String)session.getAttribute("hostID");
-String hostID = "ABC";
+     String hostID = (String)session.getAttribute("hostID");
+// String hostID = "ABC";
      session.setAttribute("hostID", hostID); 
 %>
 
