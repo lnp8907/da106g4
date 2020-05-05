@@ -1,18 +1,21 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <%@page import="com.member.model.*"%>
     
-    <%
+<%
     String member_id =(String) session.getAttribute("member_id");
-out.println(member_id);
-MemberVO membervo = (MemberVO) session.getAttribute("memberVO");
-
-out.println(membervo);
+	out.println(member_id);
+	MemberVO memberVO = (MemberVO)session.getAttribute("memberVO");
+	/*MemberVO 可以使用的屬性
+	member_id
+	member_name
+	nickname
+	member_status (0.普通會員 1.廚師)
+	balance	
+	*/
 %>
 <%@ page import="java.util.*"%>
-
 
 
 
@@ -29,6 +32,7 @@ out.println(membervo);
 <link rel="stylesheet" href="slick/slick.css">
 <link rel="stylesheet" href="slick/slick-theme.css">
 <link rel="stylesheet" href="css/homePage.css">
+<link rel="stylesheet" href="css/CarMessage.css">
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <link rel="icon" href="image/head-FoodPron_Logo.ico" type="image/x-icon">
 <link rel="shortcut icon" href="image/head-FoodPron_Logo.ico"
@@ -146,10 +150,11 @@ out.println(membervo);
 			</div>
 
 		</div>
+		<%= memberVO!=null && memberVO.getMember_status()==1%>
 		<!-- end of function-->
 		<nav id="navigation">
 			<ul>
-				<li class="dropdown"><a><img class="access-menu-icon"
+				<li class="dropdown"><a ><img class="access-menu-icon"
 						src="image/recipe-icon.png"><span class="menu-span">食譜專區</span></a>
 					<ul>
 						<li><a class="dropdown-first-a" href="#"><img
@@ -157,7 +162,10 @@ out.println(membervo);
 								class="dropdown-first-a-span">食譜主頁</span></a></li>
 						<li><a href="#">特輯食譜</a></li>
 						<li><a href="#">推薦食譜</a></li>
+					<c:if test="<%= memberVO!=null && memberVO.getMember_status()==1%>">
 						<li><a href="front-end/recipe/addRecipe.jsp">建立食譜</a></li>
+					</c:if>
+	
 					</ul></li>
 				<li class="dropdown"><a><img class="access-menu-icon"
 						src="image/livestream-icon.png"><span class="menu-span">直播專區</span></a>
@@ -191,10 +199,10 @@ out.println(membervo);
 						<li><a href="#">罐頭</a></li>
 						<li><a href="#">乾貨</a></li>
 					</ul></li>
-				<li class="dropdown"><a><img class="access-menu-icon"
+				<li class="dropdown"><a href="front-end/course/listAllCourse.jsp"><img class="access-menu-icon"
 						src="image/course-icon.png"><span class="menu-span">料理課程</span></a>
 					<ul>
-						<li><a class="dropdown-first-a" href="#"><img
+						<li><a class="dropdown-first-a" href="front-end/course/listAllCourse.jsp"><img
 								class="dropdown-first-img" src="image/ico_gnav_recipes_pot.svg"><span
 								class="dropdown-first-a-span">課程主頁</span></a></li>
 						<li><a href="#">熱門課程</a></li>
@@ -203,24 +211,7 @@ out.println(membervo);
 			</ul>
 		</nav>
 	</header>
-	<!-- end of header-->
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	<!-- end of header-->	
 <!-- 登箱開始 -->
 
 <c:if test='${empty member_id}'>

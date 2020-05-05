@@ -4,12 +4,13 @@
     box-sizing: border-box;
 	font-family: "微軟正黑體", Arial, Helvetica, sans-serif;
 	color: rgb(92, 91, 91);
-	background-color: white;
+/* 	background-color: white; */
 	
 }
 
 html,body{
 	background-color: rgb(226, 226, 226);
+	    background-color: white;
 }
 h1{
 	text-align: center;
