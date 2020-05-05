@@ -1,6 +1,5 @@
 package com.recipe.controller;
 
-
 import java.io.IOException;
 import java.sql.Date;
 import java.text.DecimalFormat;
@@ -22,12 +21,14 @@ import javax.servlet.http.Part;
 import com.ingredient.model.IngredientDAO;
 import com.ingredient.model.IngredientVO;
 import com.product.model.ProductVO;
+import com.product_browsing_history.model.Product_browing_historyService;
 import com.recipe.model.RecipeService;
 import com.recipe.model.RecipeVO;
 import com.recipe.model.RecipeVO_saved;
+import com.recipe_browsing_history.model.Recipe_browing_historyService;
 import com.recipe_favorite.model.RecipeFavoriteServiec;
 
-@WebServlet({ "/RecipeServlet"})
+@WebServlet({ "/RecipeServlet" })
 @MultipartConfig
 
 public class RecipeServlet extends HttpServlet {
@@ -90,7 +91,8 @@ public class RecipeServlet extends HttpServlet {
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("member_id", member_id); // 資料庫取出的empVO物件,存入req
-				RequestDispatcher successView = req.getRequestDispatcher("/front-end/member/chefPage.jsp"); // 成功轉交 listOneEmp.jsp
+				RequestDispatcher successView = req.getRequestDispatcher("/front-end/member/chefPage.jsp"); // 成功轉交
+																											// listOneEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
@@ -107,7 +109,7 @@ public class RecipeServlet extends HttpServlet {
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
 			String pageType = req.getParameter("pageType");
-			req.setAttribute("pageType", pageType); //怎麼來怎麼回去
+			req.setAttribute("pageType", pageType); // 怎麼來怎麼回去
 			try {
 				/*************************** 接收請求參數 - 輸入格式的錯誤處理 **********************/
 				Map<String, String[]> map = new HashMap<>();
@@ -227,6 +229,17 @@ public class RecipeServlet extends HttpServlet {
 				}
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
+//瀏覽紀錄新增0504
+				HttpSession session = req.getSession();
+				if (session.getAttribute("member_id") != null && recipe_id != null) {
+					System.out.println("新增食譜瀏覽紀錄");
+					String member_id = (String) session.getAttribute("member_id");
+					System.out.println(member_id);
+
+					Recipe_browing_historyService pvhSvc = new Recipe_browing_historyService();
+					pvhSvc.insert(member_id, recipe_id);
+				}
+
 				req.setAttribute("recipeVO", recipeVO); // 資料庫取出的empVO物件,存入req
 				String url = "/front-end/recipe/recipeHomepage.jsp?pageType=listOneRecipe.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
@@ -759,7 +772,7 @@ public class RecipeServlet extends HttpServlet {
 				}
 
 				/*************************** 2.開始新增資料 ***************************************/
-				ProductVO productVO=new ProductVO();
+				ProductVO productVO = new ProductVO();
 				RecipeService RecSvc = new RecipeService();
 				RecSvc.addRecipe(recipeVO, productVO);
 //				recipeVO = RecSvc.addRecipe(rcstyle_no, member_id, recipe_name, recipe_type, recipe_photo,
@@ -767,11 +780,11 @@ public class RecipeServlet extends HttpServlet {
 //						salt_intake, protein_intake, fat_intake, carbo_intake, vitamin_b, vitamin_c, vage_intake);
 //				
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-				String pageType= "searchRecipe.jsp";
+				String pageType = "searchRecipe.jsp";
 				String url = "/front-end/recipe/recipeHomepage.jsp?pageType=" + pageType;
-				req.setAttribute("pageType", pageType); //導回searchReicpe
+				req.setAttribute("pageType", pageType); // 導回searchReicpe
 				HttpSession session = req.getSession();
-				session.removeAttribute("list");//該list為search的結果,因要導回search畫面,所以不管使用者有沒有搜尋過一律先清空
+				session.removeAttribute("list");// 該list為search的結果,因要導回search畫面,所以不管使用者有沒有搜尋過一律先清空
 				RequestDispatcher successView = req.getRequestDispatcher(url); //
 				// 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
@@ -845,7 +858,4 @@ public class RecipeServlet extends HttpServlet {
 		}
 	}
 
-	
-
-	
 }

@@ -1323,10 +1323,12 @@ System.out.println("location="+location);
 				memberVO = memberSvc.update_To_Chef(member_id, account, member_name, license, chiefapply_status);
 //				memberVO = memberSvc.update(password, member_name,member_address);
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
-				req.setAttribute("membervo", memberVO); // 資料庫update成功後,正確的的empVO物件,存入req
-				String url = "/back-end/member/listAllMember.jsp";
-				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
-				successView.forward(req, res);
+//				req.setAttribute("membervo", memberVO); // 資料庫update成功後,正確的的empVO物件,存入req
+//				req.setAttribute("state", "sucess");
+				String url = req.getContextPath()+"/front-end/member/TestMemberHomepage.jsp?state=sucess";
+//				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
+//				successView.forward(req, res);
+				res.sendRedirect(url);
 
 				/***************************其他可能的錯誤處理*************************************/
 			} catch (Exception e) {

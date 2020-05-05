@@ -857,7 +857,7 @@ body {
 }
 
 .sidebar {
-	margin-top: -550px;
+	margin-top: -350px;
 	margin-left: 13%;
 	width: 240px;
 	height: 100%;
@@ -1812,7 +1812,7 @@ hr {
 				</ul>
 			</c:if>
 
-			<FORM METHOD="post" ACTION="member.do" name="upateform"
+			<FORM METHOD="post" ACTION="MoneyflowServlet.do" name="upateform"
 				id="upateform" enctype="multipart/form-data">
 
 
@@ -1835,206 +1835,19 @@ hr {
 					<table align="center" cellpadding="10">
 
 						<!----- First Name ---------------------------------------------------------->
-						<!---------------------------- 升級廚師開頭 ---------------------------------------------------------->
-
-
-
-
-<!-- 						<tr> -->
-<!-- 							<td>會員編號:<font color=red><b>*</b></font></td> -->
-
-<%-- 							<td><%=membervo.getMember_id()%></td> --%>
-
-<!-- 						</tr> -->
+						<!---------------------------- 廚師提款開頭 ---------------------------------------------------------->
 
 
 
 
 
-						<tr>
-							<td>會員姓名:</td>
-
-							<td><input type="TEXT" name="member_name" size="45"
-								id=member_name value="<%=membervo.getMember_name()%>" /> <!-- (max 30 characters a-z and A-Z) -->
-							</td>
-						</tr>
-
-						<!----- Last Name ---------------------------------------------------------->
-						<tr>
-							<td>會員帳號:</td>
-							<td><input type="TEXT" name="account" size="45" id=account
-								value="<%=membervo.getAccount()%>" /></td>
-						</tr>
-
-					
-
-						<tr>
-							<td>廚師證照:</td>
-							<!-- 按鈕 -->
-							<td><input type="file" id="imgView" name="license" size="45"
-								accept="image/gif, image/jpeg, image/png"> <img
-								src=DBGifReader4.do?photo_type=license&member_id=<%=session.getAttribute("member_id")%>
-								 id="preview_progressbarTW_img"
-								width=100px height=100px; /></td>
-
-						</tr>
-						
-						
-						
-						
-			
-
-
-						<!----- State ---------------------------------------------------------->
-						<!-- <tr>
-<td>STATE</td>
-<td><input type="text" name="State" maxlength="30" />
-(max 30 characters a-z and A-Z)
-</td>
-</tr> -->
-
-						<!----- Country ---------------------------------------------------------->
-						<!-- <tr>
-<td>COUNTRY</td>
-<td><input type="text" name="Country" value="India" readonly="readonly" /></td>
-</tr> -->
-
-						<!----- Hobbies ---------------------------------------------------------->
-
-						<!-- <tr>
-<td>HOBBIES <br /><br /><br /></td>
- 
-<td>
-Drawing
-<input type="checkbox" name="Hobby_Drawing" value="Drawing" />
-Singing
-<input type="checkbox" name="Hobby_Singing" value="Singing" />
-Dancing
-<input type="checkbox" name="Hobby_Dancing" value="Dancing" />
-Sketching
-<input type="checkbox" name="Hobby_Cooking" value="Cooking" />
-<br />
-Others
-<input type="checkbox" name="Hobby_Other" value="Other">
-<input type="text" name="Other_Hobby" maxlength="30" />
-</td>
-</tr> -->
-
-						<!----- Qualification---------------------------------------------------------->
-						<!-- <tr>
-<td>QUALIFICATION <br /><br /><br /><br /><br /><br /><br /></td>
- 
-<td>
-<table>
- 
-<tr>
-<td align="center"><b>Sl.No.</b></td>
-<td align="center"><b>Examination</b></td>
-<td align="center"><b>Board</b></td>
-<td align="center"><b>Percentage</b></td>
-<td align="center"><b>Year of Passing</b></td>
-</tr> -->
-
-						<!-- <tr>
-<td>1</td>
-<td>Class X</td>
-<td><input type="text" name="ClassX_Board" maxlength="30" /></td>
-<td><input type="text" name="ClassX_Percentage" maxlength="30" /></td>
-<td><input type="text" name="ClassX_YrOfPassing" maxlength="30" /></td>
-</tr>
- 
-<tr>
-<td>2</td>
-<td>Class XII</td>
-<td><input type="text" name="ClassXII_Board" maxlength="30" /></td>
-<td><input type="text" name="ClassXII_Percentage" maxlength="30" /></td>
-<td><input type="text" name="ClassXII_YrOfPassing" maxlength="30" /></td>
-</tr>
- 
-<tr>
-<td>3</td>
-<td>Graduation</td>
-<td><input type="text" name="Graduation_Board" maxlength="30" /></td>
-<td><input type="text" name="Graduation_Percentage" maxlength="30" /></td>
-<td><input type="text" name="Graduation_YrOfPassing" maxlength="30" /></td>
-</tr>
- 
-<tr>
-<td>4</td>
-<td>Masters</td>
-<td><input type="text" name="Masters_Board" maxlength="30" /></td>
-<td><input type="text" name="Masters_Percentage" maxlength="30" /></td>
-<td><input type="text" name="Masters_YrOfPassing" maxlength="30" /></td>
-</tr>
- 
-<tr>
-<td></td>
-<td></td>
-<td align="center">(10 char max)</td>
-<td align="center">(upto 2 decimal)</td>
-</tr>
-</table>
- 
-</td>
-</tr>
-  -->
-						<!----- Course ---------------------------------------------------------->
-						<!-- <tr>
-<td>COURSES<br />APPLIED FOR</td>
-<td>
-BCA
-<input type="radio" name="Course_BCA" value="BCA">
-B.Com
-<input type="radio" name="Course_BCom" value="B.Com">
-B.Sc
-<input type="radio" name="Course_BSc" value="B.Sc">
-B.A
-<input type="radio" name="Course_BA" value="B.A">
-</td>
-</tr> -->
-
-						<!----- Submit and Reset ------------------------------------------------->
-
-						<tr>
-							<td colspan="2" align="center">
-								<!-- <div class="submit">
-  <input type="submit"  value="儲存" id="button-blue"/>
-  <div class="ease"></div> -->
-								<div class="submit_btn">
-
-									<span class="submitAndSave" id="article-section-seemore-recipe">儲存</span>
-									<input type="submit" class="submit_btn" value="儲存">
-
-<!-- 								</div> <input type="reset" value="Reset"> -->
-							</td>
-						</tr>
 					</table>
 
-					<br> <input type="hidden" name="action" value="updateToChef">
-
-					<input type="hidden" name="member_id"
-						value="<%=session.getAttribute("member_id")%>"> <input
-						type="hidden" name="account" value="${membervo.member_photo}">
+					<br> 
+<input type="hidden" name="action" value="consume"> 
+					<input type="hidden" name="member_id" value="<%=session.getAttribute("member_id")%>"> 
 			</form>
 			</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 			
 

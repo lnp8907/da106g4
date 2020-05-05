@@ -8,8 +8,6 @@
 <%@ page import="java.util.stream.Collectors" %>
 <%@ page import="java.text.*" %>
 <%@ page import="com.instant_delivery_order.*" %>
-
-
 <% 
 InstantDeliveryOrderService IDSvc=new InstantDeliveryOrderService();
 List<InstantDeliveryOrderVO> list=null;
@@ -18,6 +16,7 @@ if(IDSvc.getAll()!=null){
 	list=list.stream()
 			.filter(p->p.getO_status()==1)
 			.collect(Collectors.toList());
+
 }
 if(list!=null){
 pageContext.setAttribute("list",list);
