@@ -7,23 +7,8 @@
     <meta name="viewport" content="initial-scale=1.0, user-scalable=no">
     <meta charset="utf-8">
     <title>配送狀態</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     
-    <style>
-        /* Always set the map height explicitly to define the size of the div
-       * element that contains the map. */
-        #map {
-            height: 100%;
-        }
 
-        /* Optional: Makes the sample page fill the window. */
-        html,
-        body {
-            height: 100%;
-            margin: 0;
-            padding: 0;
-        }
-    </style>
 </head>
 
 <body>${ido_no}
@@ -63,7 +48,8 @@
 //     	var path = window.location.pathname;
 //     	var webCtx = path.substring(0, path.indexOf('/', 1));
 //     	var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
-		var ido_no = ${ido_no};
+		var ido_no = '${ido_no}';
+		console.log(ido_no);
     	var endPointURL = "ws://35.229.239.13:8081/DA106_G4_Foodporn_Git/DeliveryWS/" + ido_no;
     	
     		webSocket = new WebSocket(endPointURL);
@@ -100,6 +86,22 @@
     <script async defer
         src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBGmwg1inJ4obsNT2Z04frK71MfuTRl2MU&callback=initMap">
        </script>
+           <style>
+        /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+     #map {
+     height:400px;
+        width: 400px;
+       }
+
+        /* Optional: Makes the sample page fill the window. */
+        html,
+        body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+        }
+    </style>
 </body>
 
 </html> 

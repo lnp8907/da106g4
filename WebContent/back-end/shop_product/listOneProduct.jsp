@@ -1,12 +1,17 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="com.product.model.*" %>
     <%@ page import="java.util.*"%>
+    
+    
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
+    
 <%
-ProductService svc=new ProductService();
-String product_id=(String)request.getAttribute("product_id");
-
-     ProductVO productvo = svc.getOneProduct(product_id); //EmpServlet.java(Concroller), 存入req的empVO物件
+ProductVO productvo =null;
+if(request.getAttribute("detailProductvo")!=null){
+      productvo = (ProductVO)request.getAttribute("detailProductvo"); //EmpServlet.java(Concroller), 存入req的empVO物件
+}
 %>
+<c:set var="productvo" value="<%=productvo %>"/> 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 			<%
     Map<Integer, String> map = new HashMap<>();
@@ -14,10 +19,7 @@ String product_id=(String)request.getAttribute("product_id");
     map.put(0, "已上架");
     request.setAttribute("productstatus", map);
 %>
-<script
-  src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
-  integrity="sha256-pasqAKBDmFT4eHoN2ndd6lN370kFiGUFyTiUHWhU7k8="
-  crossorigin="anonymous"></script>
+
 <html>
 <head>
 <title> 查看商品詳細資料 </title>
@@ -83,10 +85,10 @@ String product_id=(String)request.getAttribute("product_id");
 		
 	</tr>
 	<tr>
-		<td><img width=80px height=70px src="Product_photoReader?product_id=<%=product_id%>
+		<td><img width=80px height=70px src="Product_photoReader?product_id=${productvo.product_id}
 			"></td>
 		
-	<td><%=productvo.getProduct_type()%></td>
+	<td>${productvo.product_type}</td>
 		<td  id="product_idtd"><%=productvo.getProduct_id()%></td>
 		<!-- 食譜欄位 -->
 			<td id="recipe_td"><%=productvo.getRecipe_id() %></td>
@@ -127,16 +129,16 @@ String product_id=(String)request.getAttribute("product_id");
 	
 	
 </table>
-<table>
-<tr><th><FORM METHOD="post" ACTION="product.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="修改">
-			     <input type="hidden" name="product_id"  value="<%=productvo.getProduct_id()%>">
-			     <input type="hidden" name="action"	value="ProductUpdatePage">
-			     </FORM></th>
-			     <th>  <FORM METHOD="post" ACTION="product.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="刪除">
-			     <input type="hidden" name="product_id"  value="<%=productvo.getProduct_id()%>">
-			     <input type="hidden" name="action" value="delete"></FORM></th>
+<!-- <table> -->
+<!-- <tr><th><FORM METHOD="post" ACTION="product.do" style="margin-bottom: 0px;"> -->
+<!-- 			     <input type="submit" value="修改"> -->
+<%-- 			     <input type="hidden" name="product_id"  value="<%=productvo.getProduct_id()%>"> --%>
+<!-- 			     <input type="hidden" name="action"	value="ProductUpdatePage"> -->
+<!-- 			     </FORM></th> -->
+<!-- 			     <th>  <FORM METHOD="post" ACTION="product.do" style="margin-bottom: 0px;"> -->
+<!-- 			     <input type="submit" value="刪除"> -->
+<%-- 			     <input type="hidden" name="product_id"  value="<%=productvo.getProduct_id()%>"> --%>
+<!-- 			     <input type="hidden" name="action" value="delete"></FORM></th> -->
 			     			      
 			     			      
 			     			      
@@ -144,15 +146,13 @@ String product_id=(String)request.getAttribute("product_id");
 			     	
 			     			     
 			     			     
-			     			     <th><input type="button" value="返回全部訂單" onclick="location.href='listAllProduct.jsp'">
-			     			     
-			     			     </th>
-			     </tr>
+			     			   
+<!-- 			     </tr> -->
 
 
 
 
-</table>
+<!-- </table> -->
 
 			     
 			     

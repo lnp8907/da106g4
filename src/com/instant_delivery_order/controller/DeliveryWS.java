@@ -1,4 +1,4 @@
-package android.com.foodporn.websocketchat.controller;
+package com.instant_delivery_order.controller;
 
 import java.io.IOException;
 import java.util.Collection;

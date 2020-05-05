@@ -752,7 +752,7 @@ public class RecipeServlet extends HttpServlet {
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("recipeVO", recipeVO); // 含有輸入格式錯誤的物件,也存入req
-					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/recipe/recipeHomepage.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/front-end/recipe/addRecipe.jsp");
 					failureView.forward(req, res);
 					return;
 
@@ -779,7 +779,7 @@ public class RecipeServlet extends HttpServlet {
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add(e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/recipe/recipeHomepage.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/front-end/recipe/addRecipe.jsp");
 				failureView.forward(req, res);
 			}
 		}

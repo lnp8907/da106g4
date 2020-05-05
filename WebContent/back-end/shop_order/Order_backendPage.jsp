@@ -8,7 +8,6 @@
     <!--套件-->
     <script src="<%=request.getContextPath() %>/plugin/jquery-3.4.1.min.js"></script>
     <script src="<%=request.getContextPath() %>/plugin/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
-    <script src="<%=request.getContextPath() %>/plugin/Semantic-UI/semantic.js"></script>
 
     <link rel="stylesheet" href="<%=request.getContextPath() %>/plugin/bootstrap-4.4.1-dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="<%=request.getContextPath() %>/plugin/Semantic-UI/semantic.min.css">
@@ -114,9 +113,14 @@
                             </div>
                             <div class="wrapper">
 			<!--  -->
+<<<<<<< HEAD
 	
 	
 	<%if(request.getAttribute("pagemessage")==null){ %>
+=======
+	<c:set var="url" value="<%=request.getRequestURI() %>" scope="request" />
+	
+>>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
 	 <jsp:include page="listAllShopOrder.jsp" />
 <%}else if(((String)request.getAttribute("pagemessage")).equals("IPS")){%>
 	 <jsp:include page="listAllShopOrderByPSi.jsp" />
@@ -129,6 +133,7 @@
 	<!-- 待完成 -->
 	 <jsp:include page="listAllShopOrderByPSi.jsp" /> %>
 	
+<<<<<<< HEAD
 	<%} %>
 	
 	
@@ -136,6 +141,8 @@
 	
 	
 	
+=======
+>>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
 
 
 		</div>
@@ -143,6 +150,84 @@
 
 	</div>
 </div>
+<!-- 跳窗.................. -->
+<c:if test="${opendialog=='addressupdate'}">
+				<div class="modal fade" id="basicModal1" tabindex="-1" role="dialog"
+					aria-labelledby="basicModal" aria-hidden="true">
+					<div class="modal-dialog modal-lg" style="width: 65%;">
+						<div class="modal-content" >
+
+							<div class="modal-header">
+								<h2 class="modal-title" id="myModalLabel">訂單編號:${ordvo.order_no}</h2>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+							</div>
+
+							<div class="modal-body">
+								<!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
+
+ 								<jsp:include page="UpateOrderAddress.jsp" /> 
+
+								<!-- =========================================以上為原listOneEmp.jsp的內容========================================== -->
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<script>
+					$("#basicModal1").modal({
+						show : true
+					});
+					$(document).ready(function() {
+						$('.btn-primary').on('click', function() {
+							$('#update_form').submit();
+						});	
+					});
+				</script>
+			</c:if>
+<!--  -->
+<c:if test="${opendialog=='lookmore'}">
+				<div class="modal fade" id="basicModal1" tabindex="-1" role="dialog"
+					aria-labelledby="basicModal" aria-hidden="true">
+					<div class="modal-dialog modal-lg" style="width: 65%;">
+						<div class="modal-content" >
+
+							<div class="modal-header">
+								<h2 class="modal-title" id="myModalLabel">訂單編號:${ordvo.order_no}</h2>
+								<button type="button" class="close" data-dismiss="modal"
+									aria-hidden="true">&times;</button>
+							</div>
+
+							<div class="modal-body">
+								<!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
+
+ 								<jsp:include page="listOneShopOrder.jsp" /> 
+
+								<!-- =========================================以上為原listOneEmp.jsp的內容========================================== -->
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				<script>
+					$("#basicModal1").modal({
+						show : true
+					});
+					$(document).ready(function() {
+						$('.btn-primary').on('click', function() {
+							$('#update_form').submit();
+						});	
+					});
+				</script>
+			</c:if>
+
+
+
+
+
+<!-- ..................... -->
 <!-- 左邊選單 -->
 <script>
         $("#leftMenu > li ").children('span').not(".orderlist").find("+ul").slideUp(1);

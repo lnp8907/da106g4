@@ -5,17 +5,18 @@
 <%@ page import="com.product.model.*"%>
 <html>
 <%
-  ProductVO productvo = (ProductVO) request.getAttribute("productvo"); 
-%>
+ProductVO productvo =null;
+if(request.getAttribute("detailProductvo")!=null){
+      productvo = (ProductVO)request.getAttribute("detailProductvo"); //EmpServlet.java(Concroller), 存入req的empVO物件
+}%>
+<c:set var="productvo" value="<%=productvo %>" scope="request"/> 
+
 <%@ page import=" java.util.*"%>
 
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <title>員工資料修改 - update_emp_input.jsp</title>
-<script
-  src="https://code.jquery.com/jquery-3.4.1.js"
-  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
-  crossorigin="anonymous"></script>
+
 <style>
   table#table-1 {
 	background-color: #CCCCFF;
@@ -51,12 +52,7 @@
 </head>
 <body bgcolor='white'>
 
-<table id="table-1">
-	<tr><td>
-		 <h3>商品修改頁面</h3>
-		 <h4><a href="listAllProduct.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
-	</td></tr>
-</table>
+
 
 <h3>資料修改:</h3>
 
@@ -72,12 +68,20 @@
 
 <FORM METHOD="post" ACTION="product.do" name="form1" enctype="multipart/form-data">
 <table>
+<tr>
+		<td><img  src="Product_photoReader?product_id=<%=productvo.getProduct_id()%>"
+			 id="preview_progressbarTW_img" width=100px height=100px; src="#" />
+			</td>
+		<td><input id="imgView" type="file" name="product_photo" size="45" />
+
+		</td>
+	</tr>
 	<tr>
 		<td>商品編號:<font color=red><b>*</b></font></td>
-		<td><%=productvo.getProduct_id()%></td>
+		<td>${productvo.product_id} </td>
 	</tr>
 		<tr>
-		<td>現在商品類型:<H6 style="color:red;"><%=productvo.getProduct_type()%></H1></td>
+		<td>商品類型:</td>
 		<td><select name="product_type">
 						<%List<String>producttype=new ArrayList(); 
 		producttype.add("水果類");
@@ -100,10 +104,8 @@
 		<%="<option value='"+type+"'"%><%=((productvo.getProduct_type()).equals(type))?"selected":"" %><%=">"+type+"</option>" %>
 		<%} %>
 
-				</select></td>
+				</select>
 		
-		
-		</td>
 	</tr>
 	<tr>
 		<td>商品名稱:</td>
@@ -115,14 +117,7 @@
 		<td><input type="TEXT" name="product_price" size="45"	value="<%=productvo.getProduct_price()%>" />
 		</td>
 	</tr>
-	<tr>
-		<td><img  src="Product_photoReader?product_id=<%=productvo.getProduct_id()%>"
-			 id="preview_progressbarTW_img" width=100px height=100px; src="#" />
-			</td>
-		<td><input id="imgView" type="file" name="product_photo" size="45" />
-
-		</td>
-	</tr>
+	
 	<tr>
 		<td>狀態:</td>
 	<td><select name="product_status" size="1">

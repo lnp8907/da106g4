@@ -8,8 +8,13 @@
 <%@ page import="com.ordermanager.shop.*" %>
 <%@ page import="java.sql.Timestamp" %>
 <%@ page import="java.text.*" %>
+<<<<<<< HEAD
 <%@ page import="java.util.stream.Collectors"%>
 
+=======
+<%@page import="com.member.model.*"%>
+<%@page import="com.member.model.MemberService"%>
+>>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
 
 <%
 
@@ -20,6 +25,7 @@ List<Shop_orderVO>list=null;
 	
 	}
 pageContext.setAttribute("list",list);
+MemberService msvc=new MemberService();
 
 %>
 <!DOCTYPE html>
@@ -71,11 +77,18 @@ pageContext.setAttribute("list",list);
 	<%@ include file="../file/page1.file" %> 
 	
 	<c:forEach var="ordervo" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+					<c:set var="member_id" value="${ordervo.member_id}"/>
+		
 		<div>
 		<tr class="ordertr1">
 			<td>${ordervo.order_no}</td>
 			<td>${ordervo.member_id}</td>
-			<td>會員名稱</td>
+			<%
+			MemberVO mvo=msvc.getOneMember((String)pageContext.getAttribute("member_id"));
+
+			
+			%>
+			<td><%=mvo.getMember_name() %></td>
 			<%
     Map<Integer, String> orderstatusmap = new HashMap<>();
 			orderstatusmap.put(0, "已成立");
@@ -121,12 +134,14 @@ pageContext.setAttribute("list",list);
 			<td>${pay_type[paytype]} </td> 
 			<td>
 			<!-- 茶愾訂單明細 -->
-			     <FORM METHOD="post" ACTION="OrderServlet.do" >
+			     <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/shop_order/OrderServlet.do" >
 			    <button class="ui right labeled  icon button"><i class="zoom in icon"></i> 查看更多 </button>
-			     
+			  <input type="hidden" name="url" value="<%=request.getAttribute("url")%>">
+			  <input type="hidden" name="whichPage" value="<%=whichPage%>">			     
 			  <input type="hidden" name="order_no"  value="${ordervo.order_no}">
-			  <input type="hidden" name="action" value="getorderdetail">
+			  <input type="hidden" name="action" value="lookmore">
                         <input style="display: none" type="submit" value="查看訂單明細">
+                        
 			     </FORM>
 			
 			</td>
@@ -134,7 +149,7 @@ pageContext.setAttribute("list",list);
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/shop_order/OrderServlet.do" style="margin-bottom: 0px;">
 			     <input type="submit" value="修改">
 			     <input type="hidden" name="order_no"  value="${ordervo.order_no}">
-			     <input type="hidden" name="action"	value="OrderUpdatepage"></FORM>
+			     <input type="hidden" name="action"	value="updateAddress"></FORM>
 			</td>
 			<!-- 刪除 -->
 <!-- 			<td> -->

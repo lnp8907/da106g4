@@ -76,8 +76,103 @@ if("cancel".equals(action)){
 		req.setCharacterEncoding("UTF-8");
 		String str;
 		String action = req.getParameter("action");
-HttpSession session=req.getSession();
+
+		HttpSession session=req.getSession();
+		if ("lookmore".equals(action)) {
+			//
+			System.out.println("收到!LOOKMORE跳窗啟動");
+
+
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+				String order_no = new String(req.getParameter("order_no"));
+				System.out.println("訂單編號:"+order_no);
+				OrderService Svc = new OrderService();
+				Shop_orderVO VO=Svc.getOneOrder(order_no);
+				System.out.println(VO+"VO放置成功");
+				System.out.println("路徑"+req.getParameter("url"));
+				if (!errorMsgs.isEmpty()) {
+					req.setAttribute("ordvo", VO); // 含有輸入格式錯誤的empVO物件,也存入req
+					
+//					String url=req.getParameter("url");
+//					RequestDispatcher failureView = req.getRequestDispatcher(url);
+					
+					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/shop_order/orderupatepage.jsp");
+					failureView.forward(req, res);
+					return;
+				}
+				/*************************** 準備轉交(Send the Success view) *************/
+				OrderService ordSvc = new OrderService();
+
+
+				List<Order_detailVO> list = ordSvc.getdetail(order_no);
+				
+				
+				
+				req.setAttribute("dialoglist", list); // 資料庫update成功後,正確的的empVO物件,存入req
+				req.setAttribute("opendialog", "lookmore"); 
+//				String url="/back-end/shop_order/orderupatepage.jsp?whichPage="+whichPage;
+//				String whichPage=req.getParameter("whichPage");
+
+				String url = "/back-end/shop_order/Order_backendPage.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
+				successView.forward(req, res);
+
+				/*************************** 其他可能的錯誤處理 *************************************/
+			} catch (Exception e) {
+				errorMsgs.add("修改資料失敗:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/shop_order/orderupatepage.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
+		
+		if ("updateAddress".equals(action)) {
+	//
+	System.out.println("收到!跳窗啟動");
+
+
+	// Store this set in the request scope, in case we need to
+	// send the ErrorPage view.
+	req.setAttribute("errorMsgs", errorMsgs);
+
+	try {
+		/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+		String order_no = new String(req.getParameter("order_no"));
+		System.out.println("訂單編號:"+order_no);
+		OrderService Svc = new OrderService();
+		Shop_orderVO VO=Svc.getOneOrder(order_no);
+		System.out.println(VO+"VO放置成功");
+		if (!errorMsgs.isEmpty()) {
+			req.setAttribute("ordvo", VO); // 含有輸入格式錯誤的empVO物件,也存入req
+			RequestDispatcher failureView = req.getRequestDispatcher("/back-end/shop_order/orderupatepage.jsp");
+			failureView.forward(req, res);
+			return;
+		}
+		/*************************** 準備轉交(Send the Success view) *************/
+		req.setAttribute("dialogordvo", VO); // 資料庫update成功後,正確的的empVO物件,存入req
+		req.setAttribute("opendialog", "addressupdate"); 
+		String url = "/back-end/shop_order/Order_backendPage.jsp";
+		RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
+		successView.forward(req, res);
+
+		/*************************** 其他可能的錯誤處理 *************************************/
+	} catch (Exception e) {
+		errorMsgs.add("修改資料失敗:" + e.getMessage());
+		RequestDispatcher failureView = req.getRequestDispatcher("/back-end/shop_order/orderupatepage.jsp");
+		failureView.forward(req, res);
+	}
+}
+
+
+
 //結帳
+
+
 if("addorder".equals(action)){
 	System.out.println(action);
 	Vector<Order_detailVO> productlist = (Vector<Order_detailVO>) session.getAttribute("checkoutlist");
@@ -361,8 +456,7 @@ if("addorder".equals(action)){
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 				String order_no = new String(req.getParameter("order_no"));
 				Integer order_status=0;
-//				Shop_orderVO ordvo = Svc.getOneOrder(order_no);
-//				Integer BEFOREstatus= ordvo.getOrder_status();
+
 				String Nos = req.getParameter("NOWorder_status");
 				
 				System.out.println("現在訂單狀態"+Nos);
