@@ -1,5 +1,7 @@
 
 <!DOCTYPE html>
+<%@page import="com.member.model.MemberVO"%>
+<%@page import="com.member.model.MemberService"%>
 <html>
 <head>
 <style>
@@ -60,7 +62,17 @@ pointer-events: none;
 
 	</div>
 	<div id="showmember">
-		敬愛的會員<font class="membername">宏哥</font>你好:
+	<c:set var="member_id" value="${member_id}" scope="session"/>
+	<%if(session.getAttribute("member_id")!=null){
+		MemberService Msv=new MemberService();
+		MemberVO vo=Msv.getOneMember((String)session.getAttribute("member_id"));
+		String member_name=vo.getMember_name();
+		
+		%>
+			<c:set var="member_name" value="<%=member_name %>" scope="session"/>
+		
+	<%} %>
+		敬愛的會員<font class="membername">${member_name}</font>你好:
 	</div>
 
 	<div id="tablecontext">

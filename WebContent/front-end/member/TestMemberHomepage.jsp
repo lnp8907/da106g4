@@ -2618,7 +2618,23 @@ B.A
 
 
 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 
+	<script>
+var state = '${param.state}';
+console.log("state"+state);
+if(state=="sucess"){
+	
+	Swal.fire({
+		
+		  icon: 'success',
+		  title: '已送出申請',
+		  showConfirmButton: false,
+		  timer: 1500
+		})
+	
+}
+	</script>
 
 
 

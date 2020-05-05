@@ -2005,7 +2005,7 @@ B.A
 									<span class="submitAndSave" id="article-section-seemore-recipe">儲存</span>
 									<input type="submit" class="submit_btn" value="儲存">
 
-								</div> <!-- <input type="reset" value="Reset"> -->
+<!-- 								</div> <input type="reset" value="Reset"> -->
 							</td>
 						</tr>
 					</table>
@@ -2017,6 +2017,24 @@ B.A
 						type="hidden" name="account" value="${membervo.member_photo}">
 			</form>
 			</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 			
 

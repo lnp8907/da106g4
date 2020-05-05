@@ -34,6 +34,7 @@ public class Shop_orderJDBCDAO implements Shop_orderDAO_interface{
 		"DELETE FROM SHOP_ORDER where order_no = ? ";
 	private static final String UPDATE = 
 		"UPDATE SHOP_ORDER set order_status=?,dv_address=? where order_no = ?";
+	
 	private static final String UPDATETOTAL = 
 			"UPDATE SHOP_ORDER set  total=? where order_no = ?";
 	private static final String GetFRESH="select   order_no FROM shop_order  WHERE rownum = 1  ORDER BY order_no DESC";

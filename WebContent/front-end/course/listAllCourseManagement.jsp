@@ -9,6 +9,7 @@
 String member_id =(String) session.getAttribute("member_id");
 	CourseService courseService = new CourseService();
 	List<CourseVO> list = courseService.getChefCourse(member_id);
+// List<CourseVO> list = courseService.getAll();
 	pageContext.setAttribute("list", list);
 
 %>

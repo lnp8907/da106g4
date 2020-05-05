@@ -14,16 +14,46 @@
 =======
 <%@page import="com.member.model.*"%>
 <%@page import="com.member.model.MemberService"%>
+<<<<<<< HEAD
+>>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
+=======
+<%@page import="java.util.stream.Collectors"%>
+
 >>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
 
 <%
 
 OrderService orderSvc=new OrderService();
 List<Shop_orderVO>list=null;
-	if(orderSvc.getAll()!=null){  
+	if(request.getAttribute("Order_statusPage")==null){  
 		list= orderSvc.getAll();
 	
 	}
+	else{
+		String Message=(String)request.getAttribute("Order_statusPage");
+	if(Message.equals("0")){  
+		list= orderSvc.getAll();
+		list=list.stream().filter(p->p.getOrder_status()==0)
+				.collect(Collectors.toList());
+	}
+	if(Message.equals("1")){  
+		list= orderSvc.getAll();
+		list=list.stream().filter(p->p.getOrder_status()==1)
+				.collect(Collectors.toList());
+	}
+	if(Message.equals("2")){  
+		list= orderSvc.getAll();
+		list=list.stream().filter(p->p.getOrder_status()==2)
+				.collect(Collectors.toList());
+	}
+	if(Message.equals("3")){  
+		list= orderSvc.getAll();
+		list=list.stream().filter(p->p.getOrder_status()==3)
+				.collect(Collectors.toList());
+	}
+	
+	}
+	
 pageContext.setAttribute("list",list);
 MemberService msvc=new MemberService();
 
@@ -178,7 +208,31 @@ MemberService msvc=new MemberService();
 			     </FORM>
 			</td>
 		  </tr>
-        <tr class="orseraddress ordertr2"><td>地址</td><td colspan="9">${ordervo.dv_address}</td>
+        <tr class="orseraddress ordertr2"><td>地址</td><td colspan="9">
+        
+        
+        ${ordervo.dv_address}
+<c:if test="${ordervo.dv_address}">
+        <c:set var="address" value="${ordervo.dv_address}"/>
+
+        <%String addresstot=(String)pageContext.getAttribute("address");
+        
+        String city="";
+        String town="";
+        String address3="";
+        int addressstr=addresstot.indexOf("/");
+        if(addressstr >2){	
+        	String address[]=addresstot.split("/");
+       	 city=address[0];
+       	 town=address[1];
+       	 address3=address[2];	
+        }
+        addresstot=city+town+address3;
+        
+        %><%=addresstot %>
+        			</c:if>
+        
+        </td>
  </tr>
 	</c:forEach>
 </table>
