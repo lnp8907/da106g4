@@ -13,7 +13,10 @@
 
 <%
 	RecipeService recipeService = new RecipeService();
+	MemberService memSrv = new MemberService();
+	MemberVO hostVO = memSrv.getOneMember(request.getParameter("member_id"));
 	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
+	
 %>
 <%
 	response.setHeader("Cache-Control", "no-store"); //HTTP 1.1
@@ -26,16 +29,19 @@
 	//      String hostID = (String)session.getAttribute("hostID");
 	//透過控制器得到的直播主ID
 	String hostID = null;
+
 	if (memberVO.getMember_status() == 1) {
 		hostID = memberVO.getNickname();
 		session.setAttribute("hostID", hostID);
 	}
+	if(hostID == null){
+		hostID = request.getParameter("hostId");
+	}
 %>
-
 <%-- 模擬登入的clientID(觀眾ID)為Anonymous  --%>
 <%!int count = 0;%>
 <%
-	if (memberVO.getMember_status() == 0) {
+	if (memberVO.getMember_status() != 1) {
 		String clientID = memberVO.getNickname();
 		if (clientID == null)
 			clientID = "Anonymous" + (++count);
@@ -286,7 +292,7 @@
 </style>
 </head>
 
-<body>
+<body onload="connect();">
 	<header>
 		<div id="top-logo" class="logo">
 			<a href="<%=request.getContextPath()%>/" title="回首頁"><img
@@ -573,21 +579,21 @@
 						<div id="host-info">
 							<div class="chef-info-pic">
 								<img
-									src="<%=request.getContextPath()%>/front-end/member/photo?member_id=<%=memberVO.getMember_id()%>"
+									src="<%=request.getContextPath()%>/front-end/member/photo?member_id=<%=hostVO.getMember_id()%>"
 									alt="廚師頭貼">
 							</div>
 							<div class="chef-info-detal">
 								<h4>
 									<a
-										href="RecipeServlet?action=getChef_For_Display&member_id=<%=hostID%>"><%=memberVO.getMember_name()%></a>
+										href="RecipeServlet?action=getChef_For_Display&member_id=<%=hostVO.getMember_id()%>"><%=hostVO.getMember_name()%></a>
 								</h4>
-								<span><%=recipeService.getChefCookedNum(hostID)%>&nbsp;&nbsp;食譜</span>
+								<span><%=recipeService.getChefCookedNum(hostVO.getMember_id())%>&nbsp;&nbsp;食譜</span>
 								<span>999&nbsp;&nbsp;粉絲</span>
 							</div>
 							<form method="post" action="RecipeServlet">
-								<button class="chef-follow" name="chef_follow">追蹤</button>
+								<button class="chef-follow" name="chef_follow" style="display:<%=memberVO == null ? "none" :""%>">追蹤</button>
 								<input type="hidden" value="${hostID}" name="chef_id"> <input
-									type="hidden" value="<%=memberVO.getMember_id()%>"
+									type="hidden" value="<%=memberVO == null ? "" :memberVO.getMember_id()%>"
 									name="member_id">
 							</form>
 						</div>
@@ -891,7 +897,7 @@ buttons: ['record-video']
                 if (setupNewBroadcast) setupNewBroadcast.onclick = setupNewBroadcastButtonClickHandler;
 
                 function hideUnnecessaryStuff() {
-                	connect();
+                	
 
                     var visibleElements = document.getElementsByClassName('visible'),
                         length = visibleElements.length;
@@ -917,7 +923,9 @@ buttons: ['record-video']
                     if (uniqueToken)
                         if (location.hash.length > 2) uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<div class="share"><h2>&nbsp;<i class="fa fa-hand-o-right fa-2x"></i><a href="' + location.href + '" target="_blank"><b>由此分享此直播間的鏈接 </b></a></h2></div>';
                         else uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace( /\./g , '-');
+               			console.log(uniqueToken.parentNode.parentNode.href);
                 })();
+                
                 
                 
 
@@ -1104,13 +1112,15 @@ recordVideo.className = recordVideo.className.replace('stop-recording-video sele
     var path = window.location.pathname;
     var webCtx = path.substring(0, path.indexOf('/', 1));
 <%--     var endPointURL = "wss://" + window.location.host + webCtx + MyPoint;   http上線請使用https , webSocket請使用wss --%>
-// var endPointURL = "wss://" + window.location.host + webCtx + MyPoint;
-var endPointURL = "wss://da106g4.tk/RTCPeerConnection_Ver3/MyEchoServer";
+var endPointURL = "wss://" + window.location.host + webCtx + MyPoint;
+// var endPointURL = "wss://da106g4.tk/RTCPeerConnection_Ver3/MyEchoServer";
 console.log(endPointURL);
 	var webSocket;
 	
 	function connect() {
-		var rtcroomName = document.getElementById('broadcast-name').value;
+// 		var rtcroomName = document.getElementById('broadcast-name').value;
+		var rtcroomName = '<%=hostID%>';
+
 		alert(rtcroomName);
 		// 建立 websocket 物件
 		webSocket = new WebSocket(endPointURL+"/"+rtcroomName);

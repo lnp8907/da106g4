@@ -175,7 +175,7 @@
 								class="dropdown-first-a-span">直播主頁</span></a></li>
 						<li><a href="livestream.jsp">直播預告</a></li>
 						<c:if test="<%= memberVO!=null && memberVO.getMember_status()==1%>">
-						<li><a href="front-end/livestream/livestream.jsp">開啟直播</a></li>
+						<li><a href="front-end/livestream/livestream.jsp?member_id=${member_id}">開啟直播</a></li>
 						<li><a href="#">建立直播預告</a></li>
 						</c:if>
 					</ul></li>

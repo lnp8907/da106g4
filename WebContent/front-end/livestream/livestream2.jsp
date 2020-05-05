@@ -690,9 +690,9 @@ cursor:pointer;
                         rotateInCircle(htmlElement);
                     },
                     onRoomFound: function(room) {
-                        document.getElementById("subTitle").innerHTML = "<strong>您正準備觀看 " + room.roomName + " 的直播</strong>";
-                        var alreadyExist = document.querySelector('button[data-broadcaster="' + room.broadcaster + '"]');
-                        if (alreadyExist) return;
+//                         document.getElementById("subTitle").innerHTML = "<strong>您正準備觀看 " + room.roomName + " 的直播</strong>";
+//                         var alreadyExist = document.querySelector('button[data-broadcaster="' + room.broadcaster + '"]');
+//                         if (alreadyExist) return;
 
                         if (typeof roomsList === 'undefined') roomsList = document.body;
 
