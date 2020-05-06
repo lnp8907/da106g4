@@ -29,45 +29,9 @@ public class OrderServlet extends HttpServlet {
 
 	}
 
-	protected void doGet(HttpServletRequest req, HttpServletResponse res)
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		List<String> errorMsgs = new LinkedList<String>();
-		req.setCharacterEncoding("UTF-8");
-		String str;
-		String action = req.getParameter("action");
-HttpSession session=req.getSession();
-if("IPS".equals(action)){
-	System.out.println("切換未出貨訂單");
-	req.setAttribute("pagemessage", "IPS");
-	String url = req.getParameter("url");
-	System.out.println("地址"+url);
-	RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
-	successView.forward(req, res);
-
-}
-
-if("complete".equals(action)){
-	System.out.println("切換已完成訂單");
-	req.setAttribute("pagemessage", "complete");
-	String url = req.getParameter("url");
-	System.out.println("地址"+url);
-	RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
-	successView.forward(req, res);
-
-}		
-		
-if("cancel".equals(action)){
-	System.out.println("切換取消訂單");
-	req.setAttribute("pagemessage", "cancel");
-	String url = req.getParameter("url");
-	System.out.println("地址"+url);
-	RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
-	successView.forward(req, res);
-
-}			
-		
-		
-		doPost(req, res);
+		doPost(request, response);
 
 	}
 
@@ -88,12 +52,39 @@ if("cancel".equals(action)){
 				OrderService Svc = new OrderService();
 				Shop_orderVO VO = Svc.getOneOrder(order_no);
 				System.out.println(VO + "VO放置成功");
+				String pagemessage = new String(req.getParameter("Order_statusPage"));
+				System.out.println("路徑指令:"+pagemessage);
 				System.out.println("路徑" + req.getParameter("url"));
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("ordvo", VO);
 					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/shop_order/orderupatepage.jsp");
 					failureView.forward(req, res);
 					return;
+				}
+				
+				if ("waitpage".equals(pagemessage)) {
+					System.out.println("設置"+pagemessage);
+					req.setAttribute("Order_statusPage", "waitpage");
+
+
+				}
+				else if ("traveling".equals(pagemessage)) {
+					System.out.println("設置"+pagemessage);
+
+					req.setAttribute("Order_statusPage", "traveling");
+
+				}
+				else if ("complete".equals(pagemessage)) {
+					System.out.println("設置"+pagemessage);
+
+					req.setAttribute("Order_statusPage", "complete");
+
+				}
+				else	if ("cancel".equals(pagemessage)) {
+					System.out.println("設置"+pagemessage);
+
+					req.setAttribute("Order_statusPage", "cancel");
+
 				}
 				/*************************** 準備轉交(Send the Success view) *************/
 				OrderService ordSvc = new OrderService();

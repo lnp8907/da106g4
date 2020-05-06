@@ -53,12 +53,12 @@
 					<th>修改</th>
 
 
-<<<<<<< HEAD
+
 				</tr>
 
 				<%@ include file="../file/page1.file"%>
-				<jsp:useBean id="receiprsvc" class="com.recipe.model.RecipeService" />
-
+						<c:set var="whichPage" value="<%=whichPage %>" scope="request"/>
+				
 			</thead>
 			<tbody id="ProductContext">
 				<c:forEach var="productvo" items="${list}" begin="<%=pageIndex%>"
@@ -66,31 +66,27 @@
 
 					<tr>
 						<td><img width=80px height=70px
-							src="${receiprsvc.getOneRecipe(productvo.recipe_id).recipe_photo}"></td>
+							src="Product_photoReader?product_id=${productvo.product_id}
+			"></td>
 						<td>${productvo.product_type}</td>
 						<td class="product_idtd">${productvo.product_id}</td>
 						<td class="recipe_td">${productvo.recipe_id}</td>
 
-						<td>${receiprsvc.getOneRecipe(productvo.recipe_id).recipe_name}</td>
+						<td>${productvo.product_name}</td>
 						<td>${productvo.product_price}</td>
 						<%
 							Map<Integer, String> map = new HashMap<>();
 								map.put(1, "未上架");
 								map.put(0, "已上架");
-								map.put(2, "審核中");
-
 								request.setAttribute("productstatus", map);
 						%>
 						<c:set var="status" value="${productvo.product_status}" />
 
 
 
-						<td>
-						 <input
-									class="isrevise" type="hidden"
-									value="${productvo.product_status}">
-						<input class="prodcut_id" type="hidden"
-							value="${productvo.product_id}">
+						<td><input class="isrevise" type="hidden"
+							value="${productvo.product_status}"> <input type="hidden"
+							class="product_id" value="${productvo.product_id}">
 
 							<button class="ui left attached button onproduct"
 								${ productstatus [status]=='已上架'? " style='background-color: green;color: white'":""}>上架</button>
@@ -98,69 +94,58 @@
 
 							<button class="right attached ui button offproduct"
 								${ productstatus [status]=='未上架'? " 
-=======
-						request.setAttribute("productstatus", map);
-				%>
-				<c:set var="status" value="${productvo.product_status}" />
-				
-				
-				
-				 <td>
-				  <input
-									class="isrevise" type="hidden"
-									value="${productvo.product_status}">
-				 <input type="hidden" class="product_id" value="${productvo.product_id}">
-				 
-			 <button class="ui left attached button onproduct" ${ productstatus [status]=='已上架'? " style='background-color: green;color: white'":""} 
-				 >上架</button>  
-                    
-                    
-                      <button class="right attached ui button offproduct"  ${ productstatus [status]=='未上架'? " 
->>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
                      
                      
-<<<<<<< HEAD
                      style='background-color: blue;color: white'":""}>下架</button>
 
-
 						</td>
-				<td class="upate">
+
+
+
+
+						<!-- 按鈕 -->
+
+						<td>
+							<!-- 詳細頁面 -->
+							<FORM METHOD="post" ACTION="ProductServlet"
+								style="margin-bottom: 0px;">
+								<input type="submit" value="查看更多"> <input type="hidden"
+									name="product_id" value="${productvo.product_id}"> <input
+									type="hidden" name="action" value="detailopen"> <input
+									type="hidden" name="whichPage" value="<%=whichPage%>">
+
+
+
+							</FORM>
+						</td>
+
+						<td class="upate">
 							<!-- 修改 -->
-=======
-                     style='background-color: blue;color: white'":""} >下架</button> 
-                     
-                  
-                     </td>
-				<td class="upate">
-                      	<!-- 修改 -->
->>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
-					<FORM METHOD="post" ACTION="Productmanage" style="margin-bottom: 0px;">
-						<input class="updateproduct" type="submit" value="修改"> <input type="hidden"
-							class="inputid" name="product_id" value="${productvo.product_id}">
-						<input type="hidden" name="action" value="ProductUpdatePage">
-					</FORM>
+							<FORM METHOD="post" ACTION="ProductServlet"
+								style="margin-bottom: 0px;">
+								<input class="updateproduct" type="submit" value="修改"> <input
+									type="hidden" class="inputid" name="product_id"
+									value="${productvo.product_id}"> <input type="hidden"
+									name="action" value="upateopen">
+									<input type="hidden" name="whichPage" value="${whichPage}">
+									
+							</FORM>
+						</td>
+						<c:set var="id" value="${productvo.product_id}" />
+						<%
+							String id = (String) pageContext.getAttribute("id");
+						%>
 
 
-<<<<<<< HEAD
-=======
-			
-			
-			
-                        </tr>
-		</c:forEach>
-                    
-                        </tbody>
-                    </table>
+					</tr>
+				</c:forEach>
+
+			</tbody>
+		</table>
 <%@ include file="../file/page2.file"%>
                 </div><!-- end of grid -->
                 <script>
->>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
 
-<<<<<<< HEAD
-						</td>
-
-
-=======
 
 $(".Checkproduct").click(function () {
     let product_id= $(this).siblings("input").val();
@@ -193,22 +178,13 @@ $('.recipe_th').html("");
 }
 else if($('.recipe_td').html()=="" && $('.recipe_th').html()!="")
 		{
->>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
 
 
 
 
 
 
-					</tr>
-				</c:forEach>
-
-			</tbody>
-		</table>
-		<%@ include file="../file/page2.file"%>
-	</div>
 	<!-- end of grid -->
-	<script>
 	//更改成未審核
 		$(".Checkproduct")
 				.click(

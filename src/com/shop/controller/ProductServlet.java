@@ -41,6 +41,8 @@ public class ProductServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		//打開詳細欄位
+		
+		
 		if ("detailopen".equals(action)) {
 			System.out.println("有進來喔 處理打開理詳細頁面");
 			List<String> errorMsgs = new LinkedList<String>();
@@ -122,10 +124,12 @@ public class ProductServlet extends HttpServlet {
 				ProductService productSvc = new ProductService();
 				ProductVO productvo = productSvc.getOneProduct(product_id);
 				System.out.println(productvo);
+				System.out.println("獲取頁面"+req.getParameter("whichPage"));
+				String whichPage=req.getParameter("whichPage");
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("openMod", "upate");
 				req.setAttribute("detailProductvo", productvo); // 資料庫取出的empVO物件,存入req
-				String url = "/back-end/shop_product/shop_backendPage.jsp";
+				String url = "/back-end/shop_product/shop_backendPage.jsp?whichPage="+whichPage;
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 
@@ -303,7 +307,7 @@ public class ProductServlet extends HttpServlet {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 
 				String product_id = new String(req.getParameter("product_id").trim());
-				System.out.println("獲得ID:product_id" + product_id);
+				System.out.println("獲得ID:product_id:" + product_id);
 				ProductService prosvc = new ProductService();
 				ProductVO productvo = prosvc.getOneProduct(product_id);
 
@@ -512,11 +516,13 @@ public class ProductServlet extends HttpServlet {
 				System.out.println("更新後\n品名:" + product_type + product_name + product_price + product_photo
 						+ product_status + carbohydrate + protein + fat + calorie + vitamin_B + vitamin_C + salt
 						+ vagetbale + content);
+				System.out.println("獲取頁面"+req.getParameter("whichPage"));
+				String whichPage=req.getParameter("whichPage");
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				prosvc.update(product_id, product_type, product_name, product_price, product_photo, product_status,
 						carbohydrate, protein, fat, calorie, vitamin_B, vitamin_C, salt, vagetbale, content);
 				req.setAttribute("product_id", product_id);
-				String url = "/back-end/shop_product/listOneProduct.jsp";
+				String url = "/back-end/shop_product/shop_backendPage.jsp?whichPage="+whichPage;
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 

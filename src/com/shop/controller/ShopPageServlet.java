@@ -33,10 +33,25 @@ public class ShopPageServlet extends HttpServlet {
 
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		System.out.println("得到換頁請求");
+		res.setCharacterEncoding("utf-8");
+		res.setContentType("text/html;charset=utf-8");
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		HttpSession session = req.getSession();
+		String pagemessage = req.getParameter("pagemessage");
+		if ("typeselect".equals(action)) {
+			System.out.println(req.getParameter("product_type"));
+			String product_type=req.getParameter("product_type");
+			req.setAttribute("product_type",product_type );
+			String url = "/back-end/shop_product/shop_backendPage.jsp";
+			System.out.println("開始轉送");
+			RequestDispatcher successView = req.getRequestDispatcher(url);
+			successView.forward(req, res);
 
+		}
+		
+		
+		
 		// 換頁至第一結帳
 		if ("checktpage1".equals(action)) {
 			System.out.println("結帳步驟一");
@@ -74,6 +89,18 @@ public class ShopPageServlet extends HttpServlet {
 			successView.forward(req, res);
 
 		}
+		
+		//切換
+				if("addpage".equals(pagemessage)) {
+					System.out.println("切換ADDPAGE");
+					session.setAttribute("backendpage", "productAddPage");
+					String url = "/back-end/shop_product/shop_backendPage.jsp";
+					RequestDispatcher successView = req.getRequestDispatcher(url);
+					successView.forward(req, res);
+					
+					
+				}
+		
 		if ("listAllReceipeEXcheck".equals(action)) {
 			System.out.println("接到換頁審核中食譜請求");
 			session.setAttribute("backendpage", "listAllReceipeEXcheck");

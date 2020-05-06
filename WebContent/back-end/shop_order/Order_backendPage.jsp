@@ -34,6 +34,8 @@
 <title>後端頁面模板</title>
 <body>
 	<%="現在地址:" + request.getContextPath()%>
+	現在Order_statusPage:${Order_statusPage}                      
+	
 	<div class="container">
 		<div class="box">
 			<!--這裡是左邊選單-->
@@ -46,20 +48,7 @@
 				<div class="back-endlefecotext">
 					<!-- LOGO -->
 
-<<<<<<< HEAD
-                                                <li><a href="<%=request.getContextPath() %>/back-end/shop_order/Order_backendPage.jsp">查看全部訂單</a></li>
-                                                <li><a href="<%=request.getContextPath() %>/back-end/shop_order/OrderServlet.do?action=complete&url=<%=request.getServletPath()%>">未出貨訂單</a></li>
-                                                <li><a href="<%=request.getContextPath() %>/back-end/shop_order/OrderServlet.do?action=cancel&url=<%=request.getServletPath()%>">已完成訂單</a></li>
-                                                <li><a href="#">未完成訂單</a></li>
-
-                                            </ul>
-                                        </li>
-                                 
-                                    <li class="lialist">
-                                            <div class="iconstatus" style="display: none">CLOSE</div>
-=======
 					<ul id="leftMenu">
->>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
 
 						<li class="lialist">
 							<div class="iconstatus" style="display: none">CLOSE</div> <span
@@ -133,18 +122,6 @@
 
 
 
-<<<<<<< HEAD
-                                <span class="fa fa-sign-out">登出</span>
-                            </div>
-                            <div class="wrapper">
-			<!--  -->
-<<<<<<< HEAD
-	
-	
-	<%if(request.getAttribute("pagemessage")==null){ %>
-=======
-	<c:set var="url" value="<%=request.getRequestURI() %>" scope="request" />
-=======
 				<span class="fa fa-sign-out">登出</span>
 			</div>
 			<div class="wrapper">
@@ -153,35 +130,8 @@
 					scope="request" />
 
 				<jsp:include page="listAllShopOrder.jsp" />
->>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
 	
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
-	 <jsp:include page="listAllShopOrder.jsp" />
-<%}else if(((String)request.getAttribute("pagemessage")).equals("IPS")){%>
-	 <jsp:include page="listAllShopOrderByPSi.jsp" />
-
-	
-<% }else if(((String)request.getAttribute("pagemessage")).equals("cancel")){%>
-<!-- 待完成 -->
-<jsp:include page="listAllShopOrderByPSi.jsp" /> %>
-	<%}else if(((String)request.getAttribute("pagemessage")).equals("complete")){%>
-	<!-- 待完成 -->
-	 <jsp:include page="listAllShopOrderByPSi.jsp" /> %>
-	
-<<<<<<< HEAD
-	<%} %>
-	
-	
-		
-	
-	
-	
-=======
->>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
-=======
 			</div>
->>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
 
 
 		</div>
