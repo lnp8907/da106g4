@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 
@@ -35,7 +36,7 @@ public class Product_browing_historyDAO implements Product_browing_historyDAO_in
 	private static final String DELETEAll = 
 			"DELETE FROM PRODUCT_BROWSING_HISTORY where member_id = ? ";
 	
-	private static final String GET_ALL_STMT = "SELECT  MEMBER_ID, product_id FROM PRODUCT_BROWSING_HISTORY where member_id = ?";
+	private static final String GET_ALL_STMT = "SELECT  MEMBER_ID, product_id FROM PRODUCT_BROWSING_HISTORY where member_id=?";
 
 	
 	
@@ -45,7 +46,7 @@ public class Product_browing_historyDAO implements Product_browing_historyDAO_in
 		System.out.println("DAO準備新增瀏覽紀錄");
 		//獲取全部陣列
 	 Product_browing_historyDAO_interface dao=new Product_browing_historyDAO();
-	 Set <Product_browing_historyVO> list= dao.getmemberList(VO.getMember_id());
+	 List <Product_browing_historyVO> list= dao.getmemberList(VO.getMember_id());
 		if(list.contains(VO)) {
 			dao.delete(VO);
 		}
@@ -82,6 +83,7 @@ public class Product_browing_historyDAO implements Product_browing_historyDAO_in
 
 	@Override
 	public void delete(Product_browing_historyVO VO) {
+		System.out.println("刪除開始");
 
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -117,8 +119,8 @@ public class Product_browing_historyDAO implements Product_browing_historyDAO_in
 	}
 
 	@Override
-	public Set<Product_browing_historyVO> getmemberList(String member_id) {
-		Set<Product_browing_historyVO> list = new LinkedHashSet<Product_browing_historyVO>();
+	public List<Product_browing_historyVO> getmemberList(String member_id) {
+		List<Product_browing_historyVO> list = new LinkedList<Product_browing_historyVO>();
 		Product_browing_historyVO VO = null;
 
 		Connection con = null;
@@ -138,7 +140,7 @@ public class Product_browing_historyDAO implements Product_browing_historyDAO_in
 				VO = new Product_browing_historyVO();
 				VO.setMember_id(rs.getString("MEMBER_ID"));
 				VO.setProduct_id(rs.getString("product_id"));
-
+				
 				list.add(VO);
 			}
 
@@ -167,6 +169,8 @@ public class Product_browing_historyDAO implements Product_browing_historyDAO_in
 				}
 			}
 		}
+		System.out.println("獲取表格:"+VO);
+
 		return list;
 		
 	}

@@ -1,5 +1,6 @@
 package com.product_browsing_history.model;
 
+import java.util.List;
 import java.util.Set;
 
 public class Product_browing_historyService {
@@ -9,9 +10,9 @@ public class Product_browing_historyService {
 		
 		dao=new Product_browing_historyDAO();
 	}
-	public Set <Product_browing_historyVO> getAll(String member_id) {
+	public List <Product_browing_historyVO> getAll(String member_id) {
 		
-		Set<Product_browing_historyVO> list=dao.getmemberList(member_id);
+		List<Product_browing_historyVO> list=dao.getmemberList(member_id);
 		return list;
 		}
 
