@@ -214,14 +214,14 @@
 		<url-pattern>/ProductServlet</url-pattern>
 	</servlet-mapping>
 	
-	<servlet>
-		<servlet-name>AnRecipeServlet</servlet-name>
-		<servlet-class>android.com.recipe.controller.RecipeServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>AnRecipeServlet</servlet-name>
-		<url-pattern>/RecipeServlet</url-pattern>
-	</servlet-mapping>
+<!-- 	<servlet> -->
+<!-- 		<servlet-name>AnRecipeServlet</servlet-name> -->
+<!-- 		<servlet-class>android.com.recipe.controller.RecipeServlet</servlet-class> -->
+<!-- 	</servlet> -->
+<!-- 	<servlet-mapping> -->
+<!-- 		<servlet-name>AnRecipeServlet</servlet-name> -->
+<!-- 		<url-pattern>/RecipeServlet</url-pattern> -->
+<!-- 	</servlet-mapping> -->
 	
 		<servlet>
 		<servlet-name>AnOrderServlet</servlet-name>
