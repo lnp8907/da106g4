@@ -26,27 +26,34 @@
 %>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>WebRTC Video One to many Broadcasting</title>
-
-        <script>
-            if(!location.hash.replace('#', '').length) {
-                location.href = location.href.split('#')[0] + '#' + (Math.random() * 100).toString().replace('.', '');
-                location.reload();
-            }
-        </script>
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/styles1.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/bootstrap-4.3.1.min.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/styles2.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/font-awesome-4.5.0/css/font-awesome.css">
-<link rel="stylesheet" href="<%=request.getContextPath()%>/css/getHTMLMediaElement.css">
-<script src="<%=request.getContextPath()%>/js/jquery-1.11.1.min.js"></script>
-<script	src="<%=request.getContextPath()%>/js/sweetalert2.all.min.js"></script>
-<script src="<%=request.getContextPath()%>/js/getHTMLMediaElement.js"></script>
+<meta charset="UTF-8">
+<meta name="viewport"
+	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=3.0">
+<title>Foodporn</title>
+<link rel="stylesheet" href="../recipe/recipeCSS/listOneRecipeCssCopy.css">
+<link rel="stylesheet" href="../../css/frontEnd.css">
+<link rel="stylesheet" href="../../css/header-sider.css">
+<link rel="stylesheet" href="../../slick/slick.css">
+<link rel="stylesheet" href="../../slick/slick-theme.css">
+<link rel="stylesheet" href="../../css/homePage.css">
+<link rel="stylesheet" href="../../css/searchRecipeCSS.css">
+<link rel="icon" href="../../image/head-FoodPron_Logo.ico"
+	type="../../image/x-icon">
+<link rel="shortcut icon" href="../../image/head-FoodPron_Logo.ico"
+	type="../../image/x-icon" />
+<script src="../../slick/slick.js" type="text/javascript"
+	charset="utf-8"></script>
+<script src="../../js/homePage.js" type="text/javascript"
+	charset="utf-8"></script>
+<link rel="stylesheet"
+	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<link rel="stylesheet" href="css/getHTMLMediaElement.css">
+<script src="js/jquery-1.11.1.min.js"></script>
+<script	src="js/sweetalert2.all.min.js"></script>
+<script src="js/getHTMLMediaElement.js"></script>
 
 <style>
 
@@ -84,6 +91,20 @@ h4 {
 h6 {
   font-size: 0.85vw;
 }
+
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	font-family: "微軟正黑體", Georgia, 'Times New Roman', Times, serif;
+	font-size: 14px;
+}
+
+.footer-bg {
+	margin-top: 10px;
+	background-color: white;
+}
+
 
 audio, video {
 	-moz-transition: all 1s ease;
@@ -135,18 +156,14 @@ p {
 	padding: 1em;
 }
 
-li {
-	border-bottom: 1px solid rgb(189, 189, 189);
-	border-left: 1px solid rgb(189, 189, 189);
-	padding: .5em;
-}
+
 </style>
 
 <style>
 .CustomCard {
 	padding-top: 20px;
 	margin: 10px 0 20px 0;
-	background-color: rgba(214, 224, 226, 0.2);
+/* 	background-color: rgba(214, 224, 226, 0.2); */
 	border-top-width: 0;
 	border-bottom-width: 2px;
 	-webkit-border-radius: 3px;
@@ -197,7 +214,7 @@ li {
 	overflow: hidden;
 	font-size: 12px;
 	line-height: 20px;
-	color: #737373;
+/* 	color: #737373; */
 	text-overflow: ellipsis;
 }
 
@@ -213,28 +230,449 @@ li {
 	line-height: 0px;
 }
 
-html {
-	background: #f4f9f4;
+#livestream_section {
+	width: 100%;
+	margin: -10px auto;
+	height: 850px;
+	background-color: #f1f1f1;
+	padding: 25px;
 }
+
+#livestream_container {
+	margin: 10px auto;
+	width: 75%;
+	height: 100%;
+}
+
+.livestream_card {
+	display: inline-block;
+}
+
+#livestream_left {
+	width: 68.5%;
+	height: 100%;
+	display: inline-block;
+	margin-right: 15px;
+}
+
+#livestream_right {
+	display: inline-block;
+	width: 29%;
+	height: 100%;
+	vertical-align: top;
+}
+
+#video {
+	width: 98%;
+	margin: 0 auto;
+	height: 65%;
+	background-color: white;
+	border-radius: 8px;
+}
+
+#hot {
+	width: 98%;
+	height: 29%;
+	margin: 0 auto;
+	background-color: white;
+	border-radius: 8px;
+	margin-top: 30px;
+}
+
+#hot h2 {
+	font-size: 26px;
+	padding-left: 20px;
+	padding-top: 5px;
+}
+
+.hot-card {
+	display: inline-block;
+	width: 21%;
+	margin: 10px 1.5% 0;
+	text-align: center;
+	background-color: antiquewhite;
+	height: 75%;
+	border-radius: 30px;
+	position: relitive;
+	overflow: hidden;
+	transition-duration: 500ms;
+}
+
+.hot-card:hover {
+	transform: scale(1.1)
+}
+
+.hot-card img {
+	width: 100%;
+	height: 100%;
+}
+
+#host-info {
+	height: 15%;
+	background-color: white;
+	border-radius: 8px;
+	padding: 12px;
+}
+
+#chat-room {
+	height: 59.5%;
+	background-color: white;
+	border-radius: 8px;
+	margin-top: 20px;
+	padding: 8px;
+}
+
+#dona {
+	height: 18%;
+	background-color: white;
+	border-radius: 8px;
+	margin-top: 20px;
+	padding: 12px;
+	color: black;
+}
+
+.hot-member-name {
+	left: -50px;
+	position: relative;
+	bottom: 37px;
+	font-weight: 800;
+	font-size: 16px;
+	color: white;
+}
+
+.chat-room-title {
+	margin: 10px 20px;
+	display: inline-block;
+	font-size: 16px;
+	color: black;
+	font-weight: 600;
+}
+
+#messagesArea {
+	display: block;
+	width: 95%;
+	margin: auto;
+	height: 75%;
+	border: none;
+	resize: none
+}
+
+#message {
+	display: block;
+	width: 95%;
+	margin: auto;
+	margin-top: 12px;
+	height: 45px;
+	border-radius: 5px;
+	border: 1px solid #999;
+	padding-left: 15px;
+	background-color: #eeeeee29;
+}
+
+.dona-items-card img {
+	width: 100%;
+}
+
+.dona-items-card {
+	display: inline-block;
+	width: 29%;
+	margin-left: 2%;
+	margin-top: 10px;
+}
+
+.dona-items-card:hover {
+	cursor: pointer;
+}
+
+#charge {
+	display: inline-block;
+	margin-left: 47%;
+	width: 50px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	border-radius: 5px;
+	font-size: 15px;
+	background-color: aliceblue;
+	box-shadow: 3px 2px 2px #00000036;
+}
+
+#charge:hover {
+	cursor: pointer;
+}
+#subTitle{
+display: inline-block;
+    margin-right: 10px;
+    margin-left:25px;
+     z-index:99;
+}
+#livestream-title{
+    text-align: left;
+    z-index:99;
+}
+section{
+margin-top:0;
+}
+.media-container {
+    display: inline-block;
+   border:none;
+    border-radius: 4px;
+    overflow: hidden;
+    vertical-align: top;
+    background: none;
+    width: 98%;
+    height: max-height: 500px;
+    max-height: 480px;
+}
+.media-box {
+border:none;
+}
+#videos-container{
+    text-align: center;
+}
+.dona-items-card img{
+    width: 87%;
+}
+#WebSocket-count{
+    margin-left: 38%;
+    margin-right: 20px;
+}
+form{
+display:inline-block;
+}
+.media-box video {
+    width: 98%;
+}
+video{
+vertical-align: top;
+    width: 100%;
+}
+br{
+display:none;
+}
+.experiment2{
+    margin-top: -54px;
+    overflow: hidden;
+    height: 520px;
+}
+.videosContainer {
+    border: none;
+    }
+    #videos-container{
+    z-index:2;
+    }
 </style>
 
 <!-- This Library is used to detect WebRTC features -->
-<script src="<%=request.getContextPath()%>/js/webrtc/DetectRTC.js"></script>
-<script src="<%=request.getContextPath()%>/js/webrtc/socket.io.js"> </script>
-<script src="<%=request.getContextPath()%>/js/webrtc/adapter-latest.js"></script>
-<script src="<%=request.getContextPath()%>/js/webrtc/IceServersHandler.js"></script>
-<script src="<%=request.getContextPath()%>/js/webrtc/CodecsHandler.js"></script>
-<script	src="<%=request.getContextPath()%>/js/webrtc/RTCPeerConnection-v1.5.js"></script>
-<script	src="<%=request.getContextPath()%>/js/webrtc/broadcast.js"></script>
+<script src="js/webrtc/DetectRTC.js"></script>
+<script src="js/webrtc/socket.io.js"> </script>
+<script src="js/webrtc/adapter-latest.js"></script>
+<script src="js/webrtc/IceServersHandler.js"></script>
+<script src="js/webrtc/CodecsHandler.js"></script>
+<script src="js/webrtc/RTCPeerConnection-v1.5.js"></script>
+<script src="js/webrtc/broadcast.js"></script>
 </head>
 
 <body>
+	<header>
+		<div id="top-logo" class="logo">
+			<a href="<%=request.getContextPath()%>/" title="回首頁"><img
+				class="logo-photo"
+				src="<%=request.getContextPath()%>/image/FoodPron_Logo.png"
+				alt="logo"></a>
+		</div>
+		<div class="function">
+			<div class="function-list">
+				<a href="#"></a>
+				<div class="member-center">
+					<span class="member-center-spann">會員中心</span>
+				</div>
+				</a>
+			</div>
+			<div class="function-list">
+				<div class="menu">
+					<input type="checkbox" href="#" class="menu-open menu-icon"
+						name="menu-open" id="menu-open" /> <label
+						class="menu-open-button" for="menu-open"> <span
+						class="lines line-1"></span> <span class="lines line-2"></span> <span
+						class="lines line-3"></span>
+					</label>
+				</div>
+				<div class="login">
+					<a href="#"><img class="header-icon"
+						src="../../image/user-icon.png" alt="login-icon">
+						<div class="herder-icon-span">
+							<span class="login-span">登入</span>
+						</div> </a>
+				</div>
+				<div class="shop-car">
+					<a href="#"><img class="header-icon"
+						src="../../image/shopping-cart-icon.png" alt="shopping-cart">
+						<div class="herder-icon-span">
+							<span class="shop-car-span">購物車</span>
+						</div> </a>
+				</div>
+				<div class="notice">
+					<a href="#"><img class="header-icon"
+						src="../../image/ico_notice.png" alt="notice-icon">
+						<div class="herder-icon-span">
+							<span class="notice-span">通知總覽</span>
+						</div> </a>
+				</div>
 
-	<div class="container">
-		<div class="row">
+			</div>
+
+		</div>
+		<!-- end of function-->
+		<nav id="navigation">
+			<ul>
+				<li class="dropdown"><a><img class="access-menu-icon"
+						src="../../image/recipe-icon.png"><span class="menu-span">食譜專區</span></a>
+					<ul>
+						<li><a class="dropdown-first-a" href="#"><img
+								class="dropdown-first-img"
+								src="../../image/ico_gnav_recipes_book.svg"><span
+								class="dropdown-first-a-span">食譜主頁</span></a></li>
+						<li><a href="#">特輯食譜</a></li>
+						<li><a href="#">推薦食譜</a></li>
+						<li><a href="#">建立食譜</a></li>
+					</ul></li>
+				<li class="dropdown"><a><img class="access-menu-icon"
+						src="../../image/livestream-icon.png"><span
+						class="menu-span">直播專區</span></a>
+					<ul>
+						<li><a class="dropdown-first-a" href="#"><img
+								class="dropdown-first-img"
+								src="../../image/ico_gnav_recipes_movie.svg"><span
+								class="dropdown-first-a-span">直播主頁</span></a></li>
+						<li><a href="#">直播預告</a></li>
+						<li><a href="#">熱門直播</a></li>
+						<li><a href="#">建立直播預告</a></li>
+					</ul></li>
+				<li class="dropdown dropdown-shop"><a><img
+						class="access-menu-icon" src="../../image/shop-icon.png"><span
+						class="menu-span">食材商城</span></a>
+					<ul id="dropdown-shop-ul">
+						<li><a class="dropdown-first-a" href="#"><img
+								class="dropdown-first-img"
+								src="../../image/ico_gnav_recipes_salad.svg"><span
+								class="dropdown-first-a-span">食材商城主頁</span></a></li>
+						<li><a href="#">調味料</a></li>
+						<li><a href="#">果醬</a></li>
+						<li><a href="#">麵粉</a></li>
+						<li><a href="#">酒類</a></li>
+						<li><a href="#">蔬菜</a></li>
+						<li><a href="#">水果</a></li>
+						<li><a href="#">海鮮</a></li>
+						<li><a href="#">肉類</a></li>
+						<li><a href="#">乳製品</a></li>
+						<li><a href="#">香料</a></li>
+						<li><a href="#">罐頭</a></li>
+						<li><a href="#">乾貨</a></li>
+					</ul></li>
+				<li class="dropdown"><a><img class="access-menu-icon"
+						src="../../image/course-icon.png"><span class="menu-span">料理課程</span></a>
+					<ul>
+						<li><a class="dropdown-first-a" href="#"><img
+								class="dropdown-first-img"
+								src="../../image/ico_gnav_recipes_pot.svg"><span
+								class="dropdown-first-a-span">課程主頁</span></a></li>
+						<li><a href="#">熱門課程</a></li>
+						<li><a href="#">建立料理課程</a></li>
+					</ul></li>
+			</ul>
+		</nav>
+
+	</header>
+	<!-- end of header-->
+	<!-- 登箱開始 -->
+	<div class="login-wrap">
+		<div class="login-html">
+			<img class="login-close" src="../../image/close.png" alt="close">
+			<input id="tab-1" type="radio" name="tab" class="sign-in" checked><label
+				for="tab-1" class="tab">Sign In</label> <input id="tab-2"
+				type="radio" name="tab" class="sign-up"><label for="tab-2"
+				class="tab">Sign Up</label>
+			<div class="login-form">
+				<div class="sign-in-htm">
+					<div class="group">
+						<label for="user" class="label">Username</label> <input id="user"
+							type="text" class="input">
+					</div>
+					<div class="group">
+						<label for="pass" class="label">Password</label> <input id="pass"
+							type="password" class="input" data-type="password">
+					</div>
+					<div class="group">
+						<input id="check" type="checkbox" class="check" checked> <label
+							for="check"><span class="icon"></span> Keep me Signed in</label>
+					</div>
+					<div class="group SignIn">
+						<input type="submit" class="button" value="Sign In">
+					</div>
+					<div class="hr"></div>
+					<div class="foot-lnk">
+						<a href="#forgot" class="foot-lnk-a">Forgot Password?</a>
+					</div>
+				</div>
+				<div class="sign-up-htm">
+					<div class="group">
+						<label for="newuser" class="label">User</label> <input
+							id="newuser" type="text" class="input">
+					</div>
+					<div class="group">
+						<label for="newpass" class="label">Password</label> <input
+							id="newpass" type="password" class="input" data-type="password">
+					</div>
+					<div class="group">
+						<label for="renewpass" class="label">Repeat Password</label> <input
+							id="renewpass" type="password" class="input" data-type="password">
+					</div>
+					<div class="group">
+						<label for="email" class="label">Email Address</label> <input
+							id="email" type="email" class="input">
+					</div>
+					<div class="group">
+						<input type="submit" class="button" value="Sign Up">
+					</div>
+					<div class="hr"></div>
+					<div class="foot-lnk">
+						<label for="tab-1">Already Member? </label>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- end of login-->
+	<div class="pagetop">
+		<img src="../../image/go-top-page.png" alt="BackTop" id="BackTop">
+		<!--一鍵置頂-->
+	</div>
+	<!-- end of pagetop-->
+
+	<main>
+		<article>
+			<section id="livestream_section">
+				<div class="bottom mx-auto">
+						<button class="btn-3d-can" id="record"   style="display: none" disabled="disabled">開始錄影</button>
+						<button class="btn-3d-can" id="download" style="display: none" disabled="disabled">儲存錄影</button>
+						<button id="play" class="btn btn-success" style="display: none">播放</button>
+					    <div style="display: none">
+							<p>Echo cancellation: <input type="checkbox" id="echoCancellation"></p>
+							<div id="errorMsg"></div>
+						</div>
+				</div>
+				
+				<div id="livestream_container">
+					<div id="livestream_left">
+						<div class="livestream_card" id="video">
+
+
+
+
 			<div class="col col-sm-12">
 				<div class="CustomCard hoverCustomCard">
-					<div id="CustomCardheader" class="CustomCardheader text-white btn-warning">
+				<div id="livestream-title">
 						<input type="hidden" id="hostID" value="${hostID}" />
 						<input type="hidden" id="lsViewNum" value="0" />
 				<% if(hostID!=null){ %>
@@ -243,29 +681,15 @@ html {
 						<h5 id="subTitle" class="col pt-2"> <strong>您已經進入直播間</strong></h5>
 				 <%} %>		
 						
-						<i id="WebSocket-count" class="far pt-2 pr-3 float-right" style="position: absolute; right: 0; top: 0px">目前在線人數 - </i>
-						<i id="WebRTC-count"    class="far pt-2 pr-3 float-right" style="position: absolute; right: 0; top: 20px">WebRTC 累計觀看人數 0 </i>
+						<i id="WebSocket-count" class="far pt-2 pr-3 float-right" >目前在線人數 - </i>
+						<i id="WebRTC-count"    class="far pt-2 pr-3 float-right" >累計觀看人數 0 </i>
 					</div>
-					<div class="avatar"> <img  id="slider" src="images/disw.gif"></div>
+					</div>
 
-					<div class="bottom mx-auto">
-						<button class="btn-3d-can" id="record"   style="display: none" disabled="disabled">開始錄影</button>
-						<button class="btn-3d-can" id="download" style="display: none" disabled="disabled">儲存錄影</button>
-						<button id="play" class="btn btn-success" style="display: none">播放</button>
-					    <div style="display: none">
-							<p>Echo cancellation: <input type="checkbox" id="echoCancellation"></p>
-							<div id="errorMsg"></div>
-						</div>
-					</div>
-				</div>
+
 			</div>
-
 			<div class="col col-sm-9">
 				<article>
-					<header style="text-align: center;">
-						<h2>WebRTC 視 頻 廣 播</h2>
-					</header><br>
-
 					<section id="session1" class="experiment">
 						<section <%= (hostID==null)? "style='visibility: hidden;'":"" %>>
 							<select id="broadcasting-option" class="broadcasting-option">
@@ -279,11 +703,6 @@ html {
 						<table style="width: 100%;" id="rooms-list"></table>
 						<!-- local/remote videos container -->
 						<div id="videos-container"></div>
-						<div class="visible">
-							<div style="text-align: center;">
-									<h2><code><strong id="unique-token">#123456789</strong></code></h2>
-							</div>
-						</div>
 					</section>
 				</article>
 			</div>
@@ -295,20 +714,132 @@ html {
              }
 			</script>
 	
-			<div class="col col-sm-3" style="height: 600px">
-				<br><br><br><br>
-				<h4>WebSocket chatroom</h4>
-				<textarea id="messagesArea" class="panel message-area" readonly></textarea>
-				<div class="panel input-area">
-				   <div id="webSocket-submit" class="g1">
-					    <input id="message"  class="panel input-default" type="text" placeholder="訊息" onkeydown="if (event.keyCode == 13) sendMessage();" /><br>
-					    <input id="userName" class="panel input-default" type="text" placeholder="暱稱" value="${(hostID!=null)? hostID :clientID}" readonly="readonly"/>
-					    <input type="submit" id="sendMessage" class="btn btn-danger" value="送出訊息" onclick="sendMessage();" />
-				   </div>
+	
+	
+							</div>
+						<!-- 直播播放區結束 -->
+						<div class="livestream_card" id="hot">
+							<h2>熱門推薦</h2>
+							<a href="#"><span class="hot-card"><img alt=""
+									src="../image/TYPE ICON/5.png"> <span
+									class="hot-member-name">AAAA</span> </span></a> <a href="#"><span
+								class="hot-card"> <img alt=""
+									src="../image/TYPE ICON/5.png"> <span
+									class="hot-member-name">AAAA</span>
+							</span></a> <a href="#"><span class="hot-card"> <img alt=""
+									src="../image/TYPE ICON/5.png"> <span
+									class="hot-member-name">AAAA</span>
+							</span></a> <a href="#"><span class="hot-card"> <img alt=""
+									src="../image/TYPE ICON/5.png"> <span
+									class="hot-member-name">AAAA</span>
+							</span></a>
+						</div>
+					</div>
+	
+					<div id="livestream_right">
+						<div id="host-info">
+							<div class="chef-info-pic">
+								<img
+									src="<%=request.getContextPath()%>/front-end/member/photo?member_id=810003"
+									alt="廚師頭貼">
+							</div>
+							<div class="chef-info-detal">
+								<h4>
+									<a
+										href="RecipeServlet?action=getChef_For_Display&member_id=810003"></a>
+								</h4>
+								<span>&nbsp;&nbsp;食譜</span>
+								<span>999&nbsp;&nbsp;粉絲</span>
+							</div>
+							<form method="post" action="RecipeServlet">
+								<button class="chef-follow" name="chef_follow" >追蹤</button>
+								<span id="join-button"></span>
+								<input type="hidden" value="${hostID}" name="chef_id"> <input
+									type="hidden" value=""
+									name="member_id">
+							</form>
+							<div class="visible">
+							<div style="text-align: center;">
+									<h2><code><strong id="unique-token">#123456789</strong></code></h2>
+							</div>
 				</div>
+						</div>
+						<div id="chat-room">
+							<span class="chat-room-title">留言</span>
+							<textarea id="messagesArea" class="panel message-area" readonly
+								style="display: block"></textarea>
+							<div class="panel input-area">
+								<div id="webSocket-submit" class="g1">
+									<input id="message" class="panel input-default" type="text"
+										placeholder="留點訊息給廚師吧..."
+										onkeydown="if (event.keyCode == 13) sendMessage();" /><br>
+									<!-- 動態抓會員ID -->
+									<input type="hidden" id="sendMessage" class="btn btn-danger" value="送出訊息" onclick="sendMessage();" />
+				
+									<input id="userName" class="panel input-default" type="hidden"
+										placeholder="暱稱" value="${(hostID!=null)? hostID :clientID}"
+										readonly="readonly" />
+									<input type="hidden" id="sendMessage" class="btn btn-danger" value="送出訊息" onclick="sendMessage();" />
+								</div>
+							</div>
+						</div>
+						<div id="dona">
+							<h3>
+								我的富胖幣:<span style="color: red;">&nbsp;</span>
+								<span id="charge">儲值</span>
+							</h3>
+							<span class="dona-items-card"><img alt=""
+								src="../image/TYPE ICON/6.png"></span> <span
+								class="dona-items-card"><img alt=""
+								src="../image/TYPE ICON/6.png"></span> <span
+								class="dona-items-card"><img alt=""
+								src="../image/TYPE ICON/6.png"></span>
+						</div>
+					</div>
+				</div>
+			</section>
+		</article>
+	</main>
+		<footer>
+		<div class="footer-bg">
+			<div class="footer-murmur">
+				<img src="../../image/FoodPron_Logo_white.png" alt="logo"
+					data-aos="zoom-in">
+				<ul>
+					<li class="footer-li-fist">逛其他</li>
+					<li>直播專區</li>
+					<li>食材商城</li>
+					<li>料理課程</li>
+				</ul>
+				<ul>
+					<li class="footer-li-fist">逛食譜</li>
+					<li>熱門食譜</li>
+					<li>新到食譜</li>
+					<li>全部分類</li>
+				</ul>
+				<ul>
+					<li class="footer-li-fist">會員服務</li>
+					<li>我的收藏</li>
+					<li>帳號設定</li>
+					<li>忘記密碼</li>
+					<li>我的訂單</li>
+				</ul>
+				<ul>
+					<li class="footer-li-fist">關於我們</li>
+					<li>公司資訊</li>
+					<li>品牌資產</li>
+					<li>服務條款</li>
+					<li>隱私權政策</li>
+				</ul>
 			</div>
 		</div>
-	</div>
+		<div class="footer-copyright">Copyright &copy; DA106-G4 Foodporn
+			All rights reserved.</div>
+
+	</footer>		
+			
+			
+		
 </body>
 			
 			<script>
@@ -346,27 +877,26 @@ html {
                         rotateInCircle(htmlElement);
                     },
                     onRoomFound: function(room) {
-//                         document.getElementById("subTitle").innerHTML = "<strong>您正準備觀看 " + room.roomName + " 的直播</strong>";
-//                         var alreadyExist = document.querySelector('button[data-broadcaster="' + room.broadcaster + '"]');
-//                         if (alreadyExist) return;
+                        document.getElementById("subTitle").innerHTML = "<strong>您正準備觀看 " + room.roomName + " 的直播</strong>";
+                        var alreadyExist = document.querySelector('button[data-broadcaster="' + room.broadcaster + '"]');
+                        if (alreadyExist) return;
 
                         if (typeof roomsList === 'undefined') roomsList = document.body;
 
-                        var tr = document.createElement('tr');
-                        tr.innerHTML = '<td><strong>' + room.roomName + '</strong> is broadcasting his media!</td>' +
-                            '<td><button class="join">&nbsp;Join&nbsp;</button></td>';
-                        roomsList.appendChild(tr);
+                        var tr = document.getElementById("join-button");   
+                        tr.innerHTML = '<button class="join-btn">&nbsp;Join&nbsp;</button>';
+//                         roomsList.appendChild(tr);//將按鈕加入roolist裡面
  
-                        var joinRoomButton = tr.querySelector('.join');
+                        var joinRoomButton = tr.querySelector('.join-btn');
                         joinRoomButton.setAttribute('data-broadcaster', room.broadcaster);
                         joinRoomButton.setAttribute('data-roomToken', room.broadcaster);
                         joinRoomButton.onclick = function() {
-                        	document.getElementById("CustomCardheader").className = "CustomCardheader text-white btn-success";
+//                         	document.getElementById("CustomCardheader").className = "CustomCardheader text-white btn-success";
                         	document.getElementById("webSocket-submit").className = "g2";
                         	document.getElementById("subTitle").innerHTML = "<strong2>您正在觀看 " + room.roomName + " 的直播</strong2>";
                         	document.getElementById('broadcast-name').value = room.roomName;
                             videosContainer.className = "videosContainer";                   	
-                        	document.getElementById("slider").src = "images/tenor.gif";
+//                         	document.getElementById("slider").src = "images/tenor.gif";
                         	document.getElementById("WebRTC-count").innerHTML = "";
                             this.disabled = true;
 //                          this.style.display = 'none';
@@ -377,6 +907,10 @@ html {
                                 roomToken: roomToken,
                                 joinUser: broadcaster
                             });
+                            
+                            console.log(broadcaster);
+                            console.log(roomToken);
+                            
                             hideUnnecessaryStuff2();
                         };
                     },
@@ -522,7 +1056,7 @@ buttons: ['record-video']
                 (function() {
                     var uniqueToken = document.getElementById('unique-token');
                     if (uniqueToken)
-                        if (location.hash.length > 2) uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<div class="share"><h2>&nbsp;<i class="fa fa-hand-o-right fa-2x"></i><a href="' + location.href + '" target="_blank"><b>由此分享此直播間的鏈接 </b></a></h2></div>';
+                        if (location.hash.length > 2) uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<div class="share"><h2><a href="' + location.href + '" target="_blank">由此分享此直播間的鏈接 </a></h2></div>';
                         else uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace( /\./g , '-');
                 })();
                 
@@ -766,4 +1300,37 @@ console.log(endPointURL);
 	}
     
 </script>
+	<script src="../../javascript/loginForm.js" type="text/javascript"
+		charset="utf-8"></script>
+
+	<!-- JavasScript for BackTop -->
+	<script>
+		$('#BackTop').click(function() {
+			$('html,body').animate({
+				scrollTop : 0
+			}, 333);
+		});
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 450) {
+				$('#BackTop').fadeIn(222);
+			} else {
+				$('#BackTop').stop().fadeOut(222);
+			}
+		});
+
+		//畫面捲動時隱藏
+		window.onresize = function() {
+			if ($(window).width() > 767) {
+				$("nav").show();
+			} else
+				$("nav").hide();
+		}
+	</script>
+	<script>
+		$(".menu-open").on("click", function() {
+			$("nav").slideToggle();
+			$(this).toggleClass("active");
+			$('body,html').toggleClass('add')
+		});
+	</script>
 </html>

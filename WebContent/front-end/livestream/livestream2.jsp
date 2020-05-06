@@ -13,12 +13,10 @@
 
 <%
 	RecipeService recipeService = new RecipeService();
-	// 	RecipeStyleService restyleSvc = new RecipeStyleService();
-	MemberService memberService = new MemberService();
-	RecipeVO_saved recipeVO = recipeService.findByPrimaryKeyForSaved("510001");
-	// 	RecipeStyleVO recipeStyleVO = restyleSvc.getOneReStyle(recipeVO.getRcstyle_no());
-	MemberVO memberVO = memberService.getOneMember("810001");
-	// 	RecipeFavoriteServiec recipeFavoriteServiec = new RecipeFavoriteServiec();
+	MemberService memSrv = new MemberService();
+	MemberVO hostVO = memSrv.getOneMember(request.getParameter("member_id"));
+	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
+	
 %>
 <%
 	response.setHeader("Cache-Control", "no-store"); //HTTP 1.1
@@ -27,25 +25,32 @@
 %>
 
 <%-- 模擬登入的hostID(直播主ID)為peter  --%>
-<%  
-     String hostID = (String)session.getAttribute("hostID");
-// String hostID = "ABC";
-     session.setAttribute("hostID", hostID); 
-%>
+<%
+	//      String hostID = (String)session.getAttribute("hostID");
+	//透過控制器得到的直播主ID
+	String hostID = null;
+	
+	if (memberVO != null && memberVO.getMember_status() == 1) {
+		hostID = memberVO.getNickname();
+	     session.setAttribute("hostID", hostID); 
+	}
 
-<%-- 模擬登入的clientID(觀眾ID)為Anonymous  --%>
-<%! int count = 0; %>
-<%  
-     String clientID = (String)session.getAttribute("clientID");
-     if(clientID==null) 
-    	 clientID="Anonymous"+(++count);
-     else 
-    	 clientID="Anonymous"+(++count);
-     session.setAttribute("clientID", clientID); 
-     System.out.println("--------------------------------------------");
-     System.out.println(clientID);
-     System.out.println("--------------------------------------------");
-%>
+	%>
+
+	<%-- 模擬登入的clientID(觀眾ID)為Anonymous  --%>
+	<%! int count = 0; %>
+	<%  
+	     String clientID = (String)session.getAttribute("clientID");
+	     if(clientID==null) 
+	    	 clientID="Anonymous"+(++count);
+	     else 
+	    	 clientID="Anonymous"+(++count);
+	     session.setAttribute("clientID", clientID); 
+	     System.out.println("--------------------------------------------");
+	     System.out.println(clientID);
+	     System.out.println("--------------------------------------------");
+	%>
+
 
 
 <!DOCTYPE html>
@@ -55,8 +60,9 @@
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=3.0">
 <title>Foodporn</title>
-<link rel="stylesheet"
-	href="../recipe/recipeCSS/listOneRecipeCssCopy.css">
+<link rel="stylesheet" href="../recipe/recipeCSS/listOneRecipeCssCopy.css">
+<link rel="stylesheet" href="css/getHTMLMediaElement.css">
+<!-- <link rel="stylesheet" href="css/styles1.css"> -->
 <link rel="stylesheet" href="../../css/frontEnd.css">
 <link rel="stylesheet" href="../../css/header-sider.css">
 <link rel="stylesheet" href="../../slick/slick.css">
@@ -86,8 +92,10 @@
 <script src="js/webrtc/adapter-latest.js"></script>
 <script src="js/webrtc/IceServersHandler.js"></script>
 <script src="js/webrtc/CodecsHandler.js"></script>
-<script	src="js/webrtc/RTCPeerConnection-v1.5.js"></script>
-<script	src="js/webrtc/broadcast.js"></script>
+<script src="js/webrtc/RTCPeerConnection-v1.5.js"></script>
+<script src="js/webrtc/broadcast.js"></script>
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/getHTMLMediaElement.js"></script>
 
 <script>
 	// 	$(document).ready(function() {
@@ -97,6 +105,60 @@
 	// 		getMonth();
 	// 	})
 </script>
+<style>
+/* 大吳的CSS */
+audio, video {
+	-moz-transition: all 1s ease;
+	-ms-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	-webkit-transition: all 1s ease;
+	transition: all 1s ease;
+	vertical-align: top;
+	width: 100%;
+}
+
+select {
+	border: 2px solid #d9d9d9;
+	border-radius: 1px;
+	height: 40px;
+	margin-left: 0.6em;
+	margin-top: 2em;
+	padding: 0.1em;
+	vertical-align: 5px;
+	width: 33%;
+}
+
+.broadcasting-option {
+  height: 2vw;
+  vertical-align: middle;
+  margin: 0.4em;
+  font-size: 1.0vw;
+}
+
+.broadcast-name {
+	border: 2px solid #d9d9d9;
+	border-radius: 1px;
+	font-size: 1.5vw;
+	margin: 0.4em;
+	margin-left: 0.2em;
+	width: 33%;
+	color: rgb(204, 14, 14);
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.videosContainer {
+    border: 6px ridge rgb(100, 100, 100);
+    border-radius: 4px;
+    margin: 1em;
+}
+
+</style>
+
+
+
+
+
 <style>
 * {
 	margin: 0;
@@ -169,7 +231,7 @@
 .hot-card {
 	display: inline-block;
 	width: 21%;
-margin: 10px 1.5% 0;
+	margin: 10px 1.5% 0;
 	text-align: center;
 	background-color: antiquewhite;
 	height: 75%;
@@ -177,7 +239,6 @@ margin: 10px 1.5% 0;
 	position: relitive;
 	overflow: hidden;
 	transition-duration: 500ms;
-	    
 }
 
 .hot-card:hover {
@@ -210,7 +271,7 @@ margin: 10px 1.5% 0;
 	border-radius: 8px;
 	margin-top: 20px;
 	padding: 12px;
-	color:black;
+	color: black;
 }
 
 .hot-member-name {
@@ -261,28 +322,32 @@ margin: 10px 1.5% 0;
 	margin-left: 2%;
 	margin-top: 10px;
 }
-.dona-items-card:hover{
-cursor:pointer;
+
+.dona-items-card:hover {
+	cursor: pointer;
 }
-#charge{
-    display: inline-block;
-    margin-left: 47%;
-    width: 50px;
-    height: 30px;
-    text-align: center;
-    line-height: 30px;
-    border-radius: 5px;
-    font-size: 15px;
-    background-color: aliceblue;
-    box-shadow: 3px 2px 2px #00000036;
+
+#charge {
+	display: inline-block;
+	margin-left: 47%;
+	width: 50px;
+	height: 30px;
+	text-align: center;
+	line-height: 30px;
+	border-radius: 5px;
+	font-size: 15px;
+	background-color: aliceblue;
+	box-shadow: 3px 2px 2px #00000036;
 }
-#charge:hover{
-cursor:pointer;
+
+#charge:hover {
+	cursor: pointer;
 }
 </style>
 </head>
 
 <body>
+
 	<header>
 		<div id="top-logo" class="logo">
 			<a href="<%=request.getContextPath()%>/" title="回首頁"><img
@@ -458,12 +523,40 @@ cursor:pointer;
 		<!--一鍵置頂-->
 	</div>
 	<!-- end of pagetop-->
+	
+	        <script>
+            if(!location.hash.replace('#', '').length) {
+                location.href = location.href.split('#')[0] + '#' + (Math.random() * 100).toString().replace('.', '');
+                location.reload();
+            }
+        </script>
+	
+	
 	<main>
 		<article>
 			<section id="livestream_section">
 				<div id="livestream_container">
-<!-- 直播影片儲存 -->
-				<div class="bottom mx-auto">
+					<div id="livestream_left">
+						<div class="livestream_card" id="video">
+						<div class="container">
+		<div class="row">
+			<div class="col col-sm-12">
+				<div class="CustomCard hoverCustomCard">
+					<div id="CustomCardheader" class="CustomCardheader text-white btn-warning">
+						<input type="hidden" id="hostID" value="${hostID}" />
+						<input type="hidden" id="lsViewNum" value="0" />
+				<% if(hostID!=null){ %>
+						<h5 id="subTitle" class="col pt-2"> <strong>這是 ${hostID} 直播間</strong></h5>
+				<%} else { %>		
+						<h5 id="subTitle" class="col pt-2"> <strong>您已經進入直播間</strong></h5>
+				 <%} %>		
+						
+						<i id="WebSocket-count" class="far pt-2 pr-3 float-right" style="position: absolute; right: 0; top: 0px">目前在線人數 - </i>
+						<i id="WebRTC-count"    class="far pt-2 pr-3 float-right" style="position: absolute; right: 0; top: 20px">WebRTC 累計觀看人數 0 </i>
+					</div>
+					<div class="avatar"> <img  id="slider" src="images/disw.gif"></div>
+
+					<div class="bottom mx-auto">
 						<button class="btn-3d-can" id="record"   style="display: none" disabled="disabled">開始錄影</button>
 						<button class="btn-3d-can" id="download" style="display: none" disabled="disabled">儲存錄影</button>
 						<button id="play" class="btn btn-success" style="display: none">播放</button>
@@ -472,19 +565,22 @@ cursor:pointer;
 							<div id="errorMsg"></div>
 						</div>
 					</div>
-<!-- 直播影片儲存結束 -->
-					<div id="livestream_left">
-						<div class="livestream_card" id="video">
-						<!-- 直播播放區 -->
-		<!-- 動態抓取直播主ID --><input type="hidden" id="hostID" value="${hostID}" />
-						<input type="hidden" id="lsViewNum" value="0" />
-						<section id="session1" class="experiment">
+				</div>
+			</div>
+
+			<div class="col col-sm-9">
+				<article>
+					<header style="text-align: center;">
+						<h2>WebRTC 視 頻 廣 播</h2>
+					</header><br>
+
+					<section id="session1" class="experiment">
 						<section <%= (hostID==null)? "style='visibility: hidden;'":"" %>>
 							<select id="broadcasting-option" class="broadcasting-option">
 								<option>Audio + Video</option>
 								<option>Only Audio</option>
 							</select> 
-<!-- 動態抓取直播主ID --><input type="text" id="broadcast-name" class="broadcast-name" value="${hostID}">
+							<input type="text" id="broadcast-name" class="broadcast-name" value="${hostID}">
 							<button id="setup-new-broadcast">啟動新視頻</button>
 						</section>
 						<!-- list of all available broadcasting rooms --><br>
@@ -497,13 +593,21 @@ cursor:pointer;
 							</div>
 						</div>
 					</section>
-						</div>
+				</article>
+			</div>
+			<script>
+			 var visibleElements = document.getElementsByClassName('visible'),
+             length = visibleElements.length;
+             for (var i = 0; i < length; i++) {
+                visibleElements[i].style.display = 'none';
+             }
+			</script>	
+
+								
+
+
+						</div><!-- end of livestream_card  -->
 						<!-- 直播播放區結束 -->
-						<!-- 觀看人數 -->
-						<i id="WebSocket-count" class="far pt-2 pr-3 float-right" style="position: absolute; right: 0; top: 0px">目前在線人數 - </i>
-						<i id="WebRTC-count"    class="far pt-2 pr-3 float-right" style="position: absolute; right: 0; top: 20px">WebRTC 累計觀看人數 0 </i>
-				
-						<!-- 觀看人數結束 -->
 						<div class="livestream_card" id="hot">
 							<h2>熱門推薦</h2>
 							<a href="#"><span class="hot-card"><img alt=""
@@ -519,28 +623,28 @@ cursor:pointer;
 									src="../image/TYPE ICON/5.png"> <span
 									class="hot-member-name">AAAA</span>
 							</span></a>
-						</div>
-					</div>
+						</div><!-- end of livestream_card -->
+					</div><!-- end of livestream_card -->
 
 					<div id="livestream_right">
 						<div id="host-info">
 							<div class="chef-info-pic">
 								<img
-									src="<%=request.getContextPath()%>/front-end/member/photo?member_id=<%=memberVO.getMember_id()%>"
+									src="<%=request.getContextPath()%>/front-end/member/photo?member_id=<%=hostVO.getMember_id()%>"
 									alt="廚師頭貼">
 							</div>
 							<div class="chef-info-detal">
 								<h4>
 									<a
-										href="RecipeServlet?action=getChef_For_Display&member_id=<%=recipeVO.getMember_id()%>"><%=memberVO.getMember_name()%></a>
+										href="RecipeServlet?action=getChef_For_Display&member_id=<%=hostVO.getMember_id()%>"><%=hostVO.getMember_name()%></a>
 								</h4>
-								<span><%=recipeService.getChefCookedNum(recipeVO.getMember_id())%>&nbsp;&nbsp;食譜</span>
+								<span><%=recipeService.getChefCookedNum(hostVO.getMember_id())%>&nbsp;&nbsp;食譜</span>
 								<span>999&nbsp;&nbsp;粉絲</span>
 							</div>
 							<form method="post" action="RecipeServlet">
-								<button class="chef-follow" name="chef_follow">追蹤</button>
-								<input type="hidden" value="<%=recipeVO.getMember_id()%>"
-									name="chef_id"> <input type="hidden" value="member_id"
+								<button class="chef-follow" name="chef_follow" style="display:<%=memberVO == null ? "none" :""%>">追蹤</button>
+								<input type="hidden" value="${hostID}" name="chef_id"> <input
+									type="hidden" value="<%=memberVO == null ? "" :memberVO.getMember_id()%>"
 									name="member_id">
 							</form>
 						</div>
@@ -553,7 +657,9 @@ cursor:pointer;
 									<input id="message" class="panel input-default" type="text"
 										placeholder="留點訊息給廚師吧..."
 										onkeydown="if (event.keyCode == 13) sendMessage();" /><br>
-		<!-- 動態抓會員ID -->
+									<!-- 動態抓會員ID -->
+									<input type="hidden" id="sendMessage" class="btn btn-danger" value="送出訊息" onclick="sendMessage();" />
+				
 									<input id="userName" class="panel input-default" type="hidden"
 										placeholder="暱稱" value="${(hostID!=null)? hostID :clientID}"
 										readonly="readonly" />
@@ -563,7 +669,7 @@ cursor:pointer;
 						</div>
 						<div id="dona">
 							<h3>
-								我的富胖幣:<span style="color: red;">&nbsp;999</span>
+								我的富胖幣:<span style="color: red;">&nbsp;<%=memberVO == null ? "" : memberVO.getBalance()%></span>
 								<span id="charge">儲值</span>
 							</h3>
 							<span class="dona-items-card"><img alt=""
@@ -655,7 +761,7 @@ cursor:pointer;
 		});
 	</script>
 </body>
-<script>
+			<script>
                 var config = {
                     openSocket: function(config) {
 //                      var SIGNALING_SERVER = 'https://socketio-over-nodejs2.herokuapp.com:443/';
@@ -669,7 +775,7 @@ cursor:pointer;
                             channel: config.channel,
                             sender: sender
                         });
-
+                        console.log(sender);
                         var socket = io.connect(SIGNALING_SERVER + config.channel);
                         socket.channel = config.channel;
                         socket.on('connect', function () {
@@ -690,9 +796,9 @@ cursor:pointer;
                         rotateInCircle(htmlElement);
                     },
                     onRoomFound: function(room) {
-//                         document.getElementById("subTitle").innerHTML = "<strong>您正準備觀看 " + room.roomName + " 的直播</strong>";
-//                         var alreadyExist = document.querySelector('button[data-broadcaster="' + room.broadcaster + '"]');
-//                         if (alreadyExist) return;
+                        document.getElementById("subTitle").innerHTML = "<strong>您正準備觀看 " + room.roomName + " 的直播</strong>";
+                        var alreadyExist = document.querySelector('button[data-broadcaster="' + room.broadcaster + '"]');
+                        if (alreadyExist) return;
 
                         if (typeof roomsList === 'undefined') roomsList = document.body;
 
@@ -710,7 +816,7 @@ cursor:pointer;
                         	document.getElementById("subTitle").innerHTML = "<strong2>您正在觀看 " + room.roomName + " 的直播</strong2>";
                         	document.getElementById('broadcast-name').value = room.roomName;
                             videosContainer.className = "videosContainer";                   	
-                        	document.getElementById("slider").src = "images/tenor.gif";
+//                         	document.getElementById("slider").src = "images/tenor.gif";
                         	document.getElementById("WebRTC-count").innerHTML = "";
                             this.disabled = true;
 //                          this.style.display = 'none';
@@ -842,7 +948,7 @@ buttons: ['record-video']
                 if (setupNewBroadcast) setupNewBroadcast.onclick = setupNewBroadcastButtonClickHandler;
 
                 function hideUnnecessaryStuff() {
-                	connect();
+                	
 
                     var visibleElements = document.getElementsByClassName('visible'),
                         length = visibleElements.length;
@@ -868,7 +974,9 @@ buttons: ['record-video']
                     if (uniqueToken)
                         if (location.hash.length > 2) uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<div class="share"><h2>&nbsp;<i class="fa fa-hand-o-right fa-2x"></i><a href="' + location.href + '" target="_blank"><b>由此分享此直播間的鏈接 </b></a></h2></div>';
                         else uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace( /\./g , '-');
+               			console.log(uniqueToken.parentNode.parentNode.href);
                 })();
+                
                 
                 
 
@@ -1056,12 +1164,15 @@ recordVideo.className = recordVideo.className.replace('stop-recording-video sele
     var webCtx = path.substring(0, path.indexOf('/', 1));
 <%--     var endPointURL = "wss://" + window.location.host + webCtx + MyPoint;   http上線請使用https , webSocket請使用wss --%>
 var endPointURL = "wss://" + window.location.host + webCtx + MyPoint;
+// var endPointURL = "wss://da106g4.tk/RTCPeerConnection_Ver3/MyEchoServer";
 console.log(endPointURL);
 	var webSocket;
 	
 	function connect() {
 		var rtcroomName = document.getElementById('broadcast-name').value;
-		alert(rtcroomName);
+// 		var rtcroomName = '${hostID}';
+
+		console.log(rtcroomName);
 		// 建立 websocket 物件
 		webSocket = new WebSocket(endPointURL+"/"+rtcroomName);
 		document.getElementById('broadcasting-option').style.display = 'none';
