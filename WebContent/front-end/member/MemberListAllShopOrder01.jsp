@@ -34,14 +34,68 @@
 		if(orderSvc.getAll()!=null){  
 			list= orderSvc.getAll();
 			list=list.stream()
-					.filter(p->p.getMember_id().equals("810009"))
-					.filter(p->p.getOrder_status()==0)
+					.filter(p->p.getMember_id().equals(member_id))
+					.filter(p->p.getOrder_status()==1)
 					.collect(Collectors.toList());
 		}
 	pageContext.setAttribute("list",list);
 
+	
+	
+	
+	OrderService orderSvc2=new OrderService();
+	List<Shop_orderVO>list2=null;
+
+
+
+		if(orderSvc2.getAll()!=null){  
+			list2= orderSvc2.getAll();
+			list2=list2.stream()
+					.filter(p->p.getMember_id().equals(member_id))
+					.filter(p->p.getOrder_status()==2)
+					.collect(Collectors.toList());
+		}
+	pageContext.setAttribute("list2",list2);
+	
+	
+	
+	
+	OrderService orderSvc3=new OrderService();
+	List<Shop_orderVO>list3=null;
+
+
+
+		if(orderSvc3.getAll()!=null){  
+			list3= orderSvc3.getAll();
+			list3=list3.stream()
+					.filter(p->p.getMember_id().equals(member_id))
+					.filter(p->p.getOrder_status()==0)
+					.collect(Collectors.toList());
+		}
+	pageContext.setAttribute("list3",list3);
+	
+	
+	
+	OrderService orderSvc4=new OrderService();
+	List<Shop_orderVO>list4=null;
+
+
+
+		if(orderSvc4.getAll()!=null){  
+			list4= orderSvc4.getAll();
+			list4=list4.stream()
+					.filter(p->p.getMember_id().equals(member_id))
+					.filter(p->p.getOrder_status()==3)
+					.collect(Collectors.toList());
+		}
+	pageContext.setAttribute("list4",list4);
+	
+	
+	
+	
+	
 	%>
-%>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -877,8 +931,13 @@ body {
 	margin-left: -240px;
 }
 
-.sidebar {
-	margin-top: -430px;
+
+
+
+
+.sidebar{
+    
+	margin-top: -460px;
 	margin-left: 18%;
 	width: 230px;
 	height: 100%;
@@ -891,6 +950,16 @@ body {
 	transition: all .3s ease-in-out;
 	z-index: 100;
 }
+
+
+
+
+
+
+
+
+
+
 
 .member-center-spann {
 	margin-top: 10px;
@@ -1064,6 +1133,37 @@ table.inner {
 
 
 
+
+
+.small { 
+margin-left:0px;
+  width: 129px; 
+  height: 129px; 
+  overflow: hidden;
+
+
+}
+.avatar {
+margin-rught:100px;
+  background-image: url("image/genius.jpg.png");
+  background-size: cover;
+  border-radius: 100%;
+  margin: auto 1rem 26px;
+  width: 8rem;
+  height: 8rem;
+  box-shadow: 0 0 0 4px rgba(53, 42, 148, 0.555);
+  transition: all 0.5s ease-in-out;
+}
+.avatar:hover {
+  box-shadow: 0 0 0 6px rgba(53, 42, 148, 0.555);
+}
+
+.image-wrap img { width: 100%; }
+.circle {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+}
 
 
 
@@ -1694,11 +1794,22 @@ margin-right:293px;
 
 
 
+h2{
+margin-left:56px;
+margin-bottom:8px;
+margin-top:-14px;
+}
 
 
 
+.link-top {
 
+            width: 104%;
+            height: 1px;
+            border-top: solid rgb(226, 16, 44) 3px;
 
+            margin: 5px 0 0 -20px;
+        }
 
 
 
@@ -1969,15 +2080,106 @@ margin-right:293px;
 
   <div class="tabs">
     <ul>
-      <li><a href="#section1">已成立</a></li>
-      <li><a href="#section2">運送中</a></li>
+      <li><a href="#section2">已成立</a></li>
+      <li><a href="#section1">運送中</a></li>
       <li><a href="#section3">已完成</a></li>
       <li><a href="#section4">取消訂單</a></li>
   
     </ul>
-    <section id="section1">
+    <section id="section2">
+<table id="ordertable" class="ui red celled table">
 
-      <p>    <table id="ordertable" class="ui red celled table">
+	<tr>
+		<th>訂單編號</th>
+
+		<th>訂單日期</th>
+		<th>訂單金額</th>
+		<th>付款方式</th>
+	 <td class="orseraddress ordertr2">地址</td>
+	</tr>
+	
+	
+	<c:forEach var="ordervo3" items="${list3}" >
+		<div>
+		<tr class="ordertr1">
+			<td>${ordervo3.order_no}</td>
+	
+		
+			
+
+
+	
+			
+			<c:set var="time" value="${ordervo3.order_time}"/>
+			<%
+			String tsStr = "";  
+
+			if(pageContext.getAttribute("time")!=null) {
+				Timestamp ts = (Timestamp)pageContext.getAttribute("time");
+				DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");  
+				tsStr = sdf.format(ts);  %>
+				
+			<%}%>
+			
+			<td><%=tsStr %>				
+			</td>
+			
+			
+			
+			
+			<td>${ordervo3.total}</td>
+			
+						<%
+    Map<Integer, String> pay_typemap2 = new HashMap<>();
+						pay_typemap2.put(0, "點數");
+						pay_typemap2.put(1, "信用卡");
+
+    session.setAttribute("pay_type2", pay_typemap2);
+%>
+
+
+
+<c:set var="paytype2" value="${ordervo3.pay_type}" />
+			<td>${pay_type2[paytype2]} </td> 
+<!-- 			<td> 
+<!-- 			<!-- 茶愾訂單明細 --> 
+<!-- 			     <FORM METHOD="post" ACTION="/DA106_G4_Foodporn_Git/back-end/shop_order/OrderServlet.do" > -->
+<!-- 			    <button class="ui right labeled  icon button"><i class="zoom in icon"></i> 查看更多 </button> -->
+			     
+<%-- 			  <input type="hidden" name="order_no"  value="${ordervo.order_no}"> --%>
+<!-- 			  <input type="hidden" name="action" value="getorderdetail"> -->
+<!--                         <input style="display: none" type="submit" value="查看訂單明細"> -->
+<!-- 			     </FORM> -->
+			
+<!-- 			</td> -->
+	
+			<!-- 刪除 -->
+<!-- 			<td> -->
+<%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/shop_order/OrderServlet.do" style="margin-bottom: 0px;"  onSubmit="return CheckForm();" > --%>
+<!-- 			     <input type="submit" value="刪除" > -->
+<%-- 			     <input type="hidden" name="order_no"  value="${ordervo.order_no}"> --%>
+<!-- 			     <input type="hidden" name="action" value="delete"> -->
+<%-- 			     <input	type="hidden" name="whichPage" value="<%=whichPage%>">  --%>
+<%-- 			     			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller--> --%>
+			     
+			     
+			 
+<!-- 			    </FORM> -->
+			     
+<!-- 			</td> -->
+			<!-- 還沒做 -->
+			     <td colspan="9">${ordervo3.dv_address}</td>
+		  </tr>
+  
+
+	</c:forEach>
+</table> 
+      
+
+
+    </section>
+<section id="section1">
+   <table id="ordertable" class="ui red celled table">
 
 	<tr>
 		<th>訂單編號</th>
@@ -2020,17 +2222,17 @@ margin-right:293px;
 			<td>${ordervo.total}</td>
 			
 						<%
-    Map<Integer, String> pay_typemap = new HashMap<>();
-						pay_typemap.put(0, "點數");
-						pay_typemap.put(1, "信用卡");
+    Map<Integer, String> pay_typemap8 = new HashMap<>();
+						pay_typemap8.put(0, "點數");
+						pay_typemap8.put(1, "信用卡");
 
-    session.setAttribute("pay_type", pay_typemap);
+    session.setAttribute("pay_type8", pay_typemap8);
 %>
 
 
 
-<c:set var="paytype" value="${ordervo.pay_type}" />
-			<td>${pay_type[paytype]} </td> 
+<c:set var="paytype8" value="${ordervo.pay_type}" />
+			<td>${pay_type8[paytype8]} </td> 
 <!-- 			<td> 
 <!-- 			<!-- 茶愾訂單明細 --> 
 <!-- 			     <FORM METHOD="post" ACTION="/DA106_G4_Foodporn_Git/back-end/shop_order/OrderServlet.do" > -->
@@ -2063,21 +2265,185 @@ margin-right:293px;
   
 
 	</c:forEach>
-</table>
-
-
-    </section>
-    <section id="section2">
-      <h2>Section 2</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, ullam natus tenetur molestiae commodi nesciunt, neque adipisci alias nostrum saepe inventore magnam. Molestias laboriosam, tempora quidem assumenda harum. Numquam, delectus.</p>
+</table> 
     </section>
     <section id="section3">
-      <h2>Section 3</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, ullam natus tenetur molestiae commodi nesciunt, neque adipisci alias nostrum saepe inventore magnam. Molestias laboriosam, tempora quidem assumenda harum. Numquam, delectus.</p>
+     <table id="ordertable" class="ui red celled table">
+
+	<tr>
+		<th>訂單編號</th>
+
+		<th>訂單日期</th>
+		<th>訂單金額</th>
+		<th>付款方式</th>
+	 <td class="orseraddress ordertr2">地址</td>
+	</tr>
+	
+	
+	<c:forEach var="ordervo2" items="${list2}" >
+		<div>
+		<tr class="ordertr1">
+			<td>${ordervo2.order_no}</td>
+	
+		
+			
+
+
+	
+			
+			<c:set var="time" value="${ordervo2.order_time}"/>
+			<%
+			String tsStr = "";  
+
+			if(pageContext.getAttribute("time")!=null) {
+				Timestamp ts = (Timestamp)pageContext.getAttribute("time");
+				DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");  
+				tsStr = sdf.format(ts);  %>
+				
+			<%}%>
+			
+			<td><%=tsStr %>				
+			</td>
+			
+			
+			
+			
+			<td>${ordervo2.total}</td>
+			
+						<%
+    Map<Integer, String> pay_typemap1 = new HashMap<>();
+						pay_typemap1.put(0, "點數");
+						pay_typemap1.put(1, "信用卡");
+
+    session.setAttribute("pay_type1", pay_typemap1);
+%>
+
+
+
+<c:set var="paytype1" value="${ordervo2.pay_type}" />
+			<td>${pay_type1[paytype1]} </td> 
+<!-- 			<td> 
+<!-- 			<!-- 茶愾訂單明細 --> 
+<!-- 			     <FORM METHOD="post" ACTION="/DA106_G4_Foodporn_Git/back-end/shop_order/OrderServlet.do" > -->
+<!-- 			    <button class="ui right labeled  icon button"><i class="zoom in icon"></i> 查看更多 </button> -->
+			     
+<%-- 			  <input type="hidden" name="order_no"  value="${ordervo.order_no}"> --%>
+<!-- 			  <input type="hidden" name="action" value="getorderdetail"> -->
+<!--                         <input style="display: none" type="submit" value="查看訂單明細"> -->
+<!-- 			     </FORM> -->
+			
+<!-- 			</td> -->
+	
+			<!-- 刪除 -->
+<!-- 			<td> -->
+<%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/shop_order/OrderServlet.do" style="margin-bottom: 0px;"  onSubmit="return CheckForm();" > --%>
+<!-- 			     <input type="submit" value="刪除" > -->
+<%-- 			     <input type="hidden" name="order_no"  value="${ordervo.order_no}"> --%>
+<!-- 			     <input type="hidden" name="action" value="delete"> -->
+<%-- 			     <input	type="hidden" name="whichPage" value="<%=whichPage%>">  --%>
+<%-- 			     			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller--> --%>
+			     
+			     
+			 
+<!-- 			    </FORM> -->
+			     
+<!-- 			</td> -->
+			<!-- 還沒做 -->
+			     <td colspan="9">${ordervo2.dv_address}</td>
+		  </tr>
+  
+
+	</c:forEach>
+</table> 
     </section>
     <section id="section4">
-      <h2>Section 4</h2>
-      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Perspiciatis, ullam natus tenetur molestiae commodi nesciunt, neque adipisci alias nostrum saepe inventore magnam. Molestias laboriosam, tempora quidem assumenda harum. Numquam, delectus.</p>
+       <table id="ordertable" class="ui red celled table">
+
+	<tr>
+		<th>訂單編號</th>
+
+		<th>訂單日期</th>
+		<th>訂單金額</th>
+		<th>付款方式</th>
+	 <td class="orseraddress ordertr2">地址</td>
+	</tr>
+	
+	
+	<c:forEach var="ordervo4" items="${list4}" >
+		<div>
+		<tr class="ordertr1">
+			<td>${ordervo4.order_no}</td>
+	
+		
+			
+
+
+	
+			
+			<c:set var="time" value="${ordervo4.order_time}"/>
+			<%
+			String tsStr = "";  
+
+			if(pageContext.getAttribute("time")!=null) {
+				Timestamp ts = (Timestamp)pageContext.getAttribute("time");
+				DateFormat sdf = new SimpleDateFormat("yyyy/MM/dd HH:mm");  
+				tsStr = sdf.format(ts);  %>
+				
+			<%}%>
+			
+			<td><%=tsStr %>				
+			</td>
+			
+			
+			
+			
+			<td>${ordervo4.total}</td>
+			
+						<%
+    Map<Integer, String> pay_typemap4 = new HashMap<>();
+						pay_typemap4.put(0, "點數");
+						pay_typemap4.put(1, "信用卡");
+
+    session.setAttribute("pay_type4", pay_typemap4);
+%>
+
+
+
+<c:set var="paytype4" value="${ordervo4.pay_type}" />
+			<td>${pay_type4[paytype4]} </td> 
+<!-- 			<td> 
+<!-- 			<!-- 茶愾訂單明細 --> 
+<!-- 			     <FORM METHOD="post" ACTION="/DA106_G4_Foodporn_Git/back-end/shop_order/OrderServlet.do" > -->
+<!-- 			    <button class="ui right labeled  icon button"><i class="zoom in icon"></i> 查看更多 </button> -->
+			     
+<%-- 			  <input type="hidden" name="order_no"  value="${ordervo.order_no}"> --%>
+<!-- 			  <input type="hidden" name="action" value="getorderdetail"> -->
+<!--                         <input style="display: none" type="submit" value="查看訂單明細"> -->
+<!-- 			     </FORM> -->
+			
+<!-- 			</td> -->
+	
+			<!-- 刪除 -->
+<!-- 			<td> -->
+<%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/shop_order/OrderServlet.do" style="margin-bottom: 0px;"  onSubmit="return CheckForm();" > --%>
+<!-- 			     <input type="submit" value="刪除" > -->
+<%-- 			     <input type="hidden" name="order_no"  value="${ordervo.order_no}"> --%>
+<!-- 			     <input type="hidden" name="action" value="delete"> -->
+<%-- 			     <input	type="hidden" name="whichPage" value="<%=whichPage%>">  --%>
+<%-- 			     			     <input type="hidden" name="requestURL"	value="<%=request.getServletPath()%>"><!--送出本網頁的路徑給Controller--> --%>
+			     
+			     
+			 
+<!-- 			    </FORM> -->
+			     
+<!-- 			</td> -->
+			<!-- 還沒做 -->
+			     <td colspan="9">${ordervo4.dv_address}</td>
+		  </tr>
+  
+
+	</c:forEach>
+</table> 
     </section>
 <!--     <section id="section5"> -->
 <!--       <h2>Section 5</h2> -->
@@ -2180,27 +2546,34 @@ margin-right:293px;
 
 
 <aside class="sidebar">
-	<div id="leftside-navigation" class="nano">
+
+  <div class="avatar">
+
+   <div class="circle image-wrap small">
+ <img src=DBGifReader4.do?photo_type=mempic&member_id=<%=session.getAttribute("member_id")%> id="preview_progressbarTW_img" width=129px height=129px;/>
+</div>
+</div>
+          <h2><%=membervo.getMember_name()%></h2>
+
+          <div class="link-top"></div>
+
+
+
+
+
+
+
+
+	<div id="leftside-navigation" class="nano" >
 		<ul class="nano-content">
 			<li><a
 				href="/DA106_G4_Foodporn_Git/front-end/member/TestMemberHomepage.jsp"><i
 					class="fa fa-dashboard"></i><img class="access-menu-icon1"
 					src="../../image/member/S__12066824.jpg"><span>我的帳戶</span></a></li>
-			<li class="sub-menu"><a href="javascript:void(0);"><i
-					class="fa fa-cogs"></i><img class="access-menu-icon1"
-					src="../../image/member/S__12066823.jpg"><span>購買清單&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
-					class="arrow fa fa-angle-right pull-right"></i></a>
-				<ul>
-
-					<li><a href="ui-alerts-notifications.html">已成立</a></li>
-					<li><a href="ui-panels.html">運送中</a></li>
-					<li><a href="ui-buttons.html">已完成</a></li>
-					<li><a href="ui-slider-progress.html">取消訂單</a></li>
-					<li><a href="ui-modals-popups.html">1</a></li>
-					<li><a href="ui-icons.html">2</a></li>
-					<li><a href="ui-grid.html">3</a></li>
-
-				</ul></li>
+			<li><a
+				href="/DA106_G4_Foodporn_Git/front-end/member/MemberListAllShopOrder01.jsp"><i
+					class="fa fa-dashboard"></i><img class="access-menu-icon1"
+					src="../../image/member/S__12066823.jpg"><span>購買清單</span></a></li>
 			<li class="sub-menu"><a href="javascript:void(0);"><i
 					class="fa fa-table"></i><img class="access-menu-icon1"
 					src="../../image/member/S__12066821.jpg"><span>我的錢包/點數&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>

@@ -177,62 +177,7 @@
   
 	<!-- 以上為直播XML結束 -->
 	
-	<!-- 以下為CHHL開始 -->
- <servlet>
-    <servlet-name>AnMemberServlet</servlet-name>
-    <servlet-class>android.com.member.controller.MemberServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AnMemberServlet</servlet-name>
-    <url-pattern>/AnMemberServlet</url-pattern>
-  </servlet-mapping>
-  
-   <servlet>
-    <servlet-name>AnStaffServlet</servlet-name>
-    <servlet-class>android.com.staff.controller.StaffServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AnStaffServlet</servlet-name>
-    <url-pattern>/StaffServlet</url-pattern>
-  </servlet-mapping>
-  
-  <servlet>
-		<servlet-name>AnCouponServlet</servlet-name>
-		<servlet-class>android.com.coupon.controller.CouponServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>AnCouponServlet</servlet-name>
-		<url-pattern>/CouponServlet</url-pattern>
-	</servlet-mapping> 
-	
-	<servlet>
-		<servlet-name>ProductServlet</servlet-name>
-		<servlet-class>android.com.product.controller.ProductServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ProductServlet</servlet-name>
-		<url-pattern>/ProductServlet</url-pattern>
-	</servlet-mapping>
-	
-	<servlet>
-		<servlet-name>AnRecipeServlet</servlet-name>
-		<servlet-class>android.com.recipe.controller.RecipeServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>AnRecipeServlet</servlet-name>
-		<url-pattern>/RecipeServlet</url-pattern>
-	</servlet-mapping>
-	
-		<servlet>
-		<servlet-name>AnOrderServlet</servlet-name>
-		<servlet-class>android.com.instant_delivery_order.controller.OrderServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>AnOrderServlet</servlet-name>
-		<url-pattern>/OrderServlet</url-pattern>
-	</servlet-mapping>
-	
-	<!-- 以上為CHH結束 -->
+
 	
 	<!-- 以下為商城XML -->
 	<servlet>

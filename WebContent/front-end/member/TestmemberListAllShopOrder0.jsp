@@ -14,19 +14,19 @@
 
 <%
 // String member_id = (String) session.getAttribute("member_id");
-OrderService orderSvc=new OrderService();
-List<Shop_orderVO>list=null;
+OrderService orderSvc2=new OrderService();
+List<Shop_orderVO>list2=null;
 
 
 
-	if(orderSvc.getAll()!=null){  
-		list= orderSvc.getAll();
-		list=list.stream()
+	if(orderSvc2.getAll()!=null){  
+		list2= orderSvc2.getAll();
+		list2=list2.stream()
 				.filter(p->p.getMember_id().equals("810009"))
-				.filter(p->p.getOrder_status()==0)
+				.filter(p->p.getOrder_status()==3)
 				.collect(Collectors.toList());
 	}
-pageContext.setAttribute("list",list);
+pageContext.setAttribute("list2",list2);
 
 %>
 <!DOCTYPE html>
@@ -71,13 +71,13 @@ pageContext.setAttribute("list",list);
 		<th>付款方式</th>
 	
 	</tr>
-	<%@ include file="page1.file" %> 
+
 	
-	<c:forEach var="ordervo" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+	<c:forEach var="ordervo2" items="${list2}">
 		<div>
 		<tr class="ordertr1">
-			<td>${ordervo.order_no}</td>
-			<td>${ordervo.member_id}</td>
+			<td>${ordervo2.order_no}</td>
+			<td>${ordervo2.member_id}</td>
 			<td>會員名稱</td>
 			<%
     Map<Integer, String> orderstatusmap = new HashMap<>();
@@ -160,7 +160,7 @@ pageContext.setAttribute("list",list);
 			     <input type="hidden" name="empno"  value="${empVO.empno}">
 			     <input type="hidden" name="action" value="delete">
 			     <input	type="hidden" name="requestURL"	value="<%=request.getServletPath()%>">
-			     <input	type="hidden" name="whichPage" value="<%=whichPage%>"> 
+
 			     
 			     
 			     </FORM>
@@ -171,7 +171,7 @@ pageContext.setAttribute("list",list);
 	</c:forEach>
 </table>
 
-<%@ include file="page2.file" %>
+
 
 <style>
 {

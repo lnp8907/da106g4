@@ -5,7 +5,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.member.model.*"%>
-
+<%@ page import="com.course.model.*"%>
 <%
 String member_id =(String) session.getAttribute("member_id");
 
@@ -24,12 +24,24 @@ MemberVO membervo = memberSvc.getOneMember(member_id);
 String member_name =(String) session.getAttribute("member_name");
 	
 
-	MemberService pSvc = new MemberService();
-	List<MemberVO> list = pSvc.getAll();
-	pageContext.setAttribute("list", list);
+
 	
 	out.println(member_name);
 	out.println(member_id);
+	
+	
+	CourseService courseService = new CourseService();
+	List<CourseVO> list = courseService.getChefCourse(member_id);
+// List<CourseVO> list = courseService.getAll();
+	pageContext.setAttribute("list", list);
+	
+	
+	
+	
+	
+	
+	
+	
 %>
 
 <!DOCTYPE html>
@@ -61,7 +73,8 @@ String member_name =(String) session.getAttribute("member_name");
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 
-
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../course/courseCSS/courseList.css">
 
 
 <link rel="stylesheet" type="text/css"
@@ -867,7 +880,7 @@ body {
 }
 
 .sidebar {
-	margin-top: -1020px;
+	margin-top: -400px;
 	margin-left: 19%;
 	width: 240px;
 	height: 100%;
@@ -1077,7 +1090,7 @@ table.inner {
 }
 
 .container {
-	margin-left: 500px;
+	margin-left: 353px;
 }
 
 .textwidth {
@@ -1686,6 +1699,9 @@ hr {
 
 
 
+.page2 a{
+margin:0 3px;
+}
 
 
 
@@ -1935,7 +1951,7 @@ hr {
 		</ul>
 	</c:if>
 
-<FORM METHOD="post" ACTION="member.do" name="upateform" id="upateform"
+<FORM METHOD="post" ACTION="../course/CourseServlet" name="upateform" id="upateform"
 		enctype="multipart/form-data" >
 
 
@@ -1946,238 +1962,83 @@ hr {
 
 			<div class="container">
 
-				<h3>我的檔案</h3>
-
-				<h1>管理你的檔案以保護你的帳戶</h1>
-
-
-
-
-				
-
-					<table align="center" cellpadding="10">
-
-						<!----- First Name ---------------------------------------------------------->
-					
-					
-					
-						<tr>
-				<td>會員圖片:</td>
-				<!-- 按鈕 -->
-				<td><input type="file" id="imgView" name="member_photo"
-					size="45" accept="image/gif, image/jpeg, image/png"> <img src=DBGifReader4.do?photo_type=mempic&member_id=<%=session.getAttribute("member_id")%> id="preview_progressbarTW_img" width=100px height=100px;/></td>
-
-			</tr>
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-						<tr>
-							<td>會員姓名:</td>
-
-							<td>
-								
-
-
-
-
-
-								<input type="TEXT" name="member_name" size="45"
-					id=member_name value="<%=membervo.getMember_name()%>" />
-
-								<!-- (max 30 characters a-z and A-Z) -->
-							</td>
-						</tr>
-
-						<!----- Last Name ---------------------------------------------------------->
-						<tr>
-							<td>會員帳號:</td>
-							<td><input type="TEXT" name="account" size="45" id=account
-					value="<%=membervo.getAccount()%>" /></td>
-						</tr>
-
-						<tr>
-							<td>會員密碼:</td>
-							<td><input type="password" name="password" size="45" id=password
-					value="<%=membervo.getPassword()%>" /></td>
-					<td><label><input type="checkbox" id="show_password" size="45" />顯示密碼</label></td>
-						</tr>
-
-
-
-
-						<!----- Date Of Birth -------------------------------------------------------->
-						<tr>
-							<td>會員生日:</td>
-
-							<td><input type="TEXT" name="birthday" size="45" id="birthday"
-					 /></td>
-
-						</tr>
-
-						<!----- Email Id ---------------------------------------------------------->
-						<tr>
-							<td>信箱:</td>
-							<td><input type="TEXT" name="email" size="45" id=email
-					value="<%=membervo.getEmail()%>" /></td>
-						</tr>
-
-						<!----- Mobile Number ---------------------------------------------------------->
-						<tr>
-							<td>電話號碼:</td>
-							<td><input type="TEXT" name="cellphone" size="45" id=cellphone
-					value="<%=membervo.getCellphone()%>" /></td>
-						</tr>
-
-						<!----- Gender ----------------------------------------------------------->
-						<tr>
-							<td>性別:</td>
-							<td><input type="radio" name="gender" value=0 checked="<%=(membervo.getGender()==0)? "true": "false"%>"> 男<br>
-					<input type="radio" name="gender" value=1 checked="<%=(membervo.getGender()==1)? "true": "false"%>"> 女<br></td>
-						</tr>
-
-						<!----- Address ---------------------------------------------------------->
-						<tr>
-							<td>地址: <br />
-							<br />
-							<br /></td>
-							<!-- <td><textarea name="Address" rows="4" cols="30"></textarea></td> -->
-							<td><input type="TEXT" name="member_address" size="45"
-					id="address" value="<%=membervo.getMember_address()%>" /></td>
-						</tr>
-
-
-
-						<!----- State ---------------------------------------------------------->
-						<!-- <tr>
-<td>STATE</td>
-<td><input type="text" name="State" maxlength="30" />
-(max 30 characters a-z and A-Z)
-</td>
-</tr> -->
-
-						<!----- Country ---------------------------------------------------------->
-						<!-- <tr>
-<td>COUNTRY</td>
-<td><input type="text" name="Country" value="India" readonly="readonly" /></td>
-</tr> -->
-
-						<!----- Hobbies ---------------------------------------------------------->
-
-						<!-- <tr>
-<td>HOBBIES <br /><br /><br /></td>
- 
-<td>
-Drawing
-<input type="checkbox" name="Hobby_Drawing" value="Drawing" />
-Singing
-<input type="checkbox" name="Hobby_Singing" value="Singing" />
-Dancing
-<input type="checkbox" name="Hobby_Dancing" value="Dancing" />
-Sketching
-<input type="checkbox" name="Hobby_Cooking" value="Cooking" />
-<br />
-Others
-<input type="checkbox" name="Hobby_Other" value="Other">
-<input type="text" name="Other_Hobby" maxlength="30" />
-</td>
-</tr> -->
-
-						<!----- Qualification---------------------------------------------------------->
-						<!-- <tr>
-<td>QUALIFICATION <br /><br /><br /><br /><br /><br /><br /></td>
- 
-<td>
-<table>
- 
-<tr>
-<td align="center"><b>Sl.No.</b></td>
-<td align="center"><b>Examination</b></td>
-<td align="center"><b>Board</b></td>
-<td align="center"><b>Percentage</b></td>
-<td align="center"><b>Year of Passing</b></td>
-</tr> -->
-
-						<!-- <tr>
-<td>1</td>
-<td>Class X</td>
-<td><input type="text" name="ClassX_Board" maxlength="30" /></td>
-<td><input type="text" name="ClassX_Percentage" maxlength="30" /></td>
-<td><input type="text" name="ClassX_YrOfPassing" maxlength="30" /></td>
-</tr>
- 
-<tr>
-<td>2</td>
-<td>Class XII</td>
-<td><input type="text" name="ClassXII_Board" maxlength="30" /></td>
-<td><input type="text" name="ClassXII_Percentage" maxlength="30" /></td>
-<td><input type="text" name="ClassXII_YrOfPassing" maxlength="30" /></td>
-</tr>
- 
-<tr>
-<td>3</td>
-<td>Graduation</td>
-<td><input type="text" name="Graduation_Board" maxlength="30" /></td>
-<td><input type="text" name="Graduation_Percentage" maxlength="30" /></td>
-<td><input type="text" name="Graduation_YrOfPassing" maxlength="30" /></td>
-</tr>
- 
-<tr>
-<td>4</td>
-<td>Masters</td>
-<td><input type="text" name="Masters_Board" maxlength="30" /></td>
-<td><input type="text" name="Masters_Percentage" maxlength="30" /></td>
-<td><input type="text" name="Masters_YrOfPassing" maxlength="30" /></td>
-</tr>
- 
-<tr>
-<td></td>
-<td></td>
-<td align="center">(10 char max)</td>
-<td align="center">(upto 2 decimal)</td>
-</tr>
-</table>
- 
-</td>
-</tr>
-  -->
-						<!----- Course ---------------------------------------------------------->
-						<!-- <tr>
-<td>COURSES<br />APPLIED FOR</td>
-<td>
-BCA
-<input type="radio" name="Course_BCA" value="BCA">
-B.Com
-<input type="radio" name="Course_BCom" value="B.Com">
-B.Sc
-<input type="radio" name="Course_BSc" value="B.Sc">
-B.A
-<input type="radio" name="Course_BA" value="B.A">
-</td>
-</tr> -->
-
-						<!----- Submit and Reset ------------------------------------------------->
-
-			<tr>
-							<td colspan="2" align="center">
-								
-								
-								 <!-- <div class="submit">
-  <input type="submit"  value="儲存" id="button-blue"/>
-  <div class="ease"></div> -->
-  <div class="submit_btn">
-  
-   <span class="submitAndSave" id="article-section-seemore-recipe">儲存</span>
-    <input type="submit" class="submit_btn" value="儲存" >  
-								
-		</div>						
+			
+			<div class="recipe-main-list">
+		<div class="recipe-main-list-header">
+			<h3>所有食譜清單</h3>
+			<span><%@ include file="page1.file"%></span>
+		</div>
+		<ul class="course=list">
+			<c:forEach var="CourseVO" items="${list}" begin="<%=pageIndex%>"
+				end="<%=pageIndex+rowsPerPage-1%>">
+				<li class="recipe-item"><img
+					src="<%=request.getContextPath()+"/front-end/course/photo?course_id="%>${CourseVO.course_id}"
+					alt="">
+					<div class="recipe-item-caption">
+						<div class="recipe-item-caption-header">
+							<h4 class="recipe-item-tile">
+								<a class="show-one-link"
+									href="<%=request.getContextPath()%>/front-end/course/CourseServlet?action=getOne_For_Display&course_id=${CourseVO.course_id}">${CourseVO.course_name}</a>
+							</h4>
+							<FORM METHOD="post"
+								ACTION="<%=request.getContextPath()%>/front-end/course/CourseServlet"
+								style="margin-bottom: 0px;">
+								<button class="update" value="修改">
+									<img src="../../image/icon/update.png" title="修改" alt="修改">
+								</button>
+								<input type="hidden" name="course_id"
+									value="${CourseVO.course_id}"> <input type="hidden"
+									name="action" value="getOne_For_Update">
+							</FORM>
+							<FORM METHOD="post"
+								ACTION="<%=request.getContextPath()%>/front-end/course/CourseServlet"
+								style="margin-bottom: 0px;">
+								<button class="delete" value="刪除">
+									<img src="../../image/icon/delete.png" title="刪除" alt="刪除">
+								</button>
+								<input type="hidden" name="course_id"
+									value="${CourseVO.course_id}"> <input type="hidden"
+									name="action" value="delete">
+							</FORM>
+						</div>
+						<p class="recipe-create-time">開課時間:<fmt:formatDate
+								value="${CourseVO.course_start}" pattern="yyyy/MM/dd HH:mm" /></p>
+						<p class="recipe-item-ingredient">課程價格：${CourseVO.course_price}</p>
+					</div></li>
+			</c:forEach>
+		</ul>
+		<div class="include-page2">
+			<%@ include file="page2.file"%>
+		</div>
+	</div>
+			
+			
+			
+			
+<%-- 			<jsp:include page="../course/listAllCourseManagement.jsp" />  --%>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							
 								
 								
 								
@@ -2187,7 +2048,7 @@ B.A
 						</tr>
 					</table>
 					
-			<br> <input type="hidden" name="action" value="updateBySelf">	
+
 					
 					 <input type="hidden"
 							name="member_id" value="<%=session.getAttribute("member_id")%>">
