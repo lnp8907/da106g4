@@ -20,7 +20,7 @@ import com.product.model.ProductService;
 import com.product.model.ProductVO;
 
 @MultipartConfig
-@WebServlet("/back-end/shop_product/ProductServlet")
+@WebServlet("/TEST/ProductServlet")
 public class ProductServlet extends HttpServlet {
 	String saveDirectory = "/images_uploaded"; // 上傳檔案的目的地目錄;
 

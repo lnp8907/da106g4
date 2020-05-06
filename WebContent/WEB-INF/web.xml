@@ -296,13 +296,13 @@
 <!-- 	///////////////////////商城用////////////////////////// -->
 
 	<servlet>
-		<servlet-name>ProductServlet</servlet-name>
+		<servlet-name>ProductServlet3</servlet-name>
 		<servlet-class> com.shop.controller.ProductServlet
 		</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>ProductServlet</servlet-name>
-		<url-pattern>/back-end/shop_product/Productmanage</url-pattern>
+		<servlet-name>ProductServlet3</servlet-name>
+		<url-pattern>/back-end/shop_product/ProductServlet</url-pattern>
 	</servlet-mapping>
 	
 		<servlet>
