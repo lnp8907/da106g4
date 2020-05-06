@@ -193,7 +193,7 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>AnStaffServlet</servlet-name>
-    <url-pattern>/StaffServlet</url-pattern>
+    <url-pattern>/AnStaffServlet</url-pattern>
   </servlet-mapping>
   
   <servlet>
@@ -202,26 +202,26 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>AnCouponServlet</servlet-name>
-		<url-pattern>/CouponServlet</url-pattern>
+		<url-pattern>/AnCouponServlet</url-pattern>
 	</servlet-mapping> 
 	
 	<servlet>
-		<servlet-name>ProductServlet</servlet-name>
+		<servlet-name>AnProductServlet</servlet-name>
 		<servlet-class>android.com.product.controller.ProductServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>ProductServlet</servlet-name>
-		<url-pattern>/ProductServlet</url-pattern>
+		<servlet-name>AnProductServlet</servlet-name>
+		<url-pattern>/AnProductServlet</url-pattern>
 	</servlet-mapping>
 	
-<!-- 	<servlet> -->
-<!-- 		<servlet-name>AnRecipeServlet</servlet-name> -->
-<!-- 		<servlet-class>android.com.recipe.controller.RecipeServlet</servlet-class> -->
-<!-- 	</servlet> -->
-<!-- 	<servlet-mapping> -->
-<!-- 		<servlet-name>AnRecipeServlet</servlet-name> -->
-<!-- 		<url-pattern>/RecipeServlet</url-pattern> -->
-<!-- 	</servlet-mapping> -->
+    <servlet>
+		<servlet-name>AnRecipeServlet</servlet-name>
+		<servlet-class>android.com.recipe.controller.RecipeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AnRecipeServlet</servlet-name>
+		<url-pattern>/AnRecipeServlet</url-pattern>
+	</servlet-mapping>
 	
 		<servlet>
 		<servlet-name>AnOrderServlet</servlet-name>
@@ -229,7 +229,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>AnOrderServlet</servlet-name>
-		<url-pattern>/OrderServlet</url-pattern>
+		<url-pattern>/AnOrderServlet</url-pattern>
 	</servlet-mapping>
 	
 	<!-- 以上為CHH結束 -->
