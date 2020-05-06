@@ -10,74 +10,29 @@
 <%@page import="com.member.model.*"%>
 <%@page import="com.member.model.MemberService"%>
 <%@page import="java.util.stream.Collectors"%>
-<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 
 <%
 
 OrderService orderSvc=new OrderService();
 List<Shop_orderVO>list=null;
-String Message2="";
-
-String Message="";
-	if((request.getAttribute("Order_statusPage")==null&&request.getParameter("Order_statusPage")==null)||(request.getAttribute("Order_statusPage")==null&&request.getParameter("Order_statusPage").equals(""))){  
-		list= orderSvc.getAll();
-	}
-	else{
-		if(request.getParameter("Order_statusPage")!=null){
-			 Message=(String)request.getParameter("Order_statusPage");					
-		}
-		else{
-		 Message=(String)request.getAttribute("Order_statusPage");}
-	if(Message.equals("waitpage")){  
-		list= orderSvc.getAll();
-		list=list.stream().filter(p->p.getOrder_status()==0)
-				.collect(Collectors.toList());
-	}
-	if(Message.equals("traveling")){  
-		list= orderSvc.getAll();
-		list=list.stream().filter(p->p.getOrder_status()==1)
-				.collect(Collectors.toList());
-	}
-	if(Message.equals("complete")){  
-		list= orderSvc.getAll();
-		list=list.stream().filter(p->p.getOrder_status()==2)
-				.collect(Collectors.toList());
-	}
-	if(Message.equals("cancel")){  
-		list= orderSvc.getAll();
-		list=list.stream().filter(p->p.getOrder_status()==3)
-				.collect(Collectors.toList());
-	}
-	
-	}
-	
-pageContext.setAttribute("list",list);
-MemberService msvc=new MemberService();
+MemberVO memberVO=null;
+if(session.getAttribute("memberVO")!=null){
+	 memberVO=(MemberVO)session.getAttribute("memberVO");
+	list=orderSvc.getOrderBYMEMBER(memberVO.getMember_id());
+}
 
 %>
+<c:set var="memberorderlist" value="<%=list %>"/>
 
-換頁回傳值:<%=Message2 %>
-<c:set var="Order_statusPage" value="<%=Message %>" scope="session"/>
-Order_statusPage:${Order_statusPage}
 <!DOCTYPE html>
 <html>
 <head>
 
 <meta charset="UTF-8">
-<title>所有訂單</title>
-		 <c:if test="${fn:length(list)>0}">
+<title>個人訂單</title>
 
-<div id="ordertitle">
-		 <h3>以下是所有訂單:</h3>
-		 <%= list.get(0).getOrder_no() %>
-		 
-		 <%if(!list.get(0).getOrder_no().equals(list.get(list.size() - 1).getOrder_no())){ %>
-		 →<%= list.get(list.size() - 1).getOrder_no() %>
-		 <%} %>
-	</div>	 
-</c:if>		 
-		
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
 	<font style="color:red">請修正以下錯誤:</font>
@@ -96,30 +51,25 @@ Order_statusPage:${Order_statusPage}
 
 	<tr>
 		<th>訂單編號</th>
-		<th>會員編號</th>
 		<th>會員名稱</th>
 		<th>狀態</th>
 		<th>訂單日期</th>
 		<th>總價</th>
 		<th>付款方式</th>
 		<th>查看訂單詳情</th>	
+		<th>修改</th>
 		<th>發送訊息</th>
 	</tr>
-	<%@ include file="../file/page1.file" %> 
+	<%@ include file="file/page1.file" %> 
 	
-	<c:forEach var="ordervo" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+	<c:forEach var="ordervo" items="${memberorderlist}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 					<c:set var="member_id" value="${ordervo.member_id}"/>
 		
 		<div>
 		<tr class="ordertr1">
 			<td>${ordervo.order_no}</td>
-			<td>${ordervo.member_id}</td>
-			<%
-			MemberVO mvo=msvc.getOneMember((String)pageContext.getAttribute("member_id"));
-
-			
-			%>
-			<td><%=mvo.getMember_name() %></td>
+		
+			<td>${memberVO.member_name}</td>
 			<%
     Map<Integer, String> orderstatusmap = new HashMap<>();
 			orderstatusmap.put(0, "已成立");
@@ -171,15 +121,18 @@ Order_statusPage:${Order_statusPage}
 			  <input type="hidden" name="whichPage" value="<%=whichPage%>">			     
 			  <input type="hidden" name="order_no"  value="${ordervo.order_no}">
 			  <input type="hidden" name="action" value="lookmore">
-			  <input type="hidden" name="pagemessage" value="lookmore">
                         <input style="display: none" type="submit" value="查看訂單明細">
-                                                 <input  type="hidden" name="Order_statusPage" value="${Order_statusPage}">
                         
                         
 			     </FORM>
 			
 			</td>
-		
+			<td>
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/shop_order/OrderServlet.do" style="margin-bottom: 0px;">
+			     <input type="submit" value="修改">
+			     <input type="hidden" name="order_no"  value="${ordervo.order_no}">
+			     <input type="hidden" name="action"	value="updateAddress"></FORM>
+			</td>
 			<!-- 刪除 -->
 <!-- 			<td> -->
 <%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/shop_order/OrderServlet.do" style="margin-bottom: 0px;"  onSubmit="return CheckForm();" > --%>
@@ -197,16 +150,17 @@ Order_statusPage:${Order_statusPage}
 			<!-- 還沒做 -->
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do" style="margin-bottom: 0px;"   >
-			     <input  class="ui button" type="submit" value="發送訊息" >
+			     <input type="submit" value="發送訊息" >
+			     <input type="hidden" name="empno"  value="${empVO.empno}">
+			     <input type="hidden" name="action" value="delete">
 			     <input	type="hidden" name="requestURL"	value="<%=request.getServletPath()%>">
 			     <input	type="hidden" name="whichPage" value="<%=whichPage%>"> 
-			     
 			     
 			     
 			     </FORM>
 			</td>
 		  </tr>
-        <tr class="orseraddress ordertr2"><td>地址</td><td colspan="7">
+        <tr class="orseraddress ordertr2"><td>地址</td><td colspan="9">
         
         
         ${ordervo.dv_address}
@@ -231,20 +185,6 @@ Order_statusPage:${Order_statusPage}
         			</c:if>
         
         </td>
-        	<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/shop_order/OrderServlet.do" style="margin-bottom: 0px;">
-			 <button class="ui btn labeled icon button"><i class="address card icon"></i> 修改地址 </button>
-			   
-			  
-<!-- 			     <input class="ui  icon button btn" type="submit" value="修改地址"> <i class="cloud icon"></i></input> -->
-			   
-<!-- 			     <input class="btn " type="submit" style="display: none" value="修改地址"></input> -->
-			   
-			   
-			     <input class="isupate" type="hidden" name="order_status"  value="${ordervo.order_status}">
-			     <input type="hidden" name="order_no"  value="${ordervo.order_no}">
-			     <input type="hidden" name="action"	value="updateAddress"></FORM>
-			</td>
  </tr>
 	</c:forEach>
 </table>
@@ -271,18 +211,6 @@ function CheckForm()
     return false;
 
 }   
-$(".isupate").each(function () {
-    if($(this).val()>1){
-        $(this).siblings(".btn").attr('disabled', 'disabled');
-        $(this).siblings(".btn").removeClass("address");
-    }
-  
-})
-
-
-
-
-
 </script>   
 
 

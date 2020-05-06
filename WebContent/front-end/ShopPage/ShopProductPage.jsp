@@ -42,7 +42,7 @@
 <title>商城頁面</title>
 <%
 	ProductService Psvc = new ProductService();
-	Set<ProductVO> list = Psvc.getAllProduct();
+	List<ProductVO> list = Psvc.getAllProduct();
 	pageContext.setAttribute("list", list);
 
 %>

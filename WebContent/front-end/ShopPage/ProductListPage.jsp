@@ -29,9 +29,9 @@
 
 
 
-Collection<ProductVO> productlist=null;
+List<ProductVO> productlist=null;
 	ProductService Psvc = new ProductService();
-	productlist=(Collection<ProductVO>)session.getAttribute("productlist");
+	productlist=(List<ProductVO>)session.getAttribute("productlist");
 	
 	String product_type=null;
 	

@@ -60,7 +60,7 @@
 <body bgcolor='white'>
 	<header>
 		<div id="top-logo" class="logo">
-			<a href="/DA106_G4_Foodporn/" title="回首頁"><img class="logo-photo"
+			<a href="<%=request.getContextPath() %>/index.jsp" title="回首頁"><img class="logo-photo"
 				src="<%=request.getContextPath() %>/image/FoodPron_Logo.png" alt="logo"></a>
 		</div>
 		<div class="function">

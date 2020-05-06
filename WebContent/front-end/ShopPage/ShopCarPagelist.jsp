@@ -69,8 +69,11 @@ pointer-events: none;
 		MemberVO vo=Msv.getOneMember((String)session.getAttribute("member_id"));
 		String member_name=vo.getMember_name();
 		
+		
 		%>
 			<c:set var="member_name" value="<%=member_name %>" scope="session"/>
+			<c:set var="membervo" value="<%=vo %>" scope="session"/>
+
 		
 	<%} %>
 		敬愛的會員<font class="membername">${member_name}</font>你好:
@@ -252,10 +255,21 @@ pointer-events: none;
 					</div>
 					<div id="checkbtn">
 						<!-- 轉移至SERVLT -->
+						<%
+						
+						String memberVO = (String)session.getAttribute("member_id");				
+						%>
 
-						<a  href="ProductCheckoutPage.jsp">
-							<button style="border-radius: 0px 0px 15px 0px"
-								class="checking ui right labeled icon button huge red">
+
+<button style='border-radius: 0px 0px 15px 0px;${membervo.validation!=1?"":"display: none"} '
+								class="  ui right labeled icon button huge blue">
+								<i class="right sync icon"></i> 請先驗證
+							</button>
+							
+							
+						<a  style='${membervo.validation==1?"":"display: none"}' href="ProductCheckoutPage.jsp">
+							<button style=" border-radius: 0px 0px 15px 0px"
+								class=" checking ui right labeled icon button huge red">
 								<i class="right arrow icon"></i> 結帳
 							</button>
 						</a>

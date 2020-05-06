@@ -4,6 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.product.model.*"%>
+
 <%@ page import="java.util.stream.Collectors"%>
 
 
@@ -40,24 +41,25 @@
         %>
 <%
 	ProductService Psvc = new ProductService();
-	Set<ProductVO> list = Psvc.getAllProduct();
-	String product_type ="";
-	if(request.getAttribute("product_type")!=null){
-		if(((String)request.getAttribute("product_type")).equals("all")){	
-			list = Psvc.getAllProduct();
-			product_type="0";
+List<ProductVO> list = Psvc.getAllProduct();
+String product_type ="0";
+if(request.getAttribute("product_type")!=null){
+	if(((String)request.getAttribute("product_type")).equals("all")){	
+		list = Psvc.getAllProduct();
+		product_type="0";
 
-		}
-		else{
-		 final String product_type2=(String)request.getAttribute("product_type");
-		list=list.stream()
-				.filter(p->p.getProduct_type().equals(product_type2))
-				.collect(Collectors.toSet());
-		product_type=typemap.get((String)request.getAttribute("product_type"))+"";
-	
-		}
 	}
-	
+	else{
+	 final String product_type2=(String)request.getAttribute("product_type");
+	list=list.stream()
+			.filter(p->p.getProduct_type().equals(product_type2))
+			.collect(Collectors.toList());
+			product_type=typemap.get((String)request.getAttribute("product_type"))+"";
+
+
+	}
+}
+
 	
 	
 	if(request.getParameter("product_typeA")!=null){
@@ -68,7 +70,7 @@
 			 final String product_type3=typemapC.get(key);
 				list=list.stream()
 						.filter(p->p.getProduct_type().equals(product_type3))
-						.collect(Collectors.toSet());
+						.collect(Collectors.toList());
 			
 		}
 		else{
@@ -81,7 +83,7 @@
 		}
 		
 	}
-	pageContext.setAttribute("list", list);
+	pageContext.setAttribute("Bprodcutlist", list);
 %>
 
 <!DOCTYPE html>
@@ -117,7 +119,6 @@
 	</div>
 	
 類型....${product_type}
-
 
 	<select class="product_type">
     <option value ="all"${product_type eq '0'?'selected':''} >所有商品</option>
@@ -172,7 +173,7 @@
 				
 			</thead>
 			<tbody id="ProductContext">
-				<c:forEach var="productvo" items="${list}" begin="<%=pageIndex%>"
+				<c:forEach var="productvo" items="${Bprodcutlist}" begin="<%=pageIndex%>"
 					end="<%=pageIndex+rowsPerPage-1%>">
 
 					<tr>
@@ -195,7 +196,7 @@
 
 
 
-						<td><input class="isrevise" type="text"
+						<td><input class="isrevise" type="hidden"
 							value="${productvo.product_status}"> <input type="hidden"
 							class="product_id" value="${productvo.product_id}">
 
@@ -224,9 +225,10 @@
 									name="product_id" value="${productvo.product_id}"> <input
 									type="hidden" name="action" value="detailopen"> <input
 									type="hidden" name="whichPage" value="<%=whichPage%>">
-
-
-
+<input type="hidden"
+									name="product_type" value="${productvo.product_type}">
+<input type="hidden"
+									name="fproduct_type" value="${product_type}">
 							</FORM>
 						</td>
 

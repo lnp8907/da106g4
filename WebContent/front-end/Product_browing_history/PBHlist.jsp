@@ -9,13 +9,15 @@
 <!DOCTYPE html>
 <html>
 <head>
+ 		<link rel="stylesheet" href="css/PBHlist.css">
+
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 
 <%Product_browing_historyService PBHSvc=new Product_browing_historyService();
-List <Product_browing_historyVO>PBHlist=null;
+List <Product_browing_historyVO>PBHlist=new LinkedList();
 ProductService Psvc=new ProductService();
 List <ProductVO> PBHProductlist =new LinkedList();
 
@@ -29,7 +31,6 @@ if(session.getAttribute("member_id")!=null){
 <c:set var="PBHlist" value='<%=PBHlist %>'/>
 <c:forEach var="PBHlist" items="${PBHlist}">
 <c:set var="product_id" value='${PBHlist.product_id}' scope="request"/>
-${product_id}
 <%
 ProductVO PVO=Psvc.getOneProduct((String)request.getAttribute("product_id"));
 PBHProductlist.add(PVO);
@@ -38,9 +39,11 @@ PBHProductlist.add(PVO);
  		
 <c:set var="PBHProductlist" value='<%=PBHProductlist %>' scope="request"/>
 
- 	<%@ include file="file/page1.file" %> 
+ 	
+ 	
 
 <div id="mainproduct">
+ 	<%@ include file="file/page1.file" %> 
 
  <font>共<%=rowNumber%>筆</font>
  
@@ -61,10 +64,12 @@ PBHProductlist.add(PVO);
 	
 		</c:forEach>
                 </ul>
+                
 
             </div>
 
 
+                 	<%@ include file="file/page2.file" %> 
 
 
 

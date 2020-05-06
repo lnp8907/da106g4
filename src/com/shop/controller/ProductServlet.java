@@ -68,17 +68,26 @@ public class ProductServlet extends HttpServlet {
 					return;// 程式中斷
 				}
 				System.out.println(product_id);
+				String product_type = req.getParameter("product_type");
+				System.out.println("取得類型"+product_type);
 				
-
 				/*************************** 2.開始查詢資料 *****************************************/
 				ProductService productSvc = new ProductService();
 				ProductVO productvo = productSvc.getOneProduct(product_id);
-				System.out.println(productvo);
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("openMod", "openMod");
-				req.setAttribute("detailProductvo", productvo); // 資料庫取出的empVO物件,存入req
+				req.setAttribute("detailProductvo", productvo);
+				System.out.println("獲得帳狀態"+(String)req.getParameter("fproduct_type"));
+				if(((String)req.getParameter("fproduct_type")).equals("0")) {
+					
+					req.setAttribute("product_type", "all");
+					
+				}else {
+				req.setAttribute("product_type", product_type);
+				}
+				// 資料庫取出的empVO物件,存入req
 				String whichPage=req.getParameter("whichPage");
-						String url = "/back-end/shop_product/shop_backendPage.jsp?whichPage="+whichPage;
+						String url = "/back-end/shop_product/shop_backendPage.jsp?whichPage="+whichPage+"&product_type="+product_type;
 
 //						String url = "/back-end/shop_product/shop_backendPage.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp

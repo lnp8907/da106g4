@@ -576,9 +576,9 @@ public class ProductDAO implements ProductDAO_interface {
 	
 	}
 	@Override
-	public Set<ProductVO> getAllExceprRecipe() {
+	public List<ProductVO> getAllExceprRecipe() {
 		System.out.println("獲得除了料理包外的商品");
-		Set<ProductVO> list = new LinkedHashSet<ProductVO>();
+		List<ProductVO> list = new LinkedList<ProductVO>();
 		ProductVO productVO = null;
 
 		Connection con = null;
@@ -643,7 +643,7 @@ public class ProductDAO implements ProductDAO_interface {
 		return list;
 	}
 	
-	public Set<ProductVO> getAllExceprRecipe(Integer product_status) {
+	public List<ProductVO> getAllExceprRecipe(Integer product_status) {
 		System.out.println("獲得除了料理包外的商品");
 		if(product_status==0) {
 			System.out.println("且已上架");
@@ -658,7 +658,7 @@ System.out.println("且未上架");
 		}
 		
 		
-		Set<ProductVO> list = new LinkedHashSet<ProductVO>();
+		List<ProductVO> list = new LinkedList<ProductVO>();
 		ProductVO productVO = null;
 		 String GETStatus = "SELECT PRODUCT_ID, RECIPE_ID, PRODUCT_TYPE, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_PHOTO, PRODUCT_STATUS, CARBOHYDRATE, PROTEIN, FAT, CALORIE, VITAMIN_B, VITAMIN_C,SALT,VAGETABLE,CONTENT FROM PRODUCT"
 		 		

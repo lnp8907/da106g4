@@ -118,10 +118,10 @@ public class ProductService {
 		return dao.gettypelist(product_type,0);
 	}
 	/*獲取所有商品商品除了食譜*/
-	public Set<ProductVO> getAllProduct() {
+	public List<ProductVO> getAllProduct() {
 		return dao.getAllExceprRecipe();
 	}
-	public Set<ProductVO> getAllProduct(Integer product_status) {
+	public List<ProductVO> getAllProduct(Integer product_status) {
 		return dao.getAllExceprRecipe(product_status);
 	}
 	/*獲取LIST長度*/

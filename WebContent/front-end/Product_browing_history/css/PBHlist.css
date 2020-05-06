@@ -1,0 +1,229 @@
+
+
+
+#mainproduct div{
+word-wrap: break-word; word-break: normal;
+	  background-color: white;
+	    width: 90px;
+}
+#mainproduct div:first-child{
+    margin: 10px auto 0px;
+
+}
+#mainproduct div:last-child{
+    margin-left: 20px;
+}
+
+
+
+#mainproduct li{
+border-radius:999em;
+	width: 190px;
+    height: 190px;
+    float: left;
+    margin: 15px 15px 15px 10px;
+    list-style-type:none;
+     	  background-color: white;
+     
+     
+}
+
+
+#mainproduct img{
+
+    width: 100px;
+    height: 100px;
+
+}
+#mainproduct{
+	    background-color: #f9f9f9;
+	
+    width: 900px;
+    height: 550px;
+/*     margin-left: 200px; */
+}
+#typelist{
+    margin-top: 20px;
+    padding:0px;
+    float:left;
+
+    
+
+   }
+#typelist>li{
+    width: 185px;
+    list-style-type:none;
+    	    background-color: #f9f9f9;
+    margin-bottom:20px ;
+    height: 45px;
+
+
+}
+/*清單內div控制*/
+#typelist div:first-child{
+float: left;
+}
+
+#typelist .typename{
+    line-height:50px;
+    height: 40px;
+    width: 65%;
+    float: left;
+}
+/*圖標控制*/
+#typelist li i{
+    margin-top: 12px;
+
+
+}
+#typelist img{
+
+    width: 35px;
+height: 35px;
+    border-radius:999em;
+
+
+}
+#productPagecontext{
+    width: 1100px;
+    height:900px;
+    
+}
+
+.imglist-l a{
+	    font-family: '微軟正黑體 ', monospace;
+    font-weight: bold;
+
+
+
+
+
+}
+
+a div{
+	    font-family: '微軟正黑體 Light', monospace;
+	
+    color: #e4002b;
+}
+
+
+
+	font{
+    color:#e4002b;
+	
+	   font-family: '微軟正黑體 Light', monospace;
+       font-weight: bold;
+}
+	
+	
+	
+	/*測試*/
+a{
+       font-weight: bold;
+
+
+
+/*........................RWD....................*/
+@media (max-width: 574px){
+
+   #ShopListLocation {
+   margin:20px auto;
+    width:480px;
+        height: 1450px;
+        padding: 0;
+    }
+     ul.imglist{
+     margin:0px;
+    width:100%;
+
+     
+     }  
+     ul.imglist li {
+          margin:0px 17px 16px;
+     
+        width: 200px;
+        display: inline-block;
+        float: none;
+        text-align: center;
+    }
+    	
+	
+}
+@media (min-width: 575px) and (max-width: 767px) {
+
+    .ShopLsearch{
+        width: 600px;
+        height: 50px;
+    }
+    .productad div{
+        width: 600px;
+        height: 240px;
+    }
+    .shop-slide_viewer {
+        height: 450px;
+        padding-left: 2px;
+    }
+
+    #ShopListLocation {
+    width:600px;
+        height: 830px;
+        padding: 0;
+        
+    }
+        ul.imglist{
+     margin:0px;
+    width:100%;
+
+     
+     }  
+ ul.imglist li {
+          margin:0px 23px 23px;
+     
+        width: 150px;
+        display: inline-block;
+        float: none;
+        text-align: center;
+    }
+
+
+ 
+
+    ul.imglist li img {
+        width: 100%;
+        height: 140px;
+    }
+
+    ul.imglist li span {
+        width: 100%;
+    }
+
+
+}
+
+@media(min-width:768px) and (max-width: 1100px) {
+
+
+
+      ul.imglist{
+     margin:0px;
+    width:100%;
+	
+     
+     }  
+ ul.imglist li {
+          margin:0px 40px 25px;
+     
+        display: inline-block;
+        float: none;
+        text-align: center;
+    }
+
+
+    #ShopListLocation {
+        height: 1000px;
+        width: 850px;
+    }
+
+
+}
+
