@@ -1,6 +1,6 @@
 package andriod.com.donation_record.model;
 
-import java.sql.Timestamp;
+import java.sql.Timestamp;    //
 
 public class Donation_record  implements java.io.Serializable{
 	private String donation_id;
