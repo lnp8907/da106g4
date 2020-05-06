@@ -265,21 +265,6 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	<link rel="stylesheet" href="../../css/semantic.min.css">
 	<script src="../../js/semantic.min.js"></script>
 	<link rel="stylesheet" href="css/productPage.css">
@@ -328,7 +313,7 @@
 	<div id="ShopPathLocation">
 
 		<div class="ui breadcrumb">
-			<a class="section" href="<%=request.getContextPath()%>/index.html">Foodporn</a>
+			<a class="section" href="<%=request.getContextPath()%>/index.jsp">Foodporn</a>
 			<i class="right angle icon divider"></i> <a class="section"
 				href="ShopHomePage.jsp">商城首頁</a> <i class="right angle icon divider"></i>
 			<a class="section"
@@ -677,27 +662,17 @@ $('#plusmun').click(function () {
             width: 340,
             show: 'fade',
             hide: "blind"
-            
-
-
         });
-	
-
-
     $(".addcar").click(function () {
 
         $("#buymessage").dialog("open");
 
     });
 
- 
-    
     $('.cancelshopcart').click(function () {
         $("#buymessage").dialog("close");
-
     });
 
-  
 </script>
 </body>
 
@@ -706,7 +681,7 @@ $('#plusmun').click(function () {
 </html>
 
 <script>
-
+//購物車js
 		function changecarmun(data) {
 			if(data==null){
 					$(".carmessage2").hide();
@@ -744,8 +719,7 @@ $('#plusmun').click(function () {
 			         	data:{
 			         		product_price:"<%=productvo.getProduct_price()%>",
 			         		action:"ADD",
-			         		product_id:'<%=productvo.getProduct_id()%>
-	',
+			         		product_id:'<%=productvo.getProduct_id()%>',
 				quantity : $("#inquantity").val()
 
 			},
@@ -826,4 +800,3 @@ $('#plusmun').click(function () {
 	};
 	radar_chart.setOption(option);
 </script>
-

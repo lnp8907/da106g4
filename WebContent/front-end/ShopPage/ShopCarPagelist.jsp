@@ -26,6 +26,7 @@ pointer-events: none;
 </head>
 
 <body>
+
 	<%
 		Vector<Order_detailVO> buyProductlist = null;
 		@SuppressWarnings("unchecked")

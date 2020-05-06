@@ -50,7 +50,7 @@
 	
 	<!-- 商城CSS -->
 	<link rel="stylesheet" href="css/productPage.css">	
-	<link rel="stylesheet" href="css/productPage.css">
+	
 <!-- JQ -->
 
 
@@ -325,7 +325,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 		<!-- 搜尋列請填入首頁 -->
 		<div id="ShopPathLocation">
 		<div class="ui breadcrumb ShopPathLocation">
-    <a class="section" href="<%=request.getContextPath() %>/index.html">foodporn</a>
+    <a class="section" href="<%=request.getContextPath() %>/index.jsp">foodporn</a>
     <i class="right angle icon divider"></i>
 
     <div class="active section">商城首頁</div>
