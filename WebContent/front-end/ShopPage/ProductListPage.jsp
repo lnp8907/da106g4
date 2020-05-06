@@ -213,6 +213,16 @@ Collection<ProductVO> productlist=null;
         <%@ include file="Includepage/page2.file" %>
         
 	        </div>
+	        
+	        
+	        <div>
+	        <c:if test="${member_id!=null}">
+	                <%@ include file="ProductCarousel.jsp" %>
+
+	        </c:if>
+	        
+	        
+	        </div>
 	
 
 </body>

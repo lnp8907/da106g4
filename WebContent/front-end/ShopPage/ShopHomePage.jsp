@@ -475,6 +475,16 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 			</div>
 			<!-- end of Mallproduct -->
 			<div>
+			 <div>
+	        <c:if test="${member_id!=null}">
+	                <%@ include file="ProductCarousel.jsp" %>
+
+	        </c:if>
+	        
+	        
+	        </div>
+			
+			
 				<span class="article-section-seemore">查看瀏覽紀錄</span>
 			</div>
 

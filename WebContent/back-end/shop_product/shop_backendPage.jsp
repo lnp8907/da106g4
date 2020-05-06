@@ -279,10 +279,10 @@ function isrevise(){
 function isrevise(){
     $(".isrevise").each(function () {
         if($(this).val()==1){
-            $(this).parent().siblings(".upate").find(".updateproduct").attr('disabled', true);
+            $(this).parent().siblings(".upate").find(".updateproduct").attr('disabled', false);
         }
         else if($(this).val()==0){
-            $(this).parent().siblings(".upate").find(".updateproduct").attr('disabled', false);
+            $(this).parent().siblings(".upate").find(".updateproduct").attr('disabled', true);
         }
     })
 }
@@ -331,10 +331,8 @@ function isrevise(){
 
 
     })
-<<<<<<< HEAD
-    //網頁啟動就執行
-=======
->>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
+ //  網頁啟動就執行
+
 	    $(document).ready(isrevise());
 
 

@@ -195,7 +195,7 @@
 
 
 
-						<td><input class="isrevise" type="hidden"
+						<td><input class="isrevise" type="text"
 							value="${productvo.product_status}"> <input type="hidden"
 							class="product_id" value="${productvo.product_id}">
 
