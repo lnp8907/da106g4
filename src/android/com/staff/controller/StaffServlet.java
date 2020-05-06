@@ -35,22 +35,22 @@ public class StaffServlet extends HttpServlet {
 		StaffDAO staffDao = new StaffDAOImpl();
 		JsonObject jsonObject = gson.fromJson(jsonIn.toString(), JsonObject.class);
 		String action = jsonObject.get("action").getAsString();
-
+		
 		if (action.equals("isMember")) {
-			String staff_account = jsonObject.get("staff_account").getAsString();
+			String staff_id = jsonObject.get("staff_id").getAsString();
 			String staff_password = jsonObject.get("staff_password").getAsString();
-			writeText(res,	String.valueOf(staffDao.isMember(staff_account, staff_password)));
+			writeText(res,	String.valueOf(staffDao.isMember(staff_id, staff_password)));
 		} else if (action.equals("isUserIdExist")) {
-			String staff_account = jsonObject.get("staff_account").getAsString();
-			writeText(res, String.valueOf(staffDao.isUserIdExist(staff_account)));
+			String staff_id = jsonObject.get("staff_id").getAsString();
+			writeText(res, String.valueOf(staffDao.isUserIdExist(staff_id)));
 		} 
 //		else if (action.equals("add")) {
 //			Member member = gson.fromJson(jsonObject.get("member").getAsString(), Member.class);
 //			writeText(res, String.valueOf(memberDao.add(member)));
 //		} 
 		else if (action.equals("findById")) {
-			String staff_account = jsonObject.get("staff_account").getAsString();
-			Staff staff = staffDao.findById(staff_account);
+			String staff_id = jsonObject.get("staff_id").getAsString();
+			Staff staff = staffDao.findById(staff_id);
 			writeText(res, staff == null ? "" : gson.toJson(staff));
 		} 
 //		else if (action.equals("update")) {

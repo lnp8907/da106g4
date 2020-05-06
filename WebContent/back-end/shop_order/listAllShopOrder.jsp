@@ -1,4 +1,3 @@
-<%@page import="java.util.stream.Collector"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -8,45 +7,44 @@
 <%@ page import="com.ordermanager.shop.*" %>
 <%@ page import="java.sql.Timestamp" %>
 <%@ page import="java.text.*" %>
-<<<<<<< HEAD
-<%@ page import="java.util.stream.Collectors"%>
-
-=======
 <%@page import="com.member.model.*"%>
 <%@page import="com.member.model.MemberService"%>
-<<<<<<< HEAD
->>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
-=======
 <%@page import="java.util.stream.Collectors"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
 
->>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
 
 <%
 
 OrderService orderSvc=new OrderService();
 List<Shop_orderVO>list=null;
-	if(request.getAttribute("Order_statusPage")==null){  
+String Message2="";
+
+String Message="";
+	if((request.getAttribute("Order_statusPage")==null&&request.getParameter("Order_statusPage")==null)||(request.getAttribute("Order_statusPage")==null&&request.getParameter("Order_statusPage").equals(""))){  
 		list= orderSvc.getAll();
-	
 	}
 	else{
-		String Message=(String)request.getAttribute("Order_statusPage");
-	if(Message.equals("0")){  
+		if(request.getParameter("Order_statusPage")!=null){
+			 Message=(String)request.getParameter("Order_statusPage");					
+		}
+		else{
+		 Message=(String)request.getAttribute("Order_statusPage");}
+	if(Message.equals("waitpage")){  
 		list= orderSvc.getAll();
 		list=list.stream().filter(p->p.getOrder_status()==0)
 				.collect(Collectors.toList());
 	}
-	if(Message.equals("1")){  
+	if(Message.equals("traveling")){  
 		list= orderSvc.getAll();
 		list=list.stream().filter(p->p.getOrder_status()==1)
 				.collect(Collectors.toList());
 	}
-	if(Message.equals("2")){  
+	if(Message.equals("complete")){  
 		list= orderSvc.getAll();
 		list=list.stream().filter(p->p.getOrder_status()==2)
 				.collect(Collectors.toList());
 	}
-	if(Message.equals("3")){  
+	if(Message.equals("cancel")){  
 		list= orderSvc.getAll();
 		list=list.stream().filter(p->p.getOrder_status()==3)
 				.collect(Collectors.toList());
@@ -58,23 +56,27 @@ pageContext.setAttribute("list",list);
 MemberService msvc=new MemberService();
 
 %>
+
+換頁回傳值:<%=Message2 %>
+<c:set var="Order_statusPage" value="<%=Message %>" scope="session"/>
+Order_statusPage:${Order_statusPage}
 <!DOCTYPE html>
 <html>
 <head>
 
 <meta charset="UTF-8">
 <title>所有訂單</title>
+		 <c:if test="${fn:length(list)>0}">
+
 <div id="ordertitle">
 		 <h3>以下是所有訂單:</h3>
-		 
-		 <%if(list.size()>0){ %>
 		 <%= list.get(0).getOrder_no() %>
 		 
 		 <%if(!list.get(0).getOrder_no().equals(list.get(list.size() - 1).getOrder_no())){ %>
 		 →<%= list.get(list.size() - 1).getOrder_no() %>
-		 <% }}%>
+		 <%} %>
 	</div>	 
-		 
+</c:if>		 
 		
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -101,7 +103,6 @@ MemberService msvc=new MemberService();
 		<th>總價</th>
 		<th>付款方式</th>
 		<th>查看訂單詳情</th>	
-		<th>修改</th>
 		<th>發送訊息</th>
 	</tr>
 	<%@ include file="../file/page1.file" %> 
@@ -170,17 +171,15 @@ MemberService msvc=new MemberService();
 			  <input type="hidden" name="whichPage" value="<%=whichPage%>">			     
 			  <input type="hidden" name="order_no"  value="${ordervo.order_no}">
 			  <input type="hidden" name="action" value="lookmore">
+			  <input type="hidden" name="pagemessage" value="lookmore">
                         <input style="display: none" type="submit" value="查看訂單明細">
+                                                 <input  type="hidden" name="Order_statusPage" value="${Order_statusPage}">
+                        
                         
 			     </FORM>
 			
 			</td>
-			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/shop_order/OrderServlet.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="修改">
-			     <input type="hidden" name="order_no"  value="${ordervo.order_no}">
-			     <input type="hidden" name="action"	value="updateAddress"></FORM>
-			</td>
+		
 			<!-- 刪除 -->
 <!-- 			<td> -->
 <%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/shop_order/OrderServlet.do" style="margin-bottom: 0px;"  onSubmit="return CheckForm();" > --%>
@@ -198,17 +197,16 @@ MemberService msvc=new MemberService();
 			<!-- 還沒做 -->
 			<td>
 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do" style="margin-bottom: 0px;"   >
-			     <input type="submit" value="發送訊息" >
-			     <input type="hidden" name="empno"  value="${empVO.empno}">
-			     <input type="hidden" name="action" value="delete">
+			     <input  class="ui button" type="submit" value="發送訊息" >
 			     <input	type="hidden" name="requestURL"	value="<%=request.getServletPath()%>">
 			     <input	type="hidden" name="whichPage" value="<%=whichPage%>"> 
+			     
 			     
 			     
 			     </FORM>
 			</td>
 		  </tr>
-        <tr class="orseraddress ordertr2"><td>地址</td><td colspan="9">
+        <tr class="orseraddress ordertr2"><td>地址</td><td colspan="7">
         
         
         ${ordervo.dv_address}
@@ -233,11 +231,25 @@ MemberService msvc=new MemberService();
         			</c:if>
         
         </td>
+        	<td>
+			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/shop_order/OrderServlet.do" style="margin-bottom: 0px;">
+			 <button class="ui btn labeled icon button"><i class="address card icon"></i> 修改地址 </button>
+			   
+			  
+<!-- 			     <input class="ui  icon button btn" type="submit" value="修改地址"> <i class="cloud icon"></i></input> -->
+			   
+<!-- 			     <input class="btn " type="submit" style="display: none" value="修改地址"></input> -->
+			   
+			   
+			     <input class="isupate" type="hidden" name="order_status"  value="${ordervo.order_status}">
+			     <input type="hidden" name="order_no"  value="${ordervo.order_no}">
+			     <input type="hidden" name="action"	value="updateAddress"></FORM>
+			</td>
  </tr>
 	</c:forEach>
 </table>
 
-<%@ include file="../file/page2.file" %>
+<%@ include file="file/page2.file" %>
 
 <style>
 {
@@ -259,6 +271,18 @@ function CheckForm()
     return false;
 
 }   
+$(".isupate").each(function () {
+    if($(this).val()>1){
+        $(this).siblings(".btn").attr('disabled', 'disabled');
+        $(this).siblings(".btn").removeClass("address");
+    }
+  
+})
+
+
+
+
+
 </script>   
 
 

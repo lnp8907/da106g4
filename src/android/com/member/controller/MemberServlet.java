@@ -69,8 +69,8 @@ public class MemberServlet extends HttpServlet {
 		} 
 		else if (action.equals("getDonate")) {
 			//System.out.println("donate method");
-			String member_id = jsonObject.get("member_id").getAsString();
-			writeText(res, String.valueOf(memberDao.getDonate(member_id)));
+			String c_member_id = jsonObject.get("c_member_id").getAsString();
+			writeText(res, String.valueOf(memberDao.getDonate(c_member_id)));
 		} 
 		else if (action.equals("findOneByAccountAndPassword")) {
 			String account = jsonObject.get("account").getAsString();

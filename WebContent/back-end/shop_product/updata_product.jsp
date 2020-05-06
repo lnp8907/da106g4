@@ -66,7 +66,7 @@ if(request.getAttribute("detailProductvo")!=null){
 	</ul>
 </c:if>
 
-<FORM METHOD="post" ACTION="product.do" name="form1" enctype="multipart/form-data">
+<FORM METHOD="post" ACTION="ProductServlet" name="form1" enctype="multipart/form-data">
 <table>
 <tr>
 		<td><img  src="Product_photoReader?product_id=<%=productvo.getProduct_id()%>"
@@ -181,7 +181,11 @@ if(request.getAttribute("detailProductvo")!=null){
 <br>
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="product_id" value="<%=productvo.getProduct_id()%>">
-<input type="submit" value="送出修改"></FORM>
+<input type="submit" value="送出修改">
+<input type="hidden" name="whichPage" value="${whichPage}">
+which=${whichPage}
+
+</FORM>
 
 <script>
 if($("input").val()=="null"){

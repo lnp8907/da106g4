@@ -20,7 +20,7 @@ import com.product.model.ProductService;
 import com.product.model.ProductVO;
 
 @MultipartConfig
-@WebServlet("/back-end/shop_product/ProductServlet")
+@WebServlet("/TEST/ProductServlet")
 public class ProductServlet extends HttpServlet {
 	String saveDirectory = "/images_uploaded"; // 上傳檔案的目的地目錄;
 
@@ -41,6 +41,8 @@ public class ProductServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		//打開詳細欄位
+		
+		
 		if ("detailopen".equals(action)) {
 			System.out.println("有進來喔 處理打開理詳細頁面");
 			List<String> errorMsgs = new LinkedList<String>();
@@ -66,17 +68,26 @@ public class ProductServlet extends HttpServlet {
 					return;// 程式中斷
 				}
 				System.out.println(product_id);
+				String product_type = req.getParameter("product_type");
+				System.out.println("取得類型"+product_type);
 				
-
 				/*************************** 2.開始查詢資料 *****************************************/
 				ProductService productSvc = new ProductService();
 				ProductVO productvo = productSvc.getOneProduct(product_id);
-				System.out.println(productvo);
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("openMod", "openMod");
-				req.setAttribute("detailProductvo", productvo); // 資料庫取出的empVO物件,存入req
+				req.setAttribute("detailProductvo", productvo);
+				System.out.println("獲得帳狀態"+(String)req.getParameter("fproduct_type"));
+				if(((String)req.getParameter("fproduct_type")).equals("0")) {
+					
+					req.setAttribute("product_type", "all");
+					
+				}else {
+				req.setAttribute("product_type", product_type);
+				}
+				// 資料庫取出的empVO物件,存入req
 				String whichPage=req.getParameter("whichPage");
-						String url = "/back-end/shop_product/shop_backendPage.jsp?whichPage="+whichPage;
+						String url = "/back-end/shop_product/shop_backendPage.jsp?whichPage="+whichPage+"&product_type="+product_type;
 
 //						String url = "/back-end/shop_product/shop_backendPage.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
@@ -122,10 +133,12 @@ public class ProductServlet extends HttpServlet {
 				ProductService productSvc = new ProductService();
 				ProductVO productvo = productSvc.getOneProduct(product_id);
 				System.out.println(productvo);
+				System.out.println("獲取頁面"+req.getParameter("whichPage"));
+				String whichPage=req.getParameter("whichPage");
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("openMod", "upate");
 				req.setAttribute("detailProductvo", productvo); // 資料庫取出的empVO物件,存入req
-				String url = "/back-end/shop_product/shop_backendPage.jsp";
+				String url = "/back-end/shop_product/shop_backendPage.jsp?whichPage="+whichPage;
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 
@@ -303,7 +316,7 @@ public class ProductServlet extends HttpServlet {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 
 				String product_id = new String(req.getParameter("product_id").trim());
-				System.out.println("獲得ID:product_id" + product_id);
+				System.out.println("獲得ID:product_id:" + product_id);
 				ProductService prosvc = new ProductService();
 				ProductVO productvo = prosvc.getOneProduct(product_id);
 
@@ -512,11 +525,13 @@ public class ProductServlet extends HttpServlet {
 				System.out.println("更新後\n品名:" + product_type + product_name + product_price + product_photo
 						+ product_status + carbohydrate + protein + fat + calorie + vitamin_B + vitamin_C + salt
 						+ vagetbale + content);
+				System.out.println("獲取頁面"+req.getParameter("whichPage"));
+				String whichPage=req.getParameter("whichPage");
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				prosvc.update(product_id, product_type, product_name, product_price, product_photo, product_status,
 						carbohydrate, protein, fat, calorie, vitamin_B, vitamin_C, salt, vagetbale, content);
 				req.setAttribute("product_id", product_id);
-				String url = "/back-end/shop_product/listOneProduct.jsp";
+				String url = "/back-end/shop_product/shop_backendPage.jsp?whichPage="+whichPage;
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 

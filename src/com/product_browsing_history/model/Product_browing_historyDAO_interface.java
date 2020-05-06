@@ -1,5 +1,6 @@
 package com.product_browsing_history.model;
 
+import java.util.List;
 import java.util.Set;
 
 
@@ -12,6 +13,6 @@ public interface Product_browing_historyDAO_interface {
     public void deleteAll(String member_id );
 
     //比對全部
-    public Set<Product_browing_historyVO> getmemberList(String member_id);
+    public List<Product_browing_historyVO> getmemberList(String member_id);
 
 }

@@ -101,26 +101,26 @@ public class OrderPageServlet extends HttpServlet {
 				}
 				if ("waitpage".equals(pagemessage)) {
 					System.out.println("設置"+pagemessage);
-					req.setAttribute("Order_statusPage", "0");
+					req.setAttribute("Order_statusPage", "waitpage");
 
 
 				}
 				else if ("traveling".equals(pagemessage)) {
 					System.out.println("設置"+pagemessage);
 
-					req.setAttribute("Order_statusPage", "1");
+					req.setAttribute("Order_statusPage", "traveling");
 
 				}
 				else if ("complete".equals(pagemessage)) {
 					System.out.println("設置"+pagemessage);
 
-					req.setAttribute("Order_statusPage", "2");
+					req.setAttribute("Order_statusPage", "complete");
 
 				}
 				else	if ("cancel".equals(pagemessage)) {
 					System.out.println("設置"+pagemessage);
 
-					req.setAttribute("Order_statusPage", "3");
+					req.setAttribute("Order_statusPage", "cancel");
 
 				}
 System.out.println("開始前往"+pagemessage);

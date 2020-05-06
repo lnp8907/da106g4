@@ -1,5 +1,7 @@
 package com.product_browsing_history.model;
 
+import java.util.List;
+import java.util.Set;
 
 public class Product_browing_historyService {
 	private Product_browing_historyDAO_interface dao;
@@ -8,6 +10,11 @@ public class Product_browing_historyService {
 		
 		dao=new Product_browing_historyDAO();
 	}
+	public List <Product_browing_historyVO> getAll(String member_id) {
+		
+		List<Product_browing_historyVO> list=dao.getmemberList(member_id);
+		return list;
+		}
 
 	public Product_browing_historyVO insert(String member_id, String product_id) {
 		System.out.println("啟動服務準備新增");

@@ -42,56 +42,8 @@
 			</c:forEach>
 		</ul>
 	</c:if>
-	<div class="container">
-	<div class="box">
-		<!--這裡是左邊選單-->
-		<div class="left-bar">
-		  <div class="back-endlefecotext">
-                                    <ul id="leftMenu">
-                                        <li class="lialist">
-                                            <div class="iconstatus" style="display: none">OPEN</div>
-                                            <a style="color: #E4002B" class=" productlist" title="open or close this section " href="#">商品管理
-                                                <i class="angle up icon" style="color: #E4002B"></i>
-                                            </a>
-                                            <ul class="BList" >
-                                                <li><a  href="ShopPageServlet?action=listallEX">查看商品</a></li>
-                                        <li><a  id="Aaddproducr" style="color: red" href="ShopPageServlet?action=addProduct&whichPage=${whichPage}" >新增商品</a></li>
-                                                <li><a href="ShopPageServlet?action=listAllReceipe">查看食譜料理包</a></li>
-                                                <li><a href="ShopPageServlet?action=listAllReceipeEXcheck">查看審核中料理包</a></li>
-                                                <li><a href="ShopPageServlet?action=IrregularPage">???????????</a></li>
-                                              
-                                            <style>
-                                            #Aaddproducr{
-                                            pointer-events:none;
-                                            
-                                            }
-                                            </style>
-                                            </ul>
-                                        </li>
 
-                                        <li class="lialist">
-                                            <div class="iconstatus" style="display: none">CLOSE</div>
-
-                                            <a class=" orderlist" title="open or close this section " href="#">管理訂單
-                                                <i class="angle down icon"></i>
-                                            </a>
-                                            <ul class="BList" >
-
-                                                <li><a href="#">查看全部訂單</a></li>
-                                                <li><a href="#">查詢訂單</a></li>
-                                                <li><a href="#">???????</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-
-
-
-                                </div>
-
-
-
-                                <span class="fa fa-sign-out">登出</span>
-                            </div>
+	
                             <div class="wrapper">
 	
 	
@@ -239,8 +191,6 @@
 				</div>
 
 
-	</div>
-</div>
 	<script>
 		$("#imgView").change(function() {
 

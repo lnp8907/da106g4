@@ -17,6 +17,7 @@ public interface InstantDeliveryOrderDAO_interface {
           public List<InstantDeliveryOrderVO> getDeliveryOrder(Integer o_status);
           public boolean updateStaffId(String staff_id, String ido_no, String o_status);
           public List<OrderProductVO> getOneOrderProductVO(String ido_no, Connection con);
+          public boolean finishOrder(String ido_no, Integer o_status);
           //萬用複合查詢(傳入參數型態Map)(回傳 List)
       //  public List<RecipeVO> getAll(Map<String, String[]> map); 
 }
