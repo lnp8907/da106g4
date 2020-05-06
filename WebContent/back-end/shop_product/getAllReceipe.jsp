@@ -105,19 +105,19 @@
 
 						<!-- 按鈕 -->
 
-						<td>
-							<!-- 詳細頁面 -->
-							<FORM METHOD="post" ACTION="ProductServlet"
-								style="margin-bottom: 0px;">
-								<input type="submit" value="查看更多"> <input type="hidden"
-									name="product_id" value="${productvo.product_id}"> <input
-									type="hidden" name="action" value="detailopen"> <input
-									type="hidden" name="whichPage" value="<%=whichPage%>">
+<!-- 						<td> -->
+<!-- 							詳細頁面 -->
+<!-- 							<FORM METHOD="post" ACTION="ProductServlet" -->
+<!-- 								style="margin-bottom: 0px;"> -->
+<!-- 								<input type="submit" value="查看更多"> <input type="hidden" -->
+<%-- 									name="product_id" value="${productvo.product_id}"> <input --%>
+<!-- 									type="hidden" name="action" value="detailopen"> <input -->
+<%-- 									type="hidden" name="whichPage" value="<%=whichPage%>"> --%>
 
 
 
-							</FORM>
-						</td>
+<!-- 							</FORM> -->
+<!-- 						</td> -->
 
 						<td class="upate">
 							<!-- 修改 -->

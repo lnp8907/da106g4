@@ -1,0 +1,10 @@
+.productCarouse{
+    width: 1100px;
+    margin: 20px auto;
+    background-color: teal;
+}
+.productCarouse img{
+	width:200px;
+	height: 200px;
+	
+}

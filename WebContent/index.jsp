@@ -1,9 +1,21 @@
+	<%@page import="com.order_detail.model.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <%@page import="com.member.model.*"%>
+    	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+    <%@ page import="java.util.*"%>
     
 <%
+//購物車獲取
+Vector<Order_detailVO> productlist;
+if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
+	productlist = new Vector<Order_detailVO>();
+
+} else {
+	productlist = (Vector<Order_detailVO>) session.getAttribute("productCar");
+}
+
     String member_id =(String) session.getAttribute("member_id");
 	out.println(member_id);
 	MemberVO memberVO = (MemberVO)session.getAttribute("memberVO");
@@ -16,6 +28,7 @@
 	*/
 %>
 <%@ page import="java.util.*"%>
+<c:set var="productlist" value="<%=productlist %>"/>
 
 
 
@@ -131,14 +144,31 @@
 				
 				
 				
-				
+				<!-- 購物車 -->
 				<div class="shop-car">
-					<a href="front-end/ShopPage/ProductPage?action=checktpage1"><img class="header-icon"
-						src="image/shopping-cart-icon.png" alt="shopping-cart">
+					<a
+						href="<%=request.getContextPath()%>/front-end/ShopPage/ProductPage?action=checktpage1">
+
+						<div class="carmessage1">
+							<img class="header-icon"
+								src="<%=request.getContextPath()%>/image/shopping-cart-icon.png"
+								alt="shopping-cart">
+
+
+						</div>
+						<div class="carmessage2" style="display: none">${fn:length(productlist)}</div>
+						<div class="carmessagecircle" style="display: none">more</div>
+
+
+
 						<div class="herder-icon-span">
 							<span class="shop-car-span">購物車</span>
-						</div> </a>
+
+						</div>
+					</a>
 				</div>
+								<!-- 購物車 -->
+				
 				<div class="notice">
 					<a href="#"><img class="header-icon" src="image/ico_notice.png"
 						alt="notice-icon">
@@ -612,7 +642,7 @@
 									class="imglist-li-span">魚貝類</span>
 							</a></li>
 							<li class="imglist-li" data-aos="zoom-in"><a href="front-end/ShopPage/ProductPage?product_type=菇類&action=goProductPage"> <img
-									class="imglist-li-img" src="image/shop/5.png" alt="> <span
+									class="imglist-li-img" src="image/shop/5.png" alt=""> <span
 									class="imglist-li-span">菇類</span>
 							</a></li>
 							<li class="imglist-li" data-aos="zoom-in"><a href="front-end/ShopPage/ProductPage?product_type=澱粉類&action=goProductPage"> <img
@@ -695,6 +725,8 @@
 		</article>
 		<!-- end of article-->
 	</main>
+	
+	
 	<!-- end of main -->
 	<footer>
 		<div class="footer-bg">
@@ -733,6 +765,9 @@
 			All rights reserved.</div>
 
 	</footer>
+	
+	
+	
 	<!-- JavasScript-->
 	<!-- JavasScript-->
 	<!-- JavasScript for Sider -->
@@ -801,6 +836,23 @@
 	<script>
 		AOS.init();
 	</script>
+		<script>
+
+						if($(".carmessage2").html()>0 && $(".carmessage2").html()<10){
+							$(".carmessagecircle").hide();
+							$(".carmessage2").show();
+						}
+						else if($(".carmessage2").html()>9){
+							$(".carmessage2").hide();
+							$(".carmessagecircle").show();
+						}
+						else{
+							$(".carmessagecircle").hide();
+							$(".carmessage2").hide();
+
+						}
+						
+						</script>
 </body>
 
 </html>

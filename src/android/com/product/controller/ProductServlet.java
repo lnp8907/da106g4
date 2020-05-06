@@ -88,6 +88,10 @@ public class ProductServlet extends HttpServlet {
 				System.out.println(productVOs);
 			}
 			writeText(res, gson.toJson(productVOs));
+		} else if("getOneById".equals(action)) {
+			String product_id = jsonObject.get("product_id").getAsString();
+			ProductVO productVO = dao.findByPrimaryKey(product_id);
+			writeText(res, gson.toJson(productVO));
 		} else {
 			writeText(res, "");
 		}

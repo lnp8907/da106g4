@@ -10,6 +10,7 @@
 <%@page import="com.member.model.*"%>
 <%@page import="com.member.model.MemberService"%>
 <%@page import="java.util.stream.Collectors"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
 
 
 <%
@@ -65,15 +66,17 @@ Order_statusPage:${Order_statusPage}
 
 <meta charset="UTF-8">
 <title>所有訂單</title>
+		 <c:if test="${fn:length(list)>0}">
+
 <div id="ordertitle">
 		 <h3>以下是所有訂單:</h3>
 		 <%= list.get(0).getOrder_no() %>
 		 
 		 <%if(!list.get(0).getOrder_no().equals(list.get(list.size() - 1).getOrder_no())){ %>
 		 →<%= list.get(list.size() - 1).getOrder_no() %>
-		 <% }%>
+		 <%} %>
 	</div>	 
-		 
+</c:if>		 
 		
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">

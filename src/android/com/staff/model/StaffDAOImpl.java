@@ -19,9 +19,9 @@ import javax.sql.DataSource;
 public class StaffDAOImpl implements StaffDAO {
 //	private static final String INSERT_STMT = "INSERT INTO STAFF(staff_account, password, name, email) VALUES(?, ?, ?, ?)";
 //	private static final String UPDATE_STMT = "UPDATE STAFF SET password = ?, name = ?, email = ? WHERE staff_account = ?";
-	private static final String FIND_BY_ID_PASWD = "SELECT * FROM STAFF where staff_account = ? AND staff_password = ?";
-	private static final String FIND_BY_ID = "SELECT * FROM STAFF where STAFF_ACCOUNT = ?";
-	private static final String CHECK_ID_EXIST = "SELECT STAFF_ACCOUNT FROM STAFF where STAFF_ACCOUNT = ?";
+	private static final String FIND_BY_ID_PASWD = "SELECT * FROM STAFF where staff_id = ? AND staff_password = ?";
+	private static final String FIND_BY_ID = "SELECT * FROM STAFF where staff_id = ?";
+	private static final String CHECK_ID_EXIST = "SELECT staff_id FROM STAFF where staff_id = ?";
 	
 
 //	public MemberDAOImpl() {
@@ -136,7 +136,7 @@ public class StaffDAOImpl implements StaffDAO {
 //	}
 
 	@Override
-	public Staff findById(String staff_account) {
+	public Staff findById(String staff_id) {
 		Staff staff = null;
 		Connection con = null;
 		PreparedStatement pstmt = null;
@@ -148,15 +148,17 @@ public class StaffDAOImpl implements StaffDAO {
 					MyData.PASSWORD);
 			pstmt = con.prepareStatement(FIND_BY_ID);
 
-			pstmt.setString(1, staff_account);
+			pstmt.setString(1, staff_id);
 
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
 				staff = new Staff();
-				staff.setStaff_id(rs.getString(1));
-				staff.setStaff_account(rs.getString(2));
-				staff.setStaff_password(rs.getString(3));
+				staff.setStaff_id(rs.getString("STAFF_ID"));
+				staff.setStaff_name(rs.getString("STAFF_NAME"));
+				staff.setStaff_password(rs.getString("STAFF_PASSWORD"));
+				staff.setPhone(rs.getString("PHONE"));
+				staff.setStaff_status(rs.getInt("STAFF_STATUS"));
 //				member.setName(rs.getString(3));
 //				member.setEmail(rs.getString(4));
 			}
@@ -198,15 +200,17 @@ public class StaffDAOImpl implements StaffDAO {
 	}
 
 	@Override
-	public boolean isMember(String staff_account, String staff_password) {
+	public boolean isMember(String staff_id, String staff_password) {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		boolean isMember = false;
 		try {
+			
+//			conn = ds.getConnection();
 			conn = DriverManager.getConnection(MyData.URL, MyData.USER,
 					MyData.PASSWORD);
 			ps = conn.prepareStatement(FIND_BY_ID_PASWD);
-			ps.setString(1, staff_account);
+			ps.setString(1, staff_id);
 			ps.setString(2, staff_password);
 			ResultSet rs = ps.executeQuery();
 			isMember = rs.next();

@@ -14,7 +14,7 @@
 <br><br>
 
   <%if (pageNumber>1) {%>
-    <FORM METHOD="post" ACTION="<%=request.getRequestURI()%>&product_type=${product_type}">   
+    <FORM METHOD="post" ACTION="<%=request.getRequestURI()%>&product_typeA=${product_type}">   
        <select size="1" name="whichPage">
          <%for (int i=1; i<=pageNumber; i++){%>
             <option value="<%=i%>">跳至第<%=i%>頁

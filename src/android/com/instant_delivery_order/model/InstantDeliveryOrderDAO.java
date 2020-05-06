@@ -35,7 +35,9 @@ public class InstantDeliveryOrderDAO implements InstantDeliveryOrderDAO_interfac
 	private static final String GET_ALL_BY_MEMBER_ID_STMT = "SELECT * FROM INSTANT_DELIVERY_ORDER where member_id = ? order by IDO_NO";
 	private static final String INSERT_STMT = "INSERT INTO INSTANT_DELIVERY_ORDER (IDO_NO,MEMBER_ID,P_METHOD,P_STATUS,TOTAL,D_ADDRESS,QRCODE) VALUES (to_char('IO')||'-'||to_char(sysdate,'yyyy-mm-dd')||'-'||LPAD(to_char(SQ_IDO_NO.NEXTVAL),6,'0'), ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ONE_ORDER_PRODUCT_STMT = "SELECT * FROM RECIPE_ORDER_DETAILS where ido_no = ? order by product_id";
-//	private static final String DELETE = 
+	private static final String UPDATE_O_STATUS = "UPDATE INSTANT_DELIVERY_ORDER SET O_STATUS = ? where IDO_NO = ?";
+
+	//	private static final String DELETE = 
 //			"DELETE FROM INSTANT_DELIVERY_ORDER where IDO_NO = ?";
 //	private static final String UPDATE = 
 //			"UPDATE INSTANT_DELIVERY_ORDER set MEMBER_ID=?,STAFF_ID=?,P_METHOD=?,P_STATUS=?,TOTAL=?,D_ADDRESS=?,QRCODE=?,O_STATUS=? where IDO_NO = ?";
@@ -559,4 +561,38 @@ public class InstantDeliveryOrderDAO implements InstantDeliveryOrderDAO_interfac
 		return list;
 	}
 
+	@Override
+	public boolean finishOrder(String ido_no, Integer o_status) {
+		Connection conn = null;
+		PreparedStatement ps = null;
+		ResultSet rs = null;
+		boolean b = false;
+		try {
+			conn = ds.getConnection();
+			ps = conn.prepareStatement(UPDATE_O_STATUS);
+			ps.setInt(1, o_status);
+			ps.setString(2, ido_no);
+
+			
+			
+			int count = ps.executeUpdate();
+			b = count > 0 ? true : false; 
+
+
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+				if (conn != null) {
+					conn.close();
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return b;
+	}
 }

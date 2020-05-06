@@ -32,12 +32,13 @@
 	
 	if (memberVO != null && memberVO.getMember_status() == 1) {
 		hostID = memberVO.getNickname();
-		session.setAttribute("hostID", hostID);
 	}
 	if(hostID == null){
 		hostID = request.getParameter("hostId");
 	}
+	session.setAttribute("hostID", hostID);
 %>
+
 <%-- 模擬登入的clientID(觀眾ID)為Anonymous  --%>
 <%!int count = 0;%>
 <%
@@ -64,28 +65,21 @@
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=3.0">
 <title>Foodporn</title>
-<link rel="stylesheet" href="/css/getHTMLMediaElement.css">
+<link rel="stylesheet" href="../recipe/recipeCSS/listOneRecipeCssCopy.css">
 <link rel="stylesheet" href="../../css/frontEnd.css">
 <link rel="stylesheet" href="../../css/header-sider.css">
 <link rel="stylesheet" href="../../slick/slick.css">
 <link rel="stylesheet" href="../../slick/slick-theme.css">
 <link rel="stylesheet" href="../../css/homePage.css">
 <link rel="stylesheet" href="../../css/searchRecipeCSS.css">
-<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 <link rel="icon" href="../../image/head-FoodPron_Logo.ico"
 	type="../../image/x-icon">
 <link rel="shortcut icon" href="../../image/head-FoodPron_Logo.ico"
 	type="../../image/x-icon" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="../../slick/slick.js" type="text/javascript"
 	charset="utf-8"></script>
 <script src="../../js/homePage.js" type="text/javascript"
 	charset="utf-8"></script>
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap"
-	rel="stylesheet">
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
@@ -96,6 +90,15 @@
 <script src="js/webrtc/CodecsHandler.js"></script>
 <script src="js/webrtc/RTCPeerConnection-v1.5.js"></script>
 <script src="js/webrtc/broadcast.js"></script>
+<script src="js/jquery-1.11.1.min.js"></script>
+<script src="js/getHTMLMediaElement.js"></script>
+        <script>
+            if(!location.hash.replace('#', '').length) {
+                location.href = location.href.split('#')[0] + '#' + (Math.random() * 100).toString().replace('.', '');
+                location.reload();
+            }
+        </script>
+
 
 <script>
 	// 	$(document).ready(function() {
@@ -105,6 +108,12 @@
 	// 		getMonth();
 	// 	})
 </script>
+
+
+
+
+
+
 <style>
 * {
 	margin: 0;
@@ -292,7 +301,8 @@
 </style>
 </head>
 
-<body onload="connect();">
+<body>
+
 	<header>
 		<div id="top-logo" class="logo">
 			<a href="<%=request.getContextPath()%>/" title="回首頁"><img
@@ -474,83 +484,8 @@
 				<div id="livestream_container">
 					<div id="livestream_left">
 						<div class="livestream_card" id="video">
-						<div class="CustomCard hoverCustomCard">
-							<div id="CustomCardheader"
-								class="CustomCardheader text-white btn-warning">
-								<input type="hidden" id="hostID" value="${hostID}" /> <input
-									type="hidden" id="lsViewNum" value="0" />
-								<%
-									if (hostID != null) {
-								%>
-								<h5 id="subTitle" class="col pt-2">
-									<strong>這是 ${hostID} 直播間</strong>
-								</h5>
-								<%
-									} else {
-								%>
-								<h5 id="subTitle" class="col pt-2">
-									<strong>您已經進入直播間</strong>
-								</h5>
-								<%
-									}
-								%>
 
-								<i id="WebSocket-count" class="far pt-2 pr-3 float-right"
-									style="position: absolute; right: 0; top: 0px">目前在線人數 - </i> <i
-									id="WebRTC-count" class="far pt-2 pr-3 float-right"
-									style="position: absolute; right: 0; top: 20px">WebRTC
-									累計觀看人數 0 </i>
-							</div>
 
-							<div class="bottom mx-auto">
-								<button class="btn-3d-can" id="record" style="display: none"
-									disabled="disabled">開始錄影</button>
-								<button class="btn-3d-can" id="download" style="display: none"
-									disabled="disabled">儲存錄影</button>
-								<button id="play" class="btn btn-success" style="display: none">播放</button>
-								<div style="display: none">
-									<p>
-										Echo cancellation: <input type="checkbox"
-											id="echoCancellation">
-									</p>
-									<div id="errorMsg"></div>
-								</div>
-							</div>
-						</div>
-						
-
-							<section id="session1" class="experiment">
-								<section <%=(hostID == null) ? "style='visibility: hidden;'" : ""%>>
-									<select id="broadcasting-option" class="broadcasting-option">
-										<option>Audio + Video</option>
-										<option>Only Audio</option>
-									</select> <input type="text" id="broadcast-name" class="broadcast-name"
-										value="${hostID}">
-									<button id="setup-new-broadcast">啟動新視頻</button>
-								</section>
-								<!-- list of all available broadcasting rooms -->
-								<br>
-								<table style="width: 100%;" id="rooms-list"></table>
-								<!-- local/remote videos container -->
-								<div id="videos-container"></div>
-								<div class="visible">
-									<div style="text-align: center;">
-										<h2>
-											<code>
-												<strong id="unique-token">#123456789</strong>
-											</code>
-										</h2>
-									</div>
-								</div>
-							</section>
-
-							<script>
-			 var visibleElements = document.getElementsByClassName('visible'),
-             length = visibleElements.length;
-             for (var i = 0; i < length; i++) {
-                visibleElements[i].style.display = 'none';
-             }
-			</script>
 
 
 
@@ -612,7 +547,7 @@
 									<input id="userName" class="panel input-default" type="hidden"
 										placeholder="暱稱" value="${(hostID!=null)? hostID :clientID}"
 										readonly="readonly" />
-									<!-- 					    <input type="submit" id="sendMessage" class="btn btn-danger" value="送出訊息" onclick="sendMessage();" /> -->
+									<input type="hidden" id="sendMessage" class="btn btn-danger" value="送出訊息" onclick="sendMessage();" />
 								</div>
 							</div>
 						</div>
@@ -672,9 +607,6 @@
 
 	</footer>
 	<!-- JavasScript-->
-	<!-- JavasScript for Sider -->
-	<script src="../../javascript/header_sider.js" type="text/javascript"
-		charset="utf-8"></script>
 	<!-- JavasScript for LogForm -->
 	<script src="../../javascript/loginForm.js" type="text/javascript"
 		charset="utf-8"></script>
@@ -711,6 +643,32 @@
 	</script>
 </body>
 			<script>
+			var broadcaster =null;
+			var roomToken =null;
+				var join = function() {
+					var joinRoomButton = document.getElementById('.join');
+// 					joinRoomButton.setAttribute('data-broadcaster', room.broadcaster);
+//                     joinRoomButton.setAttribute('data-roomToken', room.broadcaster);
+
+
+//                     	document.getElementById('broadcast-name').value = room.roomName;
+                        videosContainer.className = "videosContainer";                   	
+//                     	document.getElementById("slider").src = "images/tenor.gif";
+                        this.disabled = true;
+//                      this.style.display = 'none';
+
+                
+                broadcastUI.joinRoom({
+                    roomToken: roomToken,
+                    joinUser: broadcaster
+                });
+            
+			}
+				
+				
+				
+				
+				/////////////////////////////////////////
                 var config = {
                     openSocket: function(config) {
 //                      var SIGNALING_SERVER = 'https://socketio-over-nodejs2.herokuapp.com:443/';
@@ -719,12 +677,12 @@
                      config.channel = config.channel || location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
                         var sender = Math.round(Math.random() * 999999999) + 999999999;
 // 						var sender = 123456789;
-						console.log(config.channel);
+						console.log('config.channel:'+config.channel);
                         io.connect(SIGNALING_SERVER).emit('new-channel', {
                             channel: config.channel,
                             sender: sender
                         });
-
+                        console.log('sender:'+ sender);
                         var socket = io.connect(SIGNALING_SERVER + config.channel);
                         socket.channel = config.channel;
                         socket.on('connect', function () {
@@ -745,9 +703,9 @@
                         rotateInCircle(htmlElement);
                     },
                     onRoomFound: function(room) {
-//                         document.getElementById("subTitle").innerHTML = "<strong>您正準備觀看 " + room.roomName + " 的直播</strong>";
-//                         var alreadyExist = document.querySelector('button[data-broadcaster="' + room.broadcaster + '"]');
-//                         if (alreadyExist) return;
+                        document.getElementById("subTitle").innerHTML = "<strong>您正準備觀看 " + room.roomName + " 的直播</strong>";
+                        var alreadyExist = document.querySelector('button[data-broadcaster="' + room.broadcaster + '"]');
+                        if (alreadyExist) return;
 
                         if (typeof roomsList === 'undefined') roomsList = document.body;
 
@@ -755,7 +713,8 @@
                         tr.innerHTML = '<td><strong>' + room.roomName + '</strong> is broadcasting his media!</td>' +
                             '<td><button class="join">&nbsp;Join&nbsp;</button></td>';
                         roomsList.appendChild(tr);
- 
+                        
+     
                         var joinRoomButton = tr.querySelector('.join');
                         joinRoomButton.setAttribute('data-broadcaster', room.broadcaster);
                         joinRoomButton.setAttribute('data-roomToken', room.broadcaster);
@@ -765,13 +724,15 @@
                         	document.getElementById("subTitle").innerHTML = "<strong2>您正在觀看 " + room.roomName + " 的直播</strong2>";
                         	document.getElementById('broadcast-name').value = room.roomName;
                             videosContainer.className = "videosContainer";                   	
-                        	document.getElementById("slider").src = "images/tenor.gif";
+//                         	document.getElementById("slider").src = "images/tenor.gif";
                         	document.getElementById("WebRTC-count").innerHTML = "";
                             this.disabled = true;
 //                          this.style.display = 'none';
                             
-                            var broadcaster = this.getAttribute('data-broadcaster');
-                            var roomToken = this.getAttribute('data-roomToken');
+                            broadcaster = this.getAttribute('data-broadcaster');
+                            roomToken = this.getAttribute('data-roomToken');
+
+                            
                             broadcastUI.joinRoom({
                                 roomToken: roomToken,
                                 joinUser: broadcaster
@@ -806,12 +767,13 @@
                             broadcastUI.createRoom({
                                 roomName: (document.getElementById('broadcast-name') || { }).value || 'Anonymous',
                                 isAudio: shared === 'audio'
+                                
                             });
                         });
                         hideUnnecessaryStuff();
                     });
                 }
-
+                console.log('broadcast-name:'+ document.getElementById('broadcast-name').value);
                 function captureUserMedia(callback) {
                     var constraints = null;
                     window.option = broadcastingOption ? broadcastingOption.value : '';
@@ -920,10 +882,13 @@ buttons: ['record-video']
                  }
                 (function() {
                     var uniqueToken = document.getElementById('unique-token');
+                   
                     if (uniqueToken)
                         if (location.hash.length > 2) uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<div class="share"><h2>&nbsp;<i class="fa fa-hand-o-right fa-2x"></i><a href="' + location.href + '" target="_blank"><b>由此分享此直播間的鏈接 </b></a></h2></div>';
                         else uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace( /\./g , '-');
-               			console.log(uniqueToken.parentNode.parentNode.href);
+                   
+                    console.log('uniqueToken:'+ document.getElementById('unique-token').value);	
+                    
                 })();
                 
                 
@@ -1118,15 +1083,15 @@ console.log(endPointURL);
 	var webSocket;
 	
 	function connect() {
-// 		var rtcroomName = document.getElementById('broadcast-name').value;
-		var rtcroomName = '<%=hostID%>';
+		var rtcroomName = document.getElementById('broadcast-name').value;
+// 		var rtcroomName = '${hostID}';
 
-		alert(rtcroomName);
+		console.log(rtcroomName);
 		// 建立 websocket 物件
 		webSocket = new WebSocket(endPointURL+"/"+rtcroomName);
-		document.getElementById('broadcasting-option').style.display = 'none';
-        document.getElementById('broadcast-name').style.display = 'none';
-        document.getElementById('setup-new-broadcast').style.display = 'none';
+// 		document.getElementById('broadcasting-option').style.display = 'none';
+//         document.getElementById('broadcast-name').style.display = 'none';
+//         document.getElementById('setup-new-broadcast').style.display = 'none';
 		webSocket.onopen = function(event) {
 			document.getElementById('sendMessage').disabled = false;
 		};

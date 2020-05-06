@@ -45,8 +45,8 @@ public interface ProductDAO_interface {
     public Set<ProductVO> GetRecripeList(Integer product_status);
 
     //獲取除食譜外的商品
-    public Set<ProductVO> getAllExceprRecipe();
-    public Set<ProductVO> getAllExceprRecipe(Integer product_status);
+    public List<ProductVO> getAllExceprRecipe();
+    public List<ProductVO> getAllExceprRecipe(Integer product_status);
 
     //獲得總長度
     public Integer getlistzize(Collection list);

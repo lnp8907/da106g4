@@ -113,8 +113,10 @@ public class OrderServlet extends HttpServlet {
 			}
 
 		} else if ("qrcode".equals(action)) {
-			String order_id = jsonObject.get("order_id").getAsString();
-
+			String ido_no = jsonObject.get("ido_no").getAsString();
+			String o_status = jsonObject.get("o_status").getAsString();
+			boolean b= instantDeliveryOrderDAO.finishOrder(ido_no, Integer.valueOf(o_status));
+			writeText(res, gson.toJson(b));
 		} else if ("getDeliveryOrder".equals(action)) {
 			String o_status = jsonObject.get("o_status").getAsString();
 			List<InstantDeliveryOrderVO> list = new ArrayList();

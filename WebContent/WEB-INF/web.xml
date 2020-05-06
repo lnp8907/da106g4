@@ -177,7 +177,66 @@
   
 	<!-- 以上為直播XML結束 -->
 	
+<<<<<<< HEAD
 
+=======
+	<!-- 以下為CHHL開始 -->
+ <servlet>
+    <servlet-name>AnMemberServlet</servlet-name>
+    <servlet-class>android.com.member.controller.MemberServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AnMemberServlet</servlet-name>
+    <url-pattern>/AnMemberServlet</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>AnStaffServlet</servlet-name>
+    <servlet-class>android.com.staff.controller.StaffServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AnStaffServlet</servlet-name>
+    <url-pattern>/AnStaffServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+		<servlet-name>AnCouponServlet</servlet-name>
+		<servlet-class>android.com.coupon.controller.CouponServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AnCouponServlet</servlet-name>
+		<url-pattern>/AnCouponServlet</url-pattern>
+	</servlet-mapping> 
+	
+	<servlet>
+		<servlet-name>AnProductServlet</servlet-name>
+		<servlet-class>android.com.product.controller.ProductServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AnProductServlet</servlet-name>
+		<url-pattern>/AnProductServlet</url-pattern>
+	</servlet-mapping>
+	
+    <servlet>
+		<servlet-name>AnRecipeServlet</servlet-name>
+		<servlet-class>android.com.recipe.controller.RecipeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AnRecipeServlet</servlet-name>
+		<url-pattern>/AnRecipeServlet</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>AnOrderServlet</servlet-name>
+		<servlet-class>android.com.instant_delivery_order.controller.OrderServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AnOrderServlet</servlet-name>
+		<url-pattern>/AnOrderServlet</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 以上為CHH結束 -->
+>>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
 	
 	<!-- 以下為商城XML -->
 	<servlet>
@@ -436,6 +495,19 @@
 	</servlet-mapping>
 
 
+
+<!-- WEB直播用 -->
+	<security-constraint>
+		<web-resource-collection>
+			<web-resource-name>Servlet4Push</web-resource-name>
+			<url-pattern>/*</url-pattern>
+			<http-method>GET</http-method>
+			<http-method>POST</http-method>
+		</web-resource-collection>
+		<user-data-constraint>
+			<transport-guarantee>CONFIDENTIAL</transport-guarantee>
+		</user-data-constraint>
+	</security-constraint>
 
 	
 </web-app>

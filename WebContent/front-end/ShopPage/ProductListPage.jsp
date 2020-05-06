@@ -29,9 +29,9 @@
 
 
 
-Collection<ProductVO> productlist=null;
+List<ProductVO> productlist=null;
 	ProductService Psvc = new ProductService();
-	productlist=(Collection<ProductVO>)session.getAttribute("productlist");
+	productlist=(List<ProductVO>)session.getAttribute("productlist");
 	
 	String product_type=null;
 	
@@ -104,7 +104,7 @@ Collection<ProductVO> productlist=null;
 		<div id="ShopPathLocation">
 
 <div class="ui breadcrumb">
-  <a href="<%=request.getContextPath() %>/index.html" class="section">Foodporn</a>
+  <a href="<%=request.getContextPath() %>/index.jsp" class="section">Foodporn</a>
   <i class="right angle icon divider"></i>
   <a class="section" href="ShopHomePage.jsp">商城首頁</a>
   <i class="right angle icon divider"></i>
@@ -212,6 +212,17 @@ Collection<ProductVO> productlist=null;
         
         <%@ include file="Includepage/page2.file" %>
         
+	        </div>
+	        
+	        
+	        <div>
+	        <c:if test="${member_id!=null}">
+	                <%@ include file="ProductCarousel.jsp" %>
+
+
+	        </c:if>
+	        
+	        
 	        </div>
 	
 
