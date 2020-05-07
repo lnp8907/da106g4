@@ -2,8 +2,8 @@ package com.member.model;
 
 
 import java.sql.*;
+import java.util.Arrays;
 
-import com.mysql.jdbc.Blob;
 
 public class MemberVO implements java.io.Serializable{
 	
@@ -24,6 +24,17 @@ public class MemberVO implements java.io.Serializable{
 	 private String member_creditcard;
 	 private Integer balance;
 	 private Integer chiefapply_status;
+	 
+	 /////
+	 private Integer livestream_status;
+	 
+	 
+	public Integer getLivestream_status() {
+		return livestream_status;
+	}
+	public void setLivestream_status(Integer livestream_status) {
+		this.livestream_status = livestream_status;
+	}
 	public String getMember_id() {
 		return member_id;
 	}
@@ -125,6 +136,16 @@ public class MemberVO implements java.io.Serializable{
 	}
 	public void setChiefapply_status(Integer chiefapply_status) {
 		this.chiefapply_status = chiefapply_status;
+	}
+	@Override
+	public String toString() {
+		return "MemberVO [member_id=" + member_id + ", account=" + account + ", password=" + password + ", birthday="
+				+ birthday + ", member_name=" + member_name + ", gender=" + gender + ", cellphone=" + cellphone
+				+ ", email=" + email + ", nickname=" + nickname + ", member_photo=" + Arrays.toString(member_photo)
+				+ ", validation=" + validation + ", license=" + Arrays.toString(license) + ", member_status="
+				+ member_status + ", member_address=" + member_address + ", member_creditcard=" + member_creditcard
+				+ ", balance=" + balance + ", chiefapply_status=" + chiefapply_status + ", livestream_status="
+				+ livestream_status + "]";
 	}
 	
 }

@@ -15,6 +15,8 @@ import java.sql.SQLException;
 public class UploadPicture {
 
 	private static final String URL = "jdbc:oracle:thin:@35.229.239.13:1521:xe";
+//	private static final String URL = "jdbc:oracle:thin:@localhost:1521:XE";
+
 	private static final String USER = "DA106_G4";
 	private static final String PASSWORD = "DA106_G4";
 	private static final String SQL = "UPDATE LIVESTREAM SET PICTURE=? WHERE livestream_id = ?";
