@@ -12,6 +12,7 @@ public interface MemberDAO {
 //	boolean delete(String account);
 	Member findNameByAccount(String account);
 	Member findIdByAccount(String account);
+	Member findNickname(String member_id);
 	Member findBalanceByAccount(String account);
 	byte[] findPhotoByAccount(String account);
 	//byte[] findPicByStatus(String status);

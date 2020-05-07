@@ -293,23 +293,25 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
  
 				</div>
 </form>
+<form method="POST" action="member.do">
 				<div class="sign-up-htm">
 					<div class="group">
-						<label for="newuser" class="label">User</label> <input
+						<label for="newuser" class="label">Account</label> <input
 							id="newuser" type="text" class="input">
 					</div>
 					<div class="group">
 						<label for="newpass" class="label">Password</label> <input
-							id="newpass" type="password" class="input" data-type="password">
+							id="newpass" type="password" name="password" class="input" data-type="password">
 					</div>
 					<div class="group">
 						<label for="renewpass" class="label">Repeat Password</label> <input
-							id="renewpass" type="password" class="input" data-type="password">
+							id="renewpass" type="password" name="password2" class="input" data-type="password">
 					</div>
 					<div class="group">
 						<label for="email" class="label">Email Address</label> <input
-							id="email" type="email" class="input">
+							id="email" type="email" name="email" class="input">
 					</div>
+<input type="hidden" name="action" value="insert">					
 					<div class="group">
 						<input type="submit" class="button" value="Sign Up">
 					</div>
@@ -318,6 +320,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 						<label for="tab-1">Already Member?</label>
 					</div>
 				</div>
+</form>				
 			</div>
 		</div>
 	</div>
