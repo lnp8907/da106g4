@@ -2214,7 +2214,6 @@ hr {
 
 
 
-
 <aside class="sidebar">
 
 
@@ -2303,7 +2302,9 @@ hr {
 					<li><a href="tables-basic.html">交易紀錄</a></li>
 					
 	<li><a href="/DA106_G4_Foodporn_Git/front-end/member/123.jsp">信用卡</a></li>
+				<c:if test='${member_status eq 1 }'>
 					<li><a href="/DA106_G4_Foodporn_Git/front-end/member/ChefWithdraw.jsp">提款</a></li>
+			</c:if>		
 					<li><a href="/DA106_G4_Foodporn_Git/front-end/member/MemberStoredValue.jsp">儲值</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:void(0);"><i
@@ -2327,6 +2328,11 @@ hr {
 					<li><a href="mail-compose.html">直播收藏</a></li>
 					<li><a href="mail-compose.html">食譜收藏</a></li>
 				</ul></li>
+			
+			
+		<c:if test='${member_status eq 0 }'>
+			
+			
 			<li class="sub-menu"><a href="javascript:void(0);"><i
 					class="fa fa-bar-chart-o"></i><img class="access-menu-icon1"
 					src="../../image/member/S__12066818.jpg"><span>我的課程&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
@@ -2336,6 +2342,9 @@ hr {
 					<li><a href="charts-morris.html">1</a></li>
 					<li><a href="charts-c3.html">2</a></li>
 				</ul></li>
+		</c:if>
+
+<c:if test='${member_status eq 1 }'>
 			<li class="sub-menu"><a href="javascript:void(0);"><i
 					class="fa fa-map-marker"></i><img class="access-menu-icon1"
 					src="../../image/member/S__12066827.jpg"><span>直播/課程管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
@@ -2344,29 +2353,20 @@ hr {
 					<li><a href="MemberCourse.jsp">課程管理</a></li>
 					<li><a href="map-vector.html">直播管理</a></li>
 				</ul></li>
-
-			
-					
-					
-					
-					
-					
-					
-					<li><a
+					</c:if>	
+<c:if test='${member_status eq 1 }'>
+			<li><a
 				href="MemberRecipe.jsp"><i
 					class="fa fa-dashboard"></i><img class="access-menu-icon1"
 					src="../../image/member/S__12066826.jpg"><span>食譜管理</span></a></li>
+					</c:if>	
 					
 					
-					
-					
-					
-					
+		<c:if test='${member_status eq 0 }'>			
 			<li class="sub-menu"><a href="/DA106_G4_Foodporn_Git/front-end/member/ChefHomepage.jsp"><i
 					class="fa fa-text-height"></i><img class="access-menu-icon1"
 					src="../../image/member/S__12066825.jpg"><span>升級廚師</span></a></li>
-
-
+</c:if>	
 		</ul>
 	</div>
 </aside>

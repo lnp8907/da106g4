@@ -107,7 +107,6 @@
 		<url-pattern>/back-end/staff/AuthorityServlet</url-pattern>
 	</servlet-mapping>
 	
-	
 	<!-- 優卷相關 XML -->
 	<servlet>
 		<servlet-name>CouponServlet</servlet-name>

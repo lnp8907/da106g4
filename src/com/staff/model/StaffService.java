@@ -2,11 +2,17 @@ package com.staff.model;
 
 import java.util.List;
 
+import com.member.model.MemberVO;
+
 public class StaffService {
 	private StaffDAO_interface dao;
 
 	public StaffService() {
 		dao = new StaffDAO();
+	}
+	
+	public StaffVO getfindOnePK(String staff_id) {
+		return dao.findPK(staff_id);
 	}
 
 	public StaffVO insert(String password, String name, Integer gender, String phone, Integer status, String email) {

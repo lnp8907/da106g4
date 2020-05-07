@@ -1,6 +1,7 @@
 package com.staff.model;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -11,6 +12,8 @@ import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
+
+import com.staff.model.StaffVO;
 
 
 
@@ -33,6 +36,84 @@ public class StaffDAO  implements StaffDAO_interface {
 	    //只修改密碼
 	    private static final String UPDATE_PASSWORD = "UPDATE STAFF SET  STAFF_PASSWORD=? WHERE  STAFF_ID= ?";
 	    private static final String CHANGE_STATUS = "UPDATE STAFF SET  STAFF_STATUS=? WHERE  STAFF_ID= ?";
+	    private static final String GET_ONE_STMT2 = "SELECT STAFF_ID,EMAIL,STAFF_PASSWORD,STAFF_NAME,GENDER,PHONE,STAFF_STATUS FROM STAFF where STAFF_ID = ?";
+	   
+	    
+	    
+	    public StaffVO findPK(String staff_id) {
+
+//			StaffVO empVO = null;
+//			Connection con = null;
+//			PreparedStatement pstmt = null;
+//			ResultSet rs = null;
+//
+//			try {
+//
+//				Class.forName(driver);
+//				con = DriverManager.getConnection(url, userid, passwd);
+//				pstmt = con.prepareStatement(GET_ONE_STMT2);
+//
+//				pstmt.setString(1,staff_id);
+//
+//				rs = pstmt.executeQuery();
+				
+
+				StaffVO empVO = null;
+				Connection con = null;
+				PreparedStatement pstmt = null;
+				ResultSet rs = null;
+
+				try {
+
+					con = ds.getConnection();
+					pstmt = con.prepareStatement(GET_ONE_STMT2);
+					pstmt.setString(1, staff_id);
+					rs = pstmt.executeQuery();
+
+				while (rs.next()) {
+					// empVo �]�٬� Domain objects
+					empVO = new StaffVO();
+					empVO.setStaff_id(rs.getString("STAFF_ID"));
+					empVO.setEmail(rs.getString("EMAIL"));
+					empVO.setStaff_password(rs.getString("STAFF_PASSWORD"));
+					empVO.setStaff_status(rs.getInt("STAFF_STATUS"));
+				}
+
+				// Handle any driver errors
+			} catch (SQLException se) {
+				throw new RuntimeException("A database error occured. " + se.getMessage());
+				// Clean up JDBC resources
+			} finally {
+				if (rs != null) {
+					try {
+						rs.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if (pstmt != null) {
+					try {
+						pstmt.close();
+					} catch (SQLException se) {
+						se.printStackTrace(System.err);
+					}
+				}
+				if (con != null) {
+					try {
+						con.close();
+					} catch (Exception e) {
+						e.printStackTrace(System.err);
+					}
+				}
+			}
+			return empVO;
+		}
+	    
+	    
+	    
+	    
+	    
+	    
 	    
 	@Override
 	public void insert(StaffVO staffvo) {

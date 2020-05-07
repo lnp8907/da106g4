@@ -11,10 +11,13 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.authority.model.AuthorityService;
 import com.staff.model.StaffService;
 import com.staff.model.StaffVO;
+
+
 
 /**
  * Servlet implementation class StaffServlet
@@ -22,7 +25,7 @@ import com.staff.model.StaffVO;
 @WebServlet("/back-end/staff/StaffServlet")
 public class StaffServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
 	public StaffServlet() {
 		super();
 
@@ -31,11 +34,183 @@ public class StaffServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		doPost(req, res);
 	}
+	
+	
+
+	
+	
+	
+protected int allowUser(String staff_id,String password) {
+    	
+    	StaffVO staffVO=null;
+    	StaffService staffSvc=new StaffService();
+System.out.println(staff_id);
+System.out.println(password);
+    	if(staffSvc.getfindOnePK(staff_id)==null) {
+    		System.out.println("沒有此帳號");
+    		return 1;
+    	}else {
+    		staffVO=staffSvc.getfindOnePK(staff_id);
+    		System.out.println("2");
+    	}  
+System.out.println("111111111111111111"+staffVO.getStaff_id());
+System.out.println(staffVO.getStaff_password());   
+
+        if (staffVO.getStaff_id().equals(staff_id) && staffVO.getStaff_password().equals(password)) {
+	
+        	System.out.println("成功登入");
+        	return 3;
+          
+        }else {
+        	System.out.println("密碼錯誤");
+        	return 4; 
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+	
 
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 
+		
+		System.out.println(action);
+	if("login".equals(action)) {
+
+			
+		
+			
+	
+			
+			
+//			if(staff_id==null || staff_id.trim().length()==0) {
+//			
+//			}
+//			if(staff_id==null || staff_id.trim().length()==0) {
+//		
+//			}
+			String login2= (Integer)req.getSession().getAttribute("login2")+"";
+		
+			if(!login2.equals("1")) {
+				String staff_id=req.getParameter("staff_id").trim();
+				String psw=req.getParameter("psw").trim();
+				
+				System.out.println(staff_id);
+				System.out.println(psw);
+			if(allowUser(staff_id,psw)==1) {
+				//登入不成功
+				System.out.println("沒有此帳號");
+				String URL=req.getContextPath()+"/index.html";
+				res.sendRedirect(URL);
+				return;
+			}else if(allowUser(staff_id,psw)==4) {
+				//登入不成功
+				System.out.println("密碼錯誤");
+				String URL=req.getContextPath()+"/index.html";
+				res.sendRedirect(URL);
+				return;	
+				
+			}else {
+				StaffService staffSvc=new StaffService();
+				StaffVO staffVO=null;
+				staffVO=staffSvc.getfindOnePK(staff_id);
+				HttpSession session=req.getSession();
+				session.setAttribute("staffVO", staffVO);
+session.setAttribute("staff_id", staffVO.getStaff_id());
+session.setAttribute("staff_name", staffVO.getStaff_name());
+
+session.setAttribute("login2", 1);
+String login21= (Integer)req.getSession().getAttribute("login2")+"";
+System.out.println("login21"+login21);		
+
+    
+session.setAttribute("staff_status", 1);
+		        String sessionstaff_status= (Integer)req.getSession().getAttribute("staff_status")+"";
+System.out.println("session中staff_status"+sessionstaff_status);		
+
+
+
+
+
+
+
+
+				String sessionstaff_id= (String) req.getSession().getAttribute("staff_id");
+				
+System.out.println("session中staff_id"+sessionstaff_id);
+				try {
+					String location2=(String)session.getAttribute("location2");
+					if (location2 != null) {
+System.out.println("location2="+location2);
+						session.removeAttribute("location2");  
+				        res.sendRedirect(location2);            
+				        return;
+				    }else {
+				    	res.sendRedirect(req.getContextPath()+"/backEnd.html");
+//				    	String location22 = (String) req.getSession().getAttribute("location2");
+//						
+//				    	System.out.println("新"+location22);
+//				    				
+//				    				res.sendRedirect(location22);
+				    	
+				    }
+				
+					
+				}catch(Exception ignored) { 
+				res.sendRedirect(req.getContextPath()+"/front-end/homepage.jsp"); }
+			}
+			
+			}else {
+				System.out.println("e04");
+				
+				HttpSession session = req.getSession();
+				
+				try {
+					String location2=(String)session.getAttribute("location2");
+					if (location2 != null) {
+System.out.println("location2="+location2);
+						session.removeAttribute("location2");  
+				        session.invalidate();
+				        res.sendRedirect(location2);      
+				
+				        return;
+				    }else {
+				    	 session.invalidate();
+				    	res.sendRedirect(req.getContextPath()+"/backEnd_Login.html");
+//				    	String location22 = (String) req.getSession().getAttribute("location2");
+//						
+//				    	System.out.println("新"+location22);
+//				    				
+//				    				res.sendRedirect(location22);
+				    	
+				    }
+				
+					
+				}catch(Exception ignored) { 
+				res.sendRedirect(req.getContextPath()+"/front-end/homepage.jsp"); }
+			}
+				
+			}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		
 		
 		if ("getOne_ForStaff".equals(action)) { // 來自select_page.jsp的請求
