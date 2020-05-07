@@ -130,7 +130,7 @@ public class OrderServlet extends HttpServlet {
 			
 			boolean b= instantDeliveryOrderDAO.updateStaffId(staff_id, ido_no, o_status);
 			writeText(res, gson.toJson(b));
-//	1111
+//	1111111
 		}
 
 	}
