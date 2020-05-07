@@ -107,7 +107,133 @@
 		<url-pattern>/back-end/staff/AuthorityServlet</url-pattern>
 	</servlet-mapping>
 	
+	
+	<!-- 優卷相關 XML -->
+	<servlet>
+		<servlet-name>CouponServlet</servlet-name>
+		<servlet-class>com.coupon.controller.CouponServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CouponServlet</servlet-name>
+		<url-pattern>/back-end/coupon/coupon.do</url-pattern>
+	</servlet-mapping>
 
+	<servlet>
+		<servlet-name>CouponReader</servlet-name>
+		<servlet-class>com.coupon.controller.DBGifReader4</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CouponReader</servlet-name>
+		<url-pattern>/back-end/coupon/DBGifReader4.do</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 以下為直播XML開始 -->
+	<!-- Web -->
+<servlet>
+    <servlet-name>LivestreamServlet</servlet-name>
+    <servlet-class>com.livestream.controller.LivestreamServlet</servlet-class>
+</servlet>
+  <servlet-mapping>
+    <servlet-name>LivestreamServlet</servlet-name>
+    <url-pattern>/back-end/livestream/livestream.do</url-pattern>
+  </servlet-mapping> 
+  
+  <!-- Android -->
+  <servlet>
+    <servlet-name>DonationRServlet</servlet-name>
+    <servlet-class>android.com.donation_record.controller.DonationRServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DonationRServlet</servlet-name>
+    <url-pattern>/DonationRServlet</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>AnLivestreamServlet</servlet-name>
+    <servlet-class>android.com.livestream.controller.AnLivestreamServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AnLivestreamServlet</servlet-name>
+    <url-pattern>/AnLivestreamServlet</url-pattern>
+  </servlet-mapping> 
+  
+    <servlet>
+    <servlet-name>AnMp4DBServlet</servlet-name>
+    <servlet-class>android.com.livestream.controller.AnMp4DBServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AnMp4DBServlet</servlet-name>
+    <url-pattern>/AnMp4DBServlet</url-pattern>
+  </servlet-mapping> 
+  
+   <servlet>
+    <servlet-name>CollectionServlet</servlet-name>
+    <servlet-class>android.com.livestream_collection.controller.CollectionServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CollectionServlet</servlet-name>
+    <url-pattern>/CollectionServlet</url-pattern>
+  </servlet-mapping>
+  
+	<!-- 以上為直播XML結束 -->
+	
+	<!-- 以下為CHHL開始 -->
+ <servlet>
+    <servlet-name>AnMemberServlet</servlet-name>
+    <servlet-class>android.com.member.controller.MemberServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AnMemberServlet</servlet-name>
+    <url-pattern>/AnMemberServlet</url-pattern>
+  </servlet-mapping>
+  
+   <servlet>
+    <servlet-name>AnStaffServlet</servlet-name>
+    <servlet-class>android.com.staff.controller.StaffServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AnStaffServlet</servlet-name>
+    <url-pattern>/AnStaffServlet</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+		<servlet-name>AnCouponServlet</servlet-name>
+		<servlet-class>android.com.coupon.controller.CouponServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AnCouponServlet</servlet-name>
+		<url-pattern>/AnCouponServlet</url-pattern>
+	</servlet-mapping> 
+	
+	<servlet>
+		<servlet-name>AnProductServlet</servlet-name>
+		<servlet-class>android.com.product.controller.ProductServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AnProductServlet</servlet-name>
+		<url-pattern>/AnProductServlet</url-pattern>
+	</servlet-mapping>
+	
+    <servlet>
+		<servlet-name>AnRecipeServlet</servlet-name>
+		<servlet-class>android.com.recipe.controller.RecipeServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AnRecipeServlet</servlet-name>
+		<url-pattern>/AnRecipeServlet</url-pattern>
+	</servlet-mapping>
+	
+		<servlet>
+		<servlet-name>AnOrderServlet</servlet-name>
+		<servlet-class>android.com.instant_delivery_order.controller.OrderServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AnOrderServlet</servlet-name>
+		<url-pattern>/AnOrderServlet</url-pattern>
+	</servlet-mapping>
+	
+	<!-- 以上為CHH結束 -->
+	
 	<!-- 以下為商城XML -->
 	<servlet>
 		<servlet-name>MemberServlet</servlet-name>
@@ -163,7 +289,9 @@
 		<url-pattern>/member.do</url-pattern>
 	</servlet-mapping>
 	
+	
 
+	
 	
 <!-- 	///////////////////////商城用////////////////////////// -->
 
@@ -367,8 +495,6 @@
 		<servlet-name>MoneyflowServlet3</servlet-name>
 		<url-pattern>/front-end/member/MoneyflowServlet.do</url-pattern>
 	</servlet-mapping>
-
-
 
 
 
