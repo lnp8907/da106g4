@@ -41,9 +41,9 @@ public class Staff_Status implements Filter{
   
   
   
-  String member_status= (Integer)req.getSession().getAttribute("member_status")+"";
+  String staff_status= (Integer)req.getSession().getAttribute("staff_status")+"";
   
-           if(member_status.equals("0") ) {
+           if(staff_status.equals("0") ) {
         		  System.out.println("非廚師");
         	   res.sendRedirect(req.getContextPath()+"/front-end/member/Permissions.jsp");  // 登入換地址，此處也要換
         	   return;

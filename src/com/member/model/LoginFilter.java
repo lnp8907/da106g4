@@ -30,8 +30,8 @@ public class LoginFilter implements Filter{
   HttpServletRequest req = (HttpServletRequest)request;
   HttpServletResponse res = (HttpServletResponse)response;
   HttpSession session = req.getSession();
-  String member_id = (String)session.getAttribute("member_id");
-  if(member_id == null) {
+  String staff_id = (String)session.getAttribute("member_id");
+  if(staff_id == null) {
 	  System.out.println(2);
    session.setAttribute("location", req.getRequestURI());
    res.sendRedirect(req.getContextPath() + "/index.html");  // 登入換地址，此處也要換
