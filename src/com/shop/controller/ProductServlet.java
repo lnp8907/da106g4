@@ -730,7 +730,7 @@ public class ProductServlet extends HttpServlet {
 				productvo.setContent(content);
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("productvo", productvo);
-					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/shop_product/addProduct.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/shop_product/ShopPageServlet?pagemessage=addpage");
 					failureView.forward(req, res);
 					return;
 				}
@@ -749,7 +749,7 @@ System.out.println("第幾頁"+whichPage);
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add("異常:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/shop_product/addProduct.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/shop_product/ShopPageServlet?pagemessage=addpage");
 				failureView.forward(req, res);
 			}
 		}
