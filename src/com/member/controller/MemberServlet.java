@@ -1094,7 +1094,7 @@ System.out.println("location="+location);
 				jedis.set(email, code);
 				jedis.expire(email, 300);
 				jedis.close();
-		
+				
 				// 傳送密碼
 				String ip = "localhost";
 				String to = email;
@@ -1108,7 +1108,7 @@ System.out.println("location="+location);
 				memberSvc.insertmem(account, password, email);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				String url = "/back-end/member/listAllMember.jsp";
+				String url = "/index.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);				
 				
