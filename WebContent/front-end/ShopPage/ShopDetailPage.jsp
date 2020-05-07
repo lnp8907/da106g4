@@ -39,7 +39,7 @@
 <title>購買頁面</title>
  <!-- 廣告連播套件 -->
  <link rel="stylesheet" type="text/css"href="css/productDetailPage.css"/>
- <link rel="stylesheet" type="text/css"href="../../css/CarMessage.css"/> 
+ <link rel="stylesheet" type="text/css"href="<%=request.getContextPath()%>/css/CarMessage.css"/> 
  
  
  

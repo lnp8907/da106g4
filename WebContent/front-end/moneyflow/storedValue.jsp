@@ -9,7 +9,7 @@ MemberVO membervo =(MemberVO) request.getAttribute("memberVO");
 MoneyflowVO moneyflowvo =(MoneyflowVO) request.getAttribute("moneyflowVO");
 
 session.setAttribute("location", request.getRequestURI());
-session.setAttribute("member_id", "810001");
+
 %>
 <%
 				Map<String, Integer> storedValue1 = new HashMap<>();
