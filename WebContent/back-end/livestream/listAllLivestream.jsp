@@ -1,6 +1,7 @@
 <%@page import="java.util.stream.Collector"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <%@ page import="java.util.*"%>
 <%@ page import="com.livestream.model.*"%>
 <%
@@ -453,7 +454,11 @@
                                 <td>${livestreamVO.livestream_date}</td>
                                 
                                <%--  <td>${livestreamVO.video}</td> --%>
-                                <td><video src=https://da106g4.tk/DA106_G4_Foodporn_Git/front-end/livestream/LivestreamVideoReader?livestream_id=${livestreamVO.livestream_id} type="video/mp4" width="320" height="240" controls></video></td>
+                                <td>
+                                <c:if test="${livestreamVO.video!=null}"> 
+                                <video src=https://da106g4.tk/DA106_G4_Foodporn_Git/front-end/livestream/LivestreamVideoReader?livestream_id=${livestreamVO.livestream_id} type="video/mp4" width="320" height="240" controls></video>
+                               </c:if>
+                                </td>
                               
                                 <td>${livestreamVO.status}</td>
                                
