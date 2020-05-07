@@ -1094,13 +1094,13 @@ System.out.println("location="+location);
 				jedis.set(email, code);
 				jedis.expire(email, 300);
 				jedis.close();
-		
+				
 				// 傳送密碼
 				String ip = "localhost";
 				String to = email;
 				String subject = "會員驗證信通知";
 				String messageText = "Hello! " + email + " 這是你的驗證碼: " + code + "\n" + "請點擊下方連結激活帳號"+
-				"http://"+ ip + ":8081/Foodporn_Member-0425/front-end/member/checkCode.jsp?email=" + email;
+				"https://da106g4.tk" + req.getContextPath() + "/front-end/member/checkCode.jsp?email=" + email;
 				sendMail(to, subject, messageText);
 										
 				/***************************2.開始新增資料***************************************/
@@ -1108,7 +1108,7 @@ System.out.println("location="+location);
 				memberSvc.insertmem(account, password, email);
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				String url = "/back-end/member/listAllMember.jsp";
+				String url = "/index.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);				
 				

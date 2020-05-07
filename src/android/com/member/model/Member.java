@@ -18,7 +18,7 @@ public class Member implements java.io.Serializable{
 //	 private Integer gender;
 	 private String cellphone;
 	 private String email;
-//	 private String nickname;
+	 private String nickname;
 //	  private byte[] member_photo;
 //	 private Integer validation;
 //	  private byte[] license;
@@ -78,12 +78,12 @@ public class Member implements java.io.Serializable{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-//	public String getNickname() {
-//		return nickname;
-//	}
-//	public void setNickname(String nickname) {
-//		this.nickname = nickname;
-//	}
+	public String getNickname() {
+		return nickname;
+	}
+	public void setNickname(String nickname) {
+		this.nickname = nickname;
+	}
 //	public byte[] getMember_photo() {
 //		return member_photo;
 //	}

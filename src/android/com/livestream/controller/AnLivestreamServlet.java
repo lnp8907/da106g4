@@ -22,7 +22,9 @@ import org.json.JSONObject;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import android.com.main.ImageUtil;
-
+import android.com.member.model.Member;
+import android.com.member.model.MemberDAO;
+import android.com.member.model.MemberDAOImpl;
 import android.com.livestream.model.Livestream;
 import android.com.livestream.model.LivestreamDAO;
 import android.com.livestream.model.LivestreamDAOImpl;
@@ -94,9 +96,20 @@ public class AnLivestreamServlet extends HttpServlet {
 			writeText(res, title == null ? "" : gson.toJson(title));
 		}
 		else if ("findCidByLsid".equals(action)) {
+			MemberDAO memberDao = new MemberDAOImpl();
 			String livestream_id = jsonObject.get("livestream_id").getAsString();
-			Livestream member_id = livestreamDao.findCidByLsid(livestream_id);
-			writeText(res, member_id == null ? "" : gson.toJson(member_id));
+			Livestream livestreamVO = livestreamDao.findCidByLsid(livestream_id);
+			String member_id =  livestreamVO.getMember_id();
+			Member member = memberDao.findNickname(member_id);
+			String nick= member.getNickname();
+			JSONObject obj = new JSONObject();
+			try {
+				obj.put("member_id", member_id);
+				obj.put("nickname", nick);
+			}catch (Exception e) {
+				System.out.println("QQ");
+			}
+			writeText(res, member_id == null ? "" : obj.toString());
 		}
 //		else if (action.equals("update")) {
 //			Member member = gson.fromJson(jsonObject.get("member").getAsString(), Member.class);

@@ -93,7 +93,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 <body>
 		<header>
 		<div id="top-logo" class="logo">
-			<a href="/DA106_G4_Foodporn/" title="回首頁"><img class="logo-photo"
+			<a href="<%=request.getContextPath() %>/index.jsp" title="回首頁"><img class="logo-photo"
 				src="<%=request.getContextPath() %>/image/FoodPron_Logo.png" alt="logo"></a>
 		</div>
 		<div class="function">
@@ -131,7 +131,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 						
 						
 						</div>
-							<div class="carmessage2" style="display: none" >${fn:length(productlist)}</div>
+							<div class="carmessage2" style="display: none" >${fn:length(productcarlist)}</div>
 						<div class="carmessagecircle" style="display: none">more</div>
 					
 					
@@ -290,18 +290,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 	<main>
 		<%
 			Map<Integer, String> producttype = new HashMap<Integer, String>();
-// 								List A=new ArrayList();
-// 						        for (int i = 0; i < 11; i++) {
-// 						            A.add(i);
-// 						        }
-// 						        for (Object a:A
-// 						             ){
-// 						            System.out.println(a);
-
-// 						        }
-// 						      Collections.shuffle(A);
-	        
-				
+			
 				producttype.put(0, "水果類");
 				producttype.put(1, "肉類");
 				producttype.put(2, "蔬菜類");

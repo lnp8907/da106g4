@@ -24,6 +24,7 @@ public class MemberDAOImpl implements MemberDAO {
 	private static final String FIND_Name_BY_ACCOUNT = "SELECT member_name FROM MEMBER where ACCOUNT = ?";
 	private static final String CHECK_ID_EXIST = "SELECT ACCOUNT FROM MEMBER where ACCOUNT = ?";
 	private static final String FIND_Id_BY_ACCOUNT = "SELECT member_id FROM MEMBER where ACCOUNT = ?";
+	private static final String FIND_NICKNAME_BY_ID = "SELECT nickname FROM MEMBER where member_id = ?";
 	private static final String FIND_Photo_BY_ACCOUNT = "SELECT member_photo FROM MEMBER where ACCOUNT = ?";
 	//private static final String FIND_Pic_BY_STATUS = "SELECT member_photo FROM MEMBER where STATUS = ?";
 	private static final String FIND_Balance_BY_ACCOUNT = "SELECT balance FROM MEMBER where ACCOUNT = ?";
@@ -43,7 +44,7 @@ public class MemberDAOImpl implements MemberDAO {
 	  static {
 	   try {
 	    Context ctx = new InitialContext();
-	    ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G4");
+	    ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106_G4");
 	   } catch (NamingException e) {
 	    e.printStackTrace();
 	   }
@@ -633,6 +634,58 @@ public class MemberDAOImpl implements MemberDAO {
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
+			}
+		}
+		return member;
+	}
+
+	@Override
+	public Member findNickname(String member_id) {//FIND_NICKNAME_BY_ID
+		Member member = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = DriverManager.getConnection(MyData.URL, MyData.USER,
+					MyData.PASSWORD);
+			pstmt = con.prepareStatement(FIND_NICKNAME_BY_ID);
+
+			pstmt.setString(1, member_id);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				member = new Member();
+				member.setNickname(rs.getString("nickname"));
+			}
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
 			}
 		}
 		return member;
