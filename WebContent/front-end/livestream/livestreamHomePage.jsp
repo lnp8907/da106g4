@@ -455,7 +455,7 @@ Vector<Order_detailVO> productlist;
     	<c:forEach var="Livelist" items="${Livelist}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
     
             <li ><a
-                    href="" >
+                    href="<%=request.getContextPath() %>/front-end/livestream/livestream.jsp#${Livelist.member_id}" >
                 <div class="livedivlist">
 
 

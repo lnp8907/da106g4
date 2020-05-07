@@ -1259,10 +1259,6 @@ console.log(endPointURL);
 	function connect() {
 		rtcroomName = document.getElementById('broadcast-name').value;
 		alert(rtcroomName);		
-		<%if(memberVO !=null){
-			if(memberVO.getMember_status()==1){%>
-				<%= "beOnline();"%>
-		<%}}%>
 		// 建立 websocket 物件
 		webSocket = new WebSocket(endPointURL+"/"+rtcroomName);
 		console.log(endPointURL+"/"+rtcroomName);
@@ -1287,10 +1283,6 @@ console.log(endPointURL);
 		};
 
 		webSocket.onclose = function(event) {
-			<%if(memberVO !=null){
-				if(memberVO.getMember_status()==1){%>
-					<%= "beOffline();"%>
-			<%}}%>
 			var hostID = document.getElementById("messagesArea");
 		     var jsonObj = {"hostID" : userName, "message" : message};
 		        webSocket.send(JSON.stringify(jsonObj));
@@ -1381,9 +1373,11 @@ var beOffline = function(){
 		success : function(data) {
 
 		},
-		error : function() {
-			
-		}
+		error : function() {			
+	
+	}
+});
+}
 </script>
 	
 	

@@ -30,7 +30,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 
 	
 	//////////////////////////////////////////
-	private static final String GET_ALL_STMT_NEW = "SELECT MEMBER_ID,ACCOUNT,PASSWORD,MEMBER_NAME,GENDER,to_char(BIRTHDAY,'yyyy-mm-dd') BIRTHDAY,CELLPHONE,EMAIL,NICKNAME,MEMBER_PHOTO,VALIDATION,LICENSE,MEMBER_STATUS,MEMBER_ADDRESS,MEMBER_CREDITCARD,BALANCE,CHIEFAPPLY_STATUS,livestream_status FROM MEMBER order by member_status,member_id";
+	private static final String GET_ALL_STMT_NEW = "SELECT MEMBER_ID,ACCOUNT,PASSWORD,MEMBER_NAME,GENDER,to_char(BIRTHDAY,'yyyy-mm-dd') BIRTHDAY,CELLPHONE,EMAIL,NICKNAME,MEMBER_PHOTO,VALIDATION,LICENSE,MEMBER_STATUS,MEMBER_ADDRESS,MEMBER_CREDITCARD,BALANCE,CHIEFAPPLY_STATUS,LIVE_STATUS FROM MEMBER order by member_status,member_id";
 ///////////////////////////////////////////////////
 	
 	
@@ -1360,7 +1360,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 				empVO.setMember_creditcard((rs.getString("MEMBER_CREDITCARD")==null)?"尚無資料":rs.getString("MEMBER_CREDITCARD"));
 				empVO.setBalance(rs.getInt("BALANCE"));
 				empVO.setChiefapply_status(rs.getInt("CHIEFAPPLY_STATUS"));
-				empVO.setLivestream_status(rs.getInt("LIVESTREAM_STATUS"));
+				empVO.setLivestream_status(rs.getInt("LIVE_STATUS"));
 				list.add(empVO); // Store the row in the list
 			}
 

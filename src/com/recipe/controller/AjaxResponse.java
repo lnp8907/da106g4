@@ -176,27 +176,26 @@ public class AjaxResponse extends HttpServlet {
 				/*************************** 2.開始新增資料 *****************************************/
 				MemberService memberService = new MemberService();
 				memberService.changeOnline(member_id, num);
-
+				System.out.println("OnlineOK");
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-
-			out.write("OK");
 		}
 		
 		
 		
 		//改狀態為下線中
-		if ("beOnline".equals(action)) {
-
+		System.out.println(action);
+		if ("beOffline".equals(action)) {
+			
 			String	member_id = req.getParameter("member_id");
+			System.out.println(member_id);
 			Integer num = 3;
 
 				/*************************** 2.開始新增資料 *****************************************/
 				MemberService memberService = new MemberService();
 				memberService.changeOnline(member_id, num);
+				System.out.println("OfflineOK");
 
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
-
-			out.write("OK");
 		}
 		
 		

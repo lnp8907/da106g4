@@ -200,7 +200,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 				<li class="dropdown"><a><img class="access-menu-icon"
 						src="image/livestream-icon.png"><span class="menu-span">直播專區</span></a>
 					<ul>
-						<li><a class="dropdown-first-a" href="#"><img
+						<li><a class="dropdown-first-a" href="<%=request.getContextPath()%>/front-end/livestream/livestreamHomePage.jsp"><img
 								class="dropdown-first-img"
 								src="image/ico_gnav_recipes_movie.svg"><span
 								class="dropdown-first-a-span">直播主頁</span></a></li>
