@@ -1260,6 +1260,7 @@ console.log(endPointURL);
 		alert(rtcroomName);
 		// 建立 websocket 物件
 		webSocket = new WebSocket(endPointURL+"/"+rtcroomName);
+		console.log(endPointURL+"/"+rtcroomName);
 		document.getElementById('broadcasting-option').style.display = 'none';
         document.getElementById('broadcast-name').style.display = 'none';
         document.getElementById('setup-new-broadcast').style.display = 'none';

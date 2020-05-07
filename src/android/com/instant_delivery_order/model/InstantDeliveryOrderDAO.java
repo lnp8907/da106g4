@@ -1,7 +1,9 @@
 package android.com.instant_delivery_order.model;
 
 import java.util.*;
+import java.util.Date;
 import java.sql.*;
+import java.text.SimpleDateFormat;
 
 import javax.naming.Context;
 import javax.naming.InitialContext;
@@ -35,7 +37,10 @@ public class InstantDeliveryOrderDAO implements InstantDeliveryOrderDAO_interfac
 	private static final String GET_ALL_BY_MEMBER_ID_STMT = "SELECT * FROM INSTANT_DELIVERY_ORDER where member_id = ? order by IDO_NO";
 	private static final String INSERT_STMT = "INSERT INTO INSTANT_DELIVERY_ORDER (IDO_NO,MEMBER_ID,P_METHOD,P_STATUS,TOTAL,D_ADDRESS,QRCODE) VALUES (to_char('IO')||'-'||to_char(sysdate,'yyyy-mm-dd')||'-'||LPAD(to_char(SQ_IDO_NO.NEXTVAL),6,'0'), ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ONE_ORDER_PRODUCT_STMT = "SELECT * FROM RECIPE_ORDER_DETAILS where ido_no = ? order by product_id";
-	private static final String UPDATE_O_STATUS = "UPDATE INSTANT_DELIVERY_ORDER SET O_STATUS = ? where IDO_NO = ?";
+	private static final String UPDATE_O_STATUS = "UPDATE INSTANT_DELIVERY_ORDER SET O_STATUS = ?, OC_TIME = CURRENT_TIMESTAMP where IDO_NO = ?";
+	private static final String UPDATE_P_STATUS = "UPDATE INSTANT_DELIVERY_ORDER SET P_STATUS = 0 where IDO_NO = ?";
+//	private static final String UPDATE_OC_TIME_STMT = "UPDATE INSTANT_DELIVERY_ORDER SET OC_TIME = CURRRENT where IDO_NO = ?";
+	
 
 	//	private static final String DELETE = 
 //			"DELETE FROM INSTANT_DELIVERY_ORDER where IDO_NO = ?";
@@ -562,7 +567,7 @@ public class InstantDeliveryOrderDAO implements InstantDeliveryOrderDAO_interfac
 	}
 
 	@Override
-	public boolean finishOrder(String ido_no, Integer o_status) {
+	public boolean finishOrder(String ido_no, Integer o_status, Integer p_method) {
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
@@ -571,20 +576,24 @@ public class InstantDeliveryOrderDAO implements InstantDeliveryOrderDAO_interfac
 			conn = ds.getConnection();
 			ps = conn.prepareStatement(UPDATE_O_STATUS);
 			ps.setInt(1, o_status);
-			ps.setString(2, ido_no);
-
-			
+			ps.setString(2, ido_no);			
 			
 			int count = ps.executeUpdate();
-			b = count > 0 ? true : false; 
-
-
+			b = count > 0 ? true : false;
+			
+			if(p_method == 1) { //付款方式為貨到付款
+				changePstatus(conn, ido_no);
+			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			try {
 				if (ps != null) {
 					ps.close();
+				}
+				if (rs != null) {
+					rs.close();
 				}
 				if (conn != null) {
 					conn.close();
@@ -594,5 +603,33 @@ public class InstantDeliveryOrderDAO implements InstantDeliveryOrderDAO_interfac
 			}
 		}
 		return b;
+	}
+	
+	public void changePstatus(Connection conn, String ido_no) {
+//		Connection conn = null;
+		PreparedStatement ps = null;
+//		ResultSet rs = null;
+		boolean b = false;
+		try {
+//			conn = ds.getConnection();
+			ps = conn.prepareStatement(UPDATE_P_STATUS);
+			ps.setString(1, ido_no);
+			ps.executeQuery();
+//			ps.setInt(1, o_status);
+//			ps.setString(2, ido_no);	
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				if (ps != null) {
+					ps.close();
+				}
+//				if (conn != null) {
+//					conn.close();
+//				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 }

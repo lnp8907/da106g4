@@ -427,6 +427,12 @@
       <url-pattern>/front-end/course/addCourse.jsp</url-pattern>
       <url-pattern>/front-end/course/listAllCourseManagement.jsp</url-pattern>
        <url-pattern>/front-end/course/update_course_input.jsp</url-pattern>
+        <url-pattern>/front-end/livestream/livestream.jsp</url-pattern>
+       
+     
+       
+       
+       
   <!-- 測試 -->
 <!--   <url-pattern>/front_end/index.jsp</url-pattern> -->
 <!--   <url-pattern>/front_end/group_index.jsp</url-pattern> -->

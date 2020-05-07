@@ -25,6 +25,8 @@
 	MemberVO memberVO = memberService.getOneMember(recipeVO.getMember_id());
 	RecipeFavoriteServiec recipeFavoriteServiec = new RecipeFavoriteServiec();
 %>
+    	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -46,6 +48,7 @@
 </head>
 
 <body>
+
 	<div class="racipe-main">
 		<div class="racipe-header">
 			<h2><%=recipeVO.getRecipe_name()%></h2>

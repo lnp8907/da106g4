@@ -53,6 +53,7 @@ public class DeliveryWS {
 	// 員工傳送定位資料(Json)過來
 	public void onMessage(Session userSession, String message) {
 		ChatMessage chatMessage = gson.fromJson(message, ChatMessage.class);
+		System.out.println(chatMessage);
 		String sender = chatMessage.getSender();
 		String receiver = chatMessage.getReceiver();
 		String backend = chatMessage.getBackend();
@@ -76,6 +77,11 @@ public class DeliveryWS {
 				backendSession.getAsyncRemote().sendText(message);
 			}
 			System.out.println("Message received: " + message);
+		} else if ("DeliveryFinish".equals(chatMessage.getType())) {
+			if (receiverSession != null && receiverSession.isOpen()) {
+				receiverSession.getAsyncRemote().sendText(message);
+				System.out.println("Message received: " + message);
+			}
 		}
 	}
 

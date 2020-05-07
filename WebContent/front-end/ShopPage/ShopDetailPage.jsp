@@ -28,7 +28,7 @@
 	map.put(1, "已上架");
 	request.setAttribute("productstatus", map);
 %>
-<c:set var="productlist" value="<%=productlist %>"/>
+<c:set var="productcarlist" value="<%=productlist%>" scope="session"/>
 <html>
 <head>
 
@@ -97,7 +97,7 @@
 						
 						
 						</div>
-							<div class="carmessage2" style="display: none">${fn:length(productlist)}</div>
+							<div class="carmessage2" style="display: none">${fn:length(productcarlist)}</div>
 						<div class="carmessagecircle" style="display: none">more</div>
 					
 					

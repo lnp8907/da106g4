@@ -4,6 +4,7 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
     <%@page import="com.member.model.*"%>
     	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+    	
     <%@ page import="java.util.*"%>
     
 <%
@@ -28,7 +29,6 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 	*/
 %>
 <%@ page import="java.util.*"%>
-<c:set var="productlist" value="<%=productlist %>"/>
 
 
 
@@ -40,21 +40,22 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=3.0">
 <title>Foodporn</title>
-<link rel="stylesheet" href="css/frontEnd.css">
-<link rel="stylesheet" href="css/header-sider.css">
-<link rel="stylesheet" href="slick/slick.css">
-<link rel="stylesheet" href="slick/slick-theme.css">
-<link rel="stylesheet" href="css/homePage.css">
-<link rel="stylesheet" href="css/CarMessage.css">
+
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/frontEnd.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/header-sider.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/slick/slick.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/slick/slick-theme.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/homePage.css">
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/CarMessage.css">
 <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-<link rel="icon" href="image/head-FoodPron_Logo.ico" type="image/x-icon">
-<link rel="shortcut icon" href="image/head-FoodPron_Logo.ico"
+<link rel="icon" href="<%=request.getContextPath() %>/image/head-FoodPron_Logo.ico" type="image/x-icon">
+<link rel="shortcut icon" href="<%=request.getContextPath() %>/image/head-FoodPron_Logo.ico"
 	type="image/x-icon" />
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-<script src="slick/slick.js" type="text/javascript" charset="utf-8"></script>
-<script src="js/homePage.js" type="text/javascript" charset="utf-8"></script>
+<script src="<%=request.getContextPath() %>/slick/slick.js" type="text/javascript" charset="utf-8"></script>
+<script src="<%=request.getContextPath() %>/js/homePage.js" type="text/javascript" charset="utf-8"></script>
 <script>
 	$(document).ready(function() {
 		getLatest();
@@ -70,14 +71,14 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 <body>
 	<header>
 		<div id="top-logo" class="logo">
-			<a href="/DA106_G4_Foodporn_Git/index.jsp" title="回首頁"><img class="logo-photo"
-				src="image/FoodPron_Logo.png" alt="logo"></a>
+			<a href="<%=request.getContextPath() %>/index.jsp" title="回首頁"><img class="logo-photo"
+				src="<%=request.getContextPath() %>/image/FoodPron_Logo.png" alt="logo"></a>
 		</div>
 		<div class="function">
 			<div class="function-list">
 				<a href="#"></a>
 				<div class="member-center">
-				<a href="front-end/member/TestMemberHomepage.jsp" id="member-center">
+				<a href="<%=request.getContextPath() %>/front-end/member/TestMemberHomepage.jsp" id="member-center">
 					<span class="member-center-spann">會員中心</span>
 					</a>
 					
@@ -156,7 +157,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 
 
 						</div>
-						<div class="carmessage2" style="display: none">${fn:length(productlist)}</div>
+						<div class="carmessage2" style="display: none">${fn:length(productcarlist)}</div>
 						<div class="carmessagecircle" style="display: none">more</div>
 
 
@@ -213,32 +214,43 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 						class="access-menu-icon" src="image/shop-icon.png"><span
 						class="menu-span">食材商城</span></a>
 					<ul id="dropdown-shop-ul">
-						<li><a class="dropdown-first-a" href="#"><img
+						<li><a class="dropdown-first-a" href="<%=request.getContextPath()%>/front-end/ShopPage/ShopHomePage.jsp"><img
 								class="dropdown-first-img"
 								src="image/ico_gnav_recipes_salad.svg"><span
 								class="dropdown-first-a-span">食材商城主頁</span></a></li>
-						<li><a href="/ProductPage?product_type=水果類&action=goProductPage">水果類</a></li>
-						<li><a href="#">肉類</a></li>
-						<li><a href="#">蔬菜類</a></li>
-						<li><a href="#">乳品類</a></li>
-						<li><a href="#">魚貝類</a></li>
-						<li><a href="#">菇類</a></li>
-						<li><a href="#">穀物類</a></li>
-						<li><a href="#">澱粉類</a></li>
-						<li><a href="#">酒類</a></li>
-						<li><a href="#">調味料及辛香料類</a></li>
-						<li><a href="#">油脂類</a></li>
-						<li><a href="#">所有商品</a></li>
+								<%
+			Map<Integer, String> producttype = new HashMap<Integer, String>();
+			
+				producttype.put(0, "水果類");
+				producttype.put(1, "肉類");
+				producttype.put(2, "蔬菜類");
+				producttype.put(3, "乳品類");
+				producttype.put(4, "魚貝類");
+				producttype.put(5, "菇類");
+				producttype.put(6, "穀物類");
+				producttype.put(7, "澱粉類");
+				producttype.put(8, "酒類");
+				producttype.put(9, "調味料及香辛料類");
+				producttype.put(10, "油脂類");
+				producttype.put(11, "所有商品");				
+				request.setAttribute("producttype", producttype);
+
+			%>							<c:forEach var="producttype" items="${producttype}">
+									<li><a href="<%=request.getContextPath() %>/front-end/ShopPage/ProductPage?product_type=${producttype.value}&action=goProductPage">${producttype.value}</a></li>
+			
+										</c:forEach>
+			
+
 					</ul></li>
 				<li class="dropdown"><a href="front-end/course/listAllCourse.jsp"><img class="access-menu-icon"
 						src="image/course-icon.png"><span class="menu-span">料理課程</span></a>
 					<ul>
-						<li><a class="dropdown-first-a" href="front-end/course/listAllCourse.jsp"><img
+						<li><a href="<%=request.getContextPath() %>/front-end/course/listAllCourse.jsp" class="dropdown-first-a" href="front-end/course/listAllCourse.jsp"><img
 								class="dropdown-first-img" src="image/ico_gnav_recipes_pot.svg"><span
 								class="dropdown-first-a-span">課程主頁</span></a></li>
-						<li><a href="#">熱門課程</a></li>
+<!-- 						<li><a href="#">熱門課程</a></li> -->
 						<c:if test="<%= memberVO!=null && memberVO.getMember_status()==1%>">
-						<li><a href="#">建立料理課程</a></li>
+						<li><a href="<%=request.getContextPath() %>/front-end/course/addCourse.jsp">建立料理課程</a></li>
 						</c:if>
 					</ul></li>
 			</ul>
@@ -320,7 +332,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 
 	
 	<div class="pagetop">
-		<img src="../../image/go-top-page.png" alt="BackTop" id="BackTop">
+		<img src="<%=request.getContextPath() %>/image/go-top-page.png" alt="BackTop" id="BackTop">
 		<!--一鍵置頂-->
 	</div>
 	<!-- end of pagetop-->

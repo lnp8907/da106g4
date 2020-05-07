@@ -115,7 +115,8 @@ public class OrderServlet extends HttpServlet {
 		} else if ("qrcode".equals(action)) {
 			String ido_no = jsonObject.get("ido_no").getAsString();
 			String o_status = jsonObject.get("o_status").getAsString();
-			boolean b= instantDeliveryOrderDAO.finishOrder(ido_no, Integer.valueOf(o_status));
+			String p_method = jsonObject.get("p_method").getAsString();
+			boolean b= instantDeliveryOrderDAO.finishOrder(ido_no, Integer.valueOf(o_status), Integer.valueOf(p_method));
 			writeText(res, gson.toJson(b));
 		} else if ("getDeliveryOrder".equals(action)) {
 			String o_status = jsonObject.get("o_status").getAsString();
@@ -129,7 +130,7 @@ public class OrderServlet extends HttpServlet {
 			
 			boolean b= instantDeliveryOrderDAO.updateStaffId(staff_id, ido_no, o_status);
 			writeText(res, gson.toJson(b));
-	
+//	1111111
 		}
 
 	}
