@@ -20,6 +20,7 @@ import com.course.model.CourseService;
 import com.course.model.CourseVO;
 import com.livestream.model.LivestreamVO;
 import com.livestream.model.LsService;
+import com.member.model.MemberService;
 import com.recipe.model.RecipeService;
 import com.recipe.model.RecipeVO;
 import com.recipe_favorite.model.RecipeFavoriteServiec;
@@ -163,6 +164,44 @@ public class AjaxResponse extends HttpServlet {
 
 				out.write(obj.toString());
 			}
+		
+		
+		
+		//改狀態為直播中
+		if ("beOnline".equals(action)) {
+
+			String	member_id = req.getParameter("member_id");
+			Integer num = 2;
+
+				/*************************** 2.開始新增資料 *****************************************/
+				MemberService memberService = new MemberService();
+				memberService.changeOnline(member_id, num);
+
+				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
+
+			out.write("OK");
+		}
+		
+		
+		
+		//改狀態為下線中
+		if ("beOnline".equals(action)) {
+
+			String	member_id = req.getParameter("member_id");
+			Integer num = 3;
+
+				/*************************** 2.開始新增資料 *****************************************/
+				MemberService memberService = new MemberService();
+				memberService.changeOnline(member_id, num);
+
+				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
+
+			out.write("OK");
+		}
+		
+		
+		
+		
 		
 		
 		

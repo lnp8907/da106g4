@@ -415,7 +415,7 @@
                        <!-- 卡片內容起始標籤 -->
                     <table id="table-1">
                         <tr><td>
-                             <h3>所有直播資料 - listAllLivestream.jsp</h3> 
+                             <h3>所有直播資料 - listOneLivestream.jsp</h3> 
        		 
                              <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" >回首頁</a></h4>
                         </td></tr>
@@ -454,11 +454,15 @@
                                 <td>${livestreamVO.livestream_date}</td>
                                 
                                <%--  <td>${livestreamVO.video}</td> --%>
-                                <td><video src=http://localhost:8081/DA106_G4_Foodporn_Git/front-end/livestream/LivestreamVideoReader?livestream_id=${livestreamVO.livestream_id} type="video/mp4" width="320" height="240" controls></video></td>
+                                <td>
+                                <c:if test="${livestreamVO.video!=null}">
+                                <video src=https://da106g4.tk/DA106_G4_Foodporn_Git/front-end/livestream/LivestreamVideoReader?livestream_id=${livestreamVO.livestream_id} type="video/mp4" width="320" height="240" controls></video>
+                                </c:if>
+                                </td>
                               
                                 <td>${livestreamVO.status}</td>
                                
-                                <td><img width="100" height="100" src=http://localhost:8081/DA106_G4_Foodporn_Git/front-end/livestream/LivestreamPhotoReader?livestream_id=${livestreamVO.livestream_id} ></td>
+                                <td><img width="100" height="100" src=https://da106g4.tk/DA106_G4_Foodporn_Git/front-end/livestream/LivestreamPhotoReader?livestream_id=${livestreamVO.livestream_id} ></td>
                                
                                 <td>${livestreamVO.introduction}</td>
                                 <td>${livestreamVO.title}</td>

@@ -1,5 +1,6 @@
 <%@page import="com.member.model.MemberVO"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	response.setHeader("Cache-Control", "no-store"); //HTTP 1.1
 	response.setHeader("Pragma", "no-cache"); //HTTP 1.0
@@ -1257,7 +1258,11 @@ console.log(endPointURL);
 	var rtcroomName;
 	function connect() {
 		rtcroomName = document.getElementById('broadcast-name').value;
-		alert(rtcroomName);
+		alert(rtcroomName);		
+		<%if(memberVO !=null){
+			if(memberVO.getMember_status()==1){%>
+				<%= "beOnline();"%>
+		<%}}%>
 		// 建立 websocket 物件
 		webSocket = new WebSocket(endPointURL+"/"+rtcroomName);
 		console.log(endPointURL+"/"+rtcroomName);
@@ -1282,6 +1287,10 @@ console.log(endPointURL);
 		};
 
 		webSocket.onclose = function(event) {
+			<%if(memberVO !=null){
+				if(memberVO.getMember_status()==1){%>
+					<%= "beOffline();"%>
+			<%}}%>
 			var hostID = document.getElementById("messagesArea");
 		     var jsonObj = {"hostID" : userName, "message" : message};
 		        webSocket.send(JSON.stringify(jsonObj));
@@ -1340,4 +1349,44 @@ console.log(endPointURL);
 			$('body,html').toggleClass('add')
 		});
 	</script>
+	
+	
+<script>
+	//練習使用AJAX實現按讚功能
+	
+var beOnline = function(){
+			$.ajax({
+				type : "POST",
+				url : "<%=request.getContextPath()+"/AjaxResponse"%>",
+				data : {
+					"action" : "beOnline",	"member_id" : <%=memberVO.getMember_id()%>},
+				dataType : "json",
+				success : function(data) {
+
+				},
+				error : function() {
+					
+				}
+			});
+	}
+	
+	
+var beOffline = function(){
+	$.ajax({
+		type : "POST",
+		url : "<%=request.getContextPath()+"/AjaxResponse"%>",
+		data : {
+			"action" : "beOffline","member_id" : <%=memberVO.getMember_id()%>},
+		dataType : "json",
+		success : function(data) {
+
+		},
+		error : function() {
+			
+		}
+</script>
+	
+	
+	
+	
 </html>

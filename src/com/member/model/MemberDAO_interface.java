@@ -8,7 +8,7 @@ import com.course.model.CourseVO;
 public interface MemberDAO_interface {
           public void insert(MemberVO empVO);
           public void update(MemberVO empVO);
-          public void delete(String empno);
+          public void delete(String empno); 
           public MemberVO findByPrimaryKey(String empno);
           public List<MemberVO> getAll();
           public void update_To_Chef(MemberVO empVO);
@@ -23,6 +23,9 @@ public interface MemberDAO_interface {
           public void UpdateChiefapplyStatus(MemberVO empVO);
           public void UpdateValidation(MemberVO empVO);
           public List<MemberVO> getValidation();
+      	  public List<MemberVO> getliving() ;
+      	  public void changeOnline(String member_id,Integer num);
+          public void changeOffline(String member_id,Integer num);
 
           
           

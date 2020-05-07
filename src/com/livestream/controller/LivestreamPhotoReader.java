@@ -10,6 +10,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 import javax.sql.DataSource;
 @WebServlet({ "/front-end/livestream/LivestreamPhotoReader","/LivestreamPhotoReader" })
+//http://localhost:8081/DA106_G4_Foodporn_Git/front-end/livestream/LivestreamPhotoReader?livestream_id=410003
 public class LivestreamPhotoReader extends HttpServlet {
 ///
 	Connection con;
@@ -23,6 +24,7 @@ public class LivestreamPhotoReader extends HttpServlet {
 		try {
 			Statement stmt = con.createStatement();
 			String livestream_id = req.getParameter("livestream_id").trim();
+			System.out.println("QQ123");
 			ResultSet rs = stmt.executeQuery(
 				"SELECT picture FROM livestream WHERE livestream_id = " + livestream_id);  //+ req.getParameter("PID")
 			if (rs.next()) {
