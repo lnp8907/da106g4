@@ -1,0 +1,82 @@
+<!-- //////////////////////////////////////儲值//////////////////////////////////////// -->
+<c:if test="${openModal!=null}">
+
+    <div class="modal fade" id="basicModal" tabindex="-1" role="dialog"
+     aria-labelledby="basicModal" aria-hidden="true">
+     <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+
+       <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"
+         aria-hidden="true">&times;</button>
+        <h2 class="modal-title" id="myModalLabel">儲值</h2>
+       </div>
+
+       <div class="modal-body">
+        <!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
+        <jsp:include page="/front-end/moneyflow/storedValue.jsp" />
+        <!-- =========================================以上為原listOneEmp.jsp的內容========================================== -->
+       </div>
+
+       <div class="modal-footer">
+        <button type="button" class="btn btn-default"
+         data-dismiss="modal">Close</button>
+<!--         <button type="button" class="btn btn-primary">Save -->
+<!--          changes</button> -->
+       </div>
+
+      </div>
+     </div>
+    </div>
+    
+            <script>
+    		 $("#basicModal").modal({show: true});
+        </script>
+    
+   </c:if>
+	
+
+
+String member_id = req.getParameter("member_id");
+			System.out.println("網頁獲取" + req.getParameter("member_id"));
+			System.out.println("member_id:" + member_id);
+			System.out.println("SESSION獲取member_id:" + session.getAttribute("member_id"));
+
+
+
+MemberService msvc= new MemberService();
+				MemberVO memberVO = msvc.getOneMember(member_id);
+
+				System.out.println("現有" + memberVO.getBalance());
+				if (memberVO.getBalance() >= total) {
+
+					memberVO.setBalance(memberVO.getBalance() - total);
+					System.out.println("更新" + memberVO.getBalance());
+					Integer balance = Integer.valueOf(memberVO.getBalance());// 取金流
+
+					svc1.updateStoredValue(member_id, balance);
+
+				} else {
+
+					boolean openModal = true;
+					req.setAttribute("openModal", openModal);
+					System.out.println(openModal);
+					Integer balance = Integer.valueOf(memberVO.getBalance());// 取金流
+
+					// MemberService memberSvc = new MemberService();//更改會員總點數
+					// memberSvc.updateStoredValue(member_id, balance);
+					svc1.updateStoredValue(member_id, balance);
+
+
+
+					//String url = "/front-end/ShopPage/ProductCheckoutPage.jsp";
+
+
+
+					RequestDispatcher successView = req.getRequestDispatcher(url); 
+					successView.forward(req, res);
+					return;
+				}
+
+
+
