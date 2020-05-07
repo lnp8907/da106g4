@@ -516,11 +516,11 @@ public class MemberDAOImpl implements MemberDAO {
 	
 	@Override
 	public boolean balanceEnough(String member_id, Integer sum) {
-
+		System.out.println(member_id + sum);
 		Connection conn = null;
 		PreparedStatement ps = null;
 		ResultSet rs = null;
-
+		
 		try {
 			conn = ds.getConnection();
 
@@ -548,6 +548,9 @@ public class MemberDAOImpl implements MemberDAO {
 			e.printStackTrace();
 		} finally {
 			try {
+				if (rs != null) {
+					rs.close();
+				}
 				if (ps != null) {
 					ps.close();
 				}

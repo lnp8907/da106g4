@@ -10,7 +10,7 @@ import java.util.Base64;
 
 public class UploadClobPhoto2 {
 
-	private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
+	private static final String URL = "jdbc:oracle:thin:@35.229.239.13:1521:XE";
 	private static final String USER = "DA106_G4";
 	private static final String PASSWORD = "DA106_G4";
 	private static final String SQL = "UPDATE RECIPE SET RECIPE_PHOTO=? WHERE RECIPE_ID = ?";
@@ -41,9 +41,9 @@ public class UploadClobPhoto2 {
 			
 			// 2. setBytes
 			int b = 0;
-			for (int i = 510000; i <= 510034; i++) {
+			for (int i = 510001; i <= 510018; i++) {
 				String recipe_id = String.valueOf(i);
-				String filePath = "image/recipe/" + ++b + ".jpg";
+				String filePath = "recipeImage/" + ++b + ".jpg";
 				final String picCode = encoder.encodeToString(getPictureByteArray(filePath));//將圖片陣列編碼成BASE64
 				
 				final String pic = base64Image + picCode;

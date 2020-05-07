@@ -11,7 +11,7 @@ import java.sql.SQLException;
 
 public class UploadBlob {
 
-	private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
+	private static final String URL = "jdbc:oracle:thin:@35.229.239.13:1521:XE";
 	private static final String USER = "DA106_G4";
 	private static final String PASSWORD = "DA106_G4";
 	private static final String SQL = "UPDATE MEMBER SET MEMBER_PHOTO=? WHERE MEMBER_ID = ?";
@@ -31,7 +31,7 @@ public class UploadBlob {
 				int a = 0;
 			for (int i = 810001; i <= 810009; i++) {
 				int m_no = i;
-				String filePath = "../image/M" + ++a + ".jpg";
+				String filePath = "image/M" + ++a + ".jpg";
 				byte[] pic = getPictureByteArray(filePath);
 				pstmt.setBytes(1, pic);
 				pstmt.setInt(2, m_no);
@@ -43,7 +43,7 @@ public class UploadBlob {
 				int b = 0;
 				for (int i1 = 810001; i1 <= 810007; i1++) {
 					int m_no1 = i1;
-					String filePath1 = "/image/L00" + ++b + ".jpg";
+					String filePath1 = "image/L00" + ++b + ".jpg";
 					byte[] pic1 = getPictureByteArray(filePath1);
 					pstmt2.setBytes(1, pic1);
 					pstmt2.setInt(2, m_no1);
