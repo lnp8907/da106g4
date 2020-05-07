@@ -18,15 +18,16 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 	String passwd = "DA106_G4";
 
 	
+	
+	private static final String GETLIVESTREAM="SELECT MEMBER_ID FROM MEMBER WHERE livestream_status=1";
+	
+	
+	
 	private static final String INSERT_STMT = "INSERT INTO MEMBER (MEMBER_ID,ACCOUNT,PASSWORD,EMAIL) VALUES (SQ_MEMBER_ID.NEXTVAL, ?, ?, ?)";
 
 	//private static final String INSERT_STMT = "INSERT INTO MEMBER (MEMBER_ID,ACCOUNT,PASSWORD,MEMBER_NAME,GENDER,BIRTHDAY,CELLPHONE,EMAIL,NICKNAME,MEMBER_PHOTO,VALIDATION,LICENSE,MEMBER_STATUS,MEMBER_ADDRESS,MEMBER_CREDITCARD,BALANCE) VALUES (SQ_MEMBER_ID.NEXTVAL, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 	private static final String GET_ALL_STMT = "SELECT MEMBER_ID,ACCOUNT,PASSWORD,MEMBER_NAME,GENDER,to_char(BIRTHDAY,'yyyy-mm-dd') BIRTHDAY,CELLPHONE,EMAIL,NICKNAME,MEMBER_PHOTO,VALIDATION,LICENSE,MEMBER_STATUS,MEMBER_ADDRESS,MEMBER_CREDITCARD,BALANCE,CHIEFAPPLY_STATUS FROM MEMBER order by member_status,member_id";
-	
-	
-	
-	
-	
+
 	
 	//////////////////////////////////////////
 	private static final String GET_ALL_STMT_NEW = "SELECT MEMBER_ID,ACCOUNT,PASSWORD,MEMBER_NAME,GENDER,to_char(BIRTHDAY,'yyyy-mm-dd') BIRTHDAY,CELLPHONE,EMAIL,NICKNAME,MEMBER_PHOTO,VALIDATION,LICENSE,MEMBER_STATUS,MEMBER_ADDRESS,MEMBER_CREDITCARD,BALANCE,CHIEFAPPLY_STATUS,livestream_status FROM MEMBER order by member_status,member_id";
@@ -79,6 +80,98 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 	private static final String VALIDATION = "SELECT MEMBER_ID, ACCOUNT, EMAIL, MEMBER_STATUS, VALIDATION FROM MEMBER WHERE (VALIDATION = 0) order by chiefapply_status,member_id";
 	private static final String UPDATECHIEFAPPLY_STATUS = "UPDATE MEMBER set MEMBER_ID = ?, CHIEFAPPLY_STATUS=?, MEMBER_STATUS=? where MEMBER_ID = ?";
 	private static final String UPDATEVALIDATION = "UPDATE MEMBER set MEMBER_ID = ?, VALIDATION=? where MEMBER_ID = ?";
+	private static final String CHANGEONLINE = "UPDATE MEMBER set LIVE_STATUS = ?  where MEMBER_ID = ?";
+	private static final String CHANGEOFFLINE = "UPDATE MEMBER set LIVE_STATUS = ?  where MEMBER_ID = ?";
+	
+	
+	
+	@Override
+	  public void changeOnline(String member_id,Integer num) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(CHANGEONLINE);
+	
+			pstmt.setInt(1, num);	
+			pstmt.setString(2, member_id);	
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured123. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+		
+		
+	}
+	
+	
+	@Override
+      public void changeOffline(String member_id,Integer num) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(CHANGEOFFLINE);
+	
+			pstmt.setInt(1, num);	
+			pstmt.setString(2, member_id);	
+			pstmt.executeUpdate();
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured123. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+		
+		
+	}
 	
 	
 	//	@Override
@@ -230,6 +323,60 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 	
 	
 	
+	public List<MemberVO> getliving() {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<MemberVO> list = new ArrayList<MemberVO>();
+		MemberVO memberVO = null;
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(GETLIVESTREAM);
+			rs = pstmt.executeQuery();
+		
+			while (rs.next()) {
+				// memberVO 也稱為 Domain objects
+				memberVO = new MemberVO();
+				memberVO.setLivestream_status(rs.getInt("Livestream_status"));
+			
+				list.add(memberVO);
+				// Store the row in the list
+			}
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
 	
 	
 	
@@ -1190,7 +1337,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 
 			Class.forName(driver);
 			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(GET_ALL_STMT);
+			pstmt = con.prepareStatement(GET_ALL_STMT_NEW);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {
@@ -1213,6 +1360,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 				empVO.setMember_creditcard((rs.getString("MEMBER_CREDITCARD")==null)?"尚無資料":rs.getString("MEMBER_CREDITCARD"));
 				empVO.setBalance(rs.getInt("BALANCE"));
 				empVO.setChiefapply_status(rs.getInt("CHIEFAPPLY_STATUS"));
+				empVO.setLivestream_status(rs.getInt("LIVESTREAM_STATUS"));
 				list.add(empVO); // Store the row in the list
 			}
 
@@ -1271,7 +1419,12 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 	public static void main(String[] args) {
 
 	MemberJDBCDAO dao = new MemberJDBCDAO();
-
+	List<MemberVO> list=dao.getliving();
+	for(MemberVO vo:list) {
+		
+		
+		System.out.println(vo);
+	}
 //		 �s�W
 //
 //		int x = 1;
@@ -1543,4 +1696,5 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 
 		return pic;
 	}
+
 }

@@ -15,6 +15,7 @@ pageEncoding="UTF-8"%>
 
 
 <%
+
 //購物車獲取
 Vector<Order_detailVO> productlist;
     if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
@@ -36,7 +37,6 @@ Vector<Order_detailVO> productlist;
                 */
                 %>
                 <%@ page import="java.util.*"%>
-
 
 
                 <!DOCTYPE html>
@@ -432,10 +432,10 @@ Vector<Order_detailVO> productlist;
                                 <!-- end of livestream-->
                                 <!-- 直播預告-->
                                 <%
-                                LsService LiveSvc=new LsService();
-                                List<LivestreamVO> list=LiveSvc.getAll();
-                                list=list.stream().filter(p->p.getStatus()==1).collect(Collectors.toList());
-                                %>
+                                MemberService memSvc=new MemberService();
+                                List<MemberVO> list=memSvc.getAll();
+                                 list=list.stream().filter(P->P.getLivestream_status()==2).filter(p->p.getMember_status()==1).collect(Collectors.toList());
+                            %>
                                 <c:set var="Livelist" value="<%=list %>"/>
 <%--                                 		 <c:if test="${fn:length(Livelist)}"> --%>
 <%--                                 		 </c:if> --%>
@@ -444,7 +444,7 @@ Vector<Order_detailVO> productlist;
 
                                 
                                 
-<div class="livelisttitle">預告中直播</div>
+<div class="livelisttitle">正在直播中</div>
     	<%@ include file="file/page1.file" %> 
 
 <div class="livelist" >
@@ -455,13 +455,14 @@ Vector<Order_detailVO> productlist;
     	<c:forEach var="Livelist" items="${Livelist}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
     
             <li ><a
-                    href="路徑處理一下" >
+                    href="" >
                 <div class="livedivlist">
 
 
-                    <img src="" height="250" width="250" alt="毛妮 你處理一下圖片"/></div>
+                    <img src="<%=request.getContextPath() %>/back-end/member/DBGifReader4.do?photo_type=mempic&member_id=${Livelist.member_id}" height="250" width="250" alt="毛妮 你處理一下圖片"/></div>
                 <div  >
-                    ${Livelist.title}
+              
+                    ${Livelist.member_name}
                 </div>
 
             </a></li>

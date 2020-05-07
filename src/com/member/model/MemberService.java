@@ -18,6 +18,12 @@ public class MemberService {
 //		public List<MemberVO> Duplicate_Account() {
 //			return dao.Duplicate_Account();
 //		}
+	
+	
+	public List<MemberVO> getliving() {
+		return dao.getliving();
+	}
+
 	public List<MemberVO> getValidation() {
 		return dao.getValidation();
 	}
@@ -141,6 +147,19 @@ public class MemberService {
 
 		return memberVO;
 	}
+	
+	  public void changeOnline(String member_id,Integer num) {
+		  
+		  dao.changeOnline(member_id, num);  
+		  
+	  };
+      public void changeOffline(String member_id,Integer num) {
+    	  
+    	  dao.changeOffline(member_id, num);
+    	  
+      };
+	
+	
 
 //		public MemberVO update(String account,
 //				String password, String member_name, Integer gender , Date birthday, String cellphone, String email, String nickname, byte[] member_photo,
