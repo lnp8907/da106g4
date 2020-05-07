@@ -763,7 +763,7 @@ System.out.println("location="+location);
 			String to = email;
 			String subject = "會員驗證信通知";
 			String messageText = "Hello! " + email + " 這是你的驗證碼: " + code + "\n" + "請點擊下方連結激活帳號"+
-			"http://"+ ip + ":8081/Foodporn_Member-0425/front-end/member/checkCode.jsp?email=" + email;
+			"https://da106g4.tk"+ req.getContextPath() + "/front-end/member/checkCode.jsp?email=" + email;
 			sendMail(to, subject, messageText);
 			RequestDispatcher successView = req.getRequestDispatcher("/front-end/member/checkCode.jsp");
 			successView.forward(req, res);

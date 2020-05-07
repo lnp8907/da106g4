@@ -63,7 +63,7 @@ public class MemberServlet extends HttpServlet {
 			writeText(res, member == null ? "" : gson.toJson(member));
 		}
 		else if (action.equals("donate")) {
-			//System.out.println("donate method");
+			//System.out.println("donate method");t
 			String account = jsonObject.get("account").getAsString();
 			writeText(res, String.valueOf(memberDao.donate(account)));
 		} 
