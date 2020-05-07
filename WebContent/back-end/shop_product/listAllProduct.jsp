@@ -84,7 +84,6 @@ if(request.getAttribute("product_type")!=null){
 		
 	}
 	
-	list=list.stream().filter(p->p.getProduct_status()==0).collect(Collectors.toList());
 			
 	pageContext.setAttribute("Bprodcutlist", list);
 %>
