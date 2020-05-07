@@ -131,7 +131,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 						
 						
 						</div>
-							<div class="carmessage2" style="display: none" >${fn:length(productlist)}</div>
+							<div class="carmessage2" style="display: none" >${fn:length(productcarlist)}</div>
 						<div class="carmessagecircle" style="display: none">more</div>
 					
 					

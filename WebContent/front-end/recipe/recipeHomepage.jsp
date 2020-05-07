@@ -8,6 +8,8 @@
 	request.setAttribute("pageType", pageType);
 	
 %>
+    	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +17,7 @@
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=3.0">
 <title>Foodporn</title>
-
+ <link rel="stylesheet" type="text/css"href="<%=request.getContextPath()%>/css/CarMessage.css"/> 
 <link rel="stylesheet" href="../../css/frontEnd.css">
 <link rel="stylesheet" href="../../css/header-sider.css">
 <link rel="stylesheet" href="../../slick/slick.css">
@@ -47,7 +49,7 @@
 <body>
 	<header>
 		<div id="top-logo" class="logo">
-<a href="<%=request.getContextPath()%>/" title="回首頁"><img class="logo-photo"
+<a href="<%=request.getContextPath()%>/index.jsp" title="回首頁"><img class="logo-photo"
 				src="<%=request.getContextPath()%>/image/FoodPron_Logo.png" alt="logo"></a>
 		</div>
 		<div class="function">
@@ -74,11 +76,30 @@
 							<span class="login-span">登入</span>
 						</div> </a>
 				</div>
-				<div class="shop-car">
-					<a href="#"><img class="header-icon"
-						src="../../image/shopping-cart-icon.png" alt="shopping-cart">
+<!-- 				<div class="shop-car"> -->
+<!-- 					<a href="#"><img class="header-icon" -->
+<!-- 						src="../../image/shopping-cart-icon.png" alt="shopping-cart"> -->
+<!-- 						<div class="herder-icon-span"> -->
+<!-- 							<span class="shop-car-span">購物車</span> -->
+<!-- 						</div> </a> -->
+<!-- 				</div> -->
+<div class="shop-car">
+					<a href="<%=request.getContextPath() %>/front-end/ShopPage/ProductPage?action=checktpage1">
+					
+						<div class="carmessage1">
+					<img class="header-icon"
+						src="<%=request.getContextPath() %>/image/shopping-cart-icon.png" alt="shopping-cart">
+						
+						
+						</div>
+							<div class="carmessage2" style="display: none">${fn:length(productcarlist)}</div>
+						<div class="carmessagecircle" style="display: none">more</div>
+					
+					
+						
 						<div class="herder-icon-span">
 							<span class="shop-car-span">購物車</span>
+							
 						</div> </a>
 				</div>
 				<div class="notice">
@@ -459,6 +480,25 @@
 			document.search.selectedValue.length = key[num].length;
 		}
 	</Script>
+	
+<script>
+
+						if($(".carmessage2").html()>0 && $(".carmessage2").html()<10){
+							$(".carmessagecircle").hide();
+							$(".carmessage2").show();
+						}
+						else if($(".carmessage2").html()>9){
+							$(".carmessage2").hide();
+							$(".carmessagecircle").show();
+						}
+						else{
+							$(".carmessagecircle").hide();
+							$(".carmessage2").hide();
+
+						}
+						
+						</script>
+	
 </body>
 
 </html>
