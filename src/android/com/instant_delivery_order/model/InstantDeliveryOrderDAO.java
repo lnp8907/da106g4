@@ -54,6 +54,7 @@ public class InstantDeliveryOrderDAO implements InstantDeliveryOrderDAO_interfac
 		Integer total = instantDeliveryOrderVO.getTotal();
 		String member_id = instantDeliveryOrderVO.getMember_id();
 		Integer p_method = instantDeliveryOrderVO.getP_method();
+		System.out.println(String.valueOf(total) + member_id + p_method);
 
 		if (p_method != 1) { //付款方式不為貨到付款
 			MemberDAO mDAO = new MemberDAOImpl();
