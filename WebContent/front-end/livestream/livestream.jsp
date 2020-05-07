@@ -1,23 +1,5 @@
-<%@page import="com.recipe_favorite.model.RecipeFavoriteServiec"%>
 <%@page import="com.member.model.MemberVO"%>
-<%@page import="com.recipe_style.model.RecipeStyleVO"%>
-<%@page import="com.member.model.MemberService"%>
-<%@page import="com.recipe_style.model.RecipeStyleService"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ page import="com.recipe.model.*"%>
-<%@page import="com.ingredient.model.IngredientVO"%>
-<%@page import="com.ingredient.model.IngredientDAO"%>
-<%@page import="java.util.List"%>
-
-<%
-	RecipeService recipeService = new RecipeService();
-	MemberService memSrv = new MemberService();
-	MemberVO hostVO = memSrv.getOneMember(request.getParameter("member_id"));
-	MemberVO memberVO = (MemberVO) session.getAttribute("memberVO");
-	
-%>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%
 	response.setHeader("Cache-Control", "no-store"); //HTTP 1.1
 	response.setHeader("Pragma", "no-cache"); //HTTP 1.0
@@ -25,38 +7,28 @@
 %>
 
 <%-- 模擬登入的hostID(直播主ID)為peter  --%>
-<%
-	//      String hostID = (String)session.getAttribute("hostID");
-	//透過控制器得到的直播主ID
+<%! int count = 0; %>
+<%  
+	 MemberVO memberVO = (MemberVO)session.getAttribute("memberVO");
 	String hostID = null;
+	String clientID =null;
 	
-	if (memberVO != null && memberVO.getMember_status() == 1) {
-		hostID = memberVO.getNickname();
+	if(memberVO==null){
+    	 clientID="Anonymous"+(++count);		
+	}else{
+		if(memberVO.getChiefapply_status()==1){
+     hostID = memberVO.getNickname();
+     session.setAttribute("hostID", hostID); 			
+		}else{
+			clientID = memberVO.getNickname();			
+		}
 	}
-	if(hostID == null){
-		hostID = request.getParameter("hostId");
-	}
-	session.setAttribute("hostID", hostID);
-%>
-
-<%-- 模擬登入的clientID(觀眾ID)為Anonymous  --%>
-<%!int count = 0;%>
-<%
-	String clientID=null;
-	if(memberVO == null)
-		clientID = "死不註冊" + (++count) + "號";
-	else if(memberVO.getMember_status() != 1) {
-		clientID = memberVO.getNickname();
-	}
-		session.setAttribute("clientID", clientID);
-		System.out.println("--------------------------------------------");
-		System.out.println(clientID);
-		System.out.println("--------------------------------------------");
 	
+     session.setAttribute("clientID", clientID); 
+     System.out.println("--------------------------------------------");
+     System.out.println(clientID);
+     System.out.println("--------------------------------------------");
 %>
-
-
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -83,38 +55,48 @@
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<script src="js/webrtc/DetectRTC.js"></script>
-<script src="js/webrtc/socket.io.js"> </script>
-<script src="js/webrtc/adapter-latest.js"></script>
-<script src="js/webrtc/IceServersHandler.js"></script>
-<script src="js/webrtc/CodecsHandler.js"></script>
-<script src="js/webrtc/RTCPeerConnection-v1.5.js"></script>
-<script src="js/webrtc/broadcast.js"></script>
+<link rel="stylesheet" href="css/getHTMLMediaElement.css">
 <script src="js/jquery-1.11.1.min.js"></script>
+<script	src="js/sweetalert2.all.min.js"></script>
 <script src="js/getHTMLMediaElement.js"></script>
-        <script>
-            if(!location.hash.replace('#', '').length) {
-                location.href = location.href.split('#')[0] + '#' + (Math.random() * 100).toString().replace('.', '');
-                location.reload();
-            }
-        </script>
-
-
-<script>
-	// 	$(document).ready(function() {
-	// 		getLatest();
-	// 		getMostPopular();
-	// 		getCourse();
-	// 		getMonth();
-	// 	})
-</script>
-
-
-
-
-
 
 <style>
+
+@-webkit-keyframes gradientBG {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+@keyframes gradientBG {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+h2 {
+  font-size: 1.5vw;
+}
+
+h4 {
+  font-size: 1.2vw;
+}
+
+h6 {
+  font-size: 0.85vw;
+}
+
 * {
 	margin: 0;
 	padding: 0;
@@ -126,6 +108,131 @@
 .footer-bg {
 	margin-top: 10px;
 	background-color: white;
+}
+
+
+audio, video {
+	-moz-transition: all 1s ease;
+	-ms-transition: all 1s ease;
+	-o-transition: all 1s ease;
+	-webkit-transition: all 1s ease;
+	transition: all 1s ease;
+	vertical-align: top;
+	width: 100%;
+}
+
+select {
+	border: 2px solid #d9d9d9;
+	border-radius: 1px;
+	height: 40px;
+	margin-left: 0.6em;
+	margin-top: 2em;
+	padding: 0.1em;
+	vertical-align: 5px;
+	width: 33%;
+}
+
+.broadcasting-option {
+  height: 2vw;
+  vertical-align: middle;
+  margin: 0.4em;
+  font-size: 1.0vw;
+}
+
+.broadcast-name {
+	border: 2px solid #d9d9d9;
+	border-radius: 1px;
+	font-size: 1.5vw;
+	margin: 0.4em;
+	margin-left: 0.2em;
+	width: 33%;
+	color: rgb(204, 14, 14);
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+.videosContainer {
+    border: 6px ridge rgb(100, 100, 100);
+    border-radius: 4px;
+    margin: 1em;
+}
+
+p {
+	padding: 1em;
+}
+
+
+</style>
+
+<style>
+.CustomCard {
+	padding-top: 20px;
+	margin: 10px 0 20px 0;
+/* 	background-color: rgba(214, 224, 226, 0.2); */
+	border-top-width: 0;
+	border-bottom-width: 2px;
+	-webkit-border-radius: 3px;
+	-moz-border-radius: 3px;
+	border-radius: 15px;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+.CustomCard.hoverCustomCard {
+	position: relative;
+	padding-top: 0;
+	overflow: hidden;
+	text-align: center;
+}
+
+.CustomCard.hoverCustomCard .CustomCardheader {
+	background-size: cover;
+	height: 85px;
+}
+
+.CustomCard.hoverCustomCard .avatar {
+	position: relative;
+	top: -50px;
+	margin-bottom: -50px;
+}
+
+.CustomCard.hoverCustomCard .avatar img {
+	width: 100px;
+	height: 100px;
+	max-width: 100px;
+	max-height: 100px;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+	border: 5px solid rgba(255, 255, 255, 0.5);
+}
+
+.CustomCard.hoverCustomCard .info {
+	padding: 4px 8px 10px;
+}
+
+.CustomCard.hoverCustomCard .info .desc {
+	overflow: hidden;
+	font-size: 12px;
+	line-height: 20px;
+/* 	color: #737373; */
+	text-overflow: ellipsis;
+}
+
+.CustomCard.hoverCustomCard .bottom {
+	padding: 20px 5px;
+	margin-bottom: -6px;
+	text-align: center;
+}
+
+.btn {
+	width: 100px;
+	height: 30px;
+	line-height: 0px;
 }
 
 #livestream_section {
@@ -170,7 +277,7 @@
 
 #hot {
 	width: 98%;
-	height: 31%;
+	height: 29%;
 	margin: 0 auto;
 	background-color: white;
 	border-radius: 8px;
@@ -221,7 +328,7 @@
 }
 
 #dona {
-	height: 20%;
+	height: 18%;
 	background-color: white;
 	border-radius: 8px;
 	margin-top: 20px;
@@ -298,11 +405,80 @@
 #charge:hover {
 	cursor: pointer;
 }
+#subTitle{
+display: inline-block;
+    margin-right: 10px;
+    margin-left:25px;
+     z-index:99;
+}
+#livestream-title{
+    text-align: left;
+    z-index:99;
+}
+section{
+margin-top:0;
+}
+.media-container {
+    display: inline-block;
+   border:none;
+    border-radius: 4px;
+    overflow: hidden;
+    vertical-align: top;
+    background: none;
+    width: 98%;
+    height: max-height: 500px;
+    max-height: 480px;
+}
+.media-box {
+border:none;
+}
+#videos-container{
+    text-align: center;
+}
+.dona-items-card img{
+    width: 87%;
+}
+#WebSocket-count{
+    margin-left: 38%;
+    margin-right: 20px;
+}
+form{
+display:inline-block;
+}
+.media-box video {
+    width: 98%;
+}
+video{
+vertical-align: top;
+    width: 100%;
+}
+br{
+display:none;
+}
+.experiment2{
+    margin-top: -54px;
+    overflow: hidden;
+    height: 520px;
+}
+.videosContainer {
+    border: none;
+    }
+    #videos-container{
+    z-index:2;
+    }
 </style>
+
+<!-- This Library is used to detect WebRTC features -->
+<script src="js/webrtc/DetectRTC.js"></script>
+<script src="js/webrtc/socket.io.js"> </script>
+<script src="js/webrtc/adapter-latest.js"></script>
+<script src="js/webrtc/IceServersHandler.js"></script>
+<script src="js/webrtc/CodecsHandler.js"></script>
+<script src="js/webrtc/RTCPeerConnection-v1.5.js"></script>
+<script src="js/webrtc/broadcast.js"></script>
 </head>
 
 <body>
-
 	<header>
 		<div id="top-logo" class="logo">
 			<a href="<%=request.getContextPath()%>/" title="回首頁"><img
@@ -478,9 +654,20 @@
 		<!--一鍵置頂-->
 	</div>
 	<!-- end of pagetop-->
+
 	<main>
 		<article>
 			<section id="livestream_section">
+				<div class="bottom mx-auto">
+						<button class="btn-3d-can" id="record"   style="display: none" disabled="disabled">開始錄影</button>
+						<button class="btn-3d-can" id="download" style="display: none" disabled="disabled">儲存錄影</button>
+						<button id="play" class="btn btn-success" style="display: none">播放</button>
+					    <div style="display: none">
+							<p>Echo cancellation: <input type="checkbox" id="echoCancellation"></p>
+							<div id="errorMsg"></div>
+						</div>
+				</div>
+				
 				<div id="livestream_container">
 					<div id="livestream_left">
 						<div class="livestream_card" id="video">
@@ -488,9 +675,53 @@
 
 
 
+			<div class="col col-sm-12">
+				<div class="CustomCard hoverCustomCard">
+				<div id="livestream-title">
+						<input type="hidden" id="hostID" value="${hostID}" />
+						<input type="hidden" id="lsViewNum" value="0" />
+				<% if(hostID!=null){ %>
+						<h5 id="subTitle" class="col pt-2"> <strong>這是 ${hostID} 直播間</strong></h5>
+				<%} else { %>		
+						<h5 id="subTitle" class="col pt-2"> <strong>您已經進入直播間</strong></h5>
+				 <%} %>		
+						
+						<i id="WebSocket-count" class="far pt-2 pr-3 float-right" >目前在線人數 - </i>
+						<i id="WebRTC-count"    class="far pt-2 pr-3 float-right" >累計觀看人數 0 </i>
+					</div>
+					</div>
 
 
-						</div>
+			</div>
+			<div class="col col-sm-9">
+				<article>
+					<section id="session1" class="experiment">
+						<section <%= (hostID==null)? "style='visibility: hidden;'":"" %>>
+							<select id="broadcasting-option" class="broadcasting-option">
+								<option>Audio + Video</option>
+								<option>Only Audio</option>
+							</select> 
+							<input type="text" id="broadcast-name" class="broadcast-name" value="${hostID}">
+							<button id="setup-new-broadcast">啟動新視頻</button>
+						</section>
+						<!-- list of all available broadcasting rooms --><br>
+						<table style="width: 100%;" id="rooms-list"></table>
+						<!-- local/remote videos container -->
+						<div id="videos-container"></div>
+					</section>
+				</article>
+			</div>
+			<script>
+			 var visibleElements = document.getElementsByClassName('visible'),
+             length = visibleElements.length;
+             for (var i = 0; i < length; i++) {
+                visibleElements[i].style.display = 'none';
+             }
+			</script>
+	
+	
+	
+							</div>
 						<!-- 直播播放區結束 -->
 						<div class="livestream_card" id="hot">
 							<h2>熱門推薦</h2>
@@ -509,28 +740,34 @@
 							</span></a>
 						</div>
 					</div>
-
+	
 					<div id="livestream_right">
 						<div id="host-info">
 							<div class="chef-info-pic">
 								<img
-									src="<%=request.getContextPath()%>/front-end/member/photo?member_id=<%=hostVO.getMember_id()%>"
+									src="<%=request.getContextPath()%>/front-end/member/photo?member_id=810003"
 									alt="廚師頭貼">
 							</div>
 							<div class="chef-info-detal">
 								<h4>
 									<a
-										href="RecipeServlet?action=getChef_For_Display&member_id=<%=hostVO.getMember_id()%>"><%=hostVO.getMember_name()%></a>
+										href="RecipeServlet?action=getChef_For_Display&member_id=810003"></a>
 								</h4>
-								<span><%=recipeService.getChefCookedNum(hostVO.getMember_id())%>&nbsp;&nbsp;食譜</span>
+								<span>&nbsp;&nbsp;食譜</span>
 								<span>999&nbsp;&nbsp;粉絲</span>
 							</div>
 							<form method="post" action="RecipeServlet">
-								<button class="chef-follow" name="chef_follow" style="display:<%=memberVO == null ? "none" :""%>">追蹤</button>
+								<button class="chef-follow" name="chef_follow" >追蹤</button>
+								<span id="join-button"></span>
 								<input type="hidden" value="${hostID}" name="chef_id"> <input
-									type="hidden" value="<%=memberVO == null ? "" :memberVO.getMember_id()%>"
+									type="hidden" value=""
 									name="member_id">
 							</form>
+							<div class="visible">
+							<div style="text-align: center;">
+									<h2><code><strong id="unique-token">#123456789</strong></code></h2>
+							</div>
+				</div>
 						</div>
 						<div id="chat-room">
 							<span class="chat-room-title">留言</span>
@@ -553,7 +790,7 @@
 						</div>
 						<div id="dona">
 							<h3>
-								我的富胖幣:<span style="color: red;">&nbsp;<%=memberVO == null ? "" : memberVO.getBalance()%></span>
+								我的富胖幣:<span style="color: red;">&nbsp;</span>
 								<span id="charge">儲值</span>
 							</h3>
 							<span class="dona-items-card"><img alt=""
@@ -568,8 +805,7 @@
 			</section>
 		</article>
 	</main>
-	<!-- end of main -->
-	<footer>
+		<footer>
 		<div class="footer-bg">
 			<div class="footer-murmur">
 				<img src="../../image/FoodPron_Logo_white.png" alt="logo"
@@ -605,84 +841,27 @@
 		<div class="footer-copyright">Copyright &copy; DA106-G4 Foodporn
 			All rights reserved.</div>
 
-	</footer>
-	<!-- JavasScript-->
-	<!-- JavasScript for LogForm -->
-	<script src="../../javascript/loginForm.js" type="text/javascript"
-		charset="utf-8"></script>
-
-	<!-- JavasScript for BackTop -->
-	<script>
-		$('#BackTop').click(function() {
-			$('html,body').animate({
-				scrollTop : 0
-			}, 333);
-		});
-		$(window).scroll(function() {
-			if ($(this).scrollTop() > 450) {
-				$('#BackTop').fadeIn(222);
-			} else {
-				$('#BackTop').stop().fadeOut(222);
-			}
-		});
-
-		//畫面捲動時隱藏
-		window.onresize = function() {
-			if ($(window).width() > 767) {
-				$("nav").show();
-			} else
-				$("nav").hide();
-		}
-	</script>
-	<script>
-		$(".menu-open").on("click", function() {
-			$("nav").slideToggle();
-			$(this).toggleClass("active");
-			$('body,html').toggleClass('add')
-		});
-	</script>
+	</footer>		
+			
+			
+		
 </body>
+			
 			<script>
-			var broadcaster =null;
-			var roomToken =null;
-				var join = function() {
-					var joinRoomButton = document.getElementById('.join');
-// 					joinRoomButton.setAttribute('data-broadcaster', room.broadcaster);
-//                     joinRoomButton.setAttribute('data-roomToken', room.broadcaster);
-
-
-//                     	document.getElementById('broadcast-name').value = room.roomName;
-                        videosContainer.className = "videosContainer";                   	
-//                     	document.getElementById("slider").src = "images/tenor.gif";
-                        this.disabled = true;
-//                      this.style.display = 'none';
-
-                
-                broadcastUI.joinRoom({
-                    roomToken: roomToken,
-                    joinUser: broadcaster
-                });
-            
-			}
-				
-				
-				
-				
-				/////////////////////////////////////////
                 var config = {
                     openSocket: function(config) {
 //                      var SIGNALING_SERVER = 'https://socketio-over-nodejs2.herokuapp.com:443/';
 //                         var SIGNALING_SERVER = 'https://54.148.206.111:9001/';
 							var SIGNALING_SERVER = 'https://35.229.239.13:9001/';
                      config.channel = config.channel || location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
-                        var sender = Math.round(Math.random() * 999999999) + 999999999;
-// 						var sender = 123456789;
-						console.log('config.channel:'+config.channel);
+//                         var sender = Math.round(Math.random() * 999999999) + 999999999;
+						var sender = document.getElementById('broadcast-name').value;
+						console.log(config.channel);
                         io.connect(SIGNALING_SERVER).emit('new-channel', {
                             channel: config.channel,
                             sender: sender
                         });
-                        console.log('sender:'+ sender);
+
                         var socket = io.connect(SIGNALING_SERVER + config.channel);
                         socket.channel = config.channel;
                         socket.on('connect', function () {
@@ -709,17 +888,15 @@
 
                         if (typeof roomsList === 'undefined') roomsList = document.body;
 
-                        var tr = document.createElement('tr');
-                        tr.innerHTML = '<td><strong>' + room.roomName + '</strong> is broadcasting his media!</td>' +
-                            '<td><button class="join">&nbsp;Join&nbsp;</button></td>';
-                        roomsList.appendChild(tr);
-                        
-     
-                        var joinRoomButton = tr.querySelector('.join');
+                        var tr = document.getElementById("join-button");   
+                        tr.innerHTML = '<button class="join-btn">&nbsp;Join&nbsp;</button>';
+//                         roomsList.appendChild(tr);//將按鈕加入roolist裡面
+ 
+                        var joinRoomButton = tr.querySelector('.join-btn');
                         joinRoomButton.setAttribute('data-broadcaster', room.broadcaster);
                         joinRoomButton.setAttribute('data-roomToken', room.broadcaster);
                         joinRoomButton.onclick = function() {
-                        	document.getElementById("CustomCardheader").className = "CustomCardheader text-white btn-success";
+//                         	document.getElementById("CustomCardheader").className = "CustomCardheader text-white btn-success";
                         	document.getElementById("webSocket-submit").className = "g2";
                         	document.getElementById("subTitle").innerHTML = "<strong2>您正在觀看 " + room.roomName + " 的直播</strong2>";
                         	document.getElementById('broadcast-name').value = room.roomName;
@@ -729,14 +906,16 @@
                             this.disabled = true;
 //                          this.style.display = 'none';
                             
-                            broadcaster = this.getAttribute('data-broadcaster');
-                            roomToken = this.getAttribute('data-roomToken');
-
-                            
+                            var broadcaster = this.getAttribute('data-broadcaster');
+                            var roomToken = this.getAttribute('data-roomToken');
                             broadcastUI.joinRoom({
                                 roomToken: roomToken,
                                 joinUser: broadcaster
                             });
+                            
+                            console.log(broadcaster);
+                            console.log(roomToken);
+                            
                             hideUnnecessaryStuff2();
                         };
                     },
@@ -767,13 +946,12 @@
                             broadcastUI.createRoom({
                                 roomName: (document.getElementById('broadcast-name') || { }).value || 'Anonymous',
                                 isAudio: shared === 'audio'
-                                
                             });
                         });
                         hideUnnecessaryStuff();
                     });
                 }
-                console.log('broadcast-name:'+ document.getElementById('broadcast-name').value);
+
                 function captureUserMedia(callback) {
                     var constraints = null;
                     window.option = broadcastingOption ? broadcastingOption.value : '';
@@ -859,7 +1037,7 @@ buttons: ['record-video']
                 if (setupNewBroadcast) setupNewBroadcast.onclick = setupNewBroadcastButtonClickHandler;
 
                 function hideUnnecessaryStuff() {
-                	
+                	connect();
 
                     var visibleElements = document.getElementsByClassName('visible'),
                         length = visibleElements.length;
@@ -882,15 +1060,11 @@ buttons: ['record-video']
                  }
                 (function() {
                     var uniqueToken = document.getElementById('unique-token');
-                   
                     if (uniqueToken)
-                        if (location.hash.length > 2) uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<div class="share"><h2>&nbsp;<i class="fa fa-hand-o-right fa-2x"></i><a href="' + location.href + '" target="_blank"><b>由此分享此直播間的鏈接 </b></a></h2></div>';
-                        else uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace( /\./g , '-');
-                   
-                    console.log('uniqueToken:'+ document.getElementById('unique-token').value);	
-                    
+                        if (location.hash.length > 2) uniqueToken.parentNode.parentNode.parentNode.innerHTML = '<div class="share"><h2><a href="' + location.href + '" target="_blank">由此分享此直播間的鏈接 </a></h2></div>';
+                        else uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = "#" + document.getElementById('broadcast-name').value;
+                    //else uniqueToken.innerHTML = uniqueToken.parentNode.parentNode.href = '#' + (Math.random() * new Date().getTime()).toString(36).toUpperCase().replace( /\./g , '-');
                 })();
-                
                 
                 
 
@@ -1078,20 +1252,17 @@ recordVideo.className = recordVideo.className.replace('stop-recording-video sele
     var webCtx = path.substring(0, path.indexOf('/', 1));
 <%--     var endPointURL = "wss://" + window.location.host + webCtx + MyPoint;   http上線請使用https , webSocket請使用wss --%>
 var endPointURL = "wss://" + window.location.host + webCtx + MyPoint;
-// var endPointURL = "wss://da106g4.tk/RTCPeerConnection_Ver3/MyEchoServer";
 console.log(endPointURL);
 	var webSocket;
-	
+	var rtcroomName;
 	function connect() {
-		var rtcroomName = document.getElementById('broadcast-name').value;
-// 		var rtcroomName = '${hostID}';
-
-		console.log(rtcroomName);
+		rtcroomName = document.getElementById('broadcast-name').value;
+		alert(rtcroomName);
 		// 建立 websocket 物件
 		webSocket = new WebSocket(endPointURL+"/"+rtcroomName);
-// 		document.getElementById('broadcasting-option').style.display = 'none';
-//         document.getElementById('broadcast-name').style.display = 'none';
-//         document.getElementById('setup-new-broadcast').style.display = 'none';
+		document.getElementById('broadcasting-option').style.display = 'none';
+        document.getElementById('broadcast-name').style.display = 'none';
+        document.getElementById('setup-new-broadcast').style.display = 'none';
 		webSocket.onopen = function(event) {
 			document.getElementById('sendMessage').disabled = false;
 		};
@@ -1135,4 +1306,37 @@ console.log(endPointURL);
 	}
     
 </script>
+	<script src="../../javascript/loginForm.js" type="text/javascript"
+		charset="utf-8"></script>
+
+	<!-- JavasScript for BackTop -->
+	<script>
+		$('#BackTop').click(function() {
+			$('html,body').animate({
+				scrollTop : 0
+			}, 333);
+		});
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 450) {
+				$('#BackTop').fadeIn(222);
+			} else {
+				$('#BackTop').stop().fadeOut(222);
+			}
+		});
+
+		//畫面捲動時隱藏
+		window.onresize = function() {
+			if ($(window).width() > 767) {
+				$("nav").show();
+			} else
+				$("nav").hide();
+		}
+	</script>
+	<script>
+		$(".menu-open").on("click", function() {
+			$("nav").slideToggle();
+			$(this).toggleClass("active");
+			$('body,html').toggleClass('add')
+		});
+	</script>
 </html>

@@ -4,6 +4,7 @@
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
     
 <!DOCTYPE html>
 <%
@@ -37,10 +38,14 @@ if(session.getAttribute("member_id")!=null){
 <body>
 <div class="productCarouse">
 <div class="multiple-items">
-<c:forEach var="PClist" items="${PClist}">
+
+ <c:if test="${fn:length(PClist)>0}">
+ 
+ <c:forEach var="PClist" items="${PClist}">
   <div>  ${PClist.product_id} <a href="ProductPage?product_id=${PClist.product_id}&action=goDetailPage"> <img src="<%=request.getContextPath() %>/back-end/shop_product/Product_photoReader?product_id=${PClist.product_id}" height="250" width="250"/></a>
   </div>
   			</c:forEach>
+  </c:if>
   
 </div></div>
 

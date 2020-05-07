@@ -183,14 +183,14 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 		<!-- end of function-->
 		<nav id="navigation">
 			<ul>
-				<li class="dropdown"><a ><img class="access-menu-icon"
+				<li class="dropdown"><a href="#"><img class="access-menu-icon"
 						src="image/recipe-icon.png"><span class="menu-span">食譜專區</span></a>
 					<ul>
 						<li><a class="dropdown-first-a" href="#"><img
 								class="dropdown-first-img" src="image/ico_gnav_recipes_book.svg"><span
 								class="dropdown-first-a-span">食譜主頁</span></a></li>
-						<li><a href="#">特輯食譜</a></li>
-						<li><a href="#">推薦食譜</a></li>
+<!-- 						<li><a href="#">特輯食譜</a></li> -->
+<!-- 						<li><a href="#">推薦食譜</a></li> -->
 					<c:if test="<%= memberVO!=null && memberVO.getMember_status()==1%>">
 						<li><a href="front-end/recipe/addRecipe.jsp">建立食譜</a></li>
 					</c:if>
@@ -205,11 +205,11 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 								class="dropdown-first-a-span">直播主頁</span></a></li>
 						<li><a href="livestream.jsp">直播預告</a></li>
 						<c:if test="<%= memberVO!=null && memberVO.getMember_status()==1%>">
-						<li><a href="front-end/livestream/livestream.jsp?member_id=${member_id}">開啟直播</a></li>
-						<li><a href="#">建立直播預告</a></li>
+						<li><a href="front-end/livestream/livestream.jsp#${member_id}">開啟直播</a></li>
+						
 						</c:if>
 					</ul></li>
-				<li class="dropdown dropdown-shop"><a><img
+				<li class="dropdown dropdown-shop"><a href="<%=request.getContextPath()%>/front-end/ShopPage/ShopHomePage.jsp"><img
 						class="access-menu-icon" src="image/shop-icon.png"><span
 						class="menu-span">食材商城</span></a>
 					<ul id="dropdown-shop-ul">
@@ -217,18 +217,18 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 								class="dropdown-first-img"
 								src="image/ico_gnav_recipes_salad.svg"><span
 								class="dropdown-first-a-span">食材商城主頁</span></a></li>
-						<li><a href="#">調味料</a></li>
-						<li><a href="#">果醬</a></li>
-						<li><a href="#">麵粉</a></li>
-						<li><a href="#">酒類</a></li>
-						<li><a href="#">蔬菜</a></li>
-						<li><a href="#">水果</a></li>
-						<li><a href="#">海鮮</a></li>
+						<li><a href="/ProductPage?product_type=水果類&action=goProductPage">水果類</a></li>
 						<li><a href="#">肉類</a></li>
-						<li><a href="#">乳製品</a></li>
-						<li><a href="#">香料</a></li>
-						<li><a href="#">罐頭</a></li>
-						<li><a href="#">乾貨</a></li>
+						<li><a href="#">蔬菜類</a></li>
+						<li><a href="#">乳品類</a></li>
+						<li><a href="#">魚貝類</a></li>
+						<li><a href="#">菇類</a></li>
+						<li><a href="#">穀物類</a></li>
+						<li><a href="#">澱粉類</a></li>
+						<li><a href="#">酒類</a></li>
+						<li><a href="#">調味料及辛香料類</a></li>
+						<li><a href="#">油脂類</a></li>
+						<li><a href="#">所有商品</a></li>
 					</ul></li>
 				<li class="dropdown"><a href="front-end/course/listAllCourse.jsp"><img class="access-menu-icon"
 						src="image/course-icon.png"><span class="menu-span">料理課程</span></a>
