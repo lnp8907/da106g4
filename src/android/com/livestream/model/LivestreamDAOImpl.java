@@ -33,7 +33,7 @@ public class LivestreamDAOImpl implements LivestreamDAO{
 		private static final String INSERT_STMT = 
 			"INSERT INTO livestream (livestream_id,livestream_date,picture,introduction,title,member_id) VALUES (SQ_LIVESTREAM_ID.NEXTVAL, ?, ?, ?, ?, ?)";
 		private static final String GET_ALL_STMT = //for watch trailer
-			"SELECT livestream_id,member_id,livestream_date,introduction,title FROM livestream where member_id = ? AND status = 1 ";
+			"SELECT livestream_id,member_id,livestream_date,introduction,title FROM livestream where member_id = ? AND status = 0 ";
 		private static final String GET_ONE_STMT = //for Member
 			"SELECT livestream_id,picture,title FROM livestream where livestream_id = ?";
 		private static final String DELETE = 
