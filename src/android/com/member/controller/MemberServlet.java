@@ -85,6 +85,14 @@ public class MemberServlet extends HttpServlet {
 			//req.setAttribute("name123", member.getName()); 
 			writeText(res, member == null ? "" : gson.toJson(member));
 		} 
+//		else if (action.equals("nickname")) {
+//			String member_id = jsonObject.get("member_id").getAsString();
+//			Member member = memberDao.findNickname(member_id);
+//			System.out.println(member);
+//			//req.setAttribute("name123", member.getName()); 
+//			writeText(res, member == null ? "" : gson.toJson(member));
+//		}
+		
 		else if (action.equals("findPicByAccount")) {
 			OutputStream os = res.getOutputStream();
 			String account = jsonObject.get("account").getAsString();
