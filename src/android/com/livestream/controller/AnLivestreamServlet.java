@@ -98,8 +98,9 @@ public class AnLivestreamServlet extends HttpServlet {
 		else if ("findCidByLsid".equals(action)) {
 			MemberDAO memberDao = new MemberDAOImpl();
 			String livestream_id = jsonObject.get("livestream_id").getAsString();
-			Livestream member_id = livestreamDao.findCidByLsid(livestream_id);
-			Member member = memberDao.findNickname(member_id.getMember_id());
+			Livestream livestreamVO = livestreamDao.findCidByLsid(livestream_id);
+			String member_id =  livestreamVO.getMember_id();
+			Member member = memberDao.findNickname(member_id);
 			String nick= member.getNickname();
 			JSONObject obj = new JSONObject();
 			try {
