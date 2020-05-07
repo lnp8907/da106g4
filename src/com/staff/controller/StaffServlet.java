@@ -1,9 +1,11 @@
 package com.staff.controller;
 
 import java.io.IOException;
+import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -84,6 +86,22 @@ System.out.println(staffVO.getStaff_password());
 
 		
 		System.out.println(action);
+		
+		if("loginOUT".equals(action)) {
+			 HttpSession session = req.getSession();
+			session.invalidate();
+			
+		String url = "/backEnd_Login.jsp" ;
+//			url = "/back-end/staff/staffPage.jsp?pageType="+pageType;
+			RequestDispatcher successView = req.getRequestDispatcher(url);
+			successView.forward(req, res);
+			
+			
+			
+		}
+		
+		
+		
 	if("login".equals(action)) {
 
 			
@@ -123,11 +141,20 @@ System.out.println(staffVO.getStaff_password());
 				StaffService staffSvc=new StaffService();
 				StaffVO staffVO=null;
 				staffVO=staffSvc.getfindOnePK(staff_id);
+				AuthorityService authorityService = new AuthorityService();
+				
+				Set<String> powerList = authorityService.findPowerByEmpno(staff_id);
+				if(powerList ==null) {
+					powerList = new HashSet<String>();
+				}
 				HttpSession session=req.getSession();
 				session.setAttribute("staffVO", staffVO);
+				
+				
 session.setAttribute("staff_id", staffVO.getStaff_id());
 session.setAttribute("staff_name", staffVO.getStaff_name());
 
+session.setAttribute("powerList",powerList);
 session.setAttribute("login2", 1);
 String login21= (Integer)req.getSession().getAttribute("login2")+"";
 System.out.println("login21"+login21);		
@@ -155,7 +182,8 @@ System.out.println("location2="+location2);
 				        res.sendRedirect(location2);            
 				        return;
 				    }else {
-				    	res.sendRedirect(req.getContextPath()+"/backEnd.html");
+				    	 session.invalidate();
+				    	res.sendRedirect(req.getContextPath()+"/backEnd2.jsp");
 //				    	String location22 = (String) req.getSession().getAttribute("location2");
 //						
 //				    	System.out.println("新"+location22);
@@ -184,8 +212,9 @@ System.out.println("location2="+location2);
 				
 				        return;
 				    }else {
-				    	 session.invalidate();
-				    	res.sendRedirect(req.getContextPath()+"/backEnd_Login.html");
+				    	
+				    	
+				    	res.sendRedirect(req.getContextPath()+"/backEnd2.jsp");
 //				    	String location22 = (String) req.getSession().getAttribute("location2");
 //						
 //				    	System.out.println("新"+location22);
