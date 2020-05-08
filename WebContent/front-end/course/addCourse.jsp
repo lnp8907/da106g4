@@ -219,13 +219,15 @@ $('#f_date2').change(function(){
 				course_start = courseVO.getCourse_start();
 			} catch (Exception e) {
 				course_start = new java.sql.Timestamp(System.currentTimeMillis());
-			}%>	
+			}%>
+			
+			
 	$.datetimepicker.setLocale('zh');
 	$('#f_date1').datetimepicker({
 		theme : '', //theme: 'dark',
 		timepicker : false, //timepicker:true,
 		step : 1, //step: 60 (這是timepicker的預設間隔60分鐘)
-		format : 'Y-m-d H:i:s', //format:'Y-m-d H:i:s',
+		format : 'Y-m-d', //format:'Y-m-d H:i:s',
 		value : date,
 <%-- 		value : //<%=end_app%>, --%>
 	//disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
@@ -233,6 +235,9 @@ $('#f_date2').change(function(){
 	minDate:'+1970-01-07', // 去除今日(不含)之前
 	//maxDate:               '+1970-01-01'  // 去除今日(不含)之後
 	});
+	
+	console.log('#f_date1').val;
+	
 	$.datetimepicker.setLocale('zh');
 	$('#f_date2').datetimepicker({
 		theme : '', //theme: 'dark',
