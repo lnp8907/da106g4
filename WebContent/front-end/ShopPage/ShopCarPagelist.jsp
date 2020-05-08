@@ -92,23 +92,31 @@ pointer-events: none;
 				</tr>
 			</table>
 		</div>
-		待結帳列表:<%
-			if (session.getAttribute("selecttlist") != null) {
-				Vector<Order_detailVO> selectlist = (Vector<Order_detailVO>) session.getAttribute("selecttlist");
-		%>
-		<%=selectlist%>
+		
+		
+		
+		
+<%-- 		待結帳列表:<% --%>
+<!-- // 			if (session.getAttribute("selecttlist") != null) { -->
+<!-- // 				Vector<Order_detailVO> selectlist = (Vector<Order_detailVO>) session.getAttribute("selecttlist"); -->
+<%-- 		%> --%>
+<%-- 		<%=selectlist%> --%>
 
-		<%
-			}
-		%>
-		<br> 購物車清單列表:<%
-			if (session.getAttribute("productCar") != null) {
-		%>
-		<%=buyProductlist%>
+<%-- 		<% --%>
+<!-- // 			} -->
+<%-- 		%> --%>
+<%-- 		<br> 購物車清單列表:<% --%>
+<!-- // 			if (session.getAttribute("productCar") != null) { -->
+<%-- 		%> --%>
+<%-- 		<%=buyProductlist%> --%>
 
-		<%
-			}
-		%>
+<%-- 		<% --%>
+<!-- // 			} -->
+<%-- 		%> --%>
+
+
+
+
 		<div id="productcartList">
 			<table id="producttable">
 				<%
@@ -263,7 +271,7 @@ pointer-events: none;
 
 <button style='border-radius: 0px 0px 15px 0px;${membervo.validation!=1?"":"display: none"} '
 								class="  ui right labeled icon button huge blue">
-								<i class="right sync icon"></i> 請先驗證
+								<i class="right sync icon"></i> 請先成為FoodPron會員
 							</button>
 							
 							
