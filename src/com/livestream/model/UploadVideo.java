@@ -32,9 +32,9 @@ public class UploadVideo {
 			
 			// 2. setBytes
 				int b = 0;
-			for (int i = 410012; i <= 410013; i++) {
+			for (int i = 410012; i <= 410012; i++) {
 				String livestream_id = String.valueOf(i);
-				String filePath = "image/" + ++b + ".mp4";
+				String filePath = "image/" + "3.mp4";
 				byte[] pic = getPictureByteArray(filePath);
 				pstmt.setBytes(1, pic);
 				pstmt.setString(2, livestream_id);
