@@ -1102,7 +1102,7 @@ System.out.println("location="+location);
 				
 			//String account =req.getParameter("account").trim();
 			
-				String account = req.getParameter("account");
+				String account = req.getParameter("account1");
 				System.out.println(account);
 				
 				if (account == null || (account.trim()).length() == 0) {

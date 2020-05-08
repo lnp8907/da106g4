@@ -297,7 +297,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 				<div class="sign-up-htm">
 					<div class="group">
 						<label for="newuser" class="label">Account</label> <input
-							id="newuser" type="text" class="input">
+							id="newuser" type="text" name="account1" class="input">
 					</div>
 					<div class="group">
 						<label for="newpass" class="label">Password</label> <input
