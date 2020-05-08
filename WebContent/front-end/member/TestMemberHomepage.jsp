@@ -1708,7 +1708,7 @@ hr {
 						<a> <img class="header-icon" src="../../image/logout.png"
 							alt="login-icon"> <span class="login-span">登出</span>
 							<form method="POST" action="member.do">
-								<input type="hidden" name="action" value="login"> <input
+								<input type="hidden" name="action" value="loginOUT"> <input
 									class="login-out" type="submit" name="action"
 									style="display: none;">
 							</form>

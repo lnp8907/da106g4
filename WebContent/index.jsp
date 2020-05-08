@@ -124,7 +124,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 					
 							<span class="login-span">登出</span>
 							<form method="POST" action="member.do">	
-								<input type="hidden" name="action" value="login">
+								<input type="hidden" name="action" value="loginOUT">
 								<input class="login-out" type="submit" name="action" style= "display:none;">
 						</form>	 </a>
 				</div>

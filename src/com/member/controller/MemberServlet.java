@@ -603,7 +603,20 @@ if ("update2".equals(action)) {
 		
 		
 		
+		if("loginOUT".equals(action)) {
+			 HttpSession session = req.getSession();
+			session.invalidate();
+			
+		//String url = "/backEnd_Login.jsp" ;
+//			url = "/back-end/staff/staffPage.jsp?pageType="+pageType;
 		
+			
+		
+			String URL=req.getContextPath()+"/index.jsp";
+			res.sendRedirect(URL);
+			System.out.println("45655555");
+			
+		}
 		
 		
 		
@@ -625,21 +638,42 @@ if ("update2".equals(action)) {
 			List<String> errorMsgs = new LinkedList<String>();
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
-			req.setAttribute("errorMsgs", errorMsgs);
-
-			String mem_id=req.getParameter("mem_id").trim();
-			String psw=req.getParameter("psw").trim();
 			
-			if (mem_id == null || (mem_id.trim()).length() == 0) {
-				errorMsgs.add("請輸入帳號");
-			}
-			if (psw == null || (psw.trim()).length() == 0) {
-				errorMsgs.add("請輸入密碼");
-			}
+			
+			
+			 String sessionmember_idd= req.getSession().getAttribute("member_id")+"";
+			
+			
 	
 			
+				System.out.println("555555555888888888帳號"+sessionmember_idd);
 			
 			
+			
+				
+			
+				
+				
+				
+				
+				
+			
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			String mem_id=req.getParameter("mem_id");
+			String psw=req.getParameter("psw");
+			
+			if(  sessionmember_idd==null || (mem_id == null || (mem_id.trim()).length() == 0)) {
+				System.out.println("555555555888888888帳號"+sessionmember_idd);
+				errorMsgs.add("請勿空白");
+			}
+
+
+			if( (sessionmember_idd==null) || (psw == null || (psw.trim()).length() == 0)) {
+			
+				System.out.println("555555555888888888帳號"+sessionmember_idd);
+				errorMsgs.add("請勿空白");
+			}
 			
 			
 			
@@ -1710,7 +1744,7 @@ System.out.println("location="+location);
 		System.out.println("144444444444444423");
 		/***************************3.修改完成,準備轉交(Send the Success view)*************/
 		req.setAttribute("membervo", memberVO); // 資料庫update成功後,正確的的empVO物件,存入req
-		String url = "/back-end/member/listAllMember.jsp";
+		String url = "/front-end/member/TestMemberHomepage.jsp";
 		RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 		successView.forward(req, res);
 
