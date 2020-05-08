@@ -159,7 +159,7 @@ public class ProductServlet extends HttpServlet {
 			System.out.println("處理食譜上架");
 			String product_id=req.getParameter("product_id");
 			Integer price=Integer.valueOf( req.getParameter("price"));
-			Integer product_status=Integer.valueOf( req.getParameter("status"));
+			Integer product_status=1;
 			ProductService svc=new ProductService();
 			svc.onproductBYRecipe(product_id, product_status, price);
 			

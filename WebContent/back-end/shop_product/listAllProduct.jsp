@@ -46,6 +46,7 @@ String product_type ="0";
 if(request.getAttribute("product_type")!=null){
 	if(((String)request.getAttribute("product_type")).equals("all")){	
 		list = Psvc.getAllProduct();
+		list=list.stream().filter(p->p.getProduct_status()!=2).collect(Collectors.toList());
 		product_type="0";
 
 	}

@@ -8,6 +8,7 @@
 <%
 	ProductService Psvc = new ProductService();
 	Collection<ProductVO> list = Psvc.gettypelist("料理組合包");
+	list=list.stream().filter(p->p.getProduct_status()!=2).collect(Collectors.toList());
 
 	pageContext.setAttribute("list", list);
 %>
