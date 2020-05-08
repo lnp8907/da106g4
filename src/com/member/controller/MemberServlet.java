@@ -622,11 +622,44 @@ if ("update2".equals(action)) {
 		/////////////////////////////////////////////////////////////
 		
 		if("login".equals(action)) {
+			List<String> errorMsgs = new LinkedList<String>();
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
 
+			String mem_id=req.getParameter("mem_id").trim();
+			String psw=req.getParameter("psw").trim();
 			
-		
-			
+			if (mem_id == null || (mem_id.trim()).length() == 0) {
+				errorMsgs.add("請輸入帳號");
+			}
+			if (psw == null || (psw.trim()).length() == 0) {
+				errorMsgs.add("請輸入密碼");
+			}
 	
+			
+			
+			
+			
+			
+			
+if (!errorMsgs.isEmpty()) {
+				
+//				req.setAttribute("memberVO", memberVO);// 含有輸入格式錯誤的empVO物件,也存入req
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/index.jsp");
+				failureView.forward(req, res);
+				return; //程式中斷
+			}
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			
 			
 //			if(mem_id==null || mem_id.trim().length()==0) {
@@ -638,8 +671,8 @@ if ("update2".equals(action)) {
 			String login= (Integer)req.getSession().getAttribute("login")+"";
 		
 			if(!login.equals("1")) {
-				String mem_id=req.getParameter("mem_id").trim();
-				String psw=req.getParameter("psw").trim();
+			 mem_id=req.getParameter("mem_id").trim();
+			 psw=req.getParameter("psw").trim();
 				
 				System.out.println(mem_id);
 				System.out.println(psw);
@@ -1020,6 +1053,12 @@ System.out.println("location="+location);
 			List<String> errorMsgs = new LinkedList<String>();
 
 			req.setAttribute("errorMsgs", errorMsgs);
+			
+
+			
+			
+			
+			
 
 			//try {
 				/***********************1.接收請求參數 - 輸入格式的錯誤處理*************************/
@@ -1032,22 +1071,53 @@ System.out.println("location="+location);
 				String account = req.getParameter("account");
 				System.out.println(account);
 				
-		
+				if (account == null || (account.trim()).length() == 0) {
+					errorMsgs.add("請輸入帳號");
+				}
 				
 		
 			
 			
-				String password =new String(req.getParameter("password").trim());
+				String password =new String(req.getParameter("password"));
 				//String password = req.getParameter("password");
+				
+				
+				
+				if (password == null || (password.trim()).length() == 0) {
+					errorMsgs.add("請輸入密碼");
+				}
+				
+				
+				
+				
+				
+				
+				
+				
+				
 				System.out.println(password);
 
                // String password2 = null;
 				
-				String password2 =new String(req.getParameter("password2").trim());
+				String password2 =new String(req.getParameter("password2"));
 				//String password2 = req.getParameter("password2");
 				//String email =new String(req.getParameter("email"));
 			
+				
+				if (password2 == null || (password2.trim()).length() == 0) {
+					errorMsgs.add("請勿空白");
+				}
+				
+				
+				
+				
 				String email = req.getParameter("email");
+				String emailReg = "^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4})*$";
+				if (email == null || email.trim().length() == 0) {
+					errorMsgs.add("EMAIL: 請勿空白");
+				} else if (!email.trim().matches(emailReg)) { // 以下練習正則(規)表示式(regular-expression)
+					errorMsgs.add("EMAIL格是不正確");
+				}
 				System.out.println(email);
 
 
@@ -1077,11 +1147,27 @@ System.out.println("location="+location);
 				membervo.setEmail(email);
 				
 				
+				
+				
+				
+				
+
+				
+				
+		
+				
+				
+				
+				
+				
+				
+				
+				
 				if (!errorMsgs.isEmpty()) {
 				//	req.setAttribute("membervo", membervo);
 				
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/back-end/member/addMember.jsp");
+							.getRequestDispatcher("/index.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -1396,10 +1482,50 @@ System.out.println("location="+location);
 		try {
 		/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 		//類型用下拉試選單
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			String member_id = req.getParameter("member_id");
 			System.out.println(member_id);
 		
+
+		
+		
+		
+		
 		String member_name = req.getParameter("member_name");
+		String enameReg = "^[(\\u4e00-\\u9fa5)(a-zA-Z0-9)]{2,10}$";
+		if (member_name == null || member_name.trim().length() == 0) {
+			errorMsgs.add("會員姓名: 請勿空白");
+		} else if(!member_name.trim().matches(enameReg)) { //以下練習正則(規)表示式(regular-expression)
+			errorMsgs.add("會員姓名: 只能是中、英文字母、數字 , 且長度必需在2到10之間");
+        }
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 	
 		System.out.println(member_name);
 		
@@ -1442,6 +1568,25 @@ System.out.println("location="+location);
 		String email =new String(req.getParameter("email").trim());
 		
 		
+		
+		
+
+		String emailReg = "^([a-zA-Z0-9._%-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,4})*$";
+		if (email == null || email.trim().length() == 0) {
+			errorMsgs.add("EMAIL: 請勿空白");
+		} else if (!email.trim().matches(emailReg)) { // 以下練習正則(規)表示式(regular-expression)
+			errorMsgs.add("EMAIL格是不正確");
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
 		System.out.println(email);
 			
 		java.sql.Date birthday = null;
@@ -1454,7 +1599,25 @@ System.out.println("location="+location);
 		System.out.println(birthday);
 		
 		
+		
+		
+		
+		
 		String cellphone = req.getParameter("cellphone");
+		String phoneReg = "^[(0-9)]{10}$";
+		if (cellphone == null || cellphone.trim().length() == 0) {
+			errorMsgs.add("電話: 請勿空白");
+		} else if (!cellphone.trim().matches(phoneReg)) { // 以下練習正則(規)表示式(regular-expression)
+			errorMsgs.add("電話: 只能是數字且長度");
+		}
+		
+		
+		
+		
+		
+		
+		
+	
 		
 		
 		System.out.println(cellphone);
