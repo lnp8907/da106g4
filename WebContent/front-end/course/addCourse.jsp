@@ -201,12 +201,6 @@
 }
 </style>
 <script>
-var date;
-$('#f_date2').change(function(){
-	date=$(this).val();
-	$('#f_date1').val(date);
-});	
-
 
 
 <%java.sql.Date end_app = null;
@@ -228,7 +222,7 @@ $('#f_date2').change(function(){
 		timepicker : false, //timepicker:true,
 		step : 1, //step: 60 (這是timepicker的預設間隔60分鐘)
 		format : 'Y-m-d', //format:'Y-m-d H:i:s',
-		value : date,
+		value : <%=end_app%>,
 <%-- 		value : //<%=end_app%>, --%>
 	//disabledDates:        ['2017/06/08','2017/06/09','2017/06/10'], // 去除特定不含
 	//startDate:	            '2017/07/10',  // 起始日
@@ -236,7 +230,6 @@ $('#f_date2').change(function(){
 	//maxDate:               '+1970-01-01'  // 去除今日(不含)之後
 	});
 	
-	console.log('#f_date1').val;
 	
 	$.datetimepicker.setLocale('zh');
 	$('#f_date2').datetimepicker({
