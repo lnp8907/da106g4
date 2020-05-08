@@ -33,9 +33,9 @@ public class UploadPicture {
 			
 			// 2. setBytes
 				int b = 0;
-			for (int i = 410007; i <= 410013; i++) {
+			for (int i = 410006; i <= 41006; i++) {
 				String livestream_id = String.valueOf(i);
-				String filePath = "image/" + ++b + ".jpg";
+				String filePath = "image/" + "5" + ".jpg";
 				byte[] pic = getPictureByteArray(filePath);
 				pstmt.setBytes(1, pic);
 				pstmt.setString(2, livestream_id);

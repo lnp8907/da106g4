@@ -74,7 +74,7 @@ public class MemberService {
 	public MemberVO updateSuccess(String account, Integer validation) {
 		MemberVO memberVO = new MemberVO();
 		// memberVO.setMember_id(member_id);
-		memberVO.setAccount(account);
+		memberVO.setEmail(account);
 		memberVO.setValidation(validation);
 
 		dao.update_Success(memberVO);

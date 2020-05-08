@@ -109,7 +109,8 @@
 			dataType : "json",
 			success : function(data) {
 				var i = 1;
-				$.each(data, function(i, livestreamVO){	
+				$.each(data, function(a, livestreamVO){	
+					
 					$("#livestream-right-link-"+i).attr("href","/DA106_G4_Foodporn_Git/front-end/livestream/LivestreamServlet?action=getOne_For_Display&livestream_id="+livestreamVO.livestream_id)
 					$("#livestream-right-photo-"+i).attr("src","LivestreamPhotoReader?livestream_id="+ livestreamVO.livestream_id);
 					$("#livestream-right-title-chef-"+i).text(livestreamVO.title);

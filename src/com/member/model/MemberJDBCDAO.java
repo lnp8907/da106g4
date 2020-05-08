@@ -71,7 +71,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 	private static final String UPDATE_LIVESTREAM_STATUS = "UPDATE MEMBER set livestream_status=? where MEMBER_ID = ?";
 //////////////////
 	
-	private static final String UPDATE_SUCCESS = "UPDATE MEMBER set ACCOUNT = ?, VALIDATION = ? where ACCOUNT = ?";
+	private static final String UPDATE_SUCCESS = "UPDATE MEMBER set EMAIL = ?, VALIDATION = ? where EMAIL = ?";
 	private static final String DUPLICATE_ACCOUNT = "SELECT ACCOUNT? FROM MEMBER where ACCOUNT = ?";
 	
 	private static final String UPDATECARDNUMBER = "UPDATE MEMBER set MEMBER_ID = ?, MEMBER_CREDITCARD = ? where MEMBER_ID = ?";
@@ -675,8 +675,8 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 			pstmt = con.prepareStatement(UPDATE_SUCCESS);
 
 			pstmt.setInt(2, empVO.getValidation());
-			pstmt.setString(1, empVO.getAccount());	
-			pstmt.setString(3, empVO.getAccount());	
+			pstmt.setString(1, empVO.getEmail());	
+			pstmt.setString(3, empVO.getEmail());	
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
