@@ -159,7 +159,7 @@ public class ProductServlet extends HttpServlet {
 			System.out.println("處理食譜上架");
 			String product_id=req.getParameter("product_id");
 			Integer price=Integer.valueOf( req.getParameter("price"));
-			Integer product_status=Integer.valueOf( req.getParameter("status"));
+			Integer product_status=1;
 			ProductService svc=new ProductService();
 			svc.onproductBYRecipe(product_id, product_status, price);
 			
@@ -730,7 +730,7 @@ public class ProductServlet extends HttpServlet {
 				productvo.setContent(content);
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("productvo", productvo);
-					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/shop_product/addProduct.jsp");
+					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/shop_product/ShopPageServlet?pagemessage=addpage");
 					failureView.forward(req, res);
 					return;
 				}
@@ -749,7 +749,7 @@ System.out.println("第幾頁"+whichPage);
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add("異常:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/shop_product/addProduct.jsp");
+				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/shop_product/ShopPageServlet?pagemessage=addpage");
 				failureView.forward(req, res);
 			}
 		}

@@ -41,6 +41,65 @@ public class OrderServlet extends HttpServlet {
 		String str;
 		String action = req.getParameter("action");
 
+		if ("changestatus".equals(action)) {
+			//
+			System.out.println("收到!開始修改訂單狀態");
+
+			// Store this set in the request scope, in case we need to
+			// send the ErrorPage view.
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+				String order_no = new String(req.getParameter("order_no"));
+				System.out.println("訂單狀態" +order_no );
+				
+				Integer order_status = Integer.valueOf(req.getParameter("order_status"));
+				System.out.println("訂單狀態" +order_status );
+				String whichPage = new String(req.getParameter("whichPage"));
+
+			
+			
+
+		
+				Shop_orderJDBCDAO orderdao = new Shop_orderJDBCDAO();
+				Shop_orderVO VO = orderdao.findByPrimaryKey(order_no);
+
+				VO.setOrder_status(order_status);
+				System.out.println("設置狀態:" + order_status);
+				System.out.println("VO放置成功");
+
+				if (!errorMsgs.isEmpty()) {
+					req.setAttribute("ordvo", VO); // 含有輸入格式錯誤的empVO物件,也存入req
+					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/shop_order/orderupatepage.jsp");
+					failureView.forward(req, res);
+					return; // 程式中斷
+				}
+
+			
+				
+				System.out.println("進入修改程序");
+				/*************************** 2.開始修改資料 *****************************************/
+				OrderService Svc = new OrderService();
+
+				VO = Svc.changestatus(order_status, order_no);
+				System.out.println("開始修改資料");
+
+				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
+				req.setAttribute("ordvo", VO); // 資料庫update成功後,正確的的empVO物件,存入req
+				String url = "/back-end/shop_order/Order_backendPage.jsp";
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
+				successView.forward(req, res);
+
+				/*************************** 其他可能的錯誤處理 *************************************/
+			} catch (Exception e) {
+				errorMsgs.add("修改資料失敗:" + e.getMessage());
+				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/shop_order/orderupatepage.jsp");
+				failureView.forward(req, res);
+			}
+		}
+		
+		
 		HttpSession session = req.getSession();
 		if ("lookmore".equals(action)) {
 			System.out.println("收到!LOOKMORE跳窗啟動");
@@ -117,12 +176,13 @@ public class OrderServlet extends HttpServlet {
 				OrderService Svc = new OrderService();
 				Shop_orderVO VO = Svc.getOneOrder(order_no);
 				System.out.println(VO + "VO放置成功");
+
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("ordvo", VO); // 含有輸入格式錯誤的empVO物件,也存入req
 					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/shop_order/orderupatepage.jsp");
 					failureView.forward(req, res);
 					return;
-				}
+				}	
 				/*************************** 準備轉交(Send the Success view) *************/
 				req.setAttribute("dialogordvo", VO); // 資料庫update成功後,正確的的empVO物件,存入req
 				req.setAttribute("opendialog", "addressupdate");
@@ -448,12 +508,39 @@ public class OrderServlet extends HttpServlet {
 				VO.setDv_address(dv_address);
 
 				System.out.println("VO放置成功");
+				String pagemessage = new String(req.getParameter("Order_statusPage"));
 
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("ordvo", VO); // 含有輸入格式錯誤的empVO物件,也存入req
 					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/shop_order/orderupatepage.jsp");
 					failureView.forward(req, res);
 					return; // 程式中斷
+				}
+				
+				
+				if ("waitpage".equals(pagemessage)) {
+					System.out.println("設置"+pagemessage);
+					req.setAttribute("Order_statusPage", "waitpage");
+
+
+				}
+				else if ("traveling".equals(pagemessage)) {
+					System.out.println("設置"+pagemessage);
+
+					req.setAttribute("Order_statusPage", "traveling");
+
+				}
+				else if ("complete".equals(pagemessage)) {
+					System.out.println("設置"+pagemessage);
+
+					req.setAttribute("Order_statusPage", "complete");
+
+				}
+				else	if ("cancel".equals(pagemessage)) {
+					System.out.println("設置"+pagemessage);
+
+					req.setAttribute("Order_statusPage", "cancel");
+
 				}
 				System.out.println("進入修改程序");
 				/*************************** 2.開始修改資料 *****************************************/

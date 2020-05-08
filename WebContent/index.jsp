@@ -119,7 +119,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 	
 					<div class="login">
 				
-					<a> <img class="header-icon" src="image/logout.png"
+					<a> <img class="header-icon" src="<%=request.getContextPath() %>/image/logout.png"
 						alt="login-icon">
 					
 							<span class="login-span">登出</span>
@@ -171,7 +171,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 								<!-- 購物車 -->
 				
 				<div class="notice">
-					<a href="#"><img class="header-icon" src="image/ico_notice.png"
+					<a href="#"><img class="header-icon" src="<%=request.getContextPath() %>/image/ico_notice.png"
 						alt="notice-icon">
 						<div class="herder-icon-span">
 							<span class="notice-span">通知總覽</span>
@@ -185,38 +185,38 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 		<nav id="navigation">
 			<ul>
 				<li class="dropdown"><a href="#"><img class="access-menu-icon"
-						src="image/recipe-icon.png"><span class="menu-span">食譜專區</span></a>
+						src="<%=request.getContextPath() %>/image/recipe-icon.png"><span class="menu-span">食譜專區</span></a>
 					<ul>
 						<li><a class="dropdown-first-a" href="#"><img
-								class="dropdown-first-img" src="image/ico_gnav_recipes_book.svg"><span
+								class="dropdown-first-img" src="<%=request.getContextPath() %>/image/ico_gnav_recipes_book.svg"><span
 								class="dropdown-first-a-span">食譜主頁</span></a></li>
 <!-- 						<li><a href="#">特輯食譜</a></li> -->
 <!-- 						<li><a href="#">推薦食譜</a></li> -->
-					<c:if test="<%= memberVO!=null && memberVO.getMember_status()==1%>">
+					<c:if test="${memberVO.member_status==1}">
 						<li><a href="front-end/recipe/addRecipe.jsp">建立食譜</a></li>
 					</c:if>
 	
 					</ul></li>
 				<li class="dropdown"><a><img class="access-menu-icon"
-						src="image/livestream-icon.png"><span class="menu-span">直播專區</span></a>
+						src="<%=request.getContextPath() %>/image/livestream-icon.png"><span class="menu-span">直播專區</span></a>
 					<ul>
 						<li><a class="dropdown-first-a" href="<%=request.getContextPath()%>/front-end/livestream/livestreamHomePage.jsp"><img
 								class="dropdown-first-img"
-								src="image/ico_gnav_recipes_movie.svg"><span
+								src="<%=request.getContextPath() %>/image/ico_gnav_recipes_movie.svg"><span
 								class="dropdown-first-a-span">直播主頁</span></a></li>
 						<li><a href="livestream.jsp">直播預告</a></li>
-						<c:if test="<%= memberVO!=null && memberVO.getMember_status()==1%>">
+					<c:if test="${memberVO.member_status==1}">
 						<li><a href="front-end/livestream/livestream.jsp#${member_id}">開啟直播</a></li>
 						
 						</c:if>
 					</ul></li>
 				<li class="dropdown dropdown-shop"><a href="<%=request.getContextPath()%>/front-end/ShopPage/ShopHomePage.jsp"><img
-						class="access-menu-icon" src="image/shop-icon.png"><span
+						class="access-menu-icon" src="<%=request.getContextPath() %>/image/shop-icon.png"><span
 						class="menu-span">食材商城</span></a>
 					<ul id="dropdown-shop-ul">
 						<li><a class="dropdown-first-a" href="<%=request.getContextPath()%>/front-end/ShopPage/ShopHomePage.jsp"><img
 								class="dropdown-first-img"
-								src="image/ico_gnav_recipes_salad.svg"><span
+								src="<%=request.getContextPath() %>/image/ico_gnav_recipes_salad.svg"><span
 								class="dropdown-first-a-span">食材商城主頁</span></a></li>
 								<%
 			Map<Integer, String> producttype = new HashMap<Integer, String>();
@@ -243,13 +243,13 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 
 					</ul></li>
 				<li class="dropdown"><a href="front-end/course/listAllCourse.jsp"><img class="access-menu-icon"
-						src="image/course-icon.png"><span class="menu-span">料理課程</span></a>
+						src="<%=request.getContextPath() %>/image/course-icon.png"><span class="menu-span">料理課程</span></a>
 					<ul>
 						<li><a href="<%=request.getContextPath() %>/front-end/course/listAllCourse.jsp" class="dropdown-first-a" href="front-end/course/listAllCourse.jsp"><img
-								class="dropdown-first-img" src="image/ico_gnav_recipes_pot.svg"><span
+								class="dropdown-first-img" src="<%=request.getContextPath() %>/image/ico_gnav_recipes_pot.svg"><span
 								class="dropdown-first-a-span">課程主頁</span></a></li>
 <!-- 						<li><a href="#">熱門課程</a></li> -->
-						<c:if test="<%= memberVO!=null && memberVO.getMember_status()==1%>">
+					<c:if test="${memberVO.member_status==1}">
 						<li><a href="<%=request.getContextPath() %>/front-end/course/addCourse.jsp">建立料理課程</a></li>
 						</c:if>
 					</ul></li>

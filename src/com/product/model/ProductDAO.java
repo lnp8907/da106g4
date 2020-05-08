@@ -333,7 +333,7 @@ public class ProductDAO implements ProductDAO_interface {
 
 	@Override
 	public List<ProductVO> getAll() {
-		List<ProductVO> list = new ArrayList();
+		List<ProductVO> list = new LinkedList<ProductVO>();
 		ProductVO productVO = null;
 
 		Connection con = null;
@@ -343,7 +343,6 @@ public class ProductDAO implements ProductDAO_interface {
 		try {
 			
 			con = ds.getConnection();
-			pstmt = con.prepareStatement(GET_ALL_STMT);
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 

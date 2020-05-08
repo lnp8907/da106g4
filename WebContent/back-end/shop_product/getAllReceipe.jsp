@@ -8,6 +8,8 @@
 <%
 	ProductService Psvc = new ProductService();
 	Collection<ProductVO> list = Psvc.gettypelist("料理組合包");
+	list=list.stream().filter(p->p.getProduct_status()!=2).collect(Collectors.toList());
+
 	pageContext.setAttribute("list", list);
 %>
 
@@ -55,6 +57,7 @@
 
 
 				</tr>
+				<jsp:useBean id="receiprsvc" class="com.recipe.model.RecipeService" />
 
 				<%@ include file="../file/page1.file"%>
 						<c:set var="whichPage" value="<%=whichPage %>" scope="request"/>
@@ -66,13 +69,12 @@
 
 					<tr>
 						<td><img width=80px height=70px
-							src="Product_photoReader?product_id=${productvo.product_id}
-			"></td>
+							src="${receiprsvc.getOneRecipe(productvo.recipe_id).recipe_photo}"></td>
 						<td>${productvo.product_type}</td>
 						<td class="product_idtd">${productvo.product_id}</td>
 						<td class="recipe_td">${productvo.recipe_id}</td>
 
-						<td>${productvo.product_name}</td>
+						<td>${receiprsvc.getOneRecipe(productvo.recipe_id).recipe_name}</td>
 						<td>${productvo.product_price}</td>
 						<%
 							Map<Integer, String> map = new HashMap<>();

@@ -5,6 +5,8 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.product.model.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@page import="java.util.stream.Collectors"%>
+
 <%
 				Map<Integer, String> producttype = new HashMap<>();
                 producttype.put(0, "所有商品");
@@ -31,7 +33,7 @@
 
 List<ProductVO> productlist=null;
 	ProductService Psvc = new ProductService();
-	productlist=(List<ProductVO>)session.getAttribute("productlist");
+	productlist=(List<ProductVO>)session.getAttribute("Fproductlist");
 	
 	String product_type=null;
 	
@@ -39,7 +41,6 @@ List<ProductVO> productlist=null;
 		productlist=(List<ProductVO>) request.getAttribute("Query");
 		 product_type = (String) request.getAttribute("product_type");
 
-		request.setAttribute("productlist", productlist);
 	}
 	
 	else{
@@ -74,10 +75,14 @@ List<ProductVO> productlist=null;
 		}
 		
 	}
-	session.setAttribute("productlist", productlist);	
 	product_type=(String)session.getAttribute("product_type");
 
 	}
+	
+	productlist=productlist.stream().filter(p->p.getProduct_status()==0).collect(Collectors.toList());
+	session.setAttribute("Fproductlist", productlist);	
+
+	
 	int t=0,t2=0;
 %>
 <html>
@@ -188,7 +193,7 @@ List<ProductVO> productlist=null;
  <font>共<%=rowNumber%>筆</font>
  
                 <ul>
-<c:forEach var="productlist" items="${productlist}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
+<c:forEach var="productlist" items="${Fproductlist}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 			<li ><a
 				href="ProductPage?product_id=${productlist.product_id}&action=goDetailPage">
 				<div class="productlist">

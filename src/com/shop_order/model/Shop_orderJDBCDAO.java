@@ -34,7 +34,8 @@ public class Shop_orderJDBCDAO implements Shop_orderDAO_interface{
 		"DELETE FROM SHOP_ORDER where order_no = ? ";
 	private static final String UPDATE = 
 		"UPDATE SHOP_ORDER set order_status=?,dv_address=? where order_no = ?";
-	
+	private static final String UPDATESTATUS = 
+			"UPDATE SHOP_ORDER set order_status=? where order_no = ?";
 	private static final String UPDATETOTAL = 
 			"UPDATE SHOP_ORDER set  total=? where order_no = ?";
 	private static final String GetFRESH="select   order_no FROM shop_order  WHERE rownum = 1  ORDER BY order_no DESC";
@@ -497,6 +498,48 @@ public class Shop_orderJDBCDAO implements Shop_orderDAO_interface{
 		
 		
 		
+	}
+
+
+	@Override
+	public void changestatus(Shop_orderVO shop_ordervo) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(UPDATESTATUS);
+			
+	            pstmt.setInt(1, shop_ordervo.getOrder_status());  
+	            pstmt.setString(2, shop_ordervo.getOrder_no());
+			    pstmt.executeUpdate();
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}		
 	}
 
 
