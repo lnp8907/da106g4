@@ -4,6 +4,7 @@
 <%@page import="com.course.model.CourseVO"%>
 <%
 	CourseVO courseVO = (CourseVO) request.getAttribute("courseVO");
+String member_id =(String) session.getAttribute("member_id");
 	String[] course_detail1 = (String[]) request.getAttribute("course_detail1");
 	String[] course_detail2 = (String[]) request.getAttribute("course_detail2");
 %>
@@ -37,9 +38,9 @@
 				<div class="recipe-aside">
 					<div class="member_id-container">
 						<h3>廚師編號</h3>
-						<input type="text" name="member_id" placeholder="請輸入廚師編號"
+						<input type="hidden" name="member_id" placeholder="請輸入廚師編號"
 							class="cook-time-option"
-							value="<%=(courseVO == null) ? "" : courseVO.getMember_id()%>">
+							value="<%=member_id%>">
 					</div>
 					<figure class="recipe-aside-image">
 						<img src="../../image/icon/uploadPic.png" id="uploadFile">
