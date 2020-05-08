@@ -427,12 +427,14 @@ public class CourseServlet extends HttpServlet {
 				}
 
 				java.sql.Date end_app = null;
-				System.out.println(end_app);
 				try {
 					end_app = java.sql.Date.valueOf(req.getParameter("end_app").trim());
 				} catch (IllegalArgumentException e) {
-					end_app = new java.sql.Date(System.currentTimeMillis());
-					errorMsgs.add("請輸入報名截止日!");
+					end_app = java.sql.Date.valueOf("2020-06-30");
+					System.out.println(end_app);
+							
+							new java.sql.Date(System.currentTimeMillis());
+//					errorMsgs.add("請輸入報名截止日!");
 				}
 
 				Integer num_max = Integer.valueOf(req.getParameter("num_max").trim());
