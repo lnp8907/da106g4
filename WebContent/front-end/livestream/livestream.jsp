@@ -469,7 +469,7 @@ display:none;
     }
     
     
-  @media (max-width: 500px){
+  @media (max-width: 566px){
   #livestream_left{
   width: 100%;
       display: block;
@@ -499,7 +499,21 @@ display:none;
     #dona{
     display: none;
     }
+    .experiment2{
+    height:auto;
+    }
+
+  	header{
+  	display: none;
+  	}
+  	#livestream-title{
+  	display: none;
+  	}
+  	video{
+  	transform:none;
+  	}
   }   
+  
     
 </style>
 
