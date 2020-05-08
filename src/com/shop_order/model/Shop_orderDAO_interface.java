@@ -12,5 +12,6 @@ public interface Shop_orderDAO_interface {
     public List<Shop_orderVO> getAll();
     public List<Shop_orderVO> getOrderBYMEMBER(String member_id);
     public void updatetotal(Shop_orderVO shop_ordervo);
+    public void changestatus(Shop_orderVO shop_ordervo);
 
 }

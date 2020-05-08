@@ -50,7 +50,7 @@
 	
 	
 	<!-- 注意 -->
-	<FORM METHOD="post" ACTION="product.do" name="form1"
+	<FORM METHOD="post" ACTION="ProductServlet" name="form1"
 		enctype="multipart/form-data">
 		<table>
 			<!-- 圖片 -->

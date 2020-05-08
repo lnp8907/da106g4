@@ -476,6 +476,34 @@
 
 
 
+<filter>
+  <filter-name>BackEndLoginFilter</filter-name>
+  <filter-class>com.staff.model.BackEndLoginFilter</filter-class>
+ </filter>
+ <filter-mapping>
+  <filter-name>BackEndLoginFilter</filter-name>
+  <!-- 測試 -->
+   <url-pattern>/backEnd2.jsp</url-pattern>
+
+       
+     
+       
+       
+       
+  <!-- 測試 -->
+<!--   <url-pattern>/front_end/index.jsp</url-pattern> -->
+<!--   <url-pattern>/front_end/group_index.jsp</url-pattern> -->
+  
+  <dispatcher>REQUEST</dispatcher>
+     <dispatcher>FORWARD</dispatcher>
+     <dispatcher>INCLUDE</dispatcher>
+     <dispatcher>ERROR</dispatcher>
+     <dispatcher>ASYNC</dispatcher>
+     
+ </filter-mapping>
+
+
+
 	<servlet>
 		<servlet-name>DBGifReader</servlet-name>
 		<servlet-class>com.member.model.DBGifReader4</servlet-class>

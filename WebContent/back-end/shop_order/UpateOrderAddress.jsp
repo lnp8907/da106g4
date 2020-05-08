@@ -1,3 +1,4 @@
+<%@page import="android.com.instant_delivery_order.model.OrderProductVO"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8 "
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -5,15 +6,9 @@
     
     
    
-    
-    <%Shop_orderVO ordvo=null;
-    if(request.getAttribute("dialogordvo")!=null){
-          ordvo =(Shop_orderVO) request.getAttribute("dialogordvo");
-    Map<Integer, String> statusMap = new HashMap<>();
-    }
-    %>
-    <c:set var="ordvo" value="<%=ordvo %>" scope="request"/>
+  
     <%@ page import="java.util.*" %>
+    <%Shop_orderVO ordvo=(Shop_orderVO)request.getAttribute("ordvo"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -107,7 +102,7 @@ input{
 	</tr>
 		<tr>
 		<td>訂單生成日期:<font color=red><b>*</b></font></td>
-		<td><%=ordvo.getOrder_time()%></td>
+		<td>${ ordvo.order_time}</td>
 	</tr>
 			<tr>
 					<%
@@ -171,6 +166,10 @@ else{
 <input type="hidden" name="address1" id="address1">
 <input type="hidden" name="address2" id="address2" >
 <input  type="submit" value="送出修改" id="send" name="send">
+
+
+                                                 <input  type="hidden" name="Order_statusPage" value="${Order_statusPage}">
+
 		
 		</td>
 	</tr>	
