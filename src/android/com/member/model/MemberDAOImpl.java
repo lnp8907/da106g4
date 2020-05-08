@@ -44,7 +44,7 @@ public class MemberDAOImpl implements MemberDAO {
 	  static {
 	   try {
 	    Context ctx = new InitialContext();
-	    ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106_G4");
+	    ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G4");
 	   } catch (NamingException e) {
 	    e.printStackTrace();
 	   }

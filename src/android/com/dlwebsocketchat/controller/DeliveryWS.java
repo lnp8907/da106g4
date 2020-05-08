@@ -57,6 +57,7 @@ public class DeliveryWS {
 		String sender = chatMessage.getSender();
 		String receiver = chatMessage.getReceiver();
 		String backend = chatMessage.getBackend();
+		Session senderSession = sessionsMap.get(sender);
 		Session receiverSession = sessionsMap.get(receiver);
 		Session backendSession = sessionsMap.get(backend);
 //		if ("history".equals(chatMessage.getType())) {
