@@ -1533,7 +1533,7 @@ System.out.println("location="+location);
 			System.out.println("123");
 			req.setAttribute("membervo", memberVO);// 含有輸入格式錯誤的empVO物件,也存入req
 			RequestDispatcher failureView = req
-					.getRequestDispatcher("/front-end/member/update_by_self.jsp");
+					.getRequestDispatcher("/front-end/member/TestMemberHomepage.jsp");
 			System.out.println("123");
 			failureView.forward(req, res);
 			return; //程式中斷
