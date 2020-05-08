@@ -176,6 +176,8 @@ session.setAttribute("checkoutlist", buyProductlist);
     </div>
 
  <select id="pay-type" name="pay_type" class="ui dropdown">
+         <option value="3">請選擇付款方式</option>
+ 
         <option value="1">信用卡</option>
                 <option value="0">點數</option>
         

@@ -472,9 +472,13 @@
 						type="hidden" name="action" value="ADD">
 <!-- 						<input type="submit" value="加入購物車"> -->
 <!-- 				</FORM> -->
-				 <button  class="addcar">購買@GIT檢查在不再</button>
-
-		
+<!-- 				 <button  class="button ui addcar">加入購物車</button> -->
+<div style="width: 80px" class="ui addcar vertical animated button" tabindex="0">
+  <div class="hidden content">加入購物車</div>
+  <div class="visible content">
+    <i class="shop icon"></i>
+  </div>
+		</div>
 				
 				
 

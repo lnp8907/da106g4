@@ -214,6 +214,15 @@ public class OrderServlet extends HttpServlet {
 			Integer total = productlist.stream().mapToInt(p -> p.getPrice() * p.getQuantity()).sum();
 			System.out.println("程式算的金額為:" + total);
 
+			
+			if (pay_type == 3) {
+				
+				errorMsgs.add("請選擇付款方式");
+
+				
+			}
+			
+			
 			if (pay_type == 0) {
 				
 				MemberService msvc= new MemberService();
