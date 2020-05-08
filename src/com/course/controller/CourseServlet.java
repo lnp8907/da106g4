@@ -427,6 +427,7 @@ public class CourseServlet extends HttpServlet {
 				}
 
 				java.sql.Date end_app = null;
+				System.out.println(end_app);
 				try {
 					end_app = java.sql.Date.valueOf(req.getParameter("end_app").trim());
 				} catch (IllegalArgumentException e) {
