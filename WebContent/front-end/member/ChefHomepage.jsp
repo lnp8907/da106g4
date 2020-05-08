@@ -1912,16 +1912,14 @@ hr {
 						<tr>
 							<td>會員姓名:</td>
 
-							<td><input type="TEXT" name="member_name" size="45"
-								id=member_name value="<%=membervo.getMember_name()%>" /> <!-- (max 30 characters a-z and A-Z) -->
+							<td><%=membervo.getMember_name()%> <!-- (max 30 characters a-z and A-Z) -->
 							</td>
 						</tr>
 
 						<!----- Last Name ---------------------------------------------------------->
 						<tr>
 							<td>會員帳號:</td>
-							<td><input type="TEXT" name="account" size="45" id=account
-								value="<%=membervo.getAccount()%>" /></td>
+							<td><%=membervo.getAccount()%></td>
 						</tr>
 
 					
