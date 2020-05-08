@@ -467,6 +467,40 @@ display:none;
     #videos-container{
     z-index:2;
     }
+    
+    
+  @media (max-width: 500px){
+  #livestream_left{
+  width: 100%;
+      display: block;
+      margin-right:0
+  }
+    #livestream_container{
+        width: 100%;
+        height:auto;
+    }
+    #header{
+        display: none;
+    }
+    #video{
+    height:auto;
+    }
+    #hot{
+        display: none;
+    }
+    #livestream_right{
+      width: 95%;
+      display: block;
+      margin-top:15px;
+    }
+    #chat-room {
+   display: none;
+    }
+    #dona{
+    display: none;
+    }
+  }   
+    
 </style>
 
 <!-- This Library is used to detect WebRTC features -->
