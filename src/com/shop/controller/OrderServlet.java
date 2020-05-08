@@ -331,6 +331,8 @@ public class OrderServlet extends HttpServlet {
 				session.removeAttribute("selecttlist");
 				session.removeAttribute("productCar");
 				session.removeAttribute("buyProductlist");
+				session.removeAttribute("productcarlist");
+
 				String url = "/front-end/ShopPage/CheckFinish.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);

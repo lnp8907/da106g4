@@ -8,7 +8,6 @@
 .disa{
 cursor:pointer;
 pointer-events: none;
-
 }
 
 </style>
@@ -118,16 +117,16 @@ pointer-events: none;
 
 
 		<div id="productcartList">
+		
+	
 			<table id="producttable">
+		
 				<%
 					int index = 0;
 				%>
 				<c:forEach var="buyProductlist" items="${buyProductlist}">
 					<!-- EL寫法的參數傳遞給JSP -->
 					<c:set var="id" value="${buyProductlist.product_id}" />
-
-
-
 
 					<tr>
 						<td><input
@@ -161,7 +160,7 @@ pointer-events: none;
 							String src;
 									String srcend = "'";
 						%>
-						<%=pageContext.getAttribute("id")%>
+<%-- 						<%=pageContext.getAttribute("id")%> --%>
 						<td><img width=170px height=150px
 							<%if (vo.getRecipe_id() == null) {
 						src = "src='Product_photoReader?product_id=";
