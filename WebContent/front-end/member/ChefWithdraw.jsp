@@ -18,6 +18,7 @@
 	List<MemberVO> list = pSvc.getAll();
 	pageContext.setAttribute("list", list);
 	pageContext.setAttribute("member_status", membervo1.getMember_status());
+	pageContext.setAttribute("balance", membervo1.getBalance());
 %>
 
 <!DOCTYPE html>
@@ -855,7 +856,7 @@ body {
 }
 
 .sidebar {
-	margin-top: -350px;
+	margin-top: -410px;
 	margin-left: 13%;
 	width: 240px;
 	height: 100%;
@@ -979,6 +980,7 @@ table {
 	border: 2px solid rgb(226, 226, 238);
 	border-spacing: 60px 40px;
 	/*  border-width: 200px;*/
+	    margin-top: 30px;
 }
 
 table.inner {
@@ -1888,12 +1890,12 @@ margin-rught:100px;
 
 
 
-<!-- 						<tr> -->
-<!-- 							<td>會員編號:<font color=red><b>*</b></font></td> -->
+						<tr>
+							<td>點數餘額:<font color=red><b>*</b></font></td>
 
-<%-- 							<td><%=membervo.getMember_id()%></td> --%>
+							<td><%=membervo.getBalance()%></td>
 
-<!-- 						</tr> -->
+						</tr>
 
 
 
