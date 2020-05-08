@@ -1,4 +1,4 @@
-package com.member.model;
+package com.staff.model;
 
 
 
@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import com.member.model.MemberVO;
 
-public class LoginFilter implements Filter{
+public class BackEndLoginFilter implements Filter{
  
  @Override
  public void init(FilterConfig filterConfig) throws ServletException {
@@ -30,11 +30,13 @@ public class LoginFilter implements Filter{
   HttpServletRequest req = (HttpServletRequest)request;
   HttpServletResponse res = (HttpServletResponse)response;
   HttpSession session = req.getSession();
-  String staff_id = (String)session.getAttribute("member_id");
+  String staff_id = (String)session.getAttribute("staff_id");
+  System.out.println(staff_id);
   if(staff_id == null) {
-	  System.out.println(2);
-   session.setAttribute("location", req.getRequestURI());
-   res.sendRedirect(req.getContextPath() + "/index.html");  // 登入換地址，此處也要換
+	 
+   session.setAttribute("location2", req.getRequestURI());
+   System.out.println(2);
+   res.sendRedirect(req.getContextPath() + "/backEnd_Login.jsp");  // 登入換地址，此處也要換
    return;
   }else {
 	  System.out.println(3);

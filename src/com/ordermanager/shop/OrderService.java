@@ -26,6 +26,13 @@ public class OrderService {
 		dao.update(vo);
 		return vo;
 			}
+	public Shop_orderVO changestatus(Integer order_status,String order_no) {
+		Shop_orderVO vo=new Shop_orderVO();
+		vo.setOrder_status(order_status);
+		vo.setOrder_no(order_no);
+		dao.changestatus(vo);
+		return vo;
+			}
 	public void delete(String order_no) {
 		daodetail=new Order_detailJDBCDAO();
 		daodetail.delete(order_no);

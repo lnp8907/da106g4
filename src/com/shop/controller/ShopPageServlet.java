@@ -39,6 +39,8 @@ public class ShopPageServlet extends HttpServlet {
 		String action = req.getParameter("action");
 		HttpSession session = req.getSession();
 		String pagemessage = req.getParameter("pagemessage");
+		
+		
 		if ("typeselect".equals(action)) {
 			System.out.println(req.getParameter("product_type"));
 			String product_type=req.getParameter("product_type");
@@ -162,7 +164,7 @@ public class ShopPageServlet extends HttpServlet {
 				product_type = null;
 			}
 
-			session.setAttribute("productlist", productlist);
+			session.setAttribute("Fproductlist", productlist);
 			session.setAttribute("product_type", product_type);
 			String url = "/front-end/ShopPage/ShopProductPage.jsp";
 			RequestDispatcher successView = req.getRequestDispatcher(url);

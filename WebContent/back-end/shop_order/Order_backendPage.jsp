@@ -30,8 +30,20 @@
 <script src="../../plugin/jquery-ui/jquery-ui.min.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <%@ page import="com.shop_order.model.*" %>
+    <%@ page import="java.util.*" %>
+
 
 <title>後端頁面模板</title>
+  
+    <%Shop_orderVO ordvo=null;
+    if(request.getAttribute("dialogordvo")!=null){
+          ordvo =(Shop_orderVO) request.getAttribute("dialogordvo");
+    Map<Integer, String> statusMap = new HashMap<>();
+    }
+    %>
+    <c:set var="ordvo" value="<%=ordvo %>" scope="request"/>
+
 <body>
 	<%="現在地址:" + request.getContextPath()%>
 	現在Order_statusPage:${Order_statusPage}                      
@@ -138,6 +150,7 @@
 	</div>
 	<!-- 跳窗.................. -->
 	<c:if test="${opendialog=='addressupdate'}">
+	
 		<div class="modal fade" id="basicModal1" tabindex="-1" role="dialog"
 			aria-labelledby="basicModal" aria-hidden="true">
 			<div class="modal-dialog modal-lg" style="width: 65%;">

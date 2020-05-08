@@ -6,6 +6,7 @@
 
 }
 
+
 #shopProduct{
 width: 1100px;
     height: 1250px;
@@ -14,11 +15,13 @@ width: 1100px;
 #producttitle{
 	margin-top:75px;
     height: 65px;
+   
     text-align:center;
 }
 
 
 #Productcontext{
+	margin-bottom:60px;
     width: 100%;
     height: 350px;
 }
@@ -38,37 +41,37 @@ width: 1100px;
     height: 270px;
 
 }
+
 #productdescript{
+	height:400px
 	margin: 0px;
     overflow: hidden;
-    height: 100%;
     width: 65%;
 }
 #descript1{
-	height:200px;
+	height:50%;
 	margin:0px;
+font-size: 35px;
 }
 
 #descript2{
-	height:100px;
+	height:10%;
 	margin: 0px;
     
 }
 #descript3{
-	height:100px;
+	height:40%
 	margin: 0px;
+	
     
 }
 
 .prodictmessage{
-    margin-top: 60px;
+    margin-top: 120px;
     height: 700px;
     width: 100%;
     background-color: #f9f9f9;
-
-}
-.prodictmessage{
-    font-size: 25px;
+    font-size: 30px;
 
 }
 .prodictmessage .title{
@@ -79,7 +82,7 @@ width: 1100px;
 
 }
 .hrdiv{
-	margin-top:-90px;
+	margin-top:90px;
     height: 40px;
 
 }
