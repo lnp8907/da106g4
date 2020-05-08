@@ -1380,38 +1380,38 @@ console.log(endPointURL);
 <script>
 	//練習使用AJAX實現按讚功能
 	
-var beOnline = function(){
-			$.ajax({
-				type : "POST",
-				url : "<%=request.getContextPath()+"/AjaxResponse"%>",
-				data : {
-					"action" : "beOnline",	"member_id" : <%=memberVO.getMember_id()%>},
-				dataType : "json",
-				success : function(data) {
+// var beOnline = function(){
+// 			$.ajax({
+// 				type : "POST",
+// 				url : "",
+// 				data : {
+// 					"action" : "beOnline",	"member_id" : },
+// 				dataType : "json",
+// 				success : function(data) {
 
-				},
-				error : function() {
+// 				},
+// 				error : function() {
 					
-				}
-			});
-	}
+// 				}
+// 			});
+// 	}
 	
 	
-var beOffline = function(){
-	$.ajax({
-		type : "POST",
-		url : "<%=request.getContextPath()+"/AjaxResponse"%>",
-		data : {
-			"action" : "beOffline","member_id" : <%=memberVO.getMember_id()%>},
-		dataType : "json",
-		success : function(data) {
+// var beOffline = function(){
+// 	$.ajax({
+// 		type : "POST",
+// 		url : "",
+// 		data : {
+// 			"action" : "beOffline","member_id" : },
+// 		dataType : "json",
+// 		success : function(data) {
 
-		},
-		error : function() {			
+// 		},
+// 		error : function() {			
 	
-	}
-});
-}
+// 	}
+// });
+// }
 </script>
 	
 	
