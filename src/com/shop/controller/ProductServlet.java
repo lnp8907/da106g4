@@ -6,6 +6,8 @@ import java.io.InputStream;
 import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
+
+import javax.mail.Session;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
@@ -13,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.servlet.http.Part;
 
 import com.product.model.ProductJDBCDAO;
@@ -41,7 +44,8 @@ public class ProductServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 		//打開詳細欄位
-		
+		HttpSession session = req.getSession();
+
 		
 		if ("detailopen".equals(action)) {
 			System.out.println("有進來喔 處理打開理詳細頁面");
@@ -741,9 +745,12 @@ public class ProductServlet extends HttpServlet {
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 				String whichPage = req.getParameter("whichPage");
-System.out.println("第幾頁"+whichPage);
-				String url="/back-end/shop_backendPage.jsp?whichPage="+whichPage;
-				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+				
+//System.out.println("第幾頁"+whichPage);
+//req.setAttribute("product_type",product_type );
+				session.removeAttribute("backendpage");
+String url = "/back-end/shop_product/ShopPageServlet?action=typeselect&product_type="+product_type;
+System.out.println("開始轉送");				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/

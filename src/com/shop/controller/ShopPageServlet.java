@@ -39,6 +39,8 @@ public class ShopPageServlet extends HttpServlet {
 		String action = req.getParameter("action");
 		HttpSession session = req.getSession();
 		String pagemessage = req.getParameter("pagemessage");
+		
+		
 		if ("typeselect".equals(action)) {
 			System.out.println(req.getParameter("product_type"));
 			String product_type=req.getParameter("product_type");

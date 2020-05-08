@@ -51,7 +51,7 @@
 		</ul>
 	</c:if>
 
-	<FORM METHOD="post" ACTION="detailServlet.do" name="form1">
+	<FORM METHOD="post" class="ui form" ACTION="detailServlet.do" name="form1">
 		<table>
 		<jsp:useBean id="productSvc" scope="page" class="com.product.model.ProductService" />
 		<tr>
