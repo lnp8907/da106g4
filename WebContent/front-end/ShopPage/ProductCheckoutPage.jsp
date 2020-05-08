@@ -45,18 +45,18 @@
 
 
 
- <%
- 	@SuppressWarnings("unchecked")
+ <% 	@SuppressWarnings("unchecked")
+
  
  Vector<Order_detailVO> buyProductlist=null;
- if((Vector<Order_detailVO>)session.getAttribute("selecttlist")!=null){
-	 buyProductlist=(Vector<Order_detailVO>)session.getAttribute("selecttlist");
+ if((Vector<Order_detailVO>)session.getAttribute("checkCarlist")!=null){
+	 buyProductlist=(Vector<Order_detailVO>)session.getAttribute("checkCarlist");
 	 
 	 
 	 
  }
-if(((Vector<Order_detailVO>)session.getAttribute("productCar")).size()==buyProductlist.size()){
-     buyProductlist =(Vector<Order_detailVO>)session.getAttribute("productCar");
+if(((Vector<Order_detailVO>)session.getAttribute("productCarlist")).size()==buyProductlist.size()){
+     buyProductlist =(Vector<Order_detailVO>)session.getAttribute("productCarlist");
  }
 session.setAttribute("checkoutlist", buyProductlist);
     session.setAttribute("location", request.getRequestURI());

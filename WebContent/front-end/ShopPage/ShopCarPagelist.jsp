@@ -30,9 +30,9 @@ pointer-events: none;
 		Vector<Order_detailVO> buyProductlist = null;
 		@SuppressWarnings("unchecked")
 		int alltot = 0;
-		if ((Vector<Order_detailVO>) session.getAttribute("productCar") != null) {
-			buyProductlist = (Vector<Order_detailVO>) session.getAttribute("productCar");
-			session.setAttribute("buyProductlist", buyProductlist);
+		if ((Vector<Order_detailVO>) session.getAttribute("productCarlist") != null) {
+			buyProductlist = (Vector<Order_detailVO>) session.getAttribute("productCarlist");
+			session.setAttribute("productCarlist", buyProductlist);
 
 		}
 
@@ -95,23 +95,10 @@ pointer-events: none;
 		
 		
 		
-<%-- 		待結帳列表:<% --%>
-<!-- // 			if (session.getAttribute("selecttlist") != null) { -->
-<!-- // 				Vector<Order_detailVO> selectlist = (Vector<Order_detailVO>) session.getAttribute("selecttlist"); -->
-<%-- 		%> --%>
-<%-- 		<%=selectlist%> --%>
-
-<%-- 		<% --%>
-<!-- // 			} -->
-<%-- 		%> --%>
-<%-- 		<br> 購物車清單列表:<% --%>
-<!-- // 			if (session.getAttribute("productCar") != null) { -->
-<%-- 		%> --%>
-<%-- 		<%=buyProductlist%> --%>
-
-<%-- 		<% --%>
-<!-- // 			} -->
-<%-- 		%> --%>
+	待結帳列表: ${checkCarlist}
+		
+	<br> 購物車清單列表: ${productCarlist}
+		
 
 
 
@@ -124,14 +111,14 @@ pointer-events: none;
 				<%
 					int index = 0;
 				%>
-				<c:forEach var="buyProductlist" items="${buyProductlist}">
+				<c:forEach var="buyProductlist" items="${productCarlist}">
 					<!-- EL寫法的參數傳遞給JSP -->
 					<c:set var="id" value="${buyProductlist.product_id}" />
 
 					<tr>
 						<td><input
-							<%if (session.getAttribute("selecttlist") != null) {
-					Vector<Order_detailVO> selist = (Vector<Order_detailVO>) session.getAttribute("selecttlist");
+							<%if (session.getAttribute("checkCarlist") != null) {
+					Vector<Order_detailVO> selist = (Vector<Order_detailVO>) session.getAttribute("checkCarlist");
 
 					for (Order_detailVO an : selist) {
 						if (an.getProduct_id().equals((String) pageContext.getAttribute("id"))) {%>

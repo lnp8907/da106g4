@@ -56,7 +56,7 @@ public class ShopCartServlet extends HttpServlet {
 		}
 		System.out.println("商品ID" + product_id);
 		@SuppressWarnings("unchecked")
-		Vector<Order_detailVO> productlist = (Vector<Order_detailVO>) session.getAttribute("productCar");
+		Vector<Order_detailVO> productlist = (Vector<Order_detailVO>) session.getAttribute("productCarlist");
 		String action = req.getParameter("action");
 		System.out.println("行為是:" + req.getParameter("action"));
 		// 判斷行動
@@ -121,14 +121,14 @@ public class ShopCartServlet extends HttpServlet {
 			if (action.equals("finallcarlist")) {
 				System.out.println("判斷購買清單");
 				selecttlist = productlist;
-				session.setAttribute("selecttlist", selecttlist);
+				session.setAttribute("checkCarlist", selecttlist);
 
 				return;
 			}
 			if (action.equals("clearlist")) {
 				System.out.println("清除購買清單");
 				selecttlist = null;
-				session.setAttribute("selecttlist", selecttlist);
+				session.setAttribute("checkCarlist", selecttlist);
 
 				return;
 			}
@@ -137,33 +137,40 @@ public class ShopCartServlet extends HttpServlet {
 				System.out.println("移除清單");
 				System.out.println("獲取索引" + req.getParameter("remmoveid"));
 //				selecttlist=productlist;
-				if(session.getAttribute("selecttlist")==null) {
+				if(session.getAttribute("checkCarlist")==null) {
 				selecttlist = (Vector<Order_detailVO>) productlist.stream()
 						.filter(p -> !p.getProduct_id().equals(req.getParameter("remmoveid")))
 						.collect(Collectors.toCollection(Vector::new));
 
 				System.out.println(selecttlist);}
-				else if(session.getAttribute("selecttlist")!=null){
-					selecttlist=((Vector<Order_detailVO>)session.getAttribute("selecttlist")).stream()
+				else if(session.getAttribute("checkCarlist")!=null){
+					selecttlist=((Vector<Order_detailVO>)session.getAttribute("checkCarlist")).stream()
 							.filter(p -> !p.getProduct_id().equals(req.getParameter("remmoveid")))
 							.collect(Collectors.toCollection(Vector::new));
 				}
-				session.setAttribute("selecttlist", selecttlist);
+				System.out.println("選取清單"+selecttlist);
+				session.setAttribute("checkCarlist", selecttlist);
 				return;
 			}
 /*--------------------單選新增--------------------------*/
 			if (action.equals("addlist")) {
 				System.out.println("新增清單");
-				System.out.println("獲取索引" + req.getParameter("remmoveid"));
+//				System.out.println("獲取索引" + req.getParameter("remmoveid"));
 //				selecttlist=productlist;
-				if(session.getAttribute("selecttlist")==null) {
+				if(session.getAttribute("checkCarlist")==null) {
+					System.out.println("獲取索引" + req.getParameter("addid"));
+
 				selecttlist = (Vector<Order_detailVO>) productlist.stream()
 						.filter(p -> p.getProduct_id().equals(req.getParameter("addid")))
 						.collect(Collectors.toCollection(Vector::new));
 
 				System.out.println(selecttlist);}
-				else if(session.getAttribute("selecttlist")!=null){
-					selecttlist=(Vector<Order_detailVO>)session.getAttribute("selecttlist");
+				
+				
+				
+				
+				else if(session.getAttribute("checkCarlist")!=null){
+					selecttlist=(Vector<Order_detailVO>)session.getAttribute("checkCarlist");
 					Order_detailVO addproduct=productlist.parallelStream().
 							filter(p->p.getProduct_id().equals(req.getParameter("addid")))
 							.findAny().get();
@@ -171,9 +178,10 @@ public class ShopCartServlet extends HttpServlet {
 					System.out.println("清單"+addproduct);}
 
 				
-				session.setAttribute("selecttlist", selecttlist);
+				session.setAttribute("checkCarlist", selecttlist);
 				return;
 			}
+			
 			
 			
 			
@@ -182,8 +190,12 @@ public class ShopCartServlet extends HttpServlet {
 			
 			// --------------
 			selecttlist=(Vector<Order_detailVO>)session.getAttribute("productCar");
-			session.setAttribute("selecttlist", productlist);
-			session.setAttribute("productCar", productlist);
+			session.setAttribute("checkCarlist", selecttlist);
+			session.setAttribute("productCarlist", productlist);
+			
+			
+			
+			
 			if (action.equals("REMOVE")) {
 				System.out.println("刪除後轉移");
 				req.setAttribute("checktpage", "checktpage1");
@@ -211,6 +223,12 @@ public class ShopCartServlet extends HttpServlet {
 				rd.forward(req, res);
 			}
 		}
+		
+		
+		
+		
+		
+		
 
 	}
 

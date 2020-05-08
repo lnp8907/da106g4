@@ -30,7 +30,7 @@
 	request.setAttribute("productstatus", map);
 %>
 <html>
-
+productCarlistt${productCarlist}
 
 
 <head>
