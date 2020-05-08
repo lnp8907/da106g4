@@ -750,7 +750,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 						</div>
 						<!-- end of Course -->
 						<!--課程橫幅陳列-->
-						<div class="course-sider-list" data-aos="fade-up" data-aos-duration="2000" id="course-sider-list">
+						<div style="height:350px" class="course-sider-list" data-aos="fade-up" data-aos-duration="2000" id="course-sider-list">
 						</div>
 					</div>
 					<div data-aos="fade-up" data-aos-duration="2000">
