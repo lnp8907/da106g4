@@ -5,11 +5,15 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 
 import javax.sql.DataSource;
+
+import com.recipe_favorite.model.RecipeFavoriteVO;
 
 public class Recipe_browing_historyJDBCDAO implements Recipe_browing_historyDAO_interface {
 	String driver = "oracle.jdbc.driver.OracleDriver";
@@ -29,6 +33,87 @@ public class Recipe_browing_historyJDBCDAO implements Recipe_browing_historyDAO_
 	
 	private static final String GET_ALL_STMT = "SELECT  MEMBER_ID, recipe_id FROM RECIPE_BROWSING_HISTORY where member_id = ?";
 
+	private static final String GET_ONE_FOLLOWING_STMT = "SELECT * FROM RECIPE_BROWSING_HISTORY WHERE member_id = ?";
+	
+	
+	
+	@Override
+	public List<Recipe_browing_historyVO> findFollowingByPrimaryKey(String member_id) {
+
+		List<Recipe_browing_historyVO> list = new ArrayList<Recipe_browing_historyVO>();
+		Recipe_browing_historyVO recipe_browing_historyVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			Class.forName(driver);
+			con = DriverManager.getConnection(url, userid, passwd);
+			pstmt = con.prepareStatement(GET_ONE_FOLLOWING_STMT);
+
+			pstmt.setString(1, member_id);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				// recipe_favoriteVO 也稱為 Domain objects
+				recipe_browing_historyVO = new Recipe_browing_historyVO();
+				recipe_browing_historyVO.setMember_id(rs.getString("member_id"));
+				recipe_browing_historyVO.setRecipe_id(rs.getString("recipe_id"));
+				list.add(recipe_browing_historyVO);
+				// Store the row in the list
+
+			}
+
+			// Handle any driver errors
+		} catch (ClassNotFoundException e) {
+			throw new RuntimeException("Couldn't load database driver. " + e.getMessage());
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

@@ -1,5 +1,8 @@
 package com.course_browsing_history.model;
 
+import java.util.List;
+
+import com.recipe_browsing_history.model.Recipe_browing_historyVO;
 
 public class Course_browing_historyService {
 	private Course_browing_historyDAO_interface dao;
@@ -33,6 +36,9 @@ public class Course_browing_historyService {
 		dao.deleteAll(member_id);
 	}
 		
-	
+	public List<Course_browing_historyVO> findFollowingByPrimaryKey(String member_id) {
+		return dao.findFollowingByPrimaryKey(member_id);
+
+	}
 
 }

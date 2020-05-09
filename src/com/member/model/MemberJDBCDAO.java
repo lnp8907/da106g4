@@ -72,8 +72,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 //////////////////
 	
 	private static final String UPDATE_SUCCESS = "UPDATE MEMBER set EMAIL = ?, VALIDATION = ? where EMAIL = ?";
-	private static final String DUPLICATE_ACCOUNT = "SELECT ACCOUNT? FROM MEMBER where ACCOUNT = ?";
-	
+	private static final String DUPLICATE_ACCOUNT = "SELECT ACCOUNT? FROM MEMBER where ACCOUNT = ?";	
 	private static final String UPDATECARDNUMBER = "UPDATE MEMBER set MEMBER_ID = ?, MEMBER_CREDITCARD = ? where MEMBER_ID = ?";
 	private static final String UPDATEBACK_END = "UPDATE MEMBER set MEMBER_ID = ?, ACCOUNT = ?, MEMBER_NAME = ?, EMAIL = ?, VALIDATION = ? where MEMBER_ID = ?";
 	private static final String CHIEFAPPLY_STATUS = "SELECT MEMBER_ID, ACCOUNT, MEMBER_NAME, EMAIL, MEMBER_STATUS, CHIEFAPPLY_STATUS FROM MEMBER WHERE (CHIEFAPPLY_STATUS = 1) order by chiefapply_status,member_id";
@@ -83,8 +82,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 	private static final String CHANGEONLINE = "UPDATE MEMBER set LIVE_STATUS = ?  where MEMBER_ID = ?";
 	private static final String CHANGEOFFLINE = "UPDATE MEMBER set LIVE_STATUS = ?  where MEMBER_ID = ?";
 	
-	
-	
+
 	@Override
 	  public void changeOnline(String member_id,Integer num) {
 		Connection con = null;

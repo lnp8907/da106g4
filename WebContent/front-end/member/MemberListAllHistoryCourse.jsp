@@ -5,7 +5,9 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.member.model.*"%>
-
+<%@ page import="com.recipe.model.*"%>
+<%@ page import="com.course_browsing_history.model.*"%>
+<%@ page import="com.course.model.*"%>
 <%
 String member_id =(String) session.getAttribute("member_id");
 MemberService memberSvc = new MemberService();
@@ -17,6 +19,35 @@ String member_name =(String) session.getAttribute(memberVO1.getMember_name());
 	pageContext.setAttribute("list", list);
 pageContext.setAttribute("member_status", memberVO1.getMember_status());
 pageContext.setAttribute("memberVO1", memberVO1);
+
+
+
+
+CourseService courseService = new CourseService();
+Course_browing_historyService coursebrowinghistoryService = new Course_browing_historyService();
+
+List<Course_browing_historyVO> list2 = coursebrowinghistoryService.findFollowingByPrimaryKey(member_id);
+//List<CourseVO> list = courseService.getAll();
+
+
+pageContext.setAttribute("list2", list2);
+
+
+MemberVO membervo1 =(MemberVO) session.getAttribute("memberVO");
+pageContext.setAttribute("member_status", membervo1.getMember_status());
+
+
+
+
+
+
+
+
+
+
+
+
+
 %>
 
 
@@ -49,7 +80,10 @@ ${memberVO1.member_name}123
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" href="../recipe/recipeCSS/recipeList.css">
 
 
 
@@ -1935,260 +1969,101 @@ hr {
 
 			<div class="container">
 
-				<h3>我的檔案</h3>
+<h3>課程瀏覽紀錄</h3>
 
-				<h1>管理你的檔案以保護你的帳戶</h1>
-
-
-
-
-				
 
 					<table align="center" cellpadding="10">
 
 						<!----- First Name ---------------------------------------------------------->
 					
-					
-					
-						<tr>
-				<td>會員圖片:</td>
-				<!-- 按鈕 -->
-				<td><input type="file" id="imgView" name="member_photo"
-					size="45" accept="image/gif, image/jpeg, image/png"> <img src=DBGifReader4.do?photo_type=mempic&member_id=<%=session.getAttribute("member_id")%> id="preview_progressbarTW_img" width=100px height=100px;/></td>
+				
+				
+			  <div class="recipe-main-list">
+		<span class="include-page"><%@ include file="page1.file"%>
+		</span>
+		<ul class="recipe=list">
+		
+		
+		
+		<jsp:useBean id="courseSvc" scope="page"
+									class="com.course.model.CourseService" />
+			<c:forEach var="Course_browing_historyVO" items="${list2}" begin="<%=pageIndex%>"
+				end="<%=pageIndex+rowsPerPage-1%>">
+		
 
-			</tr>
+				<li class="recipe-item">
+				
+				
+				
+<!-- 			<li class="recipe-item"><img -->
+<%-- 					src="${(RecipeVO.recipe_photo==null)?'../../image/icon/uploadPic.png':RecipeVO.recipe_photo}" --%>
+<!-- 					alt=""> -->
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<img
+					src="<%=request.getContextPath()+"/front-end/course/photo?course_id="%>${Course_browing_historyVO.course_id}"
+					alt="">
+					
+					                                                                          
 					
 					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-						<tr>
-							<td>會員姓名:</td>
-
-							<td>
+					<div class="recipe-item-caption">
+						<div class="recipe-item-caption-header">
+							<h4 class="recipe-item-tile">
+							<a class="show-one-link"
+									href="<%=request.getContextPath()%>/front-end/course/CourseServlet?action=getOne_For_Display&course_id=${Course_browing_historyVO.course_id}">${courseSvc.getOneCourse(Course_browing_historyVO.course_id).course_name}</a>
 								
+							</h4>
+							
+							
+
+						</div>
+						<p class="recipe-create-time">開課時間:${courseSvc.getOneCourse(Course_browing_historyVO.course_id).create_time}</p>
+						<p class="recipe-item-ingredient">課程價格：${courseSvc.getOneCourse(Course_browing_historyVO.course_id).pay_price}</p>
+						
+			
+					</div></li>
+			</c:forEach>
+		</ul>
+		<div class="include-page2">
+			<%@ include file="page2.file"%>
+		</div>
+		<%-- 錯誤表列 --%>
+		<c:if test="${not empty errorMsgs}">
+			<font style="color: red">請修正以下錯誤:</font>
+			<ul>
+				<c:forEach var="message" items="${errorMsgs}">
+					<li style="color: red">${message}</li>
+				</c:forEach>
+			</ul>
+		</c:if>
+	</div>
+				
+				
+				
+				
+				
+				
+				
+				
+					
 
 
 
 
 
-								<input type="TEXT" name="member_name" size="45"
-					id=member_name value="<%=memberVO.getMember_name()%>" />
 
-								<!-- (max 30 characters a-z and A-Z) -->
-							</td>
-						</tr>
-
-						<!----- Last Name ---------------------------------------------------------->
-						<tr>
-							<td>會員帳號:</td>
-							<td><input type="TEXT" name="account" size="45" id=account
-					value="<%=memberVO.getAccount()%>" /></td>
-						</tr>
-
-						<tr>
-							<td>會員密碼:</td>
-							<td><input type="password" name="password" size="45" id=password
-					value="<%=memberVO.getPassword()%>" /></td>
-					<td><label><input type="checkbox" id="show_password" size="45" />顯示密碼</label></td>
-						</tr>
-
-
-
-
-						<!----- Date Of Birth -------------------------------------------------------->
-						<tr>
-							<td>會員生日:</td>
-
-							<td><input type="TEXT" name="birthday" size="45" id="birthday"
-					 /></td>
-
-						</tr>
-
-						<!----- Email Id ---------------------------------------------------------->
-						<tr>
-							<td>信箱:</td>
-							<td><input type="TEXT" name="email" size="45" id=email
-					value="<%=memberVO.getEmail()%>" /></td>
-						</tr>
-
-						<!----- Mobile Number ---------------------------------------------------------->
-						<tr>
-							<td>電話號碼:</td>
-							<td><input type="TEXT" name="cellphone" size="45" id=cellphone
-					value="<%=memberVO.getCellphone()%>" /></td>
-						</tr>
-
-						<!----- Gender ----------------------------------------------------------->
-						<tr>
-							<td>性別:</td>
-							<td><input type="radio" name="gender" value=0 checked="<%=(memberVO.getGender()==0)? "true": "false"%>"> 男<br>
-					<input type="radio" name="gender" value=1 checked="<%=(memberVO.getGender()==1)? "true": "false"%>"> 女<br></td>
-						</tr>
-
-						<!----- Address ---------------------------------------------------------->
-						<tr>
-							<td>地址: <br />
-							<br />
-							<br /></td>
-							<!-- <td><textarea name="Address" rows="4" cols="30"></textarea></td> -->
-							<td><input type="TEXT" name="member_address" size="45"
-					id="address" value="<%=memberVO.getMember_address()%>" /></td>
-						</tr>
-
-
-
-						<!----- State ---------------------------------------------------------->
-						<!-- <tr>
-<td>STATE</td>
-<td><input type="text" name="State" maxlength="30" />
-(max 30 characters a-z and A-Z)
-</td>
-</tr> -->
-
-						<!----- Country ---------------------------------------------------------->
-						<!-- <tr>
-<td>COUNTRY</td>
-<td><input type="text" name="Country" value="India" readonly="readonly" /></td>
-</tr> -->
-
-						<!----- Hobbies ---------------------------------------------------------->
-
-						<!-- <tr>
-<td>HOBBIES <br /><br /><br /></td>
- 
-<td>
-Drawing
-<input type="checkbox" name="Hobby_Drawing" value="Drawing" />
-Singing
-<input type="checkbox" name="Hobby_Singing" value="Singing" />
-Dancing
-<input type="checkbox" name="Hobby_Dancing" value="Dancing" />
-Sketching
-<input type="checkbox" name="Hobby_Cooking" value="Cooking" />
-<br />
-Others
-<input type="checkbox" name="Hobby_Other" value="Other">
-<input type="text" name="Other_Hobby" maxlength="30" />
-</td>
-</tr> -->
-
-						<!----- Qualification---------------------------------------------------------->
-						<!-- <tr>
-<td>QUALIFICATION <br /><br /><br /><br /><br /><br /><br /></td>
- 
-<td>
-<table>
- 
-<tr>
-<td align="center"><b>Sl.No.</b></td>
-<td align="center"><b>Examination</b></td>
-<td align="center"><b>Board</b></td>
-<td align="center"><b>Percentage</b></td>
-<td align="center"><b>Year of Passing</b></td>
-</tr> -->
-
-						<!-- <tr>
-<td>1</td>
-<td>Class X</td>
-<td><input type="text" name="ClassX_Board" maxlength="30" /></td>
-<td><input type="text" name="ClassX_Percentage" maxlength="30" /></td>
-<td><input type="text" name="ClassX_YrOfPassing" maxlength="30" /></td>
-</tr>
- 
-<tr>
-<td>2</td>
-<td>Class XII</td>
-<td><input type="text" name="ClassXII_Board" maxlength="30" /></td>
-<td><input type="text" name="ClassXII_Percentage" maxlength="30" /></td>
-<td><input type="text" name="ClassXII_YrOfPassing" maxlength="30" /></td>
-</tr>
- 
-<tr>
-<td>3</td>
-<td>Graduation</td>
-<td><input type="text" name="Graduation_Board" maxlength="30" /></td>
-<td><input type="text" name="Graduation_Percentage" maxlength="30" /></td>
-<td><input type="text" name="Graduation_YrOfPassing" maxlength="30" /></td>
-</tr>
- 
-<tr>
-<td>4</td>
-<td>Masters</td>
-<td><input type="text" name="Masters_Board" maxlength="30" /></td>
-<td><input type="text" name="Masters_Percentage" maxlength="30" /></td>
-<td><input type="text" name="Masters_YrOfPassing" maxlength="30" /></td>
-</tr>
- 
-<tr>
-<td></td>
-<td></td>
-<td align="center">(10 char max)</td>
-<td align="center">(upto 2 decimal)</td>
-</tr>
-</table>
- 
-</td>
-</tr>
-  -->
-						<!----- Course ---------------------------------------------------------->
-						<!-- <tr>
-<td>COURSES<br />APPLIED FOR</td>
-<td>
-BCA
-<input type="radio" name="Course_BCA" value="BCA">
-B.Com
-<input type="radio" name="Course_BCom" value="B.Com">
-B.Sc
-<input type="radio" name="Course_BSc" value="B.Sc">
-B.A
-<input type="radio" name="Course_BA" value="B.A">
-</td>
-</tr> -->
-
-						<!----- Submit and Reset ------------------------------------------------->
-
-			<tr>
-							<td colspan="2" align="center">
-								
-								
-								 <!-- <div class="submit">
-  <input type="submit"  value="儲存" id="button-blue"/>
-  <div class="ease"></div> -->
-  <div class="submit_btn">
-  
-   <span class="submitAndSave" id="article-section-seemore-recipe">儲存</span>
-    <input type="submit" class="submit_btn" value="儲存" >  
-								
-		</div>						
-								
-								
-								
-								
-								<!-- <input type="reset" value="Reset"> -->
-							</td>
-						</tr>
 					</table>
 					
-			<br> <input type="hidden" name="action" value="updateBySelf">	
-					
-					 <input type="hidden"
-							name="member_id" value="<%=session.getAttribute("member_id")%>">
-							
-							
-						
-					
-					<input type="hidden"
-							name="account" value="${memberVO.member_photo}">
-					<input type="member_name"
-							name="account" value="<%=memberVO.getMember_name()%>">
-					
+
 					
 					
 				 
@@ -2459,16 +2334,17 @@ B.A
 					<li><a href="forms-multiple-file.html">2</a></li>
 					<li><a href="forms-wysiwyg.html">3</a></li>
 				</ul></li>
-				
-				
-				
-		<c:if test='${member_status eq 0 }'>		
-				<li><a
-				href="MemberRecipeFavorite.jsp"><i
-					class="fa fa-dashboard"></i><img class="access-menu-icon1"
-					src="../../image/member/S__12066820.jpg"><span>課程收藏</span></a></li>
-			</c:if>		
-
+			<li class="sub-menu"><a href="javascript:void(0);"><i
+					class="fa fa-envelope"></i><img class="access-menu-icon1"
+					src="../../image/member/S__12066820.jpg"><span>精選收藏&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
+					class="arrow fa fa-angle-right pull-right"></i></a>
+				<ul>
+					<li><a href="mail-inbox.html">課程收藏</a></li>
+					<li><a href="mail-compose.html">直播收藏</a></li>
+					<li><a href="mail-compose.html">食譜收藏</a></li>
+				</ul></li>
+			
+			
 		<c:if test='${member_status eq 0 }'>
 			
 	 		

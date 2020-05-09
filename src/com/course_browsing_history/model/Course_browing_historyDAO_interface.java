@@ -1,6 +1,9 @@
 package com.course_browsing_history.model;
 
+import java.util.List;
 import java.util.Set;
+
+import com.recipe_browsing_history.model.Recipe_browing_historyVO;
 
 
 public interface Course_browing_historyDAO_interface {
@@ -14,4 +17,5 @@ public interface Course_browing_historyDAO_interface {
     //比對全部
     public Set<Course_browing_historyVO> getmemberList(String member_id);
 
+    public List<Course_browing_historyVO> findFollowingByPrimaryKey(String member_id);
 }
