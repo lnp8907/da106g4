@@ -91,14 +91,19 @@
 							class="product_id" value="${productvo.product_id}">
 
 							<button class="ui left attached button onproduct"
-								${ productstatus [status]=='已上架'? " style='background-color: green;color: white'":""}>上架</button>
+								${ productstatus [status]=='已上架'? " style='background-color: green;color: white'":""}>
+																<i class="toggle on icon"></i>
+								
+								
+								上架</button>
 
 
 							<button class="right attached ui button offproduct"
 								${ productstatus [status]=='未上架'? " 
                      
                      
-                     style='background-color: blue;color: white'":""}>下架</button>
+                     style='background-color: blue;color: white'":""}><i class="toggle off icon"></i>
+                     下架</button>
 
 						</td>
 
@@ -125,7 +130,9 @@
 							<!-- 修改 -->
 							<FORM METHOD="post" ACTION="ProductServlet"
 								style="margin-bottom: 0px;">
-								<input class="updateproduct" type="submit" value="修改"> <input
+								   <button class="ui right labeled  icon button"><i class="external alternate icon"></i> 查看更多 </button>
+								
+								<input style="display: none" class="updateproduct" type="submit" value="修改"> <input
 									type="hidden" class="inputid" name="product_id"
 									value="${productvo.product_id}"> <input type="hidden"
 									name="action" value="upateopen">

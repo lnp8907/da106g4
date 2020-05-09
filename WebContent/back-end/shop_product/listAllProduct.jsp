@@ -113,9 +113,9 @@
 		<!-- 卡片內容上方留白的結束標籤 -->
 	</div>
 
-	類型....${product_type}
+<%-- 	類型....${product_type} --%>
 
-	<select class="product_type">
+	<select class="product_type ui dropdown">
 		<option value="all" ${product_type eq '0'?'selected':''}>所有商品</option>
 		<option value="水果類" ${product_type eq'1'?'selected':''}>水果類</option>
 		<option value="肉類" ${product_type eq'2'?'selected':''}>肉類</option>
@@ -158,7 +158,7 @@
 					<th>修改</th>
 
 				</tr>
-				<%@ include file="../file/page1.file"%>
+				<%@ include file="file/page1.file"%>
 				<c:set var="whichPage" value="<%=whichPage%>" scope="request" />
 
 			</thead>
@@ -191,14 +191,23 @@
 							class="product_id" value="${productvo.product_id}">
 
 							<button class="ui left attached button onproduct"
-								${ productstatus [status]=='已上架'? " style='background-color: green;color: white'":""}>上架</button>
+								${ productstatus [status]=='已上架'? " style='background-color: green;color: white'":""}>
+								
+								
+								<i class="toggle on icon"></i>
+								上架
+								</button>
 
 
 							<button class="right attached ui button offproduct"
 								${ productstatus [status]=='未上架'? " 
                      
                      
-                     style='background-color: blue;color: white'":""}>下架</button>
+                     style='background-color: blue;color: white'":""}>
+                     
+        								<i class="toggle off icon"></i>
+                     
+                     下架</button>
 
 						</td>
 
@@ -211,9 +220,12 @@
 							<!-- 詳細頁面 -->
 							<FORM METHOD="post" ACTION="ProductServlet"
 								style="margin-bottom: 0px;">
+   <button class="ui right labeled  icon button"><i class="external alternate icon"></i> 查看更多 </button>
+								<input style="display: none" class="ui right labeled  icon" type="submit" value="查看更多"> <input type="hidden"
 
-								<input type="submit" value="查看更多"> <input type="hidden"
-									name="product_id" value="${productvo.product_id}"> <input
+									name="product_id" value="${productvo.product_id}"> 
+									
+									<input
 									type="hidden" name="action" value="detailopen"> <input
 									type="hidden" name="whichPage" value="<%=whichPage%>">
 								<input type="hidden" name="product_type"
@@ -227,8 +239,9 @@
 							<!-- 修改 -->
 							<FORM METHOD="post" ACTION="ProductServlet"
 								style="margin-bottom: 0px;">
-
-								<input class="updateproduct" type="submit" value="修改"> <input
+  <button class="ui right labeled  icon button"><i class="file outline
+ icon"></i> 修改</button>
+								<input style="display: none" class="updateproduct" type="submit" value="修改"> <input
 									type="hidden" class="inputid" name="product_id"
 									value="${productvo.product_id}"> <input type="hidden"
 									name="action" value="upateopen"> <input type="hidden"
@@ -251,7 +264,7 @@
 		</table>
 		<%@ include file="file/productpage.file"%>
 	</div>
-	當前頁面${whichPage}
+<%-- 	當前頁面${whichPage} --%>
 	<!-- end of grid -->
 
 

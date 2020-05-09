@@ -50,23 +50,27 @@
 	
 	
 	<!-- 注意 -->
-	<FORM METHOD="post" ACTION="ProductServlet" name="form1"
+	<FORM class="ui form" METHOD="post" ACTION="ProductServlet" name="form1"	
 		enctype="multipart/form-data">
-		<table>
+		  <h4 class="ui dividing header">新增商品資訊</h4>
+		
 			<!-- 圖片 -->
-			<tr>
-				<td>商品圖片:</td>
+			    <label>商品圖片:</label>
+			
+				
 				<!-- 按鈕 -->
-				<td><input type="file" id="imgView" name="product_photo"
-					size="45" accept="image/gif, image/jpeg, image/png"> <img
+				
+				      <div class="field">
+				<img
 					img src="<%=request.getContextPath()%>/image/FoodPron_Logo.png"
 					id="preview_progressbarTW_img" width=100px height=100px; src="#" />
-				</td>
-
-			</tr>
-			<tr>
-				<td>商品類別:</td>
-				<td><select name="product_type">
+				<input class="button" type="file" id="imgView" name="product_photo"
+					size="45" accept="image/gif, image/jpeg, image/png"> 
+      </div>
+      			    <label>商品名:</label>
+      
+    <div class="two fields">
+          <div class="field"><select class="ui dropdown" name=" product_type">
 							<%List<String>producttype=new ArrayList(); 
 		producttype.add("水果類");
 		producttype.add("肉類");
@@ -91,36 +95,51 @@
 		<% }%>
 		<%=">"+type+"</option>" %>
 		<%} %>
-				</select></td>
-			</tr>
-			<tr>
-				<td>商品名:</td>
-				<td><input type="TEXT" name="product_name" size="45"
+				</select>      </div>
+          
+          <div class="field">    
+          	<div class="ui input">
+				
+				<input  type="TEXT" name="product_name" size="45"
 					placeholder="請商品名"
-					value="<%=(productvo == null) ? "" : productvo.getProduct_name()%>" /></td>
-			</tr>
+					value="<%=(productvo == null) ? "" : productvo.getProduct_name()%>" />
+					</div>
+          
+            </div>
+     
+      </div>
 
-			<tr>
-				<td>商品價格:</td>
-				<td><input type="TEXT" name="product_price" size="45"
+				
+			
+			
+			
+				
+
+      			    <label>商品價格:</label>
+          <div class="field">    
+				<div class="ui input">
+				
+				<input type="TEXT" name="product_price" size="45"
 					placeholder="請填入價格"
-					value="<%=(productvo == null) ? "" : productvo.getProduct_price()%>" /></td>
-			</tr>
-			<tr>
-				<td>是否直接上架:</td>
-				<td>
+					value="<%=(productvo == null) ? "" : productvo.getProduct_price()%>" />
+					</div>
+					</div>
 					
-					<input type="radio" name="product_status" value=1 checked>否<br>
+		
+		
+          <div class="field"> 
+                			    <label>是否直接上架:</label>
+             <input type="radio" name="product_status" value=1 checked>否<br>
         <input type="radio" name="product_status" value=0> 是<br>
+             
+									</div>
+				
+			
 					
-					</td>
-			</tr>
-			<tr>
-				<td>
-					<button id="adddetail" type="button">新增產品資訊</button>
-				</td>
-		</table>
-
+				
+				<button id="adddetail" class="ui button" type="button"><i class="plus icon"></i> 新增產品資訊 </button>
+<!-- 					<button id="adddetail" type="button">新增產品資訊</button> -->
+					
 		<table id="productdetail" style="display: none">
 
 
@@ -185,8 +204,17 @@
 		
 
 
-		<br> <input type="hidden" name="action" value="insert"> <input
-			type="submit" value="送出新增">
+		<br> 
+		<br> 
+		<br> 
+		
+		
+		<input type="hidden" name="action" value="insert">
+		
+								<button type="submit" class="ui button" type="button"><i class="pencil alternate icon"></i> 送出新增</button>
+		
+<!-- 		 <input -->
+<!-- 			type="submit" value="送出新增"> -->
 			</FORM>
 				</div>
 

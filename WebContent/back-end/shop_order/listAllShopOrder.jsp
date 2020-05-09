@@ -274,13 +274,13 @@ MemberService msvc=new MemberService();
 
 
         	<td class="selectstatus">
-        <select class=selectchange>
+        <select class="selectchange ui dropdown">
         	<c:forEach var="order_status" items="<%=order_status %>">
         
   <option value ="${order_status.key}" ${ordervo.order_status==order_status.key?'selected':''} >${order_status.value}</option>
   </c:forEach>
   			     <input type="hidden" class="selectorder_status" name="selectorder_status"  value="${ordervo.order_status}">
-  			     <button class="showbtn" style="display: none">已完成之訂單</button>
+  			     <button class="showbtn btn btn-primary btn-lg" style="display: none" disabled="disabled">已完成之訂單</button>
   			     
 </select>
 
@@ -384,7 +384,7 @@ $(".isupate").each(function () {
       $(".selectchange").change(function(){
           var opt=$(this).val();
           $(this).siblings().find('.order_status').val(opt);
-          alert($(this).siblings().find('.order_status').val());
+//           alert($(this).siblings().find('.order_status').val());
           $(this).siblings().find('.sendstatus').click();
 
           
