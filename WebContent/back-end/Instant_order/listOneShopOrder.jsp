@@ -1,4 +1,5 @@
 
+<%@page import="com.recipe.model.RecipeService"%>
 <%@page import="com.shop_order.model.Shop_orderVO"%>
 <%@page import="com.member.model.MemberVO"%>
 <%@page import="com.member.model.MemberService"%>
@@ -10,6 +11,7 @@
 
 <%@ page import="java.util.*"%>
 <%@ page import="com.product.model.*"%>
+<%@ page import="com.recipe_order_details.model.*"%>
 
 <%@ page import="com.ordermanager.shop.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -17,31 +19,27 @@
 <%
 OrderService ordSvc = new OrderService();
 Integer total=0;
-List<Order_detailVO> list=null;
+List<RecipeOrderDetailsVO> list=null;
 String order_no = null;
 
 if(request.getAttribute("dialoglist")!=null){
-list= (List<Order_detailVO>) request.getAttribute("dialoglist");
-order_no=list.get(0).getorder_no();
+list= (List<RecipeOrderDetailsVO>) request.getAttribute("dialoglist");
+order_no=list.get(0).getIDO_no();
 total =ordSvc.gettotal(order_no);
 
 }
 request.setAttribute("order_no",order_no );
-request.setAttribute("list", list);
+request.setAttribute("dialoglist", list);
 //獲取總額
 int a=0;
 int ordertot=0;
 
-Shop_orderVO ordervo= ordSvc.getOneOrder(order_no);
-	ProductService productSvc=new ProductService();
-	
-	MemberService msvc=new MemberService();
-	MemberVO mvo=msvc.getOneMember(ordervo.getMember_id());
+ProductService Psv=new ProductService();
+RecipeService Rsv=new RecipeService();
 
 
 %>
 <c:set var="order_no" value="<%=order_no %>"/>
-<c:set var="mvo" value="<%=mvo %>"/>
 
 <!DOCTYPE html>
 <html>
@@ -143,17 +141,27 @@ th, td {
 		<c:forEach var="detailvo" items="${dialoglist}" begin="<%=pageIndex%>"
 			end="<%=pageIndex+rowsPerPage-1%>">
 
-
+				<c:set var="Pid" value="${detailvo.product_id}" scope="request"/>
+<%String Pid=(String)request.getAttribute("Pid");
+String Rid=Psv.getOneProduct(Pid).getRecipe_id();
+%>	
 			<tr>
-			<td><img width=80px height=70px src="<%=request.getContextPath()%>/back-end/shop_product/Product_photoReader?product_id=${detailvo.product_id}
-			"></td>
+			<td>
+						<img width=80px height=70px src="<%=Rsv.findByPrimaryKeyForSaved(Rid).getRecipe_photo()%>">
+			
+			
+			</td>
 				<td>${detailvo.product_id}</td>
 				
 				
-				<td><%ProductVO vo=productSvc.getOneProduct(list.get(pageIndex+a).getProduct_id());
-				String a3=vo.getProduct_name();
-	           %>
-	           <%=a3 %></td>
+				
+	
+
+		
+				<td>
+		
+<%=Rsv.findByPrimaryKeyForSaved(Rid).getRecipe_name()%>		
+				</td>
 	         
 				
 				<td>${detailvo.quantity}</td>

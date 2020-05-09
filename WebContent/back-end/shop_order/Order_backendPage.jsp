@@ -53,9 +53,10 @@
 			<!--這裡是左邊選單-->
 			<div class="left-bar">
 
-				<span class="fa fa-cloud-download"><img
-					src="<%=request.getContextPath()%>/image/logo_nohead.png"
-					alt="LOGO" width="200" height="200"></span>
+			<a href="<%=request.getContextPath()%>/backEnd.html"> <span
+					class="fa fa-cloud-download"><img
+						src="<%=request.getContextPath()%>/image/logo_nohead.png"
+						alt="LOGO" width="200" height="200"></span></a>
 
 				<div class="back-endlefecotext">
 					<!-- LOGO -->

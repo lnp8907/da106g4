@@ -1,4 +1,7 @@
 
+
+<%@page import="com.recipe.model.*"%>
+<%@page import="com.recipe.model.RecipeService"%>
 <%@page import="com.shop_order.model.Shop_orderVO"%>
 <%@page import="com.member.model.MemberVO"%>
 <%@page import="com.member.model.MemberService"%>
@@ -137,23 +140,58 @@ th, td {
 			<th>小計</th>
 <!-- 			<th>修改數量</th> -->
 <!-- 			<th>刪除</th> -->
-
 		</tr>
 		<%@ include file="../file/page1.file"%>
 		<c:forEach var="detailvo" items="${dialoglist}" begin="<%=pageIndex%>"
 			end="<%=pageIndex+rowsPerPage-1%>">
-
+<c:set  var="pid" value="${detailvo.product_id}" scope="request" />
 
 			<tr>
-			<td><img width=80px height=70px src="<%=request.getContextPath()%>/back-end/shop_product/Product_photoReader?product_id=${detailvo.product_id}
-			"></td>
+			<td>   <%ProductService psvc=new ProductService();
+			String id=(String)request.getAttribute("pid");
+			ProductVO pvo=psvc.getOneProduct(id);
+			%>
+			<c:set var="pvo" value="<%=pvo%>"/>
+			<c:set var="Rid" value="${pvo.recipe_id}" scope="request"/>
+			
+			
+			
+			<c:if test='${empty  pvo.recipe_id}'>
+			
+			
+			<img width=80px height=70px src="<%=request.getContextPath()%>/back-end/shop_product/Product_photoReader?product_id=${detailvo.product_id}">
+			</c:if>	
+			<c:if test='${not empty  pvo.recipe_id}'>
+			<%RecipeService Rsvc=new RecipeService();
+			String Rid=(String)request.getAttribute("Rid");
+			RecipeVO Rvo=Rsvc.getOneRecipe(Rid);			
+
+			%>
+			<img width=80px height=70px src="<%=Rvo.getRecipe_photo()%>">
+			
+			</c:if>		
+			
+			</td>
 				<td>${detailvo.product_id}</td>
 				
 				
-				<td><%ProductVO vo=productSvc.getOneProduct(list.get(pageIndex+a).getProduct_id());
-				String a3=vo.getProduct_name();
-	           %>
-	           <%=a3 %></td>
+				<td>
+				<c:if test='${empty  pvo.recipe_id}'>
+			${pvo.product_name}
+			
+			</c:if>	
+			<c:if test='${not empty  pvo.recipe_id}'>
+			<%RecipeService Rsvc=new RecipeService();
+			String Rid=(String)request.getAttribute("Rid");
+			RecipeVO Rvo=Rsvc.getOneRecipe(Rid);			
+
+			%>
+<%=Rvo.getRecipe_name() %>			
+			</c:if>		
+				
+				
+				
+				</td>
 	         
 				
 				<td>${detailvo.quantity}</td>

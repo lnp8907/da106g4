@@ -162,7 +162,7 @@ pageContext.setAttribute("list",list);
 			     
                 <input 	type="hidden" name="ido_no"  value="${ordervo.ido_no}"/>
 			  <input type="hidden" name="action" value="lookmore">
-                        <input  type="submit" value="查看訂單明細">
+<!--                         <input  type="submit" value="查看訂單明細"> -->
                          <input 	type="hidden" name="pagemessage"  value="${pagemessage}"/>
                 <input 	type="hidden" name="whichPage"  value="<%=whichPage%>"/>
 			     </FORM>

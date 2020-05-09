@@ -56,11 +56,12 @@ public class Instant_delivery_orderServlet extends HttpServlet {
 					return;
 				}
 
-		
+		System.out.println("驗證結束");
 				/*************************** 準備轉交(Send the Success view) *************/
 				RecipeOrderDetailsService ordSvc = new RecipeOrderDetailsService();
 				
 				List<RecipeOrderDetailsVO> list = ordSvc.getdetail(ido_no);
+				System.out.println(list);
 				req.setAttribute("dialoglist", list); // 資料庫update成功後,正確的的empVO物件,存入req
 				req.setAttribute("opendialog", "lookmore");
 //				String url="/back-end/shop_order/orderupatepage.jsp?whichPage="+whichPage;
