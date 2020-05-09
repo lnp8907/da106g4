@@ -2,6 +2,7 @@ package com.ordermanager.shop;
 
 import java.util.List;
 
+import com.order_detail.model.Order_detailDAO;
 import com.order_detail.model.Order_detailDAO_interface;
 import com.order_detail.model.Order_detailJDBCDAO;
 import com.order_detail.model.Order_detailVO;
@@ -49,7 +50,7 @@ public class OrderService {
 	}
 	//獲取訂單明細全部
 	public List<Order_detailVO> getdetail(String order_no){
-		daodetail=new Order_detailJDBCDAO();
+		daodetail=new Order_detailDAO();
 		return daodetail.getdetail(order_no);
 	}
 	public void updatetotal(String order_no) {

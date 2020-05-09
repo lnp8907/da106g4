@@ -103,14 +103,13 @@ public class OrderServlet extends HttpServlet {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 				String order_no = new String(req.getParameter("order_no"));
 				System.out.println("訂單編號:" + order_no);
-				OrderService Svc = new OrderService();
-				Shop_orderVO VO = Svc.getOneOrder(order_no);
-				System.out.println(VO + "VO放置成功");
+//				OrderService Svc = new OrderService();
+//				Shop_orderVO VO = Svc.getOneOrder(order_no);
+//				System.out.println(VO + "VO放置成功");
 				String pagemessage = new String(req.getParameter("Order_statusPage"));
 				System.out.println("路徑指令:" + pagemessage);
 				System.out.println("路徑" + req.getParameter("url"));
 				if (!errorMsgs.isEmpty()) {
-					req.setAttribute("ordvo", VO);
 					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/shop_order/orderupatepage.jsp");
 					failureView.forward(req, res);
 					return;
@@ -136,9 +135,11 @@ public class OrderServlet extends HttpServlet {
 					req.setAttribute("Order_statusPage", "cancel");
 
 				}
+				System.out.println("驗證結束");
 				/*************************** 準備轉交(Send the Success view) *************/
 				OrderService ordSvc = new OrderService();
 				List<Order_detailVO> list = ordSvc.getdetail(order_no);
+				System.out.println("list內有"+list);
 				req.setAttribute("dialoglist", list); // 資料庫update成功後,正確的的empVO物件,存入req
 				req.setAttribute("opendialog", "lookmore");
 //				String url="/back-end/shop_order/orderupatepage.jsp?whichPage="+whichPage;

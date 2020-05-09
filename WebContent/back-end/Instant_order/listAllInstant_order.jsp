@@ -157,12 +157,14 @@ pageContext.setAttribute("list",list);
 			<td>${pstatus[ordervo.p_status]}</td> 
 			<td>
 			<!-- 茶愾訂單明細 -->
-			     <FORM METHOD="post" ACTION="OrderServlet.do" >
-			    <button class="ui right labeled  icon button"><i class="zoom in icon"></i> 查看明細 </button>
+			     <FORM METHOD="post" ACTION="Instant_delivery_orderServlet" >
+			    <button  class="ui right labeled  icon button "><i class="zoom in icon"></i> 查看明細 </button>
 			     
-			  <input type="hidden" name="order_no"  value="${ordervo.ido_no}">
-			  <input type="hidden" name="action" value="getorderdetail">
-                        <input style="display: none" type="submit" value="查看訂單明細">
+                <input 	type="hidden" name="ido_no"  value="${ordervo.ido_no}"/>
+			  <input type="hidden" name="action" value="lookmore">
+                        <input  type="submit" value="查看訂單明細">
+                         <input 	type="hidden" name="pagemessage"  value="${pagemessage}"/>
+                <input 	type="hidden" name="whichPage"  value="<%=whichPage%>"/>
 			     </FORM>
 			
 			</td>
@@ -190,13 +192,20 @@ pageContext.setAttribute("list",list);
 		  </tr>
         <tr class="orseraddress"><td>地址:</td><td colspan="6">${ordervo.d_address}</td>
                 <td>
-                <a href="<%=request.getContextPath() %>/back-end/Instant_order/Instant_delivery_orderServlet?action=cencelorder&ido_no=${ordervo.ido_no}">
+                <form method="post" ACTION="Instant_delivery_orderServlet">
+<%--                 <a href="<%=request.getContextPath() %>/back-end/Instant_order/Instant_delivery_orderServlet?action=cencelorder&ido_no=${ordervo.ido_no}"> --%>
                 <input class="ostatus"	type="hidden" name="" value="${ordervo.o_status}"/>
+                <input 	type="hidden" name="pagemessage"  value="${pagemessage}"/>
+                <input 	type="hidden" name="whichPage"  value="<%=whichPage%>"/>
+                <input 	type="hidden" name="action"  value="cencelorder"/>
+                <input 	type="hidden" name="ido_no"  value="${ordervo.ido_no}"/>
+
+                <input type="submit" class="cancelloreder" value="取消訂單">
+
+
                 
-                <button class="cancelloreder">取消訂單</button>
-                
-                </a>
-                
+<!--                 </a> -->
+                </form>
                 </td>
  </tr>
 	</c:forEach>

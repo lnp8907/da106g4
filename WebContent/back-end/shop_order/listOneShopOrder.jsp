@@ -140,7 +140,7 @@ th, td {
 
 		</tr>
 		<%@ include file="../file/page1.file"%>
-		<c:forEach var="detailvo" items="${list}" begin="<%=pageIndex%>"
+		<c:forEach var="detailvo" items="${dialoglist}" begin="<%=pageIndex%>"
 			end="<%=pageIndex+rowsPerPage-1%>">
 
 

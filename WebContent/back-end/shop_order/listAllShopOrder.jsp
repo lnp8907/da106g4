@@ -17,49 +17,90 @@
 
 OrderService orderSvc=new OrderService();
 List<Shop_orderVO>list=null;
-String Message2="";
+list= orderSvc.getAll();
+
+// String Message2="";
 
 String Message="";
-	if((request.getAttribute("Order_statusPage")==null&&request.getParameter("Order_statusPage")==null)||(request.getAttribute("Order_statusPage")==null&&request.getParameter("Order_statusPage").equals(""))){  
-		list= orderSvc.getAll();
-	}
-	else{
-		if(request.getParameter("Order_statusPage")!=null){
-			 Message=(String)request.getParameter("Order_statusPage");					
-		}
-		else{
-		 Message=(String)request.getAttribute("Order_statusPage");}
+
+if(request.getAttribute("Order_statusPage")!=null){
+	 Message=(String)request.getAttribute("Order_statusPage");	
+}
+else{
+	if(request.getParameter("Order_statusPage")!=null){
+		 Message=(String)request.getParameter("Order_statusPage");					
+	}	
+}
+
+if(Message.equals("")){	
+}
+else{
 	if(Message.equals("waitpage")){  
-		list= orderSvc.getAll();
 		list=list.stream().filter(p->p.getOrder_status()==0)
 				.collect(Collectors.toList());
 	}
 	if(Message.equals("traveling")){  
-		list= orderSvc.getAll();
 		list=list.stream().filter(p->p.getOrder_status()==1)
 				.collect(Collectors.toList());
 	}
 	if(Message.equals("complete")){  
-		list= orderSvc.getAll();
 		list=list.stream().filter(p->p.getOrder_status()==2)
 				.collect(Collectors.toList());
 	}
 	if(Message.equals("cancel")){  
-		list= orderSvc.getAll();
 		list=list.stream().filter(p->p.getOrder_status()==3)
 				.collect(Collectors.toList());
 	}
+}
+
+
+
+
+
+
+
+
+
+
+// 	if((request.getAttribute("Order_statusPage")==null&&request.getParameter("Order_statusPage")==null)||(request.getAttribute("Order_statusPage")==null&&request.getParameter("Order_statusPage").equals(""))){  
+// 		list= orderSvc.getAll();
+// 	}
+// 	else{
+// 		if(request.getParameter("Order_statusPage")!=null){
+// 			 Message=(String)request.getParameter("Order_statusPage");					
+// 		}
+// 		else{
+// 		 Message=(String)request.getAttribute("Order_statusPage");}
+// 	if(Message.equals("waitpage")){  
+// 		list= orderSvc.getAll();
+// 		list=list.stream().filter(p->p.getOrder_status()==0)
+// 				.collect(Collectors.toList());
+// 	}
+// 	if(Message.equals("traveling")){  
+// 		list= orderSvc.getAll();
+// 		list=list.stream().filter(p->p.getOrder_status()==1)
+// 				.collect(Collectors.toList());
+// 	}
+// 	if(Message.equals("complete")){  
+// 		list= orderSvc.getAll();
+// 		list=list.stream().filter(p->p.getOrder_status()==2)
+// 				.collect(Collectors.toList());
+// 	}
+// 	if(Message.equals("cancel")){  
+// 		list= orderSvc.getAll();
+// 		list=list.stream().filter(p->p.getOrder_status()==3)
+// 				.collect(Collectors.toList());
+// 	}
 	
-	}
+// 	}
 	
-pageContext.setAttribute("list",list);
+request.setAttribute("list",list);
 MemberService msvc=new MemberService();
 
 %>
 
-換頁回傳值:<%=Message2 %>
+換頁回傳值:<%=Message %>
 <c:set var="Order_statusPage" value="<%=Message %>" scope="session"/>
-Order_statusPage:${Order_statusPage}
 <!DOCTYPE html>
 <html>
 <head>
@@ -120,17 +161,17 @@ Order_statusPage:${Order_statusPage}
 			
 			%>
 			<td><%=mvo.getMember_name() %></td>
-			<%
-    Map<Integer, String> orderstatusmap = new HashMap<>();
-			orderstatusmap.put(0, "已成立");
-			orderstatusmap.put(1, "運送中");
-			orderstatusmap.put(2, "已完成");
-			orderstatusmap.put(3, "取消訂單");
-    session.setAttribute("orderstatus", orderstatusmap);
-%>
-<c:set var="status" value="${ordervo.order_status}" />
+  	<%
+    Map<Integer, String> order_status = new HashMap<>();
+  	order_status.put(0, "已成立");
+  	order_status.put(1, "運送中");
+  	order_status.put(2, "已完成");
+  	order_status.put(3, "取消訂單");
+    request.setAttribute("statusmap", order_status);
 
-			<td>${orderstatus[status]}</td>
+%>
+
+			<td>${statusmap[ordervo.order_status]}</td>
 			
 			<c:set var="time" value="${ordervo.order_time}"/>
 			<%
@@ -230,14 +271,7 @@ Order_statusPage:${Order_statusPage}
         %><%=addresstot %>
         			</c:if>
         
-  	<%
-    Map<Integer, String> order_status = new HashMap<>();
-  	order_status.put(0, "已成立");
-  	order_status.put(1, "運送中");
-  	order_status.put(2, "已完成");
-  	order_status.put(3, "取消訂單");
 
-%>
 
         	<td class="selectstatus">
         <select class=selectchange>

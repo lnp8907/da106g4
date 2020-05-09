@@ -50,6 +50,7 @@ public class OrderPageServlet extends HttpServlet {
 					failureView.forward(req, res);
 					return;
 				}
+				
 				req.setAttribute("pagemessage", "waitpage");
 				RequestDispatcher successView = req.getRequestDispatcher(url);
 				successView.forward(req, res);
@@ -85,7 +86,7 @@ public class OrderPageServlet extends HttpServlet {
 				failureView.forward(req, res);
 			}
 		}
-
+//---------------------
 		if ("changepage".equals(action)) {
 			String pagemessage = req.getParameter("pagemessage");
 			System.out.println("位置訊息" + pagemessage);
@@ -101,26 +102,26 @@ public class OrderPageServlet extends HttpServlet {
 				}
 				if ("waitpage".equals(pagemessage)) {
 					System.out.println("設置"+pagemessage);
-					req.setAttribute("Order_statusPage", "waitpage");
+					req.setAttribute("Order_statusPage", pagemessage);
 
 
 				}
 				else if ("traveling".equals(pagemessage)) {
 					System.out.println("設置"+pagemessage);
 
-					req.setAttribute("Order_statusPage", "traveling");
+					req.setAttribute("Order_statusPage", pagemessage);
 
 				}
 				else if ("complete".equals(pagemessage)) {
 					System.out.println("設置"+pagemessage);
 
-					req.setAttribute("Order_statusPage", "complete");
+					req.setAttribute("Order_statusPage", pagemessage);
 
 				}
-				else	if ("cancel".equals(pagemessage)) {
+				else if ("cancel".equals(pagemessage)) {
 					System.out.println("設置"+pagemessage);
 
-					req.setAttribute("Order_statusPage", "cancel");
+					req.setAttribute("Order_statusPage", pagemessage);
 
 				}
 System.out.println("開始前往"+pagemessage);
