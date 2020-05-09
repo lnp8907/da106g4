@@ -440,8 +440,6 @@ Vector<Order_detailVO> productlist;
 <%--                                 		 <c:if test="${fn:length(Livelist)}"> --%>
 <%--                                 		 </c:if> --%>
 
-陣列長度${fn:length(Livelist)}
-
                                 
                                 
 <div class="livelisttitle">正在直播中</div>
@@ -476,9 +474,10 @@ Vector<Order_detailVO> productlist;
 
 </div>                                
                                 
-                            </div>
-                        </section>
-                        <!-- end of livestream-->
+</div>
+
+</section>
+</article>                        <!-- end of livestream-->
 
 
 
