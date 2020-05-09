@@ -429,6 +429,12 @@ public class NoticeJDBCDAO implements NoticeDAO_interface{
 	public Integer countNotReads(String mb_id_2) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public void changeStatus(String notice_id, Integer notice_status) {
+		// TODO Auto-generated method stub
+		
 	}	
 	}
 
