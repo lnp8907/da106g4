@@ -74,7 +74,7 @@ public class MemberService {
 	public MemberVO updateSuccess(String account, Integer validation) {
 		MemberVO memberVO = new MemberVO();
 		// memberVO.setMember_id(member_id);
-		memberVO.setAccount(account);
+		memberVO.setEmail(account);
 		memberVO.setValidation(validation);
 
 		dao.update_Success(memberVO);
@@ -216,12 +216,12 @@ public class MemberService {
 		return memberVO;
 	}
 
-	public MemberVO update_To_Chef(String member_id, String account, String member_name, byte[] license,
+	public MemberVO update_To_Chef(String member_id, byte[] license,
 			Integer chiefapply_status) {
 		MemberVO memberVO = new MemberVO();
 		memberVO.setMember_id(member_id);
-		memberVO.setAccount(account);
-		memberVO.setMember_name(member_name);
+	
+	
 		memberVO.setLicense(license);
 		memberVO.setChiefapply_status(chiefapply_status);
 		dao.update_To_Chef(memberVO);

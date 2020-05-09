@@ -18,7 +18,7 @@ public class JedisUtil {
 					config.setMaxTotal(8);
 					config.setMaxIdle(8);
 					config.setMaxWaitMillis(100000);
-					pool = new JedisPool(config, "localhost", 6379);
+					pool = new JedisPool(config, "127.0.0.1", 6379);
 				}
 			}
 		}

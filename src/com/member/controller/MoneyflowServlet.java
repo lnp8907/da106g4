@@ -270,10 +270,12 @@ System.out.println("新"+location);
 //		    req.setAttribute("openModal", openModal);
 //		    System.out.println(openModal);
 		//----------------------------------	
+	
 		
-		String url = "/back-end/moneyflow/listAllMoneyflow.jsp";
-		RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
-		successView.forward(req, res);
+		RequestDispatcher failureView = req
+				.getRequestDispatcher("/front-end/member/ChefWithdraw.jsp");
+		 // 成功轉交 listOneEmp.jsp
+		failureView.forward(req, res);
 		
 //		String url = "/front-end/moneyflow/storedValue.jsp";
 //		RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp

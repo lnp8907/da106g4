@@ -63,7 +63,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 	//
 	private static final String UPDATENEW = "UPDATE MEMBER set MEMBER_ID = ?, ACCOUNT=?, PASSWORD=?, MEMBER_NAME=?, GENDER=?, BIRTHDAY=?, CELLPHONE=?, EMAIL=?, NICKNAME=?, VALIDATION=?, MEMBER_STATUS=?, MEMBER_ADDRESS=?, MEMBER_CREDITCARD=?, BALANCE=?, CHIEFAPPLY_STATUS=?, member_photo=?, license=?,livestream_status=? where MEMBER_ID = ?";
 //
-	private static final String UPDATE_TO_CHEF = "UPDATE MEMBER set MEMBER_ID = ?, ACCOUNT=?, MEMBER_NAME=?, license=?, chiefapply_status=? where MEMBER_ID = ?";
+	private static final String UPDATE_TO_CHEF = "UPDATE MEMBER set MEMBER_ID = ?, license=?, chiefapply_status=? where MEMBER_ID = ?";
 	private static final String UPDATE_STOREDVALUE = "UPDATE MEMBER set MEMBER_ID=?, BALANCE=? where MEMBER_ID = ?";
 	private static final String UPDATE_BY_SELF = "UPDATE MEMBER set MEMBER_ID = ?, MEMBER_NAME=?, ACCOUNT=?, PASSWORD=?, EMAIL=?, BIRTHDAY=?, CELLPHONE=?, GENDER=?, MEMBER_ADDRESS=?, member_photo=? where MEMBER_ID = ?";
 
@@ -71,9 +71,8 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 	private static final String UPDATE_LIVESTREAM_STATUS = "UPDATE MEMBER set livestream_status=? where MEMBER_ID = ?";
 //////////////////
 	
-	private static final String UPDATE_SUCCESS = "UPDATE MEMBER set ACCOUNT = ?, VALIDATION = ? where ACCOUNT = ?";
-	private static final String DUPLICATE_ACCOUNT = "SELECT ACCOUNT? FROM MEMBER where ACCOUNT = ?";
-	
+	private static final String UPDATE_SUCCESS = "UPDATE MEMBER set EMAIL = ?, VALIDATION = ? where EMAIL = ?";
+	private static final String DUPLICATE_ACCOUNT = "SELECT ACCOUNT? FROM MEMBER where ACCOUNT = ?";	
 	private static final String UPDATECARDNUMBER = "UPDATE MEMBER set MEMBER_ID = ?, MEMBER_CREDITCARD = ? where MEMBER_ID = ?";
 	private static final String UPDATEBACK_END = "UPDATE MEMBER set MEMBER_ID = ?, ACCOUNT = ?, MEMBER_NAME = ?, EMAIL = ?, VALIDATION = ? where MEMBER_ID = ?";
 	private static final String CHIEFAPPLY_STATUS = "SELECT MEMBER_ID, ACCOUNT, MEMBER_NAME, EMAIL, MEMBER_STATUS, CHIEFAPPLY_STATUS FROM MEMBER WHERE (CHIEFAPPLY_STATUS = 1) order by chiefapply_status,member_id";
@@ -83,8 +82,7 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 	private static final String CHANGEONLINE = "UPDATE MEMBER set LIVE_STATUS = ?  where MEMBER_ID = ?";
 	private static final String CHANGEOFFLINE = "UPDATE MEMBER set LIVE_STATUS = ?  where MEMBER_ID = ?";
 	
-	
-	
+
 	@Override
 	  public void changeOnline(String member_id,Integer num) {
 		Connection con = null;
@@ -675,8 +673,8 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 			pstmt = con.prepareStatement(UPDATE_SUCCESS);
 
 			pstmt.setInt(2, empVO.getValidation());
-			pstmt.setString(1, empVO.getAccount());	
-			pstmt.setString(3, empVO.getAccount());	
+			pstmt.setString(1, empVO.getEmail());	
+			pstmt.setString(3, empVO.getEmail());	
 			pstmt.executeUpdate();
 
 			// Handle any driver errors
@@ -1008,15 +1006,15 @@ public class MemberJDBCDAO implements MemberDAO_interface {
 			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(UPDATE_TO_CHEF);
 
-			pstmt.setString(2, empVO.getAccount());
 			
-			pstmt.setString(3, empVO.getMember_name());
 			
-	        pstmt.setBytes(4, empVO.getLicense());
-	        pstmt.setInt(5, empVO.getChiefapply_status());
+
+			
+	        pstmt.setBytes(2, empVO.getLicense());
+	        pstmt.setInt(3, empVO.getChiefapply_status());
 			
 			pstmt.setString(1, empVO.getMember_id());	
-			pstmt.setString(6, empVO.getMember_id());	
+			pstmt.setString(4, empVO.getMember_id());	
 			pstmt.executeUpdate();
 
 			// Handle any driver errors

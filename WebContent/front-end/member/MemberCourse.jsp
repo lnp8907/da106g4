@@ -76,7 +76,8 @@ String member_name =(String) session.getAttribute("member_name");
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../course/courseCSS/courseList.css">
 
-
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../course/courseCSS/courseList.css">
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
 <script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
@@ -2001,8 +2002,7 @@ margin:0 3px;
 									name="action" value="delete">
 							</FORM>
 						</div>
-						<p class="recipe-create-time">開課時間:<fmt:formatDate
-								value="${CourseVO.course_start}" pattern="yyyy/MM/dd HH:mm" /></p>
+						<p class="recipe-create-time">開課時間:${CourseVO.course_start}<fmt:formatDate value="${CourseVO.course_start}" pattern="yyyy/MM/dd HH:mm" /></p>
 						<p class="recipe-item-ingredient">課程價格：${CourseVO.course_price}</p>
 					</div></li>
 			</c:forEach>
@@ -2650,7 +2650,17 @@ if(state=="sucess"){
 	</script>
 
 
+	<script>
+		$('.delete').click(function() {
+			if (window.confirm('你確定要刪除嗎?')) {
+				return;
+			} else {
+				//關閉預設行為
+				event.preventDefault();
+			}
 
+		});
+	</script>
 
 
 

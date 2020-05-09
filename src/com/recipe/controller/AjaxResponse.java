@@ -167,15 +167,21 @@ public class AjaxResponse extends HttpServlet {
 		
 		
 		
+		System.out.println(action);
 		//改狀態為直播中
 		if ("beOnline".equals(action)) {
 
 			String	member_id = req.getParameter("member_id");
-			Integer num = 2;
+			Integer num = 2;//2為開播狀態碼
+			String livestream_id = req.getParameter("livestream_id");
 
 				/*************************** 2.開始新增資料 *****************************************/
 				MemberService memberService = new MemberService();
-				memberService.changeOnline(member_id, num);
+				memberService.changeOnline(member_id, num);//更改廚師直播狀態為開播
+				
+				
+				LsService lsService = new LsService();
+				lsService.updateForOnline(livestream_id, num);//更改直播預告為開播中
 				System.out.println("OnlineOK");
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 		}
@@ -183,7 +189,6 @@ public class AjaxResponse extends HttpServlet {
 		
 		
 		//改狀態為下線中
-		System.out.println(action);
 		if ("beOffline".equals(action)) {
 			
 			String	member_id = req.getParameter("member_id");

@@ -91,16 +91,18 @@ System.out.println(staffVO.getStaff_password());
 			 HttpSession session = req.getSession();
 			session.invalidate();
 			
-		String url = "/backEnd_Login.jsp" ;
+		//String url = "/backEnd_Login.jsp" ;
 //			url = "/back-end/staff/staffPage.jsp?pageType="+pageType;
-			RequestDispatcher successView = req.getRequestDispatcher(url);
-			successView.forward(req, res);
+		
 			
-			
+		
+			String URL=req.getContextPath()+"/backEnd_Login.jsp";
+			res.sendRedirect(URL);
+			System.out.println("45655555");
 			
 		}
 		
-		
+		System.out.println("4565555545655555");
 		
 	if("login".equals(action)) {
 
@@ -149,8 +151,14 @@ System.out.println(staffVO.getStaff_password());
 				}
 				HttpSession session=req.getSession();
 				session.setAttribute("staffVO", staffVO);
+				session.setAttribute("YES", 1);
 				
 				
+				
+				 String YES= (Integer)req.getSession().getAttribute("YES")+"";
+				
+				
+System.out.println("YES21"+YES);				
 session.setAttribute("staff_id", staffVO.getStaff_id());
 session.setAttribute("staff_name", staffVO.getStaff_name());
 

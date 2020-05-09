@@ -5,14 +5,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <%
-	Vector<Order_detailVO> productlist;
-	if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
-		productlist = new Vector<Order_detailVO>();
-
+	Vector<Order_detailVO> productCarlist;
+	if ((Vector<Order_detailVO>) session.getAttribute("productCarlist") == null) {
+		productCarlist = new Vector<Order_detailVO>();
+//諾是空值建立一個購物車清單
 	} else {
-		productlist = (Vector<Order_detailVO>) session.getAttribute("productCar");
+		productCarlist = (Vector<Order_detailVO>) session.getAttribute("productCarlist");
 	}
-	session.setAttribute("productCar", productlist);
+	
+	session.setAttribute("productCarlist", productCarlist);
 	ProductService svc = new ProductService();
 	String product_id = (String) request.getAttribute("product_id");
 
@@ -28,9 +29,8 @@
 	map.put(1, "已上架");
 	request.setAttribute("productstatus", map);
 %>
-<c:set var="productcarlist" value="<%=productlist%>" scope="session"/>
 <html>
-
+productCarlistt${productCarlist}
 
 
 <head>
@@ -121,7 +121,7 @@
 			<c:if test='${empty member_id}'>
 			
 				<div class="login">
-					<a href="#"><img class="header-icon" src="image/user-icon.png"
+					<a href="#"><img class="header-icon" src="<%=request.getContextPath() %>/image/user-icon.png"
 						alt="login-icon">
 						<div class="herder-icon-span">
 							<span class="login-span">登入</span>
@@ -171,7 +171,7 @@
 
 
 						</div>
-						<div class="carmessage2" style="display: none">${fn:length(productcarlist)}</div>
+						<div class="carmessage2" style="display: none">${fn:length(productCarlist)}</div>
 						<div class="carmessagecircle" style="display: none">more</div>
 
 
@@ -472,9 +472,13 @@
 						type="hidden" name="action" value="ADD">
 <!-- 						<input type="submit" value="加入購物車"> -->
 <!-- 				</FORM> -->
-				 <button  class="addcar">購買@GIT檢查在不再</button>
-
-		
+<!-- 				 <button  class="button ui addcar">加入購物車</button> -->
+<div style="width: 80px" class="ui addcar vertical animated button" tabindex="0">
+  <div class="hidden content">加入購物車</div>
+  <div class="visible content">
+    <i class="shop icon"></i>
+  </div>
+		</div>
 				
 				
 
@@ -717,7 +721,6 @@ $('#plusmun').click(function () {
         width: 100%;
         margin-top: 10px;
         height: 70px;
-        background-color: #34ce57;
     }
     #buymessage div:nth-child(3) button{
 width: 140px;

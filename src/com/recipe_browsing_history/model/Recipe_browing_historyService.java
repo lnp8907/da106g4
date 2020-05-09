@@ -1,5 +1,8 @@
 package com.recipe_browsing_history.model;
 
+import java.util.List;
+
+import com.recipe_favorite.model.RecipeFavoriteVO;
 
 public class Recipe_browing_historyService {
 	private Recipe_browing_historyDAO_interface dao;
@@ -33,6 +36,26 @@ public class Recipe_browing_historyService {
 		dao.deleteAll(member_id);
 	}
 		
+	
+	
+	
+	
+	
+	public List<Recipe_browing_historyVO> findFollowingByPrimaryKey(String member_id) {
+		return dao.findFollowingByPrimaryKey(member_id);
+
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 
 }

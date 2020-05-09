@@ -9,9 +9,21 @@ public class LsService {
 	public LsService() {
 		dao = new LivestreamDAO();
 	}
-
+	 public LivestreamVO getLatestOneLs(String member_id) {
+		return dao.getLatestOneLs(member_id) ;
+	 }
+   
+	 public void updateAfterOnline (String livestream_id,byte[] video,Integer watched_num,Integer status) {
+		 status = 3; //直播結束狀態是3
+		 dao.updateAfterOnline(livestream_id, video, watched_num,status);
+     }
 	
-	public LivestreamVO getMostPopLS() {
+	public void  updateForOnline(String livestream_id, Integer status){
+		dao.updateForOnline(livestream_id, status);
+	}
+     
+     
+     public LivestreamVO getMostPopLS() {
 		return dao.getMostPopLS();
 	}
 	public List<LivestreamVO> getFourForHomePage(){

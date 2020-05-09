@@ -9,17 +9,20 @@
 <%
 String member_id =(String) session.getAttribute("member_id");
 MemberService memberSvc = new MemberService();
-MemberVO membervo = memberSvc.getOneMember(member_id);
-MemberVO membervo1 =(MemberVO) session.getAttribute("memberVO");
-String member_name =(String) session.getAttribute("member_name");
+MemberVO memberVO = memberSvc.getOneMember(member_id);
+MemberVO memberVO1 =(MemberVO) session.getAttribute("memberVO");
+String member_name =(String) session.getAttribute(memberVO1.getMember_name());
 	MemberService pSvc = new MemberService();
 	List<MemberVO> list = pSvc.getAll();
 	pageContext.setAttribute("list", list);
-pageContext.setAttribute("member_status", membervo1.getMember_status());
+pageContext.setAttribute("member_status", memberVO1.getMember_status());
+pageContext.setAttribute("memberVO1", memberVO1);
 %>
+
 
 <!DOCTYPE html>
 <html lang="en">
+${memberVO1.member_name}123
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
@@ -1708,7 +1711,7 @@ hr {
 						<a> <img class="header-icon" src="../../image/logout.png"
 							alt="login-icon"> <span class="login-span">登出</span>
 							<form method="POST" action="member.do">
-								<input type="hidden" name="action" value="login"> <input
+								<input type="hidden" name="action" value="loginOUT"> <input
 									class="login-out" type="submit" name="action"
 									style="display: none;">
 							</form>
@@ -1756,7 +1759,7 @@ hr {
 			<!-- 			<div class="function-list"> -->
 				<a href="#"></a>
 <!-- 				<div class="member-center"> -->
-					<div class="herder-icon-span"><span class="member-center-spann">HI，<%=session.getAttribute("member_name") %></span></div>
+					<div class="herder-icon-span"><span class="member-center-spann">HI，<%=memberVO1.getMember_name()%></span></div>
 <%--                         <span class="member-center-spann">HI，<%=session.getAttribute("member_name") %></span> --%>
 <!-- 				</div> -->
 				</a>
@@ -1976,7 +1979,7 @@ hr {
 
 
 								<input type="TEXT" name="member_name" size="45"
-					id=member_name value="<%=membervo.getMember_name()%>" />
+					id=member_name value="<%=memberVO.getMember_name()%>" />
 
 								<!-- (max 30 characters a-z and A-Z) -->
 							</td>
@@ -1986,13 +1989,13 @@ hr {
 						<tr>
 							<td>會員帳號:</td>
 							<td><input type="TEXT" name="account" size="45" id=account
-					value="<%=membervo.getAccount()%>" /></td>
+					value="<%=memberVO.getAccount()%>" /></td>
 						</tr>
 
 						<tr>
 							<td>會員密碼:</td>
 							<td><input type="password" name="password" size="45" id=password
-					value="<%=membervo.getPassword()%>" /></td>
+					value="<%=memberVO.getPassword()%>" /></td>
 					<td><label><input type="checkbox" id="show_password" size="45" />顯示密碼</label></td>
 						</tr>
 
@@ -2012,21 +2015,21 @@ hr {
 						<tr>
 							<td>信箱:</td>
 							<td><input type="TEXT" name="email" size="45" id=email
-					value="<%=membervo.getEmail()%>" /></td>
+					value="<%=memberVO.getEmail()%>" /></td>
 						</tr>
 
 						<!----- Mobile Number ---------------------------------------------------------->
 						<tr>
 							<td>電話號碼:</td>
 							<td><input type="TEXT" name="cellphone" size="45" id=cellphone
-					value="<%=membervo.getCellphone()%>" /></td>
+					value="<%=memberVO.getCellphone()%>" /></td>
 						</tr>
 
 						<!----- Gender ----------------------------------------------------------->
 						<tr>
 							<td>性別:</td>
-							<td><input type="radio" name="gender" value=0 checked="<%=(membervo.getGender()==0)? "true": "false"%>"> 男<br>
-					<input type="radio" name="gender" value=1 checked="<%=(membervo.getGender()==1)? "true": "false"%>"> 女<br></td>
+							<td><input type="radio" name="gender" value=0 checked="<%=(memberVO.getGender()==0)? "true": "false"%>"> 男<br>
+					<input type="radio" name="gender" value=1 checked="<%=(memberVO.getGender()==1)? "true": "false"%>"> 女<br></td>
 						</tr>
 
 						<!----- Address ---------------------------------------------------------->
@@ -2036,7 +2039,7 @@ hr {
 							<br /></td>
 							<!-- <td><textarea name="Address" rows="4" cols="30"></textarea></td> -->
 							<td><input type="TEXT" name="member_address" size="45"
-					id="address" value="<%=membervo.getMember_address()%>" /></td>
+					id="address" value="<%=memberVO.getMember_address()%>" /></td>
 						</tr>
 
 
@@ -2182,8 +2185,9 @@ B.A
 						
 					
 					<input type="hidden"
-							name="account" value="${membervo.member_photo}">
-					
+							name="account" value="${memberVO.member_photo}">
+					<input type="member_name"
+							name="account" value="<%=memberVO.getMember_name()%>">
 					
 					
 					
@@ -2200,9 +2204,9 @@ B.A
 				
 				<script>
 <%java.sql.Date birthday = null;
-                birthday = (membervo == null || membervo.getBirthday() == null)
+                birthday = (memberVO == null || memberVO.getBirthday() == null)
 					? new java.sql.Date(System.currentTimeMillis())
-					:membervo.getBirthday();
+					:memberVO.getBirthday();
 %>
 
  	$.datetimepicker.setLocale('zh');
@@ -2374,7 +2378,7 @@ B.A
  <img src=DBGifReader4.do?photo_type=mempic&member_id=<%=session.getAttribute("member_id")%> id="preview_progressbarTW_img" width=129px height=129px;/>
 </div>
 </div>
-          <h2><%=membervo.getMember_name()%></h2>
+          <h2><%=memberVO.getMember_name()%></h2>
 
           <div class="link-top"></div>
 
@@ -2455,29 +2459,23 @@ B.A
 					<li><a href="forms-multiple-file.html">2</a></li>
 					<li><a href="forms-wysiwyg.html">3</a></li>
 				</ul></li>
-			<li class="sub-menu"><a href="javascript:void(0);"><i
-					class="fa fa-envelope"></i><img class="access-menu-icon1"
-					src="../../image/member/S__12066820.jpg"><span>精選收藏&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
-					class="arrow fa fa-angle-right pull-right"></i></a>
-				<ul>
-					<li><a href="mail-inbox.html">課程收藏</a></li>
-					<li><a href="mail-compose.html">直播收藏</a></li>
-					<li><a href="mail-compose.html">食譜收藏</a></li>
-				</ul></li>
-			
-			
+				
+				
+				
+		<c:if test='${member_status eq 0 }'>		
+				<li><a
+				href="MemberRecipeFavorite.jsp"><i
+					class="fa fa-dashboard"></i><img class="access-menu-icon1"
+					src="../../image/member/S__12066820.jpg"><span>課程收藏</span></a></li>
+			</c:if>		
+
 		<c:if test='${member_status eq 0 }'>
 			
-			
-			<li class="sub-menu"><a href="javascript:void(0);"><i
-					class="fa fa-bar-chart-o"></i><img class="access-menu-icon1"
-					src="../../image/member/S__12066818.jpg"><span>我的課程&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
-					class="arrow fa fa-angle-right pull-right"></i></a>
-				<ul>
-					<li><a href="charts-chartjs.html">課程紀錄</a></li>
-					<li><a href="charts-morris.html">1</a></li>
-					<li><a href="charts-c3.html">2</a></li>
-				</ul></li>
+	 		
+				<li><a
+				href="MemberMyCourse.jsp"><i
+					class="fa fa-dashboard"></i><img class="access-menu-icon1"
+					src="../../image/member/S__12066818.jpg"><span>我的課程</span></a></li>
 		</c:if>
 
 <c:if test='${member_status eq 1 }'>

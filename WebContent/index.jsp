@@ -170,7 +170,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 					
 							<span class="login-span">登出</span>
 							<form method="POST" action="member.do">	
-								<input type="hidden" name="action" value="login">
+								<input type="hidden" name="action" value="loginOUT">
 								<input class="login-out" type="submit" name="action" style= "display:none;">
 						</form>	 </a>
 				</div>
@@ -203,7 +203,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 
 
 						</div>
-						<div class="carmessage2" style="display: none">${fn:length(productcarlist)}</div>
+						<div class="carmessage2" style="display: none">${fn:length(productCarlist)}</div>
 						<div class="carmessagecircle" style="display: none">more</div>
 
 
@@ -348,7 +348,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 				<div class="sign-up-htm">
 					<div class="group">
 						<label for="newuser" class="label">Account</label> <input
-							id="newuser" type="text" class="input">
+							id="newuser" type="text" name="account1" class="input">
 					</div>
 					<div class="group">
 						<label for="newpass" class="label">Password</label> <input
@@ -374,7 +374,31 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 </form>				
 			</div>
 		</div>
+
 	</div>
+	
+			<c:if test="${not empty errorMsgs}">
+		<font style="color: red">請修正以下錯誤:</font>
+		<ul>
+			<c:forEach var="message" items="${errorMsgs}">
+				<li style="color: red">${message}</li>
+			</c:forEach>
+		</ul>
+	</c:if>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 </c:if>
 	<!-- end of login-->
 	
@@ -777,7 +801,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 						</div>
 						<!-- end of Course -->
 						<!--課程橫幅陳列-->
-						<div class="course-sider-list" data-aos="fade-up" data-aos-duration="2000" id="course-sider-list">
+						<div style="height:350px" class="course-sider-list" data-aos="fade-up" data-aos-duration="2000" id="course-sider-list">
 						</div>
 					</div>
 					<div data-aos="fade-up" data-aos-duration="2000">

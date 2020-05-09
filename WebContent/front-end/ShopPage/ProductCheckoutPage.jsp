@@ -16,6 +16,7 @@
     <title>FoodPornChec</title>
     <link rel="stylesheet" href="css/ShopCartPage.css">
     
+        <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/front-end/ShopPage/css/productCheckoutCss.css"/>
     
 <!DOCTYPE html>
 
@@ -30,15 +31,7 @@
     <div class="foodpronpicture"><a href="ShopProductPage.jsp"><img src="../../image/FoodPron_Logo.png" alt=""></a></div>
 </div>
 <hr>
-	<%-- 錯誤表列 --%>
-	<c:if test="${not empty errorMsgs}">
-		<font style="color: red">請修正以下錯誤:</font>
-		<ul>
-			<c:forEach var="message" items="${errorMsgs}">
-				<li style="color: red">${message}</li>
-			</c:forEach>
-		</ul>
-	</c:if>
+
 
 
 
@@ -52,34 +45,36 @@
 
 
 
- <%
- 	@SuppressWarnings("unchecked")
+ <% 	@SuppressWarnings("unchecked")
+
  
  Vector<Order_detailVO> buyProductlist=null;
- if((Vector<Order_detailVO>)session.getAttribute("selecttlist")!=null){
-	 buyProductlist=(Vector<Order_detailVO>)session.getAttribute("selecttlist");
+ if((Vector<Order_detailVO>)session.getAttribute("checkCarlist")!=null){
+	 buyProductlist=(Vector<Order_detailVO>)session.getAttribute("checkCarlist");
 	 
 	 
 	 
  }
-if(((Vector<Order_detailVO>)session.getAttribute("productCar")).size()==buyProductlist.size()){
-     buyProductlist =(Vector<Order_detailVO>)session.getAttribute("productCar");
+if(((Vector<Order_detailVO>)session.getAttribute("productCarlist")).size()==buyProductlist.size()){
+     buyProductlist =(Vector<Order_detailVO>)session.getAttribute("productCarlist");
  }
 session.setAttribute("checkoutlist", buyProductlist);
     session.setAttribute("location", request.getRequestURI());
     
     %>
  
-
- <font size="+3">目前購物車的內容如下：</font>
-
-<table id="table-1" >
+<div class="checktitle"> 
+ <font size="+3">目前購物車的內容如下：</font></div>
+<div class="cartlist">
+<table class="ui celled table" id="table-1" >
+    <thead>
+  
     <tr> 
-      <th width="200">商品名</th><th width="100">單價</th><th width="100">數量</th><th>小計</th>
-    </tr></table>
+      <th>商品名</th><th>單價</th><th>數量</th><th>小計</th>
+   </tr></thead>
+      <tbody>
     
     
-    <table>
     
 
 	<%
@@ -112,8 +107,9 @@ session.setAttribute("checkoutlist", buyProductlist);
 		<td width="100"><%=tot %></td>
 	
 	</tr>
-	<%}%>
-</table>
+	<%}%>  </tbody>
+	
+</table></div>
  <div id="progress-rate">
     <div class="progesssize ui steps">
         <a class=" step" href="<%=request.getContextPath() %>/front-end/ShopPage/ProductPage?action=checktpage1">
@@ -180,7 +176,8 @@ session.setAttribute("checkoutlist", buyProductlist);
     </div>
 
  <select id="pay-type" name="pay_type" class="ui dropdown">
-        <option value="">請選擇付款方式</option>
+         <option value="3">請選擇付款方式</option>
+ 
         <option value="1">信用卡</option>
                 <option value="0">點數</option>
         
@@ -242,12 +239,20 @@ session.setAttribute("checkoutlist", buyProductlist);
 <input type="hidden" name="address2" id="address2" value="${address2}">
  		 <input type="hidden" name="action" value="addorder">
  		  <input type="hidden" name="member_id" value='<%=session.getAttribute("member_id") %>'>
-<%=session.getAttribute("member_id") %> 		  		 
+<%-- <%=session.getAttribute("member_id") %> 		  		  --%>
  		 
  
 
            </form>    
-
+	<%-- 錯誤表列 --%>
+	<c:if test="${not empty errorMsgs}">
+		<font style="color: white">請修正以下錯誤:</font>
+		<ul>
+			<c:forEach var="message" items="${errorMsgs}">
+				<li style="color: white">${message}</li>
+			</c:forEach>
+		</ul>
+	</c:if>
    </div>
  <script>
 

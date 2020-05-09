@@ -70,9 +70,13 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 			<div class="function-list">
 				<a href="#"></a>
 				<div class="member-center">
+				<a href="<%=request.getContextPath() %>/front-end/member/TestMemberHomepage.jsp" id="member-center">
 					<span class="member-center-spann">會員中心</span>
+					</a>
+					
+					
 				</div>
-				</a>
+				
 			</div>
 			<div class="function-list">
 				<div class="menu">
@@ -83,6 +87,17 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 						class="lines line-3"></span>
 					</label>
 				</div>
+				
+				
+				
+				
+				
+				
+				
+		
+				
+			<c:if test='${empty member_id}'>
+			
 				<div class="login">
 					<a href="#"><img class="header-icon" src="<%=request.getContextPath() %>/image/user-icon.png"
 						alt="login-icon">
@@ -90,28 +105,62 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 							<span class="login-span">登入</span>
 						</div> </a>
 				</div>
+			</c:if>	
+			
+			<c:if test='${not empty member_id}'>
+	
+					<div class="login">
 				
+					<a> <img class="header-icon" src="<%=request.getContextPath() %>/image/logout.png"
+						alt="login-icon">
 					
+							<span class="login-span">登出</span>
+							<form method="POST" action="member.do">	
+								<input type="hidden" name="action" value="login">
+								<input class="login-out" type="submit" name="action" style= "display:none;">
+						</form>	 </a>
+				</div>
+
+				</c:if>	
+				<script>
+				$('.login-span').click(function(){
+					$('.login-out').click();
+				})
+				
+				
+				
+				
+				</script>
+		
+				
+				
+				
+				
+				
+				<!-- 購物車 -->
 				<div class="shop-car">
-					<a href="<%=request.getContextPath() %>/front-end/ShopPage/ProductPage?action=checktpage1">
-					
+					<a
+						href="<%=request.getContextPath()%>/front-end/ShopPage/ProductPage?action=checktpage1">
+
 						<div class="carmessage1">
-					<img class="header-icon"
-						src="<%=request.getContextPath() %>/image/shopping-cart-icon.png" alt="shopping-cart">
-						
-						
+							<img class="header-icon"
+								src="<%=request.getContextPath()%>/image/shopping-cart-icon.png"
+								alt="shopping-cart">
+
+
 						</div>
-							<div class="carmessage2" style="display: none" >${fn:length(productcarlist)}</div>
+						<div class="carmessage2" style="display: none">${fn:length(productCarlist)}</div>
 						<div class="carmessagecircle" style="display: none">more</div>
-					
-					
-						
+
+
+
 						<div class="herder-icon-span">
 							<span class="shop-car-span">購物車</span>
-							
-						</div> </a>
+
+						</div>
+					</a>
 				</div>
-				
+								<!-- 購物車 -->
 				
 				<div class="notice">
 					<a href="#"><img class="header-icon" src="<%=request.getContextPath() %>/image/ico_notice.png"
@@ -127,62 +176,82 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 		<!-- end of function-->
 		<nav id="navigation">
 			<ul>
-				<li class="dropdown"><a><img class="access-menu-icon"
+				<li class="dropdown"><a href="#"><img class="access-menu-icon"
 						src="<%=request.getContextPath() %>/image/recipe-icon.png"><span class="menu-span">食譜專區</span></a>
 					<ul>
 						<li><a class="dropdown-first-a" href="#"><img
 								class="dropdown-first-img" src="<%=request.getContextPath() %>/image/ico_gnav_recipes_book.svg"><span
 								class="dropdown-first-a-span">食譜主頁</span></a></li>
-						<li><a href="#">特輯食譜</a></li>
-						<li><a href="#">推薦食譜</a></li>
-						<li><a href="front-end/recipe/recipeHomepage.jsp?pageType=addRecipe.jsp">建立食譜</a></li>
+<!-- 						<li><a href="#">特輯食譜</a></li> -->
+<!-- 						<li><a href="#">推薦食譜</a></li> -->
+					<c:if test="${memberVO.member_status==1}">
+						<li><a href="front-end/recipe/addRecipe.jsp">建立食譜</a></li>
+					</c:if>
+	
 					</ul></li>
 				<li class="dropdown"><a><img class="access-menu-icon"
 						src="<%=request.getContextPath() %>/image/livestream-icon.png"><span class="menu-span">直播專區</span></a>
 					<ul>
-						<li><a class="dropdown-first-a" href="#"><img
+						<li><a class="dropdown-first-a" href="<%=request.getContextPath()%>/front-end/livestream/livestreamHomePage.jsp"><img
 								class="dropdown-first-img"
 								src="<%=request.getContextPath() %>/image/ico_gnav_recipes_movie.svg"><span
 								class="dropdown-first-a-span">直播主頁</span></a></li>
-						<li><a href="#">直播預告</a></li>
-						<li><a href="#">熱門直播</a></li>
-						<li><a href="#">建立直播預告</a></li>
+						<li><a href="livestream.jsp">直播預告</a></li>
+					<c:if test="${memberVO.member_status==1}">
+						<li><a href="front-end/livestream/livestream.jsp#${member_id}">開啟直播</a></li>
+						
+						</c:if>
 					</ul></li>
-				<li class="dropdown dropdown-shop"><a><img
+				<li class="dropdown dropdown-shop"><a href="<%=request.getContextPath()%>/front-end/ShopPage/ShopHomePage.jsp"><img
 						class="access-menu-icon" src="<%=request.getContextPath() %>/image/shop-icon.png"><span
 						class="menu-span">食材商城</span></a>
 					<ul id="dropdown-shop-ul">
-						<li><a class="dropdown-first-a" href="#"><img
+						<li><a class="dropdown-first-a" href="<%=request.getContextPath()%>/front-end/ShopPage/ShopHomePage.jsp"><img
 								class="dropdown-first-img"
 								src="<%=request.getContextPath() %>/image/ico_gnav_recipes_salad.svg"><span
 								class="dropdown-first-a-span">食材商城主頁</span></a></li>
-						<li><a href="#">調味料</a></li>
-						<li><a href="#">果醬</a></li>
-						<li><a href="#">麵粉</a></li>
-						<li><a href="#">酒類</a></li>
-						<li><a href="#">蔬菜</a></li>
-						<li><a href="#">水果</a></li>
-						<li><a href="#">海鮮</a></li>
-						<li><a href="#">肉類</a></li>
-						<li><a href="#">乳製品</a></li>
-						<li><a href="#">香料</a></li>
-						<li><a href="#">罐頭</a></li>
-						<li><a href="#">乾貨</a></li>
+								<%
+			Map<Integer, String> producttype = new HashMap<Integer, String>();
+			
+				producttype.put(0, "水果類");
+				producttype.put(1, "肉類");
+				producttype.put(2, "蔬菜類");
+				producttype.put(3, "乳品類");
+				producttype.put(4, "魚貝類");
+				producttype.put(5, "菇類");
+				producttype.put(6, "穀物類");
+				producttype.put(7, "澱粉類");
+				producttype.put(8, "酒類");
+				producttype.put(9, "調味料及香辛料類");
+				producttype.put(10, "油脂類");
+				producttype.put(11, "所有商品");				
+				request.setAttribute("producttype", producttype);
+
+			%>							<c:forEach var="producttype" items="${producttype}">
+									<li><a href="<%=request.getContextPath() %>/front-end/ShopPage/ProductPage?product_type=${producttype.value}&action=goProductPage">${producttype.value}</a></li>
+			
+										</c:forEach>
+			
+
 					</ul></li>
-				<li class="dropdown"><a><img class="access-menu-icon"
+				<li class="dropdown"><a href="front-end/course/listAllCourse.jsp"><img class="access-menu-icon"
 						src="<%=request.getContextPath() %>/image/course-icon.png"><span class="menu-span">料理課程</span></a>
 					<ul>
-						<li><a class="dropdown-first-a" href="#"><img
+						<li><a href="<%=request.getContextPath() %>/front-end/course/listAllCourse.jsp" class="dropdown-first-a" href="front-end/course/listAllCourse.jsp"><img
 								class="dropdown-first-img" src="<%=request.getContextPath() %>/image/ico_gnav_recipes_pot.svg"><span
 								class="dropdown-first-a-span">課程主頁</span></a></li>
-						<li><a href="#">熱門課程</a></li>
-						<li><a href="#">建立料理課程</a></li>
+<!-- 						<li><a href="#">熱門課程</a></li> -->
+					<c:if test="${memberVO.member_status==1}">
+						<li><a href="<%=request.getContextPath() %>/front-end/course/addCourse.jsp">建立料理課程</a></li>
+						</c:if>
 					</ul></li>
 			</ul>
 		</nav>
 	</header>
-	<!-- end of header-->
-	<!-- 登箱開始 -->
+	<!-- end of header-->	
+<!-- 登箱開始 -->
+
+<c:if test='${empty member_id}'>
 	<div class="login-wrap">
 		<div class="login-html">
 			<img class="login-close" src="image/close.png" alt="close"> <input
@@ -191,15 +260,17 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 				type="radio" name="tab" class="sign-up"><label for="tab-2"
 				class="tab">Sign Up</label>
 			<div class="login-form">
+<form method="POST" action="member.do">
 				<div class="sign-in-htm">
 					<div class="group">
-						<label for="user" class="label">Username</label> <input id="user"
+						<label for="user" class="label">Account</label> <input name="mem_id" id="user"
 							type="text" class="input">
 					</div>
 					<div class="group">
-						<label for="pass" class="label">Password</label> <input id="pass"
+						<label for="pass" class="label">Password</label> <input name="psw"  id="pass"
 							type="password" class="input" data-type="password">
 					</div>
+<input type="hidden" name="action" value="login">
 					<div class="group">
 						<input id="check" type="checkbox" class="check" checked> <label
 							for="check"><span class="icon"></span> Keep me Signed in</label>
@@ -211,24 +282,28 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 					<div class="foot-lnk">
 						<a href="#forgot" class="foot-lnk-a">Forgot Password?</a>
 					</div>
+ 
 				</div>
+</form>
+<form method="POST" action="member.do">
 				<div class="sign-up-htm">
 					<div class="group">
-						<label for="newuser" class="label">User</label> <input
+						<label for="newuser" class="label">Account</label> <input
 							id="newuser" type="text" class="input">
 					</div>
 					<div class="group">
 						<label for="newpass" class="label">Password</label> <input
-							id="newpass" type="password" class="input" data-type="password">
+							id="newpass" type="password" name="password" class="input" data-type="password">
 					</div>
 					<div class="group">
 						<label for="renewpass" class="label">Repeat Password</label> <input
-							id="renewpass" type="password" class="input" data-type="password">
+							id="renewpass" type="password" name="password2" class="input" data-type="password">
 					</div>
 					<div class="group">
 						<label for="email" class="label">Email Address</label> <input
-							id="email" type="email" class="input">
+							id="email" type="email" name="email" class="input">
 					</div>
+<input type="hidden" name="action" value="insert">					
 					<div class="group">
 						<input type="submit" class="button" value="Sign Up">
 					</div>
@@ -237,14 +312,22 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 						<label for="tab-1">Already Member?</label>
 					</div>
 				</div>
+</form>				
 			</div>
 		</div>
 	</div>
+</c:if>
 	<!-- end of login-->
+	
+	
+	
+
+	
 	<div class="pagetop">
-		<img src="image/go-top-page.png" alt="BackTop" id="BackTop">
+		<img src="<%=request.getContextPath() %>/image/go-top-page.png" alt="BackTop" id="BackTop">
 		<!--一鍵置頂-->
 	</div>
+	<!-- end of pagetop-->
 
 <!-- 內容 -->
 

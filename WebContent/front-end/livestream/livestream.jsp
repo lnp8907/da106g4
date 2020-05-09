@@ -1,3 +1,5 @@
+<%@page import="com.livestream.model.LivestreamVO"%>
+<%@page import="com.livestream.model.LsService"%>
 <%@page import="com.member.model.MemberVO"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -10,16 +12,24 @@
 <%-- 模擬登入的hostID(直播主ID)為peter  --%>
 <%! int count = 0; %>
 <%  
-	 MemberVO memberVO = (MemberVO)session.getAttribute("memberVO");
+	MemberVO memberVO = (MemberVO)session.getAttribute("memberVO");
+	LsService lsService = new LsService();
+	String livestream_id = null;
 	String hostID = null;
 	String clientID =null;
 	
 	if(memberVO==null){
     	 clientID="Anonymous"+(++count);		
 	}else{
-		if(memberVO.getChiefapply_status()==1){
+		if(memberVO.getMember_status()==1){
+	 LivestreamVO livestreamVO=lsService.getLatestOneLs(memberVO.getMember_id());
      hostID = memberVO.getNickname();
-     session.setAttribute("hostID", hostID); 			
+     session.setAttribute("hostID", hostID);
+     if(livestreamVO!=null){
+    	 livestream_id = livestreamVO.getLivestream_id();
+    	 session.setAttribute("livestream_id", livestream_id);
+     }
+     session.setAttribute("hostID", hostID); 
 		}else{
 			clientID = memberVO.getNickname();			
 		}
@@ -435,6 +445,7 @@ border:none;
 }
 #videos-container{
     text-align: center;
+    margin-top: 90px;
 }
 .dona-items-card img{
     width: 87%;
@@ -467,6 +478,54 @@ display:none;
     #videos-container{
     z-index:2;
     }
+    
+    
+  @media (max-width: 566px){
+  #livestream_left{
+  width: 100%;
+      display: block;
+      margin-right:0
+  }
+    #livestream_container{
+        width: 100%;
+        height:auto;
+    }
+    #header{
+        display: none;
+    }
+    #video{
+    height:auto;
+    }
+    #hot{
+        display: none;
+    }
+    #livestream_right{
+      width: 95%;
+      display: block;
+      margin-top:15px;
+    }
+    #chat-room {
+   display: none;
+    }
+    #dona{
+    display: none;
+    }
+    .experiment2{
+    height:auto;
+    }
+
+  	header{
+  	display: none;
+  	}
+  	#livestream-title{
+  	display: none;
+  	}
+  	video{
+  	transform:none;
+  	}
+  }   
+  
+    
 </style>
 
 <!-- This Library is used to detect WebRTC features -->
@@ -1085,15 +1144,15 @@ buttons: ['record-video']
         const recordButton = document.querySelector('button#record');
         recordButton.addEventListener('click', () => {
           if (recordButton.textContent === '開始錄影') {
-adjustControls();
-volumeControl.style.opacity = 1;
-recordVideo.className = 'control record-video';
+			adjustControls();
+			volumeControl.style.opacity = 1;
+			recordVideo.className = 'control record-video';
             startRecording();
           } else {
-recordVideo.className = recordVideo.className.replace('record-video', 'stop-recording-video selected');
+			recordVideo.className = recordVideo.className.replace('record-video', 'stop-recording-video selected');
             stopRecording();
             recordButton.textContent = '開始錄影';
-volumeControl.style.opacity = 1;
+			volumeControl.style.opacity = 1;
             playButton.disabled = false;
             //downloadButton.disabled = false;
           }
@@ -1109,8 +1168,8 @@ volumeControl.style.opacity = 1;
           recordedVideo.play();
         });
 
-        const downloadButton = document.querySelector('button#download');
-        downloadButton.addEventListener('click', () => {
+        	  const downloadButton = document.querySelector('button#download');
+        	  downloadButton.addEventListener('click', () => {
               document.querySelector('button#record').disabled = false;
               document.querySelector('button#download').disabled = true;
               const blob = new Blob(recordedBlobs, {type: 'video/webm'});	 
@@ -1129,7 +1188,7 @@ volumeControl.style.opacity = 1;
             		  '可以去直播管理 listAllStream.jsp 確認',
             		  'success'
             	  )
-volumeControl.style.opacity = 0;        
+			volumeControl.style.opacity = 0;        
         });
 
         function handleSourceOpen(event) {
@@ -1208,9 +1267,8 @@ recordVideo.className = recordVideo.className.replace('stop-recording-video sele
              
              function creatQueryString(paramGrade, paramClass){
                     document.querySelector('button#record').disabled = true;       		 	
-        		    var hostID=$("#hostID").val();
         		 	var lsViewNum=$("#lsViewNum").val();
-        			var queryString= {"action":"insert", "hostID":hostID, "lsViewNum":lsViewNum};
+        			var queryString= {"action":"updateAfterOnline", "livestream_id":${livestream_id}, "lsViewNum":lsViewNum,"member_id":lsViewNum };
         			return queryString;
         	 }
 
@@ -1241,7 +1299,39 @@ recordVideo.className = recordVideo.className.replace('stop-recording-video sele
           };
           console.log('Using media constraints:', constraints);
           await init(constraints);
+          beOnline();
         });
+        
+        
+        var beOnline = function(){
+        	console.log('beOnline');
+			$.ajax({
+				type : "POST",
+				url : "<%=request.getContextPath()%>/AjaxResponse",
+				data : {
+					"action" : "beOnline",	"member_id" :${memberVO.member_id},  "livestream_id":${livestream_id}},
+				dataType : "json",
+				success : function(data) {
+				
+				},
+				error : function() {
+					
+				}
+			});
+	}
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 </script>
 
 <!-- =============================================以下為webSocket聊天室============================================= -->
@@ -1346,38 +1436,24 @@ console.log(endPointURL);
 <script>
 	//練習使用AJAX實現按讚功能
 	
-var beOnline = function(){
-			$.ajax({
-				type : "POST",
-				url : "<%=request.getContextPath()+"/AjaxResponse"%>",
-				data : {
-					"action" : "beOnline",	"member_id" : <%=memberVO.getMember_id()%>},
-				dataType : "json",
-				success : function(data) {
 
-				},
-				error : function() {
-					
-				}
-			});
-	}
 	
 	
-var beOffline = function(){
-	$.ajax({
-		type : "POST",
-		url : "<%=request.getContextPath()+"/AjaxResponse"%>",
-		data : {
-			"action" : "beOffline","member_id" : <%=memberVO.getMember_id()%>},
-		dataType : "json",
-		success : function(data) {
+// var beOffline = function(){
+// 	$.ajax({
+// 		type : "POST",
+// 		url : "",
+// 		data : {
+// 			"action" : "beOffline","member_id" : },
+// 		dataType : "json",
+// 		success : function(data) {
 
-		},
-		error : function() {			
+// 		},
+// 		error : function() {			
 	
-	}
-});
-}
+// 	}
+// });
+// }
 </script>
 	
 	

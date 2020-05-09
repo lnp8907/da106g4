@@ -427,7 +427,7 @@
       <url-pattern>/front-end/course/addCourse.jsp</url-pattern>
       <url-pattern>/front-end/course/listAllCourseManagement.jsp</url-pattern>
        <url-pattern>/front-end/course/update_course_input.jsp</url-pattern>
-        <url-pattern>/front-end/livestream/livestream.jsp</url-pattern>
+
        
      
        

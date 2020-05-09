@@ -31,7 +31,10 @@
 	request.setAttribute("productstatus", map);
 %>
 
+
+
 <html>
+
 <head>
 
     <script src="<%=request.getContextPath() %>/plugin/jquery-3.4.1.min.js"></script>

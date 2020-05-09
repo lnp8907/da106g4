@@ -138,7 +138,7 @@
         body .login_fields input[type='text'],
         body .login_fields input[type='password'] {
             color: #afb1be;
-            width: 190px;
+            width: 307px;
             margin-top: -2px;
             background: #32364a;
             left: 0;
@@ -150,6 +150,7 @@
             outline: none;
             font-family: 'Gudea', sans-serif;
             box-shadow: none;
+            margin-left:6px;
         }
 
         body .login_fields__user,
@@ -208,7 +209,11 @@
         }
 
         .logo>img {
-            width: 100%;
+        
+         width: 100%;
+        margin-top:-50px;
+        
+        
         }
     </style>
 </head>
