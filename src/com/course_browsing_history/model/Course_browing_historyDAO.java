@@ -15,6 +15,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import com.mycourse.model.MycourseVO;
+import com.recipe_browsing_history.model.Recipe_browing_historyVO;
 
 public class Course_browing_historyDAO implements Course_browing_historyDAO_interface {
 	
@@ -36,7 +37,72 @@ public class Course_browing_historyDAO implements Course_browing_historyDAO_inte
 			"DELETE FROM COURSE_BROWSING_HISTORY where member_id = ? ";
 	
 	private static final String GET_ALL_STMT = "SELECT  MEMBER_ID, course_id FROM COURSE_BROWSING_HISTORY where member_id = ?";
+	private static final String GET_ONE_FOLLOWING_STMT = "SELECT * FROM COURSE_BROWSING_HISTORY WHERE member_id = ?";
+	
+	
+	
+	
+	
+	@Override
+	public List<Course_browing_historyVO> findFollowingByPrimaryKey(String member_id) {
 
+		List<Course_browing_historyVO> list = new ArrayList<Course_browing_historyVO>();
+		Course_browing_historyVO course_browing_historyVO = null;
+		Connection con = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(GET_ONE_FOLLOWING_STMT);
+
+			pstmt.setString(1, member_id);
+
+			rs = pstmt.executeQuery();
+
+			while (rs.next()) {
+				// recipe_favoriteVO 也稱為 Domain objects
+				course_browing_historyVO = new Course_browing_historyVO();
+				course_browing_historyVO.setMember_id(rs.getString("member_id"));
+				course_browing_historyVO.setCourse_id(rs.getString("course_id"));
+				list.add(course_browing_historyVO);
+				// Store the row in the list
+
+			}
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. " + se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (rs != null) {
+				try {
+					rs.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+		return list;
+	}
+	
+	
+	
 	
 	
 	
