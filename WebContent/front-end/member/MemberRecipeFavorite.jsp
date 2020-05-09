@@ -5,47 +5,55 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ page import="java.util.*"%>
 <%@ page import="com.member.model.*"%>
-<%@ page import="com.course.model.*"%>
+<%@ page import="com.recipe.model.*"%>
+<%@ page import="com.recipe_favorite.model.*"%>
+
 <%
 String member_id =(String) session.getAttribute("member_id");
-
 MemberService memberSvc = new MemberService();
-MemberVO membervo = memberSvc.getOneMember(member_id);
-
-
-
-
-
-
-
-
-
-
-String member_name =(String) session.getAttribute("member_name");
-	
-
-
-	
-	out.println(member_name);
-	out.println(member_id);
-	
-	
-	CourseService courseService = new CourseService();
-	List<CourseVO> list = courseService.getChefCourse(member_id);
-// List<CourseVO> list = courseService.getAll();
+MemberVO memberVO = memberSvc.getOneMember(member_id);
+MemberVO memberVO1 =(MemberVO) session.getAttribute("memberVO");
+String member_name =(String) session.getAttribute(memberVO1.getMember_name());
+	MemberService pSvc = new MemberService();
+	List<MemberVO> list = pSvc.getAll();
 	pageContext.setAttribute("list", list);
-	
-	
-	
-	
-	
-	
-	
-	
+pageContext.setAttribute("member_status", memberVO1.getMember_status());
+pageContext.setAttribute("memberVO1", memberVO1);
+
+
+
+
+RecipeService recipeService = new RecipeService();
+RecipeFavoriteServiec recipefavoriteService = new RecipeFavoriteServiec();
+
+List<RecipeFavoriteVO> list2 = recipefavoriteService.findFollowingByPrimaryKey(member_id);
+//List<CourseVO> list = courseService.getAll();
+
+
+pageContext.setAttribute("list2", list2);
+
+
+MemberVO membervo1 =(MemberVO) session.getAttribute("memberVO");
+pageContext.setAttribute("member_status", membervo1.getMember_status());
+
+
+
+
+
+
+
+
+
+
+
+
+
 %>
+
 
 <!DOCTYPE html>
 <html lang="en">
+${memberVO1.member_name}123
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
@@ -72,12 +80,13 @@ String member_name =(String) session.getAttribute("member_name");
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" href="../recipe/recipeCSS/recipeList.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../course/courseCSS/courseList.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../course/courseCSS/courseList.css">
+
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
 <script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
@@ -881,7 +890,7 @@ body {
 }
 
 .sidebar {
-	margin-top: -400px;
+	margin-top: -1020px;
 	margin-left: 19%;
 	width: 240px;
 	height: 100%;
@@ -1091,7 +1100,7 @@ table.inner {
 }
 
 .container {
-	margin-left: 353px;
+	margin-left: 500px;
 }
 
 .textwidth {
@@ -1700,9 +1709,6 @@ hr {
 
 
 
-.page2 a{
-margin:0 3px;
-}
 
 
 
@@ -1739,7 +1745,7 @@ margin:0 3px;
 						<a> <img class="header-icon" src="../../image/logout.png"
 							alt="login-icon"> <span class="login-span">登出</span>
 							<form method="POST" action="member.do">
-								<input type="hidden" name="action" value="login"> <input
+								<input type="hidden" name="action" value="loginOUT"> <input
 									class="login-out" type="submit" name="action"
 									style="display: none;">
 							</form>
@@ -1787,7 +1793,7 @@ margin:0 3px;
 			<!-- 			<div class="function-list"> -->
 				<a href="#"></a>
 <!-- 				<div class="member-center"> -->
-					<div class="herder-icon-span"><span class="member-center-spann">HI，<%=session.getAttribute("member_name") %></span></div>
+					<div class="herder-icon-span"><span class="member-center-spann">HI，<%=memberVO1.getMember_name()%></span></div>
 <%--                         <span class="member-center-spann">HI，<%=session.getAttribute("member_name") %></span> --%>
 <!-- 				</div> -->
 				</a>
@@ -1952,7 +1958,7 @@ margin:0 3px;
 		</ul>
 	</c:if>
 
-<FORM METHOD="post" ACTION="../course/CourseServlet" name="upateform" id="upateform"
+<FORM METHOD="post" ACTION="member.do" name="upateform" id="upateform"
 		enctype="multipart/form-data" >
 
 
@@ -1963,103 +1969,100 @@ margin:0 3px;
 
 			<div class="container">
 
-			
-			<div class="recipe-main-list">
-		<div class="recipe-main-list-header">
-			<h3>所有食譜清單</h3>
-			<span><%@ include file="page1.file"%></span>
-		</div>
-		<ul class="course=list">
-			<c:forEach var="CourseVO" items="${list}" begin="<%=pageIndex%>"
+
+
+
+					<table align="center" cellpadding="10">
+
+						<!----- First Name ---------------------------------------------------------->
+					
+				
+				
+			  <div class="recipe-main-list">
+		<span class="include-page"><%@ include file="page1.file"%>
+		</span>
+		<ul class="recipe=list">
+		
+		
+		
+		<jsp:useBean id="recipeSvc" scope="page"
+									class="com.recipe.model.RecipeService" />
+			<c:forEach var="RecipeFavoriteVO" items="${list2}" begin="<%=pageIndex%>"
 				end="<%=pageIndex+rowsPerPage-1%>">
-				<li class="recipe-item"><img
-					src="<%=request.getContextPath()+"/front-end/course/photo?course_id="%>${CourseVO.course_id}"
+		
+
+				<li class="recipe-item">
+				
+				
+				
+<!-- 			<li class="recipe-item"><img -->
+<%-- 					src="${(RecipeVO.recipe_photo==null)?'../../image/icon/uploadPic.png':RecipeVO.recipe_photo}" --%>
+<!-- 					alt=""> -->
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				<img
+					src="${(recipeSvc.getOneRecipe(RecipeFavoriteVO.recipe_id).recipe_photo==null)?'../../image/icon/uploadPic.png':recipeSvc.getOneRecipe(RecipeFavoriteVO.recipe_id).recipe_photo}"
 					alt="">
+					
+					
+					
+					
 					<div class="recipe-item-caption">
 						<div class="recipe-item-caption-header">
 							<h4 class="recipe-item-tile">
 								<a class="show-one-link"
-									href="<%=request.getContextPath()%>/front-end/course/CourseServlet?action=getOne_For_Display&course_id=${CourseVO.course_id}">${CourseVO.course_name}</a>
+									href="<%=request.getContextPath()%>/front-end/recipe/RecipeServlet?action=getOne_For_Display&recipe_id=${RecipeFavoriteVO.recipe_id}">${recipeSvc.getOneRecipe(RecipeFavoriteVO.recipe_id).recipe_name}</a>
 							</h4>
-							<FORM METHOD="post"
-								ACTION="<%=request.getContextPath()%>/front-end/course/CourseServlet"
-								style="margin-bottom: 0px;">
-								<button class="update" value="修改">
-									<img src="../../image/icon/update.png" title="修改" alt="修改">
-								</button>
-								<input type="hidden" name="course_id"
-									value="${CourseVO.course_id}"> <input type="hidden"
-									name="action" value="getOne_For_Update">
-							</FORM>
-							<FORM METHOD="post"
-								ACTION="<%=request.getContextPath()%>/front-end/course/CourseServlet"
-								style="margin-bottom: 0px;">
-								<button class="delete" value="刪除">
-									<img src="../../image/icon/delete.png" title="刪除" alt="刪除">
-								</button>
-								<input type="hidden" name="course_id"
-									value="${CourseVO.course_id}"> <input type="hidden"
-									name="action" value="delete">
-							</FORM>
+							
+							
+
 						</div>
-						<p class="recipe-create-time">開課時間:${CourseVO.course_start}<fmt:formatDate value="${CourseVO.course_start}" pattern="yyyy/MM/dd HH:mm" /></p>
-						<p class="recipe-item-ingredient">課程價格：${CourseVO.course_price}</p>
+						<p class="recipe-create-time">食譜類型:${recipeSvc.getOneRecipe(RecipeFavoriteVO.recipe_id).recipe_type}</p>
+						<p class="recipe-item-ingredient">調理時間：${recipeSvc.getOneRecipe(RecipeFavoriteVO.recipe_id).cook_time}</p>
+						<p class="recipe-item-ingredient">卡洛里：${recipeSvc.getOneRecipe(RecipeFavoriteVO.recipe_id).calo_intake}</p>
+			
 					</div></li>
 			</c:forEach>
 		</ul>
 		<div class="include-page2">
 			<%@ include file="page2.file"%>
 		</div>
+		<%-- 錯誤表列 --%>
+		<c:if test="${not empty errorMsgs}">
+			<font style="color: red">請修正以下錯誤:</font>
+			<ul>
+				<c:forEach var="message" items="${errorMsgs}">
+					<li style="color: red">${message}</li>
+				</c:forEach>
+			</ul>
+		</c:if>
 	</div>
-			
-			
-			
-			
-<%-- 			<jsp:include page="../course/listAllCourseManagement.jsp" />  --%>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							
-								
-								
-								
-								
-								<!-- <input type="reset" value="Reset"> -->
-							</td>
-						</tr>
+				
+				
+				
+				
+				
+				
+				
+				
+					
+
+
+
+
+
+
 					</table>
 					
 
-					
-					 <input type="hidden"
-							name="member_id" value="<%=session.getAttribute("member_id")%>">
-							
-							
-						
-					
-					<input type="hidden"
-							name="account" value="${membervo.member_photo}">
-					
-					
 					
 					
 				 
@@ -2075,9 +2078,9 @@ margin:0 3px;
 				
 				<script>
 <%java.sql.Date birthday = null;
-                birthday = (membervo == null || membervo.getBirthday() == null)
+                birthday = (memberVO == null || memberVO.getBirthday() == null)
 					? new java.sql.Date(System.currentTimeMillis())
-					:membervo.getBirthday();
+					:memberVO.getBirthday();
 %>
 
  	$.datetimepicker.setLocale('zh');
@@ -2249,7 +2252,7 @@ margin:0 3px;
  <img src=DBGifReader4.do?photo_type=mempic&member_id=<%=session.getAttribute("member_id")%> id="preview_progressbarTW_img" width=129px height=129px;/>
 </div>
 </div>
-          <h2><%=membervo.getMember_name()%></h2>
+          <h2><%=memberVO.getMember_name()%></h2>
 
           <div class="link-top"></div>
 
@@ -2313,9 +2316,9 @@ margin:0 3px;
 					<li><a href="tables-basic.html">交易紀錄</a></li>
 					
 	<li><a href="/DA106_G4_Foodporn_Git/front-end/member/123.jsp">信用卡</a></li>
-	<c:if test='${member_status eq 1 }'>
+				<c:if test='${member_status eq 1 }'>
 					<li><a href="/DA106_G4_Foodporn_Git/front-end/member/ChefWithdraw.jsp">提款</a></li>
-			</c:if>			
+			</c:if>		
 					<li><a href="/DA106_G4_Foodporn_Git/front-end/member/MemberStoredValue.jsp">儲值</a></li>
 				</ul></li>
 			<li class="sub-menu"><a href="javascript:void(0);"><i
@@ -2343,16 +2346,11 @@ margin:0 3px;
 			
 		<c:if test='${member_status eq 0 }'>
 			
-			
-			<li class="sub-menu"><a href="javascript:void(0);"><i
-					class="fa fa-bar-chart-o"></i><img class="access-menu-icon1"
-					src="../../image/member/S__12066818.jpg"><span>我的課程&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
-					class="arrow fa fa-angle-right pull-right"></i></a>
-				<ul>
-					<li><a href="charts-chartjs.html">課程紀錄</a></li>
-					<li><a href="charts-morris.html">1</a></li>
-					<li><a href="charts-c3.html">2</a></li>
-				</ul></li>
+	 		
+				<li><a
+				href="MemberMyCourse.jsp"><i
+					class="fa fa-dashboard"></i><img class="access-menu-icon1"
+					src="../../image/member/S__12066818.jpg"><span>我的課程</span></a></li>
 		</c:if>
 
 <c:if test='${member_status eq 1 }'>
@@ -2378,6 +2376,7 @@ margin:0 3px;
 					class="fa fa-text-height"></i><img class="access-menu-icon1"
 					src="../../image/member/S__12066825.jpg"><span>升級廚師</span></a></li>
 </c:if>	
+
 		</ul>
 	</div>
 </aside>
@@ -2650,17 +2649,7 @@ if(state=="sucess"){
 	</script>
 
 
-	<script>
-		$('.delete').click(function() {
-			if (window.confirm('你確定要刪除嗎?')) {
-				return;
-			} else {
-				//關閉預設行為
-				event.preventDefault();
-			}
 
-		});
-	</script>
 
 
 
