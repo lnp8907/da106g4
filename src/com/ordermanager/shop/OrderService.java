@@ -5,8 +5,8 @@ import java.util.List;
 import com.order_detail.model.Order_detailDAO_interface;
 import com.order_detail.model.Order_detailJDBCDAO;
 import com.order_detail.model.Order_detailVO;
+import com.shop_order.model.Shop_orderDAO;
 import com.shop_order.model.Shop_orderDAO_interface;
-import com.shop_order.model.Shop_orderJDBCDAO;
 import com.shop_order.model.Shop_orderVO;
 
 public class OrderService {
@@ -14,7 +14,7 @@ public class OrderService {
 	private Order_detailDAO_interface daodetail;
 
 	public OrderService() {
-		dao=new Shop_orderJDBCDAO();
+		dao=new Shop_orderDAO();
 
 	}
 	

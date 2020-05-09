@@ -883,7 +883,7 @@ body {
 	margin-top: -1020px;
 	margin-left: 19%;
 	width: 240px;
-	height: 100%;
+
 	background: white;
 	position: absolute;
 	-webkit-transition: all .3s ease-in-out;
@@ -1948,8 +1948,7 @@ hr {
 		</ul>
 	</c:if>
 
-<FORM METHOD="post" ACTION="member.do" name="upateform" id="upateform"
-		enctype="multipart/form-data" >
+
 
 
 
@@ -1969,7 +1968,8 @@ hr {
 				
 				
 			  <div class="recipe-main-list">
-		<span class="include-page"><%@ include file="page1.file"%>
+		<span class="include-page">
+			<%@ include file="page1.file"%>
 		</span>
 		<ul class="recipe=list">
 		
@@ -2063,7 +2063,7 @@ hr {
 					
 					
 				
-				</form>
+			
 				</div>
 				
 				<script>

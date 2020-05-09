@@ -30,9 +30,13 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 	*/
 	
 	//拿出6則通知
+	if(memberVO!=null){
 	  NoticeService noticeSvc = new NoticeService();
-	  List<NoticeVO> noticeList = noticeSvc.getAllByMb_id_2("810003");
-	  pageContext.setAttribute("noticeList", noticeList);
+	  if (noticeSvc.getAllByMb_id_2(member_id)!=null){
+		 List<NoticeVO> noticeList = noticeSvc.getAllByMb_id_2(member_id);
+	 	 pageContext.setAttribute("noticeList", noticeList);
+	  }
+	}
 %>
 <%@ page import="java.util.*"%>
 
@@ -61,8 +65,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 
 
 
-<!-- <script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="<%=request.getContextPath() %>/slick/slick.js" type="text/javascript" charset="utf-8"></script>
 <script src="<%=request.getContextPath() %>/js/homePage.js" type="text/javascript" charset="utf-8"></script>
@@ -215,8 +218,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 					</a>
 				</div>
 								<!-- 購物車 -->
-
- 
+<c:if test='!${empty member_id}'>
 				<!-- <div class="demo"> -->
 				<div>
 					<div id="launch" class="notice">
@@ -229,6 +231,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 					</div>
 					 <!-- <a  class="" href="#">Launch Popup</a> -->
 				</div>
+</c:if>
 			</div>
 
 		</div>

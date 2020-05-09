@@ -1,4 +1,5 @@
 package com.shop.controller;
+
 import java.io.BufferedInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
@@ -43,10 +44,9 @@ public class ProductServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-		//打開詳細欄位
+		// 打開詳細欄位
 		HttpSession session = req.getSession();
 
-		
 		if ("detailopen".equals(action)) {
 			System.out.println("有進來喔 處理打開理詳細頁面");
 			List<String> errorMsgs = new LinkedList<String>();
@@ -73,25 +73,26 @@ public class ProductServlet extends HttpServlet {
 				}
 				System.out.println(product_id);
 				String product_type = req.getParameter("product_type");
-				System.out.println("取得類型"+product_type);
-				
+				System.out.println("取得類型" + product_type);
+
 				/*************************** 2.開始查詢資料 *****************************************/
 				ProductService productSvc = new ProductService();
 				ProductVO productvo = productSvc.getOneProduct(product_id);
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("openMod", "openMod");
 				req.setAttribute("detailProductvo", productvo);
-				System.out.println("獲得帳狀態"+(String)req.getParameter("fproduct_type"));
-				if(((String)req.getParameter("fproduct_type")).equals("0")) {
-					
+				System.out.println("獲得帳狀態" + (String) req.getParameter("fproduct_type"));
+				if (((String) req.getParameter("fproduct_type")).equals("0")) {
+
 					req.setAttribute("product_type", "all");
-					
-				}else {
-				req.setAttribute("product_type", product_type);
+
+				} else {
+					req.setAttribute("product_type", product_type);
 				}
 				// 資料庫取出的empVO物件,存入req
-				String whichPage=req.getParameter("whichPage");
-						String url = "/back-end/shop_product/shop_backendPage.jsp?whichPage="+whichPage+"&product_type="+product_type;
+				String whichPage = req.getParameter("whichPage");
+				String url = "/back-end/shop_product/shop_backendPage.jsp?whichPage=" + whichPage + "&product_type="
+						+ product_type;
 
 //						String url = "/back-end/shop_product/shop_backendPage.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
@@ -105,9 +106,12 @@ public class ProductServlet extends HttpServlet {
 			}
 
 		}
-		//打開修改視窗
+		
+		
+		
+		// 打開修改視窗
 		if ("upateopen".equals(action)) {
-			System.out.println("有進來喔 處理更新頁面");
+			System.out.println("打開修改頁面");
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
 
@@ -131,18 +135,34 @@ public class ProductServlet extends HttpServlet {
 					return;// 程式中斷
 				}
 				System.out.println(product_id);
-				
-
+				String product_type = req.getParameter("product_type");
+				System.out.println("取得類型" + product_type);
 				/*************************** 2.開始查詢資料 *****************************************/
+				System.out.println("獲得帳狀態" + (String) req.getParameter("fproduct_type"));
+				if (((String) req.getParameter("fproduct_type")).equals("0")) {
+
+					req.setAttribute("product_type", "all");
+
+				} else {
+					req.setAttribute("product_type", product_type);
+				}
 				ProductService productSvc = new ProductService();
 				ProductVO productvo = productSvc.getOneProduct(product_id);
-				System.out.println(productvo);
-				System.out.println("獲取頁面"+req.getParameter("whichPage"));
-				String whichPage=req.getParameter("whichPage");
+//				System.out.println(productvo);
+				System.out.println("獲取頁面" + req.getParameter("whichPage"));
+				String whichPage = req.getParameter("whichPage");
+				System.out.println("商品類型"+product_type);
+				
 				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 				req.setAttribute("openMod", "upate");
 				req.setAttribute("detailProductvo", productvo); // 資料庫取出的empVO物件,存入req
-				String url = "/back-end/shop_product/shop_backendPage.jsp?whichPage="+whichPage;
+				
+				
+				String url = "/back-end/shop_product/shop_backendPage.jsp?whichPage=" + whichPage + "&product_type="
+						+ product_type;
+				System.out.println(url);
+
+//				String url = "/back-end/shop_product/shop_backendPage.jsp?whichPage=" + whichPage;
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
 
@@ -154,29 +174,23 @@ public class ProductServlet extends HttpServlet {
 			}
 
 		}
-		
-		
-		
-		
-		/*食譜上架*/
+
+		/* 食譜上架 */
 		if ("onproduct".equals(action)) {
 			System.out.println("處理食譜上架");
-			String product_id=req.getParameter("product_id");
-			Integer price=Integer.valueOf( req.getParameter("price"));
-			Integer product_status=1;
-			ProductService svc=new ProductService();
+			String product_id = req.getParameter("product_id");
+			Integer price = Integer.valueOf(req.getParameter("price"));
+			Integer product_status = 1;
+			ProductService svc = new ProductService();
 			svc.onproductBYRecipe(product_id, product_status, price);
-			
-			String url=req.getParameter("requestURL");
 
-			
+			String url = req.getParameter("requestURL");
+
 			RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 			successView.forward(req, res);
-			
-			
+
 		}
-		
-		
+
 		if ("getOneProductDisplay".equals(action)) {
 			System.out.println("進入單選");
 			List<String> errorMsgs = new LinkedList<String>();
@@ -315,6 +329,9 @@ public class ProductServlet extends HttpServlet {
 			// Store this set in the request scope, in case we need to
 			// send the ErrorPage view.
 			req.setAttribute("errorMsgs", errorMsgs);
+			String whichPage = req.getParameter("whichPage");
+			// 類型用下拉試選單
+			String product_type = new String(req.getParameter("product_type").trim());
 
 			try {
 				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
@@ -324,8 +341,7 @@ public class ProductServlet extends HttpServlet {
 				ProductService prosvc = new ProductService();
 				ProductVO productvo = prosvc.getOneProduct(product_id);
 
-				// 類型用下拉試選單
-				String product_type = new String(req.getParameter("product_type").trim());
+			
 				productvo.setProduct_type(product_type);
 				// 商品名
 				String product_name = req.getParameter("product_name");
@@ -386,8 +402,6 @@ public class ProductServlet extends HttpServlet {
 				}
 				productvo.setProtein(protein);
 
-				
-				
 				Double fat = 0.0;
 
 				try {
@@ -404,8 +418,6 @@ public class ProductServlet extends HttpServlet {
 				}
 				productvo.setFat(fat);
 
-				
-				
 				Double calorie = null;
 
 				try {
@@ -450,7 +462,7 @@ public class ProductServlet extends HttpServlet {
 					errorMsgs.add("維他命C請勿填入異常的數值");
 				}
 				productvo.setVitamin_C(vitamin_C);
-				System.out.println("維他命C:"+vitamin_C);
+				System.out.println("維他命C:" + vitamin_C);
 
 				Double salt = null;
 				try {
@@ -485,7 +497,6 @@ public class ProductServlet extends HttpServlet {
 				System.out.println("內容:" + content);
 				productvo.setContent(content);
 
-				
 				System.out.println("圖片測試");
 				// -----------------------圖片測
 				Part filePart = req.getPart("product_photo");
@@ -529,23 +540,37 @@ public class ProductServlet extends HttpServlet {
 				System.out.println("更新後\n品名:" + product_type + product_name + product_price + product_photo
 						+ product_status + carbohydrate + protein + fat + calorie + vitamin_B + vitamin_C + salt
 						+ vagetbale + content);
-				System.out.println("獲取頁面"+req.getParameter("whichPage"));
-				String whichPage=req.getParameter("whichPage");
+				System.out.println("獲取頁面" + req.getParameter("whichPage"));
 				/*************************** 3.修改完成,準備轉交(Send the Success view) *************/
 				prosvc.update(product_id, product_type, product_name, product_price, product_photo, product_status,
 						carbohydrate, protein, fat, calorie, vitamin_B, vitamin_C, salt, vagetbale, content);
 				req.setAttribute("product_id", product_id);
-				String url = "/back-end/shop_product/shop_backendPage.jsp?whichPage="+whichPage;
+				req.setAttribute("product_type", product_type);
+
+				String url = "/back-end/shop_product/shop_backendPage.jsp?whichPage=" + whichPage ;
+
+				System.out.println("成功開始轉送");
+				System.out.println(url);
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 *************************************/
 			} catch (Exception e) {
 				errorMsgs.add("修改資料失敗:" + e.getMessage());
+				String url = "/back-end/shop_product/shop_backendPage.jsp?whichPage=" + whichPage + "&product_type="
+						+ product_type;
 				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/shop_product/updata_product.jsp");
 				failureView.forward(req, res);
 			}
 		}
+		
+		
+		
+		
+		
+		
+		
+		
 //處理新增
 		if ("insert".equals(action)) {
 			System.out.println("處理新增");
@@ -734,7 +759,8 @@ public class ProductServlet extends HttpServlet {
 				productvo.setContent(content);
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("productvo", productvo);
-					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/shop_product/ShopPageServlet?pagemessage=addpage");
+					RequestDispatcher failureView = req
+							.getRequestDispatcher("/back-end/shop_product/ShopPageServlet?pagemessage=addpage");
 					failureView.forward(req, res);
 					return;
 				}
@@ -745,25 +771,31 @@ public class ProductServlet extends HttpServlet {
 
 				/*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
 				String whichPage = req.getParameter("whichPage");
-				
+
 //System.out.println("第幾頁"+whichPage);
 //req.setAttribute("product_type",product_type );
 				session.removeAttribute("backendpage");
-String url = "/back-end/shop_product/ShopPageServlet?action=typeselect&product_type="+product_type;
-System.out.println("開始轉送");				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
+				String url = "/back-end/shop_product/ShopPageServlet?action=typeselect&product_type=" + product_type;
+				
+				System.out.println("開始轉送");
+				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);
 
 				/*************************** 其他可能的錯誤處理 **********************************/
 			} catch (Exception e) {
 				errorMsgs.add("異常:" + e.getMessage());
-				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/shop_product/ShopPageServlet?pagemessage=addpage");
+				RequestDispatcher failureView = req
+						.getRequestDispatcher("/back-end/shop_product/ShopPageServlet?pagemessage=addpage");
 				failureView.forward(req, res);
 			}
 		}
 
 		// 刪除
-		if ("delete".equals(action)) { 
-			String requestURL = req.getParameter("requestURL"); // 送出刪除的來源網頁路徑: 可能為【/emp/listAllEmp.jsp】 或  【/dept/listEmps_ByDeptno.jsp】 或 【 /dept/listAllDept.jsp】 或 【 /emp/listEmps_ByCompositeQuery.jsp】
+		if ("delete".equals(action)) {
+			String requestURL = req.getParameter("requestURL"); // 送出刪除的來源網頁路徑: 可能為【/emp/listAllEmp.jsp】 或
+																// 【/dept/listEmps_ByDeptno.jsp】 或 【
+																// /dept/listAllDept.jsp】 或 【
+																// /emp/listEmps_ByCompositeQuery.jsp】
 			System.out.println("開始刪除作業");
 			List<String> errorMsgs = new LinkedList<String>();
 			req.setAttribute("errorMsgs", errorMsgs);
@@ -771,33 +803,30 @@ System.out.println("開始轉送");				RequestDispatcher successView = req.getRe
 			// send the ErrorPage view.
 			ProductService productSvc = new ProductService();
 			String product_id = new String(req.getParameter("product_id"));
-		System.out.println(product_id);
-		String whichPage = req.getParameter("whichPage");
+			System.out.println(product_id);
+			String whichPage = req.getParameter("whichPage");
 
-			
 			try {
-				
-				
-				
+
 				/*************************** 1.接收請求參數 ***************************************/
-				if(productSvc.isProduct_idFK(product_id)==false) {
+				if (productSvc.isProduct_idFK(product_id) == false) {
 					errorMsgs.add("此商品已被購買請勿刪除");
 					System.out.println(productSvc.isProduct_idFK(product_id));
-				}	
+				}
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("product_id", product_id);
 					RequestDispatcher failureView = req.getRequestDispatcher("/back-end/shop_backendPage.jsp");
 					failureView.forward(req, res);
 					return;
 				}
-				
+
 				/*************************** 2.開始刪除資料 ***************************************/
 				productSvc.delete(product_id);
 
 				/*************************** 3.刪除完成,準備轉交(Send the Success view) ***********/
 //				String url="/back-end/shop_backendPage.jsp?whichPage="+whichPage;
-				String url=req.getParameter("requestURL");
-				System.out.println("路徑為"+url);
+				String url = req.getParameter("requestURL");
+				System.out.println("路徑為" + url);
 				RequestDispatcher successView = req.getRequestDispatcher(url);// 刪除成功後,轉交回送出刪除的來源網頁
 				successView.forward(req, res);
 
@@ -807,11 +836,9 @@ System.out.println("開始轉送");				RequestDispatcher successView = req.getRe
 				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/shop_product/listAllProduct.jsp");
 				failureView.forward(req, res);
 			}
-			
-			
+
 		}
 		// 前往新增頁面
-		
 
 	}
 

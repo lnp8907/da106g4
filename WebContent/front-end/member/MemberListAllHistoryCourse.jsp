@@ -2027,8 +2027,9 @@ hr {
 
 						</div>
 						<p class="recipe-create-time">開課時間:${courseSvc.getOneCourse(Course_browing_historyVO.course_id).create_time}</p>
-						<p class="recipe-item-ingredient">課程價格：${courseSvc.getOneCourse(Course_browing_historyVO.course_id).pay_price}</p>
-						
+						<p class="recipe-item-ingredient">課程價格：${courseSvc.getOneCourse(Course_browing_historyVO.course_id).course_price}</p>
+						                                                                                                                  
+
 			
 					</div></li>
 			</c:forEach>
@@ -2036,6 +2037,7 @@ hr {
 		<div class="include-page2">
 			<%@ include file="page2.file"%>
 		</div>
+		
 		<%-- 錯誤表列 --%>
 		<c:if test="${not empty errorMsgs}">
 			<font style="color: red">請修正以下錯誤:</font>

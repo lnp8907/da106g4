@@ -430,12 +430,7 @@ public class ProductJDBCDAO implements ProductDAO_interface {
 //		for(ProductVO s:list) {
 //			System.out.println("商品ID:"+s.getProduct_id()+"品名:"+s.getProduct_name());
 //		}
-		ProductVO productvo=new ProductVO();
-		String recipe_id="510013";
-		productvo.setRecipe_id(recipe_id);
-		a.addRecipe(productvo);
-		System.out.println("更新成功");
-		
+
 		
 		
 //		
@@ -850,168 +845,7 @@ public class ProductJDBCDAO implements ProductDAO_interface {
 		return list;
 	
 	}
-	@Override
-	public Set<ProductVO> getAllExceprRecipe() {
-		System.out.println("獲得除了料理包外的商品");
-		Set<ProductVO> list = new LinkedHashSet<ProductVO>();
-		ProductVO productVO = null;
 
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-
-		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(GET_ALL_STMT);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				if(rs.getString("recipe_id")==null||rs.getString("recipe_id").equals("")||rs.getString("recipe_id").equals("null")) {
-				productVO = new ProductVO();
-				productVO.setProduct_id(rs.getString("product_id"));
-				productVO.setRecipe_id(rs.getString("recipe_id"));
-				productVO.setProduct_type(rs.getString("product_type"));
-				productVO.setProduct_name(rs.getString("product_name"));
-				productVO.setProduct_price(rs.getInt("product_price"));
-				productVO.setProduct_photo(rs.getBytes("product_photo"));
-				productVO.setProduct_status(rs.getInt("product_status"));
-				productVO.setCarbohydrate(rs.getDouble("carbohydrate"));
-				productVO.setProtein(rs.getDouble("protein"));
-				productVO.setFat(rs.getDouble("fat"));
-				productVO.setCalorie(rs.getDouble("calorie"));
-				productVO.setVitamin_B(rs.getDouble("vitamin_B"));
-				productVO.setVitamin_C(rs.getDouble("vitamin_C"));
-				productVO.setContent(rs.getString("content"));
-				list.add(productVO);
-				}
-
-			}
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
-		if(list.size()<=0) {
-			System.out.println("無符合查詢");
-		}
-		return list;
-	}
-	
-	public Set<ProductVO> getAllExceprRecipe(Integer product_status) {
-		System.out.println("獲得除了料理包外的商品");
-		if(product_status==0) {
-			System.out.println("且已上架");
-		}
-		else if(product_status==1) {
-System.out.println("且未上架");
-		}
-		else {
-			System.out.println("請勿搜尋1以上的數字"+"自動轉換0-上架搜尋");
-			product_status=0;
-			
-		}
-		
-		
-		Set<ProductVO> list = new LinkedHashSet<ProductVO>();
-		ProductVO productVO = null;
-		 String GETStatus = "SELECT PRODUCT_ID, RECIPE_ID, PRODUCT_TYPE, PRODUCT_NAME, PRODUCT_PRICE, PRODUCT_PHOTO, PRODUCT_STATUS, CARBOHYDRATE, PROTEIN, FAT, CALORIE, VITAMIN_B, VITAMIN_C,SALT,VAGETABLE,CONTENT FROM PRODUCT"
-		 		
-		 		+" WHERE product_status="+ product_status+
-		 		
-		" order by PRODUCT_id";
-
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		System.out.println(GETStatus);
-
-		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(GETStatus);
-			rs = pstmt.executeQuery();
-
-			while (rs.next()) {
-				if(rs.getString("recipe_id")==null||rs.getString("recipe_id").equals("")||rs.getString("recipe_id").equals("null")) {
-				productVO = new ProductVO();
-				productVO.setProduct_id(rs.getString("product_id"));
-				productVO.setRecipe_id(rs.getString("recipe_id"));
-				productVO.setProduct_type(rs.getString("product_type"));
-				productVO.setProduct_name(rs.getString("product_name"));
-				productVO.setProduct_price(rs.getInt("product_price"));
-				productVO.setProduct_photo(rs.getBytes("product_photo"));
-				productVO.setProduct_status(rs.getInt("product_status"));
-				productVO.setCarbohydrate(rs.getDouble("carbohydrate"));
-				productVO.setProtein(rs.getDouble("protein"));
-				productVO.setFat(rs.getDouble("fat"));
-				productVO.setCalorie(rs.getDouble("calorie"));
-				productVO.setVitamin_B(rs.getDouble("vitamin_B"));
-				productVO.setVitamin_C(rs.getDouble("vitamin_C"));
-				productVO.setContent(rs.getString("content"));
-				list.add(productVO);
-				}
-
-			}
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			throw new RuntimeException("Couldn't load database driver. "
-					+ e.getMessage());
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
-		if(list.size()<=0) {
-			System.out.println("無符合查詢");
-		}
-		return list;
-	}
-	
 	@Override
 	public Integer getlistzize(Collection list) {
 		Integer size=list.size();
@@ -1266,45 +1100,7 @@ System.out.println("且未上架");
 	}
 	return list;
 	}
-	@Override
-	public void addRecipe(ProductVO productvo) {
-		Connection con = null;
-		PreparedStatement pstmt = null;
 
-		try {
-		
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
-			pstmt = con.prepareStatement(ADD_PECIPE);
-			pstmt.setString(1, productvo.getRecipe_id());	
-			
-
-			pstmt.executeUpdate();
-
-		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
-			// Clean up JDBC resources
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			if (pstmt != null) {
-				try {
-					pstmt.close();
-				} catch (SQLException se) {
-					se.printStackTrace(System.err);
-				}
-			}
-			if (con != null) {
-				try {
-					con.close();
-				} catch (Exception e) {
-					e.printStackTrace(System.err);
-				}
-			}
-		}
-		
-	}
 	@Override
 	public ProductVO byRecipe(String recipe_id) {
 		ProductVO productVO = null;
@@ -1370,6 +1166,26 @@ System.out.println("且未上架");
 			}
 		}
 		return productVO;
+	}
+	@Override
+	public void addReceipe(ProductVO productvo, Connection con) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public void changestatus(String product_id, Integer product_status, Integer price) {
+		// TODO Auto-generated method stub
+		
+	}
+	@Override
+	public List<ProductVO> getAllExceprRecipe() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+	@Override
+	public List<ProductVO> getAllExceprRecipe(Integer product_status) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 	
 }

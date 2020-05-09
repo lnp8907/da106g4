@@ -11,21 +11,63 @@
 <%@ page import="java.text.*" %>
 <%@ page import="com.instant_delivery_order.*" %>
 <%@ page import="java.util.*" %>
+<%@ page import="java.util.stream.Collectors" %>
 
-<% 
+
+<%
 InstantDeliveryOrderService IDSvc=new InstantDeliveryOrderService();
+
 List<InstantDeliveryOrderVO> list=null;
 if(IDSvc.getAll()!=null){
 	list=IDSvc.getAll();
+	
 }
+
+if(request.getParameter("pagemessage")!=null){
+	 if(request.getParameter("pagemessage").equals("Traveling")){
+			list=list.stream()
+					.filter(p->p.getO_status()==1)
+					.collect(Collectors.toList());
+		}
+		else if(request.getParameter("pagemessage").equals("Finish")){
+			list=list.stream()
+					.filter(p->p.getO_status()==2)
+					.collect(Collectors.toList());
+			
+		}
+		else if(request.getParameter("pagemessage").equals("cancel")){
+			list=list.stream()
+					.filter(p->p.getO_status()==3)
+					.collect(Collectors.toList());	
+		}	
+}
+// if(request.getParameter("pagemessage")!=null){
+// 	 if(request.getAttribute("pagemessage").equals("Traveling")){
+// 			list=list.stream()
+// 					.filter(p->p.getO_status()==1)
+// 					.collect(Collectors.toList());
+// 		}
+// 		else if(request.getAttribute("pagemessage").equals("Finish")){
+// 			list=list.stream()
+// 					.filter(p->p.getO_status()==2)
+// 					.collect(Collectors.toList());
+			
+// 		}
+// 		else if(request.getAttribute("pagemessage").equals("Finish")){
+// 			list=list.stream()
+// 					.filter(p->p.getO_status()==3)
+// 					.collect(Collectors.toList());	
+// 		}	
+	
+// }
+
+
+
+
 
 pageContext.setAttribute("list",list);
 
-
-
-
 %>
-
 
 <!DOCTYPE html>
 <html>
@@ -34,6 +76,8 @@ pageContext.setAttribute("list",list);
 
 <meta charset="UTF-8">
 <title>所有訂單</title>
+<c:set var="pagemessage" value='<%=((String)request.getParameter("pagemessage"))==null?"":(String)request.getParameter("pagemessage") %>'/>
+
 <div id="ordertitle">
 		 <h3>以下是所有訂單:</h3>
 	 <%if(list.size()>1){ %>
@@ -59,6 +103,12 @@ pageContext.setAttribute("list",list);
 
 
 <!-- 以下內容 -->
+
+
+現在PAGEMESSAGE:${pagemessage}
+
+
+
     <table id="ordertable" class="ui red celled table">
 
 	<tr>
@@ -70,7 +120,6 @@ pageContext.setAttribute("list",list);
 		<th>總價</th>
 		<th>付款方式</th>
 		<th>查看訂單詳情</th>	
-		<th>修改</th>
 	</tr>
 	<jsp:useBean id="memberService" scope="request" class="com.member.model.MemberService"/>
 	<%@ include file="../file/page1.file" %> 
@@ -109,7 +158,7 @@ pageContext.setAttribute("list",list);
 			<td>
 			<!-- 茶愾訂單明細 -->
 			     <FORM METHOD="post" ACTION="OrderServlet.do" >
-			    <button class="ui right labeled  icon button"><i class="zoom in icon"></i> 查看更多 </button>
+			    <button class="ui right labeled  icon button"><i class="zoom in icon"></i> 查看明細 </button>
 			     
 			  <input type="hidden" name="order_no"  value="${ordervo.ido_no}">
 			  <input type="hidden" name="action" value="getorderdetail">
@@ -117,12 +166,12 @@ pageContext.setAttribute("list",list);
 			     </FORM>
 			
 			</td>
-			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/shop_order/OrderServlet.do" style="margin-bottom: 0px;">
-			     <input type="submit" value="修改">
-			     <input type="hidden" name="order_no"  value="${ordervo.ido_no}">
-			     <input type="hidden" name="action"	value="OrderUpdatepage"></FORM>
-			</td>
+<!-- 			<td> -->
+<%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/shop_order/OrderServlet.do" style="margin-bottom: 0px;"> --%>
+<!-- 			     <input type="submit" value="修改"> -->
+<%-- 			     <input type="hidden" name="order_no"  value="${ordervo.ido_no}"> --%>
+<!-- 			     <input type="hidden" name="action"	value="OrderUpdatepage"></FORM> -->
+<!-- 			</td> -->
 			<!-- 刪除 -->
 <!-- 			<td> -->
 <%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/shop_order/OrderServlet.do" style="margin-bottom: 0px;"  onSubmit="return CheckForm();" > --%>
@@ -139,7 +188,7 @@ pageContext.setAttribute("list",list);
 <!-- 			</td> -->
 			
 		  </tr>
-        <tr class="orseraddress"><td>地址:</td><td colspan="7">${ordervo.d_address}</td>
+        <tr class="orseraddress"><td>地址:</td><td colspan="6">${ordervo.d_address}</td>
                 <td>
                 <a href="<%=request.getContextPath() %>/back-end/Instant_order/Instant_delivery_orderServlet?action=cencelorder&ido_no=${ordervo.ido_no}">
                 <input class="ostatus"	type="hidden" name="" value="${ordervo.o_status}"/>
@@ -153,7 +202,7 @@ pageContext.setAttribute("list",list);
 	</c:forEach>
 </table>
 
-<%@ include file="../file/page2.file" %>
+<%@ include file="file/page2.file" %>
 
 
 

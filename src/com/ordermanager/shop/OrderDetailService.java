@@ -2,8 +2,8 @@ package com.ordermanager.shop;
 
 import java.util.List;
 
+import com.order_detail.model.Order_detailDAO;
 import com.order_detail.model.Order_detailDAO_interface;
-import com.order_detail.model.Order_detailJDBCDAO;
 import com.order_detail.model.Order_detailVO;
 import com.shop_order.model.Shop_orderJDBCDAO;
 import com.shop_order.model.Shop_orderVO;
@@ -13,7 +13,7 @@ public class OrderDetailService {
 	private Order_detailDAO_interface dao;
 
 	public OrderDetailService() {
-		dao = new Order_detailJDBCDAO();
+		dao = new Order_detailDAO();
 	}
 
 	// 新增?
