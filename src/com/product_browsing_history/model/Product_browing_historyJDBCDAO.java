@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 
 
@@ -112,7 +113,7 @@ public class Product_browing_historyJDBCDAO implements Product_browing_historyDA
 	}
 
 	@Override
-	public Set<Product_browing_historyVO> getmemberList(String member_id) {
+	public List<Product_browing_historyVO> getmemberList(String member_id) {
 		Set<Product_browing_historyVO> list = new LinkedHashSet<Product_browing_historyVO>();
 		Product_browing_historyVO VO = null;
 
@@ -166,7 +167,7 @@ public class Product_browing_historyJDBCDAO implements Product_browing_historyDA
 				}
 			}
 		}
-		return list;
+		return (List<Product_browing_historyVO>) list;
 		
 	}
 

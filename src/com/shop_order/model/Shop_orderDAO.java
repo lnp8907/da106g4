@@ -9,20 +9,16 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+import javax.sql.DataSource;
+
 import com.order_detail.model.Order_detailJDBCDAO;
 import com.order_detail.model.Order_detailVO;
 
 
 public class Shop_orderDAO implements Shop_orderDAO_interface{
-
-
-
-	//資料庫連結
-	String driver = "oracle.jdbc.driver.OracleDriver";
-	String url = "jdbc:oracle:thin:@localhost:1521:XE";
-	String userid = "DA106_G4";
-	String passwd = "DA106_G4";
-
 	private static final String INSERT_STMT =
 			"		INSERT INTO SHOP_ORDER (order_no,member_id,order_status,total,pay_type,dv_address) VALUES ('OR-'||to_CHAR(current_timestamp,'YYYY-MM-DD')||'-'||LPAD(to_char(SQ_ORDER_NO.NEXTVAL),6,'0'),?,? ,?, ?, ?)";
 		
@@ -34,13 +30,22 @@ public class Shop_orderDAO implements Shop_orderDAO_interface{
 		"DELETE FROM SHOP_ORDER where order_no = ? ";
 	private static final String UPDATE = 
 		"UPDATE SHOP_ORDER set order_status=?,dv_address=? where order_no = ?";
-	
+	private static final String UPDATESTATUS = 
+			"UPDATE SHOP_ORDER set order_status=? where order_no = ?";
 	private static final String UPDATETOTAL = 
 			"UPDATE SHOP_ORDER set  total=? where order_no = ?";
 	private static final String GetFRESH="select   order_no FROM shop_order  WHERE rownum = 1  ORDER BY order_no DESC";
 	private static final String GET_ONE_STMT_BYORDER = 
 			"SELECT order_no,member_id,order_status,order_time,total,pay_type,dv_address FROM SHOP_ORDER where member_id = ?";
-	
+	private static DataSource ds = null;
+	static {
+		try {
+			Context ctx = new InitialContext();
+			ds = (DataSource) ctx.lookup("java:comp/env/jdbc/DA106G4");
+		} catch (NamingException e) {
+			e.printStackTrace();
+		}
+	}
 	
 	public String getfresh() {
 		String no=null;
@@ -52,8 +57,7 @@ public class Shop_orderDAO implements Shop_orderDAO_interface{
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
 			pstmt = con.prepareStatement(GetFRESH);
 			    pstmt.executeUpdate();
 				rs = pstmt.executeQuery();
@@ -69,9 +73,6 @@ public class Shop_orderDAO implements Shop_orderDAO_interface{
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
 			// Clean up JDBC resources
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -103,8 +104,8 @@ public class Shop_orderDAO implements Shop_orderDAO_interface{
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
+
 			pstmt = con.prepareStatement(UPDATETOTAL);
 			
 	            pstmt.setInt(1, shop_ordervo.getTotal());
@@ -116,9 +117,6 @@ public class Shop_orderDAO implements Shop_orderDAO_interface{
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
 			// Clean up JDBC resources
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -146,8 +144,8 @@ public class Shop_orderDAO implements Shop_orderDAO_interface{
 	        PreparedStatement pstmt = null;
 
 	        try {
-	        	Class.forName(driver);
-				con = DriverManager.getConnection(url, userid, passwd);
+				con = ds.getConnection();
+
 				con.setAutoCommit(false);
 				String cols[] = {"order_no"};
 				pstmt = con.prepareStatement(INSERT_STMT,cols);
@@ -206,9 +204,6 @@ public class Shop_orderDAO implements Shop_orderDAO_interface{
 				throw new RuntimeException("A database error occured. "
 						+ se.getMessage());
 				// Clean up JDBC resources
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
 			} finally {
 	            if (pstmt != null) {
 	                try {
@@ -233,8 +228,8 @@ public class Shop_orderDAO implements Shop_orderDAO_interface{
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
+
 			pstmt = con.prepareStatement(UPDATE);
 			
 	            pstmt.setInt(1, shop_ordervo.getOrder_status());  
@@ -247,9 +242,6 @@ public class Shop_orderDAO implements Shop_orderDAO_interface{
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
 			// Clean up JDBC resources
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} finally {
 			if (pstmt != null) {
 				try {
@@ -276,13 +268,13 @@ public class Shop_orderDAO implements Shop_orderDAO_interface{
 
 		try {
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
+
 			pstmt = con.prepareStatement(DELETE);
 			pstmt.setString(1,order_no);
 			pstmt.executeUpdate();
 
-		} catch (SQLException | ClassNotFoundException se) {
+		} catch (SQLException se) {
 			throw new RuntimeException("並未刪除 "+ se.getMessage());
 		} finally {
 			if (pstmt != null) {
@@ -311,8 +303,8 @@ public class Shop_orderDAO implements Shop_orderDAO_interface{
 		ResultSet rs = null;
 
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
+
 			pstmt = con.prepareStatement(GET_ONE_STMT);
 			pstmt.setString(1, order_no);
 			rs = pstmt.executeQuery();
@@ -333,9 +325,6 @@ public class Shop_orderDAO implements Shop_orderDAO_interface{
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
 			// Clean up JDBC resources
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} finally {
 			if (rs != null) {
 				try {
@@ -372,9 +361,8 @@ public class Shop_orderDAO implements Shop_orderDAO_interface{
 		ResultSet rs = null;
 
 		try {
+			con = ds.getConnection();
 
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
 			pstmt = con.prepareStatement(GET_ALL_STMT);
 			rs = pstmt.executeQuery();
 
@@ -395,9 +383,6 @@ public class Shop_orderDAO implements Shop_orderDAO_interface{
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
 			// Clean up JDBC resources
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		} finally {
 			if (rs != null) {
 				try {
@@ -423,17 +408,6 @@ public class Shop_orderDAO implements Shop_orderDAO_interface{
 		}
 		return list;
 	}
-	public static void main(String[] args) {
-		Shop_orderJDBCDAO dao=new Shop_orderJDBCDAO();
-		List<Shop_orderVO> list=dao.getAll();
-
-		for(Shop_orderVO a:list) {
-			System.out.println(a.getOrder_no());
-		}
-	
-	
-	}
-
 
 	@Override
 	public List<Shop_orderVO> getOrderBYMEMBER(String member_id) {
@@ -445,8 +419,8 @@ public class Shop_orderDAO implements Shop_orderDAO_interface{
 		ResultSet rs = null;
 
 		try {
-			Class.forName(driver);
-			con = DriverManager.getConnection(url, userid, passwd);
+			con = ds.getConnection();
+
 			pstmt = con.prepareStatement(GET_ONE_STMT_BYORDER);
 			pstmt.setString(1, member_id);
 			rs = pstmt.executeQuery();
@@ -466,8 +440,6 @@ public class Shop_orderDAO implements Shop_orderDAO_interface{
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		} finally {
 			if (rs != null) {
 				try {
@@ -497,6 +469,45 @@ public class Shop_orderDAO implements Shop_orderDAO_interface{
 		
 		
 		
+	}
+
+
+	@Override
+	public void changestatus(Shop_orderVO shop_ordervo) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			con = ds.getConnection();
+
+			pstmt = con.prepareStatement(UPDATESTATUS);
+			
+	            pstmt.setInt(1, shop_ordervo.getOrder_status());  
+	            pstmt.setString(2, shop_ordervo.getOrder_no());
+			    pstmt.executeUpdate();
+
+			// Handle any SQL errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}		
 	}
 
 

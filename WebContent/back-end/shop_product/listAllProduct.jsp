@@ -8,84 +8,71 @@
 <%@ page import="java.util.stream.Collectors"%>
 
 
-<%        	Map<String ,Integer> typemap=new HashMap<>();
-        	typemap.put("all",0);
-        typemap.put("水果類",1);
-        typemap.put("肉類",2);
-        typemap.put("蔬菜類",3);
-        typemap.put("乳品類",4);
-        typemap.put("魚貝類",5);
-        typemap.put("菇類",6);
-        typemap.put("穀物類",7);
-        typemap.put("澱粉類",8);
-        typemap.put("酒類",9);
-        typemap.put("油脂類",8);
-        typemap.put("調味及香辛料類",9); 
-       	Map<Integer,String > typemapC=new HashMap<>();
-    	typemapC.put(0,"all");
-    typemapC.put(1,"水果類");
-    typemapC.put(2,"肉類");
-    typemapC.put(3,"蔬菜類");
-    typemapC.put(4,"乳品類");
-    typemapC.put(5,"魚貝類");
-    typemapC.put(6,"菇類");
-    typemapC.put(7,"穀物類");
-    typemapC.put(8,"澱粉類");
-    typemapC.put(9,"酒類");
-    typemapC.put(10,"油脂類");
-    typemapC.put(11,"調味及香辛料類");  
-        
-        
-        
-        
-        %>
+<%
+	Map<String, Integer> typemap = new HashMap<>();
+	typemap.put("all", 0);
+	typemap.put("水果類", 1);
+	typemap.put("肉類", 2);
+	typemap.put("蔬菜類", 3);
+	typemap.put("乳品類", 4);
+	typemap.put("魚貝類", 5);
+	typemap.put("菇類", 6);
+	typemap.put("穀物類", 7);
+	typemap.put("澱粉類", 8);
+	typemap.put("酒類", 9);
+	typemap.put("油脂類", 8);
+	typemap.put("調味及香辛料類", 9);
+	Map<Integer, String> typemapC = new HashMap<>();
+	typemapC.put(0, "all");
+	typemapC.put(1, "水果類");
+	typemapC.put(2, "肉類");
+	typemapC.put(3, "蔬菜類");
+	typemapC.put(4, "乳品類");
+	typemapC.put(5, "魚貝類");
+	typemapC.put(6, "菇類");
+	typemapC.put(7, "穀物類");
+	typemapC.put(8, "澱粉類");
+	typemapC.put(9, "酒類");
+	typemapC.put(10, "油脂類");
+	typemapC.put(11, "調味及香辛料類");
+%>
 <%
 	ProductService Psvc = new ProductService();
-List<ProductVO> list = Psvc.getAllProduct();
-String product_type ="0";
-if(request.getAttribute("product_type")!=null){
-	if(((String)request.getAttribute("product_type")).equals("all")){	
-		list = Psvc.getAllProduct();
-		list=list.stream().filter(p->p.getProduct_status()!=2).collect(Collectors.toList());
-		product_type="0";
+	List<ProductVO> list = Psvc.getAllProduct();
+	String product_type = "0";
+	if (request.getAttribute("product_type") != null) {
+		if (((String) request.getAttribute("product_type")).equals("all")) {
+			list = Psvc.getAllProduct();
+			list = list.stream().filter(p -> p.getProduct_status() != 2).collect(Collectors.toList());
+			product_type = "0";
 
-	}
-	else{
-	 final String product_type2=(String)request.getAttribute("product_type");
-	list=list.stream()
-			.filter(p->p.getProduct_type().equals(product_type2))
-			.collect(Collectors.toList());
-			product_type=typemap.get((String)request.getAttribute("product_type"))+"";
+		} else {
+			final String product_type2 = (String) request.getAttribute("product_type");
+			list = list.stream().filter(p -> p.getProduct_type().equals(product_type2))
+					.collect(Collectors.toList());
+			product_type = typemap.get((String) request.getAttribute("product_type")) + "";
 
-
-	}
-}
-
-	
-	
-	if(request.getParameter("product_typeA")!=null){
-		Integer key=Integer.valueOf(request.getParameter("product_typeA"));
-		
-		if(key!=0){
-			product_type=key+"";
-			 final String product_type3=typemapC.get(key);
-				list=list.stream()
-						.filter(p->p.getProduct_type().equals(product_type3))
-						.collect(Collectors.toList());
-			
 		}
-		else{
-			product_type="0";
+	}
+
+	if (request.getParameter("product_typeA") != null) {
+		Integer key = Integer.valueOf(request.getParameter("product_typeA"));
+
+		if (key != 0) {
+			product_type = key + "";
+			final String product_type3 = typemapC.get(key);
+			list = list.stream().filter(p -> p.getProduct_type().equals(product_type3))
+					.collect(Collectors.toList());
+
+		} else {
+			product_type = "0";
 
 			list = Psvc.getAllProduct();
 
-			
-			
 		}
-		
+
 	}
-	
-			
+
 	pageContext.setAttribute("Bprodcutlist", list);
 %>
 
@@ -93,9 +80,9 @@ if(request.getAttribute("product_type")!=null){
 <html>
 <head>
 <meta charset="UTF-8">
-<c:set var="typemap" value="<%=typemap %>" scope="session" />
-<c:set var="typemapC" value="<%=typemapC %>" scope="session" />
-<c:set var="product_type" value="<%=product_type %>" scope="request" />
+<c:set var="typemap" value="<%=typemap%>" scope="session" />
+<c:set var="typemapC" value="<%=typemapC%>" scope="session" />
+<c:set var="product_type" value="<%=product_type%>" scope="request" />
 
 <title>所有商品處理頁面</title>
 </head>
@@ -120,41 +107,36 @@ if(request.getAttribute("product_type")!=null){
 		</div>
 		<!-- 卡片內容上方留白的結束標籤 -->
 	</div>
-	
-類型....${product_type}
+
+	類型....${product_type}
 
 	<select class="product_type">
-    <option value ="all"${product_type eq '0'?'selected':''} >所有商品</option>
-    <option value ="水果類" ${product_type eq'1'?'selected':''} >水果類</option>
-    <option value="肉類" ${product_type eq'2'?'selected':''}>肉類</option>
-    <option value="蔬菜類" ${product_type eq'3'?'selected':''}>蔬菜類</option>
-    <option value ="乳品類" ${product_type eq'4'?'selected':''}>乳品類</option>
-    <option value="魚貝類" ${product_type eq'5'?'selected':''}>魚貝類</option>
-    <option value="菇類" ${product_type eq'6'?'selected':''}>菇類</option>
-    <option value ="穀物類"${product_type eq'7'?'selected':''}>穀物類</option>
-    <option value="澱粉類"${product_type eq'8'?'selected':''}>澱粉類</option>
-    <option value="酒類" ${product_type eq'9'?'selected':''}>酒類</option>
-    <option value ="油脂類"${product_type eq'10'?'selected':''}>油脂類</option>
-    <option value="調味及香辛料類" ${product_type eq'11'?'selected':''}>調味及香辛料類</option>
-</select>
-<form action="ShopPageServlet" method="post">
-    <input type="hidden" name="product_type" class="producttype">
-<input type="hidden" name="action" value="typeselect">
-    <input type="submit" style="display: none" class="producttypebtn">
+		<option value="all" ${product_type eq '0'?'selected':''}>所有商品</option>
+		<option value="水果類" ${product_type eq'1'?'selected':''}>水果類</option>
+		<option value="肉類" ${product_type eq'2'?'selected':''}>肉類</option>
+		<option value="蔬菜類" ${product_type eq'3'?'selected':''}>蔬菜類</option>
+		<option value="乳品類" ${product_type eq'4'?'selected':''}>乳品類</option>
+		<option value="魚貝類" ${product_type eq'5'?'selected':''}>魚貝類</option>
+		<option value="菇類" ${product_type eq'6'?'selected':''}>菇類</option>
+		<option value="穀物類" ${product_type eq'7'?'selected':''}>穀物類</option>
+		<option value="澱粉類" ${product_type eq'8'?'selected':''}>澱粉類</option>
+		<option value="酒類" ${product_type eq'9'?'selected':''}>酒類</option>
+		<option value="油脂類" ${product_type eq'10'?'selected':''}>油脂類</option>
+		<option value="調味及香辛料類" ${product_type eq'11'?'selected':''}>調味及香辛料類</option>
+	</select>
+	<form action="ShopPageServlet" method="post">
+		<input type="hidden" name="product_type" class="producttype">
+		<input type="hidden" name="action" value="typeselect"> <input
+			type="submit" style="display: none" class="producttypebtn">
 
-</form>
+	</form>
 	<script>
-
-    $(".product_type").change(function(){
-        var opt=$(".product_type").val();
-        $(".producttype").val(opt);
-        $(".producttypebtn").click();
-    });
-
-
-
-
-</script>
+		$(".product_type").change(function() {
+			var opt = $(".product_type").val();
+			$(".producttype").val(opt);
+			$(".producttypebtn").click();
+		});
+	</script>
 	<div class="grid">
 		<!-- 卡片內容起始標籤 -->
 		<table class="ui selectable celled table">
@@ -172,12 +154,12 @@ if(request.getAttribute("product_type")!=null){
 
 				</tr>
 				<%@ include file="../file/page1.file"%>
-						<c:set var="whichPage" value="<%=whichPage %>" scope="request"/>
-				
+				<c:set var="whichPage" value="<%=whichPage%>" scope="request" />
+
 			</thead>
 			<tbody id="ProductContext">
-				<c:forEach var="productvo" items="${Bprodcutlist}" begin="<%=pageIndex%>"
-					end="<%=pageIndex+rowsPerPage-1%>">
+				<c:forEach var="productvo" items="${Bprodcutlist}"
+					begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 
 					<tr>
 						<td><img width=80px height=70px
@@ -224,14 +206,15 @@ if(request.getAttribute("product_type")!=null){
 							<!-- 詳細頁面 -->
 							<FORM METHOD="post" ACTION="ProductServlet"
 								style="margin-bottom: 0px;">
+
 								<input type="submit" value="查看更多"> <input type="hidden"
 									name="product_id" value="${productvo.product_id}"> <input
 									type="hidden" name="action" value="detailopen"> <input
 									type="hidden" name="whichPage" value="<%=whichPage%>">
-<input type="hidden"
-									name="product_type" value="${productvo.product_type}">
-<input type="hidden"
+								<input type="hidden" name="product_type"
+									value="${productvo.product_type}"> <input type="hidden"
 									name="fproduct_type" value="${product_type}">
+
 							</FORM>
 						</td>
 
@@ -239,12 +222,15 @@ if(request.getAttribute("product_type")!=null){
 							<!-- 修改 -->
 							<FORM METHOD="post" ACTION="ProductServlet"
 								style="margin-bottom: 0px;">
+
 								<input class="updateproduct" type="submit" value="修改"> <input
 									type="hidden" class="inputid" name="product_id"
 									value="${productvo.product_id}"> <input type="hidden"
-									name="action" value="upateopen">
-									<input type="hidden" name="whichPage" value="${whichPage}">
-									
+									name="action" value="upateopen"> <input type="hidden"
+									name="whichPage" value="${whichPage}"> <input
+									type="hidden" name="product_type"
+									value="${productvo.product_type}"> <input type="hidden"
+									name="fproduct_type" value="${product_type}">
 							</FORM>
 						</td>
 						<c:set var="id" value="${productvo.product_id}" />
