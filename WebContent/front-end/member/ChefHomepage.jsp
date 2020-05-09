@@ -7,20 +7,21 @@
 <%@ page import="com.member.model.*"%>
 
 <%
-	String member_id = (String) session.getAttribute("member_id");
-
-	MemberService memberSvc = new MemberService();
-	MemberVO membervo = memberSvc.getOneMember(member_id);
 	MemberVO membervo1 =(MemberVO) session.getAttribute("memberVO");
-	String member_name = (String) session.getAttribute("member_name");
+
+// 	String member_id = membervo1.getMember_id();
+// 	MemberService memberSvc = new MemberService();
+// 	MemberVO membervo = memberSvc.getOneMember(member_id);
+
 
 	MemberService pSvc = new MemberService();
 	List<MemberVO> list = pSvc.getAll();
 	pageContext.setAttribute("list", list);
 
-	out.println(member_name);
-	out.println(member_id);
+
+// 	out.println(membervo1);
 	pageContext.setAttribute("member_status", membervo1.getMember_status());
+	request.setAttribute("member_name", membervo1.getMember_name());
 %>
 
 <!DOCTYPE html>
@@ -1697,17 +1698,14 @@ hr {
 
 
 
-
-
-
 			<!-- 			<div class="function-list"> -->
 			<a href="#"></a>
 			<!-- 				<div class="member-center"> -->
 			<div class="herder-icon-span">
-				<span class="member-center-spann">HI，<%=session.getAttribute("member_name")%></span>
+				<span class="member-center-spann">HI，<%=membervo1.getMember_name() %></span>
 			</div>
 			<%--                         <span class="member-center-spann">HI，<%=session.getAttribute("member_name") %></span> --%>
-			<!-- 				</div> -->
+			<!-- 				</div> -->          
 			</a>
 			<!-- 			</div> -->
 
@@ -1912,14 +1910,14 @@ hr {
 						<tr>
 							<td>會員姓名:</td>
 
-							<td><%=membervo.getMember_name()%> <!-- (max 30 characters a-z and A-Z) -->
+							<td><%=membervo1.getMember_name()%> <!-- (max 30 characters a-z and A-Z) -->
 							</td>
 						</tr>
 
 						<!----- Last Name ---------------------------------------------------------->
 						<tr>
 							<td>會員帳號:</td>
-							<td><%=membervo.getAccount()%></td>
+							<td><%=membervo1.getAccount()%></td>
 						</tr>
 
 					
@@ -2069,8 +2067,9 @@ B.A
 					<br> <input type="hidden" name="action" value="updateToChef">
 
 					<input type="hidden" name="member_id"
-						value="<%=session.getAttribute("member_id")%>"> <input
-						type="hidden" name="account" value="${membervo.member_photo}">
+						value="<%=session.getAttribute("member_id")%>"> 
+						<input type="hidden" name="member_name"
+						value="<%=membervo1.getMember_name()%>"> 
 			</form>
 			</div>
 
@@ -2195,7 +2194,7 @@ B.A
  <img src=DBGifReader4.do?photo_type=mempic&member_id=<%=session.getAttribute("member_id")%> id="preview_progressbarTW_img" width=129px height=129px;/>
 </div>
 </div>
-          <h2><%=membervo.getMember_name()%></h2>
+          <h2><%=membervo1.getMember_name()%></h2>
 
           <div class="link-top"></div>
 

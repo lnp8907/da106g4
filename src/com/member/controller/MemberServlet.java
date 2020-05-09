@@ -139,8 +139,8 @@ System.out.println(memberVO.getPassword());
 				
 				/***************************2.開始查詢資料*****************************************/
 				MemberService memberSvc = new MemberService();
-				MemberVO membervo = memberSvc.getOneMember(member_id);
-				if (membervo == null) {
+				MemberVO memberVO = memberSvc.getOneMember(member_id);
+				if (memberVO == null) {
 					errorMsgs.add("查無資料");
 				}
 				// Send the use back to the form, if there were errors
@@ -152,7 +152,7 @@ System.out.println(memberVO.getPassword());
 				}
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
-				req.setAttribute("membervo", membervo); // 資料庫取出的empVO物件,存入req
+				req.setAttribute("memberVO", memberVO); // 資料庫取出的empVO物件,存入req
 				//String url = "/back-end/member/listOneMember.jsp";
 				
 				//String url = "/back-end/member/memberPage.jsp?whichPage=" + whichPage;
@@ -215,8 +215,8 @@ System.out.println(memberVO.getPassword());
 				
 				/***************************2.開始查詢資料*****************************************/
 				MemberService memberSvc = new MemberService();
-				MemberVO membervo = memberSvc.getOneMember(member_id);
-				if (membervo == null) {
+				MemberVO memberVO = memberSvc.getOneMember(member_id);
+				if (memberVO == null) {
 					errorMsgs.add("查無資料");
 				}
 				// Send the use back to the form, if there were errors
@@ -228,7 +228,7 @@ System.out.println(memberVO.getPassword());
 				}
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
-				req.setAttribute("membervo", membervo); // 資料庫取出的empVO物件,存入req
+				req.setAttribute("memberVO", memberVO); // 資料庫取出的empVO物件,存入req
 				//String url = "/back-end/member/listOneMember.jsp";
 				
 				//String url = "/back-end/member/memberPage.jsp?whichPage=" + whichPage;
@@ -483,8 +483,8 @@ if ("update2".equals(action)) {
 			    
 			    /***************************2.開始查詢資料*****************************************/
 			    MemberService memberSvc = new MemberService();
-			    MemberVO membervo = memberSvc.getOneMember(member_id);
-			    if (membervo == null) {
+			    MemberVO memberVO = memberSvc.getOneMember(member_id);
+			    if (memberVO == null) {
 			     errorMsgs.add("查無資料");
 			    }
 			    // Send the use back to the form, if there were errors
@@ -496,7 +496,7 @@ if ("update2".equals(action)) {
 			    }
 			    
 			    /***************************3.查詢完成,準備轉交(Send the Success view)*************/
-			    req.setAttribute("membervo", membervo); // 資料庫取出的empVO物件,存入req
+			    req.setAttribute("memberVO", memberVO); // 資料庫取出的empVO物件,存入req
 			    String url = "/back-end/member/listOneMember.jsp";
 			    RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 			    successView.forward(req, res);
@@ -581,7 +581,7 @@ if ("update2".equals(action)) {
 				}
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
-				req.setAttribute("membervo", memberVO); // 資料庫取出的empVO物件,存入req
+				req.setAttribute("memberVO", memberVO); // 資料庫取出的empVO物件,存入req
 //				String url = "/front-end/member/update_by_self.jsp";
 				System.out.println("E04");
 //				String url = "/front-end/member/member4include.jsp";
@@ -938,8 +938,8 @@ System.out.println("location="+location);
 				
 				/***************************2.開始查詢資料*****************************************/
 				MemberService memberSvc = new MemberService();
-				MemberVO membervo = memberSvc.getOneMember(member_id);
-				if (membervo == null) {
+				MemberVO memberVO = memberSvc.getOneMember(member_id);
+				if (memberVO == null) {
 					errorMsgs.add("查無資料");
 				}
 				// Send the use back to the form, if there were errors
@@ -951,7 +951,7 @@ System.out.println("location="+location);
 				}
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
-				req.setAttribute("membervo", membervo); // 資料庫取出的empVO物件,存入req
+				req.setAttribute("memberVO", memberVO); // 資料庫取出的empVO物件,存入req
 				//String url = "/back-end/member/listOneMember.jsp";
 				
 				String url = "/back-end/member/memberPage.jsp?whichPage=" + whichPage;
@@ -996,7 +996,7 @@ System.out.println("location="+location);
 //				MemberVO memberVO = memberSvc.getOneMember(member_id);
 //								
 //				/***************************3.查詢完成,準備轉交(Send the Success view)************/
-//				req.setAttribute("membervo", memberVO);         // 資料庫取出的empVO物件,存入req
+//				req.setAttribute("memberVO", memberVO);         // 資料庫取出的empVO物件,存入req
 //				String url = "/back-end/member/Upgrade_to_chef.jsp";
 //				RequestDispatcher successView = req.getRequestDispatcher(url);// 成功轉交 update_emp_input.jsp
 //				successView.forward(req, res);
@@ -1051,8 +1051,8 @@ System.out.println("location="+location);
 				
 				/***************************2.開始查詢資料*****************************************/
 				MemberService memberSvc = new MemberService();
-				MemberVO membervo = memberSvc.getOneMember(member_id);
-				if (membervo == null) {
+				MemberVO memberVO = memberSvc.getOneMember(member_id);
+				if (memberVO == null) {
 					errorMsgs.add("查無資料");
 				}
 				// Send the use back to the form, if there were errors
@@ -1064,7 +1064,7 @@ System.out.println("location="+location);
 				}
 				
 				/***************************3.查詢完成,準備轉交(Send the Success view)*************/
-				req.setAttribute("membervo", membervo); // 資料庫取出的empVO物件,存入req
+				req.setAttribute("memberVO", memberVO); // 資料庫取出的empVO物件,存入req
 				String url = "/back-end/member/Upgrade_to_chef.jsp";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
 				successView.forward(req, res);
@@ -1169,7 +1169,7 @@ System.out.println("location="+location);
 				
 
 
-				MemberVO membervo= new MemberVO();
+				MemberVO memberVO= new MemberVO();
 				
 				
 				
@@ -1177,19 +1177,12 @@ System.out.println("location="+location);
 				
 				
 				
-				membervo.setAccount(account);
-				membervo.setPassword(password);
-				membervo.setEmail(email);
+				memberVO.setAccount(account);
+				memberVO.setPassword(password);
+				memberVO.setEmail(email);
 				
-				
-				
-				
-				
-				
+			
 
-				
-				
-		
 				
 				
 				
@@ -1199,7 +1192,7 @@ System.out.println("location="+location);
 				
 				
 				if (!errorMsgs.isEmpty()) {
-				//	req.setAttribute("membervo", membervo);
+				//	req.setAttribute("memberVO", memberVO);
 				
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/index.jsp");
@@ -1302,27 +1295,27 @@ System.out.println("location="+location);
 			req.setAttribute("errorMsgs", errorMsgs);
 		
      		try {
+     		
+//     			MemberVO memberVO= (MemberVO)req.getSession().getAttribute("memberVO");
 				/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 				//類型用下拉試選單
      			String member_id = req.getParameter("member_id");
 			
 				
 				System.out.println(member_id);
-				
+//				String member_name = session.getParameter("member_name");
 				String member_name = req.getParameter("member_name");
 			
 				System.out.println(member_name);
 				
 				
-				String account =new String(req.getParameter("account").trim());
+				String account =req.getParameter("account");
 				
 				
 				
 				System.out.println(account);
 				
-				
-				
-				
+		
 				Integer chiefapply_status = null;
 //				try {
 					
@@ -1335,13 +1328,7 @@ System.out.println("location="+location);
 //					chiefapply_status=0;
 //				}
 				
-				
-				
-			
-				
-				
-				
-				
+
 					byte[] license = null;
 					Part filePart2 = req.getPart("license");
 					try {
@@ -1378,7 +1365,7 @@ System.out.println("location="+location);
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					System.out.println("123");
-					req.setAttribute("membervo", memberVO);// 含有輸入格式錯誤的empVO物件,也存入req
+					req.setAttribute("memberVO", memberVO);// 含有輸入格式錯誤的empVO物件,也存入req
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/back-end/member/Upgrade_to_chef.jsp");
 					System.out.println("123");
@@ -1407,10 +1394,10 @@ System.out.println("location="+location);
 				                                            //第4個參數，填0 !!!!!!
 	
 				
-				memberVO = memberSvc.update_To_Chef(member_id, account, member_name, license, chiefapply_status);
+				memberVO = memberSvc.update_To_Chef(member_id, license, chiefapply_status);
 //				memberVO = memberSvc.update(password, member_name,member_address);
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
-//				req.setAttribute("membervo", memberVO); // 資料庫update成功後,正確的的empVO物件,存入req
+//				req.setAttribute("memberVO", memberVO); // 資料庫update成功後,正確的的empVO物件,存入req
 //				req.setAttribute("state", "sucess");
 				String url = req.getContextPath()+"/front-end/member/TestMemberHomepage.jsp?state=sucess";
 //				RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
@@ -1467,8 +1454,8 @@ System.out.println("location="+location);
 			
 			/***************************2.開始查詢資料*****************************************/
 			MemberService memberSvc = new MemberService();
-			MemberVO membervo = memberSvc.getOneMember(member_id);
-			if (membervo == null) {
+			MemberVO memberVO = memberSvc.getOneMember(member_id);
+			if (memberVO == null) {
 				errorMsgs.add("查無資料");
 			}
 			// Send the use back to the form, if there were errors
@@ -1480,7 +1467,7 @@ System.out.println("location="+location);
 			}
 			
 			/***************************3.查詢完成,準備轉交(Send the Success view)*************/
-			req.setAttribute("membervo", membervo); // 資料庫取出的empVO物件,存入req
+			req.setAttribute("memberVO", memberVO); // 資料庫取出的empVO物件,存入req
 //			String url = "/front-end/member/update_by_self.jsp";
 			
 //			String url = "/front-end/member/member4include.jsp";
@@ -1518,29 +1505,11 @@ System.out.println("location="+location);
 		/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 		//類型用下拉試選單
 			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
+	
 			
 			String member_id = req.getParameter("member_id");
 			System.out.println(member_id);
-		
 
-		
-		
-		
 		
 		String member_name = req.getParameter("member_name");
 		String enameReg = "^[(\\u4e00-\\u9fa5)(a-zA-Z0-9)]{2,10}$";
@@ -1550,18 +1519,7 @@ System.out.println("location="+location);
 			errorMsgs.add("會員姓名: 只能是中、英文字母、數字 , 且長度必需在2到10之間");
         }
 		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-	
+
 		System.out.println(member_name);
 		
 		
@@ -1613,14 +1571,7 @@ System.out.println("location="+location);
 			errorMsgs.add("EMAIL格是不正確");
 		}
 		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		
 		System.out.println(email);
 			
@@ -1632,12 +1583,7 @@ System.out.println("location="+location);
 			errorMsgs.add("生日請輸入日期!");
 		}
 		System.out.println(birthday);
-		
-		
-		
-		
-		
-		
+
 		String cellphone = req.getParameter("cellphone");
 		String phoneReg = "^[(0-9)]{10}$";
 		if (cellphone == null || cellphone.trim().length() == 0) {
@@ -1646,15 +1592,7 @@ System.out.println("location="+location);
 			errorMsgs.add("電話: 只能是數字且長度");
 		}
 		
-		
-		
-		
-		
-		
-		
-	
-		
-		
+
 		System.out.println(cellphone);
 		
 		
@@ -1675,12 +1613,7 @@ System.out.println("location="+location);
 		
 		System.out.println(gender);
 		
-		
-		
-		
-		
-		
-		
+
 		String member_address = req.getParameter("member_address");
 		String dv_addressameReg = "^[(\u4e00-\u9fa5)(a-zA-Z0-9_)]{5,15}$";
 		if (member_address == null || member_address.trim().length() == 0) {
@@ -1729,7 +1662,7 @@ System.out.println("location="+location);
 		// Send the use back to the form, if there were errors
 		if (!errorMsgs.isEmpty()) {
 			System.out.println("123");
-			req.setAttribute("membervo", memberVO);// 含有輸入格式錯誤的empVO物件,也存入req
+			req.setAttribute("memberVO", memberVO);// 含有輸入格式錯誤的empVO物件,也存入req
 			RequestDispatcher failureView = req
 					.getRequestDispatcher("/front-end/member/TestMemberHomepage.jsp");
 			System.out.println("123");
@@ -1743,8 +1676,13 @@ System.out.println("location="+location);
 		System.out.println(member_id+ member_name+ account+ password+ email+ birthday+ cellphone+ gender+ member_address+ member_photo);
 		memberVO = memberSvc.update_by_self(member_id, member_name, account, password, email, birthday, cellphone, gender, member_address, member_photo);
 		System.out.println("144444444444444423");
+	
 		/***************************3.修改完成,準備轉交(Send the Success view)*************/
-		req.setAttribute("membervo", memberVO); // 資料庫update成功後,正確的的empVO物件,存入req
+		
+		memberVO = memberSvc.getOneMember(member_id);				
+		HttpSession session=req.getSession();
+		System.out.println(memberVO);
+		session.setAttribute("memberVO", memberVO); // 資料庫update成功後,正確的的empVO物件,存入req
 		String url = "/front-end/member/TestMemberHomepage.jsp";
 		RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 		successView.forward(req, res);

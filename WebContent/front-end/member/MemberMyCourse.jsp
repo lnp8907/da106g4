@@ -6,6 +6,7 @@
 <%@ page import="java.util.*"%>
 <%@ page import="com.member.model.*"%>
 <%@ page import="com.course.model.*"%>
+<%@ page import="com.mycourse.model.*"%>
 <%
 String member_id =(String) session.getAttribute("member_id");
 
@@ -31,14 +32,20 @@ String member_name =(String) session.getAttribute("member_name");
 	
 	
 	CourseService courseService = new CourseService();
+	MyCourseService mycourseService = new MyCourseService();
 	List<CourseVO> list = courseService.getChefCourse(member_id);
+	List<MycourseVO> list2 = mycourseService.findJoingCourseByPrimaryKey(member_id);
 // List<CourseVO> list = courseService.getAll();
 	pageContext.setAttribute("list", list);
 	
+	pageContext.setAttribute("list2", list2);
 	
+
+	MemberVO membervo1 =(MemberVO) session.getAttribute("memberVO");
+	pageContext.setAttribute("member_status", membervo1.getMember_status());
 	
-	
-	
+
+
 	
 	
 	
@@ -76,8 +83,7 @@ String member_name =(String) session.getAttribute("member_name");
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../course/courseCSS/courseList.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../course/courseCSS/courseList.css">
+
 <link rel="stylesheet" type="text/css"
 	href="<%=request.getContextPath()%>/datetimepicker/jquery.datetimepicker.css" />
 <script src="<%=request.getContextPath()%>/datetimepicker/jquery.js"></script>
@@ -1966,44 +1972,30 @@ margin:0 3px;
 			
 			<div class="recipe-main-list">
 		<div class="recipe-main-list-header">
-			<h3>所有食譜清單</h3>
+			<h3>所有課程清單</h3>
 			<span><%@ include file="page1.file"%></span>
 		</div>
 		<ul class="course=list">
-			<c:forEach var="CourseVO" items="${list}" begin="<%=pageIndex%>"
+		<jsp:useBean id="courseSvc" scope="page"
+									class="com.course.model.CourseService" />
+			<c:forEach var="MycourseVO" items="${list2}" begin="<%=pageIndex%>"
 				end="<%=pageIndex+rowsPerPage-1%>">
+			
 				<li class="recipe-item"><img
-					src="<%=request.getContextPath()+"/front-end/course/photo?course_id="%>${CourseVO.course_id}"
+					src="<%=request.getContextPath()+"/front-end/course/photo?course_id="%>${MycourseVO.course_id}"
 					alt="">
 					<div class="recipe-item-caption">
 						<div class="recipe-item-caption-header">
 							<h4 class="recipe-item-tile">
 								<a class="show-one-link"
-									href="<%=request.getContextPath()%>/front-end/course/CourseServlet?action=getOne_For_Display&course_id=${CourseVO.course_id}">${CourseVO.course_name}</a>
+									href="<%=request.getContextPath()%>/front-end/course/CourseServlet?action=getOne_For_Display&course_id=${MycourseVO.course_id}">${courseSvc.getOneCourse(MycourseVO.course_id).course_name}</a>
 							</h4>
-							<FORM METHOD="post"
-								ACTION="<%=request.getContextPath()%>/front-end/course/CourseServlet"
-								style="margin-bottom: 0px;">
-								<button class="update" value="修改">
-									<img src="../../image/icon/update.png" title="修改" alt="修改">
-								</button>
-								<input type="hidden" name="course_id"
-									value="${CourseVO.course_id}"> <input type="hidden"
-									name="action" value="getOne_For_Update">
-							</FORM>
-							<FORM METHOD="post"
-								ACTION="<%=request.getContextPath()%>/front-end/course/CourseServlet"
-								style="margin-bottom: 0px;">
-								<button class="delete" value="刪除">
-									<img src="../../image/icon/delete.png" title="刪除" alt="刪除">
-								</button>
-								<input type="hidden" name="course_id"
-									value="${CourseVO.course_id}"> <input type="hidden"
-									name="action" value="delete">
-							</FORM>
+							
+							
 						</div>
-						<p class="recipe-create-time">開課時間:${CourseVO.course_start}<fmt:formatDate value="${CourseVO.course_start}" pattern="yyyy/MM/dd HH:mm" /></p>
-						<p class="recipe-item-ingredient">課程價格：${CourseVO.course_price}</p>
+						<p class="recipe-create-time">開課時間:<fmt:formatDate
+								value="${MycourseVO.create_time}" pattern="yyyy/MM/dd HH:mm" /></p>
+						<p class="recipe-item-ingredient">課程價格：${MycourseVO.pay_price}</p>
 					</div></li>
 			</c:forEach>
 		</ul>
@@ -2650,17 +2642,7 @@ if(state=="sucess"){
 	</script>
 
 
-	<script>
-		$('.delete').click(function() {
-			if (window.confirm('你確定要刪除嗎?')) {
-				return;
-			} else {
-				//關閉預設行為
-				event.preventDefault();
-			}
 
-		});
-	</script>
 
 
 
