@@ -38,6 +38,7 @@ public class Update_StreamServlet extends HttpServlet {
 			Integer lsViewNum = (Integer)session.getAttribute("lsViewNum");
 			LsService LiveStreamSvs = new LsService();
 			Integer status = 3; //直播結束狀態為3
+			System.out.println("lsViewNum:"+lsViewNum);
 			LiveStreamSvs.updateAfterOnline(livestream_id,blob,lsViewNum,status);
 			
 			session.removeAttribute("livestream_id");

@@ -869,8 +869,8 @@ System.out.println("location="+location);
 			}
 			if(code.equals(redisCode)) {
 				
-				errorMsgs.add("驗證碼成功");
-				req.setAttribute("errorMsgs", errorMsgs);
+//				errorMsgs.add("驗證碼成功");
+//				req.setAttribute("errorMsgs", errorMsgs);
 				
 				Integer validation = 1;
 		
@@ -886,8 +886,9 @@ System.out.println("location="+location);
 				
 				
 				
-				RequestDispatcher successView = req.getRequestDispatcher("/front-end/member/checkCode.jsp?email=" + email);
-				successView.forward(req, res);
+				//RequestDispatcher successView = req.getRequestDispatcher("");
+				res.sendRedirect("https://da106g4.tk/DA106_G4_Foodporn_Git/index.jsp");
+				//successView.forward(req, res);
 				
 				
 			}else {

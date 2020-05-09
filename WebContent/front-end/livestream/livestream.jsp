@@ -21,7 +21,7 @@
 	if(memberVO==null){
     	 clientID="Anonymous"+(++count);		
 	}else{
-		if(memberVO.getChiefapply_status()==1){
+		if(memberVO.getMember_status()==1){
 	 LivestreamVO livestreamVO=lsService.getLatestOneLs(memberVO.getMember_id());
      hostID = memberVO.getNickname();
      session.setAttribute("hostID", hostID);
@@ -29,7 +29,7 @@
     	 livestream_id = livestreamVO.getLivestream_id();
     	 session.setAttribute("livestream_id", livestream_id);
      }
-     session.setAttribute("livestream_id", hostID); 
+     session.setAttribute("hostID", hostID); 
 		}else{
 			clientID = memberVO.getNickname();			
 		}
@@ -445,6 +445,7 @@ border:none;
 }
 #videos-container{
     text-align: center;
+    margin-top: 90px;
 }
 .dona-items-card img{
     width: 87%;
@@ -761,7 +762,7 @@ display:none;
 								<option>Only Audio</option>
 							</select> 
 							<input type="text" id="broadcast-name" class="broadcast-name" value="${hostID}">
-							<button id="setup-new-broadcast" onclick="beOnline();">啟動新視頻</button>
+							<button id="setup-new-broadcast">啟動新視頻</button>
 						</section>
 						<!-- list of all available broadcasting rooms --><br>
 						<table style="width: 100%;" id="rooms-list"></table>
@@ -1267,7 +1268,7 @@ recordVideo.className = recordVideo.className.replace('stop-recording-video sele
              function creatQueryString(paramGrade, paramClass){
                     document.querySelector('button#record').disabled = true;       		 	
         		 	var lsViewNum=$("#lsViewNum").val();
-        			var queryString= {"action":"updateAfterOnline", "livestream_id":${livestream_id}, "lsViewNum":lsViewNum,"member_id":${memberVO.member_id} };
+        			var queryString= {"action":"updateAfterOnline", "livestream_id":${livestream_id}, "lsViewNum":lsViewNum,"member_id":lsViewNum };
         			return queryString;
         	 }
 
@@ -1298,7 +1299,39 @@ recordVideo.className = recordVideo.className.replace('stop-recording-video sele
           };
           console.log('Using media constraints:', constraints);
           await init(constraints);
+          beOnline();
         });
+        
+        
+        var beOnline = function(){
+        	console.log('beOnline');
+			$.ajax({
+				type : "POST",
+				url : "<%=request.getContextPath()%>/AjaxResponse",
+				data : {
+					"action" : "beOnline",	"member_id" :${memberVO.member_id},  "livestream_id":${livestream_id}},
+				dataType : "json",
+				success : function(data) {
+				
+				},
+				error : function() {
+					
+				}
+			});
+	}
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
 </script>
 
 <!-- =============================================以下為webSocket聊天室============================================= -->
@@ -1403,21 +1436,7 @@ console.log(endPointURL);
 <script>
 	//練習使用AJAX實現按讚功能
 	
-var beOnline = function(){
-			$.ajax({
-				type : "POST",
-				url : "",
-				data : {
-					"action" : "beOnline",	"member_id" :${memberVO.member_id} },
-				dataType : "json",
-				success : function(data) {
 
-				},
-				error : function() {
-					
-				}
-			});
-	}
 	
 	
 // var beOffline = function(){

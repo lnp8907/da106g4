@@ -41,6 +41,47 @@ public class LivestreamDAO implements LivestreamDAO_interface {
 	private static final String GET_MOST_POPULAR = "SELECT * FROM(SELECT * FROM LIVESTREAM WHERE VIDEO IS NOT NULL  ORDER BY WATCHED_NUM DESC) WHERE ROWNUM = 1";
 	private static final String GETLASTESTONE = " SELECT * FROM(SELECT * FROM LIVESTREAM WHERE MEMBER_ID = ? AND STATUS = 1 ORDER BY LIVESTREAM_DATE DESC) WHERE ROWNUM = 1";
 	private static final String UPDATEAFTEROL = "UPDATE livestream set video = ?, watched_num = ? , status = ? where livestream_id = ?";
+	private static final String UPDATEONLINE = "UPDATE livestream set status = ? where livestream_id = ?";
+	
+	@Override
+	public void updateForOnline(String livestream_id,Integer status) {
+		Connection con = null;
+		PreparedStatement pstmt = null;
+
+		try {
+
+			con = ds.getConnection();
+			pstmt = con.prepareStatement(UPDATEONLINE);
+
+
+			pstmt.setInt(1, status);
+			pstmt.setString(2, livestream_id);
+
+			pstmt.executeUpdate();
+
+			// Handle any driver errors
+		} catch (SQLException se) {
+			throw new RuntimeException("A database error occured. "
+					+ se.getMessage());
+			// Clean up JDBC resources
+		} finally {
+			if (pstmt != null) {
+				try {
+					pstmt.close();
+				} catch (SQLException se) {
+					se.printStackTrace(System.err);
+				}
+			}
+			if (con != null) {
+				try {
+					con.close();
+				} catch (Exception e) {
+					e.printStackTrace(System.err);
+				}
+			}
+		}
+
+	}
 	
 	@Override
 	public void updateAfterOnline (String livestream_id,byte[] video,Integer watched_num,Integer status) {
@@ -95,7 +136,7 @@ public class LivestreamDAO implements LivestreamDAO_interface {
 
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(GETLASTESTONE);
-
+			pstmt.setString(1, member_id);
 			rs = pstmt.executeQuery();
 
 			while (rs.next()) {

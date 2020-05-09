@@ -18,7 +18,9 @@ public class LsService {
 		 dao.updateAfterOnline(livestream_id, video, watched_num,status);
      }
 	
-	
+	public void  updateForOnline(String livestream_id, Integer status){
+		dao.updateForOnline(livestream_id, status);
+	}
      
      
      public LivestreamVO getMostPopLS() {
