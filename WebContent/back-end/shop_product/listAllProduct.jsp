@@ -42,14 +42,14 @@
 	String product_type = "0";
 	if (request.getAttribute("product_type") != null) {
 		if (((String) request.getAttribute("product_type")).equals("all")) {
-			out.println("product_type網頁獲取類型"+request.getAttribute("product_type") );
+// 			out.println("product_type網頁獲取類型"+request.getAttribute("product_type") );
 
 			list = Psvc.getAllProduct();
 			list = list.stream().filter(p -> p.getProduct_status() != 2).collect(Collectors.toList());
 			product_type = "0";
 
 		} else {
-			out.println("product_type網頁獲取類型"+request.getAttribute("product_type") );
+// 			out.println("product_type網頁獲取類型"+request.getAttribute("product_type") );
 
 			final String product_type2 = (String) request.getAttribute("product_type");
 			list = list.stream().filter(p -> p.getProduct_type().equals(product_type2))

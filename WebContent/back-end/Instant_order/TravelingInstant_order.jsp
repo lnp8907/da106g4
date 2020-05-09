@@ -8,6 +8,7 @@
 <%@ page import="java.util.stream.Collectors" %>
 <%@ page import="java.text.*" %>
 <%@ page import="com.instant_delivery_order.*" %>
+
 <% 
 InstantDeliveryOrderService IDSvc=new InstantDeliveryOrderService();
 List<InstantDeliveryOrderVO> list=null;
@@ -20,11 +21,11 @@ if(IDSvc.getAll()!=null){
 }
 if(list!=null){
 pageContext.setAttribute("list",list);
+
 }
-
-
-
 %>
+<c:set var="Traveling" value="Traveling" scope="request"/>
+
 <!DOCTYPE html>
 <html>
 <head>
