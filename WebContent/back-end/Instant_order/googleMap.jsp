@@ -50,7 +50,7 @@
 //     	var endPointURL = "ws://" + window.location.host + webCtx + MyPoint;
 		var ido_no = '${ido_no}';
 		console.log(ido_no);
-    	var endPointURL = "ws://35.229.239.13:8081/DA106_G4_Foodporn_Git/DeliveryWS/" + ido_no;
+    	var endPointURL = "ws://da106g4.tk/DA106_G4_Foodporn_Git/DeliveryWS/" + ido_no;
     	
     		webSocket = new WebSocket(endPointURL);
     		webSocket.onopen = function(event) { 
