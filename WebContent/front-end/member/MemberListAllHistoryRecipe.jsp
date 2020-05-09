@@ -1968,7 +1968,8 @@ hr {
 				
 				
 			  <div class="recipe-main-list">
-		<span class="include-page"><%@ include file="page1.file"%>
+		<span class="include-page">
+			<%@ include file="page1.file"%>
 		</span>
 		<ul class="recipe=list">
 		
