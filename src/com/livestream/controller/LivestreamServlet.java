@@ -7,6 +7,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import com.livestream.model.*;
+import com.notice.model.NoticeService;
 
 public class LivestreamServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -135,6 +136,7 @@ public class LivestreamServlet extends HttpServlet {
 				livestreamVO.setLivestream_id(livestream_id);
 				livestreamVO.setStatus(status);
 				
+				
 
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
@@ -149,7 +151,11 @@ public class LivestreamServlet extends HttpServlet {
 				LsService lsSvc = new LsService();
 				livestreamVO = lsSvc.updateLs(livestream_id, status);
 				
-				
+				LivestreamVO newliveVO = new LivestreamVO();
+				newliveVO = lsSvc.getOneLs(livestream_id);
+				//notice
+				NoticeService noticeSvc = new NoticeService();
+				noticeSvc.insert(newliveVO.getMember_id(), 4, "您的預告已審查通過", 0);
 				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("livestreamVO", livestreamVO); // 資料庫update成功後,正確的的empVO物件,存入req
