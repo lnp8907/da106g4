@@ -6,6 +6,7 @@
     	<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
     	
     <%@ page import="java.util.*"%>
+    <%@ page import="com.notice.model.*"%>
     
 <%
 //購物車獲取
@@ -18,7 +19,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 }
 
     String member_id =(String) session.getAttribute("member_id");
-	out.println(member_id);
+	//out.println(member_id);
 	MemberVO memberVO = (MemberVO)session.getAttribute("memberVO");
 	/*MemberVO 可以使用的屬性
 	member_id
@@ -27,6 +28,11 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 	member_status (0.普通會員 1.廚師)
 	balance	
 	*/
+	
+	//拿出6則通知
+	  NoticeService noticeSvc = new NoticeService();
+	  List<NoticeVO> noticeList = noticeSvc.getAllByMb_id_2("810003");
+	  pageContext.setAttribute("noticeList", noticeList);
 %>
 <%@ page import="java.util.*"%>
 
@@ -41,6 +47,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=3.0">
 <title>Foodporn</title>
 
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/facebookLightbox.css">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/frontEnd.css">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/css/header-sider.css">
 <link rel="stylesheet" href="<%=request.getContextPath() %>/slick/slick.css">
@@ -51,8 +58,11 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 <link rel="icon" href="<%=request.getContextPath() %>/image/head-FoodPron_Logo.ico" type="image/x-icon">
 <link rel="shortcut icon" href="<%=request.getContextPath() %>/image/head-FoodPron_Logo.ico"
 	type="image/x-icon" />
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+
+
+
+<!-- <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="<%=request.getContextPath() %>/slick/slick.js" type="text/javascript" charset="utf-8"></script>
 <script src="<%=request.getContextPath() %>/js/homePage.js" type="text/javascript" charset="utf-8"></script>
@@ -70,6 +80,42 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 
 <body>
 	<header>
+	<!-- notice start -->
+<div id="fblightbox" style="width:20rem;">
+  <div class="fblightbox-wrap">
+    <div class="fblightbox-header">
+      <h3>Foodporn 通知 </h3>
+    </div>
+    <div class="fblightbox-content">
+      <div>
+	       <!-- 所有訊息 -->
+	       <c:forEach var="noticeVO" items="${noticeList}">
+	       <a class="messageDivA" href="#" >
+	        <c:if test="${noticeVO.notice_status==0}">
+	        <div class="msgNotRead readOrNotRead message" style="border-bottom:1px solid #E4002B" >
+	        </c:if>
+	        
+	        <c:if test="${noticeVO.notice_status==1}">
+	        <div class="msgRead readOrNotRead" style="border-bottom:1px solid #E4002B">
+	        </c:if>
+	         <div>${noticeVO.content}</div>
+	         <div>${noticeVO.notice_time} </div>
+	        </div>
+	       </a> 
+	       </c:forEach>
+	      </div>
+    </div>
+    <div class="fblightbox-footer">
+      <a href="#" class="fbbutton">See More</a>
+      <a href="#" id="close" class="fbbutton">Close</a>
+    </div>
+  </div>
+</div>
+<!-- notice over -->
+
+
+
+
 		<div id="top-logo" class="logo">
 			<a href="<%=request.getContextPath() %>/index.jsp" title="回首頁"><img class="logo-photo"
 				src="<%=request.getContextPath() %>/image/FoodPron_Logo.png" alt="logo"></a>
@@ -169,15 +215,20 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 					</a>
 				</div>
 								<!-- 購物車 -->
-				
-				<div class="notice">
-					<a href="#"><img class="header-icon" src="<%=request.getContextPath() %>/image/ico_notice.png"
-						alt="notice-icon">
-						<div class="herder-icon-span">
-							<span class="notice-span">通知總覽</span>
-						</div> </a>
-				</div>
 
+ 
+				<!-- <div class="demo"> -->
+				<div>
+					<div id="launch" class="notice">
+						<a href="#">
+							<img class="header-icon" src="<%=request.getContextPath() %>/image/ico_notice.png" alt="notice-icon">
+							<div class="herder-icon-span">
+								<span class="notice-span">通知總覽</span>
+							</div> 
+						</a>
+					</div>
+					 <!-- <a  class="" href="#">Launch Popup</a> -->
+				</div>
 			</div>
 
 		</div>
@@ -791,7 +842,8 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 	<!-- JavasScript for LogForm -->
 	<script src="javascript/loginForm.js" type="text/javascript"
 		charset="utf-8"></script>
-
+<!-- jquery -->
+ <script type="text/javascript" src="javascript/jquery-3.2.1.min.js"></script> 
 	<!-- JavasScript for BackTop -->
 	<script>
 		$('#BackTop').click(function() {
@@ -868,6 +920,32 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 						}
 						
 						</script>
+						
+<script>
+var fblightbox = $('#fblightbox');
+//fblightbox.css({'margin-right':'-'+(fblightbox.width()/200)+'px','margin-top':'-'+(fblightbox.height()/1)+'px'});
+
+$("#launch").click(function() {
+  $('.overlay').fadeIn();
+  fblightbox.fadeIn();
+});
+$("#close").click(function() {
+  $('.overlay').fadeOut();
+  fblightbox.fadeOut();
+});
+
+$(".message").click(function(){
+	console.log($(this));
+	$(this).attr("style", "background-color:white");
+})
+/* function readClick(e){
+	//$(this).css("background-color", "white");
+	$(this).attr("style", "background-color:white");
+	console.log($(this));
+	alert($(this));
+} */
+
+</script>
 </body>
 
 </html>

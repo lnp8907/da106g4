@@ -1,0 +1,87 @@
+*{
+  margin:0;
+  padding:0;
+}
+#fblightbox{
+  background: rgba(82, 82, 82, .7);
+  color: #333;
+  font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+  border-radius: 8px;
+  padding:10px;
+  width: 575px;
+  position: fixed;
+left: 812px;
+    top: 76px;
+  z-index: 99999;
+  display:none;
+}
+.fblightbox-wrap{
+      border: 1px solid #E4002b;
+}
+.fblightbox-header{
+    background: #E4002B;
+    border-bottom: 1px solid #E4002B;
+  color: #fff;
+  font-size: 14px;
+  padding:5px;
+}
+.fblightbox-header h3{
+  font-size:14px;
+}
+.fblightbox-content{
+  background:#fff;
+  font-size: 12px;
+  padding:10px;
+}
+.fblightbox-footer{
+  background: #f2f2f2;
+  border-top: 1px solid #ccc;
+  color: #333;
+  padding: 10px;
+  text-align:right;
+}
+.fbbutton{
+  text-decoration:none;
+  color:#fff;
+  font-family: 'lucida grande', tahoma, verdana, arial, sans-serif;
+  font-size: 13px;
+  border-style: solid;
+  cursor: pointer;
+  font-weight: bold;
+    background-color: #E4002B;
+  padding: 4px 8px 4px 8px;
+  text-align: center;
+  vertical-align: top;
+  white-space: nowrap;
+  border-width: 1px;
+  margin-left: 3px;
+  background-position: 125px 235px;
+  border-color: #E4002B;
+  line-height: normal !important;
+  display: inline-block;
+}
+.overlay{
+  background: rgba(0,0,0,0.2);
+  position:fixed;
+  width:100%;
+  height: 100%;
+  z-index: 99;
+  display:none;
+  top:0;
+  left:0;
+}
+
+.demo{
+  padding:30px 50px;
+}
+
+.msgNotRead{
+	    background-color: #ffdcdc;
+	
+}
+
+.msgRead{
+	    background-color: #white;
+	
+	
+}

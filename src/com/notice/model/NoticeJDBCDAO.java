@@ -417,6 +417,18 @@ public class NoticeJDBCDAO implements NoticeDAO_interface{
 //				System.out.print(aEmp.getMoney() + ",");
 //				System.out.print(aEmp.getCharge_time() + ",");
 //				System.out.println();
-			}	
+			}
+
+	@Override
+	public List<NoticeVO> getAllByMb_id_2(String member_id) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public Integer countNotReads(String mb_id_2) {
+		// TODO Auto-generated method stub
+		return null;
+	}	
 	}
 

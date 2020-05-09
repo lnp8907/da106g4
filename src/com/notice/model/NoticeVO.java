@@ -4,6 +4,10 @@ import java.sql.Timestamp;
 
 public class NoticeVO implements java.io.Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String notice_id;
 	private String member_id;
 	private Integer notice_category;
