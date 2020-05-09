@@ -1,3 +1,5 @@
+<%@page import="com.livestream.model.LivestreamVO"%>
+<%@page import="com.livestream.model.LsService"%>
 <%@page import="com.member.model.MemberVO"%>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -10,7 +12,9 @@
 <%-- 模擬登入的hostID(直播主ID)為peter  --%>
 <%! int count = 0; %>
 <%  
-	 MemberVO memberVO = (MemberVO)session.getAttribute("memberVO");
+	MemberVO memberVO = (MemberVO)session.getAttribute("memberVO");
+	LsService lsService = new LsService();
+	String livestream_id = null;
 	String hostID = null;
 	String clientID =null;
 	
@@ -18,8 +22,14 @@
     	 clientID="Anonymous"+(++count);		
 	}else{
 		if(memberVO.getChiefapply_status()==1){
+	 LivestreamVO livestreamVO=lsService.getLatestOneLs(memberVO.getMember_id());
      hostID = memberVO.getNickname();
-     session.setAttribute("hostID", hostID); 			
+     session.setAttribute("hostID", hostID);
+     if(livestreamVO!=null){
+    	 livestream_id = livestreamVO.getLivestream_id();
+    	 session.setAttribute("livestream_id", livestream_id);
+     }
+     session.setAttribute("livestream_id", hostID); 
 		}else{
 			clientID = memberVO.getNickname();			
 		}
@@ -751,7 +761,7 @@ display:none;
 								<option>Only Audio</option>
 							</select> 
 							<input type="text" id="broadcast-name" class="broadcast-name" value="${hostID}">
-							<button id="setup-new-broadcast">啟動新視頻</button>
+							<button id="setup-new-broadcast" onclick="beOnline();">啟動新視頻</button>
 						</section>
 						<!-- list of all available broadcasting rooms --><br>
 						<table style="width: 100%;" id="rooms-list"></table>
@@ -1133,15 +1143,15 @@ buttons: ['record-video']
         const recordButton = document.querySelector('button#record');
         recordButton.addEventListener('click', () => {
           if (recordButton.textContent === '開始錄影') {
-adjustControls();
-volumeControl.style.opacity = 1;
-recordVideo.className = 'control record-video';
+			adjustControls();
+			volumeControl.style.opacity = 1;
+			recordVideo.className = 'control record-video';
             startRecording();
           } else {
-recordVideo.className = recordVideo.className.replace('record-video', 'stop-recording-video selected');
+			recordVideo.className = recordVideo.className.replace('record-video', 'stop-recording-video selected');
             stopRecording();
             recordButton.textContent = '開始錄影';
-volumeControl.style.opacity = 1;
+			volumeControl.style.opacity = 1;
             playButton.disabled = false;
             //downloadButton.disabled = false;
           }
@@ -1157,8 +1167,8 @@ volumeControl.style.opacity = 1;
           recordedVideo.play();
         });
 
-        const downloadButton = document.querySelector('button#download');
-        downloadButton.addEventListener('click', () => {
+        	  const downloadButton = document.querySelector('button#download');
+        	  downloadButton.addEventListener('click', () => {
               document.querySelector('button#record').disabled = false;
               document.querySelector('button#download').disabled = true;
               const blob = new Blob(recordedBlobs, {type: 'video/webm'});	 
@@ -1177,7 +1187,7 @@ volumeControl.style.opacity = 1;
             		  '可以去直播管理 listAllStream.jsp 確認',
             		  'success'
             	  )
-volumeControl.style.opacity = 0;        
+			volumeControl.style.opacity = 0;        
         });
 
         function handleSourceOpen(event) {
@@ -1256,9 +1266,8 @@ recordVideo.className = recordVideo.className.replace('stop-recording-video sele
              
              function creatQueryString(paramGrade, paramClass){
                     document.querySelector('button#record').disabled = true;       		 	
-        		    var hostID=$("#hostID").val();
         		 	var lsViewNum=$("#lsViewNum").val();
-        			var queryString= {"action":"insert", "hostID":hostID, "lsViewNum":lsViewNum};
+        			var queryString= {"action":"updateAfterOnline", "livestream_id":${livestream_id}, "lsViewNum":lsViewNum,"member_id":${memberVO.member_id} };
         			return queryString;
         	 }
 
@@ -1394,21 +1403,21 @@ console.log(endPointURL);
 <script>
 	//練習使用AJAX實現按讚功能
 	
-// var beOnline = function(){
-// 			$.ajax({
-// 				type : "POST",
-// 				url : "",
-// 				data : {
-// 					"action" : "beOnline",	"member_id" : },
-// 				dataType : "json",
-// 				success : function(data) {
+var beOnline = function(){
+			$.ajax({
+				type : "POST",
+				url : "",
+				data : {
+					"action" : "beOnline",	"member_id" :${memberVO.member_id} },
+				dataType : "json",
+				success : function(data) {
 
-// 				},
-// 				error : function() {
+				},
+				error : function() {
 					
-// 				}
-// 			});
-// 	}
+				}
+			});
+	}
 	
 	
 // var beOffline = function(){
