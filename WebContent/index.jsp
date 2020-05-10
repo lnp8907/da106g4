@@ -991,7 +991,7 @@ alert($(this).children('.messageNoticeId').val());
    dataType: "json",
    success: function (data){
 	   alert(data);
-	   message.children('.msgNotRead').attr("style", "background-color:white");
+	   message.attr("style", "background-color:white");
    },     
   error: function(){alert("AJAX-msgLightBox發生錯誤囉!")}
   });
