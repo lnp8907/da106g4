@@ -34,7 +34,11 @@ public class mailThread extends Thread{
         // ●設定 gmail 的帳號 & 密碼 (將藉由你的Gmail來傳送Email)
         // ●須將myGmail的【安全性較低的應用程式存取權】打開
        final String myGmail = "ainamagruru5@gmail.com";
+<<<<<<< HEAD
        final String myGmail_password = "a0932640";
+=======
+       final String myGmail_password = "ainamagainamag";
+>>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
       Session session = Session.getInstance(props, new Authenticator() {
        protected PasswordAuthentication getPasswordAuthentication() {
         return new PasswordAuthentication(myGmail, myGmail_password);
