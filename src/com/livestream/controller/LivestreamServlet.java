@@ -7,6 +7,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import com.livestream.model.*;
+import com.member_follow.model.MemberFollowService;
 import com.notice.model.NoticeService;
 
 import java.util.Timer; 
@@ -155,11 +156,14 @@ public class LivestreamServlet extends HttpServlet {
 				
 				LivestreamVO newliveVO = new LivestreamVO();
 				newliveVO = lsSvc.getOneLs(livestream_id);
+				//memberfollow
+				//MemberFollowService mfSvc = new MemberFollowService();
 				//notice
 				NoticeService noticeSvc = new NoticeService();
 				noticeSvc.insert(newliveVO.getMember_id(), 4, "您的預告已審查通過", 0);
 				Timer timer = new Timer();
 				timer.schedule(new TimerTest(newliveVO.getMember_id()), 10*1000);
+				
 				/***************************3.修改完成,準備轉交(Send the Success view)*************/
 				req.setAttribute("livestreamVO", livestreamVO); // 資料庫update成功後,正確的的empVO物件,存入req
 				String url = "/back-end/livestream/listAllLivestream.jsp";

@@ -50,7 +50,7 @@ public class Member_followDAO implements Member_followDAO_interface{
 			
 
 			pstmt.setString(1, member_followVO.getMember_id());
-			pstmt.setString(2, member_followVO.getMember_id_0());
+//			pstmt.setString(2, member_followVO.getMember_id_0());
 		
 			pstmt.executeUpdate();
 
@@ -89,7 +89,7 @@ public class Member_followDAO implements Member_followDAO_interface{
 			pstmt = con.prepareStatement(UPDATE);
 
 			pstmt.setString(1, member_followVO.getMember_id());
-			pstmt.setString(2, member_followVO.getMember_id_0());
+//			pstmt.setString(2, member_followVO.getMember_id_0());
 			
 			pstmt.executeUpdate();
 
@@ -175,7 +175,7 @@ public class Member_followDAO implements Member_followDAO_interface{
 				// empVo �]�٬� Domain objects
 				member_followVO = new Member_followVO();
 				member_followVO.setMember_id(rs.getString("MEMBER_ID"));
-				member_followVO.setMember_id_0(rs.getString("FOLLOWED"));
+//				member_followVO.setMember_id_0(rs.getString("FOLLOWED"));
 				
 
 			}
@@ -232,7 +232,7 @@ public class Member_followDAO implements Member_followDAO_interface{
 				// empVo �]�٬� Domain objects
 				member_followVO = new Member_followVO();
 				member_followVO.setMember_id(rs.getString("MEMBER_ID"));
-				member_followVO.setMember_id_0(rs.getString("FOLLOWED"));
+//				member_followVO.setMember_id_0(rs.getString("FOLLOWED"));
 				
 
 			}
@@ -288,7 +288,7 @@ public class Member_followDAO implements Member_followDAO_interface{
 				// empVO �]�٬� Domain objects
 				member_followVO = new Member_followVO();
 				member_followVO.setMember_id(rs.getString("MEMBER_ID"));
-				member_followVO.setMember_id_0(rs.getString("FOLLOWED"));
+//				member_followVO.setMember_id_0(rs.getString("FOLLOWED"));
 				list.add(member_followVO); // Store the row in the list
 			}
 
