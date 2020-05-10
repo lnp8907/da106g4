@@ -96,7 +96,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 	       <a class="messageDivA" href="#" >
 	        <c:if test="${noticeVO.notice_status==0}">
 	        <div class="msgNotRead readOrNotRead message" style="border-bottom:1px solid #E4002B" >
-	        <input type="hidden" name="notice_id" value="${noticeVO.notice_id}">
+	        <input type="hidden" name="notice_id" class="messageNoticeId" value="${noticeVO.notice_id}">
 	        </c:if>
 	        
 	        <c:if test="${noticeVO.notice_status==1}">
@@ -963,9 +963,7 @@ $("#close").click(function() {
 });
 
 $(".message").click(function(){
-	console.log($(this));
 	$(this).attr("style", "background-color:white");
-	alert("ertyui");
 	//ajax
 	$.ajax({
      	url:'NoticeServlet',
@@ -976,10 +974,26 @@ $(".message").click(function(){
      	},
      	success:function(data){
      	}
-
 });
 	
-})
+});
+//訊息的燈箱開始
+var msgLightBox = $('.msgLightBox');
+//var msgNotRead = $('.msgNotRead');
+
+$('.messageDivA').click(function(){
+var messageDivA = $(this);
+ $.ajax({
+ type: "GET",
+ url:'NoticeServlet',
+   data: {"action":"Click", "notice_id":$(this).children('.messageNoticeId').val()},
+   dataType: "json",
+   success: function (data){
+	   messageDivA.children('.msgNotRead').attr("style", "background-color:white");
+   },     
+  error: function(){alert("AJAX-msgLightBox發生錯誤囉!")}
+  });
+});
 /* function readClick(e){
 	//$(this).css("background-color", "white");
 	$(this).attr("style", "background-color:white");
