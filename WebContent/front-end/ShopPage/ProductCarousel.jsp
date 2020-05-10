@@ -1,3 +1,5 @@
+<%@page import="com.product.model.ProductVO"%>
+<%@page import="com.product.model.ProductService"%>
 <%@page import="com.product_browsing_history.model.*"%>
 <%@page import="com.member.model.MemberService"%>
 <%@page import="java.util.*"%>
@@ -36,14 +38,34 @@ if(session.getAttribute("member_id")!=null){
 <title>Insert title here</title>
 </head>
 <body>
-<div class="productCarouse">
+<style>
+.Carouse{
+
+text-align: center;
+
+}
+
+</style>
+<div style="margin: 0px auto 50px;" class="productCarouse">
+<div class="Carouse" style="width: 1100px;margin: 20px auto;"> <h2  style="color:red ;font-family:Microsoft JhengHei;">瀏覽紀錄</h2></div>
+
 <div class="multiple-items">
 
  <c:if test="${fn:length(PClist)>0}">
- 
+
  <c:forEach var="PClist" items="${PClist}">
-  <div>  ${PClist.product_id} <a href="ProductPage?product_id=${PClist.product_id}&action=goDetailPage"> <img src="<%=request.getContextPath() %>/back-end/shop_product/Product_photoReader?product_id=${PClist.product_id}" height="250" width="250"/></a>
-  </div>
+ <c:set var="hlistpid" value="${PClist.product_id}" scope="request"/>
+
+ <%ProductService psv=new ProductService();
+ ProductVO Pvo=psv.getOneProduct((String)request.getAttribute("hlistpid"));
+ 
+ %>
+  
+ <a href="ProductPage?product_id=${PClist.product_id}&action=goDetailPage">
+   <div style="text-align: center; width: 250px;"> <%=Pvo.getProduct_name() %> </div>
+  <img style="border-radius: 70px" src="<%=request.getContextPath() %>/back-end/shop_product/Product_photoReader?product_id=${PClist.product_id}" height="250" width="250"/>
+  </a>
+ 
   			</c:forEach>
   </c:if>
   
