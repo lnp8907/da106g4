@@ -51,21 +51,21 @@
 <link rel="stylesheet" href="../recipe/recipeCSS/listOneRecipeCssCopy.css">
 <link rel="stylesheet" href="../../css/frontEnd.css">
 <link rel="stylesheet" href="../../css/header-sider.css">
-<link rel="stylesheet" href="../../slick/slick.css">
-<link rel="stylesheet" href="../../slick/slick-theme.css">
+<!-- <link rel="stylesheet" href="../../slick/slick.css"> -->
+<!-- <link rel="stylesheet" href="../../slick/slick-theme.css"> -->
 <link rel="stylesheet" href="../../css/homePage.css">
 <link rel="stylesheet" href="../../css/searchRecipeCSS.css">
 <link rel="icon" href="../../image/head-FoodPron_Logo.ico"
 	type="../../image/x-icon">
 <link rel="shortcut icon" href="../../image/head-FoodPron_Logo.ico"
 	type="../../image/x-icon" />
-<script src="../../slick/slick.js" type="text/javascript"
-	charset="utf-8"></script>
+<!-- <script src="../../slick/slick.js" type="text/javascript" -->
+<!-- 	charset="utf-8"></script> -->
 <script src="../../js/homePage.js" type="text/javascript"
 	charset="utf-8"></script>
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<!-- <link rel="stylesheet" -->
+<!-- 	href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css"> -->
+<!-- <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
 <link rel="stylesheet" href="css/getHTMLMediaElement.css">
 <script src="js/jquery-1.11.1.min.js"></script>
 <script	src="js/sweetalert2.all.min.js"></script>
@@ -866,7 +866,7 @@ display:none;
 						</div>
 						<div id="dona">
 							<h3>
-								我的富胖幣:<span style="color: red;">&nbsp;</span>
+								我的富胖幣:<span style="color: red;">&nbsp;<%=memberVO==null?"":memberVO.getBalance() %></span>
 								<span id="charge">儲值</span>
 							</h3>
 							<span class="dona-items-card"><img alt=""
@@ -1280,7 +1280,7 @@ buttons: ['record-video']
 volumeControl.style.opacity = 1;
 recordVideo.className = recordVideo.className.replace('stop-recording-video selected', 'stop-recording-video2 selected');
                  }
-             })
+             });
              
              function creatQueryString(paramGrade, paramClass){
                     document.querySelector('button#record').disabled = true;       		 	
