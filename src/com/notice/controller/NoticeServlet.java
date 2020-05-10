@@ -1,6 +1,7 @@
 package com.notice.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Vector;
@@ -68,12 +69,12 @@ public class NoticeServlet extends HttpServlet {
 			    NoticeService noticeSvc = new NoticeService();
 			    noticeSvc.changeStatus(notice_id, 1);
 			    /*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
-//			    res.setContentType("text/plain");
-//			    res.setCharacterEncoding("UTF-8");
-//			    PrintWriter out = res.getWriter();
-//			    out.write(jsobj.toString());
-//			    out.flush();
-//			    out.close();
+			    res.setContentType("text/plain");
+			    res.setCharacterEncoding("UTF-8");
+			    PrintWriter out = res.getWriter();
+			    out.write("ok");
+			    out.flush();
+			    out.close();
 			    /*************************** 其他可能的錯誤處理 **********************************/
 			   }catch (Exception e) {
 			    errorMsgs.add("無法取得資料:" + e.getMessage());
