@@ -989,6 +989,7 @@ var messageDivA = $(this);
    data: {"action":"Click", "notice_id":$(this).children('.messageNoticeId').val()},
    dataType: "json",
    success: function (data){
+	   alert(data);
 	   messageDivA.children('.msgNotRead').attr("style", "background-color:white");
    },     
   error: function(){alert("AJAX-msgLightBox發生錯誤囉!")}
