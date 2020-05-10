@@ -263,7 +263,7 @@ h1 {
 					height="200">
 				<div class="menu-group">
 				<a class="menu-group-a"
-						href="<%=request.getContextPath() + "/backEnd.html"%>"><span style="font-size:30px;">回首頁</span></a>
+						href="<%=request.getContextPath() + "/backEnd2.jsp"%>"><span style="font-size:30px;">回首頁</span></a>
 				<a class="menu-group-a"href="<%=request.getContextPath() + "/back-end/coupon/couponPage.jsp?pageType=couponAllList.jsp"%>"><span>優惠券管理</span></a>
 				<a class="menu-group-a"href="<%=request.getContextPath() + "/back-end/coupon/couponPage.jsp?pageType=addCoupon.jsp"%>"><span>新增優惠券</span></a>		
 					<div class="building"></div>

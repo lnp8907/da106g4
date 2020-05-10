@@ -42,7 +42,7 @@
 	<div class="menu">
 		<!-- 卡片內容上方留白的起始標籤 -->
 		<h1>
-			會員總覽<span class="include-page"><%@ include file="page1.file"%></span>
+			會員總覽<span class="include-page"><%@ include file="page12.file"%></span>
 		</h1>
 	</div>
 	<!-- 卡片內容上方留白的結束標籤 -->
@@ -100,7 +100,7 @@
 
 					</c:forEach>
 					<tr id="page2-tr">
-						<td id="page2"><%@ include file="page2.file"%></td>
+						<td id="page2"><%@ include file="page22.file"%></td>
 					</tr>
 				</tbody>
 			</table>

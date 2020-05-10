@@ -1159,29 +1159,6 @@ margin-left: 121px;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <style>
 /*---------------------------------article-container-------------------------------------------*/
 a {
@@ -2279,7 +2256,7 @@ B.A
   <div class="submit_btn">
   
    <span class="submitAndSave" id="article-section-seemore-recipe" id="submit">儲存</span>
-    <input type="submit" class="submit_btn" value="儲存" >  
+ 
 								
 		</div>						
 								

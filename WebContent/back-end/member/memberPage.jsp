@@ -257,7 +257,7 @@ h1 {
 					height="200">
 				<div class="menu-group">
 					<a class="menu-group-a"
-						href="<%=request.getContextPath() + "/backEnd.html"%>"><span
+						href="<%=request.getContextPath() + "/backEnd2.jsp"%>"><span
 						style="font-size: 30px;">回首頁</span></a>
 											<a class="menu-group-a"
 						href="<%=request.getContextPath() + "/back-end/member/memberPage.jsp?pageType=memberAllList.jsp"%>"><span>會員列表

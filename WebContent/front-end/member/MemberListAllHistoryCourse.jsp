@@ -890,7 +890,7 @@ body {
 }
 
 .sidebar {
-	margin-top: 20px;
+	margin-top: -4px;
 	margin-left: 17%;
 	width: 240px;
 

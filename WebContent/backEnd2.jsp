@@ -10,7 +10,7 @@
 
 
     String staff_id =(String) session.getAttribute("staff_id");
-	out.println(staff_id);
+
 	StaffVO staffVO = (StaffVO)session.getAttribute("staffVO");
 	Set<String> powerList = (Set<String>)session.getAttribute("powerList"); 
 	
@@ -22,7 +22,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <title>Document</title>
+    
     <style>
         @import 'https://fonts.googleapis.com/css?family=Lato';
 
@@ -396,25 +399,23 @@
 <body>
     <div class="container">
         <div class="box">
-            <!--這裡是左邊選單-->
-            <div class="left-bar"><span class="fa fa-cloud-download"><img src="image/logo_nohead.png" alt="LOGO"
+            <!--這裡是左邊選單-->      
+            	  <div class="left-bar"><span class="fa fa-cloud-download"><img src="image/logo_nohead.png" alt="LOGO"
                         width="200" height="200"></span>
-                <div class="menu-group"> <span class="fa fa-television"><a href="back-end/staff/StaffServlet?action=getOne_ForStaff&pageType=staffSetting.jsp&staff_id=910001">帳號設定</a></span> 
+                <div class="menu-group"> <span class="fa fa-television"><a href="back-end/staff/StaffServlet?action=getOne_ForStaff&pageType=staffSetting.jsp&staff_id=${staffVO.staff_id }">帳號設定</a></span> 
                     <div class="building"><span class="fa fa-building"></span><span class="fa fa-building"></span></div>
                     <span class="fa fa-cog"></span>
                 </div>
-                
-                
-                <form method="POST" action="<%=request.getContextPath()%>/back-end/staff/StaffServlet">	
-                 <input type="hidden" name="action" value="loginOUT"> 
-                <span><input type="submit" class="fa fa-sign-out" >登出</span>
-            </form>	
+
+              <span class="fa fa-sign-out" id="fa fa-sign-out"><a href="back-end/staff/StaffServlet?action=loginOUT">登出</a></span> 
+         	
             
             </div>
+         
             <div class="wrapper">
                 <div class="top-bar"><span class="cloud"></span><!-- 上方隱含的下拉式選單界線 -->
                     <div class="cta-button"><span></span></div><!-- 粉紅小點點 -->
-                </div>
+                </div>      </form>
                 <div class="content">
                     <div class="menu">
                         <!-- 卡片內容上方留白的起始標籤 -->
@@ -532,6 +533,24 @@
             </div>
         </div>
     </div>
+    
+    
+        <script>
+    
+    
+            
+           $("#fa fa-sign-out").click(function(){
+    	$("#fa fa-sign-out1").submit();
+    })
+        
+    
+    	</script>
+    
+
+    
+    
+    
+    
 </body>
 
 </html>

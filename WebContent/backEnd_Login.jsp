@@ -14,18 +14,9 @@
 
 
     String staff_id =(String) session.getAttribute("staff_id");
-	out.println(staff_id);
 	StaffVO staffVO = (StaffVO)session.getAttribute("staffVO");
 
 %>
-
-
-
-
-
-
-
-
 
 
 
@@ -68,7 +59,7 @@
             left: 10%;
             width: 80%;
             height: 40px;
-            font-family: "å¾®è»æ­£é»é«";
+            font-family: "微軟正黑體";
             text-align: center;
             font-size: 24px;
             line-height: 40px;
@@ -138,7 +129,7 @@
         body .login_fields input[type='text'],
         body .login_fields input[type='password'] {
             color: #afb1be;
-            width: 307px;
+            width: 190px;
             margin-top: -2px;
             background: #32364a;
             left: 0;
@@ -150,7 +141,6 @@
             outline: none;
             font-family: 'Gudea', sans-serif;
             box-shadow: none;
-            margin-left:6px;
         }
 
         body .login_fields__user,
@@ -209,11 +199,7 @@
         }
 
         .logo>img {
-        
-         width: 100%;
-        margin-top:-50px;
-        
-        
+            width: 100%;
         }
     </style>
 </head>

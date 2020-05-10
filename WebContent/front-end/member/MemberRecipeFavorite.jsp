@@ -890,8 +890,8 @@ body {
 }
 
 .sidebar {
-	margin-top: 0px;
-	margin-left: 16%;
+	margin-top: -4px;
+	margin-left: 17%;
 	width: 240px;
 
 	background: white;
@@ -1072,27 +1072,38 @@ margin-rught:100px;
 .footer-copyright24 {
 	margin-top: 50%;
 }
+h4{
+margin-left: 121px;
+    color: #52a3dddb;
+    margin-right: -5px;
+    font-style: oblique;
+    font-family: sans-serif;
+    font-size: smaller;
+}
 
 h3 {
-    margin-top: 17px;
+    margin-top: 27px;
     margin-left: 252px;
-	font-family: Calibri;
-	font-size: 26pt;
-	font-style: normal;
-	font-weight: bold;
-	 color: rgba(16, 75, 75, 0.66);
-
-	/*text-decoration: underline*/
-}
-h1{
-margin-left:88px;
-
-
+    font-family: Calibri;
+    font-size: 26pt;
+    font-style: normal;
+    font-weight: bold;
+    color: rgba(16, 75, 75, 0.66);
+    /* text-decoration: underline; */
+    margin-bottom: 5px;
 }
 h2{
 margin-left:56px;
 margin-bottom:8px;
-margin-top:-14px;
+
+
+    margin-left: 45px;
+    margin-bottom: 8px;
+    margin-top: -15px;
+    font-family: inherit;
+
+    color: #8d3a7f;
+   
 
 }
 
@@ -1105,29 +1116,17 @@ b{    margin-right: -235px;
 table {
     margin-left: 10px;
     width: 822px;
-
-	font-family: Calibri;
-	color: #e4002b;
-	font-size: 12pt;
-	font-style: normal;
-	font-weight: bold;
-	/* text-align:;  */
-	background-color: #dff0eba4;
-	border: 2px solid rgb(226, 226, 238);
-	border-spacing: 60px 40px;
-	/*  border-width: 200px;*/
-	
-	
-	margin-left: 20px;
-  
-    width: 830px;
-	
-	
-	
-	
-	
-	
-	
+    font-family: Calibri;
+    color: #e4002b;
+    font-size: 12pt;
+    font-style: normal;
+    font-weight: bold;
+    background-color: #dff0eba4;
+    border: 2px solid rgb(226, 226, 238);
+    border-spacing: 60px 40px;
+    /* border-width: 200px; */
+    margin-left: 485px;
+    width: 827px;
 }
 
 table.inner {
@@ -2153,16 +2152,18 @@ hr {
 
 
 
-
+<table align="center" cellpadding="10">
 
 
 
 			<div class="container">
 
-<h3>課程收藏</h3>
+<h3>食譜收藏</h3>
 
 
-					<table align="center" cellpadding="10">
+					<table align="center" cellpadding="10" style=" margin-left: 484px;
+    margin-top: -13px;
+    width: 850px;">
 
 						<!----- First Name ---------------------------------------------------------->
 					

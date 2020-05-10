@@ -42,32 +42,7 @@ public class StaffServlet extends HttpServlet {
 	
 	
 	
-protected int allowUser(String staff_id,String password) {
-    	
-    	StaffVO staffVO=null;
-    	StaffService staffSvc=new StaffService();
-System.out.println(staff_id);
-System.out.println(password);
-    	if(staffSvc.getfindOnePK(staff_id)==null) {
-    		System.out.println("沒有此帳號");
-    		return 1;
-    	}else {
-    		staffVO=staffSvc.getfindOnePK(staff_id);
-    		System.out.println("2");
-    	}  
-System.out.println("111111111111111111"+staffVO.getStaff_id());
-System.out.println(staffVO.getStaff_password());   
 
-        if (staffVO.getStaff_id().equals(staff_id) && staffVO.getStaff_password().equals(password)) {
-	
-        	System.out.println("成功登入");
-        	return 3;
-          
-        }else {
-        	System.out.println("密碼錯誤");
-        	return 4; 
-        }
-    }
 
 
 
@@ -84,159 +59,107 @@ System.out.println(staffVO.getStaff_password());
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
 
-		
+		HttpSession session = req.getSession();
+		String loginPath = "/backEnd_Login.jsp";
+		String indexPath = "/backEnd2.jsp";
 		System.out.println(action);
 		
-		if("loginOUT".equals(action)) {
-			 HttpSession session = req.getSession();
+
+
+		if ("loginOUT".equals(action)) { // 登出  OK
 			session.invalidate();
-			
-		//String url = "/backEnd_Login.jsp" ;
-//			url = "/back-end/staff/staffPage.jsp?pageType="+pageType;
-		
-			
-		
 			String URL=req.getContextPath()+"/backEnd_Login.jsp";
 			res.sendRedirect(URL);
-			System.out.println("45655555");
-			
+	
 		}
 		
-		System.out.println("4565555545655555");
 		
-	if("login".equals(action)) {
-
-			
 		
-			
+		
+		
 	
-			
-			
-//			if(staff_id==null || staff_id.trim().length()==0) {
-//			
-//			}
-//			if(staff_id==null || staff_id.trim().length()==0) {
-//		
-//			}
-			String login2= (Integer)req.getSession().getAttribute("login2")+"";
-		
-			if(!login2.equals("1")) {
-				String staff_id=req.getParameter("staff_id").trim();
-				String psw=req.getParameter("psw").trim();
+	
+	
+
+		if ("login".equals(action)) { // 登入   OK
+			List<String> errorMsgs = new LinkedList<String>();
+			req.setAttribute("errorMsgs", errorMsgs);
+
+			try {
+				/*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+				String staff_id = req.getParameter("staff_id");
+				if (staff_id == null || (staff_id.trim()).length() == 0) {
+					errorMsgs.add("帳號不得為空白");
+				}
 				
-				System.out.println(staff_id);
-				System.out.println(psw);
-			if(allowUser(staff_id,psw)==1) {
-				//登入不成功
-				System.out.println("沒有此帳號");
-				String URL=req.getContextPath()+"/index.html";
-				res.sendRedirect(URL);
-				return;
-			}else if(allowUser(staff_id,psw)==4) {
-				//登入不成功
-				System.out.println("密碼錯誤");
-				String URL=req.getContextPath()+"/index.html";
-				res.sendRedirect(URL);
-				return;	
+				String psw = req.getParameter("psw");
+				if (psw == null || (psw.trim()).length() == 0) {
+					errorMsgs.add("密碼不得為空白");
+				}
 				
-			}else {
-				StaffService staffSvc=new StaffService();
-				StaffVO staffVO=null;
-				staffVO=staffSvc.getfindOnePK(staff_id);
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					String URL=req.getContextPath()+"/backEnd_Login.jsp";
+					res.sendRedirect(URL);
+					return;// 程式中斷
+				}
+
+				/*************************** 2.開始查詢資料 *****************************************/
+				StaffService staffSvc = new StaffService();
+				StaffVO staffVO = staffSvc.getfindOnePK(staff_id);
+				
+				if (staffVO == null || !staffVO.getStaff_password().equals(psw)) {
+					errorMsgs.add("帳號或密碼有誤");
+				}
+				// Send the use back to the form, if there were errors
+				if (!errorMsgs.isEmpty()) {
+					String URL=req.getContextPath()+"/backEnd_Login.jsp";
+					res.sendRedirect(URL);
+					return;
+				}
+
+				/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
+				
+				
+				
+			
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				session.setAttribute("staff_id", staffVO.getStaff_id());
 				AuthorityService authorityService = new AuthorityService();
 				
 				Set<String> powerList = authorityService.findPowerByEmpno(staff_id);
 				if(powerList ==null) {
 					powerList = new HashSet<String>();
 				}
-				HttpSession session=req.getSession();
-				session.setAttribute("staffVO", staffVO);
-				session.setAttribute("YES", 1);
+				session.setAttribute("powerList",powerList);
+				session.setAttribute("staffVO", staffVO); // 資料庫取出的VO物件,存入Session
+				indexPath = req.getContextPath() + "/backEnd2.jsp";
+				String originalJSP = (String)session.getAttribute("originalJSP");  // 
+				if(originalJSP != null) {
+					indexPath = originalJSP;
+					session.removeAttribute("originalJSP");
+				}
+				res.sendRedirect(indexPath);
+				return;
 				
-				
-				
-				 String YES= (Integer)req.getSession().getAttribute("YES")+"";
-				
-				
-System.out.println("YES21"+YES);				
-session.setAttribute("staff_id", staffVO.getStaff_id());
-session.setAttribute("staff_name", staffVO.getStaff_name());
+//				RequestDispatcher successView = req.getRequestDispatcher(indexPath); 
+//				successView.forward(req, res);
 
-session.setAttribute("powerList",powerList);
-session.setAttribute("login2", 1);
-String login21= (Integer)req.getSession().getAttribute("login2")+"";
-System.out.println("login21"+login21);		
-
-    
-session.setAttribute("staff_status", 1);
-		        String sessionstaff_status= (Integer)req.getSession().getAttribute("staff_status")+"";
-System.out.println("session中staff_status"+sessionstaff_status);		
-
-
-
-
-
-
-
-
-				String sessionstaff_id= (String) req.getSession().getAttribute("staff_id");
-				
-System.out.println("session中staff_id"+sessionstaff_id);
-				try {
-					String location2=(String)session.getAttribute("location2");
-					if (location2 != null) {
-System.out.println("location2="+location2);
-						session.removeAttribute("location2");  
-				        res.sendRedirect(location2);            
-				        return;
-				    }else {
-				    	 session.invalidate();
-				    	res.sendRedirect(req.getContextPath()+"/backEnd2.jsp");
-//				    	String location22 = (String) req.getSession().getAttribute("location2");
-//						
-//				    	System.out.println("新"+location22);
-//				    				
-//				    				res.sendRedirect(location22);
-				    	
-				    }
-				
-					
-				}catch(Exception ignored) { 
-				res.sendRedirect(req.getContextPath()+"/front-end/homepage.jsp"); }
+				/*************************** 其他可能的錯誤處理 *************************************/
+			} catch (Exception e) {
+				errorMsgs.add("無法取得資料:" + e.getMessage());
+				String URL=req.getContextPath()+"/backEnd_Login.jsp";
+				res.sendRedirect(URL);
 			}
-			
-			}else {
-				System.out.println("e04");
-				
-				HttpSession session = req.getSession();
-				
-				try {
-					String location2=(String)session.getAttribute("location2");
-					if (location2 != null) {
-System.out.println("location2="+location2);
-						session.removeAttribute("location2");  
-				        session.invalidate();
-				        res.sendRedirect(location2);      
-				
-				        return;
-				    }else {
-				    	
-				    	
-				    	res.sendRedirect(req.getContextPath()+"/backEnd2.jsp");
-//				    	String location22 = (String) req.getSession().getAttribute("location2");
-//						
-//				    	System.out.println("新"+location22);
-//				    				
-//				    				res.sendRedirect(location22);
-				    	
-				    }
-				
-					
-				}catch(Exception ignored) { 
-				res.sendRedirect(req.getContextPath()+"/front-end/homepage.jsp"); }
-			}
-				
-			}
+		}	
 		
 		
 		
@@ -249,6 +172,162 @@ System.out.println("location2="+location2);
 		
 		
 		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+//	if("login2".equals(action)) {
+//
+//			
+//		
+//			
+//	
+//			
+//			
+////			if(staff_id==null || staff_id.trim().length()==0) {
+////			
+////			}
+////			if(staff_id==null || staff_id.trim().length()==0) {
+////		
+////			}
+//			String login2= (Integer)req.getSession().getAttribute("login2")+"";
+//		
+//			if(!login2.equals("1")) {
+//				String staff_id=req.getParameter("staff_id").trim();
+//				String psw=req.getParameter("psw").trim();
+//				
+//				System.out.println(staff_id);
+//				System.out.println(psw);
+//			if(allowUser(staff_id,psw)==1) {
+//				//登入不成功
+//				System.out.println("沒有此帳號");
+//				String URL=req.getContextPath()+"/index.html";
+//				res.sendRedirect(URL);
+//				return;
+//			}else if(allowUser(staff_id,psw)==4) {
+//				//登入不成功
+//				System.out.println("密碼錯誤");
+//				String URL=req.getContextPath()+"/index.html";
+//				res.sendRedirect(URL);
+//				return;	
+//				
+//			}else {
+//				StaffService staffSvc=new StaffService();
+//				StaffVO staffVO=null;
+//				staffVO=staffSvc.getfindOnePK(staff_id);
+//				AuthorityService authorityService = new AuthorityService();
+//				
+//				Set<String> powerList = authorityService.findPowerByEmpno(staff_id);
+//				if(powerList ==null) {
+//					powerList = new HashSet<String>();
+//				}
+//				HttpSession session=req.getSession();
+//				session.setAttribute("staffVO", staffVO);
+
+//				
+//				
+//				
+
+//				
+//				
+		
+//session.setAttribute("staff_id", staffVO.getStaff_id());
+//session.setAttribute("staff_name", staffVO.getStaff_name());
+//
+//session.setAttribute("powerList",powerList);
+//session.setAttribute("login2", 1);
+//String login21= (Integer)req.getSession().getAttribute("login2")+"";
+//System.out.println("login21"+login21);		
+//
+//    
+//session.setAttribute("staff_status", 1);
+//		        String sessionstaff_status= (Integer)req.getSession().getAttribute("staff_status")+"";
+//System.out.println("session中staff_status"+sessionstaff_status);		
+//
+//
+//
+//
+//
+//
+//
+//
+//				String sessionstaff_id= (String) req.getSession().getAttribute("staff_id");
+//				
+//System.out.println("session中staff_id"+sessionstaff_id);
+//				try {
+//					String location2=(String)session.getAttribute("location2");
+//					if (location2 != null) {
+//System.out.println("location2="+location2);
+//						session.removeAttribute("location2");  
+//				        res.sendRedirect(location2);            
+//				        return;
+//				    }else {
+//				    	 session.invalidate();
+//				    	res.sendRedirect(req.getContextPath()+"/backEnd2.jsp");
+////				    	String location22 = (String) req.getSession().getAttribute("location2");
+////						
+////				    	System.out.println("新"+location22);
+////				    				
+////				    				res.sendRedirect(location22);
+//				    	
+//				    }
+//				
+//					
+//				}catch(Exception ignored) { 
+//				res.sendRedirect(req.getContextPath()+"/front-end/homepage.jsp"); }
+//			}
+//			
+//			}else {
+//				System.out.println("e04");
+//				
+//				HttpSession session = req.getSession();
+//				
+//				try {
+//					String location2=(String)session.getAttribute("location2");
+//					if (location2 != null) {
+//System.out.println("location2="+location2);
+//						session.removeAttribute("location2");  
+//				        session.invalidate();
+//				        res.sendRedirect(location2);      
+//				
+//				        return;
+//				    }else {
+//				    	
+//				    	
+//				    	res.sendRedirect(req.getContextPath()+"/backEnd2.jsp");
+////				    	String location22 = (String) req.getSession().getAttribute("location2");
+////						
+////				    	System.out.println("新"+location22);
+////				    				
+////				    				res.sendRedirect(location22);
+//				    	
+//				    }
+//				
+//					
+//				}catch(Exception ignored) { 
+//				res.sendRedirect(req.getContextPath()+"/front-end/homepage.jsp"); }
+//			}
+//				
+//			}
+//		
+//		
+//		
+//		
+//		
+//		
+//		
+//		
+//		
+//		
+//		
+//		
 		
 		if ("getOne_ForStaff".equals(action)) { // 來自select_page.jsp的請求
 

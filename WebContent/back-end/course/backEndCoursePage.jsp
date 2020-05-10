@@ -43,7 +43,7 @@ width:1020px;
 					height="200">
 				<div class="menu-group">
 				<a class="menu-group-a"
-						href="<%=request.getContextPath() + "/backEnd.html"%>"><span style="font-size:30px;">回首頁</span></a>
+						href="<%=request.getContextPath() + "/backEnd2.jsp"%>"><span style="font-size:30px;">回首頁</span></a>
 					<a class="menu-group-a"
 						href="<%=request.getContextPath() + "/back-end/course/backEndCoursePage.jsp?pageType=courseAllList.jsp"%>"><span>課程列表</span></a>
 					<a class="menu-group-a"

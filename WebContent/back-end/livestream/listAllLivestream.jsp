@@ -399,6 +399,8 @@
             <!--這裡是左邊選單-->
             <div class="left-bar"><span class="fa fa-cloud-download"><img src="/image/logo_nohead.png" alt="LOGO"
                         width="200" height="200"></span>
+                        <a class="menu-group-a"
+						href="<%=request.getContextPath() + "/backEnd2.jsp"%>"><span style="font-size:30px;">回首頁</span></a>
                 <div class="menu-group"> <span class="fa fa-television">帳號設定</span>
                     <div class="building"><span class="fa fa-building"></span><span class="fa fa-building"></span></div>
                     <span class="fa fa-cog"></span>

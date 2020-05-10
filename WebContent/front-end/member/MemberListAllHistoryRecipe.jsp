@@ -880,7 +880,7 @@ body {
 }
 
 .sidebar {
-	margin-top: 20px;
+	margin-top: -4px;
 	margin-left: 17%;
 	width: 240px;
 
@@ -1062,6 +1062,14 @@ margin-rught:100px;
 .footer-copyright24 {
 	margin-top: 50%;
 }
+h4{
+margin-left: 121px;
+    color: #52a3dddb;
+    margin-right: -5px;
+    font-style: oblique;
+    font-family: sans-serif;
+    font-size: smaller;
+}
 
 h3 {
     margin-top: 27px;
@@ -1077,7 +1085,15 @@ h3 {
 h2{
 margin-left:56px;
 margin-bottom:8px;
-margin-top:-14px;
+
+
+    margin-left: 45px;
+    margin-bottom: 8px;
+    margin-top: -15px;
+    font-family: inherit;
+
+    color: #8d3a7f;
+   
 
 }
 
@@ -1975,7 +1991,7 @@ hr {
 </div>
 </div>
           <h2><%=memberVO.getMember_name()%></h2>
-
+<h4>我的富胖幣:  <%=memberVO.getBalance()%></h4>
           <div class="link-top"></div>
 
 	<div id="leftside-navigation" class="nano">
@@ -2001,7 +2017,7 @@ hr {
 					src="../../image/member/S__12066821.jpg"><span>我的錢包/點數&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>
 				</span><i class="arrow fa fa-angle-right pull-right"></i></a>
 				<ul>
-			
+				
 					
 	<li><a href="/DA106_G4_Foodporn_Git/front-end/member/123.jsp">信用卡</a></li>
 				<c:if test='${member_status eq 1 }'>
@@ -2098,7 +2114,8 @@ hr {
 			<c:forEach var="Recipe_browing_historyVO" items="${list2}" begin="<%=pageIndex%>"
 				end="<%=pageIndex+rowsPerPage-1%>">
 		
-
+<a class="show-one-link"
+									href="<%=request.getContextPath()%>/front-end/recipe/RecipeServlet?action=getOne_For_Display&recipe_id=${Recipe_browing_historyVO.recipe_id}">
 				<li class="recipe-item">
 				
 				
@@ -2126,8 +2143,7 @@ hr {
 					<div class="recipe-item-caption">
 						<div class="recipe-item-caption-header">
 							<h4 class="recipe-item-tile">
-								<a class="show-one-link"
-									href="<%=request.getContextPath()%>/front-end/recipe/RecipeServlet?action=getOne_For_Display&recipe_id=${Recipe_browing_historyVO.recipe_id}">${recipeSvc.getOneRecipe(Recipe_browing_historyVO.recipe_id).recipe_name}</a>
+								${recipeSvc.getOneRecipe(Recipe_browing_historyVO.recipe_id).recipe_name}
 							</h4>
 							
 							
@@ -2138,6 +2154,7 @@ hr {
 						<p class="recipe-item-ingredient">卡洛里：${recipeSvc.getOneRecipe(Recipe_browing_historyVO.recipe_id).calo_intake}</p>
 			
 					</div></li>
+					</a>
 			</c:forEach>
 		</ul>
 		<div class="include-page2">
