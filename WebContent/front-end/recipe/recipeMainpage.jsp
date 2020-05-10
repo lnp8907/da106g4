@@ -1,5 +1,6 @@
+<%@page import="com.recipe.model.RecipeVO_saved"%>
 <%@page import="java.util.List"%>
-<%@page import="com.recipe.model.RecipeVO"%>
+
 <%@page import="com.recipe.model.RecipeService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -8,7 +9,7 @@
 
 <% 
 	RecipeService recipeService = new RecipeService();
-	List<RecipeVO> list = recipeService.getChefCooked("810003");
+	List<RecipeVO_saved> list = recipeService.getAllForFrontEnd();
 	pageContext.setAttribute("list", list);
 	%>
 <!DOCTYPE html>
@@ -50,9 +51,9 @@
 <style>
 .main-page-card {
 	display: inline-block;
-	width: 29%;
-	height: 280px;
-	margin: 5px 10px 50px;
+    width: 25%;
+    height: 280px;
+    margin: 5px 44px 50px;
 }
 
 .main-page-card-pic {
@@ -97,9 +98,9 @@
 }
 
 .main-page-card-container {
-	width: 100%;
-	margin: 0 auto;
-	margin-left: 20px;
+    width: 1100px;
+    margin: 0 auto;
+    
 }
 
 .main-page-card-info h4 {
@@ -129,22 +130,20 @@
 .recipeFollow {
 	padding-left: 20px;
 }
-</style>
-<style>
+
 #article-recipe {
     margin-top: 0px;
         padding-top: 60px;
 }
-# article-section-seemore-recipe{
+#article-section-seemore-recipe{
 margin:10px auto;
 }
+#page{text-align: center;
+    color: #E4002B;}
 </style>
 </head>
 
 <body>
-
-購物車總數${fn:length(productcarlist)}
-
 	<header>
 		<div id="top-logo" class="logo">
 <a href="<%=request.getContextPath()%>/index.jsp" title="回首頁"><img class="logo-photo"
@@ -418,8 +417,12 @@ margin:10px auto;
 			<!-- end of recipe-->
 			<section>
 			
+<%@ include file="pages/page1.file"%>
 <div class="main-page-card-container">
-	<c:forEach var="RecipeVO" items="${list}" >
+
+<jsp:useBean id="memberSvc" class="com.member.model.MemberService"/>
+	<c:forEach var="RecipeVO" items="${list}" begin="<%=pageIndex%>"
+				end="<%=pageIndex+rowsPerPage-1%>">
 
 		<div class="main-page-card">
 			<div class="main-page-card-pic">
@@ -431,7 +434,7 @@ margin:10px auto;
 						<a class="show-one-link"
 							href="<%=request.getContextPath()%>/front-end/recipe/RecipeServlet?action=getOne_For_Display&recipe_id=${RecipeVO.recipe_id}">${RecipeVO.recipe_name}</a>
 					</h4>
-					<span class="followNum">${recipeFavoriteServiec.getFollowedNum(RecipeVO.recipe_id)}</span><span>人收藏</span>
+					<span class="followNum" style="font-size:14px;margin-left:-0.5px;">廚師:</span><span style="font-size:14px;">${memberSvc.getOneMember(RecipeVO.member_id).member_name}</span>
 				</div>
 				<span class="recipeFollow">
 					<button class="recipeFollow_btn">收藏</button> <input type="hidden"
@@ -443,11 +446,14 @@ margin:10px auto;
 				</span>
 			</div>
 		</div>
+	
+	
 	</c:forEach>
-	<span
-								class="article-section-seemore"
-								id="article-section-seemore-recipe">更多食譜...</span>
+<!-- 	<span -->
+<!-- 								class="article-section-seemore" -->
+<!-- 								id="article-section-seemore-recipe"></span> -->
 </div>
+<%@ include file="pages/page2.file"%>
 
 
 
