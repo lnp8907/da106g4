@@ -45,8 +45,8 @@
     <c:set var="ordvo" value="<%=ordvo %>" scope="request"/>
 
 <body>
-	<%="現在地址:" + request.getContextPath()%>
-	現在Order_statusPage:${Order_statusPage}                      
+<%-- 	<%="現在地址:" + request.getContextPath()%> --%>
+<%-- 	現在Order_statusPage:${Order_statusPage}                       --%>
 	
 	<div class="container">
 		<div class="box">

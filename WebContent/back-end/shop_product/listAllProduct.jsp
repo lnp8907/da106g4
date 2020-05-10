@@ -114,8 +114,8 @@
 	</div>
 
 <%-- 	類型....${product_type} --%>
-
-	<select class="product_type ui dropdown">
+<div style="display: inline;">
+	<select class="product_type ui dropdown" >
 		<option value="all" ${product_type eq '0'?'selected':''}>所有商品</option>
 		<option value="水果類" ${product_type eq'1'?'selected':''}>水果類</option>
 		<option value="肉類" ${product_type eq'2'?'selected':''}>肉類</option>
@@ -128,7 +128,9 @@
 		<option value="酒類" ${product_type eq'9'?'selected':''}>酒類</option>
 		<option value="油脂類" ${product_type eq'10'?'selected':''}>油脂類</option>
 		<option value="調味及香辛料類" ${product_type eq'11'?'selected':''}>調味及香辛料類</option>
-	</select>
+	</select></div>
+					<%@ include file="file/page1.file"%>
+	
 	<form action="ShopPageServlet" method="post">
 		<input type="hidden" name="product_type" class="producttype">
 		<input type="hidden" name="action" value="typeselect"> <input
@@ -158,7 +160,6 @@
 					<th>修改</th>
 
 				</tr>
-				<%@ include file="file/page1.file"%>
 				<c:set var="whichPage" value="<%=whichPage%>" scope="request" />
 
 			</thead>
@@ -239,7 +240,7 @@
 							<!-- 修改 -->
 							<FORM METHOD="post" ACTION="ProductServlet"
 								style="margin-bottom: 0px;">
-  <button class="ui right labeled  icon button"><i class="file outline
+  <button class="ui right labeled  icon button updateproduct"><i class="file outline
  icon"></i> 修改</button>
 								<input style="display: none" class="updateproduct" type="submit" value="修改"> <input
 									type="hidden" class="inputid" name="product_id"
@@ -262,7 +263,9 @@
 
 			</tbody>
 		</table>
+		<div>
 		<%@ include file="file/productpage.file"%>
+		</div>
 	</div>
 <%-- 	當前頁面${whichPage} --%>
 	<!-- end of grid -->

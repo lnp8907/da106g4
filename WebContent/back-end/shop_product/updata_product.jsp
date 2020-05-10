@@ -15,46 +15,9 @@ if(request.getAttribute("detailProductvo")!=null){
 
 <head>
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
-<title>員工資料修改 - update_emp_input.jsp</title>
-
-<style>
-  table#table-1 {
-	background-color: #CCCCFF;
-    border: 2px solid black;
-    text-align: center;
-  }
-  table#table-1 h4 {
-    color: red;
-    display: block;
-    margin-bottom: 1px;
-  }
-  h4 {
-    color: blue;
-    display: inline;
-  }
-</style>
-
-<style>
-  table {
-	width: 450px;
-	background-color: white;
-	margin-top: 1px;
-	margin-bottom: 1px;
-  }
-  table, th, td {
-    border: 0px solid #CCCCFF;
-  }
-  th, td {
-    padding: 1px;
-  }
-</style>
-
-</head>
-<body bgcolor='white'>
+<title>商品新增</title>
 
 
-
-<h3>資料修改:</h3>
 
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -65,24 +28,27 @@ if(request.getAttribute("detailProductvo")!=null){
 		</c:forEach>
 	</ul>
 </c:if>
-
-<FORM METHOD="post" ACTION="ProductServlet" name="form1" enctype="multipart/form-data">
-<table>
-<tr>
-		<td><img  src="Product_photoReader?product_id=<%=productvo.getProduct_id()%>"
-			 id="preview_progressbarTW_img" width=100px height=100px; src="#" />
-			</td>
-		<td><input id="imgView" type="file" name="product_photo" size="45" />
-
-		</td>
-	</tr>
-	<tr>
-		<td>商品編號:<font color=red><b>*</b></font></td>
-		<td>${productvo.product_id} </td>
-	</tr>
-		<tr>
-		<td>商品類型:</td>
-		<td><select name="product_type">
+<div class="">
+<FORM class=" ui form" METHOD="post" ACTION="ProductServlet" name="form1" enctype="multipart/form-data">
+  <h4 class="ui dividing header">更新資訊:</h4>
+    <label>上傳圖片:</label>
+		    <div class="two fields">
+		      <div class="field">
+<img  src="Product_photoReader?product_id=<%=productvo.getProduct_id()%>"
+			 id="preview_progressbarTW_img" width=100px height=100px; src="#" />		
+		      </div>
+		      <div class="field">
+		<input id="imgView"style="background-color: transparent;" type="file" name="product_photo" size="45" />		
+		      </div>
+		      </div>
+		    <label>商品編號:<font color=red><b>*</b></font>
+	${productvo.product_id} </label>
+   
+   
+    <div class="two fields">
+      <div class="field">
+            <label>商品類型:</label>
+      	<select name="product_type">
 						<%List<String>producttype=new ArrayList(); 
 		producttype.add("水果類");
 		producttype.add("肉類");
@@ -105,22 +71,23 @@ if(request.getAttribute("detailProductvo")!=null){
 		<%} %>
 
 				</select>
-		
-	</tr>
-	<tr>
-		<td>商品名稱:</td>
-		<td><input type="TEXT" name="product_name" size="45" value="<%=productvo.getProduct_name()%>" /></td>
-	</tr>
-	
-	<tr>
-		<td>商品單價:</td>
-		<td><input type="TEXT" name="product_price" size="45"	value="<%=productvo.getProduct_price()%>" />
-		</td>
-	</tr>
-	
-	<tr>
-		<td>狀態:</td>
-	<td><select name="product_status" size="1">
+      
+</div>
+
+      <div class="field">
+            <label>商品名稱:</label>
+      
+      <input type="TEXT" name="product_name" size="45" value="<%=productvo.getProduct_name()%>" />
+</div>
+</div>
+	 <div class="two fields">
+      <div class="field">
+            <label>商品單價:</label>
+		<input type="TEXT" name="product_price" size="45"	value="<%=productvo.getProduct_price()%>" />
+</div>
+      <div class="field">
+            <label>商品狀態:</label>
+		<select name="product_status" size="1">
 			<%List<Integer>productstatus=new ArrayList(); 
 			productstatus.add(0);
 			productstatus.add(1);
@@ -137,56 +104,74 @@ if(request.getAttribute("detailProductvo")!=null){
 		<%="</option>" %>
 		<%} %>
 
-</select></td>
-	
-	</tr>
-<tr>
-		<td>碳水化合物:</td>
-		<td><input type="TEXT" name="carbohydrate" size="45" value="<%=productvo.getCarbohydrate() %>" /></td>
-	</tr>
-	<tr>
-		<td>蛋白質:</td>
-		<td><input type="TEXT" name="protein" size="45" value="<%=productvo.getProtein()%>" /></td>
-	</tr>
-	<tr>
-		<td>脂質:</td>
-		<td><input type="TEXT" name="fat" size="45" value="<%=productvo.getFat()%>" /></td>
-	</tr>
-	<tr>
-		<td>卡洛里:</td>
-		<td><input type="TEXT" name="calorie" size="45" value="<%=productvo.getCalorie()%>" /></td>
-	</tr>
-	<tr>
-		<td>維生素B:</td>
-		<td><input type="TEXT" name="vitamin_B" size="45" value="<%=productvo.getVitamin_B()%>" /></td>
-	</tr>
-	<tr>
-		<td>維生素C:</td>
-		<td><input type="TEXT" name="vitamin_C" size="45" value="<%=productvo.getVitamin_C()%>" /></td>
-	</tr>
-	<tr>
-		<td>鈉:</td>
-		<td><input type="TEXT" name="salt" size="45" value="<%=productvo.getSalt()%>" /></td>
-	</tr>
-	<tr>
-		<td>膳食纖維:</td>
-		<td><input type="TEXT" name="vagetbale" size="45" value="<%=productvo.getVagetbale()%>" /></td>
-	</tr>
-	<tr>
-		<td>內容:</td>
-		<td><input type="TEXT" height=400px name="content" size="45" value="<%=productvo.getContent()%>" /></td>
-	</tr>
+</select>
+</div>
+</div>
+		<table class="ui celled diettable table" style="background-color: transparent;"  border='0'>
+    <tr style="background-color: transparent;"><td >營養成分</td>
+    <th ></th>
+  </tr>
+  <tbody>
+   <tr>
+      <td>碳水化合物:</td>
+      <th><input type="TEXT" name="carbohydrate" size="45" value="<%=productvo.getCarbohydrate() %>" /></th>
 
+    </tr>
+   <tr>
+      <td >蛋白質:</td>
+      <th><input type="TEXT" name="protein" size="45" value="<%=productvo.getProtein()%>" /></th>
+
+    </tr>
+       <tr>
+      <td >脂質:</td>
+      <th><input type="TEXT" name="fat" size="45" value="<%=productvo.getFat()%>" /></th>
+
+    </tr>
+       <tr>
+      <td>卡洛里:</td>
+      <th><input type="TEXT" name="calorie" size="45" value="<%=productvo.getCalorie()%>" /></th>
+
+    </tr>
+       <tr>
+      <td >維生素B:</td>
+      <th><input type="TEXT" name="vitamin_B" size="45" value="<%=productvo.getVitamin_B()%>" /></th>
+
+    </tr>
+       <tr>
+      <td >維生素C:</td>
+      <th><input type="TEXT" name="vitamin_C" size="45" value="<%=productvo.getVitamin_C()%>" /></th>
+
+    </tr>
+  <tr>
+      <td >鈉:</td>
+      <th><input type="TEXT" name="salt" size="45" value="<%=productvo.getSalt()%>" /></th>
+
+    </tr>
+      <tr>
+      <td >膳食纖維:</td>
+      <th><input type="TEXT" name="vagetbale" size="45" value="<%=productvo.getVagetbale()%>" /></th>
+
+    </tr>
+    <tr>
+      <td >內容:</td>
+      <th><input type="TEXT" height=400px name="content" size="45" value="<%=productvo.getContent()%>" /></th>
+
+    </tr>
+    </tbody>
+  
+  
 </table>
+  <button class="ui right labeled icon button" style="float:right;" type="submit"><i class="right arrow icon"></i> 更新商品 </button>
+
 <br>
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="product_id" value="<%=productvo.getProduct_id()%>">
-<input type="submit" value="送出修改">
+<!-- <input type="submit" value="送出修改" > -->
 <input type="hidden" name="whichPage" value="${whichPage}">
-which=${whichPage}
+<%-- which=${whichPage} --%>
 
 </FORM>
-
+</div>
 <script>
 if($("input").val()=="null"){
 	$("input").val("");
@@ -210,6 +195,20 @@ $("#imgView").change(function(){
 </script>
 
 </body>
+<style>
+
+.product-upatefrom{
+background-image: linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%);
+
+
+}
+.diettable td{
+color: white;
+
+
+}
+
+</style>
 
 
 </html>

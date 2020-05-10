@@ -34,7 +34,7 @@
 
 <title>後端頁面模板</title>
 <body>
-	<%="現在地址:" + request.getContextPath()%>
+<%-- 	<%="現在地址:" + request.getContextPath()%> --%>
 	<div class="container">
 		<div class="box">
 			<!--這裡是左邊選單-->
@@ -205,7 +205,7 @@
 										aria-hidden="true">&times;</button>
 								</div>
 
-								<div class="modal-body">
+								<div class="product-upatefrom modal-body">
 									<!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
 
 									<jsp:include page="updata_product.jsp" />

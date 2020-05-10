@@ -11,15 +11,26 @@
     <%}%>
   <%}%>  
 
-<br><br>
+
 
   <%if (pageNumber>1) {%>
+  <div   style="display: inline-block; float:right">
     <FORM METHOD="post" ACTION="<%=request.getRequestURI()%>&product_typeA=${product_type}">   
-       <select size="1" name="whichPage">
+       <select class="changPage ui dropdown" size="1" name="whichPage">
          <%for (int i=1; i<=pageNumber; i++){%>
             <option value="<%=i%>">跳至第<%=i%>頁
          <%}%> 
        </select>
-       <input type="submit" value="確定" >  
+       <input  class="changesubmit" style="display: none"  type="submit" value="確定" >  
+       
     </FORM>
+    </div>
   <%}%>
+   <script>
+      $(".changPage").change(function(){
+     $(".changesubmit").click();
+      
+      
+      
+      });
+      </script>

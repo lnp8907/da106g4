@@ -99,7 +99,7 @@ MemberService msvc=new MemberService();
 
 %>
 
-換頁回傳值:<%=Message %>
+<%-- 換頁回傳值:<%=Message %> --%>
 <c:set var="Order_statusPage" value="<%=Message %>" scope="session"/>
 <!DOCTYPE html>
 <html>
