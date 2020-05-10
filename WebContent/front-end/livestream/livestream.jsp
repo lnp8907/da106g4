@@ -916,7 +916,7 @@ display:none;
 		</div>
 		<div class="footer-copyright">Copyright &copy; DA106-G4 Foodporn
 			All rights reserved.</div>
-
+ 
 	</footer>		
 			
 			
