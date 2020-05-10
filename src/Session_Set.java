@@ -22,7 +22,7 @@ public class Session_Set extends HttpServlet {
 		MemberVO memberVO = memberService.getOneMember(member_id);
 		HttpSession session = req.getSession();
         session.setAttribute("memberVO",memberVO);
-		String URL=req.getContextPath()+"/front-end/livestream/livestream.jsp";
+		String URL=req.getContextPath()+"/front-end/livestream/livestream.jsp#"+member_id;
 		res.sendRedirect(URL);
 //        String ID = session.getId();
 //        out.println("ID="+ID);
