@@ -989,8 +989,7 @@ alert($(this).children('.messageNoticeId').val());
  url:'NoticeServlet',
    data: {"action":"Click", "notice_id":$(this).children('.messageNoticeId').val()},
    dataType: "json",
-   success: function (data){
-	   alert(data);
+   success: function (){
 	   message.attr("style", "background-color:white");
    },     
   error: function(){alert("AJAX-msgLightBox發生錯誤囉!")}
