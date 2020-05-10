@@ -91,6 +91,8 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 <c:set var="productlist" value="<%=productlist %>"/>
 
 <body>
+會員ID:  ${member_id}
+
 		<header>
 		<div id="top-logo" class="logo">
 			<a href="<%=request.getContextPath() %>/index.jsp" title="回首頁"><img class="logo-photo"
@@ -143,7 +145,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 				</div>
 				
 				
-				<div class="notice">
+				<div style="display: none" class="notice">
 					<a href="#"><img class="header-icon" src="<%=request.getContextPath() %>/image/ico_notice.png"
 						alt="notice-icon">
 						<div class="herder-icon-span">
@@ -155,58 +157,76 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 
 		</div>
 		<!-- end of function-->
-		<nav id="navigation">
+	<nav id="navigation">
 			<ul>
-				<li class="dropdown"><a><img class="access-menu-icon"
+				<li class="dropdown"><a href="#"><img class="access-menu-icon"
 						src="<%=request.getContextPath() %>/image/recipe-icon.png"><span class="menu-span">食譜專區</span></a>
 					<ul>
 						<li><a class="dropdown-first-a" href="#"><img
 								class="dropdown-first-img" src="<%=request.getContextPath() %>/image/ico_gnav_recipes_book.svg"><span
 								class="dropdown-first-a-span">食譜主頁</span></a></li>
-						<li><a href="#">特輯食譜</a></li>
-						<li><a href="#">推薦食譜</a></li>
-						<li><a href="front-end/recipe/recipeHomepage.jsp?pageType=addRecipe.jsp">建立食譜</a></li>
+<!-- 						<li><a href="#">特輯食譜</a></li> -->
+<!-- 						<li><a href="#">推薦食譜</a></li> -->
+					<c:if test="${memberVO.member_status==1}">
+						<li><a href="front-end/recipe/addRecipe.jsp">建立食譜</a></li>
+					</c:if>
+	
 					</ul></li>
 				<li class="dropdown"><a><img class="access-menu-icon"
 						src="<%=request.getContextPath() %>/image/livestream-icon.png"><span class="menu-span">直播專區</span></a>
 					<ul>
-						<li><a class="dropdown-first-a" href="#"><img
+						<li><a class="dropdown-first-a" href="<%=request.getContextPath()%>/front-end/livestream/livestreamHomePage.jsp"><img
 								class="dropdown-first-img"
 								src="<%=request.getContextPath() %>/image/ico_gnav_recipes_movie.svg"><span
 								class="dropdown-first-a-span">直播主頁</span></a></li>
-						<li><a href="#">直播預告</a></li>
-						<li><a href="#">熱門直播</a></li>
-						<li><a href="#">建立直播預告</a></li>
+						<li><a href="livestream.jsp">直播預告</a></li>
+					<c:if test="${memberVO.member_status==1}">
+						<li><a href="front-end/livestream/livestream.jsp#${member_id}">開啟直播</a></li>
+						
+						</c:if>
 					</ul></li>
-				<li class="dropdown dropdown-shop"><a><img
+				<li class="dropdown dropdown-shop"><a href="<%=request.getContextPath()%>/front-end/ShopPage/ShopHomePage.jsp"><img
 						class="access-menu-icon" src="<%=request.getContextPath() %>/image/shop-icon.png"><span
 						class="menu-span">食材商城</span></a>
 					<ul id="dropdown-shop-ul">
-						<li><a class="dropdown-first-a" href="#"><img
+						<li><a class="dropdown-first-a" href="<%=request.getContextPath()%>/front-end/ShopPage/ShopHomePage.jsp"><img
 								class="dropdown-first-img"
 								src="<%=request.getContextPath() %>/image/ico_gnav_recipes_salad.svg"><span
 								class="dropdown-first-a-span">食材商城主頁</span></a></li>
-						<li><a href="#">調味料</a></li>
-						<li><a href="#">果醬</a></li>
-						<li><a href="#">麵粉</a></li>
-						<li><a href="#">酒類</a></li>
-						<li><a href="#">蔬菜</a></li>
-						<li><a href="#">水果</a></li>
-						<li><a href="#">海鮮</a></li>
-						<li><a href="#">肉類</a></li>
-						<li><a href="#">乳製品</a></li>
-						<li><a href="#">香料</a></li>
-						<li><a href="#">罐頭</a></li>
-						<li><a href="#">乾貨</a></li>
+								<%
+			Map<Integer, String> productTOPtype = new HashMap<Integer, String>();
+			
+								productTOPtype.put(0, "水果類");
+								productTOPtype.put(1, "肉類");
+								productTOPtype.put(2, "蔬菜類");
+								productTOPtype.put(3, "乳品類");
+								productTOPtype.put(4, "魚貝類");
+								productTOPtype.put(5, "菇類");
+								productTOPtype.put(6, "穀物類");
+								productTOPtype.put(7, "澱粉類");
+								productTOPtype.put(8, "酒類");
+								productTOPtype.put(9, "調味料及香辛料類");
+								productTOPtype.put(10, "油脂類");
+								productTOPtype.put(11, "所有商品");				
+				request.setAttribute("productTOPtype", productTOPtype);
+//producttype
+			%>							<c:forEach var="productTOPtype" items="${productTOPtype}">
+									<li><a href="<%=request.getContextPath() %>/front-end/ShopPage/ProductPage?product_type=${productTOPtype.value}&action=goProductPage">${productTOPtype.value}</a></li>
+			
+										</c:forEach>
+			
+
 					</ul></li>
-				<li class="dropdown"><a><img class="access-menu-icon"
+				<li class="dropdown"><a href="front-end/course/listAllCourse.jsp"><img class="access-menu-icon"
 						src="<%=request.getContextPath() %>/image/course-icon.png"><span class="menu-span">料理課程</span></a>
 					<ul>
-						<li><a class="dropdown-first-a" href="#"><img
+						<li><a href="<%=request.getContextPath() %>/front-end/course/listAllCourse.jsp" class="dropdown-first-a" href="front-end/course/listAllCourse.jsp"><img
 								class="dropdown-first-img" src="<%=request.getContextPath() %>/image/ico_gnav_recipes_pot.svg"><span
 								class="dropdown-first-a-span">課程主頁</span></a></li>
-						<li><a href="#">熱門課程</a></li>
-						<li><a href="#">建立料理課程</a></li>
+<!-- 						<li><a href="#">熱門課程</a></li> -->
+					<c:if test="${memberVO.member_status==1}">
+						<li><a href="<%=request.getContextPath() %>/front-end/course/addCourse.jsp">建立料理課程</a></li>
+						</c:if>
 					</ul></li>
 			</ul>
 		</nav>
@@ -272,7 +292,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 	</div>
 	<!-- end of login-->
 	<div class="pagetop">
-		<img src="image/go-top-page.png" alt="BackTop" id="BackTop">
+		<img src="<%=request.getContextPath() %>/image/go-top-page.png" alt="BackTop" id="BackTop">
 		<!--一鍵置頂-->
 	</div>
 
@@ -439,56 +459,82 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 
 			<!--食譜-->
 
-			<div class="multiple-items repiceslider">
-				<div>
-					<img src="MALLimage/TEST2.png" alt="">
-				</div>
-				<div>
-					<img src="MALLimage/testp1.png" alt="">
-				</div>
-				<div>
-					<img src="MALLimage/TEST2.png" alt="">
-				</div>
-				<div>
-					<img src="MALLimage/testp1.png" alt="">
-				</div>
-				<div>
-					<img src="MALLimage/TEST2.png" alt="">
-				</div>
-				<div>
-					<img src="MALLimage/testp1.png" alt="">
-				</div>
-				<div>
-					<img src="MALLimage/TEST2.png" alt="">
-				</div>
-			</div>
+<!-- 			<div class="multiple-items repiceslider"> -->
+<!-- 				<div> -->
+<!-- 					<img src="MALLimage/TEST2.png" alt=""> -->
+<!-- 				</div> -->
+<!-- 				<div> -->
+<!-- 					<img src="MALLimage/testp1.png" alt=""> -->
+<!-- 				</div> -->
+<!-- 				<div> -->
+<!-- 					<img src="MALLimage/TEST2.png" alt=""> -->
+<!-- 				</div> -->
+<!-- 				<div> -->
+<!-- 					<img src="MALLimage/testp1.png" alt=""> -->
+<!-- 				</div> -->
+<!-- 				<div> -->
+<!-- 					<img src="MALLimage/TEST2.png" alt=""> -->
+<!-- 				</div> -->
+<!-- 				<div> -->
+<!-- 					<img src="MALLimage/testp1.png" alt=""> -->
+<!-- 				</div> -->
+<!-- 				<div> -->
+<!-- 					<img src="MALLimage/TEST2.png" alt=""> -->
+<!-- 				</div> -->
+<!-- 			</div> -->
 			<!-- end of Mallproduct -->
-			<div>
-			 <div>
+			
 	        <c:if test="${member_id!=null}">
 
 	                <%@ include file="ProductCarousel.jsp" %>
+  </div>	
+			
+				<span class="article-section-seemore">查看瀏覽紀錄</span>
+			</div>	                
 
 	        </c:if>
 	        
-	        
-	        </div>
-			
-			
-				<span class="article-section-seemore">查看瀏覽紀錄</span>
-			</div>
-
-
-
-
+	
 		</article>
 	</main>
 	<!--主要內容到此結束-->
 	<!--*************************************以上開放編輯▲**************************************-->
 
 	<footer>
-		<!--這個是底部,你用不到-->
-
+		<div class="footer-bg">
+			<div class="footer-murmur">
+				<img src="<%=request.getContextPath() %>/image/FoodPron_Logo_white.png" alt="logo"
+					data-aos="zoom-in">
+				<ul>
+					<li class="footer-li-fist">逛其他</li>
+					<li>直播專區</li>
+					<li>食材商城</li>
+					<li>料理課程</li>
+				</ul>
+				<ul>
+					<li class="footer-li-fist">逛食譜</li>
+					<li>熱門食譜</li>
+					<li>新到食譜</li>
+					<li>全部分類</li>
+				</ul>
+				<ul>
+					<li class="footer-li-fist">會員服務</li>
+					<li>我的收藏</li>
+					<li>帳號設定</li>
+					<li>忘記密碼</li>
+					<li>我的訂單</li>
+				</ul>
+				<ul>
+					<li class="footer-li-fist">關於我們</li>
+					<li>公司資訊</li>
+					<li>品牌資產</li>
+					<li>服務條款</li>
+					<li>隱私權政策</li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer-copyright">Copyright &copy; DA106-G4 Foodporn
+			All rights reserved.</div>
 
 	</footer>
 

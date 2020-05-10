@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.member.model.MemberVO;
 import com.product.model.ProductService;
 import com.product.model.ProductVO;
 import com.product_browsing_history.model.Product_browing_historyService;
@@ -182,8 +183,11 @@ public class ShopPageServlet extends HttpServlet {
 //瀏覽紀錄新增
 			if(session.getAttribute("member_id")!=null&&product_id!=null) {
 				System.out.println("開始新增瀏覽紀錄");
+				MemberVO membervo=(MemberVO) session.getAttribute("memberVO");
+//				String member_id=membervo.getMember_id();
 				String member_id=(String) session.getAttribute("member_id");
-				System.out.println(member_id);
+
+				System.out.println("獲取ID:"+member_id);
 
 				Product_browing_historyService pvhSvc=new Product_browing_historyService();
 				pvhSvc.insert(member_id, product_id);

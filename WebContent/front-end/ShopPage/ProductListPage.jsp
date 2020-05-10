@@ -114,7 +114,7 @@ List<ProductVO> productlist=null;
   <a class="section" href="ShopHomePage.jsp">商城首頁</a>
   <i class="right angle icon divider"></i>
   <div class="active section"><font ><%=(product_type!=null)?product_type:"所有商品"%><%if (pageNumber>0){%>
-  <b>第<font color=red><%=whichPage%></font>頁</b>
+  <b><font style="color: black">第</font><font><%=whichPage%></font><font style="color: black">頁</font></b>
 <%}%> </font>
   
   
@@ -211,16 +211,22 @@ List<ProductVO> productlist=null;
 			%>
 		</c:forEach>
                 </ul>
+                                                    
+                
+                                  </div>
+                 <div class="changepag">
+                                                     	                             <%@ include file="Includepage/ProductListChangePage.file" %>
+                                                     
+                                                     
+                                                    </div>
+                  </div>
+	     
 
-            </div>
-        </div>
-        
-        <%@ include file="Includepage/page2.file" %>
-        
-	        </div>
+            
+      
 	        
 	        
-	        <div>
+	    
 	        <c:if test="${member_id!=null}">
 	                <%@ include file="ProductCarousel.jsp" %>
 
