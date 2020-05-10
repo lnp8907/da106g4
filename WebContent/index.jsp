@@ -64,8 +64,8 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 	type="image/x-icon" />
 
 
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+ <script type="text/javascript" src="javascript/jquery-3.2.1.min.js"></script> 
+<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="<%=request.getContextPath() %>/slick/slick.js" type="text/javascript" charset="utf-8"></script>
 <script src="<%=request.getContextPath() %>/js/homePage.js" type="text/javascript" charset="utf-8"></script>
@@ -218,7 +218,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 					</a>
 				</div>
 								<!-- 購物車 -->
-<c:if test='!${empty member_id}'>
+			<c:if test="${not empty member_id}">
 				<!-- <div class="demo"> -->
 				<div>
 					<div id="launch" class="notice">
@@ -231,17 +231,17 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 					</div>
 					 <!-- <a  class="" href="#">Launch Popup</a> -->
 				</div>
-</c:if>
+			</c:if>
 			</div>
 
 		</div>
 		<!-- end of function-->
 		<nav id="navigation">
 			<ul>
-				<li class="dropdown"><a href="#"><img class="access-menu-icon"
+				<li class="dropdown"><a href="<%=request.getContextPath()%>/front-end/recipe/recipeMainpage.jsp"><img class="access-menu-icon"
 						src="<%=request.getContextPath() %>/image/recipe-icon.png"><span class="menu-span">食譜專區</span></a>
 					<ul>
-						<li><a class="dropdown-first-a" href="#"><img
+						<li><a class="dropdown-first-a" href="<%=request.getContextPath()%>/front-end/recipe/recipeMainpage.jsp"><img
 								class="dropdown-first-img" src="<%=request.getContextPath() %>/image/ico_gnav_recipes_book.svg"><span
 								class="dropdown-first-a-span">食譜主頁</span></a></li>
 <!-- 						<li><a href="#">特輯食譜</a></li> -->
@@ -870,7 +870,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 	<script src="javascript/loginForm.js" type="text/javascript"
 		charset="utf-8"></script>
 <!-- jquery -->
- <script type="text/javascript" src="javascript/jquery-3.2.1.min.js"></script> 
+
 	<!-- JavasScript for BackTop -->
 	<script>
 		$('#BackTop').click(function() {
