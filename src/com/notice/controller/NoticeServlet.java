@@ -42,6 +42,7 @@ public class NoticeServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
+<<<<<<< HEAD
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
@@ -67,6 +68,12 @@ public class NoticeServlet extends HttpServlet {
 //			}
 
 		}
+=======
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub		
+		System.out.println("進入通知控制器");
+
+>>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
 	}
 
 	// 取得notice_id

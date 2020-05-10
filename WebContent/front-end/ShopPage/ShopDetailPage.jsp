@@ -488,20 +488,9 @@ productCarlistt${productCarlist}
 <!-- 						<input type="button" value="+" id="add" -->
 <!-- 						onclick="add()" /> -->
             
-            
-
-
-            
-            
-            
-            
-            
- 
-
 </div>
         </div>
 
-     
         <div class="prodictmessage">
             <div class="title">營養成分</div>
             <div class="hrdiv"> <hr></div>
@@ -538,6 +527,7 @@ productCarlistt${productCarlist}
             </div>
         </div>
         
+              </div></div>
         
   <div>
 	        <c:if test="${member_id!=null}">
@@ -549,11 +539,23 @@ productCarlistt${productCarlist}
 	        
 	        </div>
         
-        
 
 
+
+	
+	<div id="buymessage" style="border-color:  #e4002b"  title="購買確認">
+    <div>購買成功</div>
+<div>是否前往購物車查看:</div>
+    <div><button class="ui cancelshopcart button"><i class="shopping red arrow alternate circle left
+ icon"></i> 繼續購物 </button>
+ 
+ 
+ <button class="ui  button"><a href="<%=request.getContextPath() %>/front-end/ShopPage/ProductPage?action=checktpage1">前往購物車 </a> <i class="shopping cart red
+ icon"></i></button></div>
+
+ </div>
 <footer>
-		<div class="footer-bg">
+		<div  class="footer-bg">
 			<div class="footer-murmur">
 				<img src="<%=request.getContextPath() %>/image/FoodPron_Logo_white.png" alt="logo"
 					data-aos="zoom-in">
@@ -588,20 +590,10 @@ productCarlistt${productCarlist}
 		<div class="footer-copyright">Copyright &copy; DA106-G4 Foodporn
 			All rights reserved.</div>
 
+
+
+
 	</footer>
-	
-	<div id="buymessage" style="border-color:  #e4002b"  title="購買確認">
-    <div>購買成功</div>
-<div>是否前往購物車查看:</div>
-    <div><button class="ui cancelshopcart button"><i class="shopping red arrow alternate circle left
- icon"></i> 繼續購物 </button>
- 
- 
- <button class="ui  button"><a href="<%=request.getContextPath() %>/front-end/ShopPage/ProductPage?action=checktpage1">前往購物車 </a> <i class="shopping cart red
- icon"></i></button></div>
-
- 
-
 
 
 	<script>
@@ -711,28 +703,7 @@ $('#plusmun').click(function () {
 });
 
 </script>
-<style>
-    #buymessage{
-        margin-top: 20px;
-        height: 150px;
-    }
-    #buymessage div:nth-child(3){
-        padding-top: 20px;
-        width: 100%;
-        margin-top: 10px;
-        height: 70px;
-    }
-    #buymessage div:nth-child(3) button{
-width: 140px;
 
-    }
-    #buymessage div:nth-child(3) button:nth-child(2){
-        margin: 0px;
-        float: right;
-    }
-
-
-</style>
 <script>
         $( "#buymessage" ).dialog({
         	
@@ -763,6 +734,10 @@ width: 140px;
 
   
 </script>
+
+	
+
+
 </body>
 
 
@@ -890,3 +865,25 @@ width: 140px;
 	};
 	radar_chart.setOption(option);
 </script>
+<style>
+    #buymessage{
+        margin-top: 20px;
+        height: 150px;
+    }
+    #buymessage div:nth-child(3){
+        padding-top: 20px;
+        width: 100%;
+        margin-top: 10px;
+        height: 70px;
+    }
+    #buymessage div:nth-child(3) button{
+width: 140px;
+
+    }
+    #buymessage div:nth-child(3) button:nth-child(2){
+        margin: 0px;
+        float: right;
+    }
+
+
+</style>

@@ -965,9 +965,10 @@ $("#close").click(function() {
 $(".message").click(function(){
 	console.log($(this));
 	$(this).attr("style", "background-color:white");
+	alert("ertyui");
 	//ajax
 	$.ajax({
-     	url:'<%=request.getContextPath()%>/NoticeServlet',
+     	url:'NoticeServlet',
      	type:"POST",
      	data:{
      		<%-- notice_id:"<%=notice.getProduct_price()%>", --%>
