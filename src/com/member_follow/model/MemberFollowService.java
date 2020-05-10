@@ -17,7 +17,7 @@ public class MemberFollowService { //getAllMemberByFollowed
 	//  }
 	  int i =0;
 	  for(Member_followVO follow:list) {
-	   mbs_id[i]=follow.getFollowed();
+	   mbs_id[i]=follow.getMember_id();  //mbs_id[i]=follow.getFollowed();
 	   i++;
 	  }
 	  return mbs_id;
