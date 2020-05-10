@@ -34,6 +34,7 @@ import javax.servlet.http.Part;
 import com.course_browsing_history.model.Course_browing_historyService;
 import com.member.model.MemberService;
 import com.member.model.MemberVO;
+import com.member.model.mailThread;
 import com.notice.model.NoticeService;
 import com.redis.connectpool.JedisUtil;
 
@@ -831,7 +832,10 @@ System.out.println("location="+location);
 			String subject = "會員驗證信通知";
 			String messageText = "Hello! " + email + " 這是你的驗證碼: " + code + "\n" + "請點擊下方連結激活帳號"+
 			"https://da106g4.tk"+ req.getContextPath() + "/front-end/member/checkCode.jsp?email=" + email;
-			sendMail(to, subject, messageText);
+			
+			mailThread mailService = new mailThread(email, subject, messageText);
+		    mailService.start();
+//			sendMail(to, subject, messageText);
 			RequestDispatcher successView = req.getRequestDispatcher("/front-end/member/checkCode.jsp");
 			successView.forward(req, res);
 		}
@@ -1122,14 +1126,7 @@ System.out.println("location="+location);
 					errorMsgs.add("請輸入密碼");
 				}
 				
-				
-				
-				
-				
-				
-				
-				
-				
+	
 				System.out.println(password);
 
                // String password2 = null;
@@ -1200,6 +1197,17 @@ System.out.println("location="+location);
 					return;
 				}
 				
+				
+				MemberService memberSvc = new MemberService();				
+				memberSvc.insertmem(account, password, email);
+				
+				
+				
+				
+				
+				
+				
+				
 				String code = getRandomPassword(6);//產生密碼
 				//將驗證碼存入Redis
 				JedisPool pool = com.redis.connectpool.JedisUtil.getJedisPool();
@@ -1215,11 +1223,12 @@ System.out.println("location="+location);
 				String subject = "會員驗證信通知";
 				String messageText = "Hello! " + email + " 這是你的驗證碼: " + code + "\n" + "請點擊下方連結激活帳號"+
 				"https://da106g4.tk" + req.getContextPath() + "/front-end/member/checkCode.jsp?email=" + email;
-				sendMail(to, subject, messageText);
+//				sendMail(to, subject, messageText);
+				mailThread mailService = new mailThread(email, subject, messageText);
+				    mailService.start();
 										
 				/***************************2.開始新增資料***************************************/
-				MemberService memberSvc = new MemberService();				
-				memberSvc.insertmem(account, password, email);
+
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
 				String url = "/index.jsp";
@@ -2037,44 +2046,44 @@ System.out.println("location="+location);
 		
 		
 		
-		
-		public static void sendMail(String to, String subject, String messageText) {
-			
-			   try {
-				   // 設定使用SSL連線至 Gmail smtp Server
-				   Properties props = new Properties();
-				   props.put("mail.smtp.host", "smtp.gmail.com");
-				   props.put("mail.smtp.socketFactory.port", "465");
-				   props.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
-				   props.put("mail.smtp.auth", "true");
-				   props.put("mail.smtp.port", "465");
-
-		       // ●設定 gmail 的帳號 & 密碼 (將藉由你的Gmail來傳送Email)
-		       // ●須將myGmail的【安全性較低的應用程式存取權】打開
-			     final String myGmail = "ixlogic.wu@gmail.com";  //可以改成組內的email
-			     final String myGmail_password = "AAA45678AAA";
-				   Session session = Session.getInstance(props, new Authenticator() {
-					   protected PasswordAuthentication getPasswordAuthentication() {
-						   return new PasswordAuthentication(myGmail, myGmail_password);
-					   }
-				   });
-
-				   Message message = new MimeMessage(session);
-				   message.setFrom(new InternetAddress(myGmail));
-				   message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(to));
-				  
-				   //設定信中的主旨  
-				   message.setSubject(subject);
-				   //設定信中的內容 
-				   message.setText(messageText);
-
-				   Transport.send(message);
-				   System.out.println("傳送成功!");
-		     }catch (MessagingException e){
-			     System.out.println("傳送失敗!");
-			     e.printStackTrace();
-		     }
-		   }
+//		
+//		public static void sendMail(String to, String subject, String messageText) {
+//			
+//			   try {
+//				   // 設定使用SSL連線至 Gmail smtp Server
+//				   Properties props = new Properties();
+//				   props.put("mail.smtp.host", "smtp.gmail.com");
+//				   props.put("mail.smtp.socketFactory.port", "465");
+//				   props.put("mail.smtp.socketFactory.class","javax.net.ssl.SSLSocketFactory");
+//				   props.put("mail.smtp.auth", "true");
+//				   props.put("mail.smtp.port", "465");
+//
+//		       // ●設定 gmail 的帳號 & 密碼 (將藉由你的Gmail來傳送Email)
+//		       // ●須將myGmail的【安全性較低的應用程式存取權】打開
+//			     final String myGmail = "ixlogic.wu@gmail.com";  //可以改成組內的email
+//			     final String myGmail_password = "AAA45678AAA";
+//				   Session session = Session.getInstance(props, new Authenticator() {
+//					   protected PasswordAuthentication getPasswordAuthentication() {
+//						   return new PasswordAuthentication(myGmail, myGmail_password);
+//					   }
+//				   });
+//
+//				   Message message = new MimeMessage(session);
+//				   message.setFrom(new InternetAddress(myGmail));
+//				   message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(to));
+//				  
+//				   //設定信中的主旨  
+//				   message.setSubject(subject);
+//				   //設定信中的內容 
+//				   message.setText(messageText);
+//
+//				   Transport.send(message);
+//				   System.out.println("傳送成功!");
+//		     }catch (MessagingException e){
+//			     System.out.println("傳送失敗!");
+//			     e.printStackTrace();
+//		     }
+//		   }
 		
 		public String getRandomPassword(int length) {
 			String str = "abcdefghigklmnopkrstuvwxyzABCDEFGHIGKLMNOPQRSTUVWXYZ0123456789";

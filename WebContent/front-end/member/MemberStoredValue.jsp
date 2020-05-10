@@ -868,8 +868,8 @@ body {
 }
 
 .sidebar {
-	margin-top: -650px;
-	margin-left: 13%;
+	margin-top: -640px;
+	margin-left: 15%;
 	width: 240px;
 	height: 100%;
 	background: white;
