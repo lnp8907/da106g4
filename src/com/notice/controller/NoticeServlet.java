@@ -63,6 +63,7 @@ public class NoticeServlet extends HttpServlet {
 			    /*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
 			    String notice_id = req.getParameter("notice_id").trim();
 			    /*************************** 2.開始查詢資料 ***************************************/
+			    System.out.println(notice_id);
 			    NoticeService noticeSvc = new NoticeService();
 			    noticeSvc.changeStatus(notice_id, 1);
 			    /*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
