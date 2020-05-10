@@ -20,6 +20,7 @@ public class Session_Set extends HttpServlet {
 //		PrintWriter out = res.getWriter();
 		MemberService memberService = new MemberService(); 
 		MemberVO memberVO = memberService.getOneMember(member_id);
+		System.out.println("SessionSet_Member:" + member_id);
 		HttpSession session = req.getSession();
         session.setAttribute("memberVO",memberVO);
 		String URL=req.getContextPath()+"/front-end/livestream/livestream.jsp";

@@ -988,12 +988,14 @@ alert($(this).children('.messageNoticeId').val());
  type: "GET",
  url:'NoticeServlet',
    data: {"action":"Click", "notice_id":$(this).children('.messageNoticeId').val()},
-   dataType: "json",
+   dataType: "text",
    success: function (data){
-	   alert(data);
 	   message.attr("style", "background-color:white");
    },     
-  error: function(){alert("AJAX-msgLightBox發生錯誤囉!")}
+  error: function(){
+  message.attr("style", "background-color:white");
+  }
+   
   });
 });
 /* function readClick(e){

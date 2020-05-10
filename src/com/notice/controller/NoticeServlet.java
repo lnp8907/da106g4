@@ -72,10 +72,10 @@ public class NoticeServlet extends HttpServlet {
 			    res.setContentType("text/plain");
 			    res.setCharacterEncoding("UTF-8");
 			    PrintWriter out = res.getWriter();
-			    System.out.println("OK");
 			    out.write("ok");
 			    out.flush();
 			    out.close();
+			    System.out.println("OK");
 			    /*************************** 其他可能的錯誤處理 **********************************/
 			   }catch (Exception e) {
 			    errorMsgs.add("無法取得資料:" + e.getMessage());
