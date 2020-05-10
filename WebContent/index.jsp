@@ -96,6 +96,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 	       <a class="messageDivA" href="#" >
 	        <c:if test="${noticeVO.notice_status==0}">
 	        <div class="msgNotRead readOrNotRead message" style="border-bottom:1px solid #E4002B" >
+	        <input type="hidden" name="notice_id" value="${noticeVO.notice_id}">
 	        </c:if>
 	        
 	        <c:if test="${noticeVO.notice_status==1}">
@@ -969,8 +970,8 @@ $(".message").click(function(){
      	url:'<%=request.getContextPath()%>/NoticeServlet',
      	type:"POST",
      	data:{
-     		
-
+     		<%-- notice_id:"<%=notice.getProduct_price()%>", --%>
+     		action:"Click",
      	},
      	success:function(data){
      	}
