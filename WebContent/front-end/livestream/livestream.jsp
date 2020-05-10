@@ -543,52 +543,6 @@ display:none;
   
     
 </style>
-<style>
-#animated-example { 
-   width: 200px;
-   height: 200px;
-   position: relative;
-} 
-
-.animated { 
-   -webkit-animation-duration: 2.5s; 
-   animation-duration: 2.5s; 
-   -webkit-animation-fill-mode: both; 
-   animation-fill-mode: both; 
-   -webkit-animation-timing-function: ease-in-out; 
-   animation-timing-function: ease-in-out; 
-} 
-
-@-webkit-keyframes bounceOutDown { 
-    0% { 
-        -webkit-transform: translateY(0); 
-    } 
-    20% { 
-        opacity: 1; 
-        -webkit-transform: translateY(0px); 
-    } 
-    100% { 
-        opacity: 0; 
-        -webkit-transform: translateY(500px); 
-    } 
-} 
-@keyframes bounceOutDown { 
-    0% { 
-        transform: translateY(0); 
-    } 
-    20% { 
-        opacity: 1; 
-        transform: translateY(0px); 
-    } 
-    100% { 
-        opacity: 0; 
-        transform: translateY(500px); 
-    } 
-} 
-.bounceOutDown { 
-    -webkit-animation-name: bounceOutDown; 
-    animation-name: bounceOutDown; 
-}</style>
 
 <!-- This Library is used to detect WebRTC features -->
 <script src="js/webrtc/DetectRTC.js"></script>
@@ -829,9 +783,7 @@ display:none;
 						<!-- list of all available broadcasting rooms --><br>
 						<table style="width: 100%;" id="rooms-list"></table>
 						<!-- local/remote videos container -->
-						<div id="videos-container">
-						<img id="animated-example" class="animated bounceOutDown" src="../../image/apple.png">
-						</div>
+						<div id="videos-container"></div>
 					</section>
 				</article>
 			</div>
@@ -1430,33 +1382,10 @@ console.log(endPointURL);
 		  } else {
 			var messagesArea = document.getElementById("messagesArea");
 	        var jsonObj = JSON.parse(event.data);
-	        
-	        
-	        
-	        if("sendText".equals(jsonObj.type)){
-		        var message = jsonObj.userName + ": " + jsonObj.message + "\r\n";
-		        var showCount = jsonObj.showCount;
-		        messagesArea.value = messagesArea.value + message;
-		        messagesArea.scrollTop = messagesArea.scrollHeight;
-            }else if("sendApple".equals(jsonObj.type)) {
-		        var message = jsonObj.userName + ": " + jsonObj.message + "\r\n";
-		        var showCount = jsonObj.showCount;
-		        messagesArea.value = messagesArea.value + message;
-		        messagesArea.scrollTop = messagesArea.scrollHeight;
-                if(!(jsonObj.userName===jsonObj.userNameMe)) {
-                    //=======================================================================
-                alert('是蘋果！');
-                }
-                //=======================================================
-            }else if("sendCarrot".equals(jsonObj.type)){
-		        var message = jsonObj.userName + ": " + jsonObj.message + "\r\n";
-		        var showCount = jsonObj.showCount;
-		        messagesArea.value = messagesArea.value + message;
-		        messagesArea.scrollTop = messagesArea.scrollHeight;
-                if(!(jsonObj.userName===jsonObj.userNameMe)){
-                   
-                }
-            }	        
+	        var message = jsonObj.userName + ": " + jsonObj.message + "\r\n";
+	        var showCount = jsonObj.showCount;
+	        messagesArea.value = messagesArea.value + message;
+	        messagesArea.scrollTop = messagesArea.scrollHeight;
 		  }
 		};
 
