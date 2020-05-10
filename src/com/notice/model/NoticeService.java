@@ -14,6 +14,7 @@ public class NoticeService {
 		 NoticeVO VO = new NoticeVO();
 		 VO.setNotice_id(notice_id);
 		 VO.setNotice_status(notice_status);
+		 dao.changeStatus(notice_id, notice_status);
 	 }
 
 	public NoticeVO insert(String member_id, Integer notice_category, String content, Integer notice_status) {
