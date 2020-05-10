@@ -4,6 +4,9 @@ import javax.servlet.*;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.*;
 
+import com.member.model.MemberService;
+import com.member.model.MemberVO;
+
 @WebServlet("/Session_Set")
 public class Session_Set extends HttpServlet {
 
@@ -11,15 +14,18 @@ public class Session_Set extends HttpServlet {
 
 	public void doGet(HttpServletRequest req, HttpServletResponse res)
 			throws ServletException, IOException {
-
+		
 		res.setContentType("text/html; charset=UTF-8");
-		PrintWriter out = res.getWriter();
-
+		String member_id=req.getParameter("member_id");
+//		PrintWriter out = res.getWriter();
+		MemberService memberService = new MemberService(); 
+		MemberVO memberVO = memberService.getOneMember(member_id);
 		HttpSession session = req.getSession();
-        session.setAttribute("hostID","abc");
-        
-        String ID = session.getId();
-        out.println("ID="+ID);
+        session.setAttribute("memberVO",memberVO);
+		String URL=req.getContextPath()+"/front-end/livestream/livestream.jsp";
+		res.sendRedirect(URL);
+//        String ID = session.getId();
+//        out.println("ID="+ID);
 	
 	}
 }
