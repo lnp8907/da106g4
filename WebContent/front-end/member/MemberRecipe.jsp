@@ -39,7 +39,14 @@ String member_name =(String) session.getAttribute("member_name");
 	pageContext.setAttribute("list", list);
 	
 	
+	MemberVO memberVO = memberSvc.getOneMember(member_id);
+	MemberVO memberVO1 =(MemberVO) session.getAttribute("memberVO");
 	
+
+		
+
+	pageContext.setAttribute("member_status", memberVO1.getMember_status());
+	pageContext.setAttribute("memberVO1", memberVO1);
 	
 	
 	
@@ -48,19 +55,12 @@ String member_name =(String) session.getAttribute("member_name");
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
 	content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=3.0">
 <title>Foodporn</title>
-
-
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap"
-	rel="stylesheet">
-<link rel="stylesheet" href="../recipe/recipeCSS/recipeList.css">
-
-
 <link rel="stylesheet" href="../../css/frontEnd.css">
 <link rel="stylesheet" href="../../css/header-sider.css">
 <link rel="stylesheet" href="../../slick/slick.css">
@@ -82,7 +82,10 @@ String member_name =(String) session.getAttribute("member_name");
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
-
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" href="../recipe/recipeCSS/recipeList.css">
 
 
 
@@ -704,7 +707,11 @@ String member_name =(String) session.getAttribute("member_name");
 /* latin */
 @font-face {
 	font-family: 'Open Sans';
-	font-style: normal;
+	
+
+
+
+-style: normal;
 	font-weight: 300;
 	src: local('Open Sans Light'), local('OpenSans-Light'),
 		url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN_r8OUuhp.woff2)
@@ -726,6 +733,29 @@ String member_name =(String) session.getAttribute("member_name");
 }
 /* cyrillic */
 @font-face {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	font-family: 'Open Sans';
 	font-style: normal;
 	font-weight: 400;
@@ -889,10 +919,10 @@ body {
 }
 
 .sidebar {
-	margin-top: -400px;
-	margin-left: 19%;
+	margin-top: 5px;
+	margin-left: 17%;
 	width: 240px;
-	height: 100%;
+
 	background: white;
 	position: absolute;
 	-webkit-transition: all .3s ease-in-out;
@@ -903,8 +933,22 @@ body {
 	z-index: 100;
 }
 
+.include-page2{
+   margin: 30px 241px;
+    width: 349px;
+    
 
+}
 
+.include-page{
+    margin-right: 300px;
+    margin-left: -115px;
+}
+
+b{
+
+    margin-left: 195px;
+}
 
 
 .small { 
@@ -951,7 +995,11 @@ margin-rught:100px;
 
 
 
-
+.recipe-main-list {
+    width: 784px;
+    background-color: #aedee721;
+    margin: 24px 29px;
+}
 
 
 
@@ -1058,14 +1106,16 @@ margin-rught:100px;
 }
 
 h3 {
-    margin-left:87px;
+    margin-top: 17px;
+    margin-left: -233px;
 	font-family: Calibri;
-	font-size: 20pt;
+	font-size: 26pt;
 	font-style: normal;
 	font-weight: bold;
-	color: black;
+	 color: rgba(16, 75, 75, 0.66);
 
 	/*text-decoration: underline*/
+	margin-bottom: 7px;
 }
 h1{
 margin-left:88px;
@@ -1079,9 +1129,16 @@ margin-top:-14px;
 
 }
 
+
+b{    margin-right: -235px;
+    font-size: 19px;}
+
+
+
 table {
-margin-left:93px;
-	width: 799px;
+    margin-left: 10px;
+    width: 822px;
+
 	font-family: Calibri;
 	color: #e4002b;
 	font-size: 12pt;
@@ -1092,8 +1149,19 @@ margin-left:93px;
 	border: 2px solid rgb(226, 226, 238);
 	border-spacing: 60px 40px;
 	/*  border-width: 200px;*/
+	
+	
+	margin-left: 20px;
+  
+    width: 830px;
+	
+	
+	
+	
+	
+	
+	
 }
-
 table.inner {
 	border: 0px
 }
@@ -1263,6 +1331,18 @@ a {
 	float: left;
 	padding-top: 90px;
 }
+
+.font{
+        margin-left: 192px;
+
+
+}
+
+
+
+
+
+
 
 .article-section-description-recipe-left-span {
 	color: white;
@@ -1744,7 +1824,7 @@ hr {
 						<a> <img class="header-icon" src="../../image/logout.png"
 							alt="login-icon"> <span class="login-span">登出</span>
 							<form method="POST" action="member.do">
-								<input type="hidden" name="action" value="login"> <input
+								<input type="hidden" name="action" value="loginOUT"> <input
 									class="login-out" type="submit" name="action"
 									style="display: none;">
 							</form>
@@ -1792,7 +1872,7 @@ hr {
 			<!-- 			<div class="function-list"> -->
 				<a href="#"></a>
 <!-- 				<div class="member-center"> -->
-					<div class="herder-icon-span"><span class="member-center-spann">HI，<%=session.getAttribute("member_name") %></span></div>
+					<div class="herder-icon-span"><span class="member-center-spann">HI，<%=memberVO1.getMember_name()%></span></div>
 <%--                         <span class="member-center-spann">HI，<%=session.getAttribute("member_name") %></span> --%>
 <!-- 				</div> -->
 				</a>
@@ -1946,7 +2026,6 @@ hr {
 
 
 
-
 <%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>
@@ -1956,19 +2035,174 @@ hr {
 			</c:forEach>
 		</ul>
 	</c:if>
+<aside class="sidebar">
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class="avatar">
+
+
+
+          <div class="circle image-wrap small">
+ <img src=DBGifReader4.do?photo_type=mempic&member_id=<%=session.getAttribute("member_id")%> id="preview_progressbarTW_img" width=129px height=129px;/>
+</div>
+</div>
+          <h2><%=membervo.getMember_name()%></h2>
+
+          <div class="link-top"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<div id="leftside-navigation" class="nano">
+		<ul class="nano-content">
+			<li><a
+				href="/DA106_G4_Foodporn_Git/front-end/member/TestMemberHomepage.jsp"><i
+					class="fa fa-dashboard"></i><img class="access-menu-icon1"
+					src="../../image/member/S__12066824.jpg"><span>我的帳戶</span></a></li>
+					
+					
+					<li><a
+				href="/DA106_G4_Foodporn_Git/front-end/member/MemberListAllShopOrder01.jsp"><i
+					class="fa fa-dashboard"></i><img class="access-menu-icon1"
+					src="../../image/member/S__12066823.jpg"><span>購買清單</span></a></li>
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+					
+<!-- 			<li class="sub-menu"><a href="javascript:void(0);"><i -->
+<!-- 					class="fa fa-cogs"></i><img class="access-menu-icon1" -->
+<!-- 					src="../../image/member/S__12066823.jpg"><span>購買清單&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i -->
+<!-- 					class="arrow fa fa-angle-right pull-right"></i></a> -->
+<!-- 				</li> -->
+			<li class="sub-menu"><a href="javascript:void(0);"><i
+					class="fa fa-table"></i><img class="access-menu-icon1"
+					src="../../image/member/S__12066821.jpg"><span>我的錢包/點數&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>
+				</span><i class="arrow fa fa-angle-right pull-right"></i></a>
+				<ul>
+					<li><a href="tables-basic.html">交易紀錄</a></li>
+					
+	<li><a href="/DA106_G4_Foodporn_Git/front-end/member/123.jsp">信用卡</a></li>
+				<c:if test='${member_status eq 1 }'>
+					<li><a href="/DA106_G4_Foodporn_Git/front-end/member/ChefWithdraw.jsp">提款</a></li>
+			</c:if>		
+					<li><a href="/DA106_G4_Foodporn_Git/front-end/member/MemberStoredValue.jsp">儲值</a></li>
+				</ul></li>
+			<li class="sub-menu"><a href="javascript:void(0);"><i
+					class="fa fa fa-tasks"></i><img class="access-menu-icon1"
+					src="../../image/member/S__12066822.jpg"><span>瀏覽紀錄&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
+					class="arrow fa fa-angle-right pull-right"></i></a>
+				<ul>
+					<li><a href="forms-components.html">課程瀏覽</a></li>
+					<li><a href="forms-validation.html">直播瀏覽</a></li>
+					<li><a href="forms-mask.html">食譜瀏覽</a></li>
+					<li><a href="forms-wizard.html">1</a></li>
+					<li><a href="forms-multiple-file.html">2</a></li>
+					<li><a href="forms-wysiwyg.html">3</a></li>
+				</ul></li>
+			<li class="sub-menu"><a href="javascript:void(0);"><i
+					class="fa fa-envelope"></i><img class="access-menu-icon1"
+					src="../../image/member/S__12066820.jpg"><span>精選收藏&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
+					class="arrow fa fa-angle-right pull-right"></i></a>
+				<ul>
+					<li><a href="mail-inbox.html">課程收藏</a></li>
+					<li><a href="mail-compose.html">直播收藏</a></li>
+					<li><a href="mail-compose.html">食譜收藏</a></li>
+				</ul></li>
+			
+			
+		<c:if test='${member_status eq 0 }'>
+			
+			
+			<li class="sub-menu"><a href="javascript:void(0);"><i
+					class="fa fa-bar-chart-o"></i><img class="access-menu-icon1"
+					src="../../image/member/S__12066818.jpg"><span>我的課程&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
+					class="arrow fa fa-angle-right pull-right"></i></a>
+				<ul>
+					<li><a href="charts-chartjs.html">課程紀錄</a></li>
+					<li><a href="charts-morris.html">1</a></li>
+					<li><a href="charts-c3.html">2</a></li>
+				</ul></li>
+		</c:if>
+
+<c:if test='${member_status eq 1 }'>
+			<li class="sub-menu"><a href="javascript:void(0);"><i
+					class="fa fa-map-marker"></i><img class="access-menu-icon1"
+					src="../../image/member/S__12066827.jpg"><span>直播/課程管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
+					class="arrow fa fa-angle-right pull-right"></i></a>
+				<ul>
+					<li><a href="MemberCourse.jsp">課程管理</a></li>
+					<li><a href="map-vector.html">直播管理</a></li>
+				</ul></li>
+					</c:if>	
+<c:if test='${member_status eq 1 }'>
+			<li><a
+				href="MemberRecipe.jsp"><i
+					class="fa fa-dashboard"></i><img class="access-menu-icon1"
+					src="../../image/member/S__12066826.jpg"><span>食譜管理</span></a></li>
+					</c:if>	
+					
+					
+		<c:if test='${member_status eq 0 }'>			
+			<li class="sub-menu"><a href="/DA106_G4_Foodporn_Git/front-end/member/ChefHomepage.jsp"><i
+					class="fa fa-text-height"></i><img class="access-menu-icon1"
+					src="../../image/member/S__12066825.jpg"><span>升級廚師</span></a></li>
+</c:if>	
+		</ul>
+	</div>
+</aside>
 <FORM METHOD="post" ACTION="../recipe/RecipeServlet" name="upateform" id="upateform"
-		enctype="multipart/form-data" >
-
+		enctype="multipart/form-data" style="margin-left: 500; margin-top: 34px;">
+<table align="center" cellpadding="10">
 
 			<div class="container">
-
+<h3><h3>個人食譜管理</h3></h3>
 					<table align="center" cellpadding="10">
 
 						<!----- First Name ---------------------------------------------------------->
 					
 		                 <div class="recipe-main-list">
-		<span class="include-page"><%@ include file="page1.file"%>
+		<span class="include-page"><%@ include file="page3.file"%>
 		</span>
 		<ul class="recipe=list">
 			<c:forEach var="RecipeVO" items="${list}" begin="<%=pageIndex%>"
@@ -2214,162 +2448,7 @@ hr {
 
 
 
-<aside class="sidebar">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  <div class="avatar">
-
-
-
-          <div class="circle image-wrap small">
- <img src=DBGifReader4.do?photo_type=mempic&member_id=<%=session.getAttribute("member_id")%> id="preview_progressbarTW_img" width=129px height=129px;/>
-</div>
-</div>
-          <h2><%=membervo.getMember_name()%></h2>
-
-          <div class="link-top"></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<div id="leftside-navigation" class="nano">
-		<ul class="nano-content">
-			<li><a
-				href="/DA106_G4_Foodporn_Git/front-end/member/TestMemberHomepage.jsp"><i
-					class="fa fa-dashboard"></i><img class="access-menu-icon1"
-					src="../../image/member/S__12066824.jpg"><span>我的帳戶</span></a></li>
-					
-					
-					<li><a
-				href="/DA106_G4_Foodporn_Git/front-end/member/MemberListAllShopOrder01.jsp"><i
-					class="fa fa-dashboard"></i><img class="access-menu-icon1"
-					src="../../image/member/S__12066823.jpg"><span>購買清單</span></a></li>
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-<!-- 			<li class="sub-menu"><a href="javascript:void(0);"><i -->
-<!-- 					class="fa fa-cogs"></i><img class="access-menu-icon1" -->
-<!-- 					src="../../image/member/S__12066823.jpg"><span>購買清單&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i -->
-<!-- 					class="arrow fa fa-angle-right pull-right"></i></a> -->
-<!-- 				</li> -->
-			<li class="sub-menu"><a href="javascript:void(0);"><i
-					class="fa fa-table"></i><img class="access-menu-icon1"
-					src="../../image/member/S__12066821.jpg"><span>我的錢包/點數&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>
-				</span><i class="arrow fa fa-angle-right pull-right"></i></a>
-				<ul>
-					<li><a href="tables-basic.html">交易紀錄</a></li>
-					
-	<li><a href="/DA106_G4_Foodporn_Git/front-end/member/123.jsp">信用卡</a></li>
-				<c:if test='${member_status eq 1 }'>
-					<li><a href="/DA106_G4_Foodporn_Git/front-end/member/ChefWithdraw.jsp">提款</a></li>
-			</c:if>		
-					<li><a href="/DA106_G4_Foodporn_Git/front-end/member/MemberStoredValue.jsp">儲值</a></li>
-				</ul></li>
-			<li class="sub-menu"><a href="javascript:void(0);"><i
-					class="fa fa fa-tasks"></i><img class="access-menu-icon1"
-					src="../../image/member/S__12066822.jpg"><span>瀏覽紀錄&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
-					class="arrow fa fa-angle-right pull-right"></i></a>
-				<ul>
-					<li><a href="forms-components.html">課程瀏覽</a></li>
-					<li><a href="forms-validation.html">直播瀏覽</a></li>
-					<li><a href="forms-mask.html">食譜瀏覽</a></li>
-					<li><a href="forms-wizard.html">1</a></li>
-					<li><a href="forms-multiple-file.html">2</a></li>
-					<li><a href="forms-wysiwyg.html">3</a></li>
-				</ul></li>
-			<li class="sub-menu"><a href="javascript:void(0);"><i
-					class="fa fa-envelope"></i><img class="access-menu-icon1"
-					src="../../image/member/S__12066820.jpg"><span>精選收藏&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
-					class="arrow fa fa-angle-right pull-right"></i></a>
-				<ul>
-					<li><a href="mail-inbox.html">課程收藏</a></li>
-					<li><a href="mail-compose.html">直播收藏</a></li>
-					<li><a href="mail-compose.html">食譜收藏</a></li>
-				</ul></li>
-			
-			
-		<c:if test='${member_status eq 0 }'>
-			
-			
-			<li class="sub-menu"><a href="javascript:void(0);"><i
-					class="fa fa-bar-chart-o"></i><img class="access-menu-icon1"
-					src="../../image/member/S__12066818.jpg"><span>我的課程&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
-					class="arrow fa fa-angle-right pull-right"></i></a>
-				<ul>
-					<li><a href="charts-chartjs.html">課程紀錄</a></li>
-					<li><a href="charts-morris.html">1</a></li>
-					<li><a href="charts-c3.html">2</a></li>
-				</ul></li>
-		</c:if>
-
-<c:if test='${member_status eq 1 }'>
-			<li class="sub-menu"><a href="javascript:void(0);"><i
-					class="fa fa-map-marker"></i><img class="access-menu-icon1"
-					src="../../image/member/S__12066827.jpg"><span>直播/課程管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
-					class="arrow fa fa-angle-right pull-right"></i></a>
-				<ul>
-					<li><a href="MemberCourse.jsp">課程管理</a></li>
-					<li><a href="map-vector.html">直播管理</a></li>
-				</ul></li>
-					</c:if>	
-<c:if test='${member_status eq 1 }'>
-			<li><a
-				href="MemberRecipe.jsp"><i
-					class="fa fa-dashboard"></i><img class="access-menu-icon1"
-					src="../../image/member/S__12066826.jpg"><span>食譜管理</span></a></li>
-					</c:if>	
-					
-					
-		<c:if test='${member_status eq 0 }'>			
-			<li class="sub-menu"><a href="/DA106_G4_Foodporn_Git/front-end/member/ChefHomepage.jsp"><i
-					class="fa fa-text-height"></i><img class="access-menu-icon1"
-					src="../../image/member/S__12066825.jpg"><span>升級廚師</span></a></li>
-</c:if>	
-		</ul>
-	</div>
-</aside>
 
 </article>
 </main>

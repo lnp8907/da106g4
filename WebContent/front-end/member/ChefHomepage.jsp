@@ -860,7 +860,7 @@ body {
 
 .sidebar {
 	margin-top: -550px;
-	margin-left: 13%;
+	margin-left: 16%;
 	width: 240px;
 	height: 100%;
 	background: white;

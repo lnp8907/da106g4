@@ -43,7 +43,7 @@ pageContext.setAttribute("member_status", membervo1.getMember_status());
 
 <!DOCTYPE html>
 <html lang="en">
-${memberVO1.member_name}123
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
@@ -881,7 +881,7 @@ body {
 
 .sidebar {
 	margin-top: 20px;
-	margin-left: 19%;
+	margin-left: 17%;
 	width: 240px;
 
 	background: white;
@@ -1064,20 +1064,15 @@ margin-rught:100px;
 }
 
 h3 {
-    margin-top: 17px;
+    margin-top: 27px;
     margin-left: 252px;
-	font-family: Calibri;
-	font-size: 26pt;
-	font-style: normal;
-	font-weight: bold;
-	 color: rgba(16, 75, 75, 0.66);
-
-	/*text-decoration: underline*/
-}
-h1{
-margin-left:88px;
-
-
+    font-family: Calibri;
+    font-size: 26pt;
+    font-style: normal;
+    font-weight: bold;
+    color: rgba(16, 75, 75, 0.66);
+    /* text-decoration: underline; */
+    margin-bottom: 5px;
 }
 h2{
 margin-left:56px;
@@ -1095,29 +1090,17 @@ b{    margin-right: -235px;
 table {
     margin-left: 10px;
     width: 822px;
-
-	font-family: Calibri;
-	color: #e4002b;
-	font-size: 12pt;
-	font-style: normal;
-	font-weight: bold;
-	/* text-align:;  */
-	background-color: #dff0eba4;
-	border: 2px solid rgb(226, 226, 238);
-	border-spacing: 60px 40px;
-	/*  border-width: 200px;*/
-	
-	
-	margin-left: 20px;
-  
-    width: 830px;
-	
-	
-	
-	
-	
-	
-	
+    font-family: Calibri;
+    color: #e4002b;
+    font-size: 12pt;
+    font-style: normal;
+    font-weight: bold;
+    background-color: #dff0eba4;
+    border: 2px solid rgb(226, 226, 238);
+    border-spacing: 60px 40px;
+    /* border-width: 200px; */
+    margin-left: 485px;
+    width: 827px;
 }
 
 table.inner {
@@ -2018,7 +2001,7 @@ hr {
 					src="../../image/member/S__12066821.jpg"><span>我的錢包/點數&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>
 				</span><i class="arrow fa fa-angle-right pull-right"></i></a>
 				<ul>
-					<li><a href="tables-basic.html">交易紀錄</a></li>
+			
 					
 	<li><a href="/DA106_G4_Foodporn_Git/front-end/member/123.jsp">信用卡</a></li>
 				<c:if test='${member_status eq 1 }'>
@@ -2086,20 +2069,23 @@ hr {
 
 
 
-
+<table align="center" cellpadding="10">
 
 			<div class="container">
 
 <h3>食譜瀏覽紀錄</h3>
 
 
-					<table align="center" cellpadding="10">
+					<table align="center" cellpadding="10" style=" margin-left: 484px;
+    margin-top: -13px;
+    width: 850px;">
 
 						<!----- First Name ---------------------------------------------------------->
-					
+	
 				
-				
-			  <div class="recipe-main-list">
+			  <div class="recipe-main-list" style="  margin-left: 515px;
+    margin-top: 22px;
+    margin-top: 10px;	">
 		<span class="include-page">
 			<%@ include file="page1.file"%>
 		</span>

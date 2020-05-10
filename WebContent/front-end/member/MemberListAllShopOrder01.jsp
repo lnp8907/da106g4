@@ -22,8 +22,6 @@
 
 
 
-	out.println(member_name);
-	out.println(member_id);
 	
 	// String member_id = (String) session.getAttribute("member_id");
 	OrderService orderSvc=new OrderService();
@@ -93,6 +91,24 @@
 	
 	
 	pageContext.setAttribute("member_status", membervo1.getMember_status());
+	
+	
+	
+	
+	
+	
+	MemberVO memberVO1 =(MemberVO) session.getAttribute("memberVO");
+	
+		pageContext.setAttribute("list", list);
+	pageContext.setAttribute("member_status", memberVO1.getMember_status());
+	pageContext.setAttribute("memberVO1", memberVO1);
+	
+	
+	
+	
+	
+	
+	
 	
 	%>
 
@@ -1169,7 +1185,14 @@ margin-rught:100px;
 
 
 
-
+h4{
+margin-left: 121px;
+    color: #52a3dddb;
+    margin-right: -5px;
+    font-style: oblique;
+    font-family: sans-serif;
+    font-size: smaller;
+}
 
 
 
@@ -1797,14 +1820,23 @@ margin-right: 293px;
 h2{
 margin-left:56px;
 margin-bottom:8px;
-margin-top:-14px;
+
+
+    margin-left: 45px;
+    margin-bottom: 8px;
+    margin-top: -15px;
+    font-family: inherit;
+
+    color: #8d3a7f;
+   
+
 }
 
 
 
 .link-top {
 
-            width: 104%;
+            width: 109%;
             height: 1px;
             border-top: solid rgb(226, 16, 44) 3px;
 
@@ -2063,43 +2095,17 @@ margin-top:-14px;
 				</ul>
 			</c:if>
 
-<aside class="sidebar">
+	<aside class="sidebar">
 
   <div class="avatar">
-
-
 
           <div class="circle image-wrap small">
  <img src=DBGifReader4.do?photo_type=mempic&member_id=<%=session.getAttribute("member_id")%> id="preview_progressbarTW_img" width=129px height=129px;/>
 </div>
 </div>
-          <h2><%=membervo.getMember_name()%></h2>
-
+          <h2><%=membervo1.getMember_name()%></h2>
+<h4>我的富胖幣:  <%=membervo1.getBalance()%></h4>
           <div class="link-top"></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	<div id="leftside-navigation" class="nano">
 		<ul class="nano-content">
@@ -2113,17 +2119,7 @@ margin-top:-14px;
 				href="/DA106_G4_Foodporn_Git/front-end/member/MemberListAllShopOrder01.jsp"><i
 					class="fa fa-dashboard"></i><img class="access-menu-icon1"
 					src="../../image/member/S__12066823.jpg"><span>購買清單</span></a></li>
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
+								
 <!-- 			<li class="sub-menu"><a href="javascript:void(0);"><i -->
 <!-- 					class="fa fa-cogs"></i><img class="access-menu-icon1" -->
 <!-- 					src="../../image/member/S__12066823.jpg"><span>購買清單&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i -->
@@ -2134,7 +2130,7 @@ margin-top:-14px;
 					src="../../image/member/S__12066821.jpg"><span>我的錢包/點數&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>
 				</span><i class="arrow fa fa-angle-right pull-right"></i></a>
 				<ul>
-					<li><a href="tables-basic.html">交易紀錄</a></li>
+				
 					
 	<li><a href="/DA106_G4_Foodporn_Git/front-end/member/123.jsp">信用卡</a></li>
 				<c:if test='${member_status eq 1 }'>
@@ -2147,36 +2143,27 @@ margin-top:-14px;
 					src="../../image/member/S__12066822.jpg"><span>瀏覽紀錄&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
 					class="arrow fa fa-angle-right pull-right"></i></a>
 				<ul>
-					<li><a href="forms-components.html">課程瀏覽</a></li>
-					<li><a href="forms-validation.html">直播瀏覽</a></li>
-					<li><a href="forms-mask.html">食譜瀏覽</a></li>
-					<li><a href="forms-wizard.html">1</a></li>
-					<li><a href="forms-multiple-file.html">2</a></li>
-					<li><a href="forms-wysiwyg.html">3</a></li>
+					<li><a href="MemberListAllHistoryCourse.jsp">課程瀏覽</a></li>					
+					<li><a href="MemberListAllHistoryRecipe.jsp">食譜瀏覽</a></li>
+
 				</ul></li>
-			<li class="sub-menu"><a href="javascript:void(0);"><i
-					class="fa fa-envelope"></i><img class="access-menu-icon1"
-					src="../../image/member/S__12066820.jpg"><span>精選收藏&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
-					class="arrow fa fa-angle-right pull-right"></i></a>
-				<ul>
-					<li><a href="mail-inbox.html">課程收藏</a></li>
-					<li><a href="mail-compose.html">直播收藏</a></li>
-					<li><a href="mail-compose.html">食譜收藏</a></li>
-				</ul></li>
-			
-			
+				
+				
+				
+		<c:if test='${member_status eq 0 }'>		
+				<li><a
+				href="MemberRecipeFavorite.jsp"><i
+					class="fa fa-dashboard"></i><img class="access-menu-icon1"
+					src="../../image/member/S__12066820.jpg"><span>課程收藏</span></a></li>
+			</c:if>		
+
 		<c:if test='${member_status eq 0 }'>
 			
-			
-			<li class="sub-menu"><a href="javascript:void(0);"><i
-					class="fa fa-bar-chart-o"></i><img class="access-menu-icon1"
-					src="../../image/member/S__12066818.jpg"><span>我的課程&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
-					class="arrow fa fa-angle-right pull-right"></i></a>
-				<ul>
-					<li><a href="charts-chartjs.html">課程紀錄</a></li>
-					<li><a href="charts-morris.html">1</a></li>
-					<li><a href="charts-c3.html">2</a></li>
-				</ul></li>
+	 		
+				<li><a
+				href="MemberMyCourse.jsp"><i
+					class="fa fa-dashboard"></i><img class="access-menu-icon1"
+					src="../../image/member/S__12066818.jpg"><span>我的課程</span></a></li>
 		</c:if>
 
 <c:if test='${member_status eq 1 }'>
@@ -2206,7 +2193,6 @@ margin-top:-14px;
 		</ul>
 	</div>
 </aside>
-
 
 
 

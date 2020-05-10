@@ -12,7 +12,7 @@ public class MemberService {
 
 	public MemberService() {
 
-		dao = new MemberJDBCDAO();
+		dao = new MemberDAO();
 	}
 
 //		public List<MemberVO> Duplicate_Account() {

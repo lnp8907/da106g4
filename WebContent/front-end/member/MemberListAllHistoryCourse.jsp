@@ -890,10 +890,10 @@ body {
 }
 
 .sidebar {
-	margin-top: 11px;
-	margin-left: 16%;
+	margin-top: 20px;
+	margin-left: 17%;
 	width: 240px;
-	height: 100%;
+
 	background: white;
 	position: absolute;
 	-webkit-transition: all .3s ease-in-out;
@@ -904,6 +904,17 @@ body {
 	z-index: 100;
 }
 
+.include-page2{
+   margin: 30px 241px;
+    width: 349px;
+    
+
+}
+
+.include-page{
+    margin-right: 300px;
+    margin-left: -115px;
+}
 
 
 
@@ -915,6 +926,14 @@ margin-left:0px;
   overflow: hidden;
 
 
+}
+h4{
+margin-left: 121px;
+    color: #52a3dddb;
+    margin-right: -5px;
+    font-style: oblique;
+    font-family: sans-serif;
+    font-size: smaller;
 }
 .avatar {
 margin-rught:100px;
@@ -952,7 +971,11 @@ margin-rught:100px;
 
 
 
-
+.recipe-main-list {
+    width: 784px;
+    background-color: #aedee721;
+    margin: 24px 29px;
+}
 
 
 
@@ -971,17 +994,9 @@ margin-rught:100px;
 }
 
 
-.include-page2{
-   margin: 30px 241px;
-    width: 349px;
-    
 
-}
 
-.include-page{
-    margin-right: 300px;
-    margin-left: -115px;
-}
+
 
 
 
@@ -1067,41 +1082,51 @@ margin-rught:100px;
 }
 
 h3 {
-margin-top: 17px;
+    margin-top: 27px;
     margin-left: 252px;
-	font-family: Calibri;
-	font-size: 26pt;
-	font-style: normal;
-	font-weight: bold;
-	 color: rgba(16, 75, 75, 0.66);
-
-	/*text-decoration: underline*/
-}
-h1{
-margin-left:88px;
-
-
+    font-family: Calibri;
+    font-size: 26pt;
+    font-style: normal;
+    font-weight: bold;
+    color: rgba(16, 75, 75, 0.66);
+    /* text-decoration: underline; */
+    margin-bottom: 5px;
 }
 h2{
 margin-left:56px;
 margin-bottom:8px;
-margin-top:-14px;
+
+
+    margin-left: 45px;
+    margin-bottom: 8px;
+    margin-top: -15px;
+    font-family: inherit;
+
+    color: #8d3a7f;
+   
 
 }
 
+
+b{    margin-right: -235px;
+    font-size: 19px;}
+
+
+
 table {
-margin-left:-1px;
-	width: 844px;
-	font-family: Calibri;
-	color: #e4002b;
-	font-size: 12pt;
-	font-style: normal;
-	font-weight: bold;
-	/* text-align:;  */
-	background-color: #dff0eba4;
-	border: 2px solid rgb(226, 226, 238);
-	border-spacing: 60px 40px;
-	/*  border-width: 200px;*/
+    margin-left: 10px;
+    width: 822px;
+    font-family: Calibri;
+    color: #e4002b;
+    font-size: 12pt;
+    font-style: normal;
+    font-weight: bold;
+    background-color: #dff0eba4;
+    border: 2px solid rgb(226, 226, 238);
+    border-spacing: 60px 40px;
+    /* border-width: 200px; */
+    margin-left: 485px;
+    width: 827px;
 }
 
 table.inner {
@@ -1956,7 +1981,6 @@ hr {
 
 
 
-
 <%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>
@@ -1966,45 +1990,17 @@ hr {
 			</c:forEach>
 		</ul>
 	</c:if>
-<aside class="sidebar">
-
-
+	<aside class="sidebar">
 
   <div class="avatar">
-
-
 
           <div class="circle image-wrap small">
  <img src=DBGifReader4.do?photo_type=mempic&member_id=<%=session.getAttribute("member_id")%> id="preview_progressbarTW_img" width=129px height=129px;/>
 </div>
 </div>
           <h2><%=memberVO.getMember_name()%></h2>
-
+<h4>我的富胖幣:  <%=memberVO.getBalance()%></h4>
           <div class="link-top"></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	<div id="leftside-navigation" class="nano">
 		<ul class="nano-content">
@@ -2018,17 +2014,7 @@ hr {
 				href="/DA106_G4_Foodporn_Git/front-end/member/MemberListAllShopOrder01.jsp"><i
 					class="fa fa-dashboard"></i><img class="access-menu-icon1"
 					src="../../image/member/S__12066823.jpg"><span>購買清單</span></a></li>
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
+								
 <!-- 			<li class="sub-menu"><a href="javascript:void(0);"><i -->
 <!-- 					class="fa fa-cogs"></i><img class="access-menu-icon1" -->
 <!-- 					src="../../image/member/S__12066823.jpg"><span>購買清單&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i -->
@@ -2039,7 +2025,7 @@ hr {
 					src="../../image/member/S__12066821.jpg"><span>我的錢包/點數&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>
 				</span><i class="arrow fa fa-angle-right pull-right"></i></a>
 				<ul>
-					<li><a href="tables-basic.html">交易紀錄</a></li>
+				
 					
 	<li><a href="/DA106_G4_Foodporn_Git/front-end/member/123.jsp">信用卡</a></li>
 				<c:if test='${member_status eq 1 }'>
@@ -2052,24 +2038,20 @@ hr {
 					src="../../image/member/S__12066822.jpg"><span>瀏覽紀錄&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
 					class="arrow fa fa-angle-right pull-right"></i></a>
 				<ul>
-					<li><a href="forms-components.html">課程瀏覽</a></li>
-					<li><a href="forms-validation.html">直播瀏覽</a></li>
-					<li><a href="forms-mask.html">食譜瀏覽</a></li>
-					<li><a href="forms-wizard.html">1</a></li>
-					<li><a href="forms-multiple-file.html">2</a></li>
-					<li><a href="forms-wysiwyg.html">3</a></li>
+					<li><a href="MemberListAllHistoryCourse.jsp">課程瀏覽</a></li>					
+					<li><a href="MemberListAllHistoryRecipe.jsp">食譜瀏覽</a></li>
+
 				</ul></li>
-			<li class="sub-menu"><a href="javascript:void(0);"><i
-					class="fa fa-envelope"></i><img class="access-menu-icon1"
-					src="../../image/member/S__12066820.jpg"><span>精選收藏&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
-					class="arrow fa fa-angle-right pull-right"></i></a>
-				<ul>
-					<li><a href="mail-inbox.html">課程收藏</a></li>
-					<li><a href="mail-compose.html">直播收藏</a></li>
-					<li><a href="mail-compose.html">食譜收藏</a></li>
-				</ul></li>
-			
-			
+				
+				
+				
+		<c:if test='${member_status eq 0 }'>		
+				<li><a
+				href="MemberRecipeFavorite.jsp"><i
+					class="fa fa-dashboard"></i><img class="access-menu-icon1"
+					src="../../image/member/S__12066820.jpg"><span>課程收藏</span></a></li>
+			</c:if>		
+
 		<c:if test='${member_status eq 0 }'>
 			
 	 		
@@ -2114,19 +2096,23 @@ hr {
 
 
 
-
+<table align="center" cellpadding="10">
 			<div class="container">
 
 <h3>課程瀏覽紀錄</h3>
 
 
-					<table align="center" cellpadding="10">
+					<table align="center" cellpadding="10" style=" margin-left: 484px;
+    margin-top: -13px;
+    width: 850px;">
 
 						<!----- First Name ---------------------------------------------------------->
 					
 				
 				
-			  <div class="recipe-main-list">
+			  <div class="recipe-main-list" style="  margin-left: 515px;
+    margin-top: 22px;
+    margin-top: 10px;	">
 		<span class="include-page"><%@ include file="page1.file"%>
 		</span>
 		<ul class="recipe=list" style="width:820px;">

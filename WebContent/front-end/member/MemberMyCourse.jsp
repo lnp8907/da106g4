@@ -61,6 +61,7 @@ String member_name =(String) session.getAttribute("member_name");
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
@@ -87,9 +88,11 @@ String member_name =(String) session.getAttribute("member_name");
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
+<link
+	href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap"
+	rel="stylesheet">
+<link rel="stylesheet" href="../recipe/recipeCSS/recipeList.css">
 
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100;300;400;500;700;900&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="../course/courseCSS/courseList.css">
 
 
 <link rel="stylesheet" type="text/css"
@@ -895,10 +898,10 @@ body {
 }
 
 .sidebar {
-	margin-top: 11px;
-	margin-left: 19%;
+	margin-top: -12px;
+	margin-left: 17%;
 	width: 240px;
-	height: 100%;
+
 	background: white;
 	position: absolute;
 	-webkit-transition: all .3s ease-in-out;
@@ -909,6 +912,17 @@ body {
 	z-index: 100;
 }
 
+.include-page2{
+   margin: 30px 241px;
+    width: 349px;
+    
+
+}
+
+.include-page{
+    margin-right: 300px;
+    margin-left: -115px;
+}
 
 
 
@@ -957,7 +971,11 @@ margin-rught:100px;
 
 
 
-
+.recipe-main-list {
+    width: 784px;
+    background-color: #aedee721;
+    margin: 24px 29px;
+}
 
 
 
@@ -1064,19 +1082,30 @@ margin-rught:100px;
 }
 
 h3 {
-    margin-left:87px;
-	font-family: Calibri;
-	font-size: 20pt;
-	font-style: normal;
-	font-weight: bold;
-	color: black;
-
-	/*text-decoration: underline*/
+ margin-top: 50px;
+    margin-left: -233px;
+    font-family: Calibri;
+    font-size: 26pt;
+    font-style: normal;
+    font-weight: bold;
+    color: rgba(16, 75, 75, 0.66);
+    /* text-decoration: underline; */
+    margin-bottom: 10px;
 }
-h1{
-margin-left:88px;
+.recipe-main-list-header{
+
+    height: 45px;
+    padding: 12px;
+    border-bottom: 1px solid #cecece;
+    margin-top: -14px;
 
 
+
+}
+b {
+
+    font-size: 19px;
+    margin-left: 217px;
 }
 h2{
 margin-left:56px;
@@ -1085,40 +1114,32 @@ margin-top:-14px;
 
 }
 
+
+b{    margin-right: -235px;
+    font-size: 19px;}
+
+
 table {
-    margin-left: 10px;
+margin-left: 10px;
     width: 822px;
-
-	font-family: Calibri;
-	color: #e4002b;
-	font-size: 12pt;
-	font-style: normal;
-	font-weight: bold;
-	/* text-align:;  */
-	background-color: #dff0eba4;
-	border: 2px solid rgb(226, 226, 238);
-	border-spacing: 60px 40px;
-	/*  border-width: 200px;*/
-	
-	
-	margin-left: 20px;
-  
-    width: 830px;
-	
-	
+    font-family: Calibri;
+    color: #e4002b;
+    font-size: 12pt;
+    font-style: normal;
+    font-weight: bold;
+    background-color: #dff0eba4;
+    border: 2px solid rgb(226, 226, 238);
+    border-spacing: 60px 40px;
+    /* border-width: 200px; */
+    margin-left: 9px;
+    width: 815px;
+    margin-top: -4px;
 	
 	
 	
 	
 	
 }
-
-.recipe-main-list {
-    width: 784px;
-    background-color: #aedee721;
-    margin: 24px 29px;
-}
-
 table.inner {
 	border: 0px
 }
@@ -1131,17 +1152,6 @@ table.inner {
 	width: 500px;
 	height: 30px;
 	margin-right: 40px;
-}
-.include-page2{
-   margin: 30px 241px;
-    width: 349px;
-    
-
-}
-
-.include-page{
-    margin-right: 300px;
-    margin-left: -115px;
 }
 
 /* .submit_btn{
@@ -1744,9 +1754,6 @@ hr {
 
 
 
-.page2 a{
-margin:0 3px;
-}
 
 
 
@@ -1783,7 +1790,7 @@ margin:0 3px;
 						<a> <img class="header-icon" src="../../image/logout.png"
 							alt="login-icon"> <span class="login-span">登出</span>
 							<form method="POST" action="member.do">
-								<input type="hidden" name="action" value="login"> <input
+								<input type="hidden" name="action" value="loginOUT"> <input
 									class="login-out" type="submit" name="action"
 									style="display: none;">
 							</form>
@@ -1831,7 +1838,7 @@ margin:0 3px;
 			<!-- 			<div class="function-list"> -->
 				<a href="#"></a>
 <!-- 				<div class="member-center"> -->
-					<div class="herder-icon-span"><span class="member-center-spann">HI，<%=session.getAttribute("member_name") %></span></div>
+					<div class="herder-icon-span"><span class="member-center-spann">HI，<%=memberVO1.getMember_name()%></span></div>
 <%--                         <span class="member-center-spann">HI，<%=session.getAttribute("member_name") %></span> --%>
 <!-- 				</div> -->
 				</a>
@@ -2095,20 +2102,21 @@ margin:0 3px;
 </aside>
 
 <FORM METHOD="post" ACTION="../course/CourseServlet" name="upateform" id="upateform"
-		enctype="multipart/form-data" >
+		enctype="multipart/form-data" style="margin-left: 500; margin-top: 34px;">
 
 
 
 
 
 
+<table align="center" cellpadding="10">
 
 			<div class="container">
-
+<h3>所有課程清單</h3><table align="center" cellpadding="10" >
 			
 			<div class="recipe-main-list">
 		<div class="recipe-main-list-header">
-			<h3>所有課程清單</h3>
+		
 			<span><%@ include file="page1.file"%></span>
 		</div>
 		<ul class="course=list">

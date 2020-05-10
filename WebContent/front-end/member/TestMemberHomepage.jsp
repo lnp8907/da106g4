@@ -1042,7 +1042,15 @@ margin-left:88px;
 h2{
 margin-left:56px;
 margin-bottom:8px;
-margin-top:-14px;
+
+
+    margin-left: 45px;
+    margin-bottom: 8px;
+    margin-top: -15px;
+    font-family: inherit;
+
+    color: #8d3a7f;
+   
 
 }
 
@@ -1131,7 +1139,14 @@ table.inner {
         }
 
 
-
+h4{
+margin-left: 121px;
+    color: #52a3dddb;
+    margin-right: -5px;
+    font-style: oblique;
+    font-family: sans-serif;
+    font-size: smaller;
+}
 
 
 
@@ -1933,7 +1948,7 @@ hr {
 </div>
 </div>
           <h2><%=memberVO.getMember_name()%></h2>
-
+<h4>我的富胖幣:  <%=memberVO.getBalance()%></h4>
           <div class="link-top"></div>
 
 	<div id="leftside-navigation" class="nano">
@@ -1959,7 +1974,7 @@ hr {
 					src="../../image/member/S__12066821.jpg"><span>我的錢包/點數&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>
 				</span><i class="arrow fa fa-angle-right pull-right"></i></a>
 				<ul>
-					<li><a href="tables-basic.html">交易紀錄</a></li>
+				
 					
 	<li><a href="/DA106_G4_Foodporn_Git/front-end/member/123.jsp">信用卡</a></li>
 				<c:if test='${member_status eq 1 }'>
@@ -2263,7 +2278,7 @@ B.A
   <div class="ease"></div> -->
   <div class="submit_btn">
   
-   <span class="submitAndSave" id="article-section-seemore-recipe">儲存</span>
+   <span class="submitAndSave" id="article-section-seemore-recipe" id="submit">儲存</span>
     <input type="submit" class="submit_btn" value="儲存" >  
 								
 		</div>						
@@ -2662,6 +2677,10 @@ B.A
   $('.multiselect').multiselect();
   $('.datepicker').datepicker();  
 });
+    
+    $("#article-section-seemore-recipe").click(function(){
+    	$("#upateform").submit();
+    })
 
   </script>
 
