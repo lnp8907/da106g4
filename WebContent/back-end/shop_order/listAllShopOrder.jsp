@@ -1,3 +1,4 @@
+<%@page import="java.util.stream.Collector"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -9,7 +10,9 @@
 <%@ page import="java.text.*" %>
 <%@page import="com.member.model.*"%>
 <%@page import="com.member.model.MemberService"%>
+
 <%@page import="java.util.stream.Collectors"%>
+<%@page import="java.util.Collections.*"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%> 
 
 
@@ -18,6 +21,7 @@
 OrderService orderSvc=new OrderService();
 List<Shop_orderVO>list=null;
 list= orderSvc.getAll();
+Collections.reverse(list);
 
 // String Message2="";
 
@@ -50,6 +54,8 @@ else{
 	if(Message.equals("cancel")){  
 		list=list.stream().filter(p->p.getOrder_status()==3)
 				.collect(Collectors.toList());
+		Collections.reverse(list);
+
 	}
 }
 

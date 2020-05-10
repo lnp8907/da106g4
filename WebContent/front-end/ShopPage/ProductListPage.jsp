@@ -78,9 +78,11 @@ List<ProductVO> productlist=null;
 	product_type=(String)session.getAttribute("product_type");
 
 	}
+
 	
 	productlist=productlist.stream().filter(p->p.getProduct_status()==0).collect(Collectors.toList());
 	session.setAttribute("Fproductlist", productlist);	
+	Collections.reverse(productlist);
 
 	
 	int t=0,t2=0;

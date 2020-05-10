@@ -154,7 +154,19 @@ if(request.getAttribute("detailProductvo")!=null){
     </tr>
     <tr>
       <td >內容:</td>
-      <th><input type="TEXT" height=400px name="content" size="45" value="<%=productvo.getContent()%>" /></th>
+      <th>
+      
+      
+      
+<%--       <input type="TEXT" height=400px name="content" size="45" value="<%=productvo.getContent()%>" /> --%>
+      					<textarea name="content" rows="10" cols="50" >
+<%=productvo.getContent()%>
+</textarea>
+				
+      
+      
+      
+      </th>
 
     </tr>
     </tbody>

@@ -39,6 +39,8 @@
 <%
 	ProductService Psvc = new ProductService();
 	List<ProductVO> list = Psvc.getAllProduct();
+	Collections.reverse(list);
+
 	String product_type = "0";
 	if (request.getAttribute("product_type") != null) {
 		if (((String) request.getAttribute("product_type")).equals("all")) {
