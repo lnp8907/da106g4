@@ -1,8 +1,11 @@
 package com.notice.controller;
 
 import java.io.IOException;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Vector;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +13,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.notice.model.NoticeService;
 import com.notice.model.NoticeVO;
 import com.order_detail.model.Order_detailVO;
 import com.product.model.ProductService;
@@ -42,7 +46,6 @@ public class NoticeServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-<<<<<<< HEAD
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
@@ -50,59 +53,34 @@ public class NoticeServlet extends HttpServlet {
 		HttpSession session = req.getSession();
 		String action = req.getParameter("action");
 		
-		if (action.equals("Click")) {
-			System.out.println("新增購物車" + "ID:" + req.getParameter("product_id"));
+		if ("Click".equals(action)) { // 來自addEmp.jsp的請求
+			   List<String> errorMsgs = new LinkedList<String>();
+			   // Store this set in the request scope, in case we need to
+			   // send the ErrorPage view.
+			   req.setAttribute("errorMsgs", errorMsgs);
 
-			NoticeVO notice_id = getNotice_id(req);
-//			if (notice_id == null) {
-//				productlist = new Vector<Order_detailVO>();
-//				productlist.add(oneproduct);
-//
-//			} else {
-//				if (productlist.contains(oneproduct)) {
-//					Order_detailVO inner = productlist.get(productlist.indexOf(oneproduct));
-//					inner.setQuantity(inner.getQuantity() + oneproduct.getQuantity());
-//				} else {
-//					productlist.add(oneproduct);
-//				}
-//			}
+			   try {
+			    /*************************** 1.接收請求參數 - 輸入格式的錯誤處理 **********************/
+			    String notice_id = req.getParameter("notice_id").trim();
+			    /*************************** 2.開始查詢資料 ***************************************/
+			    NoticeService noticeSvc = new NoticeService();
+			    noticeSvc.changeStatus(notice_id, 1);
+			    /*************************** 3.新增完成,準備轉交(Send the Success view) ***********/
+//			    res.setContentType("text/plain");
+//			    res.setCharacterEncoding("UTF-8");
+//			    PrintWriter out = res.getWriter();
+//			    out.write(jsobj.toString());
+//			    out.flush();
+//			    out.close();
+			    /*************************** 其他可能的錯誤處理 **********************************/
+			   }catch (Exception e) {
+			    errorMsgs.add("無法取得資料:" + e.getMessage());
+			    RequestDispatcher failureView = req.getRequestDispatcher("/front_end/index.jsp");
+			    failureView.forward(req, res);
+			   }
+			   
+			  }
 
-		}
-=======
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub		
-		System.out.println("進入通知控制器");
-
->>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
 	}
 
-	// 取得notice_id
-		private NoticeVO getNotice_id(HttpServletRequest req) {
-			Integer product_price = 0;
-			String notice_id = null;
-
-			if (req.getParameter("notice_id") != null) {
-
-				ProductService psvc = new ProductService();
-				product_id = psvc.getbyreceipe(req.getParameter("recipe_id")).getProduct_id();
-				product_price = psvc.getbyreceipe(req.getParameter("recipe_id")).getProduct_price();
-			} else {
-				product_id = req.getParameter("product_id");
-				product_price = Integer.valueOf(req.getParameter("product_price"));
-
-			}
-			System.out.println("ID為:" + product_id);
-			System.out.println("價格為:" + product_price);
-
-			Integer quantity = Integer.valueOf(req.getParameter("quantity"));
-			NoticeVO a = new NoticeVO();
-
-			a.setProduct_id(product_id);
-			a.setPrice(product_price);
-			a.setQuantity(quantity);
-			System.out.println("數量:" + quantity);
-
-			return a;
-
-		}
 }
