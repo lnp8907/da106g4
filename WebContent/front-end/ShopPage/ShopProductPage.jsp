@@ -332,35 +332,16 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 <!-- 內容 -->
 
 
-
+<div>
  <jsp:include page="ProductListPage.jsp" />
+</div>
 
 
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	<footer>
+<footer>
 		<div class="footer-bg">
 			<div class="footer-murmur">
 				<img src="<%=request.getContextPath() %>/image/FoodPron_Logo_white.png" alt="logo"
@@ -397,6 +378,11 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 			All rights reserved.</div>
 
 	</footer>
+	
+
+
+
+	
 	<!-- JavasScript-->
 	<!-- JavasScript-->
 	<!-- JavasScript for Sider -->

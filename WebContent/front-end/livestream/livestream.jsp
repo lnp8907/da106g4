@@ -523,6 +523,22 @@ display:none;
   	video{
   	transform:none;
   	}
+  	footer{
+  	display:none;
+  	}
+  	#livestream_section{
+  	    height: auto;
+  	}
+  	html{
+  	    background-color: #f1f1f1;
+  	}
+  	.bottom.mx-auto {
+    margin-bottom: 20px;
+    }
+    #videos-container {
+    text-align: center;
+    margin-top: 50px;
+	}
   }   
   
     

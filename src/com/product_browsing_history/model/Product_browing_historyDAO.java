@@ -48,6 +48,7 @@ public class Product_browing_historyDAO implements Product_browing_historyDAO_in
 	 Product_browing_historyDAO_interface dao=new Product_browing_historyDAO();
 	 List <Product_browing_historyVO> list= dao.getmemberList(VO.getMember_id());
 		if(list.contains(VO)) {
+			System.out.println("刪除");
 			dao.delete(VO);
 		}
 		Connection con = null;
@@ -140,6 +141,7 @@ public class Product_browing_historyDAO implements Product_browing_historyDAO_in
 				VO = new Product_browing_historyVO();
 				VO.setMember_id(rs.getString("MEMBER_ID"));
 				VO.setProduct_id(rs.getString("product_id"));
+				System.out.println("VO有"+VO);
 				
 				list.add(VO);
 			}
@@ -169,7 +171,7 @@ public class Product_browing_historyDAO implements Product_browing_historyDAO_in
 				}
 			}
 		}
-		System.out.println("獲取表格:"+VO);
+		System.out.println("獲取LIST:"+list);
 
 		return list;
 		

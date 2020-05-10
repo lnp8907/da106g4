@@ -59,13 +59,14 @@ public class OrderServlet extends HttpServlet {
 				Integer order_status = Integer.valueOf(req.getParameter("order_status"));
 				System.out.println("訂單狀態" + order_status);
 				String whichPage = new String(req.getParameter("whichPage"));
+				System.out.println("第幾"+whichPage);
 
-				Shop_orderJDBCDAO orderdao = new Shop_orderJDBCDAO();
-				Shop_orderVO VO = orderdao.findByPrimaryKey(order_no);
+				OrderService orderdao = new OrderService();
+				Shop_orderVO VO = orderdao.getOneOrder(order_no);			
+System.out.println("vO設置"+VO);
 
 				VO.setOrder_status(order_status);
 				System.out.println("設置狀態:" + order_status);
-				System.out.println("VO放置成功");
 
 				if (!errorMsgs.isEmpty()) {
 					req.setAttribute("ordvo", VO); // 含有輸入格式錯誤的empVO物件,也存入req

@@ -822,9 +822,9 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 	
 	<!-- end of main -->
 	<footer>
-		<div class="footer-bg">
+		<div  class="footer-bg">
 			<div class="footer-murmur">
-				<img src="image/FoodPron_Logo_white.png" alt="logo"
+				<img src="<%=request.getContextPath() %>/image/FoodPron_Logo_white.png" alt="logo"
 					data-aos="zoom-in">
 				<ul>
 					<li class="footer-li-fist">逛其他</li>
