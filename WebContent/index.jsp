@@ -981,8 +981,8 @@ $("#close").click(function() {
 var msgLightBox = $('.msgLightBox');
 //var msgNotRead = $('.msgNotRead');
 
-$('.messageDivA').click(function(){
-var messageDivA = $(this);
+$('.message').click(function(){
+var message = $(this);
 alert($(this).children('.messageNoticeId').val());
  $.ajax({
  type: "GET",
@@ -991,7 +991,7 @@ alert($(this).children('.messageNoticeId').val());
    dataType: "json",
    success: function (data){
 	   alert(data);
-	   messageDivA.children('.msgNotRead').attr("style", "background-color:white");
+	   message.children('.msgNotRead').attr("style", "background-color:white");
    },     
   error: function(){alert("AJAX-msgLightBox發生錯誤囉!")}
   });
