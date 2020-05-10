@@ -964,6 +964,19 @@ $("#close").click(function() {
 $(".message").click(function(){
 	console.log($(this));
 	$(this).attr("style", "background-color:white");
+	//ajax
+	$.ajax({
+     	url:'<%=request.getContextPath()%>/NoticeServlet',
+     	type:"POST",
+     	data:{
+     		
+
+     	},
+     	success:function(data){
+     	}
+
+});
+	
 })
 /* function readClick(e){
 	//$(this).css("background-color", "white");
