@@ -72,6 +72,7 @@ public class NoticeServlet extends HttpServlet {
 			    res.setContentType("text/plain");
 			    res.setCharacterEncoding("UTF-8");
 			    PrintWriter out = res.getWriter();
+			    System.out.println("OK");
 			    out.write("ok");
 			    out.flush();
 			    out.close();
