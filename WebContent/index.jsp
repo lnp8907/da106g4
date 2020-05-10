@@ -962,21 +962,21 @@ $("#close").click(function() {
   fblightbox.fadeOut();
 });
 
-$(".message").click(function(){
+<%-- $(".message").click(function(){
 	$(this).attr("style", "background-color:white");
 	//ajax
 	$.ajax({
      	url:'NoticeServlet',
      	type:"POST",
      	data:{
-     		<%-- notice_id:"<%=notice.getProduct_price()%>", --%>
+     		notice_id:"<%=notice.getProduct_price()%>",
      		action:"Click",
      	},
      	success:function(data){
      	}
 });
 	
-});
+}); --%>
 //訊息的燈箱開始
 var msgLightBox = $('.msgLightBox');
 //var msgNotRead = $('.msgNotRead');
