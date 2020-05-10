@@ -2,20 +2,30 @@ package com.member_follow.model;
 
 public class Member_followVO implements java.io.Serializable{
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private String member_id;
-	private String member_id_0;
+	private String followed;
 	public String getMember_id() {
 		return member_id;
 	}
 	public void setMember_id(String member_id) {
 		this.member_id = member_id;
 	}
-	public String getMember_id_0() {
-		return member_id_0;
+	public String getFollowed() {
+		return followed;
 	}
-	public void setMember_id_0(String member_id_0) {
-		this.member_id_0 = member_id_0;
+	public void setFollowed(String followed) {
+		this.followed = followed;
 	}
+	@Override
+	public String toString() {
+		return "Member_followVO [member_id=" + member_id + ", followed=" + followed + "]";
+	}
+	
+	
 	
 
 }

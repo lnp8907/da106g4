@@ -24,7 +24,7 @@
 						<div>
 							<h4>
 								<a class="show-one-link"
-									href="<%=request.getContextPath()%>/CourseServlet?action=getOne_For_Display&course_id=${courseVO.course_id}">${courseVO.course_name}</a>
+									href="<%=request.getContextPath()%>/front-end/course/course.do?action=getOne_For_Display&course_id=${courseVO.course_id}">${courseVO.course_name}</a>
 							</h4>
 							<span>${courseVO.app_num}位報名</span>
 						</div>

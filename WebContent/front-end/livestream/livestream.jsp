@@ -912,7 +912,8 @@ display:none;
                     openSocket: function(config) {
 //                      var SIGNALING_SERVER = 'https://socketio-over-nodejs2.herokuapp.com:443/';
 //                         var SIGNALING_SERVER = 'https://54.148.206.111:9001/';
-							var SIGNALING_SERVER = 'https://35.229.239.13:9001/';
+// 							var SIGNALING_SERVER = 'https://35.229.239.13:9001/';
+						var SIGNALING_SERVER = 'https://socketio-over-nodejs2.herokuapp.com:443/';
                      config.channel = config.channel || location.href.replace(/\/|:|#|%|\.|\[|\]/g, '');
 //                         var sender = Math.round(Math.random() * 999999999) + 999999999;
 						var sender = document.getElementById('broadcast-name').value;

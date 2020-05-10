@@ -256,6 +256,10 @@ a:hover {
 .recipeFollow {
 	padding-left: 20px;
 }
+
+section{
+margin-top:0px;
+}
 </style>
 
 <body>
@@ -441,7 +445,7 @@ a:hover {
 		<div class="main-page-header">
 			<div class="main-page-header-left">
 				<h2 class="chef-name"><%=memberVO.getMember_name()%></h2>
-				<span class="chef-info">15名追蹤中</span>
+<!-- 				<span class="chef-info">15名追蹤中</span> -->
 			</div>
 			<div class="main-page-header-right">
 				<div class="chef-photo">
@@ -449,7 +453,7 @@ a:hover {
 						src="<%=request.getContextPath()%>/front-end/member/photo?member_id=<%=memberVO.getMember_id()%>">
 				</div>
 				<form action="" class="follow">
-					<button>追蹤</button>
+<!-- 					<button>追蹤</button> -->
 				</form>
 			</div>
 		</div>
