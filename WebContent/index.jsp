@@ -983,6 +983,7 @@ var msgLightBox = $('.msgLightBox');
 
 $('.messageDivA').click(function(){
 var messageDivA = $(this);
+alert($(this).children('.messageNoticeId').val());
  $.ajax({
  type: "GET",
  url:'NoticeServlet',
