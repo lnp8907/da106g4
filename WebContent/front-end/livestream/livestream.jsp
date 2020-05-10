@@ -524,7 +524,7 @@ display:none;
   	transform:none;
   	}
   	footer{
-  	display:nene;
+  	display:none;
   	}
   	#livestream_section{
   	    height: auto;
