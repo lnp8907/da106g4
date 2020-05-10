@@ -25,28 +25,19 @@ if(session.getAttribute("member_id")!=null){
 
 <html>
 <head>
-	<link rel="stylesheet" href="../../css/productPage.css">
+
 
 <!--         <script src="../../plugin/jquery-3.4.1.min.js"></script> -->
 <!--     <script type="text/javascript" src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script> -->
 
-    <script src="../../plugin/slick-1.8.1/slick/slick.min.js"></script>
-    <link rel="stylesheet" href="../../plugin/slick-1.8.1/slick/slick.css">
-    <link rel="stylesheet" href="../../plugin/slick-1.8.1/slick/slick-theme.css">
+
     
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
-<style>
-.Carouse{
 
-text-align: center;
-
-}
-
-</style>
-<div style="margin: 0px auto 50px;" class="productCarouse">
+<div style="margin: 0px auto 50px" class="productCarouse">
 <div class="Carouse" style="width: 1100px;margin: 20px auto;"> <h2  style="color:red ;font-family:Microsoft JhengHei;">瀏覽紀錄</h2></div>
 
 <div class="multiple-items">
@@ -83,4 +74,12 @@ $('.multiple-items').slick({
 
 
 </script>
+<style>
+.Carouse{
+
+text-align: center;
+
+}
+
+</style>
 </html>

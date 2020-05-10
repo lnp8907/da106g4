@@ -82,12 +82,12 @@ font-size: 35px;
 
 }
 .hrdiv{
-	margin-top:90px;
+	margin-top:-60px;
     height: 40px;
 
 }
 .hrdiv hr{
-    margin-left: 50px;
+   margin:70px auto 0px; 
     width: 1000px;
 height: 5px;
     background : #e4002b;
@@ -146,4 +146,20 @@ width: 140px;
         margin: 0px;
         float: right;
     }
+   .producttablesize{
+    border-radius: 60px;
     
+    } 
+       .producttablesize tr td{
+   text-align: center;
+   color: black;
+    
+    
+    }
+    .producttablesize tr th{
+padding-left: 30px;    
+    }
+        .producttablesize font{
+float: right;
+    }    
+        

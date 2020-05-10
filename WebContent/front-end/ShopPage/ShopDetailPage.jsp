@@ -439,8 +439,8 @@ productCarlistt${productCarlist}
 
         </div>
         <div id="productdescript">
-            <div id="descript1"><p>${productvo.content}</p></div>
-            <div id="descript2"><front>價格:</front>${productvo.product_price}</div>
+            <div id="descript1"><p style="width: 400px">${productvo.content}</p></div>
+            <div id="descript2"><font style="color: gray;font-size: 17px">價格:</font>${productvo.product_price}<font style="color: gray">元</font></div>
             <!-- 購物車 -->
             		
 			
@@ -450,7 +450,7 @@ productCarlistt${productCarlist}
     <div class="ui focus  input">
         <button id="decmun"class="ui  button red"><i class="minus icon "></i>  </button>
 
-    <input  type="text" class="ui input"
+    <input style="width: 80px" type="text" class="ui input"
             id="countmun" value="1">
         <button id="plusmun"class="ui  button red"><i class="plus icon"></i>  </button>
 
@@ -473,7 +473,7 @@ productCarlistt${productCarlist}
 <!-- 						<input type="submit" value="加入購物車"> -->
 <!-- 				</FORM> -->
 <!-- 				 <button  class="button ui addcar">加入購物車</button> -->
-<div style="width: 80px" class="ui addcar vertical animated button" tabindex="0">
+<div style="width: 205px;margin-top: 40px" class="ui addcar vertical animated button" tabindex="0">
   <div class="hidden content">加入購物車</div>
   <div class="visible content">
     <i class="shop icon"></i>
@@ -496,64 +496,60 @@ productCarlistt${productCarlist}
             <div class="hrdiv"> <hr></div>
 
             <div class="context">
-                <table>
-                
-
-		<tr>
-			<th>熱量</th>
-			<th>碳水化合物</th>
-
-			<th>蛋白質</th>
-			<th>脂質</th>
-			<th>維生素B</th>
-			<th>維生素C</th>
-			<th>鈉含量</th>
-			<th>植物纖維</th>
-		</tr>
-		<tr>
-			<td><%=productvo.getCalorie()%></td>
-			<td><%=productvo.getProtein()%></td>
-			<td><%=productvo.getProtein()%></td>
-			<td><%=productvo.getFat()%></td>
-			<td><%=productvo.getVitamin_B()%></td>
-			<td><%=productvo.getVitamin_C()%></td>
-			<td><%=productvo.getSalt()%></td>
-			<td><%=productvo.getVagetbale()%></td>
-		</tr>
+            	<div id="chart" style="width: 500px;height:500px;float: left;margin-right: 100px"></div>
+      
+                <table style="width: 400px;height: 400px;font-size: 22px;color: #e4002b" class="ui celled table producttablesize">
+      <tbody>
+    
+		<tr><th>熱量</th><td><%=productvo.getCalorie()%><font>kcal</font></td></tr>
+		<tr><th>碳水化合物</th><td><%=productvo.getProtein()%><font>g</font></td></tr>
+		<tr><th>蛋白質</th><td><%=productvo.getProtein()%><font>g</font></td></tr>
+		<tr><th>脂質</th><td><%=productvo.getFat()%><font>g</font></td></tr>
+		<tr><th>維生素B</th><td><%=productvo.getVitamin_B()%><font>mg</font></td></tr>
+		<tr><th>維生素C</th><td><%=productvo.getSalt()%><font>mg</font></td></tr>
+		<tr><th>鈉含量</th><td><%=productvo.getSalt()%><font>mg</font></td></tr>
+		<tr><th>植物纖維</th><td><%=productvo.getVagetbale()%><font>mg</font></td></tr>
+		
+		  </tbody>
+		
+		
+		
 	</table>
-	<div id="chart" style="width: 500px;height:500px;"></div>
 	
 
             </div>
         </div>
         
-              </div></div>
-        
-  <div>
-	        <c:if test="${member_id!=null}">
-	                <%@ include file="ProductCarousel.jsp" %>
+</div>
+        </div>
 
-
-	        </c:if>
-	        
-	        
-	        </div>
-        
-
-
-
-	
 	<div id="buymessage" style="border-color:  #e4002b"  title="購買確認">
     <div>購買成功</div>
 <div>是否前往購物車查看:</div>
     <div><button class="ui cancelshopcart button"><i class="shopping red arrow alternate circle left
  icon"></i> 繼續購物 </button>
- 
- 
- <button class="ui  button"><a href="<%=request.getContextPath() %>/front-end/ShopPage/ProductPage?action=checktpage1">前往購物車 </a> <i class="shopping cart red
- icon"></i></button></div>
+ <button class="ui  button">
+ <a href="<%=request.getContextPath() %>/front-end/ShopPage/ProductPage?action=checktpage1">前往購物車 </a> 
+ <i class="shopping cart red icon"></i>
+ </button>
 
  </div>
+
+ </div>
+
+
+
+
+	
+	<!-- JavasScript-->
+	<!-- JavasScript-->
+	<!-- JavasScript for Sider -->
+<div style="height: 300px">
+      <c:if test="${member_id!=null}">
+	                <%@ include file="ProductCarousel.jsp" %>
+	        </c:if>
+	
+
 <footer>
 		<div  class="footer-bg">
 			<div class="footer-murmur">
@@ -594,150 +590,7 @@ productCarlistt${productCarlist}
 
 
 	</footer>
-
-
-	<script>
-
-						if($(".carmessage2").html()>0 && $(".carmessage2").html()<10){
-							$(".carmessagecircle").hide();
-							$(".carmessage2").show();
-						}
-						else if($(".carmessage2").html()>9){
-							$(".carmessage2").hide();
-							$(".carmessagecircle").show();
-						}
-						else{
-							$(".carmessagecircle").hide();
-							$(".carmessage2").hide();
-
-						}
-						
-						</script>
-	
-	<!-- JavasScript-->
-	<!-- JavasScript-->
-	<!-- JavasScript for Sider -->
-	<script src="javascript/header_sider.js" type="text/javascript"
-		charset="utf-8"></script>
-	<!-- JavasScript for LogForm -->
-	<script src="javascript/loginForm.js" type="text/javascript"
-		charset="utf-8"></script>
-
-	<!-- JavasScript for BackTop -->
-	<script>
-		$('#BackTop').click(function() {
-			$('html,body').animate({
-				scrollTop : 0
-			}, 333);
-		});
-		$(window).scroll(function() {
-			if ($(this).scrollTop() > 450) {
-				$('#BackTop').fadeIn(222);
-			} else {
-				$('#BackTop').stop().fadeOut(222);
-			}
-		});
-
-		//畫面捲動時隱藏
-		window.onresize = function() {
-			if ($(window).width() > 767) {
-				$("nav").show();
-			} else
-				$("nav").hide();
-		}
-	</script>
-
-	<!-- JavasScript for shop-slide -->
-	<script>
-		$(".shop-slide-article-and-photo").hover(function() {
-			$(".shop-slide-article-and-photo-img").removeClass('imgSmall');
-			$(".shop-slide-article-and-photo-img").addClass('imgScale');
-		});
-		$(".shop-slide-article-and-photo").mouseleave(function() {
-			$(".shop-slide-article-and-photo-img").addClass('imgSmall');
-		});
-
-		/* 直播專區 right scale 效果 */
-		$(".article-section-description-livestream-right").hover(function() {
-			$(".livestream-right-img", this).addClass('imgScale');
-		});
-		$(".imglist-li a").hover(function() {
-			$(".imglist-li-span", this).removeClass('textRecoverColor');
-			$(".imglist-li-img", this).removeClass('imgSmall');
-			$(".imglist-li-img", this).addClass('imgScale');
-			$(".imglist-li-span", this).addClass('textChangeColor');
-		});
-		$(".imglist-li a").mouseleave(function() {
-			$(".imglist-li-span", this).addClass('textRecoverColor');
-			$(".imglist-li-img", this).addClass('imgSmall');
-		});
-	</script>
-	<script>
-		$(".menu-open").on("click", function() {
-			$("nav").slideToggle();
-			$(this).toggleClass("active");
-			$('body,html').toggleClass('add')
-		});
-	</script>
-
-<script>
-
-
-    $('#decmun').click(function () {
-        let count =$('#countmun').val();
-        if(count<2) {
-            $('#countmun').val(1);
-            $('#inquantity').val(1);
-        }
-else{
-        $('#countmun').val(parseInt(count)-1);
-        $('#inquantity').val(parseInt(count)-1);
-}
-    });
-$('#plusmun').click(function () {
-    let count =$('#countmun').val();
-    $('#inquantity').val(parseInt(count)+1);
-
-        $('#countmun').val(parseInt(count)+1);
-
-});
-
-</script>
-
-<script>
-        $( "#buymessage" ).dialog({
-        	
-            autoOpen: false,
-            minWidth: 205,
-            width: 340,
-            show: 'fade',
-            hide: "blind"
-            
-
-
-        });
-	
-
-
-    $(".addcar").click(function () {
-
-        $("#buymessage").dialog("open");
-
-    });
-
- 
-    
-    $('.cancelshopcart').click(function () {
-        $("#buymessage").dialog("close");
-
-    });
-
-  
-</script>
-
-	
-
-
+</div>
 </body>
 
 
@@ -887,3 +740,137 @@ width: 140px;
 
 
 </style>
+	<script>
+
+						if($(".carmessage2").html()>0 && $(".carmessage2").html()<10){
+							$(".carmessagecircle").hide();
+							$(".carmessage2").show();
+						}
+						else if($(".carmessage2").html()>9){
+							$(".carmessage2").hide();
+							$(".carmessagecircle").show();
+						}
+						else{
+							$(".carmessagecircle").hide();
+							$(".carmessage2").hide();
+
+						}
+						
+						</script>
+							<script src="javascript/header_sider.js" type="text/javascript"
+		charset="utf-8"></script>
+	<!-- JavasScript for LogForm -->
+	<script src="javascript/loginForm.js" type="text/javascript"
+		charset="utf-8"></script>
+
+	<!-- JavasScript for BackTop -->
+	<script>
+		$('#BackTop').click(function() {
+			$('html,body').animate({
+				scrollTop : 0
+			}, 333);
+		});
+		$(window).scroll(function() {
+			if ($(this).scrollTop() > 450) {
+				$('#BackTop').fadeIn(222);
+			} else {
+				$('#BackTop').stop().fadeOut(222);
+			}
+		});
+
+		//畫面捲動時隱藏
+		window.onresize = function() {
+			if ($(window).width() > 767) {
+				$("nav").show();
+			} else
+				$("nav").hide();
+		}
+	</script>
+
+	<!-- JavasScript for shop-slide -->
+	<script>
+		$(".shop-slide-article-and-photo").hover(function() {
+			$(".shop-slide-article-and-photo-img").removeClass('imgSmall');
+			$(".shop-slide-article-and-photo-img").addClass('imgScale');
+		});
+		$(".shop-slide-article-and-photo").mouseleave(function() {
+			$(".shop-slide-article-and-photo-img").addClass('imgSmall');
+		});
+
+		/* 直播專區 right scale 效果 */
+		$(".article-section-description-livestream-right").hover(function() {
+			$(".livestream-right-img", this).addClass('imgScale');
+		});
+		$(".imglist-li a").hover(function() {
+			$(".imglist-li-span", this).removeClass('textRecoverColor');
+			$(".imglist-li-img", this).removeClass('imgSmall');
+			$(".imglist-li-img", this).addClass('imgScale');
+			$(".imglist-li-span", this).addClass('textChangeColor');
+		});
+		$(".imglist-li a").mouseleave(function() {
+			$(".imglist-li-span", this).addClass('textRecoverColor');
+			$(".imglist-li-img", this).addClass('imgSmall');
+		});
+	</script>
+	<script>
+		$(".menu-open").on("click", function() {
+			$("nav").slideToggle();
+			$(this).toggleClass("active");
+			$('body,html').toggleClass('add')
+		});
+	</script>
+
+<script>
+
+
+    $('#decmun').click(function () {
+        let count =$('#countmun').val();
+        if(count<2) {
+            $('#countmun').val(1);
+            $('#inquantity').val(1);
+        }
+else{
+        $('#countmun').val(parseInt(count)-1);
+        $('#inquantity').val(parseInt(count)-1);
+}
+    });
+$('#plusmun').click(function () {
+    let count =$('#countmun').val();
+    $('#inquantity').val(parseInt(count)+1);
+
+        $('#countmun').val(parseInt(count)+1);
+
+});
+
+</script>
+
+<script>
+        $( "#buymessage" ).dialog({
+        	
+            autoOpen: false,
+            minWidth: 205,
+            width: 340,
+            show: 'fade',
+            hide: "blind"
+            
+
+
+        });
+	
+
+
+    $(".addcar").click(function () {
+
+        $("#buymessage").dialog("open");
+
+    });
+
+ 
+    
+    $('.cancelshopcart').click(function () {
+        $("#buymessage").dialog("close");
+
+    });
+
+  
+</script>
