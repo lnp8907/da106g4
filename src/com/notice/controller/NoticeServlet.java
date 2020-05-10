@@ -52,8 +52,9 @@ public class NoticeServlet extends HttpServlet {
 		req.setCharacterEncoding("UTF-8");
 		HttpSession session = req.getSession();
 		String action = req.getParameter("action");
-		
+		System.out.println(action);
 		if ("Click".equals(action)) { // 來自addEmp.jsp的請求
+			System.out.println("click on");
 			   List<String> errorMsgs = new LinkedList<String>();
 			   // Store this set in the request scope, in case we need to
 			   // send the ErrorPage view.
