@@ -218,7 +218,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 					</a>
 				</div>
 								<!-- 購物車 -->
-<c:if test='!${empty member_id}'>
+			<c:if test="${not empty member_id}">
 				<!-- <div class="demo"> -->
 				<div>
 					<div id="launch" class="notice">
@@ -231,17 +231,17 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 					</div>
 					 <!-- <a  class="" href="#">Launch Popup</a> -->
 				</div>
-</c:if>
+			</c:if>
 			</div>
 
 		</div>
 		<!-- end of function-->
 		<nav id="navigation">
 			<ul>
-				<li class="dropdown"><a href="#"><img class="access-menu-icon"
+				<li class="dropdown"><a href="<%=request.getContextPath()%>/front-end/recipe/recipeMainpage.jsp"><img class="access-menu-icon"
 						src="<%=request.getContextPath() %>/image/recipe-icon.png"><span class="menu-span">食譜專區</span></a>
 					<ul>
-						<li><a class="dropdown-first-a" href="#"><img
+						<li><a class="dropdown-first-a" href="<%=request.getContextPath()%>/front-end/recipe/recipeMainpage.jsp"><img
 								class="dropdown-first-img" src="<%=request.getContextPath() %>/image/ico_gnav_recipes_book.svg"><span
 								class="dropdown-first-a-span">食譜主頁</span></a></li>
 <!-- 						<li><a href="#">特輯食譜</a></li> -->
