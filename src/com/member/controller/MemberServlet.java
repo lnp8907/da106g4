@@ -1163,31 +1163,12 @@ System.out.println("location="+location);
 				
 		
 				
-				
-
 
 				MemberVO memberVO= new MemberVO();
-				
-				
-				
-				
-				
-				
-				
 				memberVO.setAccount(account);
 				memberVO.setPassword(password);
 				memberVO.setEmail(email);
-				
-			
-
-				
-				
-				
-				
-				
-				
-				
-				
+		
 				if (!errorMsgs.isEmpty()) {
 				//	req.setAttribute("memberVO", memberVO);
 				
@@ -1202,9 +1183,7 @@ System.out.println("location="+location);
 				memberSvc.insertmem(account, password, email);
 				
 				
-				
-				
-				
+
 				
 				
 				
