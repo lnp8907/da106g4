@@ -7,7 +7,7 @@ import com.member.model.MemberVO;
 
 
 public interface StaffDAO_interface {
-		public void insert(StaffVO staffvo);
+		public String insert(StaffVO staffvo);
 	    public void update(StaffVO staffvo);
 	    public void updateWithPassword(StaffVO staffvo);
 	    public StaffVO findByPrimaryKey(String staff_id);

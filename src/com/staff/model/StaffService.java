@@ -15,7 +15,7 @@ public class StaffService {
 		return dao.findPK(staff_id);
 	}
 
-	public StaffVO insert(String password, String name, Integer gender, String phone, Integer status, String email) {
+	public String insert(String password, String name, Integer gender, String phone, Integer status, String email) {
 		StaffVO staffVO = new StaffVO();
 		staffVO.setStaff_name(name);
 		staffVO.setGender(gender);
@@ -23,8 +23,8 @@ public class StaffService {
 		staffVO.setPhone(phone);
 		staffVO.setStaff_status(status);
 		staffVO.setEmail(email);
-		dao.insert(staffVO);
-		return staffVO;
+		return dao.insert(staffVO);
+		
 	};
 
 	public StaffVO updateWithPassword(String staff_id, String staff_password, String name, Integer gender, String phone, String email, Integer staff_status){

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.authority.model.AuthorityService;
+import com.member.model.mailThread;
 import com.staff.model.StaffService;
 import com.staff.model.StaffVO;
 
@@ -494,16 +495,41 @@ public class StaffServlet extends HttpServlet {
 			/*************************** 2.開始新增資料 *****************************************/
 			StaffService staffService = new StaffService();
 			String staff_password = getRandomPassword(6);//產生密碼
-			
+			String staff_id = null;
 			// 傳送密碼
-			String to = email;
-			String subject = "員工密碼通知";
-			String messageText = "Hello! " + staff_name + " 請謹記此密碼: " + staff_password + "\n" + " (已經啟用)";
-			MailService.sendMail(to, subject, messageText);
+//			String to = email;
+//			String subject = "員工密碼通知";
+//			String messageText = "Hello! " + staff_name + " 請謹記此密碼: " + staff_password + "\n" + " (已經啟用)";
+//			MailService.sendMail(to, subject, messageText);
 			staffVO.setStaff_password(staff_password);
 			
-			//新增資料
-			staffVO = staffService.insert(staff_password, staff_name, gender, phone, staff_status, email);
+			//新增資料取得員工編號
+			staff_id = staffService.insert(staff_password, staff_name, gender, phone, staff_status, email);
+			
+			
+			
+			
+			
+			
+			
+			String ip = "localhost";
+			String to = email;
+			String subject = "會員驗證信通知";
+			String messageText = "Hello! " + email + " 這是你的員工編號: " + staff_id + "\n" + " 這是你的密碼: " + staff_password + "\n" + " (已經啟用)";
+			
+//			sendMail(to, subject, messageText);
+			MailService mailService = new MailService(email, subject, messageText);
+			    mailService.start();
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
 			RequestDispatcher succeseView = req
 					.getRequestDispatcher("/back-end/staff/staffPage.jsp");
 			succeseView.forward(req, res);

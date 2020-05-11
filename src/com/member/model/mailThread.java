@@ -42,22 +42,22 @@ public class mailThread extends Thread{
         return new PasswordAuthentication(myGmail, myGmail_password);
        }
       });
-System.out.println("1失敗!");
+
       Message message = new MimeMessage(session);
-System.out.println("2失敗!");      
+      
       message.setFrom(new InternetAddress(myGmail));
-System.out.println("3失敗!");      
+      
       message.setRecipients(Message.RecipientType.TO,InternetAddress.parse(to));
-System.out.println("4失敗!");     
+    
       //設定信中的主旨  
       message.setSubject(subject);
-System.out.println("5失敗!");      
+     
       //設定信中的內容 
       message.setText(messageText);
-System.out.println("6失敗!");      
+     
 
       Transport.send(message);
-      System.out.println("7失敗!");      
+     
       System.out.println("傳送成功!");
       }catch (MessagingException e){
        System.out.println("傳送失敗!");

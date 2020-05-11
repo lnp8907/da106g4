@@ -116,14 +116,15 @@ public class StaffDAO  implements StaffDAO_interface {
 	    
 	    
 	@Override
-	public void insert(StaffVO staffvo) {
-		// TODO Auto-generated method stub
+	public String insert(StaffVO staffvo) {
+		String staff_id = null;
+		
 		Connection con = null;
 		PreparedStatement pstmt = null;
 		try {
-			con = ds.getConnection();
-			pstmt = con.prepareStatement(INSERT_STMT);
-
+			con = ds.getConnection();	
+			String cols[] = {"staff_id"};
+			pstmt = con.prepareStatement(INSERT_STMT,cols);
 		
 			pstmt.setString(1, staffvo.getStaff_password());
 			pstmt.setString(2, staffvo.getStaff_name());
@@ -132,6 +133,12 @@ public class StaffDAO  implements StaffDAO_interface {
 			pstmt.setInt(5, staffvo.getStaff_status());
 			pstmt.setString(6, staffvo.getEmail());
 			pstmt.executeUpdate();
+			
+			ResultSet rs = pstmt.getGeneratedKeys();
+			rs.next();
+			staff_id = rs.getString(1);
+	
+			rs.close();
 		} catch (SQLException se) {
 			throw new RuntimeException("A database error occured. "
 					+ se.getMessage());
@@ -151,6 +158,8 @@ public class StaffDAO  implements StaffDAO_interface {
 				}
 			}
 		}
+		return staff_id;
+		
 	
 	}
 	@Override

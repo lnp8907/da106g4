@@ -1921,7 +1921,7 @@ hr {
   <div class="avatar">
 
           <div class="circle image-wrap small">
- <img src=DBGifReader4.do?photo_type=mempic&member_id=<%=session.getAttribute("member_id")%> id="preview_progressbarTW_img" width=129px height=129px;/>
+ <img src=DBGifReader4.do?photo_type=mempic&member_id=<%=session.getAttribute("member_id")%> id="preview_progressbarTW_img1" width=129px height=129px;/>
 </div>
 </div>
           <h2><%=memberVO.getMember_name()%></h2>
@@ -2055,7 +2055,10 @@ hr {
 
 						<!----- First Name ---------------------------------------------------------->
 					
-					
+						<tr>
+							<td>會員帳號:</td>
+							<td><%=memberVO.getAccount()%></td>
+						</tr>
 					
 						<tr>
 				<td>會員圖片:</td>
@@ -2091,13 +2094,35 @@ hr {
 								<!-- (max 30 characters a-z and A-Z) -->
 							</td>
 						</tr>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+							<tr>
+							<td>暱稱:</td>
+
+							<td>
+								
+
+
+
+
+
+								<input type="TEXT" name="nickname" size="45"
+					id=nickname value="<%=memberVO.getNickname()%>" />
+
+								<!-- (max 30 characters a-z and A-Z) -->
+							</td>
+						</tr>
+						
 
 						<!----- Last Name ---------------------------------------------------------->
-						<tr>
-							<td>會員帳號:</td>
-							<td><input type="TEXT" name="account" size="45" id=account
-					value="<%=memberVO.getAccount()%>" /></td>
-						</tr>
+					
 
 						<tr>
 							<td>會員密碼:</td>
