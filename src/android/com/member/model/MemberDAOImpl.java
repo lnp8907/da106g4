@@ -622,6 +622,7 @@ public class MemberDAOImpl implements MemberDAO {
 				member.setBalance(rs.getInt("Balance"));
 				member.setCellphone(rs.getString("CELLPHONE"));
 				member.setEmail(rs.getString("EMAIL"));
+				member.setNickname(rs.getString("nickname"));
 			}
 			System.out.println(member);
 
