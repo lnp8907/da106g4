@@ -23,6 +23,12 @@ public class MemberFollowService { //getAllMemberByFollowed
 	  return mbs_id;
 	 }
 	 
+	 public void insert(Member_followVO followVO) {
+		 
+		 dao.insert(followVO);
+	 }
+	 
+	 
 //	 public String getByMb_idPlus(String mb_id) {
 //	  List<Mb_followVO> list = dao.findByMbId(mb_id);
 //	  StringBuffer sb= new StringBuffer();
