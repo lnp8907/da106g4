@@ -16,7 +16,7 @@
 
 <%
 InstantDeliveryOrderService IDSvc=new InstantDeliveryOrderService();
-
+boolean lookMap = false;
 List<InstantDeliveryOrderVO> list=null;
 if(IDSvc.getAll()!=null){
 	list=IDSvc.getAll();
@@ -25,6 +25,7 @@ if(IDSvc.getAll()!=null){
 
 if(request.getParameter("pagemessage")!=null){
 	 if(request.getParameter("pagemessage").equals("Traveling")){
+		 	lookMap = true;
 			list=list.stream()
 					.filter(p->p.getO_status()==1)
 					.collect(Collectors.toList());
@@ -195,6 +196,7 @@ pageContext.setAttribute("list",list);
         <td colspan="5">${ordervo.d_address}</td>
                   				<td>
 			<!-- 訂單地圖 -->
+			<c:if test="<%=lookMap %>">
 			<FORM METHOD="post" ACTION="Instant_delivery_orderServlet" >
 			  <button class="ui right labeled  icon  ui primary button"><i class="zoom in icon"></i> 查看地圖 </button>	     
 			  <input type="hidden" name="ido_no"  value="${ordervo.ido_no}">
@@ -203,7 +205,7 @@ pageContext.setAttribute("list",list);
                 <input 	type="hidden" name="whichPage"  value="<%=whichPage%>"/>			  
 			</FORM>			
 			</td>
-                </td>
+              </c:if>
                 <td>
                 <form method="post" ACTION="Instant_delivery_orderServlet">
 <%--                 <a href="<%=request.getContextPath() %>/back-end/Instant_order/Instant_delivery_orderServlet?action=cencelorder&ido_no=${ordervo.ido_no}"> --%>

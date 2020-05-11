@@ -64,7 +64,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 	type="image/x-icon" />
 
 
- <script type="text/javascript" src="javascript/jquery-3.2.1.min.js"></script> 
+ <script type="text/javascript" src="<%=request.getContextPath() %>/javascript/jquery-3.2.1.min.js"></script> 
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="<%=request.getContextPath() %>/slick/slick.js" type="text/javascript" charset="utf-8"></script>
