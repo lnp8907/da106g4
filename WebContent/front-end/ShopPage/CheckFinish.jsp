@@ -64,7 +64,7 @@ icon"></i>
 text-align:center;
 color:#E4002B;
 font-size: 35px;
-width:600px;
+width:500px;
 margin: 0 auto;
 
     font-family: 微软雅黑;
