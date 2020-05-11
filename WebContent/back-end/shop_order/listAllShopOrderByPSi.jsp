@@ -30,7 +30,7 @@ pageContext.setAttribute("list",list);
 
 <meta charset="UTF-8">
 <title>所有訂單</title>
-<div id="ordertitle">
+<div id="ordertitle" >
 		 <h3>以下是所有訂單:</h3>
 		 
 		 <%if(list.size()>0){ %>

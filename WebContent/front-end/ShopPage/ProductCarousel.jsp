@@ -37,10 +37,10 @@ if(session.getAttribute("member_id")!=null){
 </head>
 <body>
 
-<div style="margin: 0px auto 50px" class="productCarouse">
-<div class="Carouse" style="width: 1100px;margin: 20px auto;"> <h2  style="color:red ;font-family:Microsoft JhengHei;">瀏覽紀錄</h2></div>
+<div style="margin: 0px auto 50px;" class="productCarouse">
+<div class="Carouse" style="width: 1100px;margin: 40px auto;"> <h2  style="color:red ;font-family:Microsoft JhengHei;">瀏覽紀錄</h2></div>
 
-<div class="multiple-items">
+<div class="multiple-items" style="background-color: #f9f9f9">
 
  <c:if test="${fn:length(PClist)>0}">
 

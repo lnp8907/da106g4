@@ -62,11 +62,44 @@ session.setAttribute("checkoutlist", buyProductlist);
     session.setAttribute("location", request.getRequestURI());
     
     %>
- 
+    <%
+		Integer total=buyProductlist.stream()
+		.mapToInt(p->p.getPrice()*p.getQuantity())
+		.sum();
+		
+		%>
+  <div id="progress-rate" style="margin-top: -20px">
+    <div class="progesssize ui steps">
+        <a class=" step" href="<%=request.getContextPath() %>/front-end/ShopPage/ProductPage?action=checktpage1">
+            <i class="shopping cart icon" style="color: #e4002b"></i>
+            <div class="content">
+                <div class="title" style=" color: #e4002b;" >請確認購物車
+                </div>
+                <div class="description">選擇您的購買清單</div>
+            </div>
+        </a>
+        <a class="active step">
+            <div class="content">
+                <div class="title">結帳</div>
+                <div class="description">輸入付款資訊</div>
+            </div>
+        </a>
+        <a class="step">
+            <div class="content">
+                <div class="title">完成</div>
+                <div class="description">恭喜完成訂單</div>
+            </div>
+        </a>
+    </div>
+
+
+<div id="showmember" style="margin-bottom: 50px">
+		敬愛的會員<font class="membername">${member_name}</font>你好:
+</div> 
 <div class="checktitle"> 
- <font size="+3">目前購物車的內容如下：</font></div>
+ <font size="+3">購物車一覽：</font></div>
 <div class="cartlist">
-<table class="ui celled table" id="table-1" >
+<table class="ui celled table" id="table-1" style="font-size: 10px">
     <thead>
   
     <tr> 
@@ -98,47 +131,17 @@ session.setAttribute("checkoutlist", buyProductlist);
 		%>
 		
 		
-		<%
-		Integer total=buyProductlist.stream()
-		.mapToInt(p->p.getPrice()*p.getQuantity())
-		.sum();
-		
-		%>
+	
 		<td width="100"><%=tot %></td>
 	
 	</tr>
 	<%}%>  </tbody>
 	
-</table></div>
- <div id="progress-rate">
-    <div class="progesssize ui steps">
-        <a class=" step" href="<%=request.getContextPath() %>/front-end/ShopPage/ProductPage?action=checktpage1">
-            <i class="shopping cart icon" style="color: #e4002b"></i>
-            <div class="content">
-                <div class="title" style=" color: #e4002b;" >請確認購物車
-                </div>
-                <div class="description">選擇您的購買清單</div>
-            </div>
-        </a>
-        <a class="active step">
-            <div class="content">
-                <div class="title">結帳</div>
-                <div class="description">輸入付款資訊</div>
-            </div>
-        </a>
-        <a class="step">
-            <div class="content">
-                <div class="title">完成</div>
-                <div class="description">恭喜完成訂單</div>
-            </div>
-        </a>
-    </div>
-
+</table>
+	<h2 style="color:red;float:right;margin-top: 5px">總計:<%=total %></h2>
 
 </div>
-<div id="showmember">
-		敬愛的會員<font class="membername">${member_name}</font>你好:
- 
+
  
 <div id="orderform">
 <form METHOD="post" ACTION="OrderServlet" class="ui form">
@@ -224,13 +227,7 @@ session.setAttribute("checkoutlist", buyProductlist);
          <div  id="sendOrder"> 
  <input type="submit" id="send" id="sendOrder"class="ui button " tabindex="0" value="送出訂單">
 </div>
-<%
-		Integer total=buyProductlist.stream()
-		.mapToInt(p->p.getPrice()*p.getQuantity())
-		.sum();
-		
-		%>
-<h2 style="color:red">總計:<%=total %></h2>
+
 
 <br>
  <!-- 總價計算 -->

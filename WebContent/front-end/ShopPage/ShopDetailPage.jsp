@@ -30,7 +30,7 @@
 	request.setAttribute("productstatus", map);
 %>
 <html>
-productCarlistt${productCarlist}
+<%-- productCarlistt${productCarlist} --%>
 
 
 <head>
@@ -77,9 +77,9 @@ productCarlistt${productCarlist}
     <link rel="stylesheet" type="text/css" href="../../css/slick-1.8.1/slick/slick-theme.css"/>
     <script type="text/javascript" src="../../css/slick-1.8.1/slick/slick.js"></script>
     
-    
-<title>購買頁面</title>
- <!-- 廣告連播套件 -->
+    <link rel="shortcut icon" href="<%=request.getContextPath() %>/image/head-FoodPron_Logo.ico"
+	type="image/x-icon" />
+<title>${productvo.product_name} </title>
 
 </head>
 <body>
@@ -415,10 +415,33 @@ productCarlistt${productCarlist}
 </div>
 
 <div id="ShopLsearch">
-    <div class="ui icon input">
-        <input type="text"  placeholder="你想找甚麼...">
-        <i   class="inverted  circular search link icon"></i>
-    </div>
+			
+			<form METHOD="post" ACTION="ProductPage">
+						<div class=" ui icon input">
+
+   
+ 
+			<select class="ui compact selection dropdown" name="product_type">
+							<c:forEach var="producttype2" items="${producttype2}">
+		<option value="${producttype2.key==0? null:producttype2.value}">${producttype2.value}</option>
+			</c:forEach>
+			</select>
+ <input type="text"  placeholder="你想找甚麼..." name='product_name'>
+ 		  <i id='searchproduct' class=" inverted search link icon"></i>
+	
+ 
+  <input id='sendsearch' type="submit" style='display:none' >
+  <input type="hidden" value="searchproduct" name="action">
+  <script>
+  $('#searchproduct').click(function(){
+	  $('#sendsearch').click();	  
+  });
+  
+  
+  
+  </script>
+  </div>
+</form>
 </div>
 
 
@@ -502,11 +525,11 @@ productCarlistt${productCarlist}
       <tbody>
     
 		<tr><th>熱量</th><td><%=productvo.getCalorie()%><font>kcal</font></td></tr>
-		<tr><th>碳水化合物</th><td><%=productvo.getProtein()%><font>g</font></td></tr>
+		<tr><th>碳水化合物</th><td><%=productvo.getCarbohydrate()%><font>g</font></td></tr>
 		<tr><th>蛋白質</th><td><%=productvo.getProtein()%><font>g</font></td></tr>
 		<tr><th>脂質</th><td><%=productvo.getFat()%><font>g</font></td></tr>
 		<tr><th>維生素B</th><td><%=productvo.getVitamin_B()%><font>mg</font></td></tr>
-		<tr><th>維生素C</th><td><%=productvo.getSalt()%><font>mg</font></td></tr>
+		<tr><th>維生素C</th><td><%=productvo.getVitamin_C()%><font>mg</font></td></tr>
 		<tr><th>鈉含量</th><td><%=productvo.getSalt()%><font>mg</font></td></tr>
 		<tr><th>植物纖維</th><td><%=productvo.getVagetbale()%><font>mg</font></td></tr>
 		
@@ -667,22 +690,23 @@ productCarlistt${productCarlist}
 			},
 			indicator : [ {
 				name : '熱量',
-				max : 500
+				max : 350
 			}, {
 				name : '蛋白質',
-				max : 100
+				max : 25
 			}, {
 				name : '碳水化合物',
-				max : 500
-			}, {
-				name : '脂質',
-				max : 40
-			}, {
-				name : '鈉含量(mg)',
-				max : 100
+				max : 50
 			}, {
 				name : '膳食纖維',
 				max : 10
+			
+			}, {
+				name : '脂質',
+				max : 35
+			}, {
+				name : '鈉含量(mg)',
+				max : 200
 			} ]
 		},
 		series : [ {
@@ -701,11 +725,13 @@ productCarlistt${productCarlist}
 	,
 <%=productvo.getCarbohydrate()%>
 	,
-<%=productvo.getFat()%>
-	,
+
+	<%=productvo.getVagetbale()%>,
+	<%=productvo.getFat()%>
+	,	
+	
 <%=productvo.getSalt()%>
-	,
-<%=productvo.getVagetbale()%>
+	
 	],
 						name : '食材六圍圖',
 						areaStyle : {

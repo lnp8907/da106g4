@@ -5,6 +5,8 @@
 <!DOCTYPE html>
 <html>
 <head>
+ <link rel="shortcut icon" href="<%=request.getContextPath() %>/image/head-logo_nohead.ico"
+	type="image/x-icon" />
 <!--套件-->
 <script src="<%=request.getContextPath()%>/plugin/jquery-3.4.1.min.js"></script>
 <script
@@ -33,8 +35,16 @@
     <%@ page import="com.shop_order.model.*" %>
     <%@ page import="java.util.*" %>
 
+<style>
+.content h2{
+color: #E4002B;
+line-height: 100px;
+	padding-left: 40px
+}
 
-<title>後端頁面模板</title>
+
+</style>
+<title>訂單管理頁面</title>
   
     <%Shop_orderVO ordvo=null;
     if(request.getAttribute("dialogordvo")!=null){
@@ -137,7 +147,7 @@
 
 				<span class="fa fa-sign-out">登出</span>
 			</div>
-			<div class="wrapper">
+			<div class="wrapper" style="background-color: #f9f9f9">
 				<!--  -->
 				<c:set var="url" value="<%=request.getRequestURI()%>"
 					scope="request" />

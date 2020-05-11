@@ -113,17 +113,22 @@ MemberService msvc=new MemberService();
 
 <meta charset="UTF-8">
 <title>所有訂單</title>
-		 <c:if test="${fn:length(list)>0}">
-
-<div id="ordertitle">
-		 <h3>以下是所有訂單:</h3>
+<div class="content" style="height: 114px">
+		<div class="menu">
+		<h2 style="font-size: 36px">訂單管理</h2>
+ <c:if test="${fn:length(list)>0}">
+		 以下是所有訂單:
 		 <%= list.get(0).getOrder_no() %>
 		 
 		 <%if(!list.get(0).getOrder_no().equals(list.get(list.size() - 1).getOrder_no())){ %>
 		 →<%= list.get(list.size() - 1).getOrder_no() %>
 		 <%} %>
-	</div>	 
 </c:if>		 
+		</div>
+	</div>
+
+
+		
 		
 <%-- 錯誤表列 --%>
 <c:if test="${not empty errorMsgs}">
@@ -152,7 +157,7 @@ MemberService msvc=new MemberService();
 		<th>查看訂單詳情</th>	
 		<th>發送訊息</th>
 	</tr>
-	<%@ include file="../file/page1.file" %> 
+	<%@ include file="file/page1.file" %> 
 	
 	<c:forEach var="ordervo" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 					<c:set var="member_id" value="${ordervo.member_id}"/>

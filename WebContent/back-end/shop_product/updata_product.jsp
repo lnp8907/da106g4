@@ -58,7 +58,7 @@ if(request.getAttribute("detailProductvo")!=null){
 		producttype.add("魚貝類");
 		producttype.add("菇類");
 		producttype.add("穀物類");
-		producttype.add("澱粉纇");
+		producttype.add("澱粉類");
 		producttype.add("酒類");
 		producttype.add("調味料及香辛料類");
 		producttype.add("料理組合包");

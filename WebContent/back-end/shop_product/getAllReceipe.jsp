@@ -7,10 +7,12 @@
 
 <%
 	ProductService Psvc = new ProductService();
-	Collection<ProductVO> list = Psvc.gettypelist("料理組合包");
+	List<ProductVO> list = Psvc.gettypelist("料理組合包");
 	list=list.stream().filter(p->p.getProduct_status()!=2).collect(Collectors.toList());
 
 	pageContext.setAttribute("list", list);
+	Collections.reverse(list);
+
 %>
 
 <!DOCTYPE html>
@@ -130,14 +132,16 @@
 							<!-- 修改 -->
 							<FORM METHOD="post" ACTION="ProductServlet"
 								style="margin-bottom: 0px;">
-								   <button class="ui right labeled  icon button"><i class="external alternate icon"></i> 查看更多 </button>
-								
+  <button class="ui right labeled  icon button updateproduct"><i class="file outline
+ icon"></i> 修改</button>
 								<input style="display: none" class="updateproduct" type="submit" value="修改"> <input
 									type="hidden" class="inputid" name="product_id"
 									value="${productvo.product_id}"> <input type="hidden"
-									name="action" value="upateopen">
-									<input type="hidden" name="whichPage" value="${whichPage}">
-									
+									name="action" value="upateopen"> <input type="hidden"
+									name="whichPage" value="${whichPage}"> <input
+									type="hidden" name="product_type"
+									value="${productvo.product_type}"> <input type="hidden"
+									name="fproduct_type" value="${product_type}">
 							</FORM>
 						</td>
 						<c:set var="id" value="${productvo.product_id}" />

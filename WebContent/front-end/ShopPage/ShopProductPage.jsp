@@ -59,7 +59,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 <c:set var="productlist" value="<%=productlist %>"/>
 
 </head>
- ${member_id}
+<%--  ${member_id} --%>
 <body>
 	<header>
 		<div id="top-logo" class="logo">

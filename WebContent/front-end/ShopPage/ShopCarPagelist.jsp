@@ -95,9 +95,9 @@ pointer-events: none;
 		
 		
 		
-	待結帳列表: ${checkCarlist}
+<%-- 	待結帳列表: ${checkCarlist} --%>
 		
-	<br> 購物車清單列表: ${productCarlist}
+<%-- 	<br> 購物車清單列表: ${productCarlist} --%>
 		
 
 

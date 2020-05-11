@@ -27,6 +27,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="shortcut icon"
+	href="<%=request.getContextPath()%>/image/head-logo_nohead.ico"
+	type="image/x-icon" />
 <!--套件-->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
@@ -59,9 +62,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>後端頁面模板</title>
-<body>
-	<%="現在地址:" + request.getContextPath()%>
+<title>及時訂單管理頁面</title>
+<body style="background-color: pink">
+	<%-- 	<%="現在地址:" + request.getContextPath()%> --%>
 	<div class="container">
 		<div class="box">
 			<!--這裡是左邊選單-->
@@ -93,9 +96,10 @@
 									href="<%=request.getContextPath()%>/back-end/Instant_order/Instant_order_backendPage.jsp?pagemessage=cancel">已取消訂單</a></li>
 						</li>
 					</ul>
+					<span class="fa fa-sign-out">登出</span>
 				</div>
-				<span class="fa fa-sign-out">登出</span>
 			</div>
+
 			<div class="wrapper">
 				<!--  -->
 
@@ -112,7 +116,7 @@
 				<%
 					} else if (((String) request.getAttribute("pagemessage")).equals("traveling")) {
 				%>
-				<jsp:include page="TravelingInstant_order.jsp" />
+				<%-- 				<jsp:include page="TravelingInstant_order.jsp" /> --%>
 				<%
 					} else if (((String) request.getAttribute("pagemessage")).equals("getPositon")) {
 				%>
@@ -127,9 +131,9 @@
 
 		</div>
 	</div>
-	
-	
-		<!--  -->
+
+
+	<!-- 跳窗 -->
 	<c:if test="${opendialog=='lookmore'}">
 		<div class="modal fade" id="basicModal1" tabindex="-1" role="dialog"
 			aria-labelledby="basicModal" aria-hidden="true">
@@ -165,22 +169,14 @@
 			});
 		</script>
 	</c:if>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
+
+
 
 	<!-- 左邊選單 -->
 	<script>

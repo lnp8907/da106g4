@@ -48,7 +48,13 @@
 			</c:forEach>
 		</ul>
 	</c:if>
+<style>
+.productaddform label{
+color: white;
 
+}
+
+</style>
 
 	<div class="productaddform">
 
@@ -94,10 +100,9 @@
 							producttype.add("魚貝類");
 							producttype.add("菇類");
 							producttype.add("穀物類");
-							producttype.add("澱粉纇");
+							producttype.add("澱粉類");
 							producttype.add("酒類");
 							producttype.add("調味料及香辛料類");
-							producttype.add("料理組合包");
 						%>
 						<%
 							for (String type : producttype) {
@@ -151,21 +156,32 @@
 
 
 			<div class="field">
-				<label>是否直接上架:</label> <input type="radio" name="product_status"
+				<label style="color: white">是否直接上架:</label> <input type="radio" name="product_status"
 					value=1 checked>否 <input type="radio" name="product_status"
 					value=0> 是
 
 			</div>
 
 
+			<div class="two fields" style="height: 60px" >
 
+			<div class="field">
 
-			<button id="adddetail" class="ui button" type="button">
+			<button id="adddetail"  class="ui button" type="button">
 				<i class="plus icon"></i> 新增產品資訊
 			</button>
+						</div>
+						<div class="field">
+			
 			<!-- 					<button id="adddetail" type="button">新增產品資訊</button> -->
-
-			<table id="productdetail" style="display: none">
+<button type="submit" style="float: right" class="ui button" type="button">
+				<i class="pencil alternate icon"></i> 送出新增
+			</button>
+						</div>
+			
+						</div>
+			
+			<table id="productdetail" style="display: none;margin-bottom: 200px" >
 
 
 				<tr>
@@ -222,6 +238,8 @@
 					<textarea name="content" rows="10" cols="50" placeholder="請填入內容" value="<%=(productvo == null) ? "" : productvo.getContent()%>" >
 
 </textarea>
+<tr style="height: 100px">
+				</tr>
 					
 					
 					
@@ -242,9 +260,7 @@
 
 			<input type="hidden" name="action" value="insert">
 
-			<button type="submit" style="float: right" class="ui button" type="button">
-				<i class="pencil alternate icon"></i> 送出新增
-			</button>
+			
 
 			<!-- 		 <input -->
 			<!-- 			type="submit" value="送出新增"> -->
@@ -269,6 +285,9 @@
 			}
 		}
 		$('#adddetail').click(function() {
+	
+			
+			
 			$("#productdetail").toggle("slow");
 		});
 	</script>
@@ -315,8 +334,6 @@
 </body>
 <style>
 .productaddform{
-margin:0 auto;
-margin-top:50px;
 width: 800px;
 background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
 

@@ -79,7 +79,7 @@
 		}
 
 	}
-
+	request.setAttribute("typemapC", typemapC);
 	pageContext.setAttribute("Bprodcutlist", list);
 %>
 
@@ -94,7 +94,7 @@
 <title>所有商品處理頁面</title>
 </head>
 
-<body>
+<body >
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">請修正以下錯誤:</font>
@@ -109,7 +109,9 @@
 
 
 	<div class="content">
-		<div class="menu">
+		<div class="menu" style="height: 130px">
+		<h2 style="font-size: 40px">商品管理-<%=typemapC.get(Integer.valueOf(product_type)) %></h2>
+
 			<!-- 卡片內容上方留白的起始標籤 -->
 		</div>
 		<!-- 卡片內容上方留白的結束標籤 -->

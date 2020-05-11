@@ -7,6 +7,9 @@
 <html>
 <head>
 <!--套件-->
+<!-- icon -->
+ <link rel="shortcut icon" href="<%=request.getContextPath() %>/image/head-logo_nohead.ico"
+	type="image/x-icon" />
 <script src="<%=request.getContextPath()%>/plugin/jquery-3.4.1.min.js"></script>
 <script
 	src="<%=request.getContextPath()%>/plugin/bootstrap-4.4.1-dist/js/bootstrap.min.js"></script>
@@ -31,8 +34,16 @@
 <script src="../../plugin/jquery-ui/jquery-ui.min.js"></script>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<style>
+.content h2{
+color: #E4002B;
+line-height: 80px;
+	padding-left: 40px
+}
 
-<title>後端頁面模板</title>
+
+</style>
+<title>商品管理頁面</title>
 <body>
 <%-- 	<%="現在地址:" + request.getContextPath()%> --%>
 	<div class="container">
@@ -114,7 +125,7 @@
 
 				<span class="fa fa-sign-out">登出</span>
 			</div>
-			<div class="wrapper">
+			<div class="wrapper" style="background-color: #f9f9f9">
 				<!--  -->
 
 
