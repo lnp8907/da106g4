@@ -54,7 +54,7 @@ pageContext.setAttribute("member_status", membervo1.getMember_status());
 <!DOCTYPE html>
 <html lang="en">
 
-<html lang="en">
+
 
 <head>
 <meta charset="UTF-8">

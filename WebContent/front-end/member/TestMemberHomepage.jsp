@@ -1987,16 +1987,31 @@ hr {
 					src="../../image/member/S__12066818.jpg"><span>我的課程</span></a></li>
 		</c:if>
 
+
+
+
 <c:if test='${member_status eq 1 }'>
-			<li class="sub-menu"><a href="javascript:void(0);"><i
-					class="fa fa-map-marker"></i><img class="access-menu-icon1"
-					src="../../image/member/S__12066827.jpg"><span>直播/課程管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
-					class="arrow fa fa-angle-right pull-right"></i></a>
-				<ul>
-					<li><a href="MemberCourse.jsp">課程管理</a></li>
-					<li><a href="map-vector.html">直播管理</a></li>
-				</ul></li>
+			<li><a
+				href="MemberCourse.jsp"><i
+					class="fa fa-dashboard"></i><img class="access-menu-icon1"
+					src="../../image/member/S__12066827.jpg"><span>課程管理</span></a></li>
 					</c:if>	
+
+
+
+
+
+
+<%-- <c:if test='${member_status eq 1 }'> --%>
+<!-- 			<li class="sub-menu"><a href="javascript:void(0);"><i -->
+<!-- 					class="fa fa-map-marker"></i><img class="access-menu-icon1" -->
+<!-- 					src="../../image/member/S__12066827.jpg"><span>直播/課程管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i -->
+<!-- 					class="arrow fa fa-angle-right pull-right"></i></a> -->
+<!-- 				<ul> -->
+<!-- 					<li><a href="MemberCourse.jsp">課程管理</a></li> -->
+<!-- 					<li><a href="map-vector.html">直播管理</a></li> -->
+<!-- 				</ul></li> -->
+<%-- 					</c:if>	 --%>
 <c:if test='${member_status eq 1 }'>
 			<li><a
 				href="MemberRecipe.jsp"><i
