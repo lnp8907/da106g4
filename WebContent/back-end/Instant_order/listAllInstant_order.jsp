@@ -126,7 +126,7 @@ pageContext.setAttribute("list",list);
 	
 	<c:forEach var="ordervo" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
-		<tr>
+		<tr class="ordertr1">
 			<td>${ordervo.ido_no}</td>
 			<td>${ordervo.member_id}</td>
 			<td>${memberService.getOneMember(ordervo.member_id).member_name}</td>

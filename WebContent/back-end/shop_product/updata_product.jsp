@@ -14,6 +14,8 @@ if(request.getAttribute("detailProductvo")!=null){
 <%@ page import=" java.util.*"%>
 
 <head>
+
+
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
 <title>商品新增</title>
 
@@ -207,20 +209,7 @@ $("#imgView").change(function(){
 </script>
 
 </body>
-<style>
 
-.product-upatefrom{
-background-image: linear-gradient(to right, #ff8177 0%, #ff867a 0%, #ff8c7f 21%, #f99185 52%, #cf556c 78%, #b12a5b 100%);
-
-
-}
-.diettable td{
-color: white;
-
-
-}
-
-</style>
 
 
 </html>

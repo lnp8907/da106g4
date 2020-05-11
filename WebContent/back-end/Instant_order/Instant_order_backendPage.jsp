@@ -253,5 +253,14 @@
 
 		})
 	</script>
+	<style>
+	
+	#ordertable tr:nth-child(1){
+	background-color: #f9f9f9;
+	color: #E4002B;}
+	.ordertr1{
+	background-color: #f9f9f9;}
+	
+	</style>
 </body>
 </html>

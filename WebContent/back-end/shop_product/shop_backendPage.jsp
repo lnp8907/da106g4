@@ -69,7 +69,9 @@ line-height: 80px;
 						</span>
 							<ul class="BList">
 								<li><a href="ShopPageServlet?action=listallEX">查看商品</a></li>
-								<li><a href="ShopPageServlet?pagemessage=addpage">新增商品</a></li>
+								
+								<li><a href="<%=request.getContextPath() %>/back-end/shop_product/addProduct.jsp">新增商品</a></li>
+								
 								<li><a href="ShopPageServlet?action=listAllReceipe">查看食譜料理包</a></li>
 								<li><a href="ShopPageServlet?action=listAllReceipeEXcheck">查看審核中料理包</a></li>
 <!-- 								<li><a href="ShopPageServlet?action=IrregularPage">???????????</a></li> -->
