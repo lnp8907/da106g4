@@ -1083,14 +1083,33 @@ margin-left: 121px;
 
 h3 {
     margin-top: 27px;
-    margin-left: 252px;
+    margin-left: -222px;
     font-family: Calibri;
-    font-size: 26pt;
+    font-size: 30pt;
     font-style: normal;
     font-weight: bold;
-    color: rgba(16, 75, 75, 0.66);
+    color: rgba(16, 75, 75, 0.66);;
     /* text-decoration: underline; */
+    margin-bottom: 9px;
+
+
+text-shadow: rgba(186, 152, 152, 0.1) 1px 3px 0px;
+}
+.recipe-item img {
+    display: inline-block;
+    height: 101px;
+    width: 120px;
+    margin: 5px;
+    vertical-align: top;
+}
+.recipe-item-caption h4 {
+    display: inline-block;
     margin-bottom: 5px;
+    font-size: 19px;
+    font-weight: 500;
+    margin-left: 0px;
+    font-style: normal;
+    color: #E4002B;
 }
 h2{
 margin-left:56px;
@@ -1114,7 +1133,7 @@ b{    margin-right: -235px;
 
 
 table {
-    margin-left: 10px;
+    margin-left: 2px;
     width: 822px;
     font-family: Calibri;
     color: #e4002b;
@@ -1125,7 +1144,7 @@ table {
     border: 2px solid rgb(226, 226, 238);
     border-spacing: 60px 40px;
     /* border-width: 200px; */
-    margin-left: 485px;
+    margin-left: 2px;
     width: 827px;
 }
 
@@ -1741,7 +1760,10 @@ hr {
     display: inline;
 }
 
-
+.show-one-link li:hover{
+ background-color:#d9b1d526;
+	color:red;
+}
 
 
 
@@ -1992,55 +2014,15 @@ hr {
 	</c:if>
 <aside class="sidebar">
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   <div class="avatar">
-
-
 
           <div class="circle image-wrap small">
  <img src=DBGifReader4.do?photo_type=mempic&member_id=<%=session.getAttribute("member_id")%> id="preview_progressbarTW_img" width=129px height=129px;/>
 </div>
 </div>
           <h2><%=memberVO.getMember_name()%></h2>
-
+<h4>我的富胖幣:  <%=memberVO.getBalance()%></h4>
           <div class="link-top"></div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 	<div id="leftside-navigation" class="nano">
 		<ul class="nano-content">
@@ -2054,17 +2036,7 @@ hr {
 				href="/DA106_G4_Foodporn_Git/front-end/member/MemberListAllShopOrder01.jsp"><i
 					class="fa fa-dashboard"></i><img class="access-menu-icon1"
 					src="../../image/member/S__12066823.jpg"><span>購買清單</span></a></li>
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
-					
+								
 <!-- 			<li class="sub-menu"><a href="javascript:void(0);"><i -->
 <!-- 					class="fa fa-cogs"></i><img class="access-menu-icon1" -->
 <!-- 					src="../../image/member/S__12066823.jpg"><span>購買清單&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i -->
@@ -2075,7 +2047,7 @@ hr {
 					src="../../image/member/S__12066821.jpg"><span>我的錢包/點數&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>
 				</span><i class="arrow fa fa-angle-right pull-right"></i></a>
 				<ul>
-					<li><a href="tables-basic.html">交易紀錄</a></li>
+				
 					
 	<li><a href="/DA106_G4_Foodporn_Git/front-end/member/123.jsp">信用卡</a></li>
 				<c:if test='${member_status eq 1 }'>
@@ -2088,24 +2060,20 @@ hr {
 					src="../../image/member/S__12066822.jpg"><span>瀏覽紀錄&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
 					class="arrow fa fa-angle-right pull-right"></i></a>
 				<ul>
-					<li><a href="forms-components.html">課程瀏覽</a></li>
-					<li><a href="forms-validation.html">直播瀏覽</a></li>
-					<li><a href="forms-mask.html">食譜瀏覽</a></li>
-					<li><a href="forms-wizard.html">1</a></li>
-					<li><a href="forms-multiple-file.html">2</a></li>
-					<li><a href="forms-wysiwyg.html">3</a></li>
+					<li><a href="MemberListAllHistoryCourse.jsp">課程瀏覽</a></li>					
+					<li><a href="MemberListAllHistoryRecipe.jsp">食譜瀏覽</a></li>
+
 				</ul></li>
-			<li class="sub-menu"><a href="javascript:void(0);"><i
-					class="fa fa-envelope"></i><img class="access-menu-icon1"
-					src="../../image/member/S__12066820.jpg"><span>精選收藏&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
-					class="arrow fa fa-angle-right pull-right"></i></a>
-				<ul>
-					<li><a href="mail-inbox.html">課程收藏</a></li>
-					<li><a href="mail-compose.html">直播收藏</a></li>
-					<li><a href="mail-compose.html">食譜收藏</a></li>
-				</ul></li>
-			
-			
+				
+				
+				
+		<c:if test='${member_status eq 0 }'>		
+				<li><a
+				href="MemberRecipeFavorite.jsp"><i
+					class="fa fa-dashboard"></i><img class="access-menu-icon1"
+					src="../../image/member/S__12066820.jpg"><span>課程收藏</span></a></li>
+			</c:if>		
+
 		<c:if test='${member_status eq 0 }'>
 			
 	 		
@@ -2148,7 +2116,7 @@ hr {
 
 
 <FORM METHOD="post" ACTION="member.do" name="upateform" id="upateform"
-		enctype="multipart/form-data" >
+		enctype="multipart/form-data" style="margin-left: 500px; margin-top: 34px;">
 
 
 
@@ -2158,10 +2126,10 @@ hr {
 
 			<div class="container">
 
-<h3>食譜收藏</h3>
+<h3>食譜收藏清單</h3>
 
 
-					<table align="center" cellpadding="10" style=" margin-left: 484px;
+					<table align="center" cellpadding="10" style=" 
     margin-top: -13px;
     width: 850px;">
 
@@ -2181,7 +2149,8 @@ hr {
 			<c:forEach var="RecipeFavoriteVO" items="${list2}" begin="<%=pageIndex%>"
 				end="<%=pageIndex+rowsPerPage-1%>">
 		
-
+<a class="show-one-link"
+									href="<%=request.getContextPath()%>/front-end/recipe/RecipeServlet?action=getOne_For_Display&recipe_id=${RecipeFavoriteVO.recipe_id}">
 				<li class="recipe-item">
 				
 				
@@ -2209,8 +2178,7 @@ hr {
 					<div class="recipe-item-caption">
 						<div class="recipe-item-caption-header">
 							<h4 class="recipe-item-tile">
-								<a class="show-one-link"
-									href="<%=request.getContextPath()%>/front-end/recipe/RecipeServlet?action=getOne_For_Display&recipe_id=${RecipeFavoriteVO.recipe_id}">${recipeSvc.getOneRecipe(RecipeFavoriteVO.recipe_id).recipe_name}</a>
+								${recipeSvc.getOneRecipe(RecipeFavoriteVO.recipe_id).recipe_name}
 							</h4>
 							
 							
@@ -2220,7 +2188,7 @@ hr {
 						<p class="recipe-item-ingredient">調理時間：${recipeSvc.getOneRecipe(RecipeFavoriteVO.recipe_id).cook_time}</p>
 						<p class="recipe-item-ingredient">卡洛里：${recipeSvc.getOneRecipe(RecipeFavoriteVO.recipe_id).calo_intake}</p>
 			
-					</div></li>
+					</div></li></a>
 			</c:forEach>
 		</ul>
 		<div class="include-page2">

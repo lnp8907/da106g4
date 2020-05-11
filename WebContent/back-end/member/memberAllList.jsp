@@ -156,19 +156,4 @@
 
 
 
-<script>
-	$(document).ready(
-			function() {
-				$('.Staff_status').on(
-						'change',
-						function() {
-							if (confirm('確定更改為['
-									+ $(this).find('option:selected').text()
-									+ ']嗎?')) {
-								$("#changeStatus").submit();
-							}
-							return false;
-						});
-			});
-</script>
 </html>

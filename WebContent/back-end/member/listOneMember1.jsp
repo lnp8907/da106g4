@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-	MemberVO memberVO = (MemberVO) request.getAttribute("membervo");
+	MemberVO memberVO = (MemberVO) request.getAttribute("memberVO");
 	String[] validation = new String[] { "未驗證","已驗證" };
 %>
 
@@ -41,10 +41,10 @@ width:5%;
 		<tbody>
 			<form method="post" action="member.do" id="update_form">
 				<tr class="row100 body">
-					<td class="cell100 column4" style="background-color:#FFF">${membervo.member_id}</td>
-					<td class="cell100 column4"><input type="text" name="account" value="${membervo.account}"></td>
-					<td class="cell100 column2"><input type="text" name="member_name" value="${membervo.member_name}"> </td>
-					<td class="cell100 column4"><input type="text" name="email"value="${membervo.email}"></td>
+					<td class="cell100 column4" style="background-color:#FFF">${memberVO.member_id}</td>
+					<td class="cell100 column4"><input type="text" name="account" value="${memberVO.account}"></td>
+					<td class="cell100 column2"><input type="text" name="member_name" value="${memberVO.member_name}"> </td>
+					<td class="cell100 column4"><input type="text" name="email"value="${memberVO.email}"></td>
 					<td class="cell100 column4"><select name="validation">
 							<%
 								for (int i = 0; i < validation.length; i++) {
@@ -62,10 +62,10 @@ width:5%;
 <!-- 					</select> -->
 <!-- 					</td> -->
 				</tr>
-				<input type="hidden" name="oldMember" value="${membervo.member_id}">
+				<input type="hidden" name="oldMember" value="${memberVO.member_id}">
 				<input type="hidden" name="whichPage"
 					value="<%=request.getParameter("whichPage")%>"> <input
-					type="hidden" name="member_id" value="${membervo.member_id}">
+					type="hidden" name="member_id" value="${memberVO.member_id}">
 				<input type="hidden" name="action" value="update1">
 			</form>
 		</tbody>

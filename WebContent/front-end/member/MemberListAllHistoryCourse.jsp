@@ -54,6 +54,8 @@ pageContext.setAttribute("member_status", membervo1.getMember_status());
 <!DOCTYPE html>
 <html lang="en">
 
+<html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
@@ -927,14 +929,6 @@ margin-left:0px;
 
 
 }
-h4{
-margin-left: 121px;
-    color: #52a3dddb;
-    margin-right: -5px;
-    font-style: oblique;
-    font-family: sans-serif;
-    font-size: smaller;
-}
 .avatar {
 margin-rught:100px;
   background-image: url("image/genius.jpg.png");
@@ -1080,17 +1074,52 @@ margin-rught:100px;
 .footer-copyright24 {
 	margin-top: 50%;
 }
+h4{
+margin-left: 121px;
+    color: #52a3dddb;
+    margin-right: -5px;
+    font-style: oblique;
+    font-family: sans-serif;
+    font-size: smaller;
+}
 
 h3 {
     margin-top: 27px;
     margin-left: 252px;
     font-family: Calibri;
-    font-size: 26pt;
+    font-size: 30pt;
     font-style: normal;
     font-weight: bold;
-    color: rgba(16, 75, 75, 0.66);
+    color: rgba(16, 75, 75, 0.66);;
     /* text-decoration: underline; */
+    margin-bottom: 9px;
+
+
+text-shadow: rgba(186, 152, 152, 0.1) 1px 3px 0px;
+}
+.recipe-item img {
+    display: inline-block;
+    height: 101px;
+    width: 120px;
+    margin: 5px;
+    vertical-align: top;
+}
+.recipe-item-caption h4 {
+    display: inline-block;
     margin-bottom: 5px;
+    font-size: 19px;
+    font-weight: 500;
+    margin-left: 0px;
+    font-style: normal;
+    color: #E4002B;
+}
+.recipe-item {
+    width: 94%;
+    padding: 4px 8px;
+    list-style-type: none;
+    margin: 5px 0;
+    border-bottom: 1px solid #cecece;
+    margin: 6px;
 }
 h2{
 margin-left:56px;
@@ -1741,7 +1770,10 @@ hr {
     display: inline;
 }
 
-
+.show-one-link li:hover{
+ background-color:#d9b1d526;
+	color:red;
+}
 
 
 
@@ -1752,7 +1784,6 @@ hr {
 
 </style>
 </head>
-
 <body>
 	<header>
 		<div id="top-logo" class="logo">
@@ -2088,8 +2119,7 @@ hr {
 		</ul>
 	</div>
 </aside>
-<FORM METHOD="post" ACTION="member.do" name="upateform" id="upateform"
-		enctype="multipart/form-data" >
+
 
 
 
@@ -2123,7 +2153,8 @@ hr {
 									class="com.course.model.CourseService" />
 			<c:forEach var="Course_browing_historyVO" items="${list2}" begin="<%=pageIndex%>"
 				end="<%=pageIndex+rowsPerPage-1%>">
-		
+	<a class="show-one-link" href="<%=request.getContextPath()%>/front-end/course/CourseServlet?action=getOne_For_Display&course_id=${Course_browing_historyVO.course_id}">
+									
 
 				<li class="recipe-item">
 				
@@ -2152,8 +2183,7 @@ hr {
 					<div class="recipe-item-caption">
 						<div class="recipe-item-caption-header">
 							<h4 class="recipe-item-tile">
-							<a class="show-one-link"
-									href="<%=request.getContextPath()%>/front-end/course/CourseServlet?action=getOne_For_Display&course_id=${Course_browing_historyVO.course_id}">${courseSvc.getOneCourse(Course_browing_historyVO.course_id).course_name}</a>
+							<span href="<%=request.getContextPath()%>/front-end/course/CourseServlet?action=getOne_For_Display&course_id=${Course_browing_historyVO.course_id}">${courseSvc.getOneCourse(Course_browing_historyVO.course_id).course_name}</span>
 								
 							</h4>
 							
@@ -2165,7 +2195,7 @@ hr {
 						                                                                                                                  
 
 			
-					</div></li>
+					</div></li></a>
 			</c:forEach>
 		</ul>
 		<div class="include-page2">

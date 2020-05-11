@@ -913,6 +913,24 @@ System.out.println("location="+location);
 				String member_id = req.getParameter("member_id");
 				String whichPage = req.getParameter("whichPage");
 				String pageType = req.getParameter("pageType");
+				
+				
+				
+				
+				
+				
+				
+				
+			System.out.println("member_id"+member_id);	
+				
+			System.out.println("whichPage"+whichPage);	
+				
+			System.out.println("pageType"+pageType);	
+				
+				
+				
+				
+				
 				boolean openModal = true;
 				req.setAttribute("openModal", openModal);
 				if (member_id == null || (member_id.trim()).length() == 0) {

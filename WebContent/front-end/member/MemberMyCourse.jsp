@@ -27,8 +27,7 @@ String member_name =(String) session.getAttribute("member_name");
 
 
 	
-	out.println(member_name);
-	out.println(member_id);
+
 	
 	
 	CourseService courseService = new CourseService();
@@ -1110,10 +1109,25 @@ b {
 h2{
 margin-left:56px;
 margin-bottom:8px;
-margin-top:-14px;
+
+
+    margin-left: 45px;
+    margin-bottom: 8px;
+    margin-top: -15px;
+    font-family: inherit;
+
+    color: #8d3a7f;
+   
 
 }
-
+h4{
+margin-left: 121px;
+    color: #52a3dddb;
+    margin-right: -5px;
+    font-style: oblique;
+    font-family: sans-serif;
+    font-size: smaller;
+}
 
 b{    margin-right: -235px;
     font-size: 19px;}
@@ -1756,7 +1770,10 @@ hr {
 
 
 
-
+.show-one-link:hover{
+	text-decoration:underline;
+	color:#FF5454;
+}
 
 
 
@@ -2011,7 +2028,7 @@ hr {
 </div>
 </div>
           <h2><%=memberVO.getMember_name()%></h2>
-
+<h4>我的富胖幣:  <%=memberVO.getBalance()%></h4>
           <div class="link-top"></div>
 
 	<div id="leftside-navigation" class="nano">
@@ -2037,7 +2054,7 @@ hr {
 					src="../../image/member/S__12066821.jpg"><span>我的錢包/點數&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;>
 				</span><i class="arrow fa fa-angle-right pull-right"></i></a>
 				<ul>
-					<li><a href="tables-basic.html">交易紀錄</a></li>
+				
 					
 	<li><a href="/DA106_G4_Foodporn_Git/front-end/member/123.jsp">信用卡</a></li>
 				<c:if test='${member_status eq 1 }'>
@@ -2102,7 +2119,7 @@ hr {
 </aside>
 
 <FORM METHOD="post" ACTION="../course/CourseServlet" name="upateform" id="upateform"
-		enctype="multipart/form-data" style="margin-left: 500; margin-top: 34px;">
+		enctype="multipart/form-data" style="margin-left: 500px; margin-top: 34px;">
 
 
 
@@ -2112,7 +2129,7 @@ hr {
 <table align="center" cellpadding="10">
 
 			<div class="container">
-<h3>所有課程清單</h3><table align="center" cellpadding="10" >
+<h3>報名課程清單</h3><table align="center" cellpadding="10" >
 			
 			<div class="recipe-main-list">
 		<div class="recipe-main-list-header">

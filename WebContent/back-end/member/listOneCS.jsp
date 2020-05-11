@@ -3,7 +3,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
-	MemberVO memberVO = (MemberVO) request.getAttribute("membervo");
+	MemberVO memberVO = (MemberVO) request.getAttribute("memberVO");
 	String[] ChiefapplyStatus = new String[] { "正式會員","審核中","審核通過" };
 	
 %>
@@ -42,10 +42,10 @@ width:5%;
 		<tbody>
 			<form method="post" action="member.do" id="update_form">
 				<tr class="row100 body">
-					<td class="cell100 column4" style="background-color:#FFF">${membervo.member_id}</td>
-					<td class="cell100 column4">${membervo.account}</td>
-					<td class="cell100 column2">${membervo.member_name} </td>
-					<td class="cell100 column4">${membervo.email}</td>
+					<td class="cell100 column4" style="background-color:#FFF">${memberVO.member_id}</td>
+					<td class="cell100 column4">${memberVO.account}</td>
+					<td class="cell100 column2">${memberVO.member_name} </td>
+					<td class="cell100 column4">${memberVO.email}</td>
 					<td class="cell100 column4"><select name="ChiefapplyStatus">
 							<%
 								for (int i = 0; i < ChiefapplyStatus.length; i++) {
@@ -63,10 +63,10 @@ width:5%;
 <!-- 					</select> -->
 <!-- 					</td> -->
 				</tr>
-				<input type="hidden" name="oldMember" value="${membervo.member_id}">
+				<input type="hidden" name="oldMember" value="${memberVO.member_id}">
 				<input type="hidden" name="whichPage"
 					value="<%=request.getParameter("whichPage")%>"> <input
-					type="hidden" name="member_id" value="${membervo.member_id}">
+					type="hidden" name="member_id" value="${memberVO.member_id}">
 				<input type="hidden" name="action" value="update2">
 			</form>
 		</tbody>
