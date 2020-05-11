@@ -6,6 +6,8 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.WebServlet;
 
 import com.livestream.model.LsService;
+import com.member.model.MemberService;
+import com.member.model.MemberVO;
 
 @WebServlet("/Update_StreamServlet")  // 來自直播主RTCPeerConnection.jsp-[儲存錄影]的請求-2/2
 public class Update_StreamServlet extends HttpServlet {
@@ -34,6 +36,12 @@ public class Update_StreamServlet extends HttpServlet {
 			byte[] blob = out.toByteArray();
 			
 			HttpSession session = req.getSession();
+			MemberVO memberVO = (MemberVO)session.getAttribute("memberVO");
+			MemberService memberService = new MemberService();
+			memberService.changeOnline(memberVO.getMember_id(), 0);//0為下線狀態
+			System.out.println("OfflineOK");
+
+			
 			String livestream_id = (String)session.getAttribute("livestream_id");
 			Integer lsViewNum = (Integer)session.getAttribute("lsViewNum");
 			LsService LiveStreamSvs = new LsService();
