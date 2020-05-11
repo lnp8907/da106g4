@@ -609,10 +609,10 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 	<!-- JavasScript-->
 	<!-- JavasScript-->
 	<!-- JavasScript for Sider -->
-	<script src="javascript/header_sider.js" type="text/javascript"
+	<script src="../../javascript/header_sider.js" type="text/javascript"
 		charset="utf-8"></script>
 	<!-- JavasScript for LogForm -->
-	<script src="javascript/loginForm.js" type="text/javascript"
+	<script src="../../javascript/loginForm.js" type="text/javascript"
 		charset="utf-8"></script>
 <!-- jquery -->
 

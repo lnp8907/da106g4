@@ -580,6 +580,7 @@ public class RecipeDAO implements RecipeDAO_interface {
 			ProductDAO dao=new ProductDAO();
 				
 			productVO.setRecipe_id(next_recipe_id);
+			productVO.setProduct_name(recipeVO.getRecipe_name());
 			dao.addReceipe(productVO,con);
 				
 			

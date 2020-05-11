@@ -170,7 +170,41 @@
 		</script>
 	</c:if>
 
+<c:if test="${openModal!=null}">
+		<div class="modal fade" id="basicModal1" tabindex="-1" role="dialog"
+			aria-labelledby="basicModal" aria-hidden="true">
+			<div class="modal-dialog modal-lg" style="width: 65%;">
+				<div class="modal-content">
 
+					<div class="modal-header">
+						<h2 class="modal-title" id="myModalLabel">訂單位置</h2>
+						<button type="button" class="close" data-dismiss="modal"
+							aria-hidden="true">&times;</button>
+					</div>
+
+					<div class="modal-body">
+						<!-- =========================================以下為原listOneEmp.jsp的內容========================================== -->
+
+						<jsp:include page="googleMap.jsp" />
+
+						<!-- =========================================以上為原listOneEmp.jsp的內容========================================== -->
+					</div>
+
+				</div>
+			</div>
+		</div>
+
+		<script>
+			$("#basicModal1").modal({
+				show : true
+			});
+			$(document).ready(function() {
+				$('.btn-primary').on('click', function() {
+					$('#update_form').submit();
+				});
+			});
+		</script>
+	</c:if>
 
 
 

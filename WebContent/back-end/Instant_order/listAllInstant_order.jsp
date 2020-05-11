@@ -168,6 +168,7 @@ pageContext.setAttribute("list",list);
 			     </FORM>
 			
 			</td>
+
 <!-- 			<td> -->
 <%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/shop_order/OrderServlet.do" style="margin-bottom: 0px;"> --%>
 <!-- 			     <input type="submit" value="修改"> -->
@@ -190,7 +191,19 @@ pageContext.setAttribute("list",list);
 <!-- 			</td> -->
 			
 		  </tr>
-        <tr class="orseraddress"><td>地址:</td><td colspan="6">${ordervo.d_address}</td>
+        <tr class="orseraddress"><td>地址:</td>
+        <td colspan="5">${ordervo.d_address}</td>
+                  				<td>
+			<!-- 訂單地圖 -->
+			<FORM METHOD="post" ACTION="Instant_delivery_orderServlet" >
+			  <button class="ui right labeled  icon  ui primary button"><i class="zoom in icon"></i> 查看地圖 </button>	     
+			  <input type="hidden" name="ido_no"  value="${ordervo.ido_no}">
+			  <input type="hidden" name="action" value="getPositon">
+  <input 	type="hidden" name="pagemessage"  value="${pagemessage}"/>
+                <input 	type="hidden" name="whichPage"  value="<%=whichPage%>"/>			  
+			</FORM>			
+			</td>
+                </td>
                 <td>
                 <form method="post" ACTION="Instant_delivery_orderServlet">
 <%--                 <a href="<%=request.getContextPath() %>/back-end/Instant_order/Instant_delivery_orderServlet?action=cencelorder&ido_no=${ordervo.ido_no}"> --%>
@@ -206,7 +219,8 @@ pageContext.setAttribute("list",list);
                 
 <!--                 </a> -->
                 </form>
-                </td>
+            </td>
+            
  </tr>
 	</c:forEach>
 </table>

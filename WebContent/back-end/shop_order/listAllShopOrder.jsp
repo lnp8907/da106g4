@@ -248,8 +248,10 @@ MemberService msvc=new MemberService();
 <!-- 			</td> -->
 			<!-- 還沒做 -->
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do" style="margin-bottom: 0px;"   >
-			     <input  class="ui button" type="submit" value="發送訊息" >
+<%-- 						  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do" style="margin-bottom: 0px;"   > --%>
+			
+			  <FORM METHOD="post" ACTION="" style="margin-bottom: 0px;"   >
+			     <input  class="ui button" type="submit" value="發送訊息" disabled="disabled" >
 			     <input	type="hidden" name="requestURL"	value="<%=request.getServletPath()%>">
 			     <input	type="hidden" name="whichPage" value="<%=whichPage%>"> 
 			     
