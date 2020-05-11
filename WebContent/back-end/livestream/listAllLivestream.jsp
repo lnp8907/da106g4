@@ -169,7 +169,10 @@
         white-space:nowrap;
         Font-family: "少女體";
         }
-
+		.second{
+		border: 1px solid black;
+		text-align: center;
+		}
 
         /*----------------------------------- 嘉宏這邊不要動-----------------------------------*/
         /* .building {
@@ -433,7 +436,7 @@
                         </ul>
                     </c:if>
                     
-                    <table>
+                    <table class="second">
                         <tr>
                            <th>直播編號</th>
 							<th>員工編號</th>

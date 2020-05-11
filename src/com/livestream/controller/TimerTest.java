@@ -23,7 +23,7 @@ NoticeService noticeSvc = new NoticeService();
 MemberFollowService mfSvc = new MemberFollowService();
 String[] m_ids = mfSvc.getAllMemberByFollowed(followed);
 for (String m_id : m_ids) {
-	noticeSvc.insert(m_id, 4, "您", 0);
+	noticeSvc.insert(m_id, 4, "您追蹤的廚師今天會開播喔！", 0);
 }
 }
 
