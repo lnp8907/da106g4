@@ -207,7 +207,7 @@
 <!-- 						<li><a href="#">特輯食譜</a></li> -->
 <!-- 						<li><a href="#">推薦食譜</a></li> -->
 					<c:if test="${memberVO.member_status==1}">
-						<li><a href="<%=request.getContextPath() %>/front-end/recipe/addRecipe.jsp">建立食譜</a></li>
+						<li><a href="front-end/recipe/addRecipe.jsp">建立食譜</a></li>
 					</c:if>
 	
 					</ul></li>
@@ -220,7 +220,7 @@
 								class="dropdown-first-a-span">直播主頁</span></a></li>
 						<li><a href="livestream.jsp">直播預告</a></li>
 					<c:if test="${memberVO.member_status==1}">
-						<li><a href="<%=request.getContextPath() %>/front-end/livestream/livestream.jsp#${member_id}">開啟直播</a></li>
+						<li><a href="front-end/livestream/livestream.jsp#${member_id}">開啟直播</a></li>
 						
 						</c:if>
 					</ul></li>
@@ -256,7 +256,7 @@
 			
 
 					</ul></li>
-				<li class="dropdown"><a href="<%=request.getContextPath() %>/front-end/course/listAllCourse.jsp"><img class="access-menu-icon"
+				<li class="dropdown"><a href="front-end/course/listAllCourse.jsp"><img class="access-menu-icon"
 						src="<%=request.getContextPath() %>/image/course-icon.png"><span class="menu-span">料理課程</span></a>
 					<ul>
 						<li><a href="<%=request.getContextPath() %>/front-end/course/listAllCourse.jsp" class="dropdown-first-a" href="front-end/course/listAllCourse.jsp"><img

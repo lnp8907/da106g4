@@ -7,7 +7,7 @@
 <%@ page import="com.member.model.*"%>
 <%@ page import="com.recipe.model.*"%>
 <%@ page import="com.recipe_favorite.model.*"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+
 <%
 String member_id =(String) session.getAttribute("member_id");
 MemberService memberSvc = new MemberService();

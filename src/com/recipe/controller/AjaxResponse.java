@@ -206,7 +206,7 @@ public class AjaxResponse extends HttpServlet {
 			
 			String	member_id = req.getParameter("member_id");
 			System.out.println(member_id);
-			Integer num = 0;
+			Integer num = 3;
 
 				/*************************** 2.開始新增資料 *****************************************/
 				MemberService memberService = new MemberService();

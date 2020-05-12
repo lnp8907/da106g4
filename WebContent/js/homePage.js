@@ -12,7 +12,7 @@
 				$("#recipe-right-title-a-1").attr("href",'/DA106_G4_Foodporn_Git/front-end/recipe/RecipeServlet?action=getOne_For_Display&recipe_id=' + data.recipe_id)
 			},
 			error : function() {
-		
+				alert('Ajax連線異常');
 			}
 		})
 	}
@@ -31,7 +31,7 @@
 				$("#recipe-right-title-a-2").attr("href",'/DA106_G4_Foodporn_Git/front-end/recipe/RecipeServlet?action=getOne_For_Display&recipe_id=' + data.recipe_id)
 			},
 			error : function() {
-		
+				alert('Ajax連線異常');
 			}
 		})
 	}
@@ -92,7 +92,7 @@
 				});					
 				},
 						error : function() {
-						
+						alert('Ajax連線異常');
 			}
 		});
 
@@ -102,7 +102,7 @@
 	var getLivestream = function() {
 		$.ajax({
 			type : "GET",
-			url : "/DA106_G4_Foodporn_Git/AjaxResponse",
+			url : "AjaxResponse",
 			data : {
 				"action" : "getLivestream"
 			},
@@ -112,14 +112,14 @@
 				$.each(data, function(a, livestreamVO){	
 					
 					$("#livestream-right-link-"+i).attr("href","/DA106_G4_Foodporn_Git/front-end/livestream/LivestreamServlet?action=getOne_For_Display&livestream_id="+livestreamVO.livestream_id)
-					$("#livestream-right-photo-"+i).attr("src","/DA106_G4_Foodporn_Git/LivestreamPhotoReader?livestream_id="+ livestreamVO.livestream_id);
+					$("#livestream-right-photo-"+i).attr("src","LivestreamPhotoReader?livestream_id="+ livestreamVO.livestream_id);
 					$("#livestream-right-title-chef-"+i).text(livestreamVO.title);
 					$("#livestream-right-livestream-name-"+i).text(livestreamVO.introduction);
 					i++;
 				});
 			},
 			error : function() {
-				
+				alert('Ajax連線異常');
 			}
 		})
 	}
@@ -127,18 +127,18 @@
 	var getMostPopLS = function() {
 		$.ajax({
 			type : "GET",
-			url : "/DA106_G4_Foodporn_Git/AjaxResponse",
+			url : "AjaxResponse",
 			data : {
 				"action" : "getMostPopLS"
 			},
 			dataType : "json",
 			success : function(livestreamVO) {
 				$("#livestream-left-1-video-h3").text(livestreamVO.title);
-				$("#livestream-left-1-video").attr("src","/DA106_G4_Foodporn_Git/LivestreamVideoReader?livestream_id="+ livestreamVO.livestream_id);
+				$("#livestream-left-1-video").attr("src","LivestreamVideoReader?livestream_id="+ livestreamVO.livestream_id);
 				$("#livestream-left-1-video-p").text(livestreamVO.introduction);
 			},
 			error : function() {
-			
+				alert('Ajax連線異常');
 			}
 		})
 	}
