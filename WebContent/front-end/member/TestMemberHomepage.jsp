@@ -2058,7 +2058,7 @@ hr {
 				<li><a
 				href="MemberRecipeFavorite.jsp"><i
 					class="fa fa-dashboard"></i><img class="access-menu-icon1"
-					src="../../image/member/S__12066820.jpg"><span>課程收藏</span></a></li>
+					src="../../image/member/S__12066820.jpg"><span>食譜收藏</span></a></li>
 			</c:if>		
 
 		<c:if test='${member_status eq 0 }'>
@@ -2378,7 +2378,23 @@ B.A
   <div class="ease"></div> -->
   <div class="submit_btn">
   
-   <span class="submitAndSave" id="article-section-seemore-recipe" id="submit">儲存</span>
+<!--    <span class="submitAndSave" id="article-section-seemore-recipe" id="submit">儲存</span> -->
+ 
+ 
+ 
+<%--    <span class="submitAndSave" id="article-section-seemore-recipe" id="submit"><a href="<%=request.getContextPath() %>/front-end/member/FrontMemberServlet?action=updateBySelf">儲存</a></span> --%>
+ 
+ 
+ 
+ 
+ 
+<!--                <span class="fa fa-sign-out" id="fa fa-sign-out"><a href="back-end/staff/StaffServlet?action=loginOUT">登出</a></span>  -->
+ 
+ 
+ 	 <input type="hidden" name="action" value="updateBySelf">	
+ 
+  <input type="submit" value="儲存" id="send" name="send">
+ 
  
 								
 		</div>						
@@ -2391,7 +2407,7 @@ B.A
 						</tr>
 					</table>
 					
-			<br> <input type="hidden" name="action" value="updateBySelf">	
+		
 					
 					 <input type="hidden"
 							name="member_id" value="<%=session.getAttribute("member_id")%>">
@@ -2400,7 +2416,7 @@ B.A
 						
 					
 					<input type="hidden"
-							name="account" value="${memberVO.member_photo}">
+							name="account" value="${memberVO.account}">
 					
 					
 					
@@ -2797,6 +2813,19 @@ if(state=="sucess"){
 		
 		  icon: 'success',
 		  title: '已送出申請',
+		  showConfirmButton: false,
+		  timer: 1500
+		})
+	
+}
+var state = '${param.state}';
+console.log("state"+state);
+if(state=="sucess2"){
+	
+	Swal.fire({
+		
+		  icon: 'success',
+		  title: '儲值成功',
 		  showConfirmButton: false,
 		  timer: 1500
 		})

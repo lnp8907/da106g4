@@ -68,8 +68,13 @@
 			<div class="function-list">
 				<a href="#"></a>
 				<div class="member-center">
+<<<<<<< HEAD
+					<a href="<%=request.getContextPath() %>/front-end/member/TestMemberHomepage.jsp" id="member-center">
+						 <span class="member-center-spann">會員中心</span>
+=======
 				<a href="<%=request.getContextPath() %>/front-end/member/TestMemberHomepage.jsp" id="member-center">
 					<span class="member-center-spann">會員中心</span>
+>>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
 					</a>
 					
 					
@@ -85,6 +90,8 @@
 						class="lines line-3"></span>
 					</label>
 				</div>
+<<<<<<< HEAD
+=======
 				
 				
 				
@@ -94,6 +101,7 @@
 				
 		
 				
+>>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
 			<c:if test='${empty member_id}'>
 			
 				<div class="login">
@@ -129,6 +137,8 @@
 				
 				
 				</script>
+<<<<<<< HEAD
+=======
 		
 				
 				
@@ -136,6 +146,7 @@
 				
 				
 				<!-- 購物車 -->
+>>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
 				<div class="shop-car">
 					<a
 						href="<%=request.getContextPath()%>/front-end/ShopPage/ProductPage?action=checktpage1">
