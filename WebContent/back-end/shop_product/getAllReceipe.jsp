@@ -158,7 +158,7 @@
 
 			</tbody>
 		</table>
-<%@ include file="file/productpage.file"%>
+<%-- <%@ include file="file/productpage.file"%> --%>
                 </div><!-- end of grid -->
                 <script>
 

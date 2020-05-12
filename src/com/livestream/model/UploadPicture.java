@@ -14,7 +14,7 @@ import java.sql.SQLException;
 
 public class UploadPicture {
 
-	private static final String URL = "jdbc:oracle:thin:@35.229.239.13:1521:xe";
+	private static final String URL = "jdbc:oracle:thin:@localhost:1521:xe";
 //	private static final String URL = "jdbc:oracle:thin:@localhost:1521:XE";
 
 	private static final String USER = "DA106_G4";
@@ -33,16 +33,16 @@ public class UploadPicture {
 			
 			// 2. setBytes
 				int b = 0;
-			for (int i = 410006; i <= 41006; i++) {
-				String livestream_id = String.valueOf(i);
-				String filePath = "image/" + "5" + ".jpg";
+//			for (int i = 410006; i <= 41006; i++) {
+				String livestream_id = String.valueOf(410006);
+				String filePath = "image/" + "d-1555086171" + ".jpg";
 				byte[] pic = getPictureByteArray(filePath);
 				pstmt.setBytes(1, pic);
 				pstmt.setString(2, livestream_id);
 				pstmt.executeUpdate();
 				pstmt.clearParameters();
 				// 清空裡面參數，重覆使用已取得的PreparedStatement物件
-			}
+//			}
 
 			System.out.println("修改成功");
 

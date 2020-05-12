@@ -79,6 +79,12 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 		getMonth();
 	})
 </script>
+<style>
+#livestream-left-1-video {
+    width: 100%;
+    height: 350px;
+}
+</style>
 </head>
 
 <body>

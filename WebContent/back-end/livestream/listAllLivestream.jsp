@@ -394,6 +394,10 @@
             right: 15px;
             font-size: 19px;
         } */
+        #livestream-left-1-video {
+    width: 100%;
+    height: 350px;
+}
     </style>
 
 <body>
