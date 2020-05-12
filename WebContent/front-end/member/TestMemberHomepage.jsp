@@ -604,16 +604,9 @@ pageContext.setAttribute("memberVO1", memberVO1);
     </script>
 <link rel="stylesheet" href="../../css/frontEnd.css">
 <style>
-<<<<<<< HEAD
-header{
-z-index:99;
-}
-.sidebar{
-/* z-index:-1; */
-}
-=======
 
->>>>>>> parent of ad7e9fe... 首頁各個連結失效修復  健志
+
+
 /* cyrillic-ext */
 @font-face {
 	font-family: 'Open Sans';
@@ -1925,11 +1918,9 @@ hr {
 	</c:if>
 	
 	
-<<<<<<< HEAD
+
 	<aside class="sidebar" >
-=======
-	<aside class="sidebar">
->>>>>>> parent of ad7e9fe... 首頁各個連結失效修復  健志
+
 
   <div class="avatar">
 
@@ -2345,7 +2336,7 @@ B.A
 							
 						
 					
-					<input type="text"
+					<input type="hidden"
 							name="account" value="${memberVO.account}">
 					
 					
