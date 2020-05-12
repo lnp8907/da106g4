@@ -1370,11 +1370,11 @@ System.out.println("location="+location);
 				System.out.println(memberVO);
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					System.out.println("123");
+		
 					req.setAttribute("memberVO", memberVO);// 含有輸入格式錯誤的empVO物件,也存入req
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/back-end/member/Upgrade_to_chef.jsp");
-					System.out.println("123");
+				
 					failureView.forward(req, res);
 					return; //程式中斷
 				}

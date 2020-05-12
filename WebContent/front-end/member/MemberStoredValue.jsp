@@ -17,9 +17,8 @@
 	MemberService pSvc = new MemberService();
 	List<MemberVO> list = pSvc.getAll();
 	pageContext.setAttribute("list", list);
+	session.setAttribute("location", request.getRequestURI());
 
-	out.println(member_name);
-	out.println(member_id);
 %>
 <%
 				Map<String, Integer> storedValue1 = new HashMap<>();
@@ -1907,7 +1906,7 @@ margin-rught:100px;
 		
 
 		
-		<br> <input type="hidden" name="action" value="insert"> 
+		<br> <input type="hidden" name="action" value="insert2"> 
 			
 		
 			
@@ -1946,7 +1945,7 @@ margin-rught:100px;
 		
 
 		
-		<br> <input type="hidden" name="action" value="insert"> 
+		<br> <input type="hidden" name="action" value="insert2"> 
 			
 		
 			
@@ -1971,7 +1970,7 @@ margin-rught:100px;
 		
 
 		
-		<br> <input type="hidden" name="action" value="insert"> 
+		<br> <input type="hidden" name="action" value="insert2"> 
 			
 		
 			
@@ -1995,7 +1994,7 @@ margin-rught:100px;
 		
 
 		
-		<br> <input type="hidden" name="action" value="insert"> 
+		<br> <input type="hidden" name="action" value="insert2"> 
 			
 		
 			
@@ -2016,7 +2015,7 @@ margin-rught:100px;
 				
 				<!-- 按鈕 -->
 				<td>4460點:<input type="submit" class="btn-primary" name="send4460"></td>
-<br> <input type="hidden" name="action" value="insert"> 
+<br> <input type="hidden" name="action" value="insert2"> 
 			
 	
 			

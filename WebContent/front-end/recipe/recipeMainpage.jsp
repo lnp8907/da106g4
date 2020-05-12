@@ -153,6 +153,7 @@ margin:10px auto;
 			<div class="function-list">
 				<a href="#"></a>
 				<div class="member-center">
+				<a href="<%=request.getContextPath() %>/front-end/member/TestMemberHomepage.jsp" id="member-center">
 					<span class="member-center-spann">會員中心</span>
 				</div>
 				</a>
@@ -166,13 +167,41 @@ margin:10px auto;
 						class="lines line-3"></span>
 					</label>
 				</div>
+		<c:if test='${empty member_id}'>
+			
 				<div class="login">
-					<a href="#"><img class="header-icon"
-						src="../../image/user-icon.png" alt="login-icon">
+					<a href="#"><img class="header-icon" src="image/user-icon.png"
+						alt="login-icon">
 						<div class="herder-icon-span">
 							<span class="login-span">登入</span>
 						</div> </a>
 				</div>
+			</c:if>	
+			
+			<c:if test='${not empty member_id}'>
+	
+					<div class="login">
+				
+					<a> <img class="header-icon" src="<%=request.getContextPath() %>/image/logout.png"
+						alt="login-icon">
+					
+							<span class="login-span">登出</span>
+							<form method="POST" action="member.do">	
+								<input type="hidden" name="action" value="loginOUT">
+								<input class="login-out" type="submit" name="action" style= "display:none;">
+						</form>	 </a>
+				</div>
+
+				</c:if>	
+				<script>
+				$('.login-span').click(function(){
+					$('.login-out').click();
+				})
+				
+				
+				
+				
+				</script>
 				
 				
 				
