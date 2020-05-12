@@ -166,10 +166,7 @@ margin:10px auto;
 						class="lines line-3"></span>
 					</label>
 				</div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-		<c:if test='${empty member_id}'>
-=======
+
 				
 				
 				
@@ -180,10 +177,10 @@ margin:10px auto;
 		
 				
 			<c:if test='${empty member_id}'>
->>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
+
 			
-=======
->>>>>>> parent of ad7e9fe... 首頁各個連結失效修復  健志
+
+
 				<div class="login">
 					<a href="#"><img class="header-icon"
 						src="../../image/user-icon.png" alt="login-icon">
@@ -191,13 +188,13 @@ margin:10px auto;
 							<span class="login-span">登入</span>
 						</div> </a>
 				</div>
-<<<<<<< HEAD
+
 			</c:if>	
 			
 			<c:if test='${not empty member_id}'>
 	
 					<div class="login">
-<<<<<<< HEAD
+
 				
 					<a> <img class="header-icon" src="<%=request.getContextPath() %>/image/logout.png"
 						alt="login-icon">
@@ -219,28 +216,8 @@ margin:10px auto;
 				
 				
 				</script>
-=======
->>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
-				
-					<a> <img class="header-icon" src="<%=request.getContextPath() %>/image/logout.png"
-						alt="login-icon">
-					
-							<span class="login-span">登出</span>
-							<form method="POST" action="member.do">	
-								<input type="hidden" name="action" value="loginOUT">
-								<input class="login-out" type="submit" name="action" style= "display:none;">
-						</form>	 </a>
-				</div>
 
-				</c:if>	
-				<script>
-				$('.login-span').click(function(){
-					$('.login-out').click();
-				})
 				
-				
-=======
->>>>>>> parent of ad7e9fe... 首頁各個連結失效修復  健志
 				
 				
 				

@@ -1747,12 +1747,12 @@ hr {
 				
 				
 				
-				
+		
 							
 			<!-- 			<div class="function-list"> -->
-				<a href="#"></a>
+				<a href="#"></a>                                                                 
 <!-- 				<div class="member-center"> -->
-					<div class="herder-icon-span"><span class="member-center-spann">HI，<%=memberVO1.getMember_name()%></span></div>
+					<div class="herder-icon-span"><span class="member-center-spann"><%=memberVO1.getMember_name()==null?"":"HI，"+ memberVO1.getMember_name()%></span></div>
 <%--                         <span class="member-center-spann">HI，<%=session.getAttribute("member_name") %></span> --%>
 <!-- 				</div> -->
 				</a>
@@ -1928,7 +1928,7 @@ hr {
  <img src=DBGifReader4.do?photo_type=mempic&member_id=<%=session.getAttribute("member_id")%> id="preview_progressbarTW_img1" width=129px height=129px;/>
 </div>
 </div>
-          <h2><%=memberVO.getMember_name()%></h2>
+          <h2><%=memberVO.getMember_name()==null?"":memberVO.getMember_name()%></h2>		
 <h4>我的富胖幣:  <%=memberVO.getBalance()%></h4>
           <div class="link-top"></div>
 
@@ -2093,7 +2093,7 @@ hr {
 
 
 								<input type="TEXT" name="member_name" size="45"
-					id=member_name value="<%=memberVO.getMember_name()%>" />
+					id=member_name value="<%=memberVO.getMember_name()==null?"":memberVO.getMember_name()%>" />
 
 								<!-- (max 30 characters a-z and A-Z) -->
 							</td>
@@ -2118,7 +2118,7 @@ hr {
 
 
 								<input type="TEXT" name="nickname" size="45"
-					id=nickname value="<%=memberVO.getNickname()%>" />
+					id=nickname value="<%=memberVO.getNickname()==null?"":memberVO.getNickname()%>" />
 
 								<!-- (max 30 characters a-z and A-Z) -->
 							</td>
@@ -2151,14 +2151,14 @@ hr {
 						<tr>
 							<td>信箱:</td>
 							<td><input type="TEXT" name="email" size="45" id=email
-					value="<%=memberVO.getEmail()%>" /></td>
+					value="<%=memberVO.getEmail()==null?"":memberVO.getEmail()%>" /></td>
 						</tr>
 
 						<!----- Mobile Number ---------------------------------------------------------->
 						<tr>
 							<td>電話號碼:</td>
 							<td><input type="TEXT" name="cellphone" size="45" id=cellphone
-					value="<%=memberVO.getCellphone()%>" /></td>
+					value="<%=memberVO.getCellphone()==null?"":memberVO.getCellphone()%>" /></td>
 						</tr>
 
 						<!----- Gender ----------------------------------------------------------->
@@ -2175,7 +2175,7 @@ hr {
 							<br /></td>
 							<!-- <td><textarea name="Address" rows="4" cols="30"></textarea></td> -->
 							<td><input type="TEXT" name="member_address" size="45"
-					id="address" value="<%=memberVO.getMember_address()%>" /></td>
+					id="address" value="<%=memberVO.getMember_address()==null?"":memberVO.getMember_address()%>" /></td>
 						</tr>
 
 

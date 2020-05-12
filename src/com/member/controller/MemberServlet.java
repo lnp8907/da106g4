@@ -1514,13 +1514,31 @@ System.out.println("location="+location);
 		//類型用下拉試選單
 			
 	
+	
+	
+
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
 			
 			String member_id = req.getParameter("member_id");
 			System.out.println(member_id);
 
-		
+			
 		String member_name = req.getParameter("member_name");
 		String nickname = req.getParameter("nickname");
+		
+	
+		
+		
 		String enameReg = "^[(\\u4e00-\\u9fa5)(a-zA-Z0-9)]{2,10}$";
 		if (member_name == null || member_name.trim().length() == 0) {
 			errorMsgs.add("會員姓名: 請勿空白");
@@ -1593,7 +1611,7 @@ System.out.println("location="+location);
 		}
 		System.out.println(birthday);
 
-		String cellphone = req.getParameter("cellphone");
+		String cellphone = (req.getParameter("cellphone")==null?"尚無資料":req.getParameter("cellphone"));
 		String phoneReg = "^[(0-9)]{10}$";
 		if (cellphone == null || cellphone.trim().length() == 0) {
 			errorMsgs.add("電話: 請勿空白");

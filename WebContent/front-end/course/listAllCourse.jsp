@@ -68,18 +68,13 @@
 			<div class="function-list">
 				<a href="#"></a>
 				<div class="member-center">
-<<<<<<< HEAD
-<<<<<<< HEAD
-					<a href="<%=request.getContextPath() %>/front-end/member/TestMemberHomepage.jsp" id="member-center">
-						 <span class="member-center-spann">會員中心</span>
-=======
+
+
 				<a href="<%=request.getContextPath() %>/front-end/member/TestMemberHomepage.jsp" id="member-center">
 					<span class="member-center-spann">會員中心</span>
->>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
-=======
-					<a href="front-end/member/TestMemberHomepage.jsp"
-						id="member-center"> <span class="member-center-spann">會員中心</span>
->>>>>>> parent of ad7e9fe... 首頁各個連結失效修復  健志
+
+
+
 					</a>
 
 
@@ -95,23 +90,11 @@
 						class="lines line-3"></span>
 					</label>
 				</div>
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-				
-				
-				
-				
-				
-				
-				
-		
-				
->>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
+
+
 			<c:if test='${empty member_id}'>
 			
-=======
->>>>>>> parent of ad7e9fe... 首頁各個連結失效修復  健志
+
 				<div class="login">
 					<a href="#"><img class="header-icon" src="../../image/user-icon.png"
 						alt="login-icon">
@@ -119,7 +102,7 @@
 							<span class="login-span">登入</span>
 						</div> </a>
 				</div>
-<<<<<<< HEAD
+
 			</c:if>	
 			
 			<c:if test='${not empty member_id}'>
@@ -146,18 +129,7 @@
 				
 				
 				</script>
-<<<<<<< HEAD
-=======
-		
-				
-				
-				
-				
-				
-				<!-- 購物車 -->
->>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
-=======
->>>>>>> parent of ad7e9fe... 首頁各個連結失效修復  健志
+
 				<div class="shop-car">
 					<a href="front-end/ShopPage/ProductPage?action=checktpage1">
 						<div class="carmessage1">
