@@ -2378,7 +2378,7 @@ B.A
   <div class="ease"></div> -->
   <div class="submit_btn">
   
-<!--    <span class="submitAndSave" id="article-section-seemore-recipe" id="submit">儲存</span> -->
+   <span class="submitAndSave" id="article-section-seemore-recipe" id="submit">儲存</span>
  
  
  
@@ -2393,7 +2393,7 @@ B.A
  
  	 <input type="hidden" name="action" value="updateBySelf">	
  
-  <input type="submit" value="儲存" id="send" name="send">
+<!--   <input type="submit" value="儲存" id="send" name="send"> -->
  
  
 								
@@ -2415,7 +2415,7 @@ B.A
 							
 						
 					
-					<input type="hidden"
+					<input type="text"
 							name="account" value="${memberVO.account}">
 					
 					
@@ -2428,9 +2428,9 @@ B.A
 					
 					
 					
+								</div>
 				
 				</form>
-				</div>
 				
 				<script>
 <%java.sql.Date birthday = null;

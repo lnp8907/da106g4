@@ -62,11 +62,13 @@ public class MemberServlet extends HttpServlet{
     }
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("GetInDoGet");
 		doPost(request, response);
+		
 	}
 	////////////////////////////////
 protected int allowUser(String account,String password) {
-    	
+	System.out.println("GetInAllowUser");
     	MemberVO memberVO=null;
     	MemberService memberSvc=new MemberService();
 System.out.println(account);
@@ -95,7 +97,7 @@ System.out.println(memberVO.getPassword());
 	protected void doPost(HttpServletRequest req, HttpServletResponse res) throws ServletException, IOException {
 		req.setCharacterEncoding("UTF-8");
 		String action = req.getParameter("action");
-		System.out.println(action);
+		System.out.println("doPost:" + action);
 		
 		
 		if("getOneMemberValidation".equals(action)) {
@@ -1499,15 +1501,15 @@ System.out.println("location="+location);
 	
 	
 	
-//	
+	
 	if ("updateBySelf".equals(action)) { 
-		System.out.println(action);
+	System.out.println(action);
 	List<String> errorMsgs = new LinkedList<String>();
 	// Store this set in the request scope, in case we need to
 	// send the ErrorPage view.
 	req.setAttribute("errorMsgs", errorMsgs);
 
-		try {
+//		try {
 		/***************************1.接收請求參數 - 輸入格式的錯誤處理**********************/
 		//類型用下拉試選單
 			
@@ -1618,7 +1620,7 @@ System.out.println("location="+location);
 		
 		
 		
-		System.out.println(gender);
+		System.out.println("gender"+gender);
 		
 
 		String member_address = req.getParameter("member_address");
@@ -1665,7 +1667,7 @@ System.out.println("location="+location);
 		
 	
 
-		System.out.println(memberVO);
+		System.out.println("1111111111111111111111111111");
 		// Send the use back to the form, if there were errors
 		if (!errorMsgs.isEmpty()) {
 			System.out.println("123");
@@ -1688,20 +1690,20 @@ System.out.println("location="+location);
 		
 		memberVO = memberSvc.getOneMember(member_id);				
 		HttpSession session=req.getSession();
-		System.out.println(memberVO);
+		System.out.println("2222222222222222222222");
 		session.setAttribute("memberVO", memberVO); // 資料庫update成功後,正確的的empVO物件,存入req
 		String url = "/front-end/member/TestMemberHomepage.jsp";
 		RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 		successView.forward(req, res);
 
 		/***************************其他可能的錯誤處理*************************************/
-	} catch (Exception e) {
-		
-		errorMsgs.add("修改資料失敗:"+e.getMessage());
-		RequestDispatcher failureView = req
-				.getRequestDispatcher("/front-end/member/update_by_self.jsp");
-		failureView.forward(req, res);
-	}
+//	} catch (Exception e) {
+//		
+//		errorMsgs.add("修改資料失敗:"+e.getMessage());
+//		RequestDispatcher failureView = req
+//				.getRequestDispatcher("/front-end/member/update_by_self.jsp");
+//		failureView.forward(req, res);
+//	}
 	
 	}
 //		
@@ -1972,7 +1974,7 @@ System.out.println("location="+location);
 				memberVO.setChiefapply_status(chiefapply_status);
 				memberVO.setMember_id(member_id);
 
-				System.out.println(memberVO);
+				System.out.println("333333333333333333333333333333"+memberVO);
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
 					

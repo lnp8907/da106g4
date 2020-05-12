@@ -37,7 +37,7 @@ public class LoginFilter implements Filter{
    res.sendRedirect(req.getContextPath() + "/index.html");  // 登入換地址，此處也要換
    return;
   }else {
-	  System.out.println(3);
+	  System.out.println(4);
    chain.doFilter(request, response);
   }
   
