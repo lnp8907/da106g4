@@ -26,7 +26,7 @@
  				storedValue1.put("1", 520);
  				storedValue1.put("2", 1140);
  				storedValue1.put("3", 2065);
- 				storedValue1.put("4", 4460);
+ 				storedValue1.put("4", 44600);
 			
 				application.setAttribute("storedValue", storedValue1);
 				pageContext.setAttribute("member_status", membervo1.getMember_status());
@@ -2014,7 +2014,7 @@ margin-rught:100px;
 			<tr>
 				
 				<!-- 按鈕 -->
-				<td>4460點:<input type="submit" class="btn-primary" name="send4460"></td>
+				<td>44600點:<input type="submit" class="btn-primary" name="send4460"></td>
 <br> <input type="hidden" name="action" value="insert2"> 
 			
 	
