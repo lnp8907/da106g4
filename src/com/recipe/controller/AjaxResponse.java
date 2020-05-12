@@ -21,6 +21,8 @@ import com.course.model.CourseVO;
 import com.livestream.model.LivestreamVO;
 import com.livestream.model.LsService;
 import com.member.model.MemberService;
+import com.member_follow.model.MemberFollowService;
+import com.member_follow.model.Member_followVO;
 import com.recipe.model.RecipeService;
 import com.recipe.model.RecipeVO;
 import com.recipe_favorite.model.RecipeFavoriteServiec;
@@ -41,6 +43,17 @@ public class AjaxResponse extends HttpServlet {
 		PrintWriter out = res.getWriter();
 		String action = req.getParameter("action");
 
+		if ("follow".equals(action)) {
+			String member_id = req.getParameter("member_id");
+			String chef_id = req.getParameter("chef_id");
+			MemberFollowService memberFollowService = new MemberFollowService();
+			Member_followVO followVO = new Member_followVO();
+			followVO.setFollowed(chef_id);
+			followVO.setMember_id(member_id);
+			memberFollowService.insert(followVO);
+		}
+		
+		
 		if ("recipe_follow".equals(action)) {
 			String recipe_id = "";
 			String member_id = "";
@@ -193,7 +206,7 @@ public class AjaxResponse extends HttpServlet {
 			
 			String	member_id = req.getParameter("member_id");
 			System.out.println(member_id);
-			Integer num = 3;
+			Integer num = 0;
 
 				/*************************** 2.開始新增資料 *****************************************/
 				MemberService memberService = new MemberService();

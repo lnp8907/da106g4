@@ -13,9 +13,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/back-end/shop_product/css/AddProductCss.css">
 <meta charset="UTF-8">
 <title>商品新增頁面</title>
-</script>
+
 <!--套件-->
 <script src="<%=request.getContextPath()%>/plugin/jquery-3.4.1.min.js"></script>
 <script
@@ -48,13 +50,32 @@
 			</c:forEach>
 		</ul>
 	</c:if>
-<style>
-.productaddform label{
-color: white;
+	<div style="font-size: 40px;" class="addPageTitle" >
+<div style="float: left;">
+				<a href="<%=request.getContextPath()%>/backEnd2.jsp"> <span
+					class="fa fa-cloud-download"><img
+						src="<%=request.getContextPath()%>/image/logo_nohead.png"
+						alt="LOGO" width="200" height="200"></span></a>
+</div>
+	
+	<div style="padding-top: 145px">	新增產品資訊:
+	</div>
+</div>
 
-}
+<div style="margin: 0 auto;width: 1100px;">
+<a href="<%=request.getContextPath()%>/back-end/shop_product/shop_backendPage.jsp">
+<div class="ui animated button" tabindex="0">
+  <div style="color: red" class="visible content">返回商城管理頁面</div>
+  <div class="hidden content">
+    <i class="undo alternate
+icon"></i>
+  </div>
+  </a>
+</div>
 
-</style>
+
+</div>
+
 
 	<div class="productaddform">
 
@@ -64,7 +85,6 @@ color: white;
 		<!-- 注意 -->
 		<FORM class="ui form" METHOD="post" ACTION="ProductServlet"
 			name="form1" enctype="multipart/form-data">
-			<h4 class="ui dividing header">新增商品資訊</h4>
 
 			<!-- 圖片 -->
 			<label>商品圖片:</label>
@@ -333,11 +353,7 @@ color: white;
 
 </body>
 <style>
-.productaddform{
-width: 800px;
-background-image: linear-gradient(to top, #ff0844 0%, #ffb199 100%);
 
-}
 
 </style>
 

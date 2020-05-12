@@ -76,12 +76,12 @@
 						<span><%=recipeService.getChefCookedNum(recipeVO.getMember_id())%>&nbsp;&nbsp;食譜</span>
 						<span>999&nbsp;&nbsp;粉絲</span>
 					</div>
-					<form method="post" action="RecipeServlet">
-						<button class="chef-follow" name="chef_follow">追蹤</button>
-						<input type="hidden" value="<%=recipeVO.getMember_id()%>"
-							name="chef_id"> <input type="hidden" value="member_id"
-							name="member_id">
-					</form>
+<!-- 					<form method="post" action="RecipeServlet"> -->
+<!-- 						<button class="chef-follow" name="chef_follow">追蹤</button> -->
+<%-- 						<input type="hidden" value="<%=recipeVO.getMember_id()%>" --%>
+<!-- 							name="chef_id"> <input type="hidden" value="member_id" -->
+<!-- 							name="member_id"> -->
+<!-- 					</form> -->
 				</div>
 				<div class="racipe-detal-main-data">
 					<ul>

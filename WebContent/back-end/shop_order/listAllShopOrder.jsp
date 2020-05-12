@@ -115,7 +115,8 @@ MemberService msvc=new MemberService();
 <title>所有訂單</title>
 <div class="content" style="height: 114px">
 		<div class="menu">
-		<h2 style="font-size: 36px">訂單管理</h2>
+		<h2 style="font-size: 36px;font-family: '微軟正黑體', monospace;
+		">訂單管理</h2>
  <c:if test="${fn:length(list)>0}">
 		 以下是所有訂單:
 		 <%= list.get(0).getOrder_no() %>
@@ -146,7 +147,7 @@ MemberService msvc=new MemberService();
 <!-- 以下內容 -->
     <table id="ordertable" class="ui red celled table">
 
-	<tr>
+	<tr style="color: #E4002B;background-color: #f9f9f9">
 		<th>訂單編號</th>
 		<th>會員編號</th>
 		<th>會員名稱</th>
@@ -162,7 +163,6 @@ MemberService msvc=new MemberService();
 	<c:forEach var="ordervo" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 					<c:set var="member_id" value="${ordervo.member_id}"/>
 		
-		<div>
 		<tr class="ordertr1">
 			<td>${ordervo.order_no}</td>
 			<td>${ordervo.member_id}</td>
@@ -261,7 +261,6 @@ MemberService msvc=new MemberService();
 			</td>
 		  </tr>
         <tr class="orseraddress ordertr2"><td>地址</td><td colspan="6">
-        
         
         ${ordervo.dv_address}
 <c:if test="${ordervo.dv_address}">
@@ -406,4 +405,11 @@ $(".isupate").each(function () {
        </script>
 
 </body>
+    <style>
+        .ordertr1{
+        
+        background-color: #f9f9f9;}
+        
+        
+        </style>
 </html>
