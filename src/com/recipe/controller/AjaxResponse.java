@@ -21,6 +21,7 @@ import com.course.model.CourseVO;
 import com.livestream.model.LivestreamVO;
 import com.livestream.model.LsService;
 import com.member.model.MemberService;
+import com.member.model.MemberVO;
 import com.member_follow.model.MemberFollowService;
 import com.member_follow.model.Member_followVO;
 import com.recipe.model.RecipeService;
@@ -42,6 +43,24 @@ public class AjaxResponse extends HttpServlet {
 		res.setCharacterEncoding("UTF-8");
 		PrintWriter out = res.getWriter();
 		String action = req.getParameter("action");
+		
+		if ("getOneChef".equals(action)) {
+			System.out.println("getOneChef_start");
+			String member_id = req.getParameter("member_id");
+			MemberService memberSvc = new MemberService();
+			MemberVO memberVO = memberSvc.getOneMember(member_id);
+			JSONObject obj = new JSONObject();
+			try {
+				obj.put("member_name", memberVO.getMember_name());
+				obj.put("member_id", memberVO.getMember_id());
+			} catch (JSONException e) {
+				e.printStackTrace();
+			}
+			out.write(obj.toString());
+			out.flush();
+			out.close();
+		}
+		
 
 		if ("follow".equals(action)) {
 			String member_id = req.getParameter("member_id");

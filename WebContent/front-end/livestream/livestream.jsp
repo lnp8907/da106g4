@@ -539,7 +539,12 @@ display:none;
     text-align: center;
     margin-top: 50px;
 	}
-  }   
+  }
+  .hot-member-name{  
+	display: inline-block;
+    width: 50px;
+    border-radius: 10px;
+    background-color: black;}   
   
     
 </style>
@@ -557,7 +562,7 @@ display:none;
 <body>
 	<header>
 		<div id="top-logo" class="logo">
-			<a href="<%=request.getContextPath()%>/" title="回首頁"><img
+			<a href="<%=request.getContextPath()%>/index.jsp" title="回首頁"><img
 				class="logo-photo"
 				src="<%=request.getContextPath()%>/image/FoodPron_Logo.png"
 				alt="logo"></a>
@@ -794,46 +799,65 @@ display:none;
                 visibleElements[i].style.display = 'none';
              }
 			</script>
-	
-	
-	
+
 							</div>
 						<!-- 直播播放區結束 -->
+						<jsp:useBean id="memeberSvc" class="com.member.model.MemberService"/>
 						<div class="livestream_card" id="hot">
 							<h2>熱門推薦</h2>
-							<a href="#"><span class="hot-card"><img alt=""
-									src="../image/TYPE ICON/5.png"> <span
-									class="hot-member-name">AAAA</span> </span></a> <a href="#"><span
-								class="hot-card"> <img alt=""
-									src="../image/TYPE ICON/5.png"> <span
-									class="hot-member-name">AAAA</span>
-							</span></a> <a href="#"><span class="hot-card"> <img alt=""
-									src="../image/TYPE ICON/5.png"> <span
-									class="hot-member-name">AAAA</span>
-							</span></a> <a href="#"><span class="hot-card"> <img alt=""
-									src="../image/TYPE ICON/5.png"> <span
-									class="hot-member-name">AAAA</span>
-							</span></a>
+							<c:forEach var="memberVO" items="${memeberSvc.all}" end="3">
+							<a href="#">
+								<span class="hot-card">
+									<img alt="" src="<%=request.getContextPath()%>/front-end/member/photo?member_id=${memberVO.member_id}"> 
+									<span class="hot-member-name">${memberVO.member_name}</span> 
+								</span>
+							</a> 
+							</c:forEach>
 						</div>
 					</div>
 	
 					<div id="livestream_right">
 						<div id="host-info">
 							<div class="chef-info-pic">
-								<img
+								<img id="host-photo"
 									src="<%=request.getContextPath()%>/front-end/member/photo?member_id=810003"
 									alt="廚師頭貼">
 							</div>
 							<div class="chef-info-detal">
 								<h4>
-									<a
+									<a id="host-main-link"
 										href="RecipeServlet?action=getChef_For_Display&member_id=810003"></a>
 								</h4>
-								<span>&nbsp;&nbsp;食譜</span>
-								<span>999&nbsp;&nbsp;粉絲</span>
+<!-- 								<span>&nbsp;&nbsp;食譜</span> -->
+<!-- 								<span>999&nbsp;&nbsp;粉絲</span> -->
+							<script>
+// 							$(document).ready(function() {
+// 								getChef();
+// 								}); 
+// 							var hostId = $('#unique-token').val();
+// 							alert(hostId);
+// 							var getChef = function(){
+// 						        	console.log('beOnline');
+// 									$.ajax({
+// 										type : "POST",
+<%-- 										url : "<%=request.getContextPath()%>/AjaxResponse", --%>
+// 										data : {
+// 											"action" : "getOneChef","member_id" :hostId},
+// 										dataType : "json",
+// 										success : function(data) {
+// 										alert(data);
+// 										},
+// 										error : function() {
+											
+// 										}
+// 									});	
+// 							}
+							
+							
+							</script>	
 							</div>
 							<form method="post" action="RecipeServlet">
-								<button class="chef-follow" name="chef_follow" >追蹤</button>
+<!-- 								<button class="chef-follow" name="chef_follow" >追蹤</button> -->
 								<span id="join-button"></span>
 								<input type="hidden" value="${hostID}" name="chef_id"> <input
 									type="hidden" value=""
@@ -867,14 +891,16 @@ display:none;
 						<div id="dona">
 							<h3>
 								我的富胖幣:<span style="color: red;">&nbsp;<%=memberVO==null?"":memberVO.getBalance() %></span>
+<!-- ==============儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值===================== -->								
 								<span id="charge">儲值</span>
+<!-- ==============儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值儲值===================== -->									
 							</h3>
 							<span class="dona-items-card"><img alt=""
-								src="../image/TYPE ICON/6.png"></span> <span
+								src="../../image/apple.png"></span> <span
 								class="dona-items-card"><img alt=""
-								src="../image/TYPE ICON/6.png"></span> <span
+								src="../../image/carrot.png"></span> <span
 								class="dona-items-card"><img alt=""
-								src="../image/TYPE ICON/6.png"></span>
+								src="../../image/apple.png"></span>
 						</div>
 					</div>
 				</div>
