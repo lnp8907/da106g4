@@ -158,7 +158,11 @@
 
 			</tbody>
 		</table>
+<<<<<<< HEAD
 <%-- <%@ include file="file/productpage.file"%> --%>
+=======
+<%@ include file="file/RecipPage1.file"%>
+>>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
                 </div><!-- end of grid -->
                 <script>
 
