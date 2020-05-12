@@ -158,11 +158,9 @@
 
 			</tbody>
 		</table>
-<<<<<<< HEAD
 <%-- <%@ include file="file/productpage.file"%> --%>
-=======
+
 <%@ include file="file/RecipPage1.file"%>
->>>>>>> branch 'master' of https://github.com/lnp8907/da106g4.git
                 </div><!-- end of grid -->
                 <script>
 
@@ -198,9 +196,7 @@ $(".Checkproduct").click(function () {
    		} else if ($('.recipe_td').html() == "" && $('.recipe_th').html() != "") {
 
    		}
-	<!-- end of grid -->
-	//更改成未審核
-		$(".Checkproduct")
+$(".Checkproduct")
 				.click(
 						function() {
 							let product_id = $(this).siblings("input").val();
