@@ -173,7 +173,12 @@
 		border: 1px solid black;
 		text-align: center;
 		}
+a{
+    font-family: '微軟正黑體', monospace;
 
+    text-decoration:none;
+
+}
         /*----------------------------------- 嘉宏這邊不要動-----------------------------------*/
         /* .building {
             font-size: 14px;
@@ -404,13 +409,38 @@
     <div class="container">
         <div class="box">
             <!--這裡是左邊選單-->
-            <div class="left-bar"><span class="fa fa-cloud-download"><img src="../../image/logo_nohead.png" alt="LOGO"
-                        width="200" height="200"></span>
-                        <a class="menu-group-a"
-						href="<%=request.getContextPath() + "/backEnd2.jsp"%>"><span style="font-size:30px;">回首頁</span></a>
-                <div class="menu-group"> <span class="fa fa-television">帳號設定</span>
-                    <div class="building"><span class="fa fa-building"></span><span class="fa fa-building"></span></div>
-                    <span class="fa fa-cog"></span>
+            <div class="left-bar"><span class="fa fa-cloud-download">
+            
+                        <a class="menu-group-a" href="<%=request.getContextPath() + "/backEnd2.jsp"%>">
+            
+            <img src="../../image/logo_nohead.png" alt="LOGO"
+                        width="200" height="200">
+                        </a>  
+                        </span>
+                      
+                        
+<%--                         <a class="menu-group-a" href="<%=request.getContextPath() + "/backEnd2.jsp"%>"> --%>
+<!-- 						<span style="font-size:30px;">回首頁</span> -->
+<!-- 						</a> -->
+						
+                <div class="menu-group"> <span class="fa fa-television">  <a style="margin: 0px;color: rgba(0, 0, 0, 0.5);font-family: '微軟正黑體', monospace;" href="<%=request.getContextPath()%>/back-end/livestream/listOneLivestream.jsp" class="tocensor">
+                       	直播預告審查</a>   </span>
+<!--                  <div class="menu-group"> <span class="fa fa-television">帳號設定</span> -->
+                    <div class="building"><span class="fa fa-building"></span>
+                    <span class="fa fa-building">
+                 
+                    
+                    
+                    </span>
+                    </div>
+                    
+                    
+                    <span class="fa fa-cog">
+                  
+                    
+                    </span>
+                    
+                    
                 </div><span class="fa fa-sign-out">登出</span>
             </div>
             <div class="wrapper">
@@ -424,8 +454,10 @@
                        <!-- 卡片內容起始標籤 -->
                     <table id="table-1">
                         <tr><td>
-                             <h3>所有直播資料 - listAllLivestream.jsp</h3> 
-       		  <a href="<%=request.getContextPath()%>/back-end/livestream/listOneLivestream.jsp" class="tocensor">直播預告審查</a>
+                                                     <h3 style="color: #E4002B; font-size: 36px">所有直播資料 </h3> 
+                        
+<!--                              <h3>所有直播資料 - listAllLivestream.jsp</h3>  -->
+<%--        		  <a href="<%=request.getContextPath()%>/back-end/livestream/listOneLivestream.jsp" class="tocensor">直播預告審查</a> --%>
                         </td></tr>
                     </table>
                     
