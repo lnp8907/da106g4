@@ -955,6 +955,46 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 						
 						</script>
 						
+						
+						<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+						
+							<script>
+var state = '${param.state}';
+console.log("state"+state);
+if(state=="sucess"){
+	
+	Swal.fire({
+		
+		  icon: 'success',
+		  title: '帳號驗證完成',
+		  showConfirmButton: false,
+		  timer: 1500
+		})
+	
+}
+var state = '${param.state}';
+console.log("state"+state);
+if(state=="sucess2"){
+	
+	Swal.fire({
+		
+		  icon: 'success',
+		  title: '註冊成功，請進行驗證',
+		  showConfirmButton: false,
+		  timer: 1500
+		})
+	
+}
+	</script>
+						
+						
+						
+						
+						
+						
+						
+						
+						
 <script>
 var fblightbox = $('#fblightbox');
 //fblightbox.css({'margin-right':'-'+(fblightbox.width()/200)+'px','margin-top':'-'+(fblightbox.height()/1)+'px'});

@@ -597,6 +597,17 @@
       $(function () {
           $(".twaddress").twaddress();
       });
+      
+      
+      
+      
+      
+      
+      
+
+      
+      
+      
       </script>
 
 <script>  
@@ -2057,7 +2068,7 @@ B.A
 								<div class="submit_btn">
 
 									<span class="submitAndSave" id="article-section-seemore-recipe">儲存</span>
-									<input type="submit" class="submit_btn" value="儲存">
+<!-- 									<input type="submit" class="submit_btn" value="儲存"> -->
 
 <!-- 								</div> <input type="reset" value="Reset"> -->
 							</td>
@@ -2555,6 +2566,12 @@ B.A
 			$('.multiselect').multiselect();
 			$('.datepicker').datepicker();
 		});
+		
+		
+		
+	      $("#article-section-seemore-recipe").click(function(){
+	        	$("#upateform").submit();
+	        })
 	</script>
 
 

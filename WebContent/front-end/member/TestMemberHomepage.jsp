@@ -2314,7 +2314,7 @@ B.A
  
  	 <input type="hidden" name="action" value="updateBySelf">	
  
-<!--   <input type="submit" value="儲存" id="send" name="send"> -->
+  <input type="button" value="神奇小按鈕" id="send1" name="send1" style="margin-right:-134px;">
  
  
 								
@@ -2752,6 +2752,48 @@ if(state=="sucess2"){
 		})
 	
 }
+
+var state = '${param.state}';
+console.log("state"+state);
+if(state=="sucess3"){
+	
+	Swal.fire({
+		
+		  icon: 'success',
+		  title: '檔案成功更新',
+		  showConfirmButton: false,
+		  timer: 1500
+		})
+	
+}
+
+$("#send1").click(function(){
+	upateform.member_name.value="咪路";
+	upateform.nickname.value="FatElf";
+	upateform.cellphone.value="0904103101";
+	upateform.member_address.value="台中市西屯區朝馬路77號";
+	
+	
+	
+	
+	
+	
+	
+	
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 	</script>
 
 
