@@ -31,7 +31,7 @@
 訂單完成
     </div>
 <div style="margin-top: 40px"  class="finshcontext">
-<p>  感謝您這次的購物，${member_id}您的訂單資料己確認送出!</p>
+<p>  感謝您這次的購物，<font style="color:#E4002B ">${memberVO.member_name}</font>  您的訂單資料己確認送出!</p>
 <p>請密切注意您的商品，若對商品有任何疑問請聯絡客服以方便訂單的處理</p>
 <p>感謝您下次的購物</p>
 
