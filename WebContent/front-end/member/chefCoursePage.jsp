@@ -11,7 +11,6 @@
 	MemberService memberService = new MemberService();
 	MemberVO memberVO = memberService.getOneMember(member_id);
 	pageContext.setAttribute("list", list);
-	request.setAttribute("member_id", member_id);
 %>
 		<span class="include-page"><%@ include file="newPage1.file"%><b>課程</b></span>
 		<div class="main-page-card-container">

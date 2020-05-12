@@ -167,7 +167,7 @@ String member_id =(String) session.getAttribute("member_id");
 				<button class="navi-button" id="insert" type="submit" name="action"
 					value="insert">新增</button>
 				<button class="navi-button" id="reset" type="reset">清空</button>
-				<a href="<%=request.getContextPath() %>/index.jsp"><button class="navi-button" id="cancel" type="button">取消</button></a>
+				<a href="listAllCourseManagement.jsp"><button class="navi-button" id="cancel" type="button">取消</button></a>
 			</div>
 			<div class="errorMess">
 				<c:if test="${not empty errorMsgs}">

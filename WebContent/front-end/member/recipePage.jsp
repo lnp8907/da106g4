@@ -13,7 +13,6 @@
 	MemberVO memberVO = memberService.getOneMember(member_id);
 	RecipeFavoriteServiec recipeFavoriteServiec = new RecipeFavoriteServiec();
 	pageContext.setAttribute("list", list);
-	pageContext.setAttribute("member_id", member_id);
 	pageContext.setAttribute("recipeFavoriteServiec", recipeFavoriteServiec);//取得按讚數
 %>
 <span class="include-page"><%@ include file="newPage1.file"%><b>食譜</b></span>
@@ -46,5 +45,5 @@
 </div>
 <!-- end of main-page-card-container-->
 <div class="include-page2">
-	<%@ include file="newPage2.file"%>
+	<%@ include file="page2.file"%>
 </div>

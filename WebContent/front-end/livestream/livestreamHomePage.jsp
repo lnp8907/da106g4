@@ -78,34 +78,14 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 <script src="<%=request.getContextPath() %>/js/homePage.js" type="text/javascript" charset="utf-8"></script>
 <script>
 	$(document).ready(function() {
-// 		getLatest();
-// 		getMostPopular();
-// 		getCourse();
+		getLatest();
+		getMostPopular();
+		getCourse();
 		getLivestream();
 		getMostPopLS();
-// 		getMonth();
+		getMonth();
 	})
 </script>
-<style>
-.livelist {
-    margin: 30px auto;
-    width: 75%;
-    height: 700px;
-    background-color: #f8f8f8;
-}
-.livelist .listcontext {
-    width: 95%;
-    margin: auto;
-    text-align: center;
-}
-.livelisttitle {
-    text-align: center;
-    width: auto; 
-    height: auto; 
-    margin: 20px auto;
-    font-size: 62px;
-}
-</style>
 </head>
 
 <body>
@@ -114,7 +94,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 <div id="fblightbox" style="width:20rem;">
   <div class="fblightbox-wrap">
     <div class="fblightbox-header">
-      <h3>Foodporn </h3>
+      <h3>Foodporn 通知 </h3>
     </div>
     <div class="fblightbox-content">
       <div>
@@ -184,7 +164,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 			<c:if test='${empty member_id}'>
 			
 				<div class="login">
-					<a href="#"><img class="header-icon" src="image/user-icon.png"
+					<a href="#"><img class="header-icon" src="../../image/user-icon.png"
 						alt="login-icon">
 						<div class="herder-icon-span">
 							<span class="login-span">登入</span>
@@ -275,7 +255,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 <!-- 						<li><a href="#">特輯食譜</a></li> -->
 <!-- 						<li><a href="#">推薦食譜</a></li> -->
 					<c:if test="${memberVO.member_status==1}">
-						<li><a href="<%=request.getContextPath() %>/front-end/recipe/addRecipe.jsp">建立食譜</a></li>
+						<li><a href="front-end/recipe/addRecipe.jsp">建立食譜</a></li>
 					</c:if>
 	
 					</ul></li>
@@ -288,7 +268,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 								class="dropdown-first-a-span">直播主頁</span></a></li>
 <!-- 						<li><a href="livestream.jsp">直播預告</a></li> -->
 					<c:if test="${memberVO.member_status==1}">
-						<li><a href="<%=request.getContextPath() %>/front-end/livestream/livestream.jsp#${member_id}">開啟直播</a></li>
+						<li><a href="front-end/livestream/livestream.jsp#${member_id}">開啟直播</a></li>
 						
 						</c:if>
 					</ul></li>
@@ -324,7 +304,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 			
 
 					</ul></li>
-				<li class="dropdown"><a href="<%=request.getContextPath() %>/front-end/course/listAllCourse.jsp"><img class="access-menu-icon"
+				<li class="dropdown"><a href="front-end/course/listAllCourse.jsp"><img class="access-menu-icon"
 						src="<%=request.getContextPath() %>/image/course-icon.png"><span class="menu-span">料理課程</span></a>
 					<ul>
 						<li><a href="<%=request.getContextPath() %>/front-end/course/listAllCourse.jsp" class="dropdown-first-a" href="front-end/course/listAllCourse.jsp"><img

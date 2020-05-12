@@ -202,7 +202,7 @@
 				<button class="navi-button" id="update" type="submit" name="action"
 					value="update">修改</button>
 				<input type="button" class="navi-button"
-					onclick="<%=request.getContextPath() %>/index.jsp" value="取消">
+					onclick="location.href='listAllRecipe.jsp'" value="取消">
 			</div>
 			<div class="errorMess">
 				<%-- 錯誤表列 --%>

@@ -171,7 +171,7 @@
 				<input type="hidden" name="app_num" value="${courseVO.app_num}">
 				<button class="navi-button" id="update" type="submit" name="action"
 					value="update">修改</button>
-				<a href="<%=request.getContextPath() %>/index.jsp"><button class="navi-button" id="cancel" type="button">取消</button></a>
+				<a href="listAllCourseManagement.jsp"><button class="navi-button" id="cancel" type="button">取消</button></a>
 			</div>
 			<div class="errorMess">
 				<c:if test="${not empty errorMsgs}">
