@@ -4,12 +4,13 @@
 <%@page import="com.member.model.MemberService"%>
 <html>
 <head>
-<style>
-.disa{
-cursor:pointer;
-pointer-events: none;
-}
+<link rel="stylesheet" href="<%=request.getContextPath() %>/css/frontEnd.css">
 
+<style>
+.disa {
+	cursor: pointer;
+	pointer-events: none;
+}
 </style>
 <%@ page
 	import="java.util.* ,com.order_detail.model.Order_detailVO,com.recipe.model.RecipeVO"%>
@@ -62,26 +63,27 @@ pointer-events: none;
 
 	</div>
 	<div id="showmember">
-	<c:set var="member_id" value="${member_id}" scope="session"/>
-	<%if(session.getAttribute("member_id")!=null){
-		MemberService Msv=new MemberService();
-		MemberVO vo=Msv.getOneMember((String)session.getAttribute("member_id"));
-		String member_name=vo.getMember_name();
-		
-		
+		<c:set var="member_id" value="${member_id}" scope="session" />
+		<%
+			if (session.getAttribute("member_id") != null) {
+				MemberService Msv = new MemberService();
+				MemberVO vo = Msv.getOneMember((String) session.getAttribute("member_id"));
+				String member_name = vo.getMember_name();
 		%>
-			<c:set var="member_name" value="<%=member_name %>" scope="session"/>
-			<c:set var="membervo" value="<%=vo %>" scope="session"/>
+		<c:set var="member_name" value="<%=member_name%>" scope="session" />
+		<c:set var="membervo" value="<%=vo%>" scope="session" />
 
-		
-	<%} %>
+
+		<%
+			}
+		%>
 		敬愛的會員<font class="membername">${member_name}</font>你好:
 	</div>
 
 	<div id="tablecontext">
 		<div id="checkboxwithpeoduct">
 			<table>
-				<tr>
+				<tr style="color: #353740">
 					<td><input id="checkproductall" type="checkbox"></td>
 					<td>商品名</td>
 					<td>價格</td>
@@ -91,23 +93,23 @@ pointer-events: none;
 				</tr>
 			</table>
 		</div>
-		
-		
-		
-		
-<%-- 	待結帳列表: ${checkCarlist} --%>
-		
-<%-- 	<br> 購物車清單列表: ${productCarlist} --%>
-		
+
+
+
+
+		<%-- 	待結帳列表: ${checkCarlist} --%>
+
+		<%-- 	<br> 購物車清單列表: ${productCarlist} --%>
+
 
 
 
 
 		<div id="productcartList">
-		
-	
+
+
 			<table id="producttable">
-		
+
 				<%
 					int index = 0;
 				%>
@@ -123,10 +125,9 @@ pointer-events: none;
 					for (Order_detailVO an : selist) {
 						if (an.getProduct_id().equals((String) pageContext.getAttribute("id"))) {%>
 							<%="checked"%> <%}
-					}%> <%}%>
-							class="listindex" name="Checkbox[]" type="checkbox"> <input
-							class="listmun" type="hidden"
-							value="${buyProductlist.product_id}"></td>
+					}%> <%}%> class="listindex"
+							name="Checkbox[]" type="checkbox"> <input class="listmun"
+							type="hidden" value="${buyProductlist.product_id}"></td>
 
 						<%
 							if ((String) pageContext.getAttribute("id") != null) {
@@ -147,8 +148,10 @@ pointer-events: none;
 							String src;
 									String srcend = "'";
 						%>
-<%-- 						<%=pageContext.getAttribute("id")%> --%>
-						<td><img width=170px height=150px
+						<%-- 						<%=pageContext.getAttribute("id")%> --%>
+						<td>
+						<div style="float: left;">
+						<img width=170px height=150px
 							<%if (vo.getRecipe_id() == null) {
 						src = "src='Product_photoReader?product_id=";
 						String imgsrc = src + pageContext.getAttribute("id") + srcend;%>
@@ -157,63 +160,69 @@ pointer-events: none;
 
 						src = "src='";
 						String imgsrc = src + Rsvc.getOneRecipe(recipe).getRecipe_photo() + srcend;%>
-							<%=imgsrc%> <%}%>> <%
+							<%=imgsrc%> <%}%>> 
+							</div>
+							
+							<div class="carlistname" >
+							<%
  	if (vo.getRecipe_id() == null) {
- %>
-
-							<%=vo.getProduct_name()%> <%
+ %> <%=vo.getProduct_name()%> <%
  	} else {
  				Rvo = Rsvc.getOneRecipe(vo.getRecipe_id());
  %> <%=Rvo.getRecipe_name()%> <%
  	}
  		}
- %></td>
+ %>
+ </div>
+
+ 
+ 
+ </td>
 
 
 
-						<!-- 價格 -->
 						<%--             <td>${buyProductlist.price}</td> --%>
 						<td class="pricetd">
 
 							<div class="oneprice">
 
-								<font class="price">${buyProductlist.price}</font>
+								<font class="price" style="color: black">${buyProductlist.price}</font>
 							</div>
 						</td>
 						<!-- 數量 -->
 						<%--             <td class="mun">${buyProductlist.quantity}</td> --%>
 						<td class="mun">
 							<div class="ui input quenity">
-								<input class="quenityid" type="hidden" value="${buyProductlist.product_id}"/>
-								<input class="price" type="hidden" value="${buyProductlist.price}"/>
+								<input class="quenityid" type="hidden"
+									value="${buyProductlist.product_id}" /> <input class="price"
+									type="hidden" value="${buyProductlist.price}" />
 
 								<button style="margin: 0px" class="ui mini icon button decrease">
-  <i class="minus icon"></i>
+									<i class="minus icon"></i>
 								</button>
-								<input style="width: 40px;text-align: center;" type="text" value="${buyProductlist.quantity}"
-									class="  inputquenity" />
-								<button  class="ui mini icon button increase">
-  <i class="plus icon"></i>
+								<input style="width: 40px; text-align: center;" type="text"
+									value="${buyProductlist.quantity}" class="  inputquenity" />
+								<button class="ui mini icon button increase">
+									<i class="plus icon"></i>
 								</button>
 							</div>
 						</td>
 
 
 						<!-- 小計 -->
-						<td class="sum">${buyProductlist.price*buyProductlist.quantity}</td>
+						<td class="sum" style="color: #e4002b">${buyProductlist.price*buyProductlist.quantity}</td>
 
 
 
 						<td>
 							<form name="deleteForm" action="ShopCart" method="POST">
-								<input class="removebtn" type="hidden" name="del" value="<%=index%>"> <input
-									type="hidden" name="action" value="REMOVE">
+								<input class="removebtn" type="hidden" name="del"
+									value="<%=index%>"> <input type="hidden" name="action"
+									value="REMOVE">
 								<div class="ui  icon input">
-									<i class="icon eraser"></i> 
-									
-									<input class="ui active button"
-										type="submit"style="color: #3a3a3a; 
-										width: 100px; height: 40px" value="移除">
+									<i class="icon eraser"></i> <input class="ui active button"
+										type="submit"
+										style="color: #3a3a3a; width: 100px; height: 40px" value="移除">
 								</div>
 							</form> <%
  	index++;
@@ -231,10 +240,9 @@ pointer-events: none;
 		<div id="Cardetail">
 
 			<div class="calcheck">
-				<div class="calcheckmessage">
-					共 <font class="qtotal"></font>
-					項商品，數量共 <font class="howmany">0</font> 個，總金額NT$ <font class="tcal">0</font>
-					元
+				<div class="calcheckmessage" style="color: #353740">
+					共 <font class="qtotal"></font > 項商品，數量共 <font class="howmany">0</font>
+					個，總金額NT$ <font class="tcal">0</font> 元
 
 				</div>
 
@@ -250,19 +258,20 @@ pointer-events: none;
 					<div id="checkbtn">
 						<!-- 轉移至SERVLT -->
 						<%
-						
-						String memberVO = (String)session.getAttribute("member_id");				
+							String memberVO = (String) session.getAttribute("member_id");
 						%>
 
 
-<button style='border-radius: 0px 0px 15px 0px;${membervo.validation!=1?"":"display: none"} '
-								class="  ui right labeled icon button huge blue">
-								<i class="right sync icon"></i> 請先成為FoodPron會員
-							</button>
-							
-							
-						<a  style='${membervo.validation==1?"":"display: none"}' href="ProductCheckoutPage.jsp">
-							<button style=" border-radius: 0px 0px 15px 0px"
+						<button
+							style='border-radius: 0px 0px 15px 0px;${membervo.validation!=1?"":"display: none"} '
+							class="  ui right labeled icon button huge blue">
+							<i class="right sync icon"></i> 請先成為FoodPron會員
+						</button>
+
+
+						<a style='${membervo.validation==1?"":"display: none"}'
+							href="ProductCheckoutPage.jsp">
+							<button style="border-radius: 0px 0px 15px 0px"
 								class=" checking ui right labeled icon button huge red">
 								<i class="right arrow icon"></i> 結帳
 							</button>
@@ -278,8 +287,64 @@ pointer-events: none;
 
 
 	</div>
-	<div id="carbottom"></div>
+	
+	
+	
+	   <c:if test="${member_id!=null}">
+  <div style="margin-top: 100px">	
 
+	                <%@ include file="ProductCarousel.jsp" %>
+  
+			
+				<span class="article-section-seemore">查看瀏覽紀錄</span>
+			</div>	                
+
+	        </c:if>
+	
+	
+	
+	
+	
+	
+	
+	
+<footer>
+		<div  class="footer-bg">
+			<div class="footer-murmur">
+				<img src="<%=request.getContextPath() %>/image/FoodPron_Logo_white.png" alt="logo"
+					data-aos="zoom-in">
+				<ul>
+					<li class="footer-li-fist">逛其他</li>
+					<li>直播專區</li>
+					<li>食材商城</li>
+					<li>料理課程</li>
+				</ul>
+				<ul>
+					<li class="footer-li-fist">逛食譜</li>
+					<li>熱門食譜</li>
+					<li>新到食譜</li>
+					<li>全部分類</li>
+				</ul>
+				<ul>
+					<li class="footer-li-fist">會員服務</li>
+					<li>我的收藏</li>
+					<li>帳號設定</li>
+					<li>忘記密碼</li>
+					<li>我的訂單</li>
+				</ul>
+				<ul>
+					<li class="footer-li-fist">關於我們</li>
+					<li>公司資訊</li>
+					<li>品牌資產</li>
+					<li>服務條款</li>
+					<li>隱私權政策</li>
+				</ul>
+			</div>
+		</div>
+		<div class="footer-copyright">Copyright &copy; DA106-G4 Foodporn
+			All rights reserved.</div>
+
+	</footer>
 
 
 	<!-- 預設狀態 -->
@@ -426,15 +491,12 @@ pointer-events: none;
 		function checkbox() {
 			if ($("input[name='Checkbox[]']:checked").length == 0) {
 				$(".checking").attr('disabled', true);
-		        $(".checking").parent().addClass("disa");
-
+				$(".checking").parent().addClass("disa");
 
 			}//判斷有多少個方框被勾選
 			else {
 				$(".checking").attr("disabled", false);
-		        $(".checking").parent().removeClass("disa");
-
-
+				$(".checking").parent().removeClass("disa");
 
 			}
 		}
@@ -445,25 +507,26 @@ pointer-events: none;
 			//按下減少
 			$('.decrease').click(
 					function() {
-						if($(this).siblings('.inputquenity').val()>1){
-						$.ajax({
-							url : 'ShopCart',
-							type : "POST",
-							data : {
-								action : "ADD",
-								product_id:$(this).siblings('.quenityid').val(),
-								quantity:'-1',
-								product_price:$(this).siblings('.price').val()
+						if ($(this).siblings('.inputquenity').val() > 1) {
+							$.ajax({
+								url : 'ShopCart',
+								type : "POST",
+								data : {
+									action : "ADD",
+									product_id : $(this).siblings('.quenityid')
+											.val(),
+									quantity : '-1',
+									product_price : $(this).siblings('.price')
+											.val()
 
-							},
-							success : function(data) {
+								},
+								success : function(data) {
 
-							}
+								}
 
-						});
+							});
 						}
-						
-						
+
 						var curVal = $(this).siblings('.inputquenity').val();
 						if (curVal >= 2) {
 							curVal -= 1;
@@ -473,10 +536,8 @@ pointer-events: none;
 								.find('.price').html()
 						var sum = (curVal * price)
 						$(this).parents().siblings('.sum').html(sum);
-						checkone();						 
-					
-						 
-						 
+						checkone();
+
 					})
 
 			$('.increase').click(
@@ -486,9 +547,11 @@ pointer-events: none;
 							type : "POST",
 							data : {
 								action : "ADD",
-								product_id:$(this).siblings('.quenityid').val(),
-								quantity:'1',
-								product_price:$(this).siblings('.price').val()
+								product_id : $(this).siblings('.quenityid')
+										.val(),
+								quantity : '1',
+								product_price : $(this).siblings('.price')
+										.val()
 
 							},
 							success : function(data) {
@@ -507,56 +570,55 @@ pointer-events: none;
 						var sum = (curVal * price)
 						$(this).parents().siblings('.sum').html(sum);
 						checkone();
-						})
+					})
 
 		});
 
-		function calcheckout(){
-			var listlength=0;
-		    var caltot=0;
-		    var listmun=0;
+		function calcheckout() {
+			var listlength = 0;
+			var caltot = 0;
+			var listmun = 0;
 			if ($("#checkproductall").prop("checked")) {
-				
-			    $(".sum").each(function(){
-			    	
-			    	listlength++;
-			caltot+=parseInt($(this).html());
-			    });
-  $(".inputquenity").each(function(){
-			    	
-	  listmun+=parseInt($(this).val());
-			    });
-			    
-			    
-			    
-				
+
+				$(".sum").each(function() {
+
+					listlength++;
+					caltot += parseInt($(this).html());
+				});
+				$(".inputquenity").each(function() {
+
+					listmun += parseInt($(this).val());
+				});
+
 			}
 			$(".qtotal").html(listlength);
 			$(".tcal").html(caltot);
 			$(".howmany").html(listmun);
-			
-			
+
 		}
-	    function checkone(){
-	        var listlength=0;
-	        var caltot=0;
-	        var listmun=0;
-	        $(".listindex").each(function(){
-	            if ($(this).prop("checked")){
+		function checkone() {
+			var listlength = 0;
+			var caltot = 0;
+			var listmun = 0;
+			$(".listindex").each(
+					function() {
+						if ($(this).prop("checked")) {
 
-	                listlength++;
+							listlength++;
 
-	                caltot+=parseInt( $(this).parent().siblings(".sum").html());
-	                listmun+=parseInt(  $(this).parent().siblings('.mun').find('.inputquenity').val());
-	          
-	            }
-	            $(".qtotal").html(listlength);
-	            $(".tcal").html(caltot);
-	            $(".howmany").html(listmun);
-	        });
-	    }
+							caltot += parseInt($(this).parent()
+									.siblings(".sum").html());
+							listmun += parseInt($(this).parent().siblings(
+									'.mun').find('.inputquenity').val());
 
-	    $(document).ready(checkone());
+						}
+						$(".qtotal").html(listlength);
+						$(".tcal").html(caltot);
+						$(".howmany").html(listmun);
+					});
+		}
+
+		$(document).ready(checkone());
 	</script>
 
 </body>
