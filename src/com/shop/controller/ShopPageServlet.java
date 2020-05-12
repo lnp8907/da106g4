@@ -43,8 +43,15 @@ public class ShopPageServlet extends HttpServlet {
 		
 		
 		if ("typeselect".equals(action)) {
+			String whichPage="";
 			System.out.println(req.getParameter("product_type"));
 			String product_type=req.getParameter("product_type");
+			if(req.getParameter("whichPage")==null) {
+			
+			}else {
+			 whichPage=req.getParameter("whichPage");
+			}
+			System.out.println("獲取頁面"+whichPage);
 			req.setAttribute("product_type",product_type );
 			String url = "/back-end/shop_product/shop_backendPage.jsp";
 			System.out.println("開始轉送");

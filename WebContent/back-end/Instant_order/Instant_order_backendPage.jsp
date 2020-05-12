@@ -100,7 +100,7 @@
 				</div>
 			</div>
 
-			<div class="wrapper">
+			<div class="wrapper" style="background-color: #f9f9f9">
 				<!--  -->
 
 

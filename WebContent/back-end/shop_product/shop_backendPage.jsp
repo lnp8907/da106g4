@@ -38,7 +38,7 @@
 .content h2{
 color: #E4002B;
 line-height: 80px;
-	padding-left: 40px
+	padding-left: 25px
 }
 
 

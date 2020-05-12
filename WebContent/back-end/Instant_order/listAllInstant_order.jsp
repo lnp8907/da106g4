@@ -79,8 +79,10 @@ pageContext.setAttribute("list",list);
 <title>所有訂單</title>
 <c:set var="pagemessage" value='<%=((String)request.getParameter("pagemessage"))==null?"":(String)request.getParameter("pagemessage") %>'/>
 
-<div id="ordertitle">
-		 <h3>以下是所有訂單:</h3>
+<div id="ordertitle" style="height: 163px;padding-top:30px;color: #E4002B;font-family: 微软雅黑;
+background-color: #f9f9f9; padding-left: 30px;
+ ">
+		 <h3 style="font-size: 40px">及時配送訂單:</h3>
 	 <%if(list.size()>1){ %>
 		 <%= list.get(0).getIdo_no() %>
 		 
@@ -106,7 +108,7 @@ pageContext.setAttribute("list",list);
 <!-- 以下內容 -->
 
 
-現在PAGEMESSAGE:${pagemessage}
+<%-- 現在PAGEMESSAGE:${pagemessage} --%>
 
 
 
@@ -123,7 +125,7 @@ pageContext.setAttribute("list",list);
 		<th>查看訂單詳情</th>	
 	</tr>
 	<jsp:useBean id="memberService" scope="request" class="com.member.model.MemberService"/>
-	<%@ include file="../file/page1.file" %> 
+	<%@ include file="file/IOrderPage1.file" %> 
 	
 	<c:forEach var="ordervo" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		

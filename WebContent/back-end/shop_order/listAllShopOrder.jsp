@@ -292,7 +292,7 @@ MemberService msvc=new MemberService();
   <option value ="${order_status.key}" ${ordervo.order_status==order_status.key?'selected':''} >${order_status.value}</option>
   </c:forEach>
   			     <input type="hidden" class="selectorder_status" name="selectorder_status"  value="${ordervo.order_status}">
-  			     <button class="showbtn btn btn-primary btn-lg" style="display: none" disabled="disabled">已完成之訂單</button>
+  			     <button  class="showbtn btn btn-primary btn-lg" style="display: none;font-size: 15px" disabled="disabled">已完成之訂單</button>
   			     
 </select>
 

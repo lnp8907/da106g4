@@ -25,6 +25,9 @@
 </head>
 
 <body>
+
+
+
 	<%-- 錯誤表列 --%>
 	<c:if test="${not empty errorMsgs}">
 		<font style="color: red">省核食譜</font>
@@ -39,7 +42,9 @@
 
 
 	<div class="content">
-		<div class="menu">
+		<div class="menu" style="height: 130px;padding-left: 0px">
+		<h2 style="font-size: 40px">食材料理包管理</h2>
+
 			<!-- 卡片內容上方留白的起始標籤 -->
 		</div>
 		<!-- 卡片內容上方留白的結束標籤 -->
@@ -58,7 +63,7 @@
 					<th>商品狀態</th>
 				</tr>
 
-				<%@ include file="../file/page1.file"%>
+				<%@ include file="file/Recipepage.file"%>
 				<jsp:useBean id="receiprsvc" class="com.recipe.model.RecipeService" />
 
 			</thead>
