@@ -608,7 +608,7 @@ header{
 z-index:99;
 }
 .sidebar{
-z-index:-1;
+/* z-index:-1; */
 }
 /* cyrillic-ext */
 @font-face {
@@ -1999,7 +1999,7 @@ hr {
 	</c:if>
 	
 	
-	<aside class="sidebar" style="z-index:-1">
+	<aside class="sidebar" >
 
   <div class="avatar">
 
