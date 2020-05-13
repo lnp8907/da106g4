@@ -213,7 +213,7 @@ line-height: 80px;
 							<div class="modal-content">
 
 								<div class="modal-header">
-									<h2 class="modal-title" id="myModalLabel">品名:${productvo.product_name}</h2>
+<%-- 									<h2 class="modal-title" id="myModalLabel">品名:${productvo.product_name}</h2> --%>
 									<button type="button" class="close" data-dismiss="modal"
 										aria-hidden="true">&times;</button>
 								</div>

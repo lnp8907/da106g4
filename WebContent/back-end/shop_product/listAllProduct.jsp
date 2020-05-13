@@ -47,6 +47,8 @@
 // 			out.println("product_type網頁獲取類型"+request.getAttribute("product_type") );
 
 			list = Psvc.getAllProduct();
+			Collections.reverse(list);
+
 			list = list.stream().filter(p -> p.getProduct_status() != 2).collect(Collectors.toList());
 			product_type = "0";
 
