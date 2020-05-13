@@ -12,6 +12,12 @@
 <html lang="en">
 
 <head>
+<script src="<%=request.getContextPath()%>/plugin/jquery-3.4.1.min.js"></script>
+
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/plugin/Semantic-UI/semantic.min.css">
+
+
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>直播狀態修改 - updateLsStatus.jsp</title>
@@ -386,7 +392,7 @@
     <div class="container">
         <div class="box">
             <!--這裡是左邊選單-->
-            <div class="left-bar"><span class="fa fa-cloud-download"><img src="/image/logo_nohead.png" alt="LOGO"
+            <div class="left-bar"><span class="fa fa-cloud-download"><img src="<%=request.getContextPath() %>/image/logo_nohead.png" alt="LOGO"
                         width="200" height="200"></span>
                 <div class="menu-group"> <span class="fa fa-television">帳號設定</span>
                     <div class="building"><span class="fa fa-building"></span><span class="fa fa-building"></span></div>
@@ -400,10 +406,10 @@
                     </div><!-- 卡片內容上方留白的結束標籤 -->
                 </div>
                 <div class="grid">  <!-- 卡片內容起始標籤 -->
-                   <table id="table-1">
+                   <table class="ui celled table">
 	<tr><td>
-		 <h3>直播狀態修改 - updateLsStatus.jsp</h3>
-		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4>
+		 <h3>直播狀態修改</h3>
+<!-- 		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4> -->
 	</td></tr>
 </table>
 
@@ -419,8 +425,7 @@
 	</ul>
 </c:if>
 
-<FORM METHOD="post" ACTION="livestream.do" name="form1">
-<table>
+<table class="ui celled table">
 	<tr>
 		<th>直播編號</th>
 		<th>員工編號</th>
@@ -449,7 +454,7 @@
 		<td><%=livestreamVO.getTitle()%></td>
 		<td><%=livestreamVO.getWatched_num()%></td>
 		
-		<td><select size="1" name="status">
+		<td><select class="ui dropdown" size="1" name="status">
 			<option value="0"${(0==livestreamVO.status)?'selected':'' }>待審查
 			</option>
 			<option value = "1"${(1==livestreamVO.status)?'selected':''} >預告上架
@@ -463,9 +468,11 @@
 
 	
 <br>
+<FORM METHOD="post" ACTION="livestream.do" name="form1">
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="livestream_id" value="${livestreamVO.livestream_id}">
-<input id="alert" type="submit" value="送出修改"></FORM>
+<!-- <button class="ui right labeled icon button"><i class="right arrow icon"></i> 送出修改 </button> -->
+<input style="float: right;" id="alert" class="ui icon button" type="submit" value="送出修改"></FORM>
 
                 </div><!-- end of grid -->
                 <!-- 卡片內容結束標籤 -->

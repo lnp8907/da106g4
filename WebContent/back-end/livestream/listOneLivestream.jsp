@@ -15,7 +15,10 @@
 
 
 <head>
+<script src="<%=request.getContextPath()%>/plugin/jquery-3.4.1.min.js"></script>
 
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/plugin/Semantic-UI/semantic.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>One Livestream</title>
@@ -394,7 +397,7 @@
     </style>
 
 <body>
-    <div class="container">
+    <div class="container" >
         <div class="box">
             <!--這裡是左邊選單-->
             <div class="left-bar"><span class="fa fa-cloud-download">
@@ -420,9 +423,9 @@
                 </div>
                 <div class="grid">
                        <!-- 卡片內容起始標籤 -->
-                    <table id="table-1">
+                    <table class="ui celled table">
                         <tr><td>
-                             <h3>所有直播資料 - listOneLivestream.jsp</h3> 
+                             <h3>所有直播資料 </h3> 
        		 
 <!--                              <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" >回首頁</a></h4> -->
                         </td></tr>
@@ -438,7 +441,7 @@
                         </ul>
                     </c:if>
                     
-                    <table>
+                    <table class="ui celled table">
                         <tr>
                            <th>直播編號</th>
 							<th>員工編號</th>
@@ -477,13 +480,13 @@
                                 
                                 <td>
                                   <FORM METHOD="post" ACTION="livestream.do" style="margin-bottom: 0px;">
-                                     <input type="submit" value="修改">
+                                     <input class="ui button" type="submit" value="修改">
                                      <input type="hidden" name=livestream_id  value="${livestreamVO.livestream_id}">
                                      <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
                                 </td>
                                 <td>
                                   <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/livestream/livestream.do" style="margin-bottom: 0px;">
-                                     <input type="submit" value="刪除">
+                                     <input class="ui button" type="submit" value="刪除">
                                      <input type="hidden" name="livestream_id"  value="${livestreamVO.livestream_id}">
                                      <input type="hidden" name="action" value="delete"></FORM>
                                 </td>

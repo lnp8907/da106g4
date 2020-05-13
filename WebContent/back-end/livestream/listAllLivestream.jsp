@@ -15,6 +15,10 @@
 
 
 <head>
+<script src="<%=request.getContextPath()%>/plugin/jquery-3.4.1.min.js"></script>
+
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/plugin/Semantic-UI/semantic.min.css">
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -409,6 +413,7 @@ a{
     <div class="container">
         <div class="box">
             <!--這裡是左邊選單-->
+
             <div class="left-bar"><span class="fa fa-cloud-download">
             
                         <a class="menu-group-a" href="<%=request.getContextPath() + "/backEnd2.jsp"%>">
@@ -452,8 +457,9 @@ a{
                 </div>
                 <div class="grid">
                        <!-- 卡片內容起始標籤 -->
-                    <table id="table-1">
+                    <table class="ui celled table">
                         <tr><td>
+
                                                      <h3 style="color: #E4002B; font-size: 36px">所有直播資料 </h3> 
                         
 <!--                              <h3>所有直播資料 - listAllLivestream.jsp</h3>  -->
@@ -471,7 +477,9 @@ a{
                         </ul>
                     </c:if>
                     
-                    <table class="second">
+                    <table class="ui celled table">
+                         <thead>
+                       
                         <tr>
                            <th>直播編號</th>
 							<th>員工編號</th>
@@ -485,6 +493,8 @@ a{
 							<!-- <th>修改</th>
 							<th>刪除</th>     -->                        
                         </tr>
+                          </thead>
+                        
                         <%@ include file="page1.file" %> 
                         <c:forEach var="livestreamVO" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
                             
@@ -512,18 +522,18 @@ a{
                                 <td>${livestreamVO.title}</td>
                                 <td>${livestreamVO.watched_num}</td>
                                 
-                                <td>
-                                  <FORM METHOD="post" ACTION="livestream.do" style="margin-bottom: 0px;">
-                                    <!--  <input type="submit" value="修改"> -->
-                                     <input type="hidden" name=livestream_id  value="${livestreamVO.livestream_id}">
-                                     <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
-                                </td>
-                                <td>
-                                  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/livestream/livestream.do" style="margin-bottom: 0px;">
-                                     <!-- <input type="submit" value="刪除"> -->
-                                     <input type="hidden" name="livestream_id"  value="${livestreamVO.livestream_id}">
-                                     <input type="hidden" name="action" value="delete"></FORM>
-                                </td>
+<!--                                 <td class="ltd1"> -->
+<!--                                   <FORM METHOD="post" ACTION="livestream.do" style="margin-bottom: 0px;"> -->
+<!--                                      <input type="submit" value="修改"> -->
+<%--                                      <input type="hidden" name=livestream_id  value="${livestreamVO.livestream_id}"> --%>
+<!--                                      <input type="hidden" name="action"	value="getOne_For_Update"></FORM> -->
+<!--                                 </td> -->
+<!--                                 <td class="ltd1"> -->
+<%--                                   <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/livestream/livestream.do" style="margin-bottom: 0px;"> --%>
+<!--                                      <input type="submit" value="刪除"> -->
+<%--                                      <input type="hidden" name="livestream_id"  value="${livestreamVO.livestream_id}"> --%>
+<!--                                      <input type="hidden" name="action" value="delete"></FORM> -->
+<!--                                 </td> -->
                             </tr>
                         </c:forEach>
                     </table>
@@ -537,4 +547,7 @@ a{
     </div>
 </body>
 
+<script>
+
+</script>
 </html>
