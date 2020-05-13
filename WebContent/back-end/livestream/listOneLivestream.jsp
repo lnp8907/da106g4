@@ -15,7 +15,10 @@
 
 
 <head>
+<script src="<%=request.getContextPath()%>/plugin/jquery-3.4.1.min.js"></script>
 
+<link rel="stylesheet"
+	href="<%=request.getContextPath()%>/plugin/Semantic-UI/semantic.min.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>One Livestream</title>
@@ -394,7 +397,7 @@
     </style>
 
 <body>
-    <div class="container">
+    <div class="container" >
         <div class="box">
             <!--這裡是左邊選單-->
             <div class="left-bar"><span class="fa fa-cloud-download">
@@ -420,7 +423,7 @@
                 </div>
                 <div class="grid">
                        <!-- 卡片內容起始標籤 -->
-                    <table id="table-1">
+                    <table class="ui celled table">
                         <tr><td>
                              <h3>所有直播資料 - listOneLivestream.jsp</h3> 
        		 
@@ -438,7 +441,7 @@
                         </ul>
                     </c:if>
                     
-                    <table>
+                    <table class="ui celled table">
                         <tr>
                            <th>直播編號</th>
 							<th>員工編號</th>

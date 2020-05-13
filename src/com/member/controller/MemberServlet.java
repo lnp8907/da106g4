@@ -607,7 +607,7 @@ if ("update2".equals(action)) {
 		if("loginOUT".equals(action)) {
 			 HttpSession session = req.getSession();
 			session.invalidate();
-			
+
 		//String url = "/backEnd_Login.jsp" ;
 //			url = "/back-end/staff/staffPage.jsp?pageType="+pageType;
 		
