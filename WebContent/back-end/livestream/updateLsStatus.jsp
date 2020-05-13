@@ -394,7 +394,12 @@
             <!--這裡是左邊選單-->
             <div class="left-bar"><span class="fa fa-cloud-download"><img src="<%=request.getContextPath() %>/image/logo_nohead.png" alt="LOGO"
                         width="200" height="200"></span>
-                <div class="menu-group"> <span class="fa fa-television">帳號設定</span>
+                <div class="menu-group"> 
+                        <span class="fa fa-television"><a style="margin: 0px;color: rgba(0, 0, 0, 0.5);font-family: '微軟正黑體', monospace;" href="<%=request.getContextPath()%>/back-end/livestream/listAllLivestream.jsp" class="tocensor">全部直播</a></span>
+ <span class="fa fa-television">  <a style="margin: 0px;color: rgba(0, 0, 0, 0.5);font-family: '微軟正黑體', monospace;" href="<%=request.getContextPath()%>/back-end/livestream/listOneLivestream.jsp" class="tocensor">直播預告審查</a></span>
+                                      
+                    
+                    
                     <div class="building"><span class="fa fa-building"></span><span class="fa fa-building"></span></div>
                     <span class="fa fa-cog"></span>
                 </div><span class="fa fa-sign-out">登出</span>
@@ -424,6 +429,7 @@
 		</c:forEach>
 	</ul>
 </c:if>
+<FORM METHOD="post" ACTION="livestream.do" name="form1">
 
 <table class="ui celled table">
 	<tr>
@@ -468,7 +474,6 @@
 
 	
 <br>
-<FORM METHOD="post" ACTION="livestream.do" name="form1">
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="livestream_id" value="${livestreamVO.livestream_id}">
 <!-- <button class="ui right labeled icon button"><i class="right arrow icon"></i> 送出修改 </button> -->
