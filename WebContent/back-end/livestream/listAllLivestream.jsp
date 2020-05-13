@@ -400,7 +400,7 @@
     <div class="container">
         <div class="box">
             <!--這裡是左邊選單-->
-            <div class="left-bar"><span class="fa fa-cloud-download"><img src="/image/logo_nohead.png" alt="LOGO"
+            <div class="left-bar"><span class="fa fa-cloud-download"><img src="<%=request.getContextPath() %>/image/logo_nohead.png" alt="LOGO"
                         width="200" height="200"></span>
                         <a class="menu-group-a"
 						href="<%=request.getContextPath() + "/backEnd2.jsp"%>"><span style="font-size:30px;">回首頁</span></a>
@@ -422,7 +422,7 @@
                         <tr><td>
                              <h3>所有直播資料 - listAllLivestream.jsp</h3> 
        		  <a href="<%=request.getContextPath()%>/back-end/livestream/listOneLivestream.jsp" class="tocensor">直播預告審查</a>
-                             <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" >回首頁</a></h4>
+                            <!--  <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" >回首頁</a></h4> -->
                         </td></tr>
                     </table>
                     
