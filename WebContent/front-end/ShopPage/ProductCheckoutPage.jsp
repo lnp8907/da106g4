@@ -95,6 +95,7 @@ session.setAttribute("checkoutlist", buyProductlist);
 
 <div id="showmember" style="margin-bottom: 50px">
 		敬愛的會員<font class="membername">${member_name}</font>你好:
+		<p>您的點數餘額:<font class="membername">${memberVO.balance}</font>富胖幣</p>
 </div> 
 <div class="checktitle"> 
  <font size="+3">購物車一覽：</font></div>
