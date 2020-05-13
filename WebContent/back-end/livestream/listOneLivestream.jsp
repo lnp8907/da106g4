@@ -425,7 +425,7 @@
                        <!-- 卡片內容起始標籤 -->
                     <table class="ui celled table">
                         <tr><td>
-                             <h3>所有直播資料 - listOneLivestream.jsp</h3> 
+                             <h3>所有直播資料 </h3> 
        		 
 <!--                              <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" >回首頁</a></h4> -->
                         </td></tr>
@@ -480,13 +480,13 @@
                                 
                                 <td>
                                   <FORM METHOD="post" ACTION="livestream.do" style="margin-bottom: 0px;">
-                                     <input type="submit" value="修改">
+                                     <input class="ui button" type="submit" value="修改">
                                      <input type="hidden" name=livestream_id  value="${livestreamVO.livestream_id}">
                                      <input type="hidden" name="action"	value="getOne_For_Update"></FORM>
                                 </td>
                                 <td>
                                   <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/livestream/livestream.do" style="margin-bottom: 0px;">
-                                     <input type="submit" value="刪除">
+                                     <input class="ui button" type="submit" value="刪除">
                                      <input type="hidden" name="livestream_id"  value="${livestreamVO.livestream_id}">
                                      <input type="hidden" name="action" value="delete"></FORM>
                                 </td>

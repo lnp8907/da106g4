@@ -408,7 +408,7 @@
                 <div class="grid">  <!-- 卡片內容起始標籤 -->
                    <table class="ui celled table">
 	<tr><td>
-		 <h3>直播狀態修改 - updateLsStatus.jsp</h3>
+		 <h3>直播狀態修改</h3>
 <!-- 		 <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" border="0">回首頁</a></h4> -->
 	</td></tr>
 </table>
@@ -472,7 +472,7 @@
 <input type="hidden" name="action" value="update">
 <input type="hidden" name="livestream_id" value="${livestreamVO.livestream_id}">
 <!-- <button class="ui right labeled icon button"><i class="right arrow icon"></i> 送出修改 </button> -->
-<input id="alert" class="ui icon button" type="submit" value="送出修改"></FORM>
+<input style="float: right;" id="alert" class="ui icon button" type="submit" value="送出修改"></FORM>
 
                 </div><!-- end of grid -->
                 <!-- 卡片內容結束標籤 -->
