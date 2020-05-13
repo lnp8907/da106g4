@@ -1191,7 +1191,7 @@ System.out.println("location="+location);
 				//	req.setAttribute("memberVO", memberVO);
 				
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/index.jsp?state=sucess2");
+							.getRequestDispatcher("/index.jsp");
 					failureView.forward(req, res);
 					return;
 				}
@@ -1228,7 +1228,7 @@ System.out.println("location="+location);
 
 				
 				/***************************3.新增完成,準備轉交(Send the Success view)***********/
-				String url = "/index.jsp";
+				String url = "/index.jsp?state=sucess2";
 				RequestDispatcher successView = req.getRequestDispatcher(url); // 新增成功後轉交listAllEmp.jsp
 				successView.forward(req, res);				
 				

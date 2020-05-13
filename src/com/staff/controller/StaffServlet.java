@@ -514,7 +514,7 @@ public class StaffServlet extends HttpServlet {
 			
 			String ip = "localhost";
 			String to = email;
-			String subject = "會員驗證信通知";
+			String subject = "員工身分激活通知";
 			String messageText = "Hello! " + email + " 這是你的員工編號: " + staff_id + "\n" + " 這是你的密碼: " + staff_password + "\n" + " (已經啟用)";
 			
 //			sendMail(to, subject, messageText);
@@ -528,11 +528,18 @@ public class StaffServlet extends HttpServlet {
 			
 			
 			
+			    String URL=req.getContextPath()+"/back-end/staff/staffPage.jsp?state=sucess2";
+				res.sendRedirect(URL);
 			
-			
-			RequestDispatcher succeseView = req
-					.getRequestDispatcher("/back-end/staff/staffPage.jsp");
-			succeseView.forward(req, res);
+//			RequestDispatcher succeseView = req
+//					.getRequestDispatcher("/back-end/staff/staffPage.jsp?state=sucess2");
+//			succeseView.forward(req, res);
+			    
+			    
+			    
+			    
+			    
+			    
 			/*************************** 3.查詢完成,準備轉交(Send the Success view) *************/
 //			} catch (Exception e) {
 //				RequestDispatcher failureView = req.getRequestDispatcher("/back-end/recipe/backEndRecipePage.jsp?pageType=recipeStyleList.jsp");

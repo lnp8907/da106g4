@@ -273,4 +273,18 @@ h1 {
 	</div>
 	
 </body>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script>
+var state = '${param.state}';
+console.log("state"+state);
+if(state=="sucess2"){
+	
+	Swal.fire({
+		
+		  title: '員工新增成功',
+		  showConfirmButton: false,
+		  timer: 1500
+		})
+}
+</script>
 </html>
