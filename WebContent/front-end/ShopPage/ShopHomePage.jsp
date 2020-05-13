@@ -131,7 +131,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 			<c:if test='${empty member_id}'>
 			
 				<div class="login">
-					<a href="#"><img class="header-icon" src="image/user-icon.png"
+					<a href="#"><img class="header-icon" src="../../image/user-icon.png"
 						alt="login-icon">
 						<div class="herder-icon-span">
 							<span class="login-span">登入</span>
@@ -200,16 +200,16 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 		<!-- end of function-->
 	<nav id="navigation">
 			<ul>
-				<li class="dropdown"><a href="#"><img class="access-menu-icon"
+				<li class="dropdown"><a href="<%=request.getContextPath()%>/front-end/recipe/recipeMainpage.jsp"><img class="access-menu-icon"
 						src="<%=request.getContextPath() %>/image/recipe-icon.png"><span class="menu-span">食譜專區</span></a>
 					<ul>
-						<li><a class="dropdown-first-a" href="#"><img
+						<li><a class="dropdown-first-a" href="<%=request.getContextPath()%>/front-end/recipe/recipeMainpage.jsp"><img
 								class="dropdown-first-img" src="<%=request.getContextPath() %>/image/ico_gnav_recipes_book.svg"><span
 								class="dropdown-first-a-span">食譜主頁</span></a></li>
 <!-- 						<li><a href="#">特輯食譜</a></li> -->
 <!-- 						<li><a href="#">推薦食譜</a></li> -->
 					<c:if test="${memberVO.member_status==1}">
-						<li><a href="front-end/recipe/addRecipe.jsp">建立食譜</a></li>
+						<li><a href="<%=request.getContextPath() %>/front-end/recipe/addRecipe.jsp">建立食譜</a></li>
 					</c:if>
 	
 					</ul></li>

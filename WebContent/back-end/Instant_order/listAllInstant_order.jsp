@@ -16,7 +16,7 @@
 
 <%
 InstantDeliveryOrderService IDSvc=new InstantDeliveryOrderService();
-
+boolean lookMap = false;
 List<InstantDeliveryOrderVO> list=null;
 if(IDSvc.getAll()!=null){
 	list=IDSvc.getAll();
@@ -25,6 +25,7 @@ if(IDSvc.getAll()!=null){
 
 if(request.getParameter("pagemessage")!=null){
 	 if(request.getParameter("pagemessage").equals("Traveling")){
+		 	lookMap = true;
 			list=list.stream()
 					.filter(p->p.getO_status()==1)
 					.collect(Collectors.toList());
@@ -78,8 +79,10 @@ pageContext.setAttribute("list",list);
 <title>所有訂單</title>
 <c:set var="pagemessage" value='<%=((String)request.getParameter("pagemessage"))==null?"":(String)request.getParameter("pagemessage") %>'/>
 
-<div id="ordertitle">
-		 <h3>以下是所有訂單:</h3>
+<div id="ordertitle" style="height: 163px;padding-top:30px;color: #E4002B;font-family: 微软雅黑;
+background-color: #f9f9f9; padding-left: 30px;
+ ">
+		 <h3 style="font-size: 40px">及時配送訂單:</h3>
 	 <%if(list.size()>1){ %>
 		 <%= list.get(0).getIdo_no() %>
 		 
@@ -105,7 +108,7 @@ pageContext.setAttribute("list",list);
 <!-- 以下內容 -->
 
 
-現在PAGEMESSAGE:${pagemessage}
+<%-- 現在PAGEMESSAGE:${pagemessage} --%>
 
 
 
@@ -122,11 +125,11 @@ pageContext.setAttribute("list",list);
 		<th>查看訂單詳情</th>	
 	</tr>
 	<jsp:useBean id="memberService" scope="request" class="com.member.model.MemberService"/>
-	<%@ include file="../file/page1.file" %> 
+	<%@ include file="file/IOrderPage1.file" %> 
 	
 	<c:forEach var="ordervo" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 		
-		<tr>
+		<tr class="ordertr1">
 			<td>${ordervo.ido_no}</td>
 			<td>${ordervo.member_id}</td>
 			<td>${memberService.getOneMember(ordervo.member_id).member_name}</td>
@@ -168,6 +171,7 @@ pageContext.setAttribute("list",list);
 			     </FORM>
 			
 			</td>
+
 <!-- 			<td> -->
 <%-- 			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/back-end/shop_order/OrderServlet.do" style="margin-bottom: 0px;"> --%>
 <!-- 			     <input type="submit" value="修改"> -->
@@ -190,7 +194,20 @@ pageContext.setAttribute("list",list);
 <!-- 			</td> -->
 			
 		  </tr>
-        <tr class="orseraddress"><td>地址:</td><td colspan="6">${ordervo.d_address}</td>
+        <tr class="orseraddress"><td>地址:</td>
+        <td colspan="5">${ordervo.d_address}</td>
+                  				<td>
+			<!-- 訂單地圖 -->
+			<c:if test="<%=lookMap %>">
+			<FORM METHOD="post" ACTION="Instant_delivery_orderServlet" >
+			  <button class="ui right labeled  icon  ui primary button"><i class="zoom in icon"></i> 查看地圖 </button>	     
+			  <input type="hidden" name="ido_no"  value="${ordervo.ido_no}">
+			  <input type="hidden" name="action" value="getPositon">
+  <input 	type="hidden" name="pagemessage"  value="${pagemessage}"/>
+                <input 	type="hidden" name="whichPage"  value="<%=whichPage%>"/>			  
+			</FORM>			
+			</td>
+              </c:if>
                 <td>
                 <form method="post" ACTION="Instant_delivery_orderServlet">
 <%--                 <a href="<%=request.getContextPath() %>/back-end/Instant_order/Instant_delivery_orderServlet?action=cencelorder&ido_no=${ordervo.ido_no}"> --%>
@@ -206,7 +223,8 @@ pageContext.setAttribute("list",list);
                 
 <!--                 </a> -->
                 </form>
-                </td>
+            </td>
+            
  </tr>
 	</c:forEach>
 </table>

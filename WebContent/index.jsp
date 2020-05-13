@@ -64,7 +64,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 	type="image/x-icon" />
 
 
- <script type="text/javascript" src="javascript/jquery-3.2.1.min.js"></script> 
+ <script type="text/javascript" src="<%=request.getContextPath() %>/javascript/jquery-3.2.1.min.js"></script> 
 <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script> -->
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 <script src="<%=request.getContextPath() %>/slick/slick.js" type="text/javascript" charset="utf-8"></script>
@@ -79,6 +79,12 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 		getMonth();
 	})
 </script>
+<style>
+#livestream-left-1-video {
+    width: 100%;
+    height: 350px;
+}
+</style>
 </head>
 
 <body>
@@ -248,7 +254,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 <!-- 						<li><a href="#">特輯食譜</a></li> -->
 <!-- 						<li><a href="#">推薦食譜</a></li> -->
 					<c:if test="${memberVO.member_status==1}">
-						<li><a href="front-end/recipe/addRecipe.jsp">建立食譜</a></li>
+						<li><a href="<%=request.getContextPath() %>/front-end/recipe/addRecipe.jsp">建立食譜</a></li>
 					</c:if>
 	
 					</ul></li>
@@ -261,7 +267,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 								class="dropdown-first-a-span">直播主頁</span></a></li>
 <!-- 						<li><a href="livestream.jsp">直播預告</a></li> -->
 					<c:if test="${memberVO.member_status==1}">
-						<li><a href="front-end/livestream/livestream.jsp#${member_id}">開啟直播</a></li>
+						<li><a href="<%=request.getContextPath() %>/front-end/livestream/livestream.jsp#${member_id}">開啟直播</a></li>
 						
 						</c:if>
 					</ul></li>
@@ -297,7 +303,7 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 			
 
 					</ul></li>
-				<li class="dropdown"><a href="front-end/course/listAllCourse.jsp"><img class="access-menu-icon"
+				<li class="dropdown"><a href="<%=request.getContextPath() %>/front-end/course/listAllCourse.jsp"><img class="access-menu-icon"
 						src="<%=request.getContextPath() %>/image/course-icon.png"><span class="menu-span">料理課程</span></a>
 					<ul>
 						<li><a href="<%=request.getContextPath() %>/front-end/course/listAllCourse.jsp" class="dropdown-first-a" href="front-end/course/listAllCourse.jsp"><img
@@ -948,6 +954,46 @@ if ((Vector<Order_detailVO>) session.getAttribute("productCar") == null) {
 						}
 						
 						</script>
+						
+						
+						<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+						
+							<script>
+var state = '${param.state}';
+console.log("state"+state);
+if(state=="sucess"){
+	
+	Swal.fire({
+		
+		  icon: 'success',
+		  title: '帳號驗證完成',
+		  showConfirmButton: false,
+		  timer: 1500
+		})
+	
+}
+var state = '${param.state}';
+console.log("state"+state);
+if(state=="sucess2"){
+	
+	Swal.fire({
+		
+		  icon: 'success',
+		  title: '註冊成功，請進行驗證',
+		  showConfirmButton: false,
+		  timer: 1500
+		})
+	
+}
+	</script>
+						
+						
+						
+						
+						
+						
+						
+						
 						
 <script>
 var fblightbox = $('#fblightbox');

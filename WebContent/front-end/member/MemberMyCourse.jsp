@@ -897,7 +897,7 @@ body {
 }
 
 .sidebar {
-	margin-top: -12px;
+	margin-top: -4px;
 	margin-left: 17%;
 	width: 240px;
 
@@ -1079,32 +1079,44 @@ margin-rught:100px;
 .footer-copyright24 {
 	margin-top: 50%;
 }
+h4{
+margin-left: 121px;
+    color: #52a3dddb;
+    margin-right: -5px;
+    font-style: oblique;
+    font-family: sans-serif;
+    font-size: smaller;
+}
 
 h3 {
- margin-top: 50px;
-    margin-left: -233px;
+    margin-top: 27px;
+    margin-left: -222px;
     font-family: Calibri;
-    font-size: 26pt;
+    font-size: 30pt;
     font-style: normal;
     font-weight: bold;
-    color: rgba(16, 75, 75, 0.66);
+    color: rgba(16, 75, 75, 0.66);;
     /* text-decoration: underline; */
-    margin-bottom: 10px;
+    margin-bottom: 9px;
+
+
+text-shadow: rgba(186, 152, 152, 0.1) 1px 3px 0px;
 }
-.recipe-main-list-header{
-
-    height: 45px;
-    padding: 12px;
-    border-bottom: 1px solid #cecece;
-    margin-top: -14px;
-
-
-
+.recipe-item img {
+    display: inline-block;
+    height: 101px;
+    width: 120px;
+    margin: 5px;
+    vertical-align: top;
 }
-b {
-
+.recipe-item-caption h4 {
+    display: inline-block;
+    margin-bottom: 5px;
     font-size: 19px;
-    margin-left: 217px;
+    font-weight: 500;
+    margin-left: 0px;
+    font-style: normal;
+    color: #E4002B;
 }
 h2{
 margin-left:56px;
@@ -1120,21 +1132,15 @@ margin-bottom:8px;
    
 
 }
-h4{
-margin-left: 121px;
-    color: #52a3dddb;
-    margin-right: -5px;
-    font-style: oblique;
-    font-family: sans-serif;
-    font-size: smaller;
-}
+
 
 b{    margin-right: -235px;
     font-size: 19px;}
 
 
+
 table {
-margin-left: 10px;
+    margin-left: 2px;
     width: 822px;
     font-family: Calibri;
     color: #e4002b;
@@ -1145,15 +1151,10 @@ margin-left: 10px;
     border: 2px solid rgb(226, 226, 238);
     border-spacing: 60px 40px;
     /* border-width: 200px; */
-    margin-left: 9px;
-    width: 815px;
-    margin-top: -4px;
-	
-	
-	
-	
-	
+    margin-left: 2px;
+    width: 827px;
 }
+
 table.inner {
 	border: 0px
 }
@@ -1766,13 +1767,15 @@ hr {
     display: inline;
 }
 
+.show-one-link li:hover{
+ background-color:#d9b1d526;
+	color:red;
+}
 
 
 
-
-.show-one-link:hover{
-	text-decoration:underline;
-	color:#FF5454;
+b{
+    margin-left: 216px;
 }
 
 
@@ -1780,6 +1783,7 @@ hr {
 
 </style>
 </head>
+
 
 <body>
 	<header>
@@ -2142,14 +2146,17 @@ hr {
 			<c:forEach var="MycourseVO" items="${list2}" begin="<%=pageIndex%>"
 				end="<%=pageIndex+rowsPerPage-1%>">
 			
+	<a class="show-one-link"
+									href="<%=request.getContextPath()%>/front-end/course/CourseServlet?action=getOne_For_Display&course_id=${MycourseVO.course_id}">		
+			
+			
 				<li class="recipe-item"><img
 					src="<%=request.getContextPath()+"/front-end/course/photo?course_id="%>${MycourseVO.course_id}"
 					alt="">
 					<div class="recipe-item-caption">
 						<div class="recipe-item-caption-header">
 							<h4 class="recipe-item-tile">
-								<a class="show-one-link"
-									href="<%=request.getContextPath()%>/front-end/course/CourseServlet?action=getOne_For_Display&course_id=${MycourseVO.course_id}">${courseSvc.getOneCourse(MycourseVO.course_id).course_name}</a>
+								${courseSvc.getOneCourse(MycourseVO.course_id).course_name}
 							</h4>
 							
 							
@@ -2157,7 +2164,7 @@ hr {
 						<p class="recipe-create-time">開課時間:<fmt:formatDate
 								value="${MycourseVO.create_time}" pattern="yyyy/MM/dd HH:mm" /></p>
 						<p class="recipe-item-ingredient">課程價格：${MycourseVO.pay_price}</p>
-					</div></li>
+					</div></li></a>
 			</c:forEach>
 		</ul>
 		<div class="include-page2">

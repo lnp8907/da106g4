@@ -115,7 +115,8 @@ MemberService msvc=new MemberService();
 <title>所有訂單</title>
 <div class="content" style="height: 114px">
 		<div class="menu">
-		<h2 style="font-size: 36px">訂單管理</h2>
+		<h2 style="font-size: 36px;font-family: '微軟正黑體', monospace;
+		">訂單管理</h2>
  <c:if test="${fn:length(list)>0}">
 		 以下是所有訂單:
 		 <%= list.get(0).getOrder_no() %>
@@ -146,7 +147,7 @@ MemberService msvc=new MemberService();
 <!-- 以下內容 -->
     <table id="ordertable" class="ui red celled table">
 
-	<tr>
+	<tr style="color: #E4002B;background-color: #f9f9f9">
 		<th>訂單編號</th>
 		<th>會員編號</th>
 		<th>會員名稱</th>
@@ -162,7 +163,6 @@ MemberService msvc=new MemberService();
 	<c:forEach var="ordervo" items="${list}" begin="<%=pageIndex%>" end="<%=pageIndex+rowsPerPage-1%>">
 					<c:set var="member_id" value="${ordervo.member_id}"/>
 		
-		<div>
 		<tr class="ordertr1">
 			<td>${ordervo.order_no}</td>
 			<td>${ordervo.member_id}</td>
@@ -248,8 +248,10 @@ MemberService msvc=new MemberService();
 <!-- 			</td> -->
 			<!-- 還沒做 -->
 			<td>
-			  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do" style="margin-bottom: 0px;"   >
-			     <input  class="ui button" type="submit" value="發送訊息" >
+<%-- 						  <FORM METHOD="post" ACTION="<%=request.getContextPath()%>/emp/emp.do" style="margin-bottom: 0px;"   > --%>
+			
+			  <FORM METHOD="post" ACTION="" style="margin-bottom: 0px;"   >
+			     <input  class="ui button" type="submit" value="發送訊息" disabled="disabled" >
 			     <input	type="hidden" name="requestURL"	value="<%=request.getServletPath()%>">
 			     <input	type="hidden" name="whichPage" value="<%=whichPage%>"> 
 			     
@@ -259,7 +261,6 @@ MemberService msvc=new MemberService();
 			</td>
 		  </tr>
         <tr class="orseraddress ordertr2"><td>地址</td><td colspan="6">
-        
         
         ${ordervo.dv_address}
 <c:if test="${ordervo.dv_address}">
@@ -291,7 +292,7 @@ MemberService msvc=new MemberService();
   <option value ="${order_status.key}" ${ordervo.order_status==order_status.key?'selected':''} >${order_status.value}</option>
   </c:forEach>
   			     <input type="hidden" class="selectorder_status" name="selectorder_status"  value="${ordervo.order_status}">
-  			     <button class="showbtn btn btn-primary btn-lg" style="display: none" disabled="disabled">已完成之訂單</button>
+  			     <button  class="showbtn btn btn-primary btn-lg" style="display: none;font-size: 15px" disabled="disabled">已完成之訂單</button>
   			     
 </select>
 
@@ -404,4 +405,11 @@ $(".isupate").each(function () {
        </script>
 
 </body>
+    <style>
+        .ordertr1{
+        
+        background-color: #f9f9f9;}
+        
+        
+        </style>
 </html>

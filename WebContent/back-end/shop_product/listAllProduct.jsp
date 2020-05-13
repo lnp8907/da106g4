@@ -47,6 +47,8 @@
 // 			out.println("product_type網頁獲取類型"+request.getAttribute("product_type") );
 
 			list = Psvc.getAllProduct();
+			Collections.reverse(list);
+
 			list = list.stream().filter(p -> p.getProduct_status() != 2).collect(Collectors.toList());
 			product_type = "0";
 
@@ -62,7 +64,7 @@
 	}
 
 	if (request.getParameter("product_typeA") != null) {
-		out.println("product_typeA網頁獲取類型"+request.getParameter("product_typeA") );
+// 		out.println("product_typeA網頁獲取類型"+request.getParameter("product_typeA") );
 		Integer key = Integer.valueOf(request.getParameter("product_typeA"));
 
 		if (key != 0) {
@@ -79,9 +81,11 @@
 		}
 
 	}
+	
 	request.setAttribute("typemapC", typemapC);
 	pageContext.setAttribute("Bprodcutlist", list);
 %>
+
 
 <!DOCTYPE html>
 <html>
@@ -109,8 +113,8 @@
 
 
 	<div class="content">
-		<div class="menu" style="height: 130px">
-		<h2 style="font-size: 40px">商品管理-<%=typemapC.get(Integer.valueOf(product_type)) %></h2>
+		<div class="menu" style="height: 130px;padding-left: 0px">
+		<h2 style="font-size: 40px">商城商品管理<%=(typemapC.get(Integer.valueOf(product_type))).equals("all")?"":"-"+typemapC.get(Integer.valueOf(product_type)) %></h2>
 
 			<!-- 卡片內容上方留白的起始標籤 -->
 		</div>
@@ -118,8 +122,8 @@
 	</div>
 
 <%-- 	類型....${product_type} --%>
-<div style="display: inline;">
-	<select class="product_type ui dropdown" >
+<div  style="display: inline;margin-left: 3px">
+	<select class="product_type ui dropdown" style="margin-bottom: 10px" >
 		<option value="all" ${product_type eq '0'?'selected':''}>所有商品</option>
 		<option value="水果類" ${product_type eq'1'?'selected':''}>水果類</option>
 		<option value="肉類" ${product_type eq'2'?'selected':''}>肉類</option>

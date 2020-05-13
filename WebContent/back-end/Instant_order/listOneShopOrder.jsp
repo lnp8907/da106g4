@@ -136,7 +136,7 @@ th, td {
 <!-- 			<th>修改數量</th> -->
 <!-- 			<th>刪除</th> -->
 
-		</tr>
+		</tr >
 		<%@ include file="../file/page1.file"%>
 		<c:forEach var="detailvo" items="${dialoglist}" begin="<%=pageIndex%>"
 			end="<%=pageIndex+rowsPerPage-1%>">
@@ -145,7 +145,7 @@ th, td {
 <%String Pid=(String)request.getAttribute("Pid");
 String Rid=Psv.getOneProduct(Pid).getRecipe_id();
 %>	
-			<tr>
+			<tr class="ordertr1">
 			<td>
 						<img width=80px height=70px src="<%=Rsv.findByPrimaryKeyForSaved(Rid).getRecipe_photo()%>">
 			

@@ -33,7 +33,7 @@ public class Member_followDAO implements Member_followDAO_interface{
 	
 	private static final String GET_ONE_STMT = "SELECT MEMBER_ID,FOLLOWED FROM MEMBER_FOLLOW where MEMBER_ID = ?";
 	private static final String GET_FOLLOW_STMT = "SELECT MEMBER_ID FROM MEMBER_FOLLOW where FOLLOWED= ?";	
-	private static final String DELETE = "DELETE FROM MEMBER_FOLLOW where MEMBER_ID = ?";
+	private static final String DELETE = "DELETE FROM MEMBER_FOLLOW where MEMBER_ID = ? AND FOLLOWED = ?";
 	private static final String UPDATE = "UPDATE MEMBER_FOLLOW set MEMBER_ID=?, FOLLOWED=? where MEMBER_ID = ? and FOLLOWED = ?";
 
 	@Override
@@ -50,13 +50,15 @@ public class Member_followDAO implements Member_followDAO_interface{
 			
 
 			pstmt.setString(1, member_followVO.getMember_id());
-//			pstmt.setString(2, member_followVO.getMember_id_0());
+			pstmt.setString(2, member_followVO.getFollowed());
 		
 			pstmt.executeUpdate();
 
 			// Handle any SQL errors
 		} catch (SQLException se) {
-			throw new RuntimeException("A database error occured. " + se.getMessage());
+//			throw new RuntimeException("A database error occured. " + se.getMessage());
+			System.out.println("追蹤過囉~,取消追蹤");
+			delete(member_followVO);
 			// Clean up JDBC resources
 		} finally {
 			if (pstmt != null) {
@@ -117,8 +119,8 @@ public class Member_followDAO implements Member_followDAO_interface{
 	}
 
 	@Override
-	public void delete(String empno) {
-
+	public void delete(Member_followVO empVO) {
+		Member_followVO member_followVO = empVO;
 		Connection con = null;
 		PreparedStatement pstmt = null;
 
@@ -127,7 +129,8 @@ public class Member_followDAO implements Member_followDAO_interface{
 			con = ds.getConnection();
 			pstmt = con.prepareStatement(DELETE);
 
-			pstmt.setString(1, empno);
+			pstmt.setString(1, member_followVO.getMember_id());
+			pstmt.setString(2, member_followVO.getFollowed());
 
 			pstmt.executeUpdate();
 

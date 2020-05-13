@@ -116,13 +116,19 @@ public class Instant_delivery_orderServlet extends HttpServlet {
 		}	
 	//....................................................
 			if ("getPositon".equals(action)) {
+				
+				String pagemessage = (String) req.getParameter("pagemessage");
+				System.out.println("收到pagemessage"+pagemessage);
+				String whichPage = (String) req.getParameter("whichPage");
+				System.out.println("收到whichPage"+whichPage);
+				
 			String ido_no = req.getParameter("ido_no");
 			System.out.println("配送位置請求");
 			req.setAttribute("ido_no", ido_no); // 資料庫取出的empVO物件,存入req
 			boolean openModal = true;
 			req.setAttribute("openModal", openModal);
-			req.setAttribute("pagemessage", "traveling");
-			String url = "/back-end/Instant_order/Instant_order_backendPage.jsp";
+			String url = "/back-end/Instant_order/Instant_order_backendPage.jsp?whichPage="+whichPage+"&pagemessage"+pagemessage;
+
 			RequestDispatcher successView = req.getRequestDispatcher(url);
 			successView.forward(req, res);
 

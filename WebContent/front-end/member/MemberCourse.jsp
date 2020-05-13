@@ -26,9 +26,6 @@ String member_name =(String) session.getAttribute("member_name");
 
 
 	
-	out.println(member_name);
-	out.println(member_id);
-	
 	
 	CourseService courseService = new CourseService();
 	List<CourseVO> list = courseService.getChefCourse(member_id);
@@ -713,11 +710,7 @@ String member_name =(String) session.getAttribute("member_name");
 /* latin */
 @font-face {
 	font-family: 'Open Sans';
-	
-
-
-
--style: normal;
+	font-style: normal;
 	font-weight: 300;
 	src: local('Open Sans Light'), local('OpenSans-Light'),
 		url(https://fonts.gstatic.com/s/opensans/v17/mem5YaGs126MiZpBA-UN_r8OUuhp.woff2)
@@ -739,29 +732,6 @@ String member_name =(String) session.getAttribute("member_name");
 }
 /* cyrillic */
 @font-face {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	font-family: 'Open Sans';
 	font-style: normal;
 	font-weight: 400;
@@ -925,7 +895,7 @@ body {
 }
 
 .sidebar {
-	margin-top: -25px;
+	margin-top: -4px;
 	margin-left: 17%;
 	width: 240px;
 
@@ -951,10 +921,7 @@ body {
     margin-left: -115px;
 }
 
-b{
 
-    margin-left: 195px;
-}
 
 
 .small { 
@@ -1110,28 +1077,57 @@ margin-rught:100px;
 .footer-copyright24 {
 	margin-top: 50%;
 }
-
+h4{
+margin-left: 121px;
+    color: #52a3dddb;
+    margin-right: -5px;
+    font-style: oblique;
+    font-family: sans-serif;
+    font-size: smaller;
+}
 
 h3 {
- margin-top: 50px;
-    margin-left: -233px;
+    margin-top: 27px;
+    margin-left: -222px;
     font-family: Calibri;
-    font-size: 26pt;
+    font-size: 30pt;
     font-style: normal;
     font-weight: bold;
-    color: rgba(16, 75, 75, 0.66);
+    color: rgba(16, 75, 75, 0.66);;
     /* text-decoration: underline; */
-    margin-bottom: 10px;
+    margin-bottom: 9px;
+
+
+text-shadow: rgba(186, 152, 152, 0.1) 1px 3px 0px;
 }
-h1{
-margin-left:88px;
-
-
+.recipe-item img {
+    display: inline-block;
+    height: 101px;
+    width: 120px;
+    margin: 5px;
+    vertical-align: top;
+}
+.recipe-item-caption h4 {
+    display: inline-block;
+    margin-bottom: 5px;
+    font-size: 19px;
+    font-weight: 500;
+    margin-left: 0px;
+    font-style: normal;
+    color: #E4002B;
 }
 h2{
 margin-left:56px;
 margin-bottom:8px;
-margin-top:-14px;
+
+
+    margin-left: 45px;
+    margin-bottom: 8px;
+    margin-top: -15px;
+    font-family: inherit;
+
+    color: #8d3a7f;
+   
 
 }
 
@@ -1142,7 +1138,7 @@ b{    margin-right: -235px;
 
 
 table {
-margin-left: 10px;
+    margin-left: 2px;
     width: 822px;
     font-family: Calibri;
     color: #e4002b;
@@ -1153,25 +1149,10 @@ margin-left: 10px;
     border: 2px solid rgb(226, 226, 238);
     border-spacing: 60px 40px;
     /* border-width: 200px; */
-    margin-left: 9px;
-    width: 815px;
-    margin-top: -4px;
-	
-	
-	
-	
-	
+    margin-left: 2px;
+    width: 827px;
 }
-.recipe-main-list-header{
 
-    height: 45px;
-    padding: 12px;
-    border-bottom: 1px solid #cecece;
-    margin-top: -14px;
-
-
-
-}
 table.inner {
 	border: 0px
 }
@@ -1341,18 +1322,6 @@ a {
 	float: left;
 	padding-top: 90px;
 }
-
-.font{
-        margin-left: 192px;
-
-
-}
-
-
-
-
-
-
 
 .article-section-description-recipe-left-span {
 	color: white;
@@ -1796,11 +1765,26 @@ hr {
     display: inline;
 }
 
+.show-one-link li:hover{
+ background-color:#d9b1d526;
+	color:red;
+}
 
 
+.recipe-item img{
+
+    height: 29px;
+    width: 29px;
 
 
+}
 
+
+.recipe-item-caption{
+
+margin-top: 16px;
+
+}
 
 
 
@@ -2146,7 +2130,7 @@ hr {
 </aside>
 
 <FORM METHOD="post" ACTION="../course/CourseServlet" name="upateform" id="upateform"
-		enctype="multipart/form-data" style="margin-left: 500; margin-top: 34px;">
+		enctype="multipart/form-data" style="margin-left: 500px; margin-top: 34px;">
 <table align="center" cellpadding="10">
 
 
@@ -2157,23 +2141,31 @@ hr {
 
 			<div class="container">
 
-					<h3>個人課程管理</h3><table align="center" cellpadding="10" >
+					<h3>個人課程管理</h3><table align="center" cellpadding="10" style=" 
+    margin-top: -13px;
+    width: 850px;">
 			<div class="recipe-main-list">
-		<div class="recipe-main-list-header">
 	
-			<span><%@ include file="page3.file"%></span>
-		</div>
-		<ul class="course=list">
+	
+		<span class="include-page">	<%@ include file="page3.file"%></span>
+
+		<ul class="recipe=list">
 			<c:forEach var="CourseVO" items="${list}" begin="<%=pageIndex%>"
 				end="<%=pageIndex+rowsPerPage-1%>">
+				<a class="show-one-link"
+									href="<%=request.getContextPath()%>/front-end/course/CourseServlet?action=getOne_For_Display&course_id=${CourseVO.course_id}">
 				<li class="recipe-item"><img
 					src="<%=request.getContextPath()+"/front-end/course/photo?course_id="%>${CourseVO.course_id}"
-					alt="">
+					alt=""   style="
+    height: 105px;
+    width: 105px;
+  
+        margin-top: 6px;
+">             
 					<div class="recipe-item-caption">
 						<div class="recipe-item-caption-header">
 							<h4 class="recipe-item-tile">
-								<a class="show-one-link"
-									href="<%=request.getContextPath()%>/front-end/course/CourseServlet?action=getOne_For_Display&course_id=${CourseVO.course_id}">${CourseVO.course_name}</a>
+								${CourseVO.course_name}
 							</h4>
 							<FORM METHOD="post"
 								ACTION="<%=request.getContextPath()%>/front-end/course/CourseServlet"
@@ -2198,7 +2190,7 @@ hr {
 						</div>
 						<p class="recipe-create-time">開課時間:${CourseVO.course_start}<fmt:formatDate value="${CourseVO.course_start}" pattern="yyyy/MM/dd HH:mm" /></p>
 						<p class="recipe-item-ingredient">課程價格：${CourseVO.course_price}</p>
-					</div></li>
+					</div></li></a>
 			</c:forEach>
 		</ul>
 		<div class="include-page2">

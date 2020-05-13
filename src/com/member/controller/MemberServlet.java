@@ -836,7 +836,7 @@ System.out.println("location="+location);
 			mailThread mailService = new mailThread(email, subject, messageText);
 		    mailService.start();
 //			sendMail(to, subject, messageText);
-			RequestDispatcher successView = req.getRequestDispatcher("/front-end/member/checkCode.jsp");
+			RequestDispatcher successView = req.getRequestDispatcher("/front-end/member/checkCode.jsp?state=sucess");
 			successView.forward(req, res);
 		}
 		
@@ -891,7 +891,7 @@ System.out.println("location="+location);
 				
 				
 				//RequestDispatcher successView = req.getRequestDispatcher("");
-				res.sendRedirect("https://da106g4.tk/DA106_G4_Foodporn_Git/index.jsp");
+				res.sendRedirect("https://da106g4.tk/DA106_G4_Foodporn_Git/index.jsp?state=sucess");
 				//successView.forward(req, res);
 				
 				
@@ -1191,7 +1191,7 @@ System.out.println("location="+location);
 				//	req.setAttribute("memberVO", memberVO);
 				
 					RequestDispatcher failureView = req
-							.getRequestDispatcher("/index.jsp");
+							.getRequestDispatcher("/index.jsp?state=sucess2");
 					failureView.forward(req, res);
 					return;
 				}
@@ -1370,11 +1370,11 @@ System.out.println("location="+location);
 				System.out.println(memberVO);
 				// Send the use back to the form, if there were errors
 				if (!errorMsgs.isEmpty()) {
-					System.out.println("123");
+		
 					req.setAttribute("memberVO", memberVO);// 含有輸入格式錯誤的empVO物件,也存入req
 					RequestDispatcher failureView = req
 							.getRequestDispatcher("/back-end/member/Upgrade_to_chef.jsp");
-					System.out.println("123");
+				
 					failureView.forward(req, res);
 					return; //程式中斷
 				}
@@ -1518,6 +1518,7 @@ System.out.println("location="+location);
 
 		
 		String member_name = req.getParameter("member_name");
+		String nickname = req.getParameter("nickname");
 		String enameReg = "^[(\\u4e00-\\u9fa5)(a-zA-Z0-9)]{2,10}$";
 		if (member_name == null || member_name.trim().length() == 0) {
 			errorMsgs.add("會員姓名: 請勿空白");
@@ -1635,8 +1636,8 @@ System.out.println("location="+location);
 		memberVO.setMember_id(member_id);
 		
 		memberVO.setMember_name(member_name);
-		
 		memberVO.setAccount(account);
+		memberVO.setNickname(nickname);
 		
 		memberVO.setPassword(password);
 		
@@ -1680,7 +1681,7 @@ System.out.println("location="+location);
 		MemberService memberSvc = new MemberService();
 		System.out.println("4444444444444444");
 		System.out.println(member_id+ member_name+ account+ password+ email+ birthday+ cellphone+ gender+ member_address+ member_photo);
-		memberVO = memberSvc.update_by_self(member_id, member_name, account, password, email, birthday, cellphone, gender, member_address, member_photo);
+		memberVO = memberSvc.update_by_self(member_id, member_name,nickname, account, password, email, birthday, cellphone, gender, member_address, member_photo);
 		System.out.println("144444444444444423");
 	
 		/***************************3.修改完成,準備轉交(Send the Success view)*************/
@@ -1689,7 +1690,7 @@ System.out.println("location="+location);
 		HttpSession session=req.getSession();
 		System.out.println(memberVO);
 		session.setAttribute("memberVO", memberVO); // 資料庫update成功後,正確的的empVO物件,存入req
-		String url = "/front-end/member/TestMemberHomepage.jsp";
+		String url = "/front-end/member/TestMemberHomepage.jsp?state=sucess3";
 		RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
 		successView.forward(req, res);
 

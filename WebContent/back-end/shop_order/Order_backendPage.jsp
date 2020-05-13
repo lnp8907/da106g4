@@ -63,7 +63,7 @@ line-height: 100px;
 			<!--這裡是左邊選單-->
 			<div class="left-bar">
 
-			<a href="<%=request.getContextPath()%>/backEnd.html"> <span
+			<a href="<%=request.getContextPath()%>/backEnd2.jsp"> <span
 					class="fa fa-cloud-download"><img
 						src="<%=request.getContextPath()%>/image/logo_nohead.png"
 						alt="LOGO" width="200" height="200"></span></a>
@@ -81,8 +81,11 @@ line-height: 100px;
 							<ul class="BList">
 								<li><a
 									href="<%=request.getContextPath()%>/back-end/shop_product/ShopPageServlet?action=listallEX">查看商品</a></li>
-								<li><a
-									href="<%=request.getContextPath()%>/back-end/shop_product/ShopPageServlet?pagemessage=addpage">新增商品</a></li>
+								<li><a href="<%=request.getContextPath() %>/back-end/shop_product/addProduct.jsp">新增商品</a></li>
+
+<!-- 								
+<li><a -->
+<%-- 									href="<%=request.getContextPath()%>/back-end/shop_product/ShopPageServlet?pagemessage=addpage">新增商品</a></li> --%>
 								<li><a href="<%=request.getContextPath()%>/back-end/shop_product/ShopPageServlet?action=listAllReceipe">查看食譜料理包</a></li>
 								<li><a href="<%=request.getContextPath()%>/back-end/shop_product/ShopPageServlet?action=listAllReceipeEXcheck">查看審核中料理包</a></li>
 <%-- 								<li><a href="<%=request.getContextPath()%>/back-end/shop_product/ShopPageServlet?action=IrregularPage">???????????</a></li> --%>

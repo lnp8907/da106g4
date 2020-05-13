@@ -15,13 +15,15 @@
 
   <%if (pageNumber>1) {%>
   <div   style="display: inline-block; float:right">
-    <FORM METHOD="post" ACTION="<%=request.getRequestURI()%>&product_typeA=${product_type}">   
+    <FORM METHOD="post" ACTION="ShopPageServlet?action=typeselect">   
        <select class="changPage ui dropdown" size="1" name="whichPage">
          <%for (int i=1; i<=pageNumber; i++){%>
             <option value="<%=i%>">跳至第<%=i%>頁
          <%}%> 
        </select>
        <input  class="changesubmit" style="display: none"  type="submit" value="確定" >  
+       <input   type="hidden" name="product_type" name="product_type" value="<%=typemapC.get(Integer.valueOf(product_type))%>" >  
+       
        
     </FORM>
     </div>

@@ -37,7 +37,9 @@
 
 
 	<div class="content">
-		<div class="menu">
+		<div class="menu" style="height: 130px;padding-left: 0px">
+		<h2 style="font-size: 40px">食材料理包管理</h2>
+
 			<!-- 卡片內容上方留白的起始標籤 -->
 		</div>
 		<!-- 卡片內容上方留白的結束標籤 -->
@@ -61,7 +63,8 @@
 				</tr>
 				<jsp:useBean id="receiprsvc" class="com.recipe.model.RecipeService" />
 
-				<%@ include file="../file/page1.file"%>
+				<%@ include file="file/Recipepage.file"%>
+
 						<c:set var="whichPage" value="<%=whichPage %>" scope="request"/>
 				
 			</thead>
@@ -155,7 +158,9 @@
 
 			</tbody>
 		</table>
-<%@ include file="../file/page2.file"%>
+<%-- <%@ include file="file/productpage.file"%> --%>
+
+<%@ include file="file/RecipPage1.file"%>
                 </div><!-- end of grid -->
                 <script>
 
@@ -180,26 +185,18 @@ $(".Checkproduct").click(function () {
                 
                 
            <script>
-var r=$('.recipe_td').html()
-if($('.recipe_td').html()==""){
-	
-	$('.recipe_td').css('display','none');
-	$('.recipe_th').css('display','none');	
-$('.recipe_th').html("");
-// 	$('.product_idth').attr("colspan", 2);
-// 	$('.product_idtd').attr("colspan", 2);
-}
-else if($('.recipe_td').html()=="" && $('.recipe_th').html()!="")
-		{
+           var r = $('.recipe_td').html()
+   		if ($('.recipe_td').html() == "") {
 
+   			$('.recipe_td').css('display', 'none');
+   			$('.recipe_th').css('display', 'none');
+   			$('.recipe_th').html("");
+   			// 	$('.product_idth').attr("colspan", 2);
+   			// 	$('.product_idtd').attr("colspan", 2);
+   		} else if ($('.recipe_td').html() == "" && $('.recipe_th').html() != "") {
 
-
-
-
-
-	<!-- end of grid -->
-	//更改成未審核
-		$(".Checkproduct")
+   		}
+$(".Checkproduct")
 				.click(
 						function() {
 							let product_id = $(this).siblings("input").val();

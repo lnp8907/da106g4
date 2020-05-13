@@ -6,7 +6,7 @@ import java.util.List;
 public interface Member_followDAO_interface {
     public void insert(Member_followVO empVO);
     public void update(Member_followVO empVO);
-    public void delete(String empno);
+    public void delete(Member_followVO empVO);
     public Member_followVO findByPrimaryKey(String member_id);
     public Member_followVO findByPrimaryKey_1(String member_id);
     public List<Member_followVO> getAllMemberByFollowed(String followed);

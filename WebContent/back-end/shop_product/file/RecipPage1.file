@@ -1,0 +1,37 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"  pageEncoding="UTF-8"%>
+  <%if (rowsPerPage<rowNumber) {%>
+    <%if(pageIndex>=rowsPerPage){%>
+        <A href="<%=request.getRequestURI()%>?whichPage=1&product_typeA=${product_type}">至第一頁</A>&nbsp;
+        <A href="<%=request.getRequestURI()%>?whichPage=<%=whichPage-1%>&product_typeA=${product_type}">上一頁 </A>&nbsp;
+    <%}%>
+  
+    <%if(pageIndex<pageIndexArray[pageNumber-1]){%>
+        <A href="<%=request.getRequestURI()%>?whichPage=<%=whichPage+1%>&product_typeA=${product_type}">下一頁 </A>&nbsp;
+        <A href="<%=request.getRequestURI()%>?whichPage=<%=pageNumber%>&product_typeA=${product_type}">至最後一頁</A>&nbsp;
+    <%}%>
+  <%}%>  
+
+
+
+  <%if (pageNumber>1) {%>
+  <div   style="display: inline-block; float:right">
+    <FORM METHOD="post" ACTION="ShopPageServlet?action=typeselect">   
+       <select class="changPage ui dropdown" size="1" name="whichPage">
+         <%for (int i=1; i<=pageNumber; i++){%>
+            <option value="<%=i%>">跳至第<%=i%>頁
+         <%}%> 
+       </select>
+       <input  class="changesubmit" style="display: none"  type="submit" value="確定" >  
+              <input   type="hidden" name="product_type" name="product_type" value="料理包組合包" >  
+       
+    </FORM>
+    </div>
+  <%}%>
+   <script>
+      $(".changPage").change(function(){
+     $(".changesubmit").click();
+      
+      
+      
+      });
+      </script>

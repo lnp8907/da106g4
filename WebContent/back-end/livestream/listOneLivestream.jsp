@@ -18,7 +18,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>All Livestream</title>
+    <title>One Livestream</title>
     <style>
         @import 'https://fonts.googleapis.com/css?family=Lato';
 
@@ -397,8 +397,15 @@
     <div class="container">
         <div class="box">
             <!--這裡是左邊選單-->
-            <div class="left-bar"><span class="fa fa-cloud-download"><img src="/image/logo_nohead.png" alt="LOGO"
-                        width="200" height="200"></span>
+            <div class="left-bar"><span class="fa fa-cloud-download">
+            
+                                    <a class="menu-group-a" href="<%=request.getContextPath() + "/backEnd2.jsp"%>">
+            
+            <img src="../../image/logo_nohead.png" alt="LOGO"
+                        width="200" height="200">
+                        </a>
+                        
+                        </span>
                 <div class="menu-group"> <span class="fa fa-television">帳號設定</span>
                     <div class="building"><span class="fa fa-building"></span><span class="fa fa-building"></span></div>
                     <span class="fa fa-cog"></span>
@@ -417,7 +424,7 @@
                         <tr><td>
                              <h3>所有直播資料 - listOneLivestream.jsp</h3> 
        		 
-                             <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" >回首頁</a></h4>
+<!--                              <h4><a href="select_page.jsp"><img src="images/back1.gif" width="100" height="32" >回首頁</a></h4> -->
                         </td></tr>
                     </table>
                     

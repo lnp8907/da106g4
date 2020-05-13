@@ -605,6 +605,8 @@ pageContext.setAttribute("memberVO1", memberVO1);
 <link rel="stylesheet" href="../../css/frontEnd.css">
 <style>
 
+
+
 /* cyrillic-ext */
 @font-face {
 	font-family: 'Open Sans';
@@ -1745,12 +1747,12 @@ hr {
 				
 				
 				
-				
+		
 							
 			<!-- 			<div class="function-list"> -->
-				<a href="#"></a>
+				<a href="#"></a>                                                                 
 <!-- 				<div class="member-center"> -->
-					<div class="herder-icon-span"><span class="member-center-spann">HI，<%=memberVO1.getMember_name()%></span></div>
+					<div class="herder-icon-span"><span class="member-center-spann"><%=memberVO1.getMember_name()==null?"":"HI，"+ memberVO1.getMember_name()%></span></div>
 <%--                         <span class="member-center-spann">HI，<%=session.getAttribute("member_name") %></span> --%>
 <!-- 				</div> -->
 				</a>
@@ -1916,15 +1918,17 @@ hr {
 	</c:if>
 	
 	
-	<aside class="sidebar">
+
+	<aside class="sidebar" >
+
 
   <div class="avatar">
 
           <div class="circle image-wrap small">
- <img src=DBGifReader4.do?photo_type=mempic&member_id=<%=session.getAttribute("member_id")%> id="preview_progressbarTW_img" width=129px height=129px;/>
+ <img src=DBGifReader4.do?photo_type=mempic&member_id=<%=session.getAttribute("member_id")%> id="preview_progressbarTW_img1" width=129px height=129px;/>
 </div>
 </div>
-          <h2><%=memberVO.getMember_name()%></h2>
+          <h2><%=memberVO.getMember_name()==null?"":memberVO.getMember_name()%></h2>		
 <h4>我的富胖幣:  <%=memberVO.getBalance()%></h4>
           <div class="link-top"></div>
 
@@ -1975,7 +1979,7 @@ hr {
 				<li><a
 				href="MemberRecipeFavorite.jsp"><i
 					class="fa fa-dashboard"></i><img class="access-menu-icon1"
-					src="../../image/member/S__12066820.jpg"><span>課程收藏</span></a></li>
+					src="../../image/member/S__12066820.jpg"><span>食譜收藏</span></a></li>
 			</c:if>		
 
 		<c:if test='${member_status eq 0 }'>
@@ -1987,16 +1991,31 @@ hr {
 					src="../../image/member/S__12066818.jpg"><span>我的課程</span></a></li>
 		</c:if>
 
+
+
+
 <c:if test='${member_status eq 1 }'>
-			<li class="sub-menu"><a href="javascript:void(0);"><i
-					class="fa fa-map-marker"></i><img class="access-menu-icon1"
-					src="../../image/member/S__12066827.jpg"><span>直播/課程管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i
-					class="arrow fa fa-angle-right pull-right"></i></a>
-				<ul>
-					<li><a href="MemberCourse.jsp">課程管理</a></li>
-					<li><a href="map-vector.html">直播管理</a></li>
-				</ul></li>
+			<li><a
+				href="MemberCourse.jsp"><i
+					class="fa fa-dashboard"></i><img class="access-menu-icon1"
+					src="../../image/member/S__12066827.jpg"><span>課程管理</span></a></li>
 					</c:if>	
+
+
+
+
+
+
+<%-- <c:if test='${member_status eq 1 }'> --%>
+<!-- 			<li class="sub-menu"><a href="javascript:void(0);"><i -->
+<!-- 					class="fa fa-map-marker"></i><img class="access-menu-icon1" -->
+<!-- 					src="../../image/member/S__12066827.jpg"><span>直播/課程管理&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;></span><i -->
+<!-- 					class="arrow fa fa-angle-right pull-right"></i></a> -->
+<!-- 				<ul> -->
+<!-- 					<li><a href="MemberCourse.jsp">課程管理</a></li> -->
+<!-- 					<li><a href="map-vector.html">直播管理</a></li> -->
+<!-- 				</ul></li> -->
+<%-- 					</c:if>	 --%>
 <c:if test='${member_status eq 1 }'>
 			<li><a
 				href="MemberRecipe.jsp"><i
@@ -2040,7 +2059,10 @@ hr {
 
 						<!----- First Name ---------------------------------------------------------->
 					
-					
+						<tr>
+							<td>會員帳號:</td>
+							<td><%=memberVO.getAccount()%></td>
+						</tr>
 					
 						<tr>
 				<td>會員圖片:</td>
@@ -2071,18 +2093,40 @@ hr {
 
 
 								<input type="TEXT" name="member_name" size="45"
-					id=member_name value="<%=memberVO.getMember_name()%>" />
+					id=member_name value="<%=memberVO.getMember_name()==null?"":memberVO.getMember_name()%>" />
 
 								<!-- (max 30 characters a-z and A-Z) -->
 							</td>
 						</tr>
+						
+						
+						
+						
+						
+						
+						
+						
+						
+							<tr>
+							<td>暱稱:</td>
+
+							<td>
+								
+
+
+
+
+
+								<input type="TEXT" name="nickname" size="45"
+					id=nickname value="<%=memberVO.getNickname()==null?"":memberVO.getNickname()%>" />
+
+								<!-- (max 30 characters a-z and A-Z) -->
+							</td>
+						</tr>
+						
 
 						<!----- Last Name ---------------------------------------------------------->
-						<tr>
-							<td>會員帳號:</td>
-							<td><input type="TEXT" name="account" size="45" id=account
-					value="<%=memberVO.getAccount()%>" /></td>
-						</tr>
+					
 
 						<tr>
 							<td>會員密碼:</td>
@@ -2107,14 +2151,14 @@ hr {
 						<tr>
 							<td>信箱:</td>
 							<td><input type="TEXT" name="email" size="45" id=email
-					value="<%=memberVO.getEmail()%>" /></td>
+					value="<%=memberVO.getEmail()==null?"":memberVO.getEmail()%>" /></td>
 						</tr>
 
 						<!----- Mobile Number ---------------------------------------------------------->
 						<tr>
 							<td>電話號碼:</td>
 							<td><input type="TEXT" name="cellphone" size="45" id=cellphone
-					value="<%=memberVO.getCellphone()%>" /></td>
+					value="<%=memberVO.getCellphone()==null?"":memberVO.getCellphone()%>" /></td>
 						</tr>
 
 						<!----- Gender ----------------------------------------------------------->
@@ -2131,7 +2175,7 @@ hr {
 							<br /></td>
 							<!-- <td><textarea name="Address" rows="4" cols="30"></textarea></td> -->
 							<td><input type="TEXT" name="member_address" size="45"
-					id="address" value="<%=memberVO.getMember_address()%>" /></td>
+					id="address" value="<%=memberVO.getMember_address()==null?"":memberVO.getMember_address()%>" /></td>
 						</tr>
 
 
@@ -2257,6 +2301,22 @@ B.A
   
    <span class="submitAndSave" id="article-section-seemore-recipe" id="submit">儲存</span>
  
+ 
+ 
+<%--    <span class="submitAndSave" id="article-section-seemore-recipe" id="submit"><a href="<%=request.getContextPath() %>/front-end/member/FrontMemberServlet?action=updateBySelf">儲存</a></span> --%>
+ 
+ 
+ 
+ 
+ 
+<!--                <span class="fa fa-sign-out" id="fa fa-sign-out"><a href="back-end/staff/StaffServlet?action=loginOUT">登出</a></span>  -->
+ 
+ 
+ 	 <input type="hidden" name="action" value="updateBySelf">	
+ 
+  <input type="button" value="神奇小按鈕" id="send1" name="send1" style="margin-right:-134px;">
+ 
+ 
 								
 		</div>						
 								
@@ -2268,7 +2328,7 @@ B.A
 						</tr>
 					</table>
 					
-			<br> <input type="hidden" name="action" value="updateBySelf">	
+		
 					
 					 <input type="hidden"
 							name="member_id" value="<%=session.getAttribute("member_id")%>">
@@ -2277,7 +2337,7 @@ B.A
 						
 					
 					<input type="hidden"
-							name="account" value="${memberVO.member_photo}">
+							name="account" value="${memberVO.account}">
 					
 					
 					
@@ -2289,9 +2349,9 @@ B.A
 					
 					
 					
+								</div>
 				
 				</form>
-				</div>
 				
 				<script>
 <%java.sql.Date birthday = null;
@@ -2679,6 +2739,61 @@ if(state=="sucess"){
 		})
 	
 }
+var state = '${param.state}';
+console.log("state"+state);
+if(state=="sucess2"){
+	
+	Swal.fire({
+		
+		  icon: 'success',
+		  title: '儲值成功',
+		  showConfirmButton: false,
+		  timer: 1500
+		})
+	
+}
+
+var state = '${param.state}';
+console.log("state"+state);
+if(state=="sucess3"){
+	
+	Swal.fire({
+		
+		  icon: 'success',
+		  title: '檔案成功更新',
+		  showConfirmButton: false,
+		  timer: 1500
+		})
+	
+}
+
+$("#send1").click(function(){
+	upateform.member_name.value="咪路";
+	upateform.nickname.value="FatElf";
+	upateform.cellphone.value="0904103101";
+	upateform.member_address.value="台中市西屯區朝馬路77號";
+	
+	
+	
+	
+	
+	
+	
+	
+})
+
+
+
+
+
+
+
+
+
+
+
+
+
 	</script>
 
 

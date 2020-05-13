@@ -106,12 +106,13 @@ public class MemberService {
 
 	}
 
-	public MemberVO update_by_self(String member_id, String member_name, String account, String password, String email,
+	public MemberVO update_by_self(String member_id, String member_name,String nickname, String account, String password, String email,
 			Date birthday, String cellphone, Integer gender, String member_address, byte[] member_photo) {
 		MemberVO memberVO = new MemberVO();
 
 		memberVO.setMember_id(member_id);
 		memberVO.setAccount(account);
+		memberVO.setNickname(nickname);
 		memberVO.setPassword(password);
 		memberVO.setMember_name(member_name);
 		memberVO.setGender(gender);

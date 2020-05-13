@@ -6,6 +6,7 @@
 <%@page import="com.member.model.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
+
 	String member_id = (String) request.getAttribute("member_id");
 	RecipeService recipeService = new RecipeService();
 	List<RecipeVO> list = recipeService.getChefCooked(member_id);
@@ -452,9 +453,9 @@ margin-top:0px;
 					<img
 						src="<%=request.getContextPath()%>/front-end/member/photo?member_id=<%=memberVO.getMember_id()%>">
 				</div>
-				<form action="" class="follow">
-<!-- 					<button>追蹤</button> -->
-				</form>
+				<div class="follow">
+									<button id="follow_btn">追蹤</button> 
+				</div>
 			</div>
 		</div>
 		<!-- end of main-page-header-->
@@ -609,7 +610,37 @@ margin-top:0px;
 
 										}
 									})
-						})
+						});
+
 			})
 </script>
+<c:if test="${!(memberVO==null)}">
+<script >
+
+$(document).ready(
+		function() {
+$("#follow_btn").click(
+		function() {
+			var target = $(this);
+			$.ajax({
+						type : "GET",
+						url : "ajaxResponse.do",
+						data : {
+							"action" : 'follow',
+							"chef_id" : '<%=memberVO.getMember_id()%>',
+							"member_id": ${sessionScope.memberVO.member_id} 
+						},
+						dataType : "json",
+						success : function() {
+
+						},
+						error : function() {
+
+						}
+					})
+		})
+
+		})
+</script>
+</c:if>
 </html>

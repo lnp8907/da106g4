@@ -231,7 +231,57 @@ System.out.println("新"+location);
 //		successView.forward(req, res);
 
 		}
+		if("insert2".equals(action)) {
+			System.out.println("進入"+"ACTIN=insert");
+
+			Integer money =Integer.valueOf(req.getParameter("money")) ;//取金流
+			//String money = req.getParameter("money");
+	System.out.println(money);
+			String member_id= (String) req.getSession().getAttribute("member_id");//取會員編號
+	System.out.println(member_id);
+			
+			MoneyflowVO moneyflowVO=new MoneyflowVO();
+			moneyflowVO.setMember_id(member_id);
+			moneyflowVO.setMoney(money);
+			
+			
+			
+			MoneyflowService mfDao = new MoneyflowService();//處理金流
+			
+			mfDao.insert(member_id, 0, money);
+			
+			
+
+			MemberService svc = new MemberService();
+			MemberVO memberVO=new MemberVO();
+			memberVO= svc.getOneMember(member_id);
+			System.out.println("現有"+memberVO.getBalance());
+
+			memberVO.setBalance(memberVO.getBalance()+ money);
+			System.out.println("新"+memberVO.getBalance());
+			
+			Integer balance =Integer.valueOf(memberVO.getBalance()) ;//取金流
+			
+			
+		//MemberService memberSvc = new MemberService();//更改會員總點數
+		//memberSvc.updateStoredValue(member_id, balance);
+			svc.updateStoredValue(member_id, balance);
+		//-------------------------------
+//		  boolean openModal = true;
+//		    req.setAttribute("openModal", openModal);
+//		    System.out.println(openModal);
+		//----------------------------------	
 		
+//		String url = "/back-end/moneyflow/listAllMoneyflow.jsp";
+//		RequestDispatcher successView = req.getRequestDispatcher(url); // 成功轉交 listOneEmp.jsp
+//		successView.forward(req, res);
+			String url = req.getContextPath()+"/front-end/member/TestMemberHomepage.jsp?state=sucess2";
+//			RequestDispatcher successView = req.getRequestDispatcher(url); // 修改成功後,轉交listOneEmp.jsp
+//			successView.forward(req, res);
+			res.sendRedirect(url);
+
+		}
+
 		
 		
 		if("consume".equals(action)) {

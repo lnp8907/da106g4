@@ -77,7 +77,7 @@ public class MemberDAO implements MemberDAO_interface {
 //
 	private static final String UPDATE_TO_CHEF = "UPDATE MEMBER set MEMBER_ID = ?, license=?, chiefapply_status=? where MEMBER_ID = ?";
 	private static final String UPDATE_STOREDVALUE = "UPDATE MEMBER set MEMBER_ID=?, BALANCE=? where MEMBER_ID = ?";
-	private static final String UPDATE_BY_SELF = "UPDATE MEMBER set MEMBER_ID = ?, MEMBER_NAME=?, ACCOUNT=?, PASSWORD=?, EMAIL=?, BIRTHDAY=?, CELLPHONE=?, GENDER=?, MEMBER_ADDRESS=?, member_photo=? where MEMBER_ID = ?";
+	private static final String UPDATE_BY_SELF = "UPDATE MEMBER set MEMBER_ID = ?, MEMBER_NAME=?,NICKNAME=?, ACCOUNT=?, PASSWORD=?, EMAIL=?, BIRTHDAY=?, CELLPHONE=?, GENDER=?, MEMBER_ADDRESS=?, member_photo=? where MEMBER_ID = ?";
 
 	/////////////
 	private static final String UPDATE_LIVESTREAM_STATUS = "UPDATE MEMBER set livestream_status=? where MEMBER_ID = ?";
@@ -831,17 +831,18 @@ public class MemberDAO implements MemberDAO_interface {
 //	        pstmt.setBytes(9, empVO.getMember_photo());
 //			pstmt.setString(8, empVO.getMember_address());
 //			pstmt.setString(10, empVO.getMember_id());
-			pstmt.setString(3, empVO.getAccount());
-			pstmt.setString(4, empVO.getPassword());
+			pstmt.setString(4, empVO.getAccount());
+			pstmt.setString(5, empVO.getPassword());
 			pstmt.setString(2, empVO.getMember_name());
-			pstmt.setInt(8, empVO.getGender());
-			pstmt.setDate(6, empVO.getBirthday());
-			pstmt.setString(7, empVO.getCellphone());
-			pstmt.setString(5, empVO.getEmail());
-	        pstmt.setBytes(10, empVO.getMember_photo());
-			pstmt.setString(9, empVO.getMember_address());
+			pstmt.setString(3, empVO.getNickname());
+			pstmt.setInt(9, empVO.getGender());
+			pstmt.setDate(7, empVO.getBirthday());
+			pstmt.setString(8, empVO.getCellphone());
+			pstmt.setString(6, empVO.getEmail());
+	        pstmt.setBytes(11, empVO.getMember_photo());
+			pstmt.setString(10, empVO.getMember_address());
 			pstmt.setString(1, empVO.getMember_id());
-			pstmt.setString(11, empVO.getMember_id());
+			pstmt.setString(12, empVO.getMember_id());
 			
 			pstmt.executeUpdate();
 
