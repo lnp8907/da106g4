@@ -409,7 +409,14 @@
                         </a>
                         
                         </span>
-                <div class="menu-group"> <span class="fa fa-television">帳號設定</span>
+                <div class="menu-group"> 
+                
+                
+                               <span class="fa fa-television"><a style="margin: 0px;color: rgba(0, 0, 0, 0.5);font-family: '微軟正黑體', monospace;" href="<%=request.getContextPath()%>/back-end/livestream/listAllLivestream.jsp" class="tocensor">全部直播</a></span>
+ <span class="fa fa-television">  <a style="margin: 0px;color: rgba(0, 0, 0, 0.5);font-family: '微軟正黑體', monospace;" href="<%=request.getContextPath()%>/back-end/livestream/listOneLivestream.jsp" class="tocensor">直播預告審查</a></span>
+                   
+                   
+                   
                     <div class="building"><span class="fa fa-building"></span><span class="fa fa-building"></span></div>
                     <span class="fa fa-cog"></span>
                 </div><span class="fa fa-sign-out">登出</span>
