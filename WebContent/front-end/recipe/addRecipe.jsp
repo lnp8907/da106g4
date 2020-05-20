@@ -275,7 +275,7 @@ String member_id =(String) session.getAttribute("member_id");
 <!-- 					<div class="member_id-container"> -->
 <!-- 						<h3>會員編號</h3> -->
 <!-- 					</div> -->
-						<input type="hidden" name="member_id" placeholder="請輸入廚師編號" value="<%=(recipeVO == null) ? "810003" : member_id%>">
+						<input type="hidden" name="member_id" placeholder="請輸入廚師編號" value="<%=(member_id == null) ? "810003" : member_id%>">
 					<h3>食譜圖片</h3>
 					<figure class="recipe-aside-image">
 						<img

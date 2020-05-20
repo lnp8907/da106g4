@@ -46,8 +46,7 @@
 				</h2>
 				<div class="recipe-aside">
 					<div class="member_id-container">
-						<h3>廚師編號</h3>
-						<textarea name="member_id" placeholder="請輸入廚師編號" rows="1"><%=recipeVO.getMember_id()%></textarea>
+						<input name="member_id" type="hidden" value="<%=recipeVO.getMember_id()%>">
 					</div>
 					<figure class="recipe-aside-image">
 						<img

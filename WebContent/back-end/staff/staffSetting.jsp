@@ -177,6 +177,22 @@ $("#password2").blur(function(){
 	}
 })
 </script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
+<script>
+var state = '${param.state}';
+console.log("state"+state);
+if(state=="sucess3"){
+	
+	Swal.fire({
+		
+		  title: '資料修改成功',
+		  showConfirmButton: false,
+		  timer: 1500
+		})
+}
+
+
+</script>
 <script>
 	$(document)
 			.ready(

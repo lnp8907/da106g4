@@ -427,7 +427,7 @@ public class StaffServlet extends HttpServlet {
 			StaffService staffService = new StaffService();
 			staffVO = staffService.updateWithPassword(staff_id, staff_password, staff_name, gender, phone, email,staff_status);
 			RequestDispatcher succeseView = req
-					.getRequestDispatcher("/back-end/staff/staffPage.jsp?pageType=staffSetting.jsp");
+					.getRequestDispatcher("/back-end/staff/staffPage.jsp?pageType=staffSetting.jsp?state=sucess3");
 			req.setAttribute("staffVO", staffVO); 
 			req.setAttribute("seccese", "seccese"); 
 			succeseView.forward(req, res);				
